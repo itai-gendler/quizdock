@@ -1,0 +1,10 @@
+{
+  "title": "Einem Raum beitreten",
+  "pinLabel": "PIN, 6 Ziffern",
+  "continue": "Weiter",
+  "hint": "Die auf der großen Leinwand angezeigte PIN eingeben",
+  "checking": "Raum wird gesucht…",
+  "notFound": "Kein offener Raum mit dieser PIN. Bitte die große Leinwand prüfen.",
+  "locked": "Dieser Raum ist für Neue geschlossen; wer zurückkommt, kommt trotzdem hinein.",
+  "checkedAt6": "Wird geprüft, sobald die 6. Ziffer eingegeben ist."
+}

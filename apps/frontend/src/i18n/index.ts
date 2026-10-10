@@ -10,11 +10,11 @@ import { type AppLang, namespaces, resolveLang, supportedLngs } from './language
  * Un animateur peut choisir la sienne pour ses écrans, et les écrans du public
  * parlent la langue du quiz ou celle choisie pour le salon (#209,
  * `interface-language.ts`). Langues fournies : `en` (défaut), `fr`, `es`, `zh` (chinois simplifié),
- * `zh-TW` (chinois traditionnel), `tr` (turc). Vocabulaire et arbitrages : `GLOSSARY.md`.
+ * `zh-TW` (chinois traditionnel), `tr` (turc), `de`, `hi`, `it`, `ja`, `pl`, `ru`. Vocabulaire et arbitrages : `GLOSSARY.md`.
  *
  * Chaque langue est un fichier à part, chargé à la demande (audit E16) : le
  * navigateur ne télécharge que celle de l'instance, et l'anglais pour une clé qui
- * manquerait, au lieu des six. `loadLanguages()` les charge avant le premier
+ * manquerait, au lieu de toutes. `loadLanguages()` les charge avant le premier
  * rendu (`main.tsx`, et le setup des tests) : `t()` reste alors synchrone.
  */
 const files = import.meta.glob<{ default: Record<string, unknown> }>('./locales/*/*.json');

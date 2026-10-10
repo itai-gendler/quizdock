@@ -1,0 +1,10 @@
+{
+  "invalid_type": "Tipo di valore non valido.",
+  "too_small": "Valore troppo piccolo o troppo corto.",
+  "too_big": "Valore troppo grande o troppo lungo.",
+  "invalid_format": "Formato non valido.",
+  "invalid_value": "Valore non consentito.",
+  "unrecognized_keys": "Campo non riconosciuto.",
+  "custom": "Valore non valido.",
+  "_default": "Campo non valido."
+}

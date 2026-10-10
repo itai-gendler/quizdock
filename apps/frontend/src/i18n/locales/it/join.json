@@ -1,0 +1,10 @@
+{
+  "title": "Entra in una sala",
+  "pinLabel": "PIN, 6 cifre",
+  "continue": "Continua",
+  "hint": "Digita il PIN mostrato sul grande schermo",
+  "checking": "Ricerca della sala…",
+  "notFound": "Nessuna sala aperta con questo PIN. Controlla il grande schermo.",
+  "locked": "Questa sala è chiusa ai nuovi arrivati; chi ritorna può comunque entrare.",
+  "checkedAt6": "Verificato non appena inserisci la 6ª cifra."
+}

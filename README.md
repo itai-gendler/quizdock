@@ -50,7 +50,7 @@ database. The product, its uses and its documentation are on
 - **Video and sound.** Media in questions and slides, converted in the browser, started on
   the server's clock; remote participants get them on their own device (experimental).
   [More](https://quizdock.github.io/media/)
-- **Open source, MIT.** Docker images for amd64 and arm64, six interface languages.
+- **Open source, MIT.** Docker images for amd64 and arm64, twelve interface languages.
 
 ## Quick start
 
@@ -189,7 +189,7 @@ administration. [Administration](https://quizdock.github.io/docs/admin/overview/
 - **CSV export** — overall results and per-player answer sheets.
 - **Licence, tags and language of a quiz** — set in the quiz settings and carried with it, so whoever receives a copy knows what they may do with it and what it is about.
 - **Quiz import / export** — a quiz travels as a [portable bundle](https://github.com/quizdock/quiz-dock/blob/main/docs/quiz-bundle.md) (`quiz.json` + `media/`, zipped): back it up, move it between instances, share it — from the app or the operator CLI. Coming from Kahoot? Its spreadsheet template imports as a draft, the rows to finish flagged. From another tool, a [chatbot prompt](https://quizdock.github.io/docs/host/import-a-quiz/) turns a PDF, screenshots or a spreadsheet into a quiz to import, and a local [MCP connector](https://quizdock.github.io/docs/operator/cli/) _(experimental)_ lets a chatbot client check the quiz and import it itself.
-- **Multilingual** — the instance's language by default, each host's own for their screens, the quiz's or the room's on the big screen and the phones; a [glossary](https://github.com/quizdock/quiz-dock/blob/main/apps/frontend/src/i18n/GLOSSARY.md) keeps the wording consistent across the six.
+- **Multilingual** — the instance's language by default, each host's own for their screens, the quiz's or the room's on the big screen and the phones; a [glossary](https://github.com/quizdock/quiz-dock/blob/main/apps/frontend/src/i18n/GLOSSARY.md) keeps the wording consistent across all of them.
 - **White-label** — name, logo and CSS via env + a mounted folder, no rebuild.
 - **On the home screen** — an icon and a manifest: it can be added to a phone's or a tablet's home screen, and the screen stays on during a game.
 - **Feedback** — under the version on the home page, links to report a bug, suggest a feature, fix a translation or ask a question, pre-filled with the version and the browser, and an invitation to star QuizDock on GitHub; pointed at your own repository or hidden with `APP_FEEDBACK_URL`.
@@ -213,7 +213,9 @@ auto-generated OpenAPI client (Orval) and a shared TypeScript WebSocket contract
 
 ## Translations
 
-QuizDock speaks English, French, Spanish, Turkish and Chinese (simplified and traditional).
+QuizDock speaks English, French, Spanish, Chinese (simplified and traditional), Turkish,
+German, Hindi, Italian, Japanese, Polish and Russian; the last six are machine-assisted and
+wait for a native reviewer.
 Missing your language, or spotted an awkward word? Translate it on
 [Weblate](https://hosted.weblate.org/engage/quizdock/), right in the browser, no setup needed;
 new languages are welcome. Changes come back as pull requests to `dev`. Questions about a

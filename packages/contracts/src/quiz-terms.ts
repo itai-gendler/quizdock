@@ -56,4 +56,6 @@ export const QUIZ_LANGUAGES = [
   'ja',
   'ko',
   'ar',
+  'hi',
+  'ru',
 ] as const;

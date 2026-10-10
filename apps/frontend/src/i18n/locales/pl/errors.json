@@ -1,0 +1,221 @@
+{
+  "auth": {
+    "required": "Wymagane uwierzytelnienie.",
+    "login_failed": "Nie udało się dokończyć logowania. Spróbuj ponownie.",
+    "cross_origin": "To żądanie nie pochodzi ze strony samej aplikacji.",
+    "host_required": "Wymagana rola prowadzącego.",
+    "host_only": "To działanie prowadzącego; administrator zarządza instancją, nie prezentuje.",
+    "admin_required": "Wymagana rola administratora.",
+    "oidc_disabled": "Logowanie przez dostawcę tożsamości nie jest włączone na tej instancji."
+  },
+  "host": {
+    "auth_required": "Wymagane uwierzytelnienie prowadzącego.",
+    "forbidden": "Nie jesteś prowadzącym tego pokoju."
+  },
+  "quiz": {
+    "not_found": "Nie znaleziono quizu.",
+    "not_ready": "Quiz musi być „gotowy”, aby można go było rozegrać (RG-02).",
+    "empty": "Quiz nie ma pytań.",
+    "requires_question": "Quiz musi mieć co najmniej jedno pytanie, aby stać się „gotowy” (RG-02).",
+    "transition_forbidden": "Niedozwolona zmiana stanu: {{from}} → {{target}}.",
+    "in_use": "Ten quiz jest rozgrywany w pokoju: najpierw zamknij pokój.",
+    "item_not_in_quiz": "Ten element nie należy już do tego quizu: odśwież stronę.",
+    "reorder_incomplete": "W wysłanej kolejności brakuje niektórych elementów: odśwież stronę i spróbuj ponownie.",
+    "incomplete_one": "1 krok jest niedokończony: dokończ go, aby opublikować quiz.",
+    "incomplete_few": "{{count}} kroki są niedokończone: dokończ je, aby opublikować quiz.",
+    "incomplete_many": "{{count}} kroków jest niedokończonych: dokończ je, aby opublikować quiz.",
+    "incomplete_other": "{{count}} kroku jest niedokończone: dokończ je, aby opublikować quiz."
+  },
+  "session": {
+    "not_found": "Nie znaleziono pokoju albo jest zamknięty.",
+    "ended": "Pokój jest zamknięty.",
+    "banned": "Prowadzący usunął cię z tego pokoju.",
+    "join_required": "Dołącz do pokoju, zanim odpowiesz.",
+    "already_joined": "Już jesteś w tym pokoju.",
+    "already_started": "Quiz już się rozpoczął.",
+    "quiz_required": "Najpierw wybierz quiz.",
+    "reveal_required": "Działanie możliwe dopiero po odsłonięciu.",
+    "timer_not_adjustable": "Licznik można zmieniać tylko w trakcie pytania.",
+    "snapshot_not_found": "Nie znaleziono migawki sesji.",
+    "capture_locked": "Pełny zapis można zmienić tylko przed rozpoczęciem quizu.",
+    "options_locked": "Te opcje można zmienić tylko przed rozpoczęciem quizu.",
+    "join_url_invalid": "Nieprawidłowy adres zaproszenia (oczekiwano http(s)://host[:port]).",
+    "archive_quiz_gone": "Quiz został usunięty w trakcie rozgrywki: zakończył się bez archiwum.",
+    "locked": "Ten pokój nie przyjmuje już nowych uczestników.",
+    "open_access_forbidden": "Otwarty dostęp nie jest dozwolony na tym serwerze.",
+    "open_access_guests_only": "Przy otwartym dostępie uczestnicy nie mają kont: bez śledzenia indywidualnego, bez nazwy pobieranej z konta.",
+    "next_quiz_unavailable": "Tego quizu nie można rozegrać jako następnego w tym pokoju.",
+    "next_quiz_from_lobby": "Następny quiz wybiera się w poczekalni pokoju.",
+    "review_unavailable": "Spojrzeć wstecz na krok można tylko między dwoma pytaniami.",
+    "step_not_played": "Ten krok nie został jeszcze rozegrany."
+  },
+  "participant": {
+    "not_found": "Nie znaleziono uczestnika."
+  },
+  "nickname": {
+    "taken": "Ten pseudonim jest już zajęty w tym pokoju.",
+    "invalid_length": "Pseudonim musi mieć od {{min}} do {{max}} znaków."
+  },
+  "pin": {
+    "unavailable": "Nie udało się przydzielić PIN-u, spróbuj ponownie.",
+    "too_many_attempts": "Zbyt wiele błędnych PIN-ów z tego adresu. Spróbuj ponownie za minutę."
+  },
+  "media": {
+    "unsupported_type": "Nieobsługiwany format: obraz, film MP4 (H.264) lub dźwięk (MP3, M4A). Edytor konwertuje inne pliki, które ta przeglądarka potrafi odczytać; SVG nie jest akceptowany.",
+    "file_missing": "Brak pliku (pole „file”).",
+    "file_too_large": "Plik za duży (najwyżej {{maxMb}} MB dla tego rodzaju multimediów).",
+    "image_too_large": "Ten obraz jest za duży (najwyżej {{maxMp}} megapikseli).",
+    "not_found": "Nie znaleziono materiału.",
+    "demo_disabled": "Przesyłanie multimediów jest wyłączone na instancji demo.",
+    "video_with_audio": "Film ma już własny dźwięk: usuń ścieżkę audio albo film.",
+    "wrong_kind": "Ten materiał nie jest tego rodzaju, który przyjmuje to miejsce.",
+    "embeds_disabled": "Filmy z YouTube i Vimeo są wyłączone na tej instancji.",
+    "invalid": "Multimedia pytania są nieprawidłowe.",
+    "quicktime": "Pliki QuickTime (.mov) nie są akceptowane. Wyeksportuj film jako MP4 (H.264), na przykład w HandBrake (handbrake.fr).",
+    "unsupported_video_codec": "Nieobsługiwany kodek wideo ({{codec}}). Wszędzie odtwarza się tylko H.264. Film nagrany iPhone’em to często HEVC: przekonwertuj go do MP4 H.264, na przykład w HandBrake (handbrake.fr), albo ustaw w aparacie „Najbardziej zgodne”.",
+    "unsupported_audio_codec": "Dźwięk tego filmu ({{codec}}) nie jest w formacie AAC. Wyeksportuj go ponownie jako MP4 H.264 + AAC, na przykład w HandBrake (handbrake.fr).",
+    "no_video_track": "Ten plik nie zawiera obrazu wideo. Dla samego dźwięku użyj miejsca na dźwięk.",
+    "unreadable_mp3": "Nie można odczytać tego dźwięku: plik wygląda na uszkodzony.",
+    "metadata_invalid": "Pomiar dźwięku jest nieprawidłowy ({{field}}). Spróbuj przesłać ponownie.",
+    "cannot_read": "Ta przeglądarka nie potrafi odczytać tego pliku. Spróbuj innej przeglądarki albo najpierw przekonwertuj plik odpowiednim narzędziem (HandBrake dla filmów, Audacity dla dźwięków).",
+    "cannot_convert_video": "Ta przeglądarka nie potrafi przekonwertować tego filmu do MP4 H.264. Użyj Chrome, Edge lub Safari albo najpierw przekonwertuj go w HandBrake (handbrake.fr).",
+    "cannot_convert_audio": "Ta przeglądarka nie potrafi przekonwertować tego dźwięku do AAC. Spróbuj innej przeglądarki albo najpierw przekonwertuj go w Audacity (audacityteam.org).",
+    "too_long": "Za długie, aby zmieścić się w limicie {{maxMb}} MB dla tego rodzaju multimediów, nawet po kompresji. Najpierw je skróć.",
+    "canceled": "Anulowano konwersję.",
+    "in_use": "Ten materiał jest nadal używany przez quiz lub sesję: najpierw go stamtąd usuń.",
+    "playing": "Pokój właśnie odtwarza ten materiał: spróbuj ponownie po jego zamknięciu.",
+    "not_adopted_yet": "Ten plik jest przenoszony do wspólnego magazynu: spróbuj ponownie za chwilę.",
+    "embed_bounds": "Początek i koniec filmu się nie zgadzają: koniec musi być po początku."
+  },
+  "import": {
+    "file_missing": "Brak pliku (pole „file”).",
+    "invalid_bundle": "To nie jest paczka QuizDock (quiz.json + media/, spakowane do zip).",
+    "bundle_too_large": "Ta paczka jest za duża po rozpakowaniu albo zawiera za dużo plików.",
+    "media_missing": "Materiał „{{path}}” jest wskazany, ale brakuje go w paczce.",
+    "media_unsupported": "Nieobsługiwany materiał „{{path}}” (png, jpg, gif, webp, avif, mp3, ogg, wav, m4a).",
+    "invalid_item": "Element {{item}} paczki jest nieprawidłowy ({{field}}).",
+    "kahoot_template": "Użyj oryginalnego szablonu arkusza Kahoot (.xlsx), z jednym arkuszem.",
+    "kahoot_empty": "Nie znaleziono prawidłowych pytań. Sprawdź wiersz {{row}} i szablon Kahoot.",
+    "file_too_large": "Plik za duży do zaimportowania (najwyżej {{maxMb}} MB)."
+  },
+  "question": {
+    "not_in_quiz": "Pytanie nie należy do quizu.",
+    "invalid_permutation": "Pozycje muszą tworzyć permutację 0..n-1.",
+    "reorder_incomplete": "Zmiana kolejności musi obejmować wszystkie pytania quizu.",
+    "not_found": "Nie znaleziono pytania.",
+    "accepted_answers": {
+      "not_allowed": "Akceptowane odpowiedzi przyjmuje tylko pytanie z odpowiedzią tekstową.",
+      "required": "Dodaj co najmniej jedną akceptowaną odpowiedź."
+    },
+    "image": {
+      "alt_required": "Opisz ten obraz dla osób, które go nie widzą.",
+      "count": "Wybór obrazów przyjmuje 2 lub 4 obrazy.",
+      "no_text": "Odpowiedź obrazkowa nie ma tekstu.",
+      "no_visual": "Wybór obrazów nie ma własnego obrazu ani filmu: jego odpowiedziami są obrazy.",
+      "picture_required": "Wybierz obraz dla tej odpowiedzi."
+    },
+    "incomplete_in_ready_quiz": "Ten quiz jest opublikowany: przywróć go do szkicu, aby zapisać niedokończone pytanie.",
+    "multi_select": {
+      "not_allowed": "Kilka poprawnych obrazów dotyczy tylko wyboru obrazów."
+    },
+    "numeric": {
+      "not_allowed": "Wartość docelową i tolerancję przyjmuje tylko pytanie liczbowe.",
+      "tolerance_required": "Ustaw tolerancję (0 dla dokładnej liczby).",
+      "value_required": "Ustaw liczbę do odgadnięcia."
+    },
+    "options": {
+      "not_allowed": "Ten typ pytania nie ma wariantów do wyboru.",
+      "one_correct": "Zaznacz poprawną odpowiedź.",
+      "some_correct": "Zaznacz co najmniej jedną poprawną odpowiedź.",
+      "too_few": "Dodaj co najmniej 2 odpowiedzi."
+    },
+    "ordering": {
+      "positions": "Każda odpowiedź potrzebuje własnego miejsca we właściwej kolejności."
+    },
+    "poll": {
+      "no_correct": "Ankieta nie ma poprawnej odpowiedzi."
+    },
+    "prompt": {
+      "required": "Napisz pytanie albo dodaj obraz lub dźwięk, który je zadaje."
+    },
+    "scoring": {
+      "not_available": "Ta punktacja nie dotyczy tego typu pytania."
+    },
+    "true_false": {
+      "two_options": "Prawda/fałsz przyjmuje dokładnie 2 odpowiedzi."
+    }
+  },
+  "validation": "Niektóre pola są nieprawidłowe.",
+  "internal": "Błąd wewnętrzny.",
+  "error": "Wystąpił błąd.",
+  "host_seat": {
+    "taken": "Miejsce prowadzącego jest już zajęte.",
+    "manager_forbidden": "Administrator nie zajmuje miejsca prowadzącego.",
+    "local_only": "Miejsce prowadzącego istnieje tylko w trybie lokalnym.",
+    "already_host": "Już jesteś prowadzącym: nie ma miejsca do zajęcia."
+  },
+  "store": {
+    "demo_disabled": "Udostępnianie jest wyłączone na instancji demo.",
+    "not_ready": "Udostępnić można tylko quiz oznaczony jako „gotowy”.",
+    "license_required": "Ustaw licencję przed udostępnieniem: szablon ma być ponownie wykorzystywany, więc warunki idą razem z nim.",
+    "entry_not_found": "Tego szablonu nie ma już w katalogu.",
+    "not_yours": "Szablon może wycofać tylko jego autor lub administrator.",
+    "invalid_id": "Nieprawidłowy identyfikator szablonu.",
+    "index_unreadable": "Nie można odczytać indeksu katalogu; zwróć się do administratora."
+  },
+  "publication": {
+    "slug_invalid": "Krótka nazwa może zawierać tylko małe litery, cyfry i myślniki.",
+    "not_ready": "Do publikacji można wyeksportować tylko gotowy quiz.",
+    "license": "Wybierz licencję (CC0, CC BY lub CC BY-SA) przed eksportem do publikacji.",
+    "language": "Język quizu jest nieprawidłowy.",
+    "tags": "Dodaj co najmniej jeden tag przed eksportem do publikacji.",
+    "too_large": "Quiz jest za duży dla katalogu społeczności."
+  },
+  "slide": {
+    "two_sounds": "Slajd odtwarza jeden dźwięk naraz: wycisz jego film albo usuń jego dźwięk.",
+    "background_conflict": "Tło to obraz albo gradient, nie oba naraz.",
+    "empty": "Slajd nic nie pokazuje: dodaj nagłówek, tekst, obraz, tło lub film.",
+    "not_found": "Ten slajd już nie istnieje: w międzyczasie został usunięty.",
+    "incomplete_in_ready_quiz": "Ten quiz jest opublikowany: przywróć go do szkicu, aby zapisać slajd, który nic nie pokazuje."
+  },
+  "record": {
+    "not_found": "Ten element już nie istnieje: w międzyczasie został usunięty.",
+    "conflict": "Ktoś zapisał w tym samym czasie. Spróbuj ponownie.",
+    "invalid_reference": "To odnosi się do czegoś, co już nie istnieje."
+  },
+  "mcp": {
+    "busy": "Import już trwa. Poczekaj, aż się zakończy.",
+    "import_failed": "Nie udało się zaimportować quizu. Sprawdź logi serwera.",
+    "rate_limit": "Zbyt wiele żądań konektora. Spróbuj ponownie za minutę."
+  },
+  "community": {
+    "disabled": "Katalog społeczności jest wyłączony.",
+    "download_failed": "Nie udało się pobrać ani zweryfikować quizu.",
+    "busy": "Katalog społeczności jest zajęty. Spróbuj ponownie za chwilę."
+  },
+  "admin": {
+    "unknown_operation": "Nieznana operacja administracyjna.",
+    "forbidden": "Wymagana rola administratora.",
+    "scope_read": "Administracja przez przeglądarkę jest na tej instancji tylko do odczytu (ADMIN_WEB_SCOPE=read).",
+    "local_mode_token": "Tryb lokalny: podaj token administracyjny (ADMIN_TOKEN), aby cokolwiek zmienić.",
+    "locked": "Zablokowane przez ADMIN_LOCK: {{keys}}.",
+    "critical": "Krytycznego ustawienia nigdy nie zmienia się przez przeglądarkę.",
+    "invalid_params": "Nieprawidłowe parametry: {{message}}",
+    "confirmation_invalid": "Potwierdzenie wygasło: spróbuj ponownie.",
+    "dry_run_unsupported": "Tej operacji nie można podejrzeć.",
+    "not_found": "Nie znaleziono: {{message}}",
+    "conflict": "Teraz niemożliwe: {{message}}",
+    "timeout": "Operacja trwała zbyt długo.",
+    "failed": "Operacja nie powiodła się: {{message}}",
+    "too_many_requests": "Zbyt wiele prób: poczekaj chwilę.",
+    "demo_read_only": "To publiczne demo: administracja jest pokazywana tylko do odczytu."
+  },
+  "setup": {
+    "token_invalid": "Ten token konfiguracji jest nieprawidłowy (błędny, użyty lub wygasły): `qd setup.token` wydaje nowy.",
+    "session_invalid": "Sesja konfiguracji się zakończyła: podaj nowy token konfiguracji.",
+    "too_many_attempts": "Zbyt wiele błędnych tokenów: odczekaj kwadrans."
+  },
+  "request": {
+    "too_large": "Za duże dla serwera: odrzucił żądanie (limit rozmiaru)."
+  }
+}

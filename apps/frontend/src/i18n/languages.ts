@@ -18,7 +18,20 @@ export const namespaces = [
   'admin',
 ] as const;
 
-export const supportedLngs = ['en', 'fr', 'es', 'zh', 'zh-TW', 'tr'] as const;
+export const supportedLngs = [
+  'en',
+  'fr',
+  'es',
+  'zh',
+  'zh-TW',
+  'tr',
+  'de',
+  'hi',
+  'it',
+  'ja',
+  'pl',
+  'ru',
+] as const;
 export type AppLang = (typeof supportedLngs)[number];
 export type Namespace = (typeof namespaces)[number];
 

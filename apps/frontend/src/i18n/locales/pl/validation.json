@@ -1,0 +1,10 @@
+{
+  "invalid_type": "Nieprawidłowy typ wartości.",
+  "too_small": "Wartość jest za mała lub za krótka.",
+  "too_big": "Wartość jest za duża lub za długa.",
+  "invalid_format": "Nieprawidłowy format.",
+  "invalid_value": "Niedozwolona wartość.",
+  "unrecognized_keys": "Nierozpoznane pole.",
+  "custom": "Nieprawidłowa wartość.",
+  "_default": "Nieprawidłowe pole."
+}
