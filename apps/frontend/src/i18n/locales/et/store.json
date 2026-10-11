@@ -1,0 +1,47 @@
+{
+    "title": "",
+    "intro": "",
+    "emptyTitle": "",
+    "empty": "",
+    "withdraw": "",
+    "questionCount": "",
+    "takeFailed": "",
+    "withdrawFailed": "",
+    "withdrawConfirm": {
+        "title": "",
+        "description": ""
+    },
+    "share": "",
+    "shareConfirm": {
+        "title": "",
+        "description": ""
+    },
+    "shared": "",
+    "shareFailed": "",
+    "search": "",
+    "sortBy": "",
+    "sortRecent": "",
+    "sortTitle": "",
+    "sortQuestions": "",
+    "templateCount": "",
+    "noMatch": "",
+    "sharedBy": "",
+    "backToCatalogue": "",
+    "slideCount": "",
+    "licence": "",
+    "notFound": "",
+    "takeNeedsHost": "",
+    "createFrom": "",
+    "unreadable": "",
+    "unreadableItem": "",
+    "unreadableManifest": "",
+    "more": "",
+    "community": {
+        "title": "",
+        "intro": "",
+        "empty": "",
+        "unavailable": "",
+        "source": "",
+        "report": ""
+    }
+}
