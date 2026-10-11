@@ -71,7 +71,7 @@ export function slideMediaTests(ctx: GameContext): void {
   };
 
   const screenOf = async (pin: string): Promise<Socket> => {
-    const screen = h.connect();
+    const screen = h.connect({ localUser: 'Animateur' }); // the host's own projection window
     await screen.emitWithAck('spectator:join', { pin });
     return screen;
   };
@@ -80,7 +80,7 @@ export function slideMediaTests(ctx: GameContext): void {
     const song = await asset('audio', 2_000);
     const quiz = await quizWithSlide({ audioMediaId: song.id });
     const { host, pin } = await open(quiz.id);
-    const screen = h.connect();
+    const screen = h.connect({ localUser: 'Animateur' }); // the host's own projection window
     // The lobby fetches the first step: the slide, keyed by its index.
     const preload = nextEvent<{ questionIndex: number; slideIndex?: number; media: unknown }>(
       screen,
@@ -132,14 +132,14 @@ export function slideMediaTests(ctx: GameContext): void {
     expect(await held).toMatchObject({ questionIndex: 0, slideIndex: 0, t: 1.5, playing: false });
 
     // A screen opening now lands where the host put the slide's sound.
-    const late = h.connect();
+    const late = h.connect({ localUser: 'Animateur' }); // the host's own projection window
     const replayed = nextEvent(late, 'media:control');
     await late.emitWithAck('spectator:join', { pin });
     expect(await replayed).toMatchObject({ slideIndex: 0, playing: false });
 
     // On to the question: its own media know nothing of the slide's anchor.
     const controls: unknown[] = [];
-    const again = h.connect();
+    const again = h.connect({ localUser: 'Animateur' }); // the host's own projection window
     again.on('media:control', (c) => controls.push(c));
     const question = nextEvent(screen, 'question:start');
     host.emit('host:next', { pin });

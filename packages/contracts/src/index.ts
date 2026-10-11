@@ -651,14 +651,22 @@ export interface ClientToServerEvents {
   'host:media': (p: HostMediaCommand) => void;
   /** Ajoute/retire `deltaS` secondes au chrono de la question courante. */
   'host:adjust-time': (p: { pin: string; deltaS: number }) => void;
-  /** Rejoint la room en lecture seule (fenêtre projetée) — aucune auth, le PIN suffit. */
   /**
-   * A projection window joins read-only. `follow`: a participant's copy of it on
-   * another device (#104) — it follows the projection's position, is never waited
-   * for, and never speaks for the sound.
+   * A projection window joins read-only; the PIN is enough to watch. It is the
+   * room's **projection** — waited for ahead of a media step, speaking for the
+   * sound's position — when its socket is the room's host, or with the `screen`
+   * token the host's pairing gave it (`screen:paired`). Any other screen is a copy,
+   * as one with `follow` (a participant's copy on another device, #104): it follows
+   * the projection's position, is never waited for, never speaks for the sound. A
+   * projection window not paired gets a `pairingCode` to show.
    */
   'spectator:join': (
-    p: { pin: string; follow?: boolean },
+    p: { pin: string; follow?: boolean; screen?: string },
+    ack: (res: { ok: boolean; pairingCode?: string }) => void,
+  ) => void;
+  /** Makes the screen showing `code` the room's projection (one on another computer). */
+  'host:pair-screen': (
+    p: { pin: string; code: string },
     ack: (res: { ok: boolean }) => void,
   ) => void;
   /**
@@ -800,6 +808,11 @@ export interface ServerToClientEvents {
    * when the host switches it. A new room starts from the instance's `LIVE_MOTION`.
    */
   'room:motion': (p: { on: boolean }) => void;
+  /**
+   * To a projection window the host just paired: it is the room's projection now;
+   * `token` keeps it so when it reconnects (`spectator:join.screen`).
+   */
+  'screen:paired': (p: { token: string }) => void;
   /** To a participant back in a lobby: whether they already said they are ready (#104). */
   'lobby:you': (p: { ready: boolean }) => void;
   /** To the participants in a lobby (#104): how many said they are ready, out of how many. */

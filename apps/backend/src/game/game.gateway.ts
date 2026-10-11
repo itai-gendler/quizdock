@@ -1,4 +1,5 @@
 import { Inject, Logger, UseFilters } from '@nestjs/common';
+import { randomInt } from 'node:crypto';
 import type { IncomingMessage } from 'node:http';
 import {
   ConnectedSocket,
@@ -46,10 +47,13 @@ export interface GameSocketData {
   /** Vrai pour une fenêtre de **contrôle** hôte (host:create / host:attach) — §7. */
   isHostControl?: boolean;
   /**
-   * A copy of the projection a participant opened on a device of their own (#104):
-   * it follows the projection, is never waited for, never speaks for the sound.
+   * The room's projection: the host's own window, or a screen the host paired.
+   * Waited for ahead of a media step; the only one speaking for the sound. Any
+   * other screen (a participant's copy, #104, or one not paired) only follows.
    */
-  follower?: boolean;
+  projection?: boolean;
+  /** The code an unpaired screen shows, for the host to pair it from the console. */
+  pairingCode?: string;
 }
 
 type GameServer = Server<ClientToServerEvents, ServerToClientEvents>;
@@ -249,24 +253,74 @@ export class GameGateway implements OnGatewayInit, OnGatewayDisconnect {
 
   /**
    * `spectator:join` : rejoint la room en **lecture seule** (fenêtre projetée §3).
-   * Aucune auth ; le PIN suffit. N'enregistre aucun joueur → n'affecte ni les
-   * compteurs ni la convergence. Renvoie l'état courant (sans résultat personnel).
+   * Aucune auth ; le PIN suffit pour regarder. N'enregistre aucun joueur → n'affecte
+   * ni les compteurs ni la convergence. Renvoie l'état courant (sans résultat personnel).
+   * Only the room's host's own window, or a screen the host paired (its `screen`
+   * token), is the projection: anyone holding the PIN could otherwise steer the
+   * room's media and hold up every media step. Any other screen is a copy; one
+   * meant as a projection gets a pairing code to show.
    */
   @SubscribeMessage('spectator:join')
   async spectatorJoin(
     @ConnectedSocket() socket: GameSocket,
-    @MessageBody() payload: { pin: string; follow?: boolean },
-  ): Promise<{ ok: boolean }> {
+    @MessageBody() payload: { pin: string; follow?: boolean; screen?: string },
+  ): Promise<{ ok: boolean; pairingCode?: string }> {
+    let hostUserId = '';
     await this.pins.guard(ipOf(socket), async () => {
-      if (!(await this.game.getMeta(payload.pin))) throw new WsException('session.not_found');
+      const meta = await this.game.getMeta(payload.pin);
+      if (!meta) throw new WsException('session.not_found');
+      hostUserId = meta.hostUserId;
     });
+    const projection =
+      payload.follow !== true &&
+      (socket.data.user?.id === hostUserId ||
+        (await this.game.isPairedScreen(payload.pin, payload.screen)));
     socket.data.pin = payload.pin;
-    socket.data.follower = payload.follow === true;
+    socket.data.projection = projection;
+    if (!projection && payload.follow !== true) {
+      socket.data.pairingCode = await this.freePairingCode(payload.pin);
+    }
     await socket.join(payload.pin);
     await this.engine.sendStateTo(socket, payload.pin);
     // A projection counts among the devices waited for (a participant's copy does not).
     await this.engine.broadcastReadiness(payload.pin);
+    return socket.data.pairingCode
+      ? { ok: true, pairingCode: socket.data.pairingCode }
+      : { ok: true };
+  }
+
+  /**
+   * `host:pair-screen`: the host makes the screen showing `code` the room's
+   * projection (one on another computer). The screen gets a token of its own,
+   * over its socket, to stay the projection when it reconnects.
+   */
+  @SubscribeMessage('host:pair-screen')
+  async hostPairScreen(
+    @ConnectedSocket() socket: GameSocket,
+    @MessageBody() payload: { pin: string; code: string },
+  ): Promise<{ ok: boolean }> {
+    await this.engine.requireHost(payload.pin, this.requireHostId(socket));
+    const screen = (await this.server.in(payload.pin).fetchSockets()).find(
+      (s) => typeof payload.code === 'string' && s.data.pairingCode === payload.code,
+    );
+    if (!screen) return { ok: false };
+    const token = await this.game.pairScreen(payload.pin);
+    screen.data.projection = true;
+    delete screen.data.pairingCode;
+    screen.emit('screen:paired', { token });
+    await this.engine.broadcastReadiness(payload.pin);
     return { ok: true };
+  }
+
+  /** A pairing code no other screen of the room shows. */
+  private async freePairingCode(pin: string): Promise<string> {
+    const taken = new Set(
+      (await this.server.in(pin).fetchSockets()).map((s) => s.data.pairingCode),
+    );
+    let code: string;
+    do code = String(randomInt(0, 10_000)).padStart(4, '0');
+    while (taken.has(code));
+    return code;
   }
 
   /**
@@ -606,7 +660,8 @@ export class GameGateway implements OnGatewayInit, OnGatewayDisconnect {
 
   /**
    * The projection's position in the current sound, relayed to everyone else in
-   * the room. Only a projection speaks for it: not a participant, not a console.
+   * the room. Only the room's projection speaks for it: not a participant, not a
+   * console, not a screen without the projection key.
    */
   @SubscribeMessage('media:position')
   mediaPosition(
@@ -620,8 +675,8 @@ export class GameGateway implements OnGatewayInit, OnGatewayDisconnect {
       playing: boolean;
     },
   ): void {
-    const { pin, playerId, isHostControl, follower } = socket.data;
-    if (!pin || pin !== payload.pin || playerId || isHostControl || follower) return;
+    const { pin, projection } = socket.data;
+    if (!pin || pin !== payload.pin || !projection) return;
     const { questionIndex, slideIndex, t, playing } = payload;
     if (!Number.isInteger(questionIndex) || !Number.isFinite(t) || t < 0) return;
     // A slide's sound (#125) is told apart from the question it precedes.

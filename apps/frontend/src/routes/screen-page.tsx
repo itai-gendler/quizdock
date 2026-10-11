@@ -54,6 +54,8 @@ const QUESTION_STATES = new Set<string>(['QUESTION_SHOW', 'ANSWERING', 'REVEAL',
 /**
  * Écran de jeu projeté (grand écran, §4). Socket **spectateur** en lecture seule :
  * aucune auth, le PIN suffit, jamais de bonne réponse avant le reveal (anti-triche §7).
+ * It is the room's projection when opened by the host, or once paired from the
+ * console with the code it shows; otherwise it only follows.
  * Se reconnecte seul au rechargement (le PIN est dans l'URL). Plein écran pour la
  * vidéoprojection.
  */
@@ -102,6 +104,7 @@ export function ScreenView({
   /** A participant's copy (#104); `sound` when it plays the sound (a remote participant). */
   follow?: { sound: boolean };
 }) {
+  const { t } = useTranslation('live');
   const session = useGameSession(pin, 'spectator', { follow: !!follow });
   // The audience's language (#209): the room's choice, else the quiz's.
   useAudienceLanguage(session.view.language);
@@ -117,6 +120,17 @@ export function ScreenView({
         role={follow ? 'follow' : playMedia ? 'lead' : 'preview'}
         sound={follow?.sound ?? true}
       />
+      {/* A projection window on another computer, not paired yet: it follows until
+          the host types this code in the console. */}
+      {session.pairingCode ? (
+        <div className="bg-background/95 fixed bottom-3 left-3 z-50 flex max-w-xs flex-col gap-1 rounded-md border p-3 shadow-md">
+          <span className="text-muted-foreground text-xs">{t('screen.pairingCode')}</span>
+          <span className="font-mono text-2xl font-bold tracking-[0.3em]">
+            {session.pairingCode}
+          </span>
+          <span className="text-muted-foreground text-xs">{t('screen.pairingHint')}</span>
+        </div>
+      ) : null}
     </>
   );
 }

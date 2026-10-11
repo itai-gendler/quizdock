@@ -505,6 +505,22 @@ export class GameService {
     return this.patchPlayer(pin, playerId, 'avatar', seed, 'nickname');
   }
 
+  /**
+   * Pairs a screen to the room as its projection: a token of its own, kept in the
+   * room's hash (gone with the room), for the screen to send when it reconnects.
+   */
+  async pairScreen(pin: string): Promise<string> {
+    const token = randomBytes(16).toString('base64url');
+    await this.redis.hset(gameKeys.room(pin), `screen:${token}`, '1');
+    return token;
+  }
+
+  /** Whether `token` is a screen the room's host paired as its projection. */
+  async isPairedScreen(pin: string, token: unknown): Promise<boolean> {
+    if (typeof token !== 'string' || !/^[\w-]{22}$/.test(token)) return false;
+    return (await this.redis.hexists(gameKeys.room(pin), `screen:${token}`)) === 1;
+  }
+
   /** The room behind a PIN (null when gone or expired). */
   async getRoom(pin: string): Promise<RoomMeta | null> {
     const raw = await this.redis.hgetall(gameKeys.room(pin));

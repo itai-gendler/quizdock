@@ -52,8 +52,17 @@ The media brief (`specifications/SPECIFICATIONS-MEDIA.md` §5) as built:
   show or play (`preload.ts`): the first question from the lobby, then the next
   one with each reveal, plus the images of the slides before it. Phones load
   into the two elements the Join click started (iOS).
+- **Projection** — the PIN is enough to watch (`spectator:join`), but a screen is
+  the room's **projection** only when its socket is the room's host (the window the
+  console opens) or once the host paired it. A projection window on another computer
+  shows a 4-digit code (the `spectator:join` ack); the host types it in the console's
+  ⋮ next to *Projection window* (`host:pair-screen`), and the screen gets a token
+  over its socket (`screen:paired`), kept in the room's hash and in the tab, to stay
+  the projection when it reconnects. Any other screen is a copy, like a
+  participant's (`follow`, #104): never counted as ready, never a source for the
+  position.
 - **Readiness** — a device sends `media:ready` once what it fetched can play
-  through; the server counts the projection windows and the participants whose
+  through; the server counts the room's projection windows and the participants whose
   device plays a sound or a video (`game:{id}:ready:{q}`), and tells the screens
   (`media:readiness`). The console's embedded tabs share the host socket and are
   not counted.
@@ -78,7 +87,7 @@ The media brief (`specifications/SPECIFICATIONS-MEDIA.md` §5) as built:
   `listenFirst` tells the screens to count the listening down.
 - **Position** — the projection reports where it is in the media
   (`media:position`, about once a second and on play / pause / seek); the server
-  relays it. Screens showing a sound without playing it move their playhead with
+  relays it from the room's projection only. Screens showing a sound without playing it move their playhead with
   it; a device starting late jumps there.
 
 ## Invitation address

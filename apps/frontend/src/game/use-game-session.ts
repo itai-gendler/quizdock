@@ -41,6 +41,7 @@ import {
   refusalOf,
   loadPlayerSession,
 } from './game-client';
+import { getLocalUser } from '../auth/auth-context';
 
 export type LiveRole = 'host' | 'spectator' | 'player';
 
@@ -279,9 +280,28 @@ const refusedText = (res: unknown) => {
  * Le rôle `player` n'émet rien tant qu'aucune session locale n'existe (`no-session`
  * → écran Rejoindre) ; `markJoined` est appelé par le formulaire après un join réussi.
  */
+/** A paired projection window's token, kept for the tab: it stays the projection on reload. */
+const screenTokenKey = (pin: string) => `live.screen.${pin}`;
+function loadScreenToken(pin: string): string | undefined {
+  try {
+    return sessionStorage.getItem(screenTokenKey(pin)) ?? undefined;
+  } catch {
+    return undefined;
+  }
+}
+function storeScreenToken(pin: string, token: string): void {
+  try {
+    sessionStorage.setItem(screenTokenKey(pin), token);
+  } catch {
+    /* private mode: paired until the tab reloads */
+  }
+}
+
 export function useGameSession(pin: string, role: LiveRole, opts: { follow?: boolean } = {}) {
   const follow = opts.follow === true;
   const [view, setView] = useState<GameView>(INITIAL_VIEW);
+  // A projection window not paired yet: the code it shows for the host to type.
+  const [pairingCode, setPairingCode] = useState<string | null>(null);
   const socketRef = useRef<GameSocket | null>(null);
   // A player's socket is in the room once joined or reconnected, until the connection drops.
   const attachedRef = useRef(false);
@@ -443,6 +463,11 @@ export function useGameSession(pin: string, role: LiveRole, opts: { follow?: boo
     const onLobbyCount = (p: { ready: number; total: number }) => patch({ lobbyCount: p });
     const onSounds = (p: RoomSoundsPayload) => patch({ sounds: p });
     const onMotion = (p: { on: boolean }) => patch({ motion: p.on });
+    // The host paired this projection window: its token keeps it so through reloads.
+    const onPaired = (p: { token: string }) => {
+      storeScreenToken(pin, p.token);
+      setPairingCode(null);
+    };
     const onRoomInfo = (p: { name: string | null; hostName: string }) =>
       patch({ roomName: p.name, hostName: p.hostName });
     const onMediaControl = (p: MediaControlPayload) =>
@@ -529,13 +554,17 @@ export function useGameSession(pin: string, role: LiveRole, opts: { follow?: boo
       'lobby:count': onLobbyCount,
       'room:sounds': onSounds,
       'room:motion': onMotion,
+      'screen:paired': onPaired,
       'game:ended': onEnded,
       notice: onNotice,
       kicked: onKicked,
     } satisfies Partial<ServerToClientEvents>;
     const events = Object.entries(handlers) as [keyof ServerToClientEvents, never][];
 
-    void ensureGameSocket(role === 'host' ? 'host' : 'guest', pin).then((sock) => {
+    // The host's own projection window speaks as the host (a local name; a signed-in
+    // host's cookie goes with any socket): it is the room's projection, unpaired.
+    const asHost = role === 'host' || (role === 'spectator' && !follow && !!getLocalUser());
+    void ensureGameSocket(asHost ? 'host' : 'guest', pin).then((sock) => {
       if (!active) return;
       s = sock;
       socketRef.current = sock;
@@ -554,9 +583,16 @@ export function useGameSession(pin: string, role: LiveRole, opts: { follow?: boo
             if (active && !res.ok) patch({ status: 'error', error: refusedText(res) });
           });
         } else if (role === 'spectator') {
-          sock.emit('spectator:join', { pin, follow }, (res: { ok: boolean }) => {
-            if (active && !res.ok) patch({ status: 'error', error: refusedText(res) });
-          });
+          const screen = follow ? undefined : loadScreenToken(pin);
+          sock.emit(
+            'spectator:join',
+            { pin, follow, screen },
+            (res: { ok: boolean; pairingCode?: string }) => {
+              if (!active) return;
+              if (!res.ok) patch({ status: 'error', error: refusedText(res) });
+              setPairingCode(res.pairingCode ?? null);
+            },
+          );
         } else {
           const session = loadPlayerSession();
           if (session && session.pin === pin) {
@@ -617,5 +653,12 @@ export function useGameSession(pin: string, role: LiveRole, opts: { follow?: boo
   /** The participant said (or took back) that they are ready (#104), once the server took it. */
   const markReady = (ready: boolean) => setView((prev) => ({ ...prev, youReady: ready }));
 
-  return { view, socket: socketRef.current, markJoined, markReady, submitAnswer };
+  return {
+    view,
+    socket: socketRef.current,
+    pairingCode,
+    markJoined,
+    markReady,
+    submitAnswer,
+  };
 }

@@ -237,7 +237,7 @@ export function roomTests(ctx: GameContext): void {
     ];
     const pin = await ctx.h.createGame(host, a.id);
     const { socket: player } = await ctx.h.join(pin, 'Noa');
-    const screen = connect();
+    const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
     // On attach: no name yet, the host's name for the default.
     const first = nextEvent<{ name: string | null; hostName: string }>(screen, 'room:info');
     await screen.emitWithAck('spectator:join', { pin });
@@ -329,7 +329,7 @@ export function roomTests(ctx: GameContext): void {
     try {
       const host = connect({ localUser: 'Animateur' });
       const pin = await ctx.h.createGame(host, ctx.quizId);
-      const screen = connect();
+      const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
       const first = nextEvent<Record<string, unknown>>(screen, 'room:sounds');
       await screen.emitWithAck('spectator:join', { pin });
       expect(await first).toEqual({
@@ -415,7 +415,7 @@ export function roomTests(ctx: GameContext): void {
       const pin = await ctx.h.createGame(host, ctx.quizId);
       const { socket: ana } = await ctx.h.join(pin, 'Ana');
       const { socket: ben } = await ctx.h.join(pin, 'Ben');
-      const screen = connect();
+      const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
       await screen.emitWithAck('spectator:join', { pin });
 
       const [ana1, ben1] = await play(host, pin, [

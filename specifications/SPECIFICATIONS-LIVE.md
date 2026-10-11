@@ -116,9 +116,13 @@ From the **quiz detail** (the editor, a `ready` quiz) the presenter:
   in the URL. *(In `none` mode the host re-identifies with the same local name → the
   same `sub`. In `oidc` mode, the same account. The limits of `none` mode are
   documented in technique §1.)*
-- **Projection on a third computer**: open `/present/$pin/screen` →
-  `spectator:join {pin}`. No auth; the PIN is enough (a public screen, never a right
-  answer, §7).
+- **Projection on a third computer**: open `/session/$pin/projection` →
+  `spectator:join {pin}`. The PIN is enough to watch (a public screen, never a right
+  answer, §7), but only the host makes a screen the room's projection — waited for,
+  and the source of the media position: the screen shows a code, the host types it
+  in the console (⋮ next to *Projection window*, `host:pair-screen`), and the screen
+  keeps a token (`screen:paired`) for its reconnections. The window the console opens
+  is the projection by the host's own identity.
 
 > Several control windows and several projections can coexist (two rooms, say). They
 > all converge on the server state, and the control buttons stay **idempotent** (the NX
@@ -273,7 +277,8 @@ New events to add (typed end to end):
 | Event | Direction | Payload | Effect |
 |---|---|---|---|
 | `host:attach` | C→S | `{ pin }` (ack `{ ok }`) | rebinds an authenticated owning host to their game (reconnect / control window) |
-| `spectator:join` | C→S | `{ pin }` (ack `{ ok }`) | joins the room read-only (the projection window) |
+| `spectator:join` | C→S | `{ pin, follow?, screen? }` (ack `{ ok, pairingCode? }`) | joins the room read-only (the projection window; the room's projection when the host's or paired) |
+| `host:pair-screen` | C→S | `{ pin, code }` (ack `{ ok }`) | makes the screen showing `code` the room's projection |
 
 Adjustments to existing events:
 - `player:join`: allowed **outside the LOBBY** (except `ENDED`) plus the **current state**

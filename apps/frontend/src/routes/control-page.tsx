@@ -26,6 +26,7 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  EllipsisVertical,
   Info,
   LayoutTemplate,
   Loader2,
@@ -50,10 +51,11 @@ import {
   ChartColumn,
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
-import { useEffect, useRef, useState } from 'react';
+import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Markdown } from '@/components/markdown';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Notice } from '@/components/ui/notice';
 import { PageTitle, SectionTitle } from '@/components/ui/page-title';
 import { Popover } from '@/components/ui/popover';
@@ -143,6 +145,9 @@ function HostConsole({
   const [confirmCapture, setConfirmCapture] = useState(false);
   const { view, socket } = session;
   const [shareNote, setShareNote] = useState<string | null>(null);
+  // Pairing a projection window on another computer: the code it shows, and the outcome.
+  const [pairCode, setPairCode] = useState('');
+  const [pairResult, setPairResult] = useState<'paired' | 'failed' | null>(null);
 
   const joinUrl = joinUrlFor(view, pin);
   const screenUrl = `${window.location.origin}/session/${pin}/projection`;
@@ -209,15 +214,77 @@ function HostConsole({
   const adjustTime = (deltaS: number) => socket?.emit('host:adjust-time', { pin, deltaS });
 
   const openScreen = () => window.open(screenUrl, '_blank', 'noopener,noreferrer');
+  const pairScreen = (e: FormEvent) => {
+    e.preventDefault();
+    socket?.emit('host:pair-screen', { pin, code: pairCode }, (res: { ok: boolean }) => {
+      setPairResult(res.ok ? 'paired' : 'failed');
+      if (res.ok) setPairCode('');
+    });
+  };
   const screenButton = (
-    <Tooltip label={t('control.screenButtonTooltip')}>
-      <Button type="button" variant="outline" size="sm" onClick={openScreen}>
-        <Eye className="size-4" />
-        {t('control.screenButton')}
-        {/* It opens in a new tab: said before the click. */}
-        <ExternalLink className="text-muted-foreground size-3.5" aria-hidden />
-      </Button>
-    </Tooltip>
+    <div className="flex items-center gap-1">
+      <Tooltip label={t('control.screenButtonTooltip')}>
+        <Button type="button" variant="outline" size="sm" onClick={openScreen}>
+          <Eye className="size-4" />
+          {t('control.screenButton')}
+          {/* It opens in a new tab: said before the click. */}
+          <ExternalLink className="text-muted-foreground size-3.5" aria-hidden />
+        </Button>
+      </Tooltip>
+      {/* The projection on another computer: opened with the PIN, then paired by its code. */}
+      <Popover
+        align="end"
+        className="w-80"
+        trigger={({ toggle, open }) => (
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              setPairResult(null);
+              toggle();
+            }}
+            aria-expanded={open}
+            aria-label={t('control.screenElsewhere')}
+          >
+            <EllipsisVertical className="size-4" />
+          </Button>
+        )}
+      >
+        <form className="flex flex-col gap-3" onSubmit={pairScreen} noValidate>
+          <span className="font-semibold">{t('control.screenElsewhere')}</span>
+          <p className="text-muted-foreground text-sm">{t('control.screenElsewhereHint')}</p>
+          <div className="self-center rounded-md border bg-white p-2">
+            <QRCodeSVG value={screenUrl} size={120} aria-label={t('control.screenElsewhere')} />
+          </div>
+          <span className="font-mono text-xs break-all select-all">{screenUrl}</span>
+          <Label htmlFor="pair-code">{t('control.pairCodeLabel')}</Label>
+          <div className="flex gap-2">
+            <Input
+              id="pair-code"
+              value={pairCode}
+              onChange={(e) => {
+                setPairCode(e.target.value.replace(/\D/g, '').slice(0, 4));
+                setPairResult(null);
+              }}
+              inputMode="numeric"
+              autoComplete="off"
+              className="w-24 font-mono tracking-[0.3em]"
+              aria-describedby="pair-result"
+            />
+            <Button type="submit" variant="outline" size="sm" disabled={pairCode.length !== 4}>
+              {t('control.pairButton')}
+            </Button>
+          </div>
+          <p id="pair-result" role="status" className="text-sm">
+            {pairResult === 'paired' ? t('control.paired') : null}
+            {pairResult === 'failed' ? (
+              <span className="text-destructive">{t('control.pairFailed')}</span>
+            ) : null}
+          </p>
+        </form>
+      </Popover>
+    </div>
   );
 
   // The link itself, not a picture of the QR code: it opens in one tap wherever it lands.

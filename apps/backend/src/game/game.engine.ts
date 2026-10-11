@@ -557,9 +557,8 @@ export class GameEngine {
     const sockets = await this.server.in(pin).fetchSockets();
     const screens = stepHasPlayback(snapshot, step)
       ? sockets.filter((s) => {
-          const d = s.data as { playerId?: string; isHostControl?: boolean; follower?: boolean };
-          // The projection windows; not a console, not a participant's copy (#104).
-          return !d.playerId && !d.isHostControl && !d.follower;
+          // The room's projection windows; not a console, not a copy (#104).
+          return (s.data as { projection?: boolean }).projection === true;
         })
       : [];
     const screensReady = screens.filter((s) => ready.has(`screen:${s.id}`)).length;
