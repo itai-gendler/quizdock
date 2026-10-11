@@ -35,13 +35,14 @@ const CLASSIC_SLOTS = [
 
 /**
  * The shipped themes' answers: deep, saturated colours that carry white text (4.8:1 at
- * least) and stay apart — the first four (green, red, blue, yellow) for colour-blind
- * players too, set apart by their lightness as well as their hue.
+ * least), and a true yellow that carries black — a yellow dark enough for white is no
+ * longer yellow. They stay apart, the first four (green, red, blue, yellow) for
+ * colour-blind players too.
  */
 const VIVID = [
   '#a9000f',
   '#003fb7',
-  '#956700',
+  '#facc15',
   '#008332',
   '#7700bb',
   '#a14600',
@@ -68,7 +69,6 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     sounds: {},
     motion: { style: 'sober', revealEffect: null },
     markers: 'icons',
-    slotText: 'light',
   },
   kids: {
     background: {
@@ -82,7 +82,6 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     sounds: {},
     motion: { style: 'dynamic', revealEffect: null },
     markers: 'icons',
-    slotText: 'light',
   },
   festive: {
     background: {
@@ -96,7 +95,6 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     sounds: {},
     motion: { style: 'festive', revealEffect: 'confetti' },
     markers: 'icons',
-    slotText: 'light',
   },
   night: {
     background: { color: '#0f172a', textTone: 'light' },
@@ -106,7 +104,6 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     sounds: {},
     motion: { style: 'standard', revealEffect: null },
     markers: 'icons',
-    slotText: 'light',
   },
   'high-contrast': {
     background: { color: '#000000', textTone: 'light' },
@@ -116,7 +113,6 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     sounds: {},
     motion: { style: 'sober', revealEffect: null },
     markers: 'icons',
-    slotText: 'light',
   },
   halloween: {
     background: {
@@ -130,7 +126,6 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     sounds: {},
     motion: { style: 'festive', revealEffect: null },
     markers: 'icons',
-    slotText: 'light',
   },
   christmas: {
     background: {
@@ -144,7 +139,6 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     sounds: {},
     motion: { style: 'festive', revealEffect: 'confetti' },
     markers: 'icons',
-    slotText: 'light',
   },
   'new-year': {
     background: {
@@ -158,7 +152,6 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     sounds: {},
     motion: { style: 'festive', revealEffect: 'confetti' },
     markers: 'icons',
-    slotText: 'light',
   },
   easter: {
     background: {
@@ -172,7 +165,6 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     sounds: {},
     motion: { style: 'dynamic', revealEffect: null },
     markers: 'icons',
-    slotText: 'light',
   },
   summer: {
     background: {
@@ -186,6 +178,5 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     sounds: {},
     motion: { style: 'dynamic', revealEffect: null },
     markers: 'icons',
-    slotText: 'light',
   },
 };

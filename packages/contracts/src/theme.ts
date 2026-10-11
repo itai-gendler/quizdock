@@ -126,7 +126,6 @@ export function themeOverridesSchema<R extends z.ZodType<string>>(ref: R) {
       sounds: z.partialRecord(z.enum(THEME_SOUNDS), ref),
       motion: motionSchema,
       markers: z.enum(SLOT_MARKERS),
-      slotText: z.enum(['light', 'dark']),
     })
     .partial()
     .strict();
@@ -151,8 +150,12 @@ export interface ThemeValues {
   motion: ThemeMotion;
   /** What marks an answer besides its colour (never the colour alone). */
   markers: SlotMarkers;
-  /** The text and icons on every answer: white (`light`) or black (`dark`). */
-  slotText: 'light' | 'dark';
+  /**
+   * The text and icons on the answers. Absent: white or black, whichever reads best on
+   * each answer — white on the shipped palette but on its yellow. Only *Classic* sets
+   * it, white, to stay today's rendering.
+   */
+  slotText?: 'light';
 }
 
 /** A user theme's values: its parent's, each part replaced by what it overrides. */
@@ -165,7 +168,7 @@ export function mergeTheme(parent: ThemeValues, overrides: ThemeOverrides): Them
     sounds: { ...parent.sounds, ...overrides.sounds },
     motion: overrides.motion ?? parent.motion,
     markers: overrides.markers ?? parent.markers,
-    slotText: overrides.slotText ?? parent.slotText,
+    ...(parent.slotText ? { slotText: parent.slotText } : {}),
   };
 }
 

@@ -115,9 +115,10 @@ describe('theme accessibility', () => {
       expect(themeAccessibility(BUILTIN_THEME_VALUES[key]).status, key).toBe('compliant');
   });
 
-  it('says where black text would not read', () => {
-    const black = mergeTheme(BUILTIN_THEME_VALUES.festive, { slotText: 'dark' });
-    expect(failed(black)).toContain('slot_text_contrast');
+  it('lays black text on the yellow of the shipped palette, white elsewhere', () => {
+    const t = BUILTIN_THEME_VALUES.festive;
+    expect(textOn(parseHex(t.slots.yellow.color))).toEqual([0, 0, 0]);
+    expect(textOn(parseHex(t.slots.blue.color))).toEqual([1, 1, 1]);
   });
 
   it('keeps the white text on every slot, and says where it falls short', () => {
