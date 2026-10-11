@@ -112,7 +112,7 @@ function SortableRow({
       </button>
       <span className="text-muted-foreground w-[1.5em] tabular-nums">{index + 1}.</span>
       <span aria-hidden className={cn('text-[1.1em] leading-none', COLOR_TEXT[option.color])}>
-        <ShapeIcon shape={option.shape} />
+        <ShapeIcon shape={option.shape} slot={option.color} />
       </span>
       <span className="min-w-0 flex-1 text-left">{option.text ?? option.color}</span>
       <Button

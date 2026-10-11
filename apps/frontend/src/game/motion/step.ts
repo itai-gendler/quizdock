@@ -1,4 +1,5 @@
-import type { SlideBackground, SlideTextTone } from '@quiz-dock/contracts';
+import type { SlideTextTone, ThemeValues } from '@quiz-dock/contracts';
+import { type SurfaceBackground, themeBackdrop } from '../theme';
 import type { GameView } from '../use-game-session';
 
 /**
@@ -25,7 +26,7 @@ export function stepKeyOf(view: Pick<GameView, 'state' | 'questionIndex' | 'slid
 
 /** What a step is drawn on: its background, a video (its veil), or the page itself (null). */
 export type Backdrop =
-  | { background: SlideBackground; textTone: SlideTextTone }
+  | { background: SurfaceBackground; textTone: SlideTextTone }
   | { video: true; textTone: SlideTextTone }
   | null;
 
@@ -33,21 +34,22 @@ export type Backdrop =
 export const sameBackdrop = (a: Backdrop, b: Backdrop) => JSON.stringify(a) === JSON.stringify(b);
 
 /**
- * The backdrop a live screen draws the step on: the slide's background or video,
- * the question's background when it owns the screen, else the page.
+ * The backdrop a live screen draws the step on: the slide's background or video, the
+ * question's background when it owns the screen, else the quiz theme's (THEMING §2.4),
+ * else the page.
  */
 export function backdropOf(
   view: Pick<GameView, 'state' | 'slide' | 'question'>,
   questionOwnsBackground: boolean,
+  theme: ThemeValues | null = null,
 ): Backdrop {
   if (view.state === 'SLIDE_SHOW' && view.slide) {
     if (view.slide.video) return { video: true, textTone: view.slide.textTone };
-    return view.slide.background
-      ? { background: view.slide.background, textTone: view.slide.textTone }
-      : null;
-  }
-  if (questionOwnsBackground && view.question?.background) {
+    if (view.slide.background) {
+      return { background: view.slide.background, textTone: view.slide.textTone };
+    }
+  } else if (questionOwnsBackground && view.question?.background) {
     return { background: view.question.background, textTone: view.question.textTone ?? 'light' };
   }
-  return null;
+  return themeBackdrop(theme);
 }

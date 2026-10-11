@@ -43,6 +43,15 @@
   --answer-pink: oklch(59.2% 0.249 0.584);
   --answer-teal: oklch(60% 0.118 184.704);
   --answer-none: oklch(44.6% 0.043 257.281);
+  /* The text laid on each answer colour: white here, a quiz theme picks it (game/theme.tsx). */
+  --answer-red-foreground: oklch(1 0 0);
+  --answer-blue-foreground: oklch(1 0 0);
+  --answer-yellow-foreground: oklch(1 0 0);
+  --answer-green-foreground: oklch(1 0 0);
+  --answer-purple-foreground: oklch(1 0 0);
+  --answer-orange-foreground: oklch(1 0 0);
+  --answer-pink-foreground: oklch(1 0 0);
+  --answer-teal-foreground: oklch(1 0 0);
   /* A wrong answer at the reveal: low contrast, never see-through (UI system §1.4). */
   --answer-off: oklch(0.93 0 0);
   --answer-off-fill: oklch(0.85 0 0);
@@ -155,6 +164,14 @@
   --color-answer-pink: var(--answer-pink);
   --color-answer-teal: var(--answer-teal);
   --color-answer-none: var(--answer-none);
+  --color-answer-red-foreground: var(--answer-red-foreground);
+  --color-answer-blue-foreground: var(--answer-blue-foreground);
+  --color-answer-yellow-foreground: var(--answer-yellow-foreground);
+  --color-answer-green-foreground: var(--answer-green-foreground);
+  --color-answer-purple-foreground: var(--answer-purple-foreground);
+  --color-answer-orange-foreground: var(--answer-orange-foreground);
+  --color-answer-pink-foreground: var(--answer-pink-foreground);
+  --color-answer-teal-foreground: var(--answer-teal-foreground);
   --color-answer-off-text: var(--answer-off-text);
   --color-podium-1: var(--podium-1);
   --color-podium-2: var(--podium-2);

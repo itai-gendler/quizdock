@@ -38,7 +38,7 @@ export const THEME_FONTS = [
   'nunito',
   'fredoka',
   'inter',
-  'roboto-slab',
+  'bitter',
   'comic-neue',
 ] as const;
 export type ThemeFont = (typeof THEME_FONTS)[number];

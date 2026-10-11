@@ -1,3 +1,4 @@
+import { useSlotIcon } from '@/game/theme';
 import { cn } from '@/lib/utils';
 
 /**
@@ -19,7 +20,34 @@ const PATHS: Record<string, string> = {
   cross: 'M8.5 2h7v6.5H22v7h-6.5V22h-7v-6.5H2v-7h6.5Z',
 };
 
-export function ShapeIcon({ shape, className }: { shape: string; className?: string }) {
+/**
+ * `slot`: the option's colour, its slot in the quiz's theme (THEMING §2.2): a theme's
+ * icon replaces the shape, filled by the text colour through a mask.
+ */
+export function ShapeIcon({
+  shape,
+  slot,
+  className,
+}: {
+  shape: string;
+  slot?: string;
+  className?: string;
+}) {
+  const icon = useSlotIcon(slot);
+  if (icon) {
+    return (
+      <span
+        aria-hidden
+        className={cn('inline-block size-[1em] shrink-0 bg-current align-[-0.125em]', className)}
+        style={{
+          maskImage: `url("${icon}")`,
+          maskSize: 'contain',
+          maskRepeat: 'no-repeat',
+          maskPosition: 'center',
+        }}
+      />
+    );
+  }
   return (
     <svg
       viewBox="0 0 24 24"

@@ -29,6 +29,7 @@ import type {
   ServerToClientEvents,
   SessionNotice,
   SlideShowPayload,
+  ThemeValues,
 } from '@quiz-dock/contracts';
 import i18next from 'i18next';
 import { useEffect, useRef, useState } from 'react';
@@ -129,6 +130,8 @@ export interface GameView {
   mediaControl: (MediaControlPayload & { seq: number; receivedAt: number }) | null;
   /** Whether the quiz plays any sound (projection and console only; null until told). */
   quizHasSound: boolean | null;
+  /** The quiz's look (THEMING §2), frozen with the game; null: the page's own. */
+  theme: ThemeValues | null;
   /** The room waits for media before `questionIndex`, until `until` (state `MEDIA_LOADING`). */
   mediaWait: { questionIndex: number; until: number } | null;
   /** Where the projection is in the current sound (for the screens that do not play it). */
@@ -212,6 +215,7 @@ export const INITIAL_VIEW: GameView = {
   preload: null,
   mediaControl: null,
   quizHasSound: null,
+  theme: null,
   gameAudioTarget: null,
   quizHasMedia: null,
   readiness: null,
@@ -447,8 +451,10 @@ export function useGameSession(pin: string, role: LiveRole, opts: { follow?: boo
       audioTarget: AudioTarget;
       language: string;
       roomLanguage: string;
+      theme?: ThemeValues;
     }) =>
       patch({
+        theme: p.theme ?? null,
         quizHasSound: p.hasSound,
         quizHasMedia: p.hasMedia,
         gameAudioTarget: p.audioTarget,

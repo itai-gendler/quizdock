@@ -64,6 +64,7 @@ import {
 import { ImageChoiceGrid } from '../game/image-choice';
 import { cn } from '@/lib/utils';
 import { BACKDROP_EDGE, BACKDROP_PANEL, Surface } from '../game/surface';
+import { LiveTheme, themeBackdrop } from '../game/theme';
 import { unlockAudio } from '../game/media/audio-unlock';
 import { claimMediaElements, mediaElementsClaimed } from '../game/media/media-pool';
 import { FollowedWaveform, QuestionMediaStage } from '../game/media/question-media-stage';
@@ -562,24 +563,34 @@ function PlayerView({ pin, session }: { pin: string; session: ReturnType<typeof 
   // phase of that question; the phone column is centred inside it.
   // The motion layer (UI system §1.8): the step, and the background this page draws it on.
   const stepKey = stepKeyOf(view);
+  // The question's own background, else the quiz theme's (THEMING §2.4).
+  const themed = themeBackdrop(view.theme);
   const phoneBackdrop: Backdrop = view.question?.background
     ? { background: view.question.background, textTone: view.question.textTone ?? 'light' }
-    : null;
+    : themed;
   const surface = (children: React.ReactNode) => (
-    <LiveMotion on={view.motion}>
-      <Surface
-        background={view.question?.background}
-        textTone={view.question?.textTone}
-        textOutline={view.question?.textOutline}
-        className={cn('flex-1', TYPE_BASE.phone)}
-        overlay={<BackdropFade stepKey={stepKey} backdrop={phoneBackdrop} />}
-      >
-        {participantBar}
-        <StepEnter stepKey={stepKey} className="flex flex-1 flex-col px-4 py-4">
-          {children}
-        </StepEnter>
-      </Surface>
-    </LiveMotion>
+    <LiveTheme theme={view.theme}>
+      <LiveMotion on={view.motion}>
+        <Surface
+          background={
+            phoneBackdrop && 'background' in phoneBackdrop ? phoneBackdrop.background : null
+          }
+          textTone={phoneBackdrop?.textTone}
+          textOutline={
+            view.question?.background
+              ? view.question.textOutline
+              : !!themed && 'url' in themed.background
+          }
+          className={cn('flex-1', TYPE_BASE.phone)}
+          overlay={<BackdropFade stepKey={stepKey} backdrop={phoneBackdrop} />}
+        >
+          {participantBar}
+          <StepEnter stepKey={stepKey} className="flex flex-1 flex-col px-4 py-4">
+            {children}
+          </StepEnter>
+        </Surface>
+      </LiveMotion>
+    </LiveTheme>
   );
 
   const wrap = (children: React.ReactNode, opts: { wide?: boolean; center?: boolean } = {}) =>

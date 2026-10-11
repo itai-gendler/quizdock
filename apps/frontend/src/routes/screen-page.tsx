@@ -38,6 +38,8 @@ import { ReadinessMeter } from '../game/media/readiness-meter';
 import { anchorOf, followed } from '../game/media/followed';
 import { SoundUnlockOverlay } from '../game/media/sound-unlock-overlay';
 import { BACKDROP_EDGE, Surface } from '../game/surface';
+import { LiveTheme, themeBackdrop } from '../game/theme';
+import { RevealEffect } from '../game/reveal-effect';
 import { ImageChoiceGrid } from '../game/image-choice';
 import { useQuestionClock } from '../game/use-countdown';
 import { joinHostLabel, joinUrlFor } from '../game/join-url';
@@ -46,8 +48,8 @@ import type { GameSocket } from '../game/game-client';
 import { playsSound } from '@quiz-dock/contracts';
 
 /**
- * The states where the question is on screen, drawn on its background. Not the
- * wait for the next one, the podium or the end: those keep the page's colours.
+ * The states where the question is on screen, drawn on its background. Not the wait
+ * for the next one, the podium or the end: those are drawn on the quiz theme's.
  */
 const QUESTION_STATES = new Set<string>(['QUESTION_SHOW', 'ANSWERING', 'REVEAL', 'LEADERBOARD']);
 
@@ -861,62 +863,81 @@ export function ScreenSurface({
     </div>
   );
 
+  const ownBackground =
+    onBackground && !!view.question?.background && !!view.state && QUESTION_STATES.has(view.state);
+  const themed = themeBackdrop(view.theme);
+  const backdrop =
+    ownBackground && view.question?.background
+      ? {
+          background: view.question.background,
+          textTone: view.question.textTone,
+          textOutline: view.question.textOutline,
+        }
+      : themed
+        ? // The halo is for text laid on a picture; a colour or a gradient keeps plain text.
+          { ...themed, textOutline: 'url' in themed.background }
+        : null;
+
   return (
-    <LiveMotion on={view.motion}>
-      <div
-        ref={ref}
-        data-state={view.state ?? 'none'}
-        className={cn(
-          'qd-screen bg-background relative flex flex-col',
-          boxed ? 'h-full w-full overflow-hidden' : 'min-h-dvh',
-          // A question fits the screen exactly; the rest may grow.
-          !boxed &&
-            (view.state === 'ANSWERING' ||
-              view.state === 'QUESTION_SHOW' ||
-              view.state === 'REVEAL' ||
-              view.state === 'LEADERBOARD') &&
-            'h-dvh',
-          // One typographic base for the whole projected page; everything inside is in em.
-          boxed ? TYPE_BASE.stage : TYPE_BASE.screen,
-        )}
-      >
-        {fullscreenBtn}
-        {soundButton ? (
-          <SoundButton
-            size="lg"
-            align="start"
-            className={cn('absolute top-4 left-4 z-40', BACKDROP_EDGE)}
-            onUnmute={() => void unlockAudio()}
-          />
-        ) : null}
-        {/* A quiz with sound asks for the unlocking click as soon as this window opens,
+    <LiveTheme theme={view.theme}>
+      <LiveMotion on={view.motion}>
+        <div
+          ref={ref}
+          data-state={view.state ?? 'none'}
+          className={cn(
+            'qd-screen bg-background relative flex flex-col',
+            boxed ? 'h-full w-full overflow-hidden' : 'min-h-dvh',
+            // A question fits the screen exactly; the rest may grow.
+            !boxed &&
+              (view.state === 'ANSWERING' ||
+                view.state === 'QUESTION_SHOW' ||
+                view.state === 'REVEAL' ||
+                view.state === 'LEADERBOARD') &&
+              'h-dvh',
+            // One typographic base for the whole projected page; everything inside is in em.
+            boxed ? TYPE_BASE.stage : TYPE_BASE.screen,
+          )}
+        >
+          {fullscreenBtn}
+          {soundButton ? (
+            <SoundButton
+              size="lg"
+              align="start"
+              className={cn('absolute top-4 left-4 z-40', BACKDROP_EDGE)}
+              onUnmute={() => void unlockAudio()}
+            />
+          ) : null}
+          {/* A quiz with sound asks for the unlocking click as soon as this window opens,
           whatever the moment of the session; a silent quiz never asks. */}
-        {(playMedia || (role === 'follow' && sound)) &&
-        !soundUnlocked &&
-        !deviceSound.muted &&
-        (view.quizHasSound || soundsOn) &&
-        view.state !== 'ENDED' ? (
-          // The projection cannot be muted from here: the console does it.
-          <SoundUnlockOverlay allowSilent={role === 'follow'} />
-        ) : null}
-        {onBackground &&
-        view.question?.background &&
-        view.state &&
-        QUESTION_STATES.has(view.state) ? (
-          // A question with a background owns the surface, bands included.
-          <Surface
-            background={view.question.background}
-            textTone={view.question.textTone}
-            textOutline={view.question.textOutline}
-            className="absolute inset-0"
-          >
-            {frame}
-          </Surface>
-        ) : (
-          frame
-        )}
-        <BackdropFade stepKey={stepKey} backdrop={backdropOf(view, onBackground)} />
-      </div>
-    </LiveMotion>
+          {(playMedia || (role === 'follow' && sound)) &&
+          !soundUnlocked &&
+          !deviceSound.muted &&
+          (view.quizHasSound || soundsOn) &&
+          view.state !== 'ENDED' ? (
+            // The projection cannot be muted from here: the console does it.
+            <SoundUnlockOverlay allowSilent={role === 'follow'} />
+          ) : null}
+          {backdrop ? (
+            // The step's background owns the surface, bands included: a question's own, else
+            // the quiz theme's (THEMING §2.4).
+            <Surface
+              background={backdrop.background}
+              textTone={backdrop.textTone}
+              textOutline={backdrop.textOutline}
+              className={ownBackground ? 'absolute inset-0' : 'flex-1'}
+            >
+              {frame}
+            </Surface>
+          ) : (
+            frame
+          )}
+          <BackdropFade stepKey={stepKey} backdrop={backdropOf(view, onBackground, view.theme)} />
+          {/* The theme's reveal effect: on a projection, never the console's thumbnail or a phone. */}
+          {view.state === 'REVEAL' && role !== 'preview' && !embedded ? (
+            <RevealEffect playKey={`reveal:${view.questionIndex}`} />
+          ) : null}
+        </div>
+      </LiveMotion>
+    </LiveTheme>
   );
 }

@@ -59,6 +59,7 @@ const view = (partial: Partial<GameView>): GameView => ({
   preload: null,
   mediaControl: null,
   quizHasSound: null,
+  theme: null,
   gameAudioTarget: null,
   quizHasMedia: null,
   readiness: null,
