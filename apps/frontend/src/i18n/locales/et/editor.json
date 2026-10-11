@@ -1,0 +1,580 @@
+{
+    "loading": "",
+    "notFound": "",
+    "questionType": {
+        "single_choice": "",
+        "multiple_choice": "",
+        "true_false": "",
+        "text_input": "",
+        "numeric": "",
+        "ordering": "",
+        "poll": "",
+        "image_choice": ""
+    },
+    "header": {
+        "history": "",
+        "deleteQuiz": "",
+        "preview": "",
+        "export": "",
+        "exportError": "",
+        "more": ""
+    },
+    "settings": {
+        "title": "",
+        "titleLabel": "",
+        "descriptionLabel": "",
+        "descriptionPlaceholder": "",
+        "save": "",
+        "soundLegend": "",
+        "soundSummary": "",
+        "mediaTailLabel": "",
+        "mediaTailHelp": "",
+        "seconds": "",
+        "loudnessLabel": "",
+        "loudnessHelp": "",
+        "loudness": {
+            "14": "",
+            "16": "",
+            "23": ""
+        },
+        "audioTargetLabel": "",
+        "audioTargetHelp": "",
+        "audioTarget": {
+            "projection": "",
+            "projection_remote": "",
+            "everyone": ""
+        },
+        "sharingLegend": "",
+        "sharingSummary": "",
+        "noLicense": "",
+        "languageLabel": "",
+        "languageHelp": "",
+        "licenseLabel": "",
+        "licenseHelp": "",
+        "license": {
+            "cc0": "",
+            "ccBy": "",
+            "ccBySa": ""
+        },
+        "tagsLabel": "",
+        "tagsPlaceholder": "",
+        "tagsHelp": "",
+        "removeTag": "",
+        "saveError": "",
+        "sharedLabel": "",
+        "sharedHelp": "",
+        "sharedOn": "",
+        "sharedOff": "",
+        "saving": "",
+        "saved": ""
+    },
+    "broadcast": {
+        "fullCaptureHelp": "",
+        "publish": "",
+        "presenting": "",
+        "present": "",
+        "backToDraft": "",
+        "archive": "",
+        "restore": "",
+        "fullCaptureNext": ""
+    },
+    "feedback": {
+        "enableLabel": "",
+        "enableHelp": "",
+        "title": "",
+        "empty": "",
+        "starsAriaLabel": "",
+        "seeAll": "",
+        "backToEditor": "",
+        "loadError": "",
+        "noneForFilter": "",
+        "count": ""
+    },
+    "questions": {
+        "title": "",
+        "add": "",
+        "moveUp": "",
+        "moveDown": "",
+        "deleteQuestion": "",
+        "dragHandle": "",
+        "itemsCount": "",
+        "formTitle": "",
+        "empty": "",
+        "collapseList": "",
+        "expandList": "",
+        "unfinished": "",
+        "itemActions": ""
+    },
+    "slides": {
+        "formTitle": "",
+        "add": "",
+        "kind": "",
+        "deleteSlide": "",
+        "durationManual": ""
+    },
+    "slideForm": {
+        "bodyPlaceholder": "",
+        "contrastLegend": "",
+        "tone": {
+            "light": "",
+            "dark": ""
+        },
+        "outline": "",
+        "displayLegend": "",
+        "displayDelayLabel": "",
+        "display": {
+            "default": "",
+            "manual": "",
+            "custom": ""
+        },
+        "displayHint": "",
+        "invalidError": "",
+        "submitAdd": "",
+        "submitUpdate": "",
+        "blocksLegend": "",
+        "block": {
+            "heading": "",
+            "subheading": "",
+            "text": "",
+            "image": "",
+            "columns2": "",
+            "columns3": ""
+        },
+        "dragBlock": "",
+        "removeBlock": "",
+        "headingLevel": "",
+        "headingPlaceholder": "",
+        "imageSize": "",
+        "imageAlign": "",
+        "size": {
+            "small": "",
+            "medium": "",
+            "large": "",
+            "full": ""
+        },
+        "align": {
+            "left": "",
+            "center": "",
+            "right": ""
+        },
+        "ratio": "",
+        "textAlign": "",
+        "previewLegend": "",
+        "hidePreview": "",
+        "showPreview": "",
+        "textSize": "",
+        "sizeShort": {
+            "small": "",
+            "medium": "",
+            "large": ""
+        },
+        "titleEdit": "",
+        "titleAdd": "",
+        "mediaLegend": "",
+        "videoCover": "",
+        "videoLoop": "",
+        "videoLoopHint": "",
+        "videoSound": "",
+        "videoSoundHint": "",
+        "audioExcludesVideoSound": "",
+        "videoSoundExcludesAudio": "",
+        "variablesLegend": "",
+        "variablesHint": "",
+        "variables": {
+            "title": "",
+            "description": "",
+            "questions": "",
+            "author": "",
+            "tags": "",
+            "license": "",
+            "room": "",
+            "host": "",
+            "pin": "",
+            "join": "",
+            "players": "",
+            "question": "",
+            "total": "",
+            "remaining": "",
+            "date": "",
+            "time": ""
+        },
+        "blockRemoved": "",
+        "undo": "",
+        "emptySkipped": "",
+        "moveToDraft": {
+            "title": "",
+            "description": ""
+        }
+    },
+    "formSaved": "",
+    "discardConfirm": {
+        "title": "",
+        "description": "",
+        "confirmLabel": "",
+        "discardAndContinue": "",
+        "saveAndContinue": "",
+        "saveAndClose": ""
+    },
+    "emptyPane": {
+        "emptyTitle": "",
+        "emptyHint": "",
+        "selectTitle": "",
+        "selectHint": ""
+    },
+    "deleteConfirm": {
+        "title": "",
+        "description": "",
+        "confirmLabel": ""
+    },
+    "questionForm": {
+        "typeLabel": "",
+        "promptLabel": "",
+        "promptPlaceholder": "",
+        "playbackLegend": "",
+        "timingLegend": "",
+        "pointsLegend": "",
+        "answerExplanationLabel": "",
+        "answerExplanationPlaceholder": "",
+        "timeLimitLabel": "",
+        "revealDelayLabel": "",
+        "revealDelayPlaceholder": "",
+        "revealDelayHint": "",
+        "audioTargetLabel": "",
+        "audioTargetHint": "",
+        "audioTargetDefault": "",
+        "waveformSizeLabel": "",
+        "waveformSizeHint": "",
+        "waveformPreview": "",
+        "waveformHiddenNote": "",
+        "waveformSize": {
+            "S": "",
+            "M": "",
+            "L": "",
+            "hidden": ""
+        },
+        "pointsLabel": "",
+        "pointsMode": {
+            "standard": "",
+            "double": "",
+            "fixed": ""
+        },
+        "optionsLegend": "",
+        "optionAriaLabel": "",
+        "dragOption": "",
+        "optionPlaceholder": "",
+        "orderAriaLabel": "",
+        "correct": "",
+        "removeOption": "",
+        "addOption": "",
+        "acceptedAnswersLegend": "",
+        "answerAriaLabel": "",
+        "removeAnswer": "",
+        "addAnswer": "",
+        "numericValueLabel": "",
+        "numericToleranceLabel": "",
+        "submitUpdate": "",
+        "submitAdd": "",
+        "invalidError": "",
+        "scoringLabel": "",
+        "scoring": {
+            "multiple_choice": {
+                "standard": "",
+                "partial": ""
+            },
+            "ordering": {
+                "standard": "",
+                "partial": ""
+            },
+            "text_input": {
+                "standard": "",
+                "lenient": ""
+            },
+            "numeric": {
+                "standard": "",
+                "closest": ""
+            },
+            "image_choice": {
+                "standard": "",
+                "partial": ""
+            }
+        },
+        "scoringHelp": {
+            "multiple_choice": {
+                "standard": "",
+                "partial": ""
+            },
+            "ordering": {
+                "standard": "",
+                "partial": ""
+            },
+            "text_input": {
+                "standard": "",
+                "lenient": ""
+            },
+            "numeric": {
+                "standard": "",
+                "closest": ""
+            },
+            "image_choice": {
+                "standard": "",
+                "partial": ""
+            }
+        },
+        "removeOptionConfirm": {
+            "title": "",
+            "description": "",
+            "confirmLabel": ""
+        },
+        "titleEdit": "",
+        "titleAdd": "",
+        "stretchedTime": "",
+        "listenFirstLabel": "",
+        "listenFirstHint": "",
+        "listenFirstTime": "",
+        "promptImageNotice": "",
+        "promptImageMove": "",
+        "imagesLegend": "",
+        "imageCountLabel": "",
+        "multiSelectLabel": "",
+        "multiSelectHint": "",
+        "imageCropNote": "",
+        "imageAdd": "",
+        "imageRequired": "",
+        "imageAltLabel": "",
+        "imageAltAria": "",
+        "imageAltPlaceholder": "",
+        "imageAltRequired": "",
+        "imageCountConfirm": {
+            "title": "",
+            "description": "",
+            "confirmLabel": ""
+        },
+        "trueOption": "",
+        "falseOption": "",
+        "clampedTime": "",
+        "clampedReveal": "",
+        "addOptionMax": "",
+        "addAnswerMax": "",
+        "moveToDraft": {
+            "title": "",
+            "description": "",
+            "confirmLabel": "",
+            "cancelLabel": ""
+        },
+        "optionActions": "",
+        "removeOptionShort": "",
+        "ticksCleared": "",
+        "explanationWritten": "",
+        "explanationEmpty": "",
+        "numericLegend": "",
+        "decimalsAllowed": "",
+        "timingSummary": "",
+        "timingSummaryStretched": "",
+        "revealDelayAuto": "",
+        "revealDelaySummary": "",
+        "place_ordinal": "",
+        "mediaPositionLabel": "",
+        "mediaPositionHint": "",
+        "mediaPosition": {
+            "bottom": "",
+            "top": "",
+            "left": "",
+            "right": ""
+        },
+        "revealDelayAutoValue": "",
+        "revealDelaySummaryAuto": ""
+    },
+    "preview": {
+        "view": "",
+        "exitFullscreen": "",
+        "fullscreen": "",
+        "noQuestions": "",
+        "previous": "",
+        "next": "",
+        "questionPosition": "",
+        "correctAnswer": "",
+        "optionFallback": "",
+        "acceptedAnswers": "",
+        "numericTarget": "",
+        "credits": "",
+        "video": "",
+        "sound": "",
+        "steps": "",
+        "backToEditor": "",
+        "device": "",
+        "projection": "",
+        "phone": "",
+        "showAnswer": "",
+        "title": "",
+        "pin": "",
+        "unpin": ""
+    },
+    "media": {
+        "alt": "",
+        "remove": "",
+        "uploading": "",
+        "add": "",
+        "fileInputLabel": "",
+        "uploadError": "",
+        "demoDisabled": "",
+        "altLabel": "",
+        "altPlaceholder": "",
+        "altHelp": "",
+        "slotsLegend": "",
+        "visualLabel": "",
+        "audioLabel": "",
+        "kindImage": "",
+        "kindVideo": "",
+        "none": "",
+        "addImage": "",
+        "addVideo": "",
+        "addAudio": "",
+        "videoExcludesAudio": "",
+        "audioExcludesVideo": "",
+        "converting": "",
+        "convertingPercent": "",
+        "cancelConversion": "",
+        "notice": {
+            "gifFirstFrame": ""
+        },
+        "library": {
+            "close": "",
+            "search": "",
+            "loading": "",
+            "empty": "",
+            "noMatch": "",
+            "pick": "",
+            "unused": "",
+            "delete": "",
+            "deleteTitle": "",
+            "deleteDescription": "",
+            "deleteConfirm": "",
+            "deleteError": "",
+            "findElsewhere": "",
+            "creditReminder": "",
+            "title": {
+                "image": "",
+                "video": "",
+                "audio": ""
+            },
+            "usedIn": "",
+            "openKind": {
+                "image": "",
+                "video": "",
+                "audio": ""
+            },
+            "inHistory": "",
+            "tab": {
+                "mine": "",
+                "instance": ""
+            },
+            "instanceEmpty": ""
+        },
+        "creditLabel": "",
+        "creditPlaceholder": "",
+        "creditHelp": ""
+    },
+    "background": {
+        "legend": "",
+        "kind": {
+            "none": "",
+            "image": "",
+            "gradient": ""
+        },
+        "color": "",
+        "removeColor": "",
+        "addColor": "",
+        "angle": ""
+    },
+    "status": {
+        "draft": "",
+        "ready": "",
+        "archived": ""
+    },
+    "deleteItemConfirm": {
+        "questionTitle": "",
+        "slideTitle": "",
+        "description": "",
+        "confirmLabel": ""
+    },
+    "questionTypeHelp": {
+        "single_choice": "",
+        "multiple_choice": "",
+        "true_false": "",
+        "text_input": "",
+        "numeric": "",
+        "ordering": "",
+        "poll": "",
+        "image_choice": ""
+    },
+    "sessions": {
+        "running": "",
+        "players": "",
+        "liveEditsHint": ""
+    },
+    "publication": {
+        "open": "",
+        "title": "",
+        "description": "",
+        "download": "",
+        "checking": "",
+        "failed": "",
+        "check": {
+            "ready": "",
+            "notReady": "",
+            "language": "",
+            "license": "",
+            "noLicense": "",
+            "tags": "",
+            "noTags": "",
+            "size": "",
+            "uncredited": "",
+            "credited": ""
+        },
+        "fix": {
+            "ready": "",
+            "settings": "",
+            "size": "",
+            "credit": ""
+        },
+        "kind": {
+            "image": "",
+            "video": "",
+            "audio": ""
+        },
+        "slugLabel": "",
+        "slugHelp": "",
+        "slugChanged": ""
+    },
+    "readOnly": {
+        "notice": "",
+        "createFrom": "",
+        "props": {
+            "orderShown": "",
+            "seconds": "",
+            "muted": ""
+        },
+        "empty": ""
+    },
+    "publishChecklist": {
+        "title": "",
+        "description": "",
+        "untitled": "",
+        "open": ""
+    },
+    "formIssues": {
+        "errors": "",
+        "toFinish": ""
+    },
+    "importReport": {
+        "imported": "",
+        "media": "",
+        "incomplete": "",
+        "skipped": "",
+        "reasons": {
+            "invalid_time": "",
+            "formula": "",
+            "invalid_content": ""
+        }
+    }
+}
