@@ -8,6 +8,8 @@ import type {
   QuestionScoring,
   QuestionStartPayload,
   QuestionType,
+  BackgroundStyle,
+  SlideBackground,
 } from '@quiz-dock/contracts';
 import {
   type AudioTarget,
@@ -142,11 +144,7 @@ export function buildSnapshot(quiz: QuizWithContent): QuizSnapshot {
         prompt: q.prompt,
         media,
         answerExplanation: q.answerExplanation ?? null,
-        background: q.backgroundMedia
-          ? { url: q.backgroundMedia.url }
-          : q.backgroundGradient
-            ? { gradient: q.backgroundGradient as unknown as SlideGradient }
-            : null,
+        background: backdropOf(q.backgroundMedia, q.backgroundGradient, q.backgroundStyle),
         textTone: q.textTone as SlideTextTone,
         textOutline: q.textOutline,
         // Stretched when the media would still be playing (quiz-wide pause after it):
@@ -249,11 +247,7 @@ function snapshotSlide(
     id: slide.id,
     beforeQuestionIndex: anchor,
     blocks: resolveBlocks(slide.blocks as SlideBlock[], quiz),
-    background: slide.media
-      ? { url: slide.media.url }
-      : slide.gradient
-        ? { gradient: slide.gradient as unknown as SlideGradient }
-        : null,
+    background: backdropOf(slide.media, slide.gradient, slide.backgroundStyle),
     video,
     audio,
     audioTarget: slide.audioTarget ?? null,
@@ -262,6 +256,21 @@ function snapshotSlide(
     textOutline: slide.textOutline,
     displayDelayS: slide.displayDelayS,
   };
+}
+
+/** A step's background: its picture or its gradient, laid as its style says (THEMING §1.1). */
+function backdropOf(
+  media: { url: string } | null,
+  gradient: unknown,
+  style: unknown,
+): SlideBackground | null {
+  const base = media
+    ? { url: media.url }
+    : gradient
+      ? { gradient: gradient as SlideGradient }
+      : null;
+  if (!base) return null;
+  return style ? { ...base, style: style as BackgroundStyle } : base;
 }
 
 /** What a slide's variables read of the quiz (see `quizVariables`). */

@@ -15,6 +15,7 @@ function quiz(over: Partial<QuizWithContent> = {}): QuizWithContent {
     backgroundMediaId: null,
     backgroundMedia: null,
     backgroundGradient: null,
+    backgroundStyle: null,
     textTone: 'light',
     textOutline: true,
     timeLimitS: 20,
@@ -88,6 +89,7 @@ describe('refreshSnapshotForm', () => {
       angle: 90,
       colors: ['#000000', '#ffffff'],
     };
+    edited.questions.find((q) => q.id === 'q1')!.backgroundStyle = { mode: 'cover', blur: 4 };
     edited.questions.find((q) => q.id === 'q1')!.textTone = 'dark';
     edited.questions.find((q) => q.id === 'q1')!.textOutline = false;
     edited.questions.find((q) => q.id === 'q1')!.answerExplanation = 'Because.';
@@ -101,7 +103,10 @@ describe('refreshSnapshotForm', () => {
       prompt: 'One?',
       timeLimitS: 20,
       basePoints: frozen.questions[0].basePoints,
-      background: { gradient: { angle: 90, colors: ['#000000', '#ffffff'] } },
+      background: {
+        gradient: { angle: 90, colors: ['#000000', '#ffffff'] },
+        style: { mode: 'cover', blur: 4 },
+      },
       textTone: 'dark',
       textOutline: false,
       answerExplanation: 'Because.',

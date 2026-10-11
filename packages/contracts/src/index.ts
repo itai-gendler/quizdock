@@ -23,6 +23,7 @@ export * from './admin/operations';
 export * from './admin/results';
 import type { ParticipantAccess } from './preferences';
 import type { ThemeValues } from './theme';
+import type { BackgroundStyle } from './background';
 import type { AudioTarget, LiveAudio, LiveQuestionMedia } from './question-media';
 
 export const CONTRACTS_VERSION = '0.3.0' as const;
@@ -220,8 +221,13 @@ export interface SlideGradient {
   angle: number;
   colors: string[];
 }
-/** Full-cover background: an uploaded image, or a generated gradient. */
-export type SlideBackground = { url: string } | { gradient: SlideGradient };
+/**
+ * Full-cover background: an uploaded image, or a generated gradient, laid as its `style`
+ * says (THEMING §1.1; absent: today's cover).
+ */
+export type SlideBackground = ({ url: string } | { gradient: SlideGradient }) & {
+  style?: BackgroundStyle;
+};
 
 /**
  * A slide's video (#125), filling the slide behind its content (cover).
