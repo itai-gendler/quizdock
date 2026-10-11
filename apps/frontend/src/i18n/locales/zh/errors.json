@@ -123,7 +123,8 @@
     "options": {
       "not_allowed": "此题型没有可供选择的答案。",
       "one_correct": "请勾选正确答案。",
-      "some_correct": "请至少勾选一个正确答案。"
+      "some_correct": "请至少勾选一个正确答案。",
+      "not_enough": "请至少添加 2 个答案。"
     },
     "ordering": {
       "positions": "每个答案在正确顺序中都需要自己的位置。"

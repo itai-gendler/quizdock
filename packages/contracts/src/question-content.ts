@@ -259,7 +259,8 @@ export function questionIssues(q: QuestionCompletenessInput): QuestionIssue[] {
     miss({ code: 'question.prompt.required', path: ['prompt'] });
   }
   if (OPTION_TYPES.includes(q.type) && q.type !== 'image_choice') {
-    if (options.length < OPTIONS_MIN) miss({ code: 'question.options.too_few', path: ['options'] });
+    if (options.length < OPTIONS_MIN)
+      miss({ code: 'question.options.not_enough', path: ['options'] });
   }
   switch (q.type) {
     case 'single_choice':

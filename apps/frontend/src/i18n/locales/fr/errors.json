@@ -22,7 +22,7 @@
     "item_not_in_quiz": "Cet élément n’appartient plus à ce quiz : rechargez la page.",
     "reorder_incomplete": "L’ordre envoyé ne contient pas tous les éléments : rechargez la page et réessayez.",
     "incomplete_one": "1 étape est inachevée : complétez-la pour publier le quiz.",
-    "incomplete_many": "",
+    "incomplete_many": "{{count}} étapes sont inachevées : complétez-les pour publier le quiz.",
     "incomplete_other": "{{count}} étapes sont inachevées : complétez-les pour publier le quiz."
   },
   "session": {
@@ -125,7 +125,8 @@
     "options": {
       "not_allowed": "Ce type de question n’a pas de réponses à choisir.",
       "one_correct": "Cochez la bonne réponse.",
-      "some_correct": "Cochez au moins une bonne réponse."
+      "some_correct": "Cochez au moins une bonne réponse.",
+      "not_enough": "Ajoutez au moins 2 réponses."
     },
     "ordering": {
       "positions": "Chaque réponse doit avoir sa propre place dans le bon ordre."

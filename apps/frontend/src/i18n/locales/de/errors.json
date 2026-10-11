@@ -125,7 +125,7 @@
       "not_allowed": "Dieser Fragetyp hat keine Antworten zur Auswahl.",
       "one_correct": "Markieren Sie die richtige Antwort.",
       "some_correct": "Markieren Sie mindestens eine richtige Antwort.",
-      "too_few": "Fügen Sie mindestens 2 Antworten hinzu."
+      "not_enough": "Fügen Sie mindestens 2 Antworten hinzu."
     },
     "ordering": {
       "positions": "Jede Antwort braucht ihren eigenen Platz in der richtigen Reihenfolge."
