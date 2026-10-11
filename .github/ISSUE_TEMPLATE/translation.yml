@@ -13,6 +13,12 @@ body:
         - 简体中文 (zh)
         - 繁體中文 (zh-TW)
         - Türkçe (tr)
+        - Deutsch (de)
+        - हिन्दी (hi)
+        - Italiano (it)
+        - 日本語 (ja)
+        - Polski (pl)
+        - Русский (ru)
     validations:
       required: true
   - type: textarea

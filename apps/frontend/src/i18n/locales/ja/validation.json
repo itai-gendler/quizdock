@@ -1,0 +1,10 @@
+{
+  "invalid_type": "値の型が正しくありません。",
+  "too_small": "値が小さすぎるか、短すぎます。",
+  "too_big": "値が大きすぎるか、長すぎます。",
+  "invalid_format": "形式が正しくありません。",
+  "invalid_value": "使用できない値です。",
+  "unrecognized_keys": "認識できないフィールドです。",
+  "custom": "無効な値です。",
+  "_default": "無効なフィールドです。"
+}

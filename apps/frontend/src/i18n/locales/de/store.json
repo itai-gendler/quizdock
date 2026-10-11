@@ -1,0 +1,50 @@
+{
+  "title": "Geteilte Vorlagen",
+  "intro": "Quizze, die die Quizleitungen dieser Instanz geteilt haben. Wer eine übernimmt, erhält eine unabhängige Kopie in der eigenen Sammlung — zum Umbenennen, Kürzen und Präsentieren. Danach wird nichts mehr zurückgespielt.",
+  "emptyTitle": "Noch keine Vorlagen",
+  "empty": "Auf dieser Instanz wurde noch keine Vorlage geteilt. Teilen Sie eine aus einem Quiz mit dem Status „Bereit“.",
+  "withdraw": "Zurückziehen",
+  "questionCount_one": "{{count}} Frage",
+  "questionCount_other": "{{count}} Fragen",
+  "takeFailed": "Diese Vorlage konnte nicht kopiert werden.",
+  "withdrawFailed": "Diese Vorlage konnte nicht zurückgezogen werden.",
+  "withdrawConfirm": {
+    "title": "Diese Vorlage zurückziehen?",
+    "description": "Sie verschwindet aus dem Katalog, sodass niemand sie erneut übernimmt. Bereits übernommene Kopien gehören ihren Besitzern und bleiben unberührt."
+  },
+  "share": "Als Vorlage teilen",
+  "shareConfirm": {
+    "title": "Dieses Quiz als Vorlage teilen?",
+    "description": "Eine Kopie geht in den Katalog dieser Instanz. Andere Quizleitungen übernehmen ihre eigene Kopie und ändern sie nach Belieben; Ihr Quiz wird dadurch nie verändert. Erneutes Teilen ersetzt den Eintrag, und Zurückziehen entfernt nie die bereits übernommenen Kopien."
+  },
+  "shared": "Als Vorlage geteilt (Revision {{n}}).",
+  "shareFailed": "Dieses Quiz konnte nicht geteilt werden.",
+  "search": "Vorlage suchen",
+  "sortBy": "Sortieren nach",
+  "sortRecent": "Zuletzt geteilt",
+  "sortTitle": "Titel (A–Z)",
+  "sortQuestions": "Meiste Fragen",
+  "templateCount_one": "{{count}} Vorlage",
+  "templateCount_other": "{{count}} Vorlagen",
+  "noMatch": "Keine Vorlage passt zu dieser Suche.",
+  "sharedBy": "geteilt von {{name}} am {{date}}",
+  "backToCatalogue": "Zurück zu den Vorlagen",
+  "slideCount_one": "{{count}} Folie",
+  "slideCount_other": "{{count}} Folien",
+  "licence": "Lizenz {{name}}",
+  "notFound": "Diese Vorlage ist nicht mehr im Katalog.",
+  "takeNeedsHost": "Ein Quiz aus einer Vorlage zu erstellen ist Sache der Quizleitung.",
+  "createFrom": "Quiz daraus erstellen",
+  "unreadable": "Diese Vorlage kann nicht vollständig gelesen werden: Eine Kopie würde abgelehnt ({{where}}).",
+  "unreadableItem": "Element {{n}}",
+  "unreadableManifest": "ihr Manifest",
+  "more": "Weitere Aktionen",
+  "community": {
+    "title": "Community-Quizze",
+    "intro": "Von anderen Autorinnen und Autoren veröffentlichte Quizze. Prüfen Sie Quelle, Lizenz und Antworten, bevor Sie eine unabhängige Kopie übernehmen.",
+    "empty": "Der Community-Katalog ist leer.",
+    "unavailable": "Einige Quellen konnten nicht geladen werden. Bitte später erneut versuchen.",
+    "source": "Quelle: {{source}}",
+    "report": "Problem melden"
+  }
+}

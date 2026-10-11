@@ -1,0 +1,113 @@
+{
+  "status": {
+    "ended": "終了",
+    "interrupted": "中断",
+    "archived": "アーカイブ済み",
+    "lobby": "待機室",
+    "in_progress": "進行中"
+  },
+  "duration": {
+    "minutesSeconds": "{{minutes}}分{{seconds}}秒",
+    "seconds": "{{seconds}}秒"
+  },
+  "list": {
+    "title": "セッション履歴",
+    "backToEditor": "エディターに戻る",
+    "empty": "このクイズのアーカイブ済みセッションはありません。セッションの最後に「このクイズの結果をアーカイブ」にチェックを入れると、ここに表示されます。",
+    "capture": "記録",
+    "inRoom_one": "ルーム・クイズ {{count}}件",
+    "inRoom_other": "ルーム・クイズ {{count}}件",
+    "pin": "PIN {{pin}}",
+    "thDate": "日付",
+    "thStatus": "状態",
+    "thPlayers": "参加者",
+    "thSuccess": "正答率",
+    "presentIt": "このクイズを出題"
+  },
+  "detail": {
+    "notFound": "セッションが見つかりません。",
+    "fallbackTitle": "セッション",
+    "exportCsv": "エクスポート（CSV）",
+    "history": "履歴",
+    "statParticipants": "参加者",
+    "statSuccessRate": "全体の正答率",
+    "statQuestions": "問題",
+    "questionResultsTitle": "問題ごとの結果",
+    "thNumber": "#",
+    "thQuestion": "問題",
+    "thAnswers": "回答",
+    "thSuccessRate": "正答率",
+    "thAvgTime": "平均時間",
+    "participantsTitle": "参加者",
+    "noPersonalTracking": "このセッションでは個人の結果は記録されていません。個人ごとの追跡がオフだったため、グループ全体の結果のみが保存されています。",
+    "thRank": "順位",
+    "thNickname": "ニックネーム",
+    "thScore": "スコア",
+    "thCorrect": "正解",
+    "thStreak": "連続正解",
+    "csvGlobal": {
+      "rank": "順位",
+      "nickname": "ニックネーム",
+      "score": "スコア",
+      "correct": "正解",
+      "answered": "回答数",
+      "maxStreak": "最大連続正解",
+      "avgTime": "平均時間（秒）",
+      "filenameFallback": "session"
+    },
+    "room": {
+      "intro_one": "このセッションはルームで行われました。{{count}}件のクイズが順番に保存されており、参加者は一度だけ参加しています。",
+      "intro_other": "このセッションはルームで行われました。{{count}}件のクイズが順番に保存されており、参加者は一度だけ参加しています。",
+      "thisSession": "このセッション",
+      "standingsTitle": "ルームの順位",
+      "standingsNote": "ルーム内のアーカイブ済みクイズの合計です。",
+      "noPersonalTracking": "ルームの順位はありません。少なくとも1つのセッションで参加者が個別に追跡されていませんでした。",
+      "thQuizzes": "クイズ",
+      "exportCsv": "順位をエクスポート（CSV）",
+      "csvFilename": "room",
+      "defaultName": "{{host}}のルーム"
+    },
+    "notPlayed": "未実施",
+    "statQuestionsPlayed_one": "{{total}}問中{{count}}問を実施",
+    "statQuestionsPlayed_other": "{{total}}問中{{count}}問を実施",
+    "statSuccessOf_one": "{{total}}件中{{count}}件が正解",
+    "statSuccessOf_other": "{{total}}件中{{count}}件が正解"
+  },
+  "player": {
+    "notFound": "参加者が見つかりません。",
+    "summary": "{{rank}}位・{{score}}点・{{correct}}/{{answered}}正解",
+    "exportCsv": "エクスポート（CSV）",
+    "session": "セッション",
+    "captureUnavailable": "回答の詳細はありません。このセッションでは全回答の記録が有効になっていませんでした。集計結果のみが保存されています。",
+    "answersTitle": "回答",
+    "thNumber": "#",
+    "thQuestion": "問題",
+    "thAnswer": "回答",
+    "thCorrect": "正誤",
+    "thPoints": "得点",
+    "thTime": "時間",
+    "correctAria": "正解",
+    "incorrectAria": "不正解",
+    "noAnswers": "記録された回答はありません。",
+    "csvPlayer": {
+      "number": "#",
+      "question": "問題",
+      "answer": "回答",
+      "correct": "正誤",
+      "points": "得点",
+      "time": "時間（秒）",
+      "yes": "はい",
+      "no": "いいえ",
+      "filenameLabel": "player"
+    }
+  },
+  "gatherings": {
+    "title": "セッション",
+    "intro": "実施した内容をルームごとに表示します。複数のクイズを行ったルームは1行にまとまり、その順位は1ページで確認できます。単独で行ったクイズは、そのレポートにつながります。",
+    "none": "まだ何も実施されていません。クイズを出題すると、その結果がここに表示されます。",
+    "thRoom": "ルーム",
+    "thQuizzes": "クイズ",
+    "alone": "単独のクイズ",
+    "back": "セッション"
+  }
+}

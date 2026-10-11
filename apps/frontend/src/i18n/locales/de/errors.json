@@ -1,0 +1,219 @@
+{
+  "auth": {
+    "required": "Authentifizierung erforderlich.",
+    "login_failed": "Die Anmeldung konnte nicht abgeschlossen werden. Bitte erneut versuchen.",
+    "cross_origin": "Diese Anfrage stammt nicht von der Seite der Anwendung selbst.",
+    "host_required": "Rolle Quizleitung erforderlich.",
+    "host_only": "Das ist eine Aktion der Quizleitung; die Administration verwaltet die Instanz, sie präsentiert nicht.",
+    "admin_required": "Administratorrolle erforderlich.",
+    "oidc_disabled": "Die Anmeldung über einen Identitätsanbieter ist auf dieser Instanz nicht aktiviert."
+  },
+  "host": {
+    "auth_required": "Authentifizierung als Quizleitung erforderlich.",
+    "forbidden": "Sie leiten diesen Raum nicht."
+  },
+  "quiz": {
+    "not_found": "Quiz nicht gefunden.",
+    "not_ready": "Das Quiz muss „bereit“ sein, um gespielt zu werden (RG-02).",
+    "empty": "Das Quiz hat keine Fragen.",
+    "requires_question": "Ein Quiz braucht mindestens eine Frage, um „bereit“ zu werden (RG-02).",
+    "transition_forbidden": "Unzulässiger Statuswechsel: {{from}} → {{target}}.",
+    "in_use": "Dieses Quiz wird gerade in einem Raum gespielt: Schließen Sie zuerst den Raum.",
+    "item_not_in_quiz": "Dieses Element gehört nicht mehr zu diesem Quiz: Laden Sie die Seite neu.",
+    "reorder_incomplete": "In der gesendeten Reihenfolge fehlen Elemente: Laden Sie die Seite neu und versuchen Sie es erneut.",
+    "incomplete_one": "1 Schritt ist unvollständig: Vervollständigen Sie ihn, um das Quiz zu veröffentlichen.",
+    "incomplete_other": "{{count}} Schritte sind unvollständig: Vervollständigen Sie sie, um das Quiz zu veröffentlichen."
+  },
+  "session": {
+    "not_found": "Raum nicht gefunden oder geschlossen.",
+    "ended": "Der Raum ist geschlossen.",
+    "banned": "Die Quizleitung hat Sie aus diesem Raum entfernt.",
+    "join_required": "Treten Sie dem Raum bei, bevor Sie antworten.",
+    "already_joined": "Sie sind bereits in diesem Raum.",
+    "already_started": "Das Quiz hat bereits begonnen.",
+    "quiz_required": "Wählen Sie zuerst das Quiz.",
+    "reveal_required": "Aktion erst nach der Auflösung möglich.",
+    "timer_not_adjustable": "Der Timer lässt sich nur während einer Frage anpassen.",
+    "snapshot_not_found": "Sitzungs-Snapshot nicht gefunden.",
+    "capture_locked": "Die vollständige Erfassung lässt sich nur vor dem Start des Quiz ändern.",
+    "options_locked": "Diese Optionen lassen sich nur vor dem Start des Quiz ändern.",
+    "join_url_invalid": "Ungültige Einladungsadresse (erwartet: http(s)://host[:port]).",
+    "archive_quiz_gone": "Das Quiz wurde gelöscht, während es gespielt wurde: Es endete ohne Archiv.",
+    "locked": "Dieser Raum nimmt keine neuen Teilnehmenden mehr auf.",
+    "open_access_forbidden": "Offener Zugang ist auf diesem Server nicht erlaubt.",
+    "open_access_guests_only": "Bei offenem Zugang haben Teilnehmende kein Konto: keine persönliche Auswertung, kein Name aus einem Konto.",
+    "next_quiz_unavailable": "Dieses Quiz kann in diesem Raum nicht als nächstes gespielt werden.",
+    "next_quiz_from_lobby": "Das nächste Quiz wird im Warteraum des Raums gewählt.",
+    "review_unavailable": "Ein Rückblick auf einen Schritt ist nur zwischen zwei Fragen möglich.",
+    "step_not_played": "Dieser Schritt wurde noch nicht gespielt."
+  },
+  "participant": {
+    "not_found": "Teilnehmende Person nicht gefunden."
+  },
+  "nickname": {
+    "taken": "Dieser Spitzname ist in diesem Raum bereits vergeben.",
+    "invalid_length": "Der Spitzname muss zwischen {{min}} und {{max}} Zeichen lang sein."
+  },
+  "pin": {
+    "unavailable": "Es konnte keine PIN vergeben werden, bitte erneut versuchen.",
+    "too_many_attempts": "Zu viele falsche PINs von dieser Adresse. Bitte in einer Minute erneut versuchen."
+  },
+  "media": {
+    "unsupported_type": "Nicht unterstütztes Format: ein Bild, ein MP4-Video (H.264) oder ein Ton (MP3, M4A). Der Editor konvertiert die anderen Dateien, die dieser Browser lesen kann; SVG wird nicht angenommen.",
+    "file_missing": "Datei fehlt (Feld „file“).",
+    "file_too_large": "Datei zu groß (höchstens {{maxMb}} MB für diese Medienart).",
+    "image_too_large": "Dieses Bild ist zu groß (höchstens {{maxMp}} Megapixel).",
+    "not_found": "Medium nicht gefunden.",
+    "demo_disabled": "Medien-Uploads sind auf der Demo-Instanz deaktiviert.",
+    "video_with_audio": "Ein Video bringt bereits seinen eigenen Ton mit: Entfernen Sie die Tonspur oder das Video.",
+    "wrong_kind": "Dieses Medium ist nicht von der Art, die dieser Platz aufnimmt.",
+    "embeds_disabled": "YouTube- und Vimeo-Videos sind auf dieser Instanz ausgeschaltet.",
+    "invalid": "Die Medien der Frage sind nicht gültig.",
+    "quicktime": "QuickTime-Dateien (.mov) werden nicht angenommen. Exportieren Sie das Video als MP4 (H.264), zum Beispiel mit HandBrake (handbrake.fr).",
+    "unsupported_video_codec": "Nicht unterstützter Videocodec ({{codec}}). Nur H.264 läuft überall. Ein mit dem iPhone aufgenommenes Video ist oft HEVC: Konvertieren Sie es in MP4 H.264, zum Beispiel mit HandBrake (handbrake.fr), oder stellen Sie die Kamera auf „Maximale Kompatibilität“.",
+    "unsupported_audio_codec": "Der Ton dieses Videos ({{codec}}) ist nicht AAC. Exportieren Sie es erneut als MP4 H.264 + AAC, zum Beispiel mit HandBrake (handbrake.fr).",
+    "no_video_track": "Diese Datei enthält kein Video. Für einen einzelnen Ton verwenden Sie den Tonplatz.",
+    "unreadable_mp3": "Dieser Ton kann nicht gelesen werden: Die Datei scheint beschädigt.",
+    "metadata_invalid": "Was am Ton gemessen wurde, ist nicht gültig ({{field}}). Versuchen Sie den Upload erneut.",
+    "cannot_read": "Dieser Browser kann diese Datei nicht lesen. Versuchen Sie einen anderen Browser, oder konvertieren Sie sie zuerst mit einem eigenen Werkzeug (HandBrake für Videos, Audacity für Töne).",
+    "cannot_convert_video": "Dieser Browser kann dieses Video nicht in MP4 H.264 konvertieren. Verwenden Sie Chrome, Edge oder Safari, oder konvertieren Sie es zuerst mit HandBrake (handbrake.fr).",
+    "cannot_convert_audio": "Dieser Browser kann diesen Ton nicht in AAC konvertieren. Versuchen Sie einen anderen Browser, oder konvertieren Sie ihn zuerst mit Audacity (audacityteam.org).",
+    "too_long": "Zu lang für das Limit von {{maxMb}} MB für diese Medienart, selbst komprimiert. Kürzen Sie es zuerst.",
+    "canceled": "Konvertierung abgebrochen.",
+    "in_use": "Dieses Medium wird noch von einem Quiz oder einer Sitzung verwendet: Entfernen Sie es zuerst dort.",
+    "playing": "Ein Raum spielt dieses Medium gerade ab: Versuchen Sie es erneut, sobald er geschlossen ist.",
+    "not_adopted_yet": "Diese Datei wird gerade in den gemeinsamen Speicher verschoben: Bitte gleich erneut versuchen.",
+    "embed_bounds": "Start und Ende des Videos passen nicht: Das Ende muss nach dem Start liegen."
+  },
+  "import": {
+    "file_missing": "Datei fehlt (Feld „file“).",
+    "invalid_bundle": "Kein QuizDock-Paket (quiz.json + media/, gezippt).",
+    "bundle_too_large": "Dieses Paket ist entpackt zu groß oder enthält zu viele Dateien.",
+    "media_missing": "Medium „{{path}}“ wird referenziert, fehlt aber im Paket.",
+    "media_unsupported": "Nicht unterstütztes Medium „{{path}}“ (png, jpg, gif, webp, avif, mp3, ogg, wav, m4a).",
+    "invalid_item": "Element {{item}} des Pakets ist ungültig ({{field}}).",
+    "kahoot_template": "Verwenden Sie die originale Kahoot-Tabellenvorlage (.xlsx) mit einem einzigen Tabellenblatt.",
+    "kahoot_empty": "Keine gültigen Fragen gefunden. Prüfen Sie Zeile {{row}} und die Kahoot-Vorlage.",
+    "file_too_large": "Datei zu groß für den Import (höchstens {{maxMb}} MB)."
+  },
+  "question": {
+    "not_in_quiz": "Frage gehört nicht zum Quiz.",
+    "invalid_permutation": "Die Positionen müssen eine Permutation 0..n-1 bilden.",
+    "reorder_incomplete": "Die Neuordnung muss alle Fragen des Quiz enthalten.",
+    "not_found": "Frage nicht gefunden.",
+    "accepted_answers": {
+      "not_allowed": "Nur eine Frage mit getippter Antwort nimmt akzeptierte Antworten an.",
+      "required": "Fügen Sie mindestens eine akzeptierte Antwort hinzu."
+    },
+    "image": {
+      "alt_required": "Beschreiben Sie dieses Bild für alle, die es nicht sehen können.",
+      "count": "Eine Bildauswahl hat 2 oder 4 Bilder.",
+      "no_text": "Eine Bildantwort hat keinen Text.",
+      "no_visual": "Eine Bildauswahl hat kein eigenes Bild oder Video: Ihre Antworten sind die Bilder.",
+      "picture_required": "Wählen Sie ein Bild für diese Antwort."
+    },
+    "incomplete_in_ready_quiz": "Dieses Quiz ist veröffentlicht: Setzen Sie es auf Entwurf zurück, um eine unvollständige Frage zu speichern.",
+    "multi_select": {
+      "not_allowed": "Mehrere richtige Bilder gibt es nur bei einer Bildauswahl."
+    },
+    "numeric": {
+      "not_allowed": "Nur eine Zahlenfrage hat einen Zielwert und eine Toleranz.",
+      "tolerance_required": "Legen Sie die Toleranz fest (0 für die exakte Zahl).",
+      "value_required": "Legen Sie die gesuchte Zahl fest."
+    },
+    "options": {
+      "not_allowed": "Dieser Fragetyp hat keine Antworten zur Auswahl.",
+      "one_correct": "Markieren Sie die richtige Antwort.",
+      "some_correct": "Markieren Sie mindestens eine richtige Antwort.",
+      "too_few": "Fügen Sie mindestens 2 Antworten hinzu."
+    },
+    "ordering": {
+      "positions": "Jede Antwort braucht ihren eigenen Platz in der richtigen Reihenfolge."
+    },
+    "poll": {
+      "no_correct": "Eine Umfrage hat keine richtige Antwort."
+    },
+    "prompt": {
+      "required": "Schreiben Sie die Frage, oder fügen Sie ein Bild oder einen Ton hinzu, der sie stellt."
+    },
+    "scoring": {
+      "not_available": "Diese Wertung gilt nicht für diesen Fragetyp."
+    },
+    "true_false": {
+      "two_options": "Wahr oder falsch hat genau 2 Antworten."
+    }
+  },
+  "validation": "Einige Felder sind ungültig.",
+  "internal": "Interner Fehler.",
+  "error": "Ein Fehler ist aufgetreten.",
+  "host_seat": {
+    "taken": "Der Leitungsplatz ist bereits belegt.",
+    "manager_forbidden": "Die Administration übernimmt nicht den Leitungsplatz.",
+    "local_only": "Nur der lokale Modus hat einen Leitungsplatz.",
+    "already_host": "Sie sind bereits Quizleitung: kein Platz zu übernehmen."
+  },
+  "store": {
+    "demo_disabled": "Teilen ist auf einer Demo-Instanz ausgeschaltet.",
+    "not_ready": "Nur ein Quiz mit dem Status „Bereit“ kann geteilt werden.",
+    "license_required": "Legen Sie vor dem Teilen eine Lizenz fest: Eine Vorlage ist zur Wiederverwendung gedacht, also reisen die Bedingungen mit.",
+    "entry_not_found": "Diese Vorlage ist nicht mehr im Katalog.",
+    "not_yours": "Nur die Autorin oder der Autor oder die Administration kann eine Vorlage zurückziehen.",
+    "invalid_id": "Ungültige Vorlagenkennung.",
+    "index_unreadable": "Der Katalogindex kann nicht gelesen werden; wenden Sie sich an Ihre Administration."
+  },
+  "publication": {
+    "slug_invalid": "Der Kurzname darf nur Kleinbuchstaben, Ziffern und Bindestriche enthalten.",
+    "not_ready": "Nur ein bereites Quiz kann zur Veröffentlichung exportiert werden.",
+    "license": "Wählen Sie eine Lizenz (CC0, CC BY oder CC BY-SA), bevor Sie zur Veröffentlichung exportieren.",
+    "language": "Die Sprache des Quiz ist nicht gültig.",
+    "tags": "Fügen Sie mindestens ein Schlagwort hinzu, bevor Sie zur Veröffentlichung exportieren.",
+    "too_large": "Das Quiz ist zu groß für den Community-Katalog."
+  },
+  "slide": {
+    "two_sounds": "Eine Folie spielt jeweils nur einen Ton: Schalten Sie das Video stumm oder entfernen Sie den Ton.",
+    "background_conflict": "Ein Hintergrund ist ein Bild oder ein Verlauf, nicht beides.",
+    "empty": "Die Folie zeigt nichts: Fügen Sie eine Überschrift, einen Text, ein Bild, einen Hintergrund oder ein Video hinzu.",
+    "not_found": "Diese Folie existiert nicht mehr: Sie wurde inzwischen gelöscht.",
+    "incomplete_in_ready_quiz": "Dieses Quiz ist veröffentlicht: Setzen Sie es auf Entwurf zurück, um eine Folie zu speichern, die nichts zeigt."
+  },
+  "record": {
+    "not_found": "Dieses Element existiert nicht mehr: Es wurde inzwischen gelöscht.",
+    "conflict": "Jemand hat gleichzeitig gespeichert. Bitte erneut versuchen.",
+    "invalid_reference": "Dies verweist auf etwas, das nicht mehr existiert."
+  },
+  "mcp": {
+    "busy": "Ein Import läuft bereits. Warten Sie, bis er abgeschlossen ist.",
+    "import_failed": "Das Quiz konnte nicht importiert werden. Prüfen Sie die Serverprotokolle.",
+    "rate_limit": "Zu viele Anfragen über den Connector. Bitte in einer Minute erneut versuchen."
+  },
+  "community": {
+    "disabled": "Der Community-Katalog ist deaktiviert.",
+    "download_failed": "Das Quiz konnte nicht heruntergeladen oder überprüft werden.",
+    "busy": "Der Community-Katalog ist ausgelastet. Bitte gleich erneut versuchen."
+  },
+  "admin": {
+    "unknown_operation": "Unbekannte Verwaltungsoperation.",
+    "forbidden": "Administratorrolle erforderlich.",
+    "scope_read": "Die Web-Administration ist auf dieser Instanz schreibgeschützt (ADMIN_WEB_SCOPE=read).",
+    "local_mode_token": "Lokaler Modus: Geben Sie das Administrationstoken (ADMIN_TOKEN) an, um etwas zu ändern.",
+    "locked": "Gesperrt durch ADMIN_LOCK: {{keys}}.",
+    "critical": "Eine kritische Einstellung wird nie über das Web geändert.",
+    "invalid_params": "Ungültige Parameter: {{message}}",
+    "confirmation_invalid": "Die Bestätigung ist abgelaufen: Bitte erneut versuchen.",
+    "dry_run_unsupported": "Für diese Operation gibt es keine Vorschau.",
+    "not_found": "Nicht gefunden: {{message}}",
+    "conflict": "Gerade nicht möglich: {{message}}",
+    "timeout": "Die Operation hat zu lange gedauert.",
+    "failed": "Die Operation ist fehlgeschlagen: {{message}}",
+    "too_many_requests": "Zu viele Versuche: Bitte einen Moment warten.",
+    "demo_read_only": "Dies ist eine öffentliche Demo: Die Administration wird schreibgeschützt angezeigt."
+  },
+  "setup": {
+    "token_invalid": "Dieses Einrichtungstoken ist nicht gültig (falsch, benutzt oder abgelaufen): `qd setup.token` erzeugt ein neues.",
+    "session_invalid": "Die Einrichtungssitzung ist beendet: Geben Sie ein neues Einrichtungstoken an.",
+    "too_many_attempts": "Zu viele falsche Tokens: Bitte eine Viertelstunde warten."
+  },
+  "request": {
+    "too_large": "Zu groß für den Server: Er hat die Anfrage abgelehnt (Größenlimit)."
+  }
+}

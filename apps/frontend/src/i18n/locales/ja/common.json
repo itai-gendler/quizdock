@@ -1,0 +1,69 @@
+{
+  "loading": "読み込み中…",
+  "confirm": "確認",
+  "cancel": "キャンセル",
+  "close": "閉じる",
+  "quizStatus": {
+    "draft": "下書き",
+    "ready": "準備完了",
+    "archived": "アーカイブ済み"
+  },
+  "markdownEditor": {
+    "visual": "ビジュアルエディター",
+    "source": "Markdown",
+    "bold": "太字",
+    "italic": "斜体",
+    "code": "コード",
+    "codeBlock": "コードブロック",
+    "bulletList": "箇条書き",
+    "orderedList": "番号付きリスト"
+  },
+  "captureConfirm": {
+    "title": "全回答の記録を有効にしますか？",
+    "description": "すべての参加者のすべての回答が、ニックネームとともに保存されます。これは個人データです（GDPR：参加者に通知し、終了後に削除してください）。セッションのアーカイブもデータベース上で大幅に重くなります。個人ごとの追跡（評価、認定）が必要な場合に限って使用してください。",
+    "confirmLabel": "有効にする"
+  },
+  "draft": {
+    "restored": "下書きを復元しました。保存されていなかった変更を取り戻しました。",
+    "discard": "下書きを破棄"
+  },
+  "titles": {
+    "login": "サインイン",
+    "dashboard": "マイクイズ",
+    "editor": "エディター",
+    "preview": "プレビュー",
+    "feedback": "レビュー",
+    "sessions": "履歴",
+    "session": "ルーム",
+    "player": "参加者",
+    "control": "コンソール",
+    "screen": "投影画面",
+    "join": "参加",
+    "live": "開いているルーム",
+    "templates": "テンプレート",
+    "profile": "マイアカウント",
+    "template": "テンプレート",
+    "instanceMedia": "インスタンスのメディア",
+    "admin": "管理",
+    "setup": "セットアップ",
+    "history": "セッション",
+    "historyRoom": "ルーム"
+  },
+  "demo": {
+    "banner": "公開デモ：ホストアカウントは全訪問者で共有され、1時間ごとにすべて消去されます。"
+  },
+  "chromiumOnly": "このページは Chrome、Edge などの Chromium 系ブラウザー向けに作られています。このブラウザーでは、動画や音声のアップロードと再生が正しく動作しない場合があります。",
+  "play": "再生",
+  "pause": "一時停止",
+  "position": "音声の再生位置",
+  "fallback": {
+    "notFoundTitle": "このページは存在しません",
+    "notFoundText": "リンクが古いか、リンク先が削除された可能性があります。",
+    "errorTitle": "エラーが発生しました",
+    "errorText": "このページが動作を停止しました。保存した内容は無事です。",
+    "backHome": "ホームに戻る",
+    "tryAgain": "再試行"
+  },
+  "stale": "再読み込みできませんでした。表示されているのは最後に読み込んだ内容です。",
+  "retry": "再試行"
+}

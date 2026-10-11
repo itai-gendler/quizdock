@@ -1,762 +1,762 @@
 {
-    "title": "",
-    "adminOnly": "",
-    "loading": "",
-    "domains": {
-        "instance": "",
-        "quizzes": "",
-        "media": ""
+  "title": "",
+  "adminOnly": "",
+  "loading": "",
+  "domains": {
+    "instance": "",
+    "quizzes": "",
+    "media": ""
+  },
+  "sections": {
+    "statistics": "",
+    "settings": "",
+    "health": "",
+    "accounts": "",
+    "audit": "",
+    "quizzes": "",
+    "media": ""
+  },
+  "token": {
+    "unset": "",
+    "ask": "",
+    "use": "",
+    "given": "",
+    "forget": ""
+  },
+  "update": {
+    "available": "",
+    "running": "",
+    "command": "",
+    "does": "",
+    "copy": "",
+    "copied": "",
+    "changes": "",
+    "upgrading": "",
+    "github": "",
+    "hide": "",
+    "close": ""
+  },
+  "settings": {
+    "search": "",
+    "view": "",
+    "views": {
+      "cards": "",
+      "split": "",
+      "table": ""
     },
-    "sections": {
-        "statistics": "",
-        "settings": "",
-        "health": "",
-        "accounts": "",
-        "audit": "",
-        "quizzes": "",
-        "media": ""
+    "filters": {
+      "label": "",
+      "changed": "",
+      "overridden": "",
+      "problem": "",
+      "editable": ""
     },
-    "token": {
-        "unset": "",
-        "ask": "",
-        "use": "",
-        "given": "",
-        "forget": ""
-    },
-    "update": {
-        "available": "",
-        "running": "",
-        "command": "",
-        "does": "",
-        "copy": "",
-        "copied": "",
-        "changes": "",
-        "upgrading": "",
-        "github": "",
-        "hide": "",
-        "close": ""
-    },
-    "settings": {
-        "search": "",
-        "view": "",
-        "views": {
-            "cards": "",
-            "split": "",
-            "table": ""
-        },
-        "filters": {
-            "label": "",
-            "changed": "",
-            "overridden": "",
-            "problem": "",
-            "editable": ""
-        },
-        "none": "",
-        "list": "",
-        "problem": "",
-        "rules": "",
-        "envValue": "",
-        "access": {
-            "read": "",
-            "write": "",
-            "how": "",
-            "locks": "",
-            "safeMode": "",
-            "token": "",
-            "noToken": "",
-            "readWhy": "",
-            "doc": ""
-        },
-        "columns": {
-            "variable": "",
-            "value": "",
-            "source": "",
-            "env": "",
-            "default": "",
-            "level": "",
-            "applies": ""
-        },
-        "issue": {
-            "unreadable": "",
-            "out-of-bounds": ""
-        }
-    },
-    "categories": {
-        "identity": "",
-        "access": "",
-        "network": "",
-        "storage": "",
-        "limits": "",
-        "pace": "",
-        "admin": "",
-        "internal": ""
-    },
-    "source": {
-        "default": "",
-        "env": "",
-        "override": ""
-    },
-    "criticality": {
-        "C1": "",
-        "C2": "",
-        "C3": "",
-        "C4": ""
-    },
-    "applies": {
-        "live": "",
-        "next-room": "",
-        "restart": ""
-    },
-    "appliesHelp": {
-        "live": "",
-        "next-room": "",
-        "restart": ""
-    },
-    "readOnly": {
-        "critical": "",
-        "locked": "",
-        "scope": "",
-        "safe-mode": "",
-        "demo": ""
-    },
-    "value": {
-        "empty": "",
-        "set": "",
-        "notSet": "",
-        "on": "",
-        "off": ""
-    },
-    "units": {
-        "MB": "",
-        "s": ""
-    },
-    "help": {
-        "accepts": "",
-        "default": "",
-        "example": "",
-        "applies": "",
-        "rules": "",
-        "doc": "",
-        "history": "",
-        "noHistory": ""
-    },
-    "outside": {
-        "title": "",
-        "intro": "",
-        "readBy": "",
-        "what": "",
-        "readers": {
-            "compose": "",
-            "keycloak": "",
-            "script": "",
-            "build": "",
-            "dev": "",
-            "image": ""
-        }
-    },
-    "labels": {
-        "APP_NAME": "",
-        "APP_LANG": "",
-        "APP_LOGO_URL": "",
-        "APP_FEEDBACK_URL": "",
-        "AUTH_MODE": "",
-        "DEMO_MODE": "",
-        "ALLOW_ANONYMOUS_PARTICIPANTS": "",
-        "OIDC_ISSUER": "",
-        "OIDC_CLIENT_ID": "",
-        "OIDC_CLIENT_SECRET": "",
-        "OIDC_INTERNAL_URL": "",
-        "OIDC_JWKS_URI": "",
-        "OIDC_AUDIENCE": "",
-        "OIDC_ROLES_CLAIM": "",
-        "OIDC_NAME_CLAIM": "",
-        "OIDC_SESSION_SCOPE": "",
-        "PORT": "",
-        "TRUST_PROXY": "",
-        "APP_PUBLIC_URL": "",
-        "HOST_LAN_IPS": "",
-        "QUIZ_STORE_URL": "",
-        "QUIZ_STORE_HOSTS": "",
-        "UPDATE_CHECK": "",
-        "DATABASE_URL": "",
-        "REDIS_URL": "",
-        "MEDIA_DIR": "",
-        "STORE_DIR": "",
-        "SAMPLES_DIR": "",
-        "CLIENT_DIR": "",
-        "MEDIA_MAX_BYTES": "",
-        "MEDIA_MAX_VIDEO_MB": "",
-        "MEDIA_MAX_AUDIO_MB": "",
-        "IMPORT_MAX_BYTES": "",
-        "PUBLICATION_MAX_MB": "",
-        "MEDIA_LIBRARY_LINKS": "",
-        "GAME_READ_DELAY_MS": "",
-        "GAME_ALL_ANSWERED_DELAY_MS": "",
-        "GAME_AUTO_ADVANCE_MS": "",
-        "GAME_MEDIA_WAIT_S": "",
-        "LIVE_MOTION": "",
-        "GAME_HOST_GRACE_MS": "",
-        "GAME_HOST_WINDOW_MS": "",
-        "ADMIN_WEB_SCOPE": "",
-        "ADMIN_LOCK": "",
-        "ADMIN_TOKEN": "",
-        "ADMIN_OVERRIDES": "",
-        "QUIZDOCK_FLAVOR": "",
-        "APP_VERSION": "",
-        "PRISMA_SKIP_CONNECT": ""
-    },
-    "operations": {
-        "health": {
-            "doctor": ""
-        },
-        "migrations": {
-            "status": ""
-        },
-        "version": {
-            "check": ""
-        },
-        "seat": {
-            "status": "",
-            "release": ""
-        },
-        "users": {
-            "list": "",
-            "set-role": "",
-            "find": "",
-            "search": ""
-        },
-        "samples": {
-            "load": ""
-        },
-        "quizzes": {
-            "list": "",
-            "transfer": "",
-            "export": "",
-            "import": "",
-            "archive": "",
-            "restore": "",
-            "delete": "",
-            "orphans": "",
-            "search": ""
-        },
-        "sessions": {
-            "purge": ""
-        },
-        "settings": {
-            "list": "",
-            "set": "",
-            "reset": "",
-            "export": ""
-        },
-        "audit": {
-            "list": ""
-        },
-        "media": {
-            "upload": "",
-            "promote": "",
-            "credit": "",
-            "remove": "",
-            "delete-file": "",
-            "sweep": ""
-        },
-        "presets": {
-            "list": "",
-            "plan": "",
-            "apply": ""
-        },
-        "setup": {
-            "status": "",
-            "token": "",
-            "complete": "",
-            "reopen": "",
-            "first-admin": ""
-        },
-        "invite": {
-            "test": "",
-            "test-status": ""
-        },
-        "stats": {
-            "live": "",
-            "history": ""
-        }
-    },
-    "params": {
-        "user": "",
-        "roles": "",
-        "owner": "",
-        "quiz": "",
-        "to": "",
-        "bundle": "",
-        "key": "",
-        "limit": "",
-        "operation": "",
-        "setting": "",
-        "value": "",
-        "all": "",
-        "audience": "",
-        "name": "",
-        "address": "",
-        "id": "",
-        "internet": "",
-        "accessibility": "",
-        "q": "",
-        "status": "",
-        "orphans": "",
-        "offset": ""
+    "none": "",
+    "list": "",
+    "problem": "",
+    "rules": "",
+    "envValue": "",
+    "access": {
+      "read": "",
+      "write": "",
+      "how": "",
+      "locks": "",
+      "safeMode": "",
+      "token": "",
+      "noToken": "",
+      "readWhy": "",
+      "doc": ""
     },
     "columns": {
-        "name": "",
-        "subject": "",
-        "email": "",
-        "roles": "",
-        "granted": "",
-        "quizzes": "",
-        "createdAt": "",
-        "id": "",
-        "title": "",
-        "owner": "",
-        "status": "",
-        "questions": "",
-        "slug": "",
-        "revision": "",
-        "updatedAt": "",
-        "holder": "",
-        "claimedAt": "",
-        "expiresAt": "",
-        "why": ""
+      "variable": "",
+      "value": "",
+      "source": "",
+      "env": "",
+      "default": "",
+      "level": "",
+      "applies": ""
     },
-    "effects": {
-        "write": "",
-        "destructive": ""
+    "issue": {
+      "unreadable": "",
+      "out-of-bounds": ""
+    }
+  },
+  "categories": {
+    "identity": "",
+    "access": "",
+    "network": "",
+    "storage": "",
+    "limits": "",
+    "pace": "",
+    "admin": "",
+    "internal": ""
+  },
+  "source": {
+    "default": "",
+    "env": "",
+    "override": ""
+  },
+  "criticality": {
+    "C1": "",
+    "C2": "",
+    "C3": "",
+    "C4": ""
+  },
+  "applies": {
+    "live": "",
+    "next-room": "",
+    "restart": ""
+  },
+  "appliesHelp": {
+    "live": "",
+    "next-room": "",
+    "restart": ""
+  },
+  "readOnly": {
+    "critical": "",
+    "locked": "",
+    "scope": "",
+    "safe-mode": "",
+    "demo": ""
+  },
+  "value": {
+    "empty": "",
+    "set": "",
+    "notSet": "",
+    "on": "",
+    "off": ""
+  },
+  "units": {
+    "MB": "",
+    "s": ""
+  },
+  "help": {
+    "accepts": "",
+    "default": "",
+    "example": "",
+    "applies": "",
+    "rules": "",
+    "doc": "",
+    "history": "",
+    "noHistory": ""
+  },
+  "outside": {
+    "title": "",
+    "intro": "",
+    "readBy": "",
+    "what": "",
+    "readers": {
+      "compose": "",
+      "keycloak": "",
+      "script": "",
+      "build": "",
+      "dev": "",
+      "image": ""
+    }
+  },
+  "labels": {
+    "APP_NAME": "",
+    "APP_LANG": "",
+    "APP_LOGO_URL": "",
+    "APP_FEEDBACK_URL": "",
+    "AUTH_MODE": "",
+    "DEMO_MODE": "",
+    "ALLOW_ANONYMOUS_PARTICIPANTS": "",
+    "OIDC_ISSUER": "",
+    "OIDC_CLIENT_ID": "",
+    "OIDC_CLIENT_SECRET": "",
+    "OIDC_INTERNAL_URL": "",
+    "OIDC_JWKS_URI": "",
+    "OIDC_AUDIENCE": "",
+    "OIDC_ROLES_CLAIM": "",
+    "OIDC_NAME_CLAIM": "",
+    "OIDC_SESSION_SCOPE": "",
+    "PORT": "",
+    "TRUST_PROXY": "",
+    "APP_PUBLIC_URL": "",
+    "HOST_LAN_IPS": "",
+    "QUIZ_STORE_URL": "",
+    "QUIZ_STORE_HOSTS": "",
+    "UPDATE_CHECK": "",
+    "DATABASE_URL": "",
+    "REDIS_URL": "",
+    "MEDIA_DIR": "",
+    "STORE_DIR": "",
+    "SAMPLES_DIR": "",
+    "CLIENT_DIR": "",
+    "MEDIA_MAX_BYTES": "",
+    "MEDIA_MAX_VIDEO_MB": "",
+    "MEDIA_MAX_AUDIO_MB": "",
+    "IMPORT_MAX_BYTES": "",
+    "PUBLICATION_MAX_MB": "",
+    "MEDIA_LIBRARY_LINKS": "",
+    "GAME_READ_DELAY_MS": "",
+    "GAME_ALL_ANSWERED_DELAY_MS": "",
+    "GAME_AUTO_ADVANCE_MS": "",
+    "GAME_MEDIA_WAIT_S": "",
+    "LIVE_MOTION": "",
+    "GAME_HOST_GRACE_MS": "",
+    "GAME_HOST_WINDOW_MS": "",
+    "ADMIN_WEB_SCOPE": "",
+    "ADMIN_LOCK": "",
+    "ADMIN_TOKEN": "",
+    "ADMIN_OVERRIDES": "",
+    "QUIZDOCK_FLAVOR": "",
+    "APP_VERSION": "",
+    "PRISMA_SKIP_CONNECT": ""
+  },
+  "operations": {
+    "health": {
+      "doctor": ""
     },
-    "run": {
-        "read": "",
-        "write": "",
-        "preview": "",
-        "confirm": "",
-        "confirmTitle": ""
+    "migrations": {
+      "status": ""
     },
-    "form": {
-        "choose": ""
+    "version": {
+      "check": ""
     },
-    "result": {
-        "done": "",
-        "nothing-to-do": "",
-        "partial": "",
-        "preview": "",
-        "none": "",
-        "download": ""
+    "seat": {
+      "status": "",
+      "release": ""
     },
-    "refusals": {
-        "unknown_operation": "",
-        "forbidden": "",
-        "scope_read": "",
-        "local_mode_token": "",
-        "locked": "",
-        "critical": "",
-        "invalid_params": "",
-        "confirmation_invalid": "",
-        "dry_run_unsupported": "",
-        "not_found": "",
-        "conflict": "",
-        "timeout": "",
-        "failed": "",
-        "demo_read_only": ""
+    "users": {
+      "list": "",
+      "set-role": "",
+      "find": "",
+      "search": ""
+    },
+    "samples": {
+      "load": ""
     },
     "quizzes": {
-        "search": "",
-        "owner": "",
-        "everyone": "",
-        "status": "",
-        "anyStatus": "",
-        "statuses": {
-            "draft": "",
-            "ready": "",
-            "archived": ""
-        },
-        "orphans": "",
-        "none": "",
-        "count": "",
-        "questions": "",
-        "live": "",
-        "unreachable": "",
-        "close": "",
-        "columns": {
-            "quiz": "",
-            "owner": "",
-            "updated": "",
-            "actions": ""
-        },
-        "actions": {
-            "quizzes_import": "",
-            "samples_load": "",
-            "sessions_purge": "",
-            "open": "",
-            "export": "",
-            "transfer": "",
-            "archive": "",
-            "restore": "",
-            "delete": ""
-        },
-        "transfer": {
-            "title": "",
-            "help": "",
-            "search": ""
-        },
-        "actionsFor": ""
+      "list": "",
+      "transfer": "",
+      "export": "",
+      "import": "",
+      "archive": "",
+      "restore": "",
+      "delete": "",
+      "orphans": "",
+      "search": ""
+    },
+    "sessions": {
+      "purge": ""
+    },
+    "settings": {
+      "list": "",
+      "set": "",
+      "reset": "",
+      "export": ""
     },
     "audit": {
-        "filter": "",
-        "empty": "",
-        "newer": "",
-        "older": "",
-        "columns": {
-            "at": "",
-            "who": "",
-            "operation": "",
-            "params": "",
-            "outcome": ""
-        },
-        "via": {
-            "cli": "",
-            "api": ""
-        },
-        "outcomes": {
-            "done": "",
-            "nothing-to-do": "",
-            "partial": "",
-            "refused": "",
-            "failed": ""
-        },
-        "anyOperation": "",
-        "previous": ""
+      "list": ""
     },
-    "edit": {
-        "save": "",
-        "back": "",
-        "cancel": "",
-        "accepts": "",
-        "remove": "",
-        "add": "",
-        "linkName": "",
-        "linkUrl": "",
-        "kinds": {
-            "image": "",
-            "video": "",
-            "audio": ""
-        },
-        "noLinks": "",
-        "saved": {
-            "live": "",
-            "next-room": "",
-            "restart": ""
-        }
+    "media": {
+      "upload": "",
+      "promote": "",
+      "credit": "",
+      "remove": "",
+      "delete-file": "",
+      "sweep": ""
     },
-    "overrides": {
-        "count": "",
-        "export": "",
-        "exportHelp": "",
-        "resetAll": ""
+    "presets": {
+      "list": "",
+      "plan": "",
+      "apply": ""
     },
     "setup": {
-        "title": "",
-        "invite": "",
-        "inviteLink": "",
-        "closed": "",
-        "home": "",
-        "signIn": "",
-        "signInLink": "",
-        "steps": "",
-        "previous": "",
-        "next": "",
-        "finish": "",
-        "finished": "",
-        "finishedHelp": "",
-        "token": {
-            "title": "",
-            "help": "",
-            "label": "",
-            "open": ""
-        },
-        "step": {
-            "usage": {
-                "title": "",
-                "help": ""
-            },
-            "health": {
-                "title": "",
-                "help": ""
-            },
-            "identity": {
-                "title": "",
-                "help": ""
-            },
-            "address": {
-                "title": "",
-                "help": ""
-            },
-            "access": {
-                "title": "",
-                "help": ""
-            },
-            "limits": {
-                "title": "",
-                "help": ""
-            },
-            "content": {
-                "title": "",
-                "help": ""
-            },
-            "summary": {
-                "title": "",
-                "help": ""
-            }
-        },
-        "phone": {
-            "title": "",
-            "help": "",
-            "start": "",
-            "again": "",
-            "scan": "",
-            "reached": "",
-            "why": {
-                "title": "",
-                "network": "",
-                "isolation": "",
-                "firewall": "",
-                "public": "",
-                "docker": ""
-            },
-            "expired": "",
-            "adoptHelp": "",
-            "adoptReadOnly": "",
-            "other": "",
-            "add": "",
-            "current": "",
-            "use": ""
-        },
-        "access": {
-            "firstAdmin": "",
-            "oidcAdmin": ""
-        },
-        "content": {
-            "samples": ""
-        },
-        "summary": {
-            "set": "",
-            "env": ""
-        },
-        "blocked": ""
+      "status": "",
+      "token": "",
+      "complete": "",
+      "reopen": "",
+      "first-admin": ""
     },
-    "usage": {
-        "preview": "",
-        "nothing": "",
-        "apply": "",
-        "applied": "",
-        "skipped": {
-            "locked": "",
-            "not-applicable": ""
-        },
-        "internet": {
-            "question": "",
-            "answers": {
-                "connected": {
-                    "title": "",
-                    "help": ""
-                },
-                "offline": {
-                    "title": "",
-                    "help": ""
-                }
-            }
-        },
-        "audience": {
-            "question": "",
-            "answers": {
-                "colleagues": {
-                    "title": "",
-                    "help": ""
-                },
-                "class": {
-                    "title": "",
-                    "help": ""
-                },
-                "public": {
-                    "title": "",
-                    "help": ""
-                },
-                "other": {
-                    "title": "",
-                    "help": ""
-                }
-            }
-        },
-        "accessibility": {
-            "question": "",
-            "answers": {
-                "standard": {
-                    "title": "",
-                    "help": ""
-                },
-                "adapted": {
-                    "title": "",
-                    "help": ""
-                }
-            }
-        }
+    "invite": {
+      "test": "",
+      "test-status": ""
     },
     "stats": {
-        "live": {
-            "title": "",
-            "updated": "",
-            "stale": "",
-            "games": "",
-            "players": "",
-            "none": "",
-            "lobby": "",
-            "playing": ""
+      "live": "",
+      "history": ""
+    }
+  },
+  "params": {
+    "user": "",
+    "roles": "",
+    "owner": "",
+    "quiz": "",
+    "to": "",
+    "bundle": "",
+    "key": "",
+    "limit": "",
+    "operation": "",
+    "setting": "",
+    "value": "",
+    "all": "",
+    "audience": "",
+    "name": "",
+    "address": "",
+    "id": "",
+    "internet": "",
+    "accessibility": "",
+    "q": "",
+    "status": "",
+    "orphans": "",
+    "offset": ""
+  },
+  "columns": {
+    "name": "",
+    "subject": "",
+    "email": "",
+    "roles": "",
+    "granted": "",
+    "quizzes": "",
+    "createdAt": "",
+    "id": "",
+    "title": "",
+    "owner": "",
+    "status": "",
+    "questions": "",
+    "slug": "",
+    "revision": "",
+    "updatedAt": "",
+    "holder": "",
+    "claimedAt": "",
+    "expiresAt": "",
+    "why": ""
+  },
+  "effects": {
+    "write": "",
+    "destructive": ""
+  },
+  "run": {
+    "read": "",
+    "write": "",
+    "preview": "",
+    "confirm": "",
+    "confirmTitle": ""
+  },
+  "form": {
+    "choose": ""
+  },
+  "result": {
+    "done": "",
+    "nothing-to-do": "",
+    "partial": "",
+    "preview": "",
+    "none": "",
+    "download": ""
+  },
+  "refusals": {
+    "unknown_operation": "",
+    "forbidden": "",
+    "scope_read": "",
+    "local_mode_token": "",
+    "locked": "",
+    "critical": "",
+    "invalid_params": "",
+    "confirmation_invalid": "",
+    "dry_run_unsupported": "",
+    "not_found": "",
+    "conflict": "",
+    "timeout": "",
+    "failed": "",
+    "demo_read_only": ""
+  },
+  "quizzes": {
+    "search": "",
+    "owner": "",
+    "everyone": "",
+    "status": "",
+    "anyStatus": "",
+    "statuses": {
+      "draft": "",
+      "ready": "",
+      "archived": ""
+    },
+    "orphans": "",
+    "none": "",
+    "count": "",
+    "questions": "",
+    "live": "",
+    "unreachable": "",
+    "close": "",
+    "columns": {
+      "quiz": "",
+      "owner": "",
+      "updated": "",
+      "actions": ""
+    },
+    "actions": {
+      "quizzes_import": "",
+      "samples_load": "",
+      "sessions_purge": "",
+      "open": "",
+      "export": "",
+      "transfer": "",
+      "archive": "",
+      "restore": "",
+      "delete": ""
+    },
+    "transfer": {
+      "title": "",
+      "help": "",
+      "search": ""
+    },
+    "actionsFor": ""
+  },
+  "audit": {
+    "filter": "",
+    "empty": "",
+    "newer": "",
+    "older": "",
+    "columns": {
+      "at": "",
+      "who": "",
+      "operation": "",
+      "params": "",
+      "outcome": ""
+    },
+    "via": {
+      "cli": "",
+      "api": ""
+    },
+    "outcomes": {
+      "done": "",
+      "nothing-to-do": "",
+      "partial": "",
+      "refused": "",
+      "failed": ""
+    },
+    "anyOperation": "",
+    "previous": ""
+  },
+  "edit": {
+    "save": "",
+    "back": "",
+    "cancel": "",
+    "accepts": "",
+    "remove": "",
+    "add": "",
+    "linkName": "",
+    "linkUrl": "",
+    "kinds": {
+      "image": "",
+      "video": "",
+      "audio": ""
+    },
+    "noLinks": "",
+    "saved": {
+      "live": "",
+      "next-room": "",
+      "restart": ""
+    }
+  },
+  "overrides": {
+    "count": "",
+    "export": "",
+    "exportHelp": "",
+    "resetAll": ""
+  },
+  "setup": {
+    "title": "",
+    "invite": "",
+    "inviteLink": "",
+    "closed": "",
+    "home": "",
+    "signIn": "",
+    "signInLink": "",
+    "steps": "",
+    "previous": "",
+    "next": "",
+    "finish": "",
+    "finished": "",
+    "finishedHelp": "",
+    "token": {
+      "title": "",
+      "help": "",
+      "label": "",
+      "open": ""
+    },
+    "step": {
+      "usage": {
+        "title": "",
+        "help": ""
+      },
+      "health": {
+        "title": "",
+        "help": ""
+      },
+      "identity": {
+        "title": "",
+        "help": ""
+      },
+      "address": {
+        "title": "",
+        "help": ""
+      },
+      "access": {
+        "title": "",
+        "help": ""
+      },
+      "limits": {
+        "title": "",
+        "help": ""
+      },
+      "content": {
+        "title": "",
+        "help": ""
+      },
+      "summary": {
+        "title": "",
+        "help": ""
+      }
+    },
+    "phone": {
+      "title": "",
+      "help": "",
+      "start": "",
+      "again": "",
+      "scan": "",
+      "reached": "",
+      "why": {
+        "title": "",
+        "network": "",
+        "isolation": "",
+        "firewall": "",
+        "public": "",
+        "docker": ""
+      },
+      "expired": "",
+      "adoptHelp": "",
+      "adoptReadOnly": "",
+      "other": "",
+      "add": "",
+      "current": "",
+      "use": ""
+    },
+    "access": {
+      "firstAdmin": "",
+      "oidcAdmin": ""
+    },
+    "content": {
+      "samples": ""
+    },
+    "summary": {
+      "set": "",
+      "env": ""
+    },
+    "blocked": ""
+  },
+  "usage": {
+    "preview": "",
+    "nothing": "",
+    "apply": "",
+    "applied": "",
+    "skipped": {
+      "locked": "",
+      "not-applicable": ""
+    },
+    "internet": {
+      "question": "",
+      "answers": {
+        "connected": {
+          "title": "",
+          "help": ""
         },
-        "columns": {
-            "quiz": "",
-            "host": "",
-            "progress": "",
-            "players": "",
-            "since": "",
-            "month": ""
-        },
-        "pin": "",
-        "phase": {
-            "lobby": "",
-            "question": ""
-        },
-        "instance": {
-            "title": "",
-            "accounts": "",
-            "quizzes": "",
-            "media": "",
-            "mediaDetail": "",
-            "history": "",
-            "lastGame": "",
-            "noGame": "",
-            "hosts": "",
-            "admins": "",
-            "drafts": "",
-            "archived": ""
-        },
-        "history": {
-            "title": "",
-            "none": "",
-            "games": "",
-            "players": "",
-            "success": "",
-            "withAccount": "",
-            "accounts": "",
-            "guests": "",
-            "byMonth": "",
-            "top": {
-                "quizzes": "",
-                "hosts": ""
-            },
-            "oldest": ""
+        "offline": {
+          "title": "",
+          "help": ""
         }
+      }
     },
-    "accounts": {
-        "search": "",
-        "role": "",
-        "anyRole": "",
-        "roles": {
-            "admin": "",
-            "host": "",
-            "player": ""
+    "audience": {
+      "question": "",
+      "answers": {
+        "colleagues": {
+          "title": "",
+          "help": ""
         },
-        "none": "",
-        "count": "",
-        "columns": {
-            "account": "",
-            "roles": "",
-            "quizzes": "",
-            "games": "",
-            "created": "",
-            "actions": ""
+        "class": {
+          "title": "",
+          "help": ""
         },
-        "grantedHere": "",
-        "actionsFor": "",
-        "editRoles": "",
-        "rolesTitle": "",
-        "rolesHelp": "",
-        "rolesHint": {
-            "host": "",
-            "admin": ""
+        "public": {
+          "title": "",
+          "help": ""
         },
-        "cancel": "",
-        "save": "",
-        "seat": {
-            "title": "",
-            "held": "",
-            "free": "",
-            "release": ""
+        "other": {
+          "title": "",
+          "help": ""
         }
+      }
     },
-    "health": {
-        "problems": "",
-        "allGood": "",
-        "checked": "",
-        "again": "",
-        "migrations": {
-            "title": "",
-            "applied": "",
-            "pending": "",
-            "failed": "",
-            "list": ""
+    "accessibility": {
+      "question": "",
+      "answers": {
+        "standard": {
+          "title": "",
+          "help": ""
         },
-        "version": {
-            "title": "",
-            "current": "",
-            "available": "",
-            "upToDate": "",
-            "dev": "",
-            "none": "",
-            "off": "",
-            "failed": "",
-            "checked": "",
-            "details": ""
-        },
-        "level": {
-            "ok": "",
-            "warn": "",
-            "fail": ""
+        "adapted": {
+          "title": "",
+          "help": ""
         }
+      }
+    }
+  },
+  "stats": {
+    "live": {
+      "title": "",
+      "updated": "",
+      "stale": "",
+      "games": "",
+      "players": "",
+      "none": "",
+      "lobby": "",
+      "playing": ""
     },
-    "doctor": {
-        "group": {
-            "environment": "",
-            "database": "",
-            "redis": "",
-            "media": "",
-            "oidc": ""
-        },
-        "issue": {
-            "unreadable": "",
-            "out-of-bounds": ""
-        },
-        "unset": "",
-        "postgres_ok": "",
-        "postgres_superuser": "",
-        "migrations_applied": "",
-        "migrations_pending": "",
-        "migrations_failed": "",
-        "postgres_failed": "",
-        "redis_ok": "",
-        "redis_failed": "",
-        "dir_ok": "",
-        "dir_failed": "",
-        "participants_open": "",
-        "participants_accounts": "",
-        "provider_internal": "",
-        "discovery_ok": "",
-        "discovery_failed": "",
-        "jwks_ok": "",
-        "jwks_failed": ""
+    "columns": {
+      "quiz": "",
+      "host": "",
+      "progress": "",
+      "players": "",
+      "since": "",
+      "month": ""
     },
-    "demoReadOnly": ""
+    "pin": "",
+    "phase": {
+      "lobby": "",
+      "question": ""
+    },
+    "instance": {
+      "title": "",
+      "accounts": "",
+      "quizzes": "",
+      "media": "",
+      "mediaDetail": "",
+      "history": "",
+      "lastGame": "",
+      "noGame": "",
+      "hosts": "",
+      "admins": "",
+      "drafts": "",
+      "archived": ""
+    },
+    "history": {
+      "title": "",
+      "none": "",
+      "games": "",
+      "players": "",
+      "success": "",
+      "withAccount": "",
+      "accounts": "",
+      "guests": "",
+      "byMonth": "",
+      "top": {
+        "quizzes": "",
+        "hosts": ""
+      },
+      "oldest": ""
+    }
+  },
+  "accounts": {
+    "search": "",
+    "role": "",
+    "anyRole": "",
+    "roles": {
+      "admin": "",
+      "host": "",
+      "player": ""
+    },
+    "none": "",
+    "count": "",
+    "columns": {
+      "account": "",
+      "roles": "",
+      "quizzes": "",
+      "games": "",
+      "created": "",
+      "actions": ""
+    },
+    "grantedHere": "",
+    "actionsFor": "",
+    "editRoles": "",
+    "rolesTitle": "",
+    "rolesHelp": "",
+    "rolesHint": {
+      "host": "",
+      "admin": ""
+    },
+    "cancel": "",
+    "save": "",
+    "seat": {
+      "title": "",
+      "held": "",
+      "free": "",
+      "release": ""
+    }
+  },
+  "health": {
+    "problems": "",
+    "allGood": "",
+    "checked": "",
+    "again": "",
+    "migrations": {
+      "title": "",
+      "applied": "",
+      "pending": "",
+      "failed": "",
+      "list": ""
+    },
+    "version": {
+      "title": "",
+      "current": "",
+      "available": "",
+      "upToDate": "",
+      "dev": "",
+      "none": "",
+      "off": "",
+      "failed": "",
+      "checked": "",
+      "details": ""
+    },
+    "level": {
+      "ok": "",
+      "warn": "",
+      "fail": ""
+    }
+  },
+  "doctor": {
+    "group": {
+      "environment": "",
+      "database": "",
+      "redis": "",
+      "media": "",
+      "oidc": ""
+    },
+    "issue": {
+      "unreadable": "",
+      "out-of-bounds": ""
+    },
+    "unset": "",
+    "postgres_ok": "",
+    "postgres_superuser": "",
+    "migrations_applied": "",
+    "migrations_pending": "",
+    "migrations_failed": "",
+    "postgres_failed": "",
+    "redis_ok": "",
+    "redis_failed": "",
+    "dir_ok": "",
+    "dir_failed": "",
+    "participants_open": "",
+    "participants_accounts": "",
+    "provider_internal": "",
+    "discovery_ok": "",
+    "discovery_failed": "",
+    "jwks_ok": "",
+    "jwks_failed": ""
+  },
+  "demoReadOnly": ""
 }

@@ -731,11 +731,22 @@ function toSessionSummary(
   };
 }
 
-/** A copy's title mark, in the quiz's language (the interface's five; English otherwise). */
+/** A copy's title mark, in the quiz's language (the interface's; English otherwise). */
 function copySuffix(language: string): string {
   const base = language.split('-')[0];
   if (language === 'zh-TW' || base === 'zh') return '（副本）';
-  return { fr: '(copie)', es: '(copia)' }[base] ?? '(copy)';
+  const marks: Record<string, string> = {
+    fr: '(copie)',
+    es: '(copia)',
+    tr: '(kopya)',
+    de: '(Kopie)',
+    hi: '(कॉपी)',
+    it: '(copia)',
+    ja: '（コピー）',
+    pl: '(kopia)',
+    ru: '(копия)',
+  };
+  return marks[base] ?? '(copy)';
 }
 
 type QuestionStatRow = {
