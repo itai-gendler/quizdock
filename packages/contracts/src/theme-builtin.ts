@@ -34,14 +34,14 @@ const CLASSIC_SLOTS = [
 ];
 
 /**
- * The shipped themes' answers: deep, saturated colours under white text, and a yellow
- * darkened only slightly — darker, it would no longer be yellow (so these themes are not
- * accessible: white on it stays below 4.5:1).
+ * The shipped themes' answers: deep, saturated colours under white text, and Classic's
+ * yellow, as it was settled (so these themes are not accessible: white on it stays below
+ * 4.5:1).
  */
 const VIVID = [
   '#a9000f',
   '#003fb7',
-  '#eab308',
+  '#fe9a00',
   '#008332',
   '#7700bb',
   '#a14600',
