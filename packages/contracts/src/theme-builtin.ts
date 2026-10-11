@@ -2,8 +2,8 @@ import type { BuiltinTheme, ThemeSlot, ThemeSlotName, ThemeValues } from './them
 
 /**
  * The shipped themes (THEMING §2.3). *Classic* is today's rendering, the default: an
- * upgrade changes nothing on screen. Slots list their colours in `OPTION_COLORS` order;
- * a null icon keeps the option's own shape.
+ * upgrade changes only its glyphs. Slots list their colours in `OPTION_COLORS` order;
+ * a null icon is the slot's shipped glyph (`shape-icon.tsx`).
  */
 
 const slots = (colors: string[]): Record<ThemeSlotName, ThemeSlot> => {
@@ -41,6 +41,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     font: { builtin: 'system' },
     sounds: {},
     motion: { style: 'standard', revealEffect: null },
+    markers: 'icons',
     slotText: 'light',
   },
   sober: {
@@ -59,6 +60,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     font: { builtin: 'inter' },
     sounds: {},
     motion: { style: 'sober', revealEffect: null },
+    markers: 'icons',
   },
   kids: {
     background: {
@@ -80,6 +82,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     font: { builtin: 'fredoka' },
     sounds: {},
     motion: { style: 'dynamic', revealEffect: null },
+    markers: 'icons',
   },
   festive: {
     background: {
@@ -101,6 +104,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     font: { builtin: 'nunito' },
     sounds: {},
     motion: { style: 'festive', revealEffect: 'confetti' },
+    markers: 'icons',
   },
   night: {
     background: { color: '#0f172a', textTone: 'light' },
@@ -118,6 +122,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     font: { builtin: 'system' },
     sounds: {},
     motion: { style: 'standard', revealEffect: null },
+    markers: 'icons',
   },
   'high-contrast': {
     background: { color: '#000000', textTone: 'light' },
@@ -135,6 +140,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     font: { builtin: 'atkinson' },
     sounds: {},
     motion: { style: 'sober', revealEffect: null },
+    markers: 'icons',
   },
   halloween: {
     background: {
@@ -156,6 +162,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     font: { builtin: 'nunito' },
     sounds: {},
     motion: { style: 'festive', revealEffect: null },
+    markers: 'icons',
   },
   christmas: {
     background: {
@@ -177,6 +184,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     font: { builtin: 'nunito' },
     sounds: {},
     motion: { style: 'festive', revealEffect: 'confetti' },
+    markers: 'icons',
   },
   'new-year': {
     background: {
@@ -198,6 +206,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     font: { builtin: 'lexend' },
     sounds: {},
     motion: { style: 'festive', revealEffect: 'confetti' },
+    markers: 'icons',
   },
   easter: {
     background: {
@@ -219,6 +228,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     font: { builtin: 'nunito' },
     sounds: {},
     motion: { style: 'dynamic', revealEffect: null },
+    markers: 'icons',
   },
   summer: {
     background: {
@@ -240,5 +250,6 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     font: { builtin: 'lexend' },
     sounds: {},
     motion: { style: 'dynamic', revealEffect: null },
+    markers: 'icons',
   },
 };

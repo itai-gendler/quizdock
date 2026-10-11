@@ -30,6 +30,10 @@ export type MotionStyle = (typeof MOTION_STYLES)[number];
 export const REVEAL_EFFECTS = ['confetti'] as const;
 export type RevealEffect = (typeof REVEAL_EFFECTS)[number];
 
+/** What marks an answer besides its colour: the slot's icon, or its letter or number. */
+export const SLOT_MARKERS = ['icons', 'letters', 'numbers'] as const;
+export type SlotMarkers = (typeof SLOT_MARKERS)[number];
+
 /** Fonts shipped in the image (THEMING §1.3); `system` is the device's own. */
 export const THEME_FONTS = [
   'system',
@@ -94,7 +98,7 @@ export function backgroundSchema<R extends z.ZodType<string>>(ref: R) {
     .refine((b) => !b.image || b.mode, { message: 'background.mode_required', path: ['mode'] });
 }
 
-/** A slot: its colour, and its icon (null: the option's own shape, as today). */
+/** A slot: its colour, and its icon (null: the slot's shipped glyph). */
 export function slotSchema<R extends z.ZodType<string>>(ref: R) {
   return z.object({ color: hex, icon: ref.nullable() });
 }
@@ -121,6 +125,7 @@ export function themeOverridesSchema<R extends z.ZodType<string>>(ref: R) {
       font: fontSchema(ref),
       sounds: z.partialRecord(z.enum(THEME_SOUNDS), ref),
       motion: motionSchema,
+      markers: z.enum(SLOT_MARKERS),
     })
     .partial()
     .strict();
@@ -143,6 +148,8 @@ export interface ThemeValues {
   font: ThemeFontValue;
   sounds: Partial<Record<ThemeSound, string>>;
   motion: ThemeMotion;
+  /** What marks an answer besides its colour (never the colour alone). */
+  markers: SlotMarkers;
   /**
    * The text on every slot. Absent: white or black, whichever reads best on the slot
    * (THEMING §1.2). Only *Classic* sets it, white, to stay today's rendering.
@@ -159,6 +166,7 @@ export function mergeTheme(parent: ThemeValues, overrides: ThemeOverrides): Them
     font: overrides.font ?? parent.font,
     sounds: { ...parent.sounds, ...overrides.sounds },
     motion: overrides.motion ?? parent.motion,
+    markers: overrides.markers ?? parent.markers,
     ...(parent.slotText ? { slotText: parent.slotText } : {}),
   };
 }

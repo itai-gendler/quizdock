@@ -72,7 +72,9 @@ responsibility.
 - **8 answer slots**: the colour and shape names stored today on each option (`red`… `teal`, `triangle`… `cross`,
   `OPTION_COLORS` / `OPTION_SHAPES`) become **8 slots**. For each slot the theme sets a **colour** and an **icon**.
   The author still picks a slot per option; the editor shows the theme's real rendering. Stored values do not change,
-  so older bundles stay valid. Colour and shape together remain guaranteed (never colour alone).
+  so older bundles stay valid. Colour and a mark together remain guaranteed (never colour alone).
+- **Markers**: what marks a slot besides its colour — its **icon**, or the option's **letter** (A–H) or
+  **number** (1–8) in its question.
 - **Accent** colour (timer, reveal bars, podium).
 - **Font** for the prompt and the answers (§1.3).
 - **Sounds**: the room effects (`ding`, `tick`, `countdown`, `gong`).
@@ -86,7 +88,10 @@ responsibility.
   (`currentColor`).
 - Sanitised on the server at upload and at import: an allowlist of shape elements and attributes, `fill` forced to
   `currentColor`, scripts, links, styles and external references removed; a `stroke` is reported to the author.
-- The *Classic* theme keeps today's eight shapes (`shape-icon.tsx`).
+- The *Classic* theme draws eight animal glyphs (Phosphor Icons, MIT, `shape-icon.tsx`), one per slot in the
+  default order of the options: rabbit (green), cat (red), fish (blue), bird (yellow), dog (purple), butterfly
+  (orange), horse (pink), cow (teal). The default order starts green then red, so a true/false question reads
+  true in green and false in red.
 
 ### 2.3 The library
 
@@ -98,7 +103,7 @@ responsibility.
 - **Live reference**: editing a theme changes every quiz that uses it. The theme is **frozen when a quiz starts in a
   room**: nothing changes during a game. Deleting a theme in use is greyed, with its reason (UI-SYSTEM §1.1).
 - **Shipped themes**, read-only, usable as parents:
-  - archetypes: *Classic* (today's rendering, the default — no visual change on upgrade), *Sober*, *Kids / School*,
+  - archetypes: *Classic* (today's rendering with its animal glyphs, the default), *Sober*, *Kids / School*,
     *Festive*, *Night*, *High contrast* (aims at AAA, no effect, reduced motion);
   - seasonal: *Halloween*, *Christmas*, *New Year*, *Easter*, *Summer*.
 
