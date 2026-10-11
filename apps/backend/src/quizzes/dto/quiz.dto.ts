@@ -57,5 +57,7 @@ export class QuizImportDto extends createZodDto(
         ),
       })
       .optional(),
+    /** What the import gave up, as domain codes (`theme.unknown`, `theme.fallback`). */
+    importWarnings: z.array(z.string()).optional(),
   }),
 ) {}

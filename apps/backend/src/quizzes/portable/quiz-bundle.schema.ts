@@ -10,6 +10,9 @@ import {
   SLUG_MAX_LENGTH,
   TAG_MAX_LENGTH,
   TAG_RE,
+  THEME_NAME_MAX,
+  backgroundStyleSchema,
+  themeOverridesSchema,
 } from '@quiz-dock/contracts';
 import { z } from 'zod';
 import { gradientSchema } from '../../common/background.schema';
@@ -35,8 +38,9 @@ export const BUNDLE_FORMAT = 'quizdock/quiz';
  * Version 5: slides carry media (#125) — Video and Sound blocks, a video background.
  * Version 6: image choice — answers that are pictures, each with its `alt`.
  * Version 7: a question's picture or video may sit above or beside its text (`mediaPosition`).
+ * Version 8: the quiz's theme (`theme`), and a step's background laid by its style (`background`).
  */
-export const BUNDLE_VERSION = 7;
+export const BUNDLE_VERSION = 8;
 
 /** Whether a slide item uses what version 5 brought: a video, a sound (#125). */
 function slideUsesMedia(it: SlideBundleItem): boolean {
@@ -48,7 +52,8 @@ function slideUsesMedia(it: SlideBundleItem): boolean {
  * so an instance whose importer stops at an older version still takes a quiz
  * that uses nothing newer.
  */
-export function bundleVersionOf(items: QuizBundle['items']): number {
+export function bundleVersionOf(items: QuizBundle['items'], theme?: QuizBundle['theme']): number {
+  if (theme || items.some((it) => it.background)) return 8;
   if (
     items.some((it) => it.kind === 'question' && it.mediaPosition && it.mediaPosition !== 'bottom')
   )
@@ -108,12 +113,54 @@ const storeBundleFields = {
     .optional(),
 };
 
+/**
+ * A step's background as one object (version 8, THEMING §1.1): its picture or gradient,
+ * its text tone, and how it is laid. Takes the place of `backgroundImage`,
+ * `backgroundGradient` and `textTone`, still read; absent, those are a cover.
+ */
+export const stepBackgroundBundleSchema = backgroundStyleSchema
+  .extend({
+    image: mediaPathSchema.optional(),
+    gradient: gradientSchema.optional(),
+    textTone: z.enum(['light', 'dark']).optional(),
+  })
+  .strict();
+
 const backgroundBundleFields = {
   backgroundImage: mediaPathSchema.nullable().optional(),
   backgroundGradient: gradientSchema.nullable().optional(),
   textTone: z.enum(['light', 'dark']).optional(),
   textOutline: z.boolean().optional(),
+  /** Version 8. */
+  background: stepBackgroundBundleSchema.optional(),
 };
+
+/**
+ * The quiz's theme (version 8, THEMING §3.1): a shipped one by its key, or a whole
+ * theme — its parent and what it overrides, its files in `media/`. The same object is
+ * the `theme` of a theme bundle (`quizdock/theme`). An unknown key reads as the
+ * importing instance's default; the accessibility is recomputed, never trusted.
+ */
+export const themeBlockSchema = z.union([
+  z.object({ builtin: z.string().min(1).max(40) }).strict(),
+  z
+    .object({
+      slug: slugSchema.optional(),
+      name: z.string().trim().min(1).max(THEME_NAME_MAX),
+      revision: z.number().int().min(0).optional(),
+      license: z
+        .string()
+        .regex(/^[A-Za-z0-9.+-]+$/)
+        .max(64)
+        .nullable()
+        .optional(),
+      parent: z.string().min(1).max(40),
+      overrides: themeOverridesSchema(mediaPathSchema),
+      accessibility: z.unknown().optional(),
+    })
+    .strict(),
+]);
+export type ThemeBlock = z.infer<typeof themeBlockSchema>;
 
 const optionBundleSchema = z.object({
   text: z.string().optional(),
@@ -203,9 +250,13 @@ export const quizBundleSchema = z.object({
    * in a version 1 bundle, and an image may have no entry at all.
    */
   media: z.record(mediaPathSchema, bundleMediaMetaSchema).optional(),
+  /** Version 8; absent: the importing instance's default theme. */
+  theme: themeBlockSchema.optional(),
   items: z.array(z.discriminatedUnion('kind', [questionBundleSchema, slideBundleSchema])).max(500),
 });
 
 export type QuizBundle = z.infer<typeof quizBundleSchema>;
 export type QuestionBundleItem = z.infer<typeof questionBundleSchema>;
 export type SlideBundleItem = z.infer<typeof slideBundleSchema>;
+
+export type StepBackgroundBundle = z.infer<typeof stepBackgroundBundleSchema>;

@@ -230,7 +230,9 @@
     "icon_empty": "Ta ikona nie rysuje żadnego kształtu.",
     "icon_too_large": "Ikona jest za duża (maksymalnie {{maxKb}} KB).",
     "font_invalid": "Ten plik nie jest kompletną czcionką WOFF2.",
-    "font_too_large": "Czcionka jest za duża (maksymalnie {{maxMb}} MB)."
+    "font_too_large": "Czcionka jest za duża (maksymalnie {{maxMb}} MB).",
+    "unknown": "Ta instancja nie zna motywu z pakietu: quiz otrzymuje motyw domyślny.",
+    "fallback": "Nie udało się użyć pliku motywu z pakietu: quiz otrzymuje motyw, z którego on pochodzi."
   },
   "background": {
     "image_and_gradient": "Tło to obraz albo gradient, nie oba naraz.",

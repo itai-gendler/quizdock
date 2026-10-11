@@ -75,11 +75,11 @@ Each `id` is unique within its slide, at most 64 characters.
 A converted quiz carries no media and no layout: the author adds them in
 QuizDock. Never write these fields (a zipped export carries them, with its files):
 
-- the file: `media`;
+- the file: `media`, `theme`;
 - `quiz`: `feedbackEnabled`, `mediaTailS`, `loudnessTargetLufs`, `audioTarget`, `cover`, `slug`, `namespace`, `revision`, `updatedAt`, `domain`, `tags`, `license`;
-- a question: `media`, `audio`, `backgroundImage`, `backgroundGradient`, `textTone`, `textOutline`, `revealDelayS`, `audioTarget`, `waveformSize`, `mediaPosition`, `timerAfterMedia`, `multiSelect`;
+- a question: `media`, `audio`, `backgroundImage`, `backgroundGradient`, `background`, `textTone`, `textOutline`, `revealDelayS`, `audioTarget`, `waveformSize`, `mediaPosition`, `timerAfterMedia`, `multiSelect`;
 - an option: `media`, `alt`;
-- a slide: `backgroundImage`, `backgroundGradient`, `textTone`, `textOutline`, `video`, `videoLoop`, `videoSound`, `audio`, `waveformSize`, `audioTarget`, `displayDelayS`; block types `image`, `columns`;
+- a slide: `backgroundImage`, `backgroundGradient`, `background`, `textTone`, `textOutline`, `video`, `videoLoop`, `videoSound`, `audio`, `waveformSize`, `audioTarget`, `displayDelayS`; block types `image`, `columns`;
 - Markdown images (`![…](…)`) anywhere.
 
 ## Writing it

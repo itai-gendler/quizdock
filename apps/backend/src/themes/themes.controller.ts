@@ -8,6 +8,8 @@ import {
   ParseEnumPipe,
   Post,
   Put,
+  Res,
+  StreamableFile,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -19,10 +21,12 @@ import {
   ApiNoContentResponse,
   ApiOkResponse,
   ApiParam,
+  ApiProduces,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
 import type { User } from '@prisma/client';
+import type { Response } from 'express';
 import { AllowManager } from '../auth/allow-manager.decorator';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { ManagerOnly } from '../auth/manager-only.decorator';
@@ -32,11 +36,14 @@ import {
   DuplicateThemeDto,
   ThemeAssetResultDto,
   ThemeDto,
+  ThemeImportDto,
   ThemeListDto,
   ThemeRefDto,
   UpdateThemeDto,
 } from './dto/theme.dto';
+import { importMaxBytes } from '../quizzes/portable/bundle-archive';
 import { FONT_MAX_BYTES } from './theme-assets';
+import { ThemePortableService } from './theme-portable.service';
 import { ThemesService, toThemeRef } from './themes.service';
 
 enum ThemeAssetKind {
@@ -52,7 +59,10 @@ enum ThemeAssetKind {
 @ApiBearerAuth()
 @Controller('themes')
 export class ThemesController {
-  constructor(private readonly themes: ThemesService) {}
+  constructor(
+    private readonly themes: ThemesService,
+    private readonly portable: ThemePortableService,
+  ) {}
 
   @Get()
   @AllowManager()
@@ -89,6 +99,44 @@ export class ThemesController {
     @UploadedFile() file: { buffer: Buffer; originalname?: string } | undefined,
   ): Promise<ThemeAssetResultDto> {
     return this.themes.uploadAsset(user, kind, file);
+  }
+
+  /** A theme bundle into the library (THEMING §3.5): reused when already there, else copied. */
+  @Post('import')
+  @AllowManager()
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: { file: { type: 'string', format: 'binary' } },
+      required: ['file'],
+    },
+  })
+  @ApiCreatedResponse({ type: ThemeImportDto })
+  @UseInterceptors(FileUpload('file', importMaxBytes, 'import.file_too_large'))
+  async importTheme(
+    @CurrentUser() user: User,
+    @UploadedFile() file: { buffer: Buffer } | undefined,
+  ): Promise<ThemeImportDto> {
+    const { themeId, warnings } = await this.portable.importZip(user.id, file);
+    return { theme: await this.themes.get(user, themeId as string), warnings };
+  }
+
+  /** The theme as a theme bundle: `theme.json` + `media/`, zipped. */
+  @Get(':id/export')
+  @AllowManager()
+  @ApiProduces('application/zip')
+  @ApiOkResponse({ description: 'Zip bundle (theme.json + media/).' })
+  async exportTheme(
+    @Param('id') id: string,
+    @Res({ passthrough: true }) res: Response,
+  ): Promise<StreamableFile> {
+    const { filename, zip } = await this.portable.exportZip(id);
+    res.set({
+      'Content-Type': 'application/zip',
+      'Content-Disposition': `attachment; filename="${filename}"`,
+    });
+    return new StreamableFile(zip);
   }
 
   @Get(':id')

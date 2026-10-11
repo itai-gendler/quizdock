@@ -2,7 +2,13 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import Ajv2020 from 'ajv/dist/2020';
 import addFormats from 'ajv-formats';
-import { BUNDLE_SCHEMA_FILE, bundleJsonSchema, bundleJsonSchemaText } from './bundle-json-schema';
+import {
+  BUNDLE_SCHEMA_FILE,
+  THEME_BUNDLE_SCHEMA_FILE,
+  bundleJsonSchema,
+  bundleJsonSchemaText,
+  themeBundleJsonSchemaText,
+} from './bundle-json-schema';
 import { BUNDLE_VERSION, quizBundleSchema } from './quiz-bundle.schema';
 
 const ROOT = join(__dirname, '..', '..', '..', '..', '..');
@@ -74,6 +80,11 @@ describe('bundle JSON Schema', () => {
   it('is committed as generated: run `pnpm generate:schema` after changing the bundle schema', () => {
     const committed = readFileSync(join(ROOT, BUNDLE_SCHEMA_FILE), 'utf8');
     expect(committed).toBe(bundleJsonSchemaText());
+  });
+
+  it('commits the theme bundle schema as generated too', () => {
+    const committed = readFileSync(join(ROOT, THEME_BUNDLE_SCHEMA_FILE), 'utf8');
+    expect(committed).toBe(themeBundleJsonSchemaText());
   });
 
   it('gives the same verdict as the importer on every case', () => {

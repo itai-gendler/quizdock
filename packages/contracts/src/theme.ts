@@ -171,6 +171,44 @@ export function mergeTheme(parent: ThemeValues, overrides: ThemeOverrides): Them
   };
 }
 
+/**
+ * The same overrides, each file reference passed through `map`: media ids to bundle
+ * paths at export, and back at import. A reference `map` drops (undefined) is left out.
+ */
+export function mapThemeRefs(
+  overrides: ThemeOverrides,
+  map: (ref: string) => string | undefined,
+): ThemeOverrides {
+  const out: ThemeOverrides = { ...overrides };
+  if (overrides.background) {
+    const { image, ...rest } = overrides.background;
+    const mapped = image ? map(image) : undefined;
+    out.background = mapped ? { ...rest, image: mapped } : rest;
+  }
+  if (overrides.slots) {
+    out.slots = Object.fromEntries(
+      Object.entries(overrides.slots).map(([name, slot]) => [
+        name,
+        slot && { color: slot.color, icon: slot.icon ? (map(slot.icon) ?? null) : null },
+      ]),
+    );
+  }
+  if (overrides.font && 'file' in overrides.font) {
+    const file = map(overrides.font.file);
+    if (file) out.font = { ...overrides.font, file };
+    else delete out.font;
+  }
+  if (overrides.sounds) {
+    out.sounds = Object.fromEntries(
+      Object.entries(overrides.sounds).flatMap(([k, ref]) => {
+        const mapped = ref ? map(ref) : undefined;
+        return mapped ? [[k, mapped]] : [];
+      }),
+    );
+  }
+  return out;
+}
+
 /** Every media id a theme's overrides point to: its icons, font, sounds and picture. */
 export function themeMediaIds(overrides: ThemeOverrides): string[] {
   const ids = new Set<string>();

@@ -229,7 +229,9 @@
     "icon_empty": "Este icono no dibuja ninguna forma.",
     "icon_too_large": "Icono demasiado grande (como máximo {{maxKb}} KB).",
     "font_invalid": "Este archivo no es una fuente WOFF2 completa.",
-    "font_too_large": "Fuente demasiado grande (como máximo {{maxMb}} MB)."
+    "font_too_large": "Fuente demasiado grande (como máximo {{maxMb}} MB).",
+    "unknown": "Esta instancia no conoce el tema del paquete: el cuestionario toma el tema predeterminado.",
+    "fallback": "No se pudo usar un archivo del tema del paquete: el cuestionario toma el tema del que deriva."
   },
   "background": {
     "image_and_gradient": "Un fondo es una imagen o un degradado, no ambos.",

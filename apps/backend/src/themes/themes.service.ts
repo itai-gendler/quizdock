@@ -49,7 +49,7 @@ export interface ResolvedTheme {
 /** Where the instance's default theme is kept (`instance_setting`). */
 export const DEFAULT_THEME_KEY = 'theme.default';
 
-const isBuiltin = (key: string): key is BuiltinTheme =>
+export const isBuiltin = (key: string): key is BuiltinTheme =>
   (BUILTIN_THEMES as readonly string[]).includes(key);
 
 const WITH = {
@@ -291,10 +291,7 @@ export class ThemesService {
       select: { id: true, blobSha256: true },
     });
     const hashOf = new Map(files.map((f) => [f.id, f.blobSha256 ?? f.id]));
-    const canonical = stableJson({ parent, overrides }, (v) =>
-      typeof v === 'string' && hashOf.has(v) ? hashOf.get(v) : v,
-    );
-    return createHash('sha256').update(canonical).digest('hex');
+    return themeFingerprint(parent, overrides, (ref) => hashOf.get(ref));
   }
 
   /** Computed, never declared (THEMING §1.2); icons compared by their file. */
@@ -332,6 +329,21 @@ export class ThemesService {
       updatedAt: row.updatedAt.toISOString(),
     };
   }
+}
+
+/**
+ * A theme's fingerprint: its parent and overrides, each file by `hashOf` (its bytes'
+ * SHA-256) — the same wherever the theme is met, whatever ids or paths name its files.
+ */
+export function themeFingerprint(
+  parent: string,
+  overrides: ThemeOverrides,
+  hashOf: (ref: string) => string | undefined,
+): string {
+  const canonical = stableJson({ parent, overrides }, (v) =>
+    typeof v === 'string' ? (hashOf(v) ?? v) : v,
+  );
+  return createHash('sha256').update(canonical).digest('hex');
 }
 
 /** JSON with its keys sorted, each value passed through `map` first: one text per value. */

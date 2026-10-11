@@ -20,6 +20,8 @@ import {
   type QuizBundle,
   type BundleMediaMeta,
   type SlideBundleItem,
+  type StepBackgroundBundle,
+  type ThemeBlock,
 } from './quiz-bundle.schema';
 import { instanceLanguage } from '../../common/instance-language';
 import { mediaUrl } from '../../media/media.config';
@@ -141,7 +143,55 @@ export function collectMediaIds(quiz: ExportableQuiz): Set<string> {
   return ids;
 }
 
-function questionOut(q: ExportableQuiz['questions'][number], pathFor: PathFor): QuestionBundleItem {
+/**
+ * A step's background as one object (version 8), when it is laid by a style; null
+ * otherwise, and the step keeps the older fields.
+ */
+function stepBackgroundOut(
+  mediaId: string | null,
+  gradient: unknown,
+  style: unknown,
+  textTone: 'light' | 'dark',
+  pathFor: PathFor,
+): StepBackgroundBundle | null {
+  if (!style) return null;
+  return {
+    ...(style as StepBackgroundBundle),
+    ...(mediaId ? { image: pathFor(mediaId) } : {}),
+    ...(gradient ? { gradient: gradient as StepBackgroundBundle['gradient'] } : {}),
+    textTone,
+  };
+}
+
+/** A step's background read from either form: the object (version 8) or the older fields. */
+function stepBackgroundIn(it: {
+  background?: StepBackgroundBundle;
+  backgroundImage?: string | null;
+  backgroundGradient?: QuestionBundleItem['backgroundGradient'];
+  textTone?: 'light' | 'dark';
+}) {
+  if (!it.background) {
+    return {
+      image: it.backgroundImage,
+      gradient: it.backgroundGradient,
+      textTone: it.textTone,
+      style: null,
+    };
+  }
+  const { image, gradient, textTone, ...style } = it.background;
+  return {
+    image,
+    gradient,
+    textTone: textTone ?? it.textTone,
+    style: Object.keys(style).length > 0 ? style : null,
+  };
+}
+
+function questionOut(
+  q: ExportableQuiz['questions'][number],
+  pathFor: PathFor,
+  styled: boolean,
+): QuestionBundleItem {
   const item: QuestionBundleItem = {
     kind: 'question',
     type: q.type,
@@ -154,9 +204,23 @@ function questionOut(q: ExportableQuiz['questions'][number], pathFor: PathFor): 
   if (q.visualMediaId) item.media = pathFor(q.visualMediaId);
   if (q.audioMediaId) item.audio = pathFor(q.audioMediaId);
   if (q.answerExplanation) item.answerExplanation = mdOut(q.answerExplanation, pathFor);
-  if (q.backgroundMediaId) item.backgroundImage = pathFor(q.backgroundMediaId);
-  if (q.backgroundGradient)
-    item.backgroundGradient = q.backgroundGradient as QuestionBundleItem['backgroundGradient'];
+  const background = styled
+    ? stepBackgroundOut(
+        q.backgroundMediaId,
+        q.backgroundGradient,
+        q.backgroundStyle,
+        q.textTone,
+        pathFor,
+      )
+    : null;
+  if (background) {
+    item.background = background;
+    delete item.textTone;
+  } else {
+    if (q.backgroundMediaId) item.backgroundImage = pathFor(q.backgroundMediaId);
+    if (q.backgroundGradient)
+      item.backgroundGradient = q.backgroundGradient as QuestionBundleItem['backgroundGradient'];
+  }
   if (q.scoring !== 'standard') item.scoring = q.scoring;
   if (q.revealDelayS !== null) item.revealDelayS = q.revealDelayS;
   if (q.audioTarget) item.audioTarget = q.audioTarget;
@@ -184,14 +248,27 @@ function questionOut(q: ExportableQuiz['questions'][number], pathFor: PathFor): 
   return item;
 }
 
-function slideOut(s: ExportableQuiz['slides'][number], pathFor: PathFor): SlideBundleItem {
+function slideOut(
+  s: ExportableQuiz['slides'][number],
+  pathFor: PathFor,
+  styled: boolean,
+): SlideBundleItem {
   const item: SlideBundleItem = {
     kind: 'slide',
     blocks: blocksOut(s.blocks, pathFor) as unknown[],
     textTone: s.textTone,
     textOutline: s.textOutline,
   };
-  if (s.mediaId) item.backgroundImage = pathFor(s.mediaId);
+  const background = styled
+    ? stepBackgroundOut(s.mediaId, s.gradient, s.backgroundStyle, s.textTone, pathFor)
+    : null;
+  if (background) {
+    item.background = background;
+    delete item.textTone;
+  } else {
+    if (s.mediaId) item.backgroundImage = pathFor(s.mediaId);
+    if (s.gradient) item.backgroundGradient = s.gradient as SlideBundleItem['backgroundGradient'];
+  }
   // Media (#125): looped with its sound, a waveform hidden, unless said otherwise.
   if (s.videoMediaId) {
     item.video = pathFor(s.videoMediaId);
@@ -202,7 +279,6 @@ function slideOut(s: ExportableQuiz['slides'][number], pathFor: PathFor): SlideB
     item.audio = pathFor(s.audioMediaId);
     if (s.waveformSize !== 'hidden') item.waveformSize = s.waveformSize;
   }
-  if (s.gradient) item.backgroundGradient = s.gradient as SlideBundleItem['backgroundGradient'];
   if (s.displayDelayS !== null) item.displayDelayS = s.displayDelayS;
   if (s.audioTarget) item.audioTarget = s.audioTarget;
   return item;
@@ -214,7 +290,14 @@ export function toBundle(
   pathFor: PathFor,
   /** What each media carries beyond its bytes, by bundle path (alt, a sound's measures). */
   mediaMeta: Record<string, BundleMediaMeta> = {},
+  /**
+   * `theme`: the quiz's theme block (version 8); `styles`: false writes every step's
+   * background in the older fields, its style dropped (an export for an instance
+   * before version 8).
+   */
+  options: { theme?: ThemeBlock; styles?: boolean } = {},
 ): QuizBundle {
+  const styled = options.styles ?? true;
   const items: QuizBundle['items'] = [];
   const slidesBefore = new Map<string | null, ExportableQuiz['slides']>();
   for (const s of quiz.slides) {
@@ -223,13 +306,13 @@ export function toBundle(
     slidesBefore.set(s.beforeQuestionId, list);
   }
   for (const q of quiz.questions) {
-    for (const s of slidesBefore.get(q.id) ?? []) items.push(slideOut(s, pathFor));
-    items.push(questionOut(q, pathFor));
+    for (const s of slidesBefore.get(q.id) ?? []) items.push(slideOut(s, pathFor, styled));
+    items.push(questionOut(q, pathFor, styled));
   }
-  for (const s of slidesBefore.get(null) ?? []) items.push(slideOut(s, pathFor));
+  for (const s of slidesBefore.get(null) ?? []) items.push(slideOut(s, pathFor, styled));
   return {
     format: BUNDLE_FORMAT,
-    version: bundleVersionOf(items),
+    version: bundleVersionOf(items, options.theme),
     quiz: {
       slug: slugOf(quiz),
       namespace: quiz.namespace,
@@ -252,6 +335,7 @@ export function toBundle(
         .map(([path, meta]) => [path, compactMeta(meta)] as const)
         .filter(([, meta]) => Object.keys(meta).length > 0),
     ),
+    ...(options.theme ? { theme: options.theme } : {}),
     items,
   };
 }
@@ -328,6 +412,7 @@ export function collectMediaPaths(bundle: QuizBundle): Set<string> {
   scan(bundle.quiz.description);
   for (const it of bundle.items) {
     add(it.backgroundImage);
+    add(it.background?.image);
     if (it.kind === 'slide') {
       add(it.video);
       add(it.audio);
@@ -412,19 +497,21 @@ export function fromBundle(
       ) {
         throw new BundleContentError(index, [{ field: 'media', code: 'media.wrong_kind' }]);
       }
+      const bg = stepBackgroundIn(it);
       const content = parseOrThrow(
         () =>
           slideContentSchema.parse({
             blocks: blocksIn(it.blocks ?? [], idFor),
-            mediaId: it.backgroundImage ? idFor(it.backgroundImage) : null,
-            gradient: it.backgroundGradient ?? null,
+            mediaId: bg.image ? idFor(bg.image) : null,
+            gradient: bg.gradient ?? null,
+            backgroundStyle: bg.style,
             videoMediaId: it.video ? idFor(it.video) : null,
             videoLoop: it.videoLoop,
             videoSound: it.videoSound,
             audioMediaId: it.audio ? idFor(it.audio) : null,
             waveformSize: it.waveformSize,
             audioTarget: it.audioTarget ?? null,
-            textTone: it.textTone,
+            textTone: bg.textTone,
             textOutline: it.textOutline,
             displayDelayS: it.displayDelayS,
           }),
@@ -437,6 +524,7 @@ export function fromBundle(
     if ((it.options ?? []).some((o) => o.media && kindFor(o.media) !== 'image')) {
       throw new BundleContentError(index, [{ field: 'options', code: 'media.wrong_kind' }]);
     }
+    const bg = stepBackgroundIn(it);
     const q = parseOrThrow(
       () =>
         questionContentSchema.parse({
@@ -444,9 +532,10 @@ export function fromBundle(
           prompt: mdIn(it.prompt, idFor),
           answerExplanation: it.answerExplanation ? mdIn(it.answerExplanation, idFor) : null,
           media: questionMediaIn(bundle, it, idFor, kindFor),
-          backgroundMediaId: it.backgroundImage ? idFor(it.backgroundImage) : null,
-          backgroundGradient: it.backgroundGradient ?? null,
-          textTone: it.textTone,
+          backgroundMediaId: bg.image ? idFor(bg.image) : null,
+          backgroundGradient: bg.gradient ?? null,
+          backgroundStyle: bg.style,
+          textTone: bg.textTone,
           textOutline: it.textOutline,
           timeLimitS: it.timeLimitS,
           revealDelayS: it.revealDelayS,

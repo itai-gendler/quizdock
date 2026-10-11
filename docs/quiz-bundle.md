@@ -6,7 +6,7 @@ is what a Quiz Store repository holds.
 
 **JSON Schema.** The manifest is published as a JSON Schema (draft 2020-12),
 one file per manifest version, in [`schema/`](../schema/) — currently
-[`quiz-bundle.v7.json`](../schema/quiz-bundle.v7.json). It is generated from the
+[`quiz-bundle.v8.json`](../schema/quiz-bundle.v8.json). It is generated from the
 importer's own schema and a test keeps the two in step, so a tool outside
 QuizDock (a community store, a CI check) validates exactly what an import
 accepts. A published version is never rewritten: a change to the format comes
@@ -158,6 +158,37 @@ Contributors changing the bundle schema or a content schema run
 - `mediaPosition` (version 7): where a question's picture or video sits against
   its text on the projection — `bottom` (default, under the text), `top`,
   `left` or `right`. The answers stay below; the phones are unchanged.
+- A step's `background` (version 8): its background as one object — `image` (a
+  media path) or `gradient`, `textTone`, and how it is laid: `mode` (`watermark`
+  centred, `cover` filling the screen, `contain` whole on its `color`, `pattern`
+  tiled), `color` (the base colour), `size` (% of the screen's short side), `opacity`,
+  `grayscale`, `blur` and, for a cover, a `veil` (`color`, `opacity`). It takes the
+  place of `backgroundImage`, `backgroundGradient` and `textTone`, which are still read
+  as a cover. An export writes it only for a step laid by a style.
+- `theme` (version 8, top level): the quiz's look on the live screens. Either
+  `{ "builtin": "<key>" }`, a theme shipped with QuizDock (`classic`, `sober`, `kids`,
+  `festive`, `night`, `high-contrast`, `halloween`, `christmas`, `new-year`, `easter`,
+  `summer`), or a whole theme: `name`, `parent` (a shipped key), `overrides` (what it
+  changes: `background`, `slots` by colour name with their `color` and `icon`,
+  `accent`, `font` — `{ "builtin": "<key>" }` or `{ "file", "license" }` —, `sounds`,
+  `motion`, `markers`), `slug`, `revision`, `license`, and `accessibility` (shown,
+  never trusted: recomputed at import). Its files sit in the same `media/` folder: an
+  icon is a square monochrome SVG (rebuilt from an allowlist at import), a font a
+  woff2; SVG and woff2 are accepted only there. Absent: the importing instance's
+  default theme.
+- At import, a whole theme identical to one already in the library (same parent,
+  overrides and file bytes) is reused; otherwise a copy is created, owned by the
+  importer. A file that cannot be used gives the quiz the theme's parent instead, and
+  an unknown key the instance's default; the import says so (`importWarnings`:
+  `theme.fallback`, `theme.unknown`).
+- The export takes `?theme=`: `full` (default, the theme with its files),
+  `fallback` (only `{ "builtin": "<parent>" }`) or `none` (no theme, step backgrounds
+  written in the older fields: a bundle for an instance before version 8).
+- **Theme bundle.** A theme alone travels as `<slug>.quizdock-theme.zip`: a
+  `theme.json` (`format: "quizdock/theme"`, `version: 1`, `theme` — the same object as
+  above, whole —, `media`) next to its `media/` folder; JSON Schema
+  [`theme-bundle.v1.json`](../schema/theme-bundle.v1.json). Exported and imported
+  from the themes' library (`GET /themes/:id/export`, `POST /themes/import`).
 - Questions and slides follow the API content rules (question types and their
   fields, block types, colour/shape names, limits). Defaults apply when a
   field is omitted: `timeLimitS` 20, `pointsMode` standard, `textTone` light,

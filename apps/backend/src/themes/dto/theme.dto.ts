@@ -89,3 +89,10 @@ export const themeAssetResultSchema = z.object({
   strokeRemoved: z.boolean(),
 });
 export class ThemeAssetResultDto extends createZodDto(themeAssetResultSchema) {}
+
+export const themeImportSchema = z.object({
+  theme: themeSchema,
+  /** What the import gave up, as domain codes (`theme.fallback`). */
+  warnings: z.array(z.string()),
+});
+export class ThemeImportDto extends createZodDto(themeImportSchema) {}

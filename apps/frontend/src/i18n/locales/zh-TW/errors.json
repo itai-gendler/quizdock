@@ -227,7 +227,9 @@
     "icon_empty": "此圖示未繪製任何形狀。",
     "icon_too_large": "圖示過大（最大 {{maxKb}} KB）。",
     "font_invalid": "此檔案不是完整的 WOFF2 字型。",
-    "font_too_large": "字型過大（最大 {{maxMb}} MB）。"
+    "font_too_large": "字型過大（最大 {{maxMb}} MB）。",
+    "unknown": "此執行個體不認得該套件中的主題：測驗將使用預設主題。",
+    "fallback": "無法使用該套件中主題的某個檔案：測驗將使用其來源主題。"
   },
   "background": {
     "image_and_gradient": "背景是圖片或漸層，不能兩者兼有。",

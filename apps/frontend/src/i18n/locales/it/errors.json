@@ -229,7 +229,9 @@
     "icon_empty": "Questa icona non disegna alcuna forma.",
     "icon_too_large": "Icona troppo grande (al massimo {{maxKb}} KB).",
     "font_invalid": "Questo file non è un font WOFF2 completo.",
-    "font_too_large": "Font troppo grande (al massimo {{maxMb}} MB)."
+    "font_too_large": "Font troppo grande (al massimo {{maxMb}} MB).",
+    "unknown": "Questa istanza non conosce il tema del pacchetto: il quiz prende il tema predefinito.",
+    "fallback": "Non è stato possibile usare un file del tema del pacchetto: il quiz prende il tema da cui deriva."
   },
   "background": {
     "image_and_gradient": "Uno sfondo è un’immagine o una sfumatura, non entrambe.",

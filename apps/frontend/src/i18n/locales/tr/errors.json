@@ -228,7 +228,9 @@
     "icon_empty": "Bu simge hiçbir şekil çizmiyor.",
     "icon_too_large": "Simge çok büyük (en fazla {{maxKb}} KB).",
     "font_invalid": "Bu dosya eksiksiz bir WOFF2 yazı tipi değil.",
-    "font_too_large": "Yazı tipi çok büyük (en fazla {{maxMb}} MB)."
+    "font_too_large": "Yazı tipi çok büyük (en fazla {{maxMb}} MB).",
+    "unknown": "Bu örnek paketteki temayı tanımıyor: quiz varsayılan temayı alır.",
+    "fallback": "Paketteki temanın bir dosyası kullanılamadı: quiz, temanın türediği temayı alır."
   },
   "background": {
     "image_and_gradient": "Arka plan bir resim ya da bir gradyandır, ikisi birden değil.",

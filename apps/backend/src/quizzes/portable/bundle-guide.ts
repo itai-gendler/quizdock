@@ -43,7 +43,7 @@ type QuestionType = (typeof GUIDE_TYPES)[number];
  * one of the two before the build passes.
  */
 export const GUIDE_FIELDS = {
-  bundle: { described: ['format', 'version', 'quiz', 'items'], left: ['media'] },
+  bundle: { described: ['format', 'version', 'quiz', 'items'], left: ['media', 'theme'] },
   quiz: {
     described: ['title', 'description', 'language'],
     left: [
@@ -80,6 +80,7 @@ export const GUIDE_FIELDS = {
       'audio',
       'backgroundImage',
       'backgroundGradient',
+      'background',
       'textTone',
       'textOutline',
       'revealDelayS',
@@ -99,6 +100,7 @@ export const GUIDE_FIELDS = {
     left: [
       'backgroundImage',
       'backgroundGradient',
+      'background',
       'textTone',
       'textOutline',
       'video',

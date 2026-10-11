@@ -23,6 +23,7 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiProduces,
+  ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
 import type { User } from '@prisma/client';
@@ -102,12 +103,21 @@ export class QuizzesController {
   @Get(':id/export')
   @ApiProduces('application/zip')
   @ApiOkResponse({ description: 'Zip bundle (quiz.json + media/).' })
+  @ApiQuery({
+    name: 'theme',
+    required: false,
+    enum: ['full', 'fallback', 'none'],
+    description:
+      'Its theme: whole (default), only its shipped parent, or none (an instance before bundle version 8).',
+  })
   async exportQuiz(
     @CurrentUser() user: User,
     @Param('id') id: string,
     @Res({ passthrough: true }) res: Response,
+    @Query('theme') theme?: string,
   ): Promise<StreamableFile> {
-    const { filename, zip } = await this.portable.exportZip(id, user.id);
+    const mode = theme === 'fallback' || theme === 'none' ? theme : 'full';
+    const { filename, zip } = await this.portable.exportZip(id, user.id, mode);
     res.set({
       'Content-Type': 'application/zip',
       'Content-Disposition': `attachment; filename="${filename}"`,

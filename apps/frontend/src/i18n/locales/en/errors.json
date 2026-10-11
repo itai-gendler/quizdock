@@ -228,7 +228,9 @@
     "icon_empty": "This icon draws no shape.",
     "icon_too_large": "Icon too large (at most {{maxKb}} KB).",
     "font_invalid": "This file is not a complete WOFF2 font.",
-    "font_too_large": "Font too large (at most {{maxMb}} MB)."
+    "font_too_large": "Font too large (at most {{maxMb}} MB).",
+    "unknown": "This instance does not know the bundle's theme: the quiz takes the default theme.",
+    "fallback": "A file of the bundle's theme could not be used: the quiz takes the theme it comes from."
   },
   "background": {
     "image_and_gradient": "A background is a picture or a gradient, not both.",
