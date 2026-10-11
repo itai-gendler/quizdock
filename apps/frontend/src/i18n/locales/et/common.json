@@ -1,12 +1,12 @@
 {
-    "loading": "",
-    "confirm": "",
-    "cancel": "",
-    "close": "",
+    "loading": "Laadin andmeid…",
+    "confirm": "Kinnita",
+    "cancel": "Katkesta",
+    "close": "Sulge",
     "quizStatus": {
-        "draft": "",
-        "ready": "",
-        "archived": ""
+        "draft": "Kavand",
+        "ready": "Valmis",
+        "archived": "Arhiveeritud"
     },
     "markdownEditor": {
         "visual": "",
