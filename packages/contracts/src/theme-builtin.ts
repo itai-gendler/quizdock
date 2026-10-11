@@ -41,6 +41,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     font: { builtin: 'system' },
     sounds: {},
     motion: { style: 'standard', revealEffect: null },
+    slotText: 'light',
   },
   sober: {
     background: { color: '#f5f5f4', textTone: 'dark' },

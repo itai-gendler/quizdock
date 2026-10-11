@@ -143,6 +143,11 @@ export interface ThemeValues {
   font: ThemeFontValue;
   sounds: Partial<Record<ThemeSound, string>>;
   motion: ThemeMotion;
+  /**
+   * The text on every slot. Absent: white or black, whichever reads best on the slot
+   * (THEMING §1.2). Only *Classic* sets it, white, to stay today's rendering.
+   */
+  slotText?: 'light';
 }
 
 /** A user theme's values: its parent's, each part replaced by what it overrides. */
@@ -154,6 +159,7 @@ export function mergeTheme(parent: ThemeValues, overrides: ThemeOverrides): Them
     font: overrides.font ?? parent.font,
     sounds: { ...parent.sounds, ...overrides.sounds },
     motion: overrides.motion ?? parent.motion,
+    ...(parent.slotText ? { slotText: parent.slotText } : {}),
   };
 }
 

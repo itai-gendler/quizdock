@@ -110,9 +110,17 @@ describe('theme accessibility', () => {
     ).toContain('text_background_contrast');
   });
 
-  it('every shipped theme keeps its text readable', () => {
-    for (const key of BUILTIN_THEMES)
+  it('every shipped theme keeps its text readable, but Classic', () => {
+    for (const key of BUILTIN_THEMES.filter((k) => k !== 'classic'))
       expect(themeAccessibility(BUILTIN_THEME_VALUES[key]).status, key).not.toBe('non_compliant');
+  });
+
+  it('keeps the white text on every slot, and says where it falls short', () => {
+    const a = themeAccessibility(classic);
+    expect(a.status).toBe('non_compliant');
+    expect(a.checks.find((c) => c.code === 'slot_text_contrast')?.slots).toEqual(
+      expect.arrayContaining(['yellow', 'orange']),
+    );
   });
 
   it('flags text that cannot be read as non-compliant', () => {
@@ -124,7 +132,7 @@ describe('theme accessibility', () => {
   it('flags slots that look alike, and twin icons, as warnings', () => {
     const t = mergeTheme(classic, { slots: { blue: { color: '#e7000c', icon: null } } });
     const a = themeAccessibility(t);
-    expect(a.status).toBe('warnings');
+    expect(a.checks.find((c) => c.code === 'slots_distinct')?.passed).toBe(false);
     expect(a.checks.find((c) => c.code === 'slots_distinct')?.slots).toEqual(['red', 'blue']);
     expect(failed(classic, { red: 'x', blue: 'x', green: 'y' })).toContain('icons_distinct');
     expect(failed(classic, { red: 'x', blue: 'y' })).not.toContain('icons_distinct');

@@ -122,7 +122,7 @@ export function themeAccessibility(
 
   push(
     'slot_text_contrast',
-    failing((s) => contrast(textOn(s.rgb), s.rgb) >= TEXT_CONTRAST),
+    failing((s) => contrast(slotTextOf(theme, s.rgb), s.rgb) >= TEXT_CONTRAST),
   );
 
   const text = theme.background.textTone === 'light' ? WHITE : BLACK;
@@ -179,4 +179,9 @@ export function themeAccessibility(
       ? 'warnings'
       : 'compliant';
   return { status, checks };
+}
+
+/** The text laid on a slot of that colour. */
+export function slotTextOf(theme: Pick<ThemeValues, 'slotText'>, slot: Rgb): Rgb {
+  return theme.slotText === 'light' ? WHITE : textOn(slot);
 }
