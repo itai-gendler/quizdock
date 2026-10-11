@@ -426,6 +426,7 @@ export class GameEngine {
         : resolveAudioTarget(null, audioTarget || null, null),
       language: roomLanguage || snapshot?.language || '',
       roomLanguage,
+      ...(snapshot?.theme ? { theme: snapshot.theme } : {}),
     };
   }
 

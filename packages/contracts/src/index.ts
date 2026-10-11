@@ -22,6 +22,7 @@ export * from './admin/settings';
 export * from './admin/operations';
 export * from './admin/results';
 import type { ParticipantAccess } from './preferences';
+import type { ThemeValues } from './theme';
 import type { AudioTarget, LiveAudio, LiveQuestionMedia } from './question-media';
 
 export const CONTRACTS_VERSION = '0.3.0' as const;
@@ -868,6 +869,11 @@ export interface ServerToClientEvents {
     language: string;
     /** The host's choice for the room (#209); '' = each quiz's. Read by the console. */
     roomLanguage: string;
+    /**
+     * The quiz's look (THEMING §2), frozen with the game, its files by URL. Absent: a
+     * lobby with no quiz yet, in the page's own look.
+     */
+    theme?: ThemeValues;
   }) => void;
   /**
    * Erreur typée. **Token uniquement** : le backend n'émet qu'un `code` domaine

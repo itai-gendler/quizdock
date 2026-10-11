@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MediaModule } from '../media/media.module';
+import { ThemesModule } from '../themes/themes.module';
 import { GameService } from './game.service';
 
 /**
@@ -8,7 +9,7 @@ import { GameService } from './game.service';
  * socket server) only reads them.
  */
 @Module({
-  imports: [MediaModule],
+  imports: [MediaModule, ThemesModule],
   providers: [GameService],
   exports: [GameService],
 })

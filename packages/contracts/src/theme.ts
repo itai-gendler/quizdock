@@ -172,3 +172,30 @@ export function themeMediaIds(overrides: ThemeOverrides): string[] {
   for (const id of Object.values(overrides.sounds ?? {})) if (id) ids.add(id);
   return [...ids];
 }
+
+/**
+ * A theme as the live screens receive it (THEMING §2.6): every file it points to given
+ * by its URL. A file missing from `urls` is dropped: the part falls back to no picture,
+ * the option's shape, the shipped font, the synthesised effect.
+ */
+export function themeWithUrls(values: ThemeValues, urls: Record<string, string>): ThemeValues {
+  const url = (id: string | null | undefined) => (id ? urls[id] : undefined);
+  const { image, ...background } = values.background;
+  const bgImage = url(image);
+  const font = values.font;
+  const fontFile = 'file' in font ? url(font.file) : undefined;
+  return {
+    ...values,
+    background: bgImage ? { ...background, image: bgImage } : background,
+    slots: Object.fromEntries(
+      Object.entries(values.slots).map(([name, slot]) => [
+        name,
+        { color: slot.color, icon: url(slot.icon) ?? null },
+      ]),
+    ) as ThemeValues['slots'],
+    font: 'file' in font ? (fontFile ? { ...font, file: fontFile } : { builtin: 'system' }) : font,
+    sounds: Object.fromEntries(
+      Object.entries(values.sounds).flatMap(([k, id]) => (url(id) ? [[k, url(id)]] : [])),
+    ),
+  };
+}

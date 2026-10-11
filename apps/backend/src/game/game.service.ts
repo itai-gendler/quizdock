@@ -17,10 +17,12 @@ import {
   type PlayerPeek,
   type PlayerPresence,
   type RoomSoundsSettings,
+  themeWithUrls,
 } from '@quiz-dock/contracts';
 import { QuizStatus } from '@prisma/client';
 import { allowsAnonymousParticipants, isOidcMode } from '../auth/auth-mode';
 import { MediaLibraryService } from '../media/media-library.service';
+import { ThemesService } from '../themes/themes.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { normalizeAnswer } from '../questions/dto/question-content.schema';
 import { RedisService } from '../redis/redis.service';
@@ -168,6 +170,7 @@ export class GameService {
     private readonly prisma: PrismaService,
     private readonly redis: RedisService,
     private readonly mediaLibrary?: MediaLibraryService,
+    private readonly themes?: ThemesService,
   ) {}
 
   /**
@@ -337,6 +340,11 @@ export class GameService {
     // Frozen with the rest: a licence's attribution is owed for what was played.
     const credits = (await this.mediaLibrary?.creditsOf(quiz.id)) ?? [];
     if (credits.length > 0) snapshot.credits = credits;
+    // Frozen too: editing the theme changes the next game, never this one (THEMING §2.3).
+    if (this.themes) {
+      const theme = await this.themes.resolve(ThemesService.refOf(quiz));
+      snapshot.theme = themeWithUrls(theme.values, theme.media);
+    }
     return snapshot;
   }
 

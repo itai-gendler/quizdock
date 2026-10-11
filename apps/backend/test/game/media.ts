@@ -1,3 +1,4 @@
+import { BUILTIN_THEME_VALUES } from '@quiz-dock/contracts';
 import type { INestApplication } from '@nestjs/common';
 import type { Socket } from 'socket.io-client';
 import { MediaService } from '../../src/media/media.service';
@@ -35,6 +36,7 @@ export function mediaTests(ctx: GameContext): void {
       audioTarget: 'projection_remote',
       language: expect.any(String), // the quiz's (#209)
       roomLanguage: '',
+      theme: BUILTIN_THEME_VALUES.classic, // none picked: the instance's default (THEMING §2.4)
     }); // the seeded quiz is silent
     // A phone too: the room's next quiz may play sound where this one does not (#89).
     const player = connect();
@@ -42,6 +44,41 @@ export function mediaTests(ctx: GameContext): void {
     await player.emitWithAck('player:join', { pin, nickname: 'Mia' });
     expect(await told).toMatchObject({ hasSound: false });
     host.emit('host:end', { pin });
+  }, 15_000);
+
+  it('shows the quiz in its theme, frozen when the game opens (THEMING §2.3)', async () => {
+    const theme = await prisma.theme.create({
+      data: {
+        ownerId: hostUserId,
+        name: 'Live test',
+        parent: 'night',
+        overrides: { accent: '#ff6a00' },
+        accessibility: { status: 'compliant', checks: [] },
+      },
+    });
+    await prisma.quiz.update({ where: { id: quizId }, data: { themeId: theme.id } });
+    try {
+      const host = connect({ localUser: 'Animateur' });
+      const { pin } = await host.emitWithAck('host:create', { quizId });
+      // Edited once the game is open: the room keeps what it opened with.
+      await prisma.theme.update({
+        where: { id: theme.id },
+        data: { overrides: { accent: '#000000' } },
+      });
+      const player = connect();
+      const told = new Promise<{ theme?: { accent: string; background: unknown } }>((resolve) =>
+        player.once('game:media', resolve),
+      );
+      await player.emitWithAck('player:join', { pin, nickname: 'Theo' });
+      expect((await told).theme).toMatchObject({
+        accent: '#ff6a00',
+        background: BUILTIN_THEME_VALUES.night.background,
+      });
+      host.emit('host:end', { pin });
+    } finally {
+      await prisma.quiz.update({ where: { id: quizId }, data: { themeId: null } });
+      await prisma.theme.delete({ where: { id: theme.id } });
+    }
   }, 15_000);
 
   it('the host steers the sound on every device: an anchor, checked, kept for late screens', async () => {
