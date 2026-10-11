@@ -124,7 +124,7 @@ function themeVars(theme: ThemeValues, fontFamily: string | undefined): CSSPrope
   for (const name of OPTION_COLORS) {
     const color = theme.slots[name].color;
     vars[`--answer-${name}`] = color;
-    vars[`--answer-${name}-foreground`] = toHex(slotTextOf(theme, parseHex(color)));
+    vars[`--answer-${name}-foreground`] = toHex(slotTextOf(theme));
   }
   vars['--primary'] = theme.accent;
   vars['--ring'] = theme.accent;

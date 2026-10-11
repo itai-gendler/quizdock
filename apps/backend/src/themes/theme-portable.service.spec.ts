@@ -130,7 +130,7 @@ describe('ThemePortableService (integration)', () => {
         theme: {
           name: 'Bats',
           parent: 'night',
-          overrides: { slots: { blue: { color: '#334455', icon: 'media/bat.svg' } } },
+          overrides: { slots: { blue: { color: '#ffdd00', icon: 'media/bat.svg' } } },
           accessibility: { status: 'compliant', checks: [] },
         },
       }),
@@ -143,7 +143,7 @@ describe('ThemePortableService (integration)', () => {
     });
     expect(theme).toMatchObject({ ownerId: other.id, name: 'Bats', parent: 'night' });
     expect(theme.media[0].media.kind).toBe('icon');
-    // Recomputed, never the bundle's word: a dark slot on Night's dark background.
+    // Recomputed, never the bundle's word: white text on a yellow answer.
     expect((theme.accessibility as { status: string }).status).not.toBe('compliant');
   });
 

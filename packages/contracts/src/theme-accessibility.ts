@@ -1,4 +1,4 @@
-import { OPTION_COLORS } from './question-content';
+import { OPTION_COLORS, OPTION_ORDER } from './question-content';
 import type { ThemeBackground, ThemeSlotName, ThemeValues } from './theme';
 import {
   BLACK,
@@ -13,7 +13,6 @@ import {
   luminance,
   parseHex,
   simulate,
-  textOn,
 } from './theme-color';
 
 /**
@@ -26,17 +25,18 @@ export const ACCESSIBILITY_STATUSES = ['compliant', 'warnings', 'non_compliant']
 export type AccessibilityStatus = (typeof ACCESSIBILITY_STATUSES)[number];
 
 export const ACCESSIBILITY_CHECKS = [
-  /** The text on a slot (white or black, picked automatically) reaches 4.5:1. */
+  /** The text on a slot (the theme's white or black) reaches 4.5:1. */
   'slot_text_contrast',
   /** The prompt's text reaches 4.5:1 on the background as rendered. */
   'text_background_contrast',
-  /** A slot stands out from the background: 3:1 (WCAG 1.4.11). */
-  'slot_background_contrast',
   /** The accent stands out from the background: 3:1. */
   'accent_background_contrast',
   /** Two slots look different. */
   'slots_distinct',
-  /** Two slots look different under a colour-blindness simulation. */
+  /**
+   * The first four slots (the answers most questions have) look different under a
+   * colour-blindness simulation; all eight carry their mark anyway.
+   */
   'slots_distinct_color_vision',
   /** Two slots carry different icons. */
   'icons_distinct',
@@ -122,7 +122,7 @@ export function themeAccessibility(
 
   push(
     'slot_text_contrast',
-    failing((s) => contrast(slotTextOf(theme, s.rgb), s.rgb) >= TEXT_CONTRAST),
+    failing((s) => contrast(slotTextOf(theme), s.rgb) >= TEXT_CONTRAST),
   );
 
   const text = theme.background.textTone === 'light' ? WHITE : BLACK;
@@ -131,33 +131,32 @@ export function themeAccessibility(
     passed: worstContrast(text, extremes) >= TEXT_CONTRAST,
   });
 
-  push(
-    'slot_background_contrast',
-    failing((s) => worstContrast(s.rgb, extremes) >= GRAPHIC_CONTRAST),
-  );
+  // No check of the slots against the background: on a theme's background every
+  // answer has its two-tone edge (`BACKDROP_EDGE`), which stands out from any colour.
 
   checks.push({
     code: 'accent_background_contrast',
     passed: worstContrast(parseHex(theme.accent), extremes) >= GRAPHIC_CONTRAST,
   });
 
-  const close = (rgb: (c: Rgb) => Rgb, min: number) => {
+  const close = (among: typeof slots, rgb: (c: Rgb) => Rgb, min: number) => {
     const at = new Set<ThemeSlotName>();
-    for (let i = 0; i < slots.length; i++)
-      for (let j = i + 1; j < slots.length; j++)
-        if (distance(rgb(slots[i].rgb), rgb(slots[j].rgb)) < min) {
-          at.add(slots[i].name);
-          at.add(slots[j].name);
+    for (let i = 0; i < among.length; i++)
+      for (let j = i + 1; j < among.length; j++)
+        if (distance(rgb(among[i].rgb), rgb(among[j].rgb)) < min) {
+          at.add(among[i].name);
+          at.add(among[j].name);
         }
     return [...at];
   };
   push(
     'slots_distinct',
-    close((c) => c, SLOT_DISTANCE),
+    close(slots, (c) => c, SLOT_DISTANCE),
   );
+  const firstFour = OPTION_ORDER.slice(0, 4).map((p) => slots.find((s) => s.name === p.color)!);
   const vision = COLOR_VISIONS.map((v) => ({
     v,
-    at: close((c) => simulate(c, v), SLOT_DISTANCE_COLOR_VISION),
+    at: close(firstFour, (c) => simulate(c, v), SLOT_DISTANCE_COLOR_VISION),
   })).find((r) => r.at.length);
   push('slots_distinct_color_vision', vision?.at ?? [], vision ? { vision: vision.v } : {});
 
@@ -182,6 +181,6 @@ export function themeAccessibility(
 }
 
 /** The text laid on a slot of that colour. */
-export function slotTextOf(theme: Pick<ThemeValues, 'slotText'>, slot: Rgb): Rgb {
-  return theme.slotText === 'light' ? WHITE : textOn(slot);
+export function slotTextOf(theme: Pick<ThemeValues, 'slotText'>): Rgb {
+  return theme.slotText === 'dark' ? BLACK : WHITE;
 }

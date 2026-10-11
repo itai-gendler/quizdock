@@ -110,9 +110,14 @@ describe('theme accessibility', () => {
     ).toContain('text_background_contrast');
   });
 
-  it('every shipped theme keeps its text readable, but Classic', () => {
+  it('every shipped theme is accessible, but Classic', () => {
     for (const key of BUILTIN_THEMES.filter((k) => k !== 'classic'))
-      expect(themeAccessibility(BUILTIN_THEME_VALUES[key]).status, key).not.toBe('non_compliant');
+      expect(themeAccessibility(BUILTIN_THEME_VALUES[key]).status, key).toBe('compliant');
+  });
+
+  it('says where black text would not read', () => {
+    const black = mergeTheme(BUILTIN_THEME_VALUES.festive, { slotText: 'dark' });
+    expect(failed(black)).toContain('slot_text_contrast');
   });
 
   it('keeps the white text on every slot, and says where it falls short', () => {
