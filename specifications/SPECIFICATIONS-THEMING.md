@@ -118,7 +118,8 @@ mixer keeps the volumes in every case.
 ### 2.5 Reveal effects
 
 An **exception to UI-SYSTEM §1.8** (only opacity and position move), bounded:
-- played on the **projection only**, phones unchanged;
+- played on the **phones of the players who found the answer** only; the projection, which reveals every
+  question, stays unchanged;
 - off with *reduce motion* and with the room's *Animations* switch;
 - never in the way of the game: no timer, sync or media waits for an effect.
 

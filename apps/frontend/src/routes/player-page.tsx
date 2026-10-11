@@ -65,6 +65,7 @@ import { ImageChoiceGrid } from '../game/image-choice';
 import { cn } from '@/lib/utils';
 import { BACKDROP_EDGE, BACKDROP_PANEL, Surface } from '../game/surface';
 import { LiveTheme, themeBackdrop } from '../game/theme';
+import { RevealEffect } from '../game/reveal-effect';
 import { unlockAudio } from '../game/media/audio-unlock';
 import { claimMediaElements, mediaElementsClaimed } from '../game/media/media-pool';
 import { FollowedWaveform, QuestionMediaStage } from '../game/media/question-media-stage';
@@ -582,7 +583,15 @@ function PlayerView({ pin, session }: { pin: string; session: ReturnType<typeof 
               : !!themed && 'url' in themed.background
           }
           className={cn('flex-1', TYPE_BASE.phone)}
-          overlay={<BackdropFade stepKey={stepKey} backdrop={phoneBackdrop} />}
+          overlay={
+            <>
+              <BackdropFade stepKey={stepKey} backdrop={phoneBackdrop} />
+              {/* The theme's reveal effect: for the players who found the answer. */}
+              {view.state === 'REVEAL' && view.result?.correct ? (
+                <RevealEffect playKey={`reveal:${view.questionIndex}`} />
+              ) : null}
+            </>
+          }
         >
           {participantBar}
           <StepEnter stepKey={stepKey} className="flex flex-1 flex-col px-4 py-4">

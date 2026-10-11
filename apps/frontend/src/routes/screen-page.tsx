@@ -39,7 +39,6 @@ import { anchorOf, followed } from '../game/media/followed';
 import { SoundUnlockOverlay } from '../game/media/sound-unlock-overlay';
 import { BACKDROP_EDGE, Surface } from '../game/surface';
 import { LiveTheme, themeBackdrop } from '../game/theme';
-import { RevealEffect } from '../game/reveal-effect';
 import { ImageChoiceGrid } from '../game/image-choice';
 import { useQuestionClock } from '../game/use-countdown';
 import { joinHostLabel, joinUrlFor } from '../game/join-url';
@@ -932,10 +931,6 @@ export function ScreenSurface({
             frame
           )}
           <BackdropFade stepKey={stepKey} backdrop={backdropOf(view, onBackground, view.theme)} />
-          {/* The theme's reveal effect: on a projection, never the console's thumbnail or a phone. */}
-          {view.state === 'REVEAL' && role !== 'preview' && !embedded ? (
-            <RevealEffect playKey={`reveal:${view.questionIndex}`} />
-          ) : null}
         </div>
       </LiveMotion>
     </LiveTheme>
