@@ -1,0 +1,109 @@
+{
+    "status": {
+        "ended": "",
+        "interrupted": "",
+        "archived": "",
+        "lobby": "",
+        "in_progress": ""
+    },
+    "duration": {
+        "minutesSeconds": "",
+        "seconds": ""
+    },
+    "list": {
+        "title": "",
+        "backToEditor": "",
+        "empty": "",
+        "capture": "",
+        "inRoom": "",
+        "pin": "",
+        "thDate": "",
+        "thStatus": "",
+        "thPlayers": "",
+        "thSuccess": "",
+        "presentIt": ""
+    },
+    "detail": {
+        "notFound": "",
+        "fallbackTitle": "",
+        "exportCsv": "",
+        "history": "",
+        "statParticipants": "",
+        "statSuccessRate": "",
+        "statQuestions": "",
+        "questionResultsTitle": "",
+        "thNumber": "",
+        "thQuestion": "",
+        "thAnswers": "",
+        "thSuccessRate": "",
+        "thAvgTime": "",
+        "participantsTitle": "",
+        "noPersonalTracking": "",
+        "thRank": "",
+        "thNickname": "",
+        "thScore": "",
+        "thCorrect": "",
+        "thStreak": "",
+        "csvGlobal": {
+            "rank": "",
+            "nickname": "",
+            "score": "",
+            "correct": "",
+            "answered": "",
+            "maxStreak": "",
+            "avgTime": "",
+            "filenameFallback": ""
+        },
+        "room": {
+            "intro": "",
+            "thisSession": "",
+            "standingsTitle": "",
+            "standingsNote": "",
+            "noPersonalTracking": "",
+            "thQuizzes": "",
+            "exportCsv": "",
+            "csvFilename": "",
+            "defaultName": ""
+        },
+        "notPlayed": "",
+        "statQuestionsPlayed": "",
+        "statSuccessOf": ""
+    },
+    "player": {
+        "notFound": "",
+        "summary": "",
+        "exportCsv": "",
+        "session": "",
+        "captureUnavailable": "",
+        "answersTitle": "",
+        "thNumber": "",
+        "thQuestion": "",
+        "thAnswer": "",
+        "thCorrect": "",
+        "thPoints": "",
+        "thTime": "",
+        "correctAria": "",
+        "incorrectAria": "",
+        "noAnswers": "",
+        "csvPlayer": {
+            "number": "",
+            "question": "",
+            "answer": "",
+            "correct": "",
+            "points": "",
+            "time": "",
+            "yes": "",
+            "no": "",
+            "filenameLabel": ""
+        }
+    },
+    "gatherings": {
+        "title": "",
+        "intro": "",
+        "none": "",
+        "thRoom": "",
+        "thQuizzes": "",
+        "alone": "",
+        "back": ""
+    }
+}
