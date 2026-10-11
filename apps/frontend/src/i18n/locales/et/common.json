@@ -1,69 +1,69 @@
 {
-  "loading": "",
-  "confirm": "",
-  "cancel": "",
-  "close": "",
-  "quizStatus": {
-    "draft": "",
-    "ready": "",
-    "archived": ""
-  },
-  "markdownEditor": {
-    "visual": "",
-    "source": "",
-    "bold": "",
-    "italic": "",
-    "code": "",
-    "codeBlock": "",
-    "bulletList": "",
-    "orderedList": ""
-  },
-  "captureConfirm": {
-    "title": "",
-    "description": "",
-    "confirmLabel": ""
-  },
-  "draft": {
-    "restored": "",
-    "discard": ""
-  },
-  "titles": {
-    "login": "",
-    "dashboard": "",
-    "editor": "",
-    "preview": "",
-    "feedback": "",
-    "sessions": "",
-    "session": "",
-    "player": "",
-    "control": "",
-    "screen": "",
-    "join": "",
-    "live": "",
-    "templates": "",
-    "profile": "",
-    "template": "",
-    "instanceMedia": "",
-    "admin": "",
-    "setup": "",
-    "history": "",
-    "historyRoom": ""
-  },
-  "demo": {
-    "banner": ""
-  },
-  "chromiumOnly": "",
-  "play": "",
-  "pause": "",
-  "position": "",
-  "fallback": {
-    "notFoundTitle": "",
-    "notFoundText": "",
-    "errorTitle": "",
-    "errorText": "",
-    "backHome": "",
-    "tryAgain": ""
-  },
-  "stale": "",
-  "retry": ""
+    "loading": "",
+    "confirm": "",
+    "cancel": "",
+    "close": "",
+    "quizStatus": {
+        "draft": "",
+        "ready": "",
+        "archived": ""
+    },
+    "markdownEditor": {
+        "visual": "",
+        "source": "",
+        "bold": "",
+        "italic": "",
+        "code": "",
+        "codeBlock": "",
+        "bulletList": "",
+        "orderedList": ""
+    },
+    "captureConfirm": {
+        "title": "",
+        "description": "",
+        "confirmLabel": ""
+    },
+    "draft": {
+        "restored": "",
+        "discard": ""
+    },
+    "titles": {
+        "login": "",
+        "dashboard": "",
+        "editor": "",
+        "preview": "",
+        "feedback": "",
+        "sessions": "",
+        "session": "",
+        "player": "",
+        "control": "",
+        "screen": "",
+        "join": "",
+        "live": "",
+        "templates": "",
+        "profile": "",
+        "template": "",
+        "instanceMedia": "",
+        "admin": "",
+        "setup": "",
+        "history": "",
+        "historyRoom": ""
+    },
+    "demo": {
+        "banner": ""
+    },
+    "chromiumOnly": "",
+    "play": "",
+    "pause": "",
+    "position": "",
+    "fallback": {
+        "notFoundTitle": "",
+        "notFoundText": "",
+        "errorTitle": "",
+        "errorText": "",
+        "backHome": "",
+        "tryAgain": ""
+    },
+    "stale": "",
+    "retry": ""
 }
