@@ -877,3 +877,7 @@ export interface ServerToClientEvents {
   error: (p: { code: string; params?: Record<string, string | number> }) => void;
   pong: (p: { t0: number; t1: number }) => void;
 }
+export * from './theme';
+export * from './theme-accessibility';
+export * from './theme-builtin';
+export * from './theme-color';
