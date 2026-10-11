@@ -46,6 +46,7 @@
     },
     "sharingLegend": "Lingua e condivisione",
     "sharingSummary_one": "{{license}} · {{count}} tag",
+    "sharingSummary_many": "{{license}} · {{count}} tag",
     "sharingSummary_other": "{{license}} · {{count}} tag",
     "noLicense": "Nessuna licenza",
     "languageLabel": "Lingua",
@@ -86,11 +87,13 @@
     "empty": "Ancora nessuna recensione.",
     "starsAriaLabel": "{{value}} su 5",
     "seeAll_one": "Vedi la recensione",
+    "seeAll_many": "Vedi tutte le {{count}} recensioni",
     "seeAll_other": "Vedi tutte le {{count}} recensioni",
     "backToEditor": "Torna all’editor",
     "loadError": "Impossibile caricare le recensioni.",
     "noneForFilter": "Nessuna recensione con questo voto.",
     "count_one": "{{count}} recensione",
+    "count_many": "{{count}} recensioni",
     "count_other": "{{count}} recensioni"
   },
   "questions": {
@@ -101,6 +104,7 @@
     "deleteQuestion": "Elimina la domanda",
     "dragHandle": "Trascina per riordinare",
     "itemsCount_one": "{{count}} elemento",
+    "itemsCount_many": "{{count}} elementi",
     "itemsCount_other": "{{count}} elementi",
     "formTitle": "Domanda",
     "empty": "Nessuna domanda. Aggiungine una!",
@@ -466,6 +470,7 @@
         "audio": "I miei media · suoni"
       },
       "usedIn_one": "Usato in {{count}} quiz",
+      "usedIn_many": "Usato in {{count}} quiz",
       "usedIn_other": "Usato in {{count}} quiz",
       "openKind": {
         "image": "Le mie immagini",
@@ -518,8 +523,10 @@
   },
   "sessions": {
     "running_one": "{{count}} sala lo sta giocando",
+    "running_many": "{{count}} sale lo stanno giocando",
     "running_other": "{{count}} sale lo stanno giocando",
     "players_one": "{{count}} partecipante",
+    "players_many": "{{count}} partecipanti",
     "players_other": "{{count}} partecipanti",
     "liveEditsHint": "Le modifiche di impaginazione e presentazione (sfondi, contrasto, spiegazioni, slide) raggiungono le sale che lo stanno giocando al passaggio successivo; domande e risposte restano come al lancio."
   },
@@ -540,6 +547,7 @@
       "noTags": "Nessun tag",
       "size": "Dimensione: {{size}} su {{max}}",
       "uncredited_one": "{{count}} media senza crediti",
+      "uncredited_many": "{{count}} media senza crediti",
       "uncredited_other": "{{count}} media senza crediti",
       "credited": "Ogni media ha i suoi crediti"
     },
@@ -564,6 +572,7 @@
     "props": {
       "orderShown": "Elencate nell’ordine corretto.",
       "seconds_one": "{{count}} secondo",
+      "seconds_many": "{{count}} secondi",
       "seconds_other": "{{count}} secondi",
       "muted": "muto"
     },
@@ -571,6 +580,7 @@
   },
   "publishChecklist": {
     "title_one": "1 passaggio da completare prima di pubblicare",
+    "title_many": "{{count}} passaggi da completare prima di pubblicare",
     "title_other": "{{count}} passaggi da completare prima di pubblicare",
     "description": "Un quiz pubblicato può essere presentato in qualsiasi momento, quindi ogni domanda deve essere completa. Le bozze conservano tutto ciò che salvi.",
     "untitled": "Domanda senza testo",
@@ -578,15 +588,19 @@
   },
   "formIssues": {
     "errors_one": "1 errore",
+    "errors_many": "{{count}} errori",
     "errors_other": "{{count}} errori",
     "toFinish_one": "1 cosa da completare",
+    "toFinish_many": "{{count}} cose da completare",
     "toFinish_other": "{{count}} cose da completare"
   },
   "importReport": {
     "imported_one": "1 domanda importata da Kahoot.",
+    "imported_many": "{{count}} domande importate da Kahoot.",
     "imported_other": "{{count}} domande importate da Kahoot.",
     "media": "Immagini e suoni non vengono importati.",
     "incomplete_one": "1 domanda da completare prima di pubblicare: è segnalata nell’elenco.",
+    "incomplete_many": "{{count}} domande da completare prima di pubblicare: sono segnalate nell’elenco.",
     "incomplete_other": "{{count}} domande da completare prima di pubblicare: sono segnalate nell’elenco.",
     "skipped": "Riga {{row}} esclusa: {{reason}}",
     "reasons": {
