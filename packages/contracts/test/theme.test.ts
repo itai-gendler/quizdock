@@ -110,23 +110,11 @@ describe('theme accessibility', () => {
     ).toContain('text_background_contrast');
   });
 
-  it('every shipped theme is accessible, but Classic', () => {
-    for (const key of BUILTIN_THEMES.filter((k) => k !== 'classic'))
-      expect(themeAccessibility(BUILTIN_THEME_VALUES[key]).status, key).toBe('compliant');
-  });
-
-  it('lays black text on the yellow of the shipped palette, white elsewhere', () => {
-    const t = BUILTIN_THEME_VALUES.festive;
-    expect(textOn(parseHex(t.slots.yellow.color))).toEqual([0, 0, 0]);
-    expect(textOn(parseHex(t.slots.blue.color))).toEqual([1, 1, 1]);
-  });
-
-  it('keeps the white text on every slot, and says where it falls short', () => {
-    const a = themeAccessibility(classic);
-    expect(a.status).toBe('non_compliant');
-    expect(a.checks.find((c) => c.code === 'slot_text_contrast')?.slots).toEqual(
-      expect.arrayContaining(['yellow', 'orange']),
-    );
+  it('makes High contrast the accessible theme; the others choose their look', () => {
+    for (const key of BUILTIN_THEMES)
+      expect(themeAccessibility(BUILTIN_THEME_VALUES[key]).status, key).toBe(
+        key === 'high-contrast' ? 'compliant' : 'non_compliant',
+      );
   });
 
   it('flags text that cannot be read as non-compliant', () => {

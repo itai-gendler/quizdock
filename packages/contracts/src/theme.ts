@@ -150,12 +150,6 @@ export interface ThemeValues {
   motion: ThemeMotion;
   /** What marks an answer besides its colour (never the colour alone). */
   markers: SlotMarkers;
-  /**
-   * The text and icons on the answers. Absent: white or black, whichever reads best on
-   * each answer — white on the shipped palette but on its yellow. Only *Classic* sets
-   * it, white, to stay today's rendering.
-   */
-  slotText?: 'light';
 }
 
 /** A user theme's values: its parent's, each part replaced by what it overrides. */
@@ -168,7 +162,6 @@ export function mergeTheme(parent: ThemeValues, overrides: ThemeOverrides): Them
     sounds: { ...parent.sounds, ...overrides.sounds },
     motion: overrides.motion ?? parent.motion,
     markers: overrides.markers ?? parent.markers,
-    ...(parent.slotText ? { slotText: parent.slotText } : {}),
   };
 }
 

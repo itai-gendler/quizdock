@@ -45,7 +45,7 @@ the server at every save; the result is stored with the theme:
 ```
 
 Checks, on what is measured:
-- the text on each answer — white or black, whichever reads best on its colour — reaches 4.5:1;
+- the text on the answers — always white — reaches 4.5:1 on each colour;
 - the question's text reaches 4.5:1 and the accent 3:1 on the background as actually rendered (mode, veil,
   opacity). The answers are not checked against the background: on a theme's background each has its two-tone
   edge, which stands out from any colour;
@@ -56,8 +56,9 @@ Checks, on what is measured:
 Accessibility is said **only in the positive**: a theme that passes every check carries an *Accessible* badge in
 the library and the theme picker, with an *Accessible only* filter; any other carries nothing. The detail stays in
 the theme editor, folded and neutral: a projector renders colours its own way, these are guides and nothing is
-blocked. The shipped themes but *Classic* are accessible: their answers share one palette of deep colours that
-carry white text, and a true yellow that carries black (a yellow dark enough for white is no longer yellow). The interface theme (§4) carries the same property.
+blocked. The check stays strict: an accessible theme is made for the constraint before the look. Among the
+shipped themes, *High contrast* is that theme (its yellow dark enough for white text); the others keep a yellow
+that looks yellow, under white text, and carry no badge. The interface theme (§4) carries the same property.
 
 ### 1.3 Fonts
 

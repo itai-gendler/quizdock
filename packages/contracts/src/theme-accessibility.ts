@@ -13,7 +13,6 @@ import {
   luminance,
   parseHex,
   simulate,
-  textOn,
 } from './theme-color';
 
 /**
@@ -26,7 +25,7 @@ export const ACCESSIBILITY_STATUSES = ['compliant', 'warnings', 'non_compliant']
 export type AccessibilityStatus = (typeof ACCESSIBILITY_STATUSES)[number];
 
 export const ACCESSIBILITY_CHECKS = [
-  /** The text on a slot (white or black, whichever reads best) reaches 4.5:1. */
+  /** The white text on a slot reaches 4.5:1. */
   'slot_text_contrast',
   /** The prompt's text reaches 4.5:1 on the background as rendered. */
   'text_background_contrast',
@@ -123,7 +122,7 @@ export function themeAccessibility(
 
   push(
     'slot_text_contrast',
-    failing((s) => contrast(slotTextOf(theme, s.rgb), s.rgb) >= TEXT_CONTRAST),
+    failing((s) => contrast(slotTextOf(), s.rgb) >= TEXT_CONTRAST),
   );
 
   const text = theme.background.textTone === 'light' ? WHITE : BLACK;
@@ -182,6 +181,7 @@ export function themeAccessibility(
 }
 
 /** The text laid on a slot of that colour. */
-export function slotTextOf(theme: Pick<ThemeValues, 'slotText'>, slot: Rgb): Rgb {
-  return theme.slotText === 'light' ? WHITE : textOn(slot);
+/** The text and icons on every answer: white, always. */
+export function slotTextOf(): Rgb {
+  return WHITE;
 }

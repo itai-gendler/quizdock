@@ -6,7 +6,6 @@ import {
   type ThemeValues,
   OPTION_COLORS,
   parseHex,
-  slotTextOf,
   toHex,
   textOn,
 } from '@quiz-dock/contracts';
@@ -124,7 +123,6 @@ function themeVars(theme: ThemeValues, fontFamily: string | undefined): CSSPrope
   for (const name of OPTION_COLORS) {
     const color = theme.slots[name].color;
     vars[`--answer-${name}`] = color;
-    vars[`--answer-${name}-foreground`] = toHex(slotTextOf(theme, parseHex(color)));
   }
   vars['--primary'] = theme.accent;
   vars['--ring'] = theme.accent;

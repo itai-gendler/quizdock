@@ -34,15 +34,30 @@ const CLASSIC_SLOTS = [
 ];
 
 /**
- * The shipped themes' answers: deep, saturated colours that carry white text (4.8:1 at
- * least), and a true yellow that carries black — a yellow dark enough for white is no
- * longer yellow. They stay apart, the first four (green, red, blue, yellow) for
- * colour-blind players too.
+ * The shipped themes' answers: deep, saturated colours under white text, and a yellow
+ * darkened only slightly — darker, it would no longer be yellow (so these themes are not
+ * accessible: white on it stays below 4.5:1).
  */
 const VIVID = [
   '#a9000f',
   '#003fb7',
-  '#facc15',
+  '#eab308',
+  '#008332',
+  '#7700bb',
+  '#a14600',
+  '#ae0066',
+  '#007671',
+];
+
+/**
+ * *High contrast*'s answers: the accessible theme, made for the constraint before the
+ * look — every colour, its yellow included, dark enough for white text (4.8:1 at least),
+ * the first four apart for colour-blind players too.
+ */
+const ACCESSIBLE = [
+  '#a9000f',
+  '#003fb7',
+  '#956700',
   '#008332',
   '#7700bb',
   '#a14600',
@@ -59,7 +74,6 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
     sounds: {},
     motion: { style: 'standard', revealEffect: null },
     markers: 'icons',
-    slotText: 'light',
   },
   sober: {
     background: { color: '#f5f5f4', textTone: 'dark' },
@@ -107,7 +121,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
   },
   'high-contrast': {
     background: { color: '#000000', textTone: 'light' },
-    slots: slots(VIVID),
+    slots: slots(ACCESSIBLE),
     accent: '#ffe14d',
     font: { builtin: 'atkinson' },
     sounds: {},
