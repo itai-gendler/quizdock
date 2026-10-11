@@ -8,6 +8,7 @@
 import type { StorePreviewDtoQuestionsItemAcceptedAnswersItem } from './storePreviewDtoQuestionsItemAcceptedAnswersItem';
 import type { StorePreviewDtoQuestionsItemAudioTarget } from './storePreviewDtoQuestionsItemAudioTarget';
 import type { StorePreviewDtoQuestionsItemBackgroundGradient } from './storePreviewDtoQuestionsItemBackgroundGradient';
+import type { StorePreviewDtoQuestionsItemBackgroundStyle } from './storePreviewDtoQuestionsItemBackgroundStyle';
 import type { StorePreviewDtoQuestionsItemMedia } from './storePreviewDtoQuestionsItemMedia';
 import type { StorePreviewDtoQuestionsItemMediaPosition } from './storePreviewDtoQuestionsItemMediaPosition';
 import type { StorePreviewDtoQuestionsItemOptionsItem } from './storePreviewDtoQuestionsItemOptionsItem';
@@ -36,6 +37,8 @@ export type StorePreviewDtoQuestionsItem = {
   backgroundGradient: StorePreviewDtoQuestionsItemBackgroundGradient;
   textTone: StorePreviewDtoQuestionsItemTextTone;
   textOutline: boolean;
+  /** @nullable */
+  backgroundStyle: StorePreviewDtoQuestionsItemBackgroundStyle;
   /**
      * @minimum -9007199254740991
      * @maximum 9007199254740991

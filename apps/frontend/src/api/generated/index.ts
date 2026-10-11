@@ -11,3 +11,4 @@ export * from './quizzes/quizzes';
 export * from './setup/setup';
 export * from './slides/slides';
 export * from './store/store';
+export * from './themes/themes';

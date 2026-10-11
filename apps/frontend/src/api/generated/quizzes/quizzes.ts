@@ -34,6 +34,7 @@ import type {
   QuizImportDto,
   QuizValidationInputDto,
   QuizValidationResultDto,
+  QuizzesControllerExportQuizParams,
   QuizzesControllerFeedbackParams,
   QuizzesControllerImportQuizBody,
   SessionDetailDto,
@@ -538,17 +539,26 @@ export type quizzesControllerExportQuizResponseSuccess = (quizzesControllerExpor
 
 export type quizzesControllerExportQuizResponse = (quizzesControllerExportQuizResponseSuccess)
 
-export const getQuizzesControllerExportQuizUrl = (id: string,) => {
+export const getQuizzesControllerExportQuizUrl = (id: string,
+    params?: QuizzesControllerExportQuizParams,) => {
+  const normalizedParams = new URLSearchParams();
 
+  Object.entries(params || {}).forEach(([key, value]) => {
 
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : String(value))
+    }
+  });
 
+  const stringifiedParams = normalizedParams.toString();
 
-  return `/api/v1/quizzes/${id}/export`
+  return stringifiedParams.length > 0 ? `/api/v1/quizzes/${id}/export?${stringifiedParams}` : `/api/v1/quizzes/${id}/export`
 }
 
-export const quizzesControllerExportQuiz = async (id: string, options?: Parameters<typeof customFetch>[1]): Promise<quizzesControllerExportQuizResponse> => {
+export const quizzesControllerExportQuiz = async (id: string,
+    params?: QuizzesControllerExportQuizParams, options?: Parameters<typeof customFetch>[1]): Promise<quizzesControllerExportQuizResponse> => {
 
-  return customFetch<quizzesControllerExportQuizResponse>(getQuizzesControllerExportQuizUrl(id),
+  return customFetch<quizzesControllerExportQuizResponse>(getQuizzesControllerExportQuizUrl(id,params),
   {
     ...options,
     method: 'GET'
@@ -561,23 +571,25 @@ export const quizzesControllerExportQuiz = async (id: string, options?: Paramete
 
 
 
-export const getQuizzesControllerExportQuizQueryKey = (id: string,) => {
+export const getQuizzesControllerExportQuizQueryKey = (id: string,
+    params?: QuizzesControllerExportQuizParams,) => {
     return [
-    `/api/v1/quizzes/${id}/export`
+    `/api/v1/quizzes/${id}/export`, ...(params ? [params] : [])
     ] as const;
     }
 
 
-export const getQuizzesControllerExportQuizQueryOptions = <TData = Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError = unknown>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+export const getQuizzesControllerExportQuizQueryOptions = <TData = Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError = unknown>(id: string,
+    params?: QuizzesControllerExportQuizParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getQuizzesControllerExportQuizQueryKey(id);
+  const queryKey =  queryOptions?.queryKey ?? getQuizzesControllerExportQuizQueryKey(id,params);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof quizzesControllerExportQuiz>>> = ({ signal }) => quizzesControllerExportQuiz(id, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof quizzesControllerExportQuiz>>> = ({ signal }) => quizzesControllerExportQuiz(id,params, { signal, ...requestOptions });
 
 
 
@@ -591,7 +603,8 @@ export type QuizzesControllerExportQuizQueryError = unknown
 
 
 export function useQuizzesControllerExportQuiz<TData = Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError = unknown>(
- id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError, TData>> & Pick<
+ id: string,
+    params: undefined |  QuizzesControllerExportQuizParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof quizzesControllerExportQuiz>>,
           TError,
@@ -601,7 +614,8 @@ export function useQuizzesControllerExportQuiz<TData = Awaited<ReturnType<typeof
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useQuizzesControllerExportQuiz<TData = Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError = unknown>(
- id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError, TData>> & Pick<
+ id: string,
+    params?: QuizzesControllerExportQuizParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof quizzesControllerExportQuiz>>,
           TError,
@@ -611,16 +625,18 @@ export function useQuizzesControllerExportQuiz<TData = Awaited<ReturnType<typeof
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useQuizzesControllerExportQuiz<TData = Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError = unknown>(
- id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ id: string,
+    params?: QuizzesControllerExportQuizParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 
 export function useQuizzesControllerExportQuiz<TData = Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError = unknown>(
- id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ id: string,
+    params?: QuizzesControllerExportQuizParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof quizzesControllerExportQuiz>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getQuizzesControllerExportQuizQueryOptions(id,options)
+  const queryOptions = getQuizzesControllerExportQuizQueryOptions(id,params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

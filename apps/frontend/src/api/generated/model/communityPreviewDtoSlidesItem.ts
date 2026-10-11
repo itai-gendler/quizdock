@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.1.0
  */
 import type { CommunityPreviewDtoSlidesItemAudioTarget } from './communityPreviewDtoSlidesItemAudioTarget';
+import type { CommunityPreviewDtoSlidesItemBackgroundStyle } from './communityPreviewDtoSlidesItemBackgroundStyle';
 import type { CommunityPreviewDtoSlidesItemBlocksItem } from './communityPreviewDtoSlidesItemBlocksItem';
 import type { CommunityPreviewDtoSlidesItemGradient } from './communityPreviewDtoSlidesItemGradient';
 import type { CommunityPreviewDtoSlidesItemTextTone } from './communityPreviewDtoSlidesItemTextTone';
@@ -26,6 +27,8 @@ export type CommunityPreviewDtoSlidesItem = {
   mediaId: string | null;
   /** @nullable */
   gradient: CommunityPreviewDtoSlidesItemGradient;
+  /** @nullable */
+  backgroundStyle: CommunityPreviewDtoSlidesItemBackgroundStyle;
   /** @nullable */
   videoMediaId: string | null;
   videoLoop: boolean;

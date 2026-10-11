@@ -15,6 +15,8 @@ import {
   Search,
   SearchX,
   MousePointerClick,
+  Shapes,
+  Type,
 } from 'lucide-react';
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { useQueries, useQueryClient } from '@tanstack/react-query';
@@ -93,7 +95,14 @@ const formatName = (mime: string) =>
   ({ 'audio/mpeg': 'MP3', 'audio/mp4': 'M4A', 'image/jpeg': 'JPEG', 'image/svg+xml': 'SVG' })[
     mime
   ] ?? (mime.split('/')[1] ?? mime).toUpperCase();
-const KIND_ICON = { image: ImageIcon, video: Film, audio: Music } as const;
+// A theme's icons and fonts (THEMING §2.2, §1.3) are files of the instance too.
+const KIND_ICON = {
+  image: ImageIcon,
+  video: Film,
+  audio: Music,
+  icon: Shapes,
+  font: Type,
+} as const;
 
 /**
  * The instance's media, for administrators (#54): what the volume holds and
@@ -435,7 +444,7 @@ function Files() {
               onChange={(e) => setKind(e.target.value)}
             >
               <option value="">{t('mediaAdmin.files.allKinds')}</option>
-              {(['image', 'video', 'audio'] as const).map((k) => (
+              {(['image', 'video', 'audio', 'icon', 'font'] as const).map((k) => (
                 <option key={k} value={k}>
                   {t(`mediaAdmin.kind.${k}`)}
                 </option>

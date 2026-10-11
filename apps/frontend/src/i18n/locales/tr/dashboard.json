@@ -68,7 +68,9 @@
     "kind": {
       "image": "Görseller",
       "video": "Videolar",
-      "audio": "Sesler"
+      "audio": "Sesler",
+      "icon": "Tema simgeleri",
+      "font": "Tema yazı tipleri"
     },
     "disk": {
       "title": "Disk",

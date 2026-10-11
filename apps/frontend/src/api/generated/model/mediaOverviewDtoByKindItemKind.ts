@@ -13,4 +13,6 @@ export const MediaOverviewDtoByKindItemKind = {
   image: 'image',
   video: 'video',
   audio: 'audio',
+  icon: 'icon',
+  font: 'font',
 } as const;

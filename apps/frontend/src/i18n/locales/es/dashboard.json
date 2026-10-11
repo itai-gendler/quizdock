@@ -74,7 +74,9 @@
     "kind": {
       "image": "Imágenes",
       "video": "Vídeos",
-      "audio": "Sonidos"
+      "audio": "Sonidos",
+      "icon": "Iconos de tema",
+      "font": "Fuentes de tema"
     },
     "disk": {
       "title": "Disco",

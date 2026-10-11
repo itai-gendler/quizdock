@@ -68,7 +68,9 @@
     "kind": {
       "image": "Images",
       "video": "Videos",
-      "audio": "Sounds"
+      "audio": "Sounds",
+      "icon": "Theme icons",
+      "font": "Theme fonts"
     },
     "disk": {
       "title": "Disk",

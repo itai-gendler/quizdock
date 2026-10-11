@@ -68,7 +68,9 @@
     "kind": {
       "image": "圖片",
       "video": "影片",
-      "audio": "聲音"
+      "audio": "聲音",
+      "icon": "主題圖示",
+      "font": "主題字型"
     },
     "disk": {
       "title": "磁碟",

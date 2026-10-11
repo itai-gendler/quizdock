@@ -68,7 +68,9 @@
     "kind": {
       "image": "Bilder",
       "video": "Videos",
-      "audio": "Töne"
+      "audio": "Töne",
+      "icon": "Theme-Symbole",
+      "font": "Theme-Schriften"
     },
     "disk": {
       "title": "Speicher",

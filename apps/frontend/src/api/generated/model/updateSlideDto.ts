@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.1.0
  */
 import type { UpdateSlideDtoAudioTarget } from './updateSlideDtoAudioTarget';
+import type { UpdateSlideDtoBackgroundStyle } from './updateSlideDtoBackgroundStyle';
 import type { UpdateSlideDtoBlocksItem } from './updateSlideDtoBlocksItem';
 import type { UpdateSlideDtoGradient } from './updateSlideDtoGradient';
 import type { UpdateSlideDtoTextTone } from './updateSlideDtoTextTone';
@@ -22,6 +23,8 @@ export interface UpdateSlideDto {
   mediaId?: string | null;
   /** @nullable */
   gradient?: UpdateSlideDtoGradient;
+  /** @nullable */
+  backgroundStyle?: UpdateSlideDtoBackgroundStyle;
   /**
      * @minLength 26
      * @maxLength 26

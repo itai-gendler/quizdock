@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.1.0
  */
 import type { SlideDtoAudioTarget } from './slideDtoAudioTarget';
+import type { SlideDtoBackgroundStyle } from './slideDtoBackgroundStyle';
 import type { SlideDtoBlocksItem } from './slideDtoBlocksItem';
 import type { SlideDtoGradient } from './slideDtoGradient';
 import type { SlideDtoTextTone } from './slideDtoTextTone';
@@ -26,6 +27,8 @@ export interface SlideDto {
   mediaId: string | null;
   /** @nullable */
   gradient: SlideDtoGradient;
+  /** @nullable */
+  backgroundStyle: SlideDtoBackgroundStyle;
   /** @nullable */
   videoMediaId: string | null;
   videoLoop: boolean;

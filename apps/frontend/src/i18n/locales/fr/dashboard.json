@@ -74,7 +74,9 @@
     "kind": {
       "image": "Images",
       "video": "Vidéos",
-      "audio": "Sons"
+      "audio": "Sons",
+      "icon": "Icônes de thème",
+      "font": "Polices de thème"
     },
     "disk": {
       "title": "Espace disque",

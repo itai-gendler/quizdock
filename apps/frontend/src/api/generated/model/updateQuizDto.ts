@@ -8,6 +8,7 @@
 import type { UpdateQuizDtoAudioTarget } from './updateQuizDtoAudioTarget';
 import type { UpdateQuizDtoLicense } from './updateQuizDtoLicense';
 import type { UpdateQuizDtoLoudnessTargetLufs } from './updateQuizDtoLoudnessTargetLufs';
+import type { UpdateQuizDtoTheme } from './updateQuizDtoTheme';
 
 export interface UpdateQuizDto {
   /**
@@ -39,6 +40,8 @@ export interface UpdateQuizDto {
      * @nullable
      */
   coverMediaId?: string | null;
+  /** @nullable */
+  theme?: UpdateQuizDtoTheme;
   /** @nullable */
   license?: UpdateQuizDtoLicense;
   shared?: boolean;

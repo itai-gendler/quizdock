@@ -80,7 +80,9 @@
     "kind": {
       "image": "Obrazy",
       "video": "Filmy",
-      "audio": "Dźwięki"
+      "audio": "Dźwięki",
+      "icon": "Ikony motywów",
+      "font": "Czcionki motywów"
     },
     "disk": {
       "title": "Dysk",
