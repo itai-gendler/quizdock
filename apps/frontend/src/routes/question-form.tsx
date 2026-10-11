@@ -33,6 +33,7 @@ import {
   type SlideTextTone,
   ACCEPTED_ANSWERS_MAX,
   OPTION_COLORS,
+  OPTION_ORDER,
   OPTION_SHAPES,
   OPTION_TYPES,
   OPTIONS_MAX,
@@ -123,8 +124,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 type QType = QuestionTypeName;
 const TYPES = QUESTION_TYPES;
 // Eight distinct colour+shape pairs, one per position: no two options ever look alike (max 8).
-const COLORS = OPTION_COLORS;
-const SHAPES = OPTION_SHAPES;
+const PAIRS = OPTION_ORDER;
 const SINGLE_CORRECT: QType[] = ['single_choice', 'true_false'];
 
 interface OptionValue {
@@ -176,8 +176,8 @@ function newOption(i: number, text = '', isCorrect = false): OptionValue {
   return {
     key: optionKey(),
     text,
-    color: COLORS[i % COLORS.length],
-    shape: SHAPES[i % SHAPES.length],
+    color: PAIRS[i % PAIRS.length].color,
+    shape: PAIRS[i % PAIRS.length].shape,
     isCorrect,
     correctOrderIndex: i,
     mediaId: null,
@@ -484,8 +484,8 @@ export function QuestionForm({
       'options',
       next.map((o, i) => ({
         ...o,
-        color: COLORS[i % COLORS.length],
-        shape: SHAPES[i % SHAPES.length],
+        color: PAIRS[i % PAIRS.length].color,
+        shape: PAIRS[i % PAIRS.length].shape,
         correctOrderIndex: places[i],
       })),
     );
@@ -1340,8 +1340,8 @@ function buildPayload(v: FormValues) {
       options: v.options.map((o) => ({
         mediaId: o.mediaId ?? undefined,
         alt: o.alt.trim(),
-        color: o.color as (typeof COLORS)[number],
-        shape: o.shape as (typeof SHAPES)[number],
+        color: o.color as (typeof OPTION_COLORS)[number],
+        shape: o.shape as (typeof OPTION_SHAPES)[number],
         isCorrect: o.isCorrect,
       })),
     };
@@ -1353,8 +1353,8 @@ function buildPayload(v: FormValues) {
         text: o.text || undefined,
         // A picture an answer already holds (an imported quiz) is kept, not lost on save.
         mediaId: o.mediaId ?? undefined,
-        color: o.color as (typeof COLORS)[number],
-        shape: o.shape as (typeof SHAPES)[number],
+        color: o.color as (typeof OPTION_COLORS)[number],
+        shape: o.shape as (typeof OPTION_SHAPES)[number],
         isCorrect: o.isCorrect,
         correctOrderIndex: v.type === 'ordering' ? o.correctOrderIndex : undefined,
       })),

@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import {
-  OPTION_COLORS,
-  OPTION_SHAPES,
+  OPTION_ORDER,
   OPTIONS_MAX,
   OPTIONS_MIN,
   POINTS_MODES,
@@ -139,8 +138,8 @@ const POINTS_TEXT: Record<(typeof POINTS_MODES)[number], string> = {
 export function guideExample(): z.input<typeof quizBundleSchema> {
   const opt = (i: number, text: string, extra: Record<string, unknown> = {}) => ({
     text,
-    color: OPTION_COLORS[i],
-    shape: OPTION_SHAPES[i],
+    color: OPTION_ORDER[i].color,
+    shape: OPTION_ORDER[i].shape,
     ...extra,
   });
   const byType: Record<QuestionType, Record<string, unknown>> = {
@@ -254,7 +253,7 @@ export function bundleGuideText(): string {
   const scoring = GUIDE_TYPES.filter((t) => SCORING_BY_TYPE[t].length)
     .map((t) => `\`${SCORING_BY_TYPE[t].join('`, `')}\` for ${t}`)
     .join(', ');
-  const palette = OPTION_COLORS.map((c, i) => `${i + 1}. \`${c}\` / \`${OPTION_SHAPES[i]}\``).join(
+  const palette = OPTION_ORDER.map((p, i) => `${i + 1}. \`${p.color}\` / \`${p.shape}\``).join(
     '\n',
   );
   const left = (keys: readonly string[]) => keys.map((k) => `\`${k}\``).join(', ');

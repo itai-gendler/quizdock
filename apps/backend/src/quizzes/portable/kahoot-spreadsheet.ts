@@ -2,8 +2,7 @@ import { BadRequestException } from '@nestjs/common';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
 import { strFromU8 } from 'fflate';
 import {
-  OPTION_COLORS,
-  OPTION_SHAPES,
+  OPTION_ORDER,
   questionContentSchema,
   questionIssues,
 } from '../../questions/dto/question-content.schema';
@@ -148,8 +147,8 @@ export function kahootSpreadsheet(
           ? [
               {
                 text: answer,
-                color: OPTION_COLORS[i],
-                shape: OPTION_SHAPES[i],
+                color: OPTION_ORDER[i].color,
+                shape: OPTION_ORDER[i].shape,
                 isCorrect: correct.includes(i + 1),
               },
             ]
