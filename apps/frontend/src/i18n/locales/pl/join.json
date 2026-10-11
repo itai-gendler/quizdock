@@ -1,0 +1,10 @@
+{
+  "title": "Dołącz do pokoju",
+  "pinLabel": "PIN, 6 cyfr",
+  "continue": "Dalej",
+  "hint": "Wpisz PIN widoczny na dużym ekranie",
+  "checking": "Szukanie pokoju…",
+  "notFound": "Brak otwartego pokoju z tym PIN-em. Sprawdź duży ekran.",
+  "locked": "Ten pokój jest zamknięty dla nowych osób; uczestnik, który wraca, nadal wejdzie.",
+  "checkedAt6": "Sprawdzane zaraz po wpisaniu 6. cyfry."
+}

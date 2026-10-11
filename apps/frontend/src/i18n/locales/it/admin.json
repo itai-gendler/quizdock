@@ -1,0 +1,784 @@
+{
+  "title": "Amministrazione",
+  "adminOnly": "Questa pagina è riservata agli amministratori dell’istanza.",
+  "loading": "Caricamento…",
+  "domains": {
+    "instance": "Istanza",
+    "quizzes": "Quiz",
+    "media": "Media"
+  },
+  "sections": {
+    "statistics": "Statistiche",
+    "settings": "Impostazioni",
+    "health": "Stato di salute",
+    "accounts": "Account",
+    "audit": "Audit",
+    "quizzes": "Quiz",
+    "media": "Media"
+  },
+  "token": {
+    "unset": "Modalità locale: non si può modificare nulla dal web finché ADMIN_TOKEN non è impostato in .env (32 caratteri o più) e l’istanza non viene riavviata.",
+    "ask": "Modalità locale: inserisci il token di amministrazione (ADMIN_TOKEN) per modificare qualsiasi cosa. Viene conservato solo in questa scheda.",
+    "use": "Usa",
+    "given": "Token di amministrazione fornito per questa scheda.",
+    "forget": "Dimenticalo"
+  },
+  "update": {
+    "available": "QuizDock {{version}} è disponibile.",
+    "running": "Questa istanza esegue {{current}} · pubblicata il {{date}}.",
+    "command": "Sul server, nella cartella dell’istanza:",
+    "does": "Esegue un backup, aggiorna l’immagine, applica le migrazioni, poi verifica lo stato di salute dell’istanza.",
+    "copy": "Copia",
+    "copied": "Copiato",
+    "changes": "Novità",
+    "upgrading": "Prima di aggiornare",
+    "github": "Vedi su GitHub",
+    "hide": "Nascondi fino alla prossima versione",
+    "close": "Chiudi"
+  },
+  "settings": {
+    "search": "Cerca un’impostazione",
+    "view": "Disposizione",
+    "views": {
+      "cards": "Schede",
+      "split": "Elenco e dettaglio",
+      "table": "Tabella"
+    },
+    "filters": {
+      "label": "Mostra solo",
+      "changed": "Diverse dal valore predefinito",
+      "overridden": "Modificate qui",
+      "problem": "Con un problema",
+      "editable": "Modificabili"
+    },
+    "none": "Nessuna impostazione corrisponde.",
+    "list": "Impostazioni",
+    "problem": "Un problema",
+    "rules": "Impostazioni da rivedere:",
+    "envValue": "sostituisce .env:",
+    "access": {
+      "read": "Il web mostra tutte le impostazioni e non ne modifica nessuna (ADMIN_WEB_SCOPE=read).",
+      "write": "Il web può modificare le impostazioni dei livelli da C2 a C4 (ADMIN_WEB_SCOPE=write); C1 mai.",
+      "how": "Si impostano in .env, poi si riavvia l’istanza.",
+      "locks": "Bloccate da ADMIN_LOCK:",
+      "safeMode": "Modalità sicura (ADMIN_OVERRIDES=ignore): i valori modificati qui vengono conservati ma non applicati.",
+      "token": "Modalità locale: una modifica richiede il token di amministrazione.",
+      "noToken": "Modalità locale: non si può modificare nulla dal web finché ADMIN_TOKEN non è impostato.",
+      "readWhy": "È il comportamento predefinito: nulla modifica l’istanza da un browser finché chi gestisce il server non lo consente.",
+      "doc": "Come consentire le modifiche"
+    },
+    "columns": {
+      "variable": "Variabile",
+      "value": "Valore",
+      "source": "Origine",
+      "env": "Valore in .env",
+      "default": "Predefinito",
+      "level": "Livello",
+      "applies": "Si applica"
+    },
+    "issue": {
+      "unreadable": "Non leggibile (accetta {{accepts}}): viene usato il valore predefinito.",
+      "out-of-bounds": "Fuori da ciò che accetta ({{accepts}}): per ora usato così com’è; una versione futura lo imporrà."
+    }
+  },
+  "categories": {
+    "identity": "Identità e marchio",
+    "access": "Accesso e autenticazione",
+    "network": "Rete e inviti",
+    "storage": "Archiviazione",
+    "limits": "Limiti",
+    "pace": "Ritmo di gioco",
+    "admin": "Amministrazione",
+    "internal": "Interne"
+  },
+  "source": {
+    "default": "Predefinito",
+    "env": "Da .env",
+    "override": "Modificato qui"
+  },
+  "criticality": {
+    "C1": "Critica: avvio, dati o sicurezza. Mostrata, mai modificata dal web.",
+    "C2": "Alta: chi può entrare, quanto si può archiviare. Ogni modifica va confermata.",
+    "C3": "Normale: come si comporta l’istanza.",
+    "C4": "Estetica: aspetto e testi."
+  },
+  "applies": {
+    "live": "Subito",
+    "next-room": "Sala successiva",
+    "restart": "Al riavvio"
+  },
+  "appliesHelp": {
+    "live": "Al prossimo utilizzo: una partita in corso la segue.",
+    "next-room": "Nelle sale aperte dopo la modifica; una sala in corso mantiene la propria.",
+    "restart": "Letta una sola volta all’avvio: l’istanza deve essere riavviata."
+  },
+  "readOnly": {
+    "critical": "Critica: mai dal web",
+    "locked": "Bloccata da ADMIN_LOCK",
+    "scope": "Sola lettura (ADMIN_WEB_SCOPE=read)",
+    "safe-mode": "Modalità sicura",
+    "demo": "Demo pubblica: sola lettura"
+  },
+  "value": {
+    "empty": "—",
+    "set": "Impostato",
+    "notSet": "Non impostato",
+    "on": "Attivo",
+    "off": "Disattivo"
+  },
+  "units": {
+    "MB": "MB",
+    "s": "s"
+  },
+  "help": {
+    "accepts": "Accetta",
+    "default": "Predefinito",
+    "example": "In .env",
+    "applies": "Si applica",
+    "rules": "Va con",
+    "doc": "Nella documentazione",
+    "history": "Ultime modifiche",
+    "noHistory": "Mai modificata dall’amministrazione."
+  },
+  "outside": {
+    "title": "Fuori dall’applicazione",
+    "intro": "Lette da Docker Compose, dallo script quizdock, dalla build dell’immagine o da Keycloak, mai dall’applicazione: si modificano dove vengono lette, non qui.",
+    "readBy": "Letta da",
+    "what": "Cosa",
+    "readers": {
+      "compose": "Compose",
+      "keycloak": "Keycloak",
+      "script": "Script quizdock",
+      "build": "Build dell’immagine",
+      "dev": "Stack di sviluppo",
+      "image": "L’immagine"
+    }
+  },
+  "labels": {
+    "APP_NAME": "Nome dell’applicazione",
+    "APP_LANG": "Lingua dell’interfaccia",
+    "APP_LOGO_URL": "Indirizzo del logo",
+    "APP_FEEDBACK_URL": "Dove portano i link di feedback",
+    "AUTH_MODE": "Modalità di autenticazione",
+    "DEMO_MODE": "Demo pubblica",
+    "ALLOW_ANONYMOUS_PARTICIPANTS": "Partecipanti senza account",
+    "OIDC_ISSUER": "Provider di identità (issuer)",
+    "OIDC_CLIENT_ID": "Identificativo del client",
+    "OIDC_CLIENT_SECRET": "Segreto del client",
+    "OIDC_INTERNAL_URL": "Indirizzo interno del provider",
+    "OIDC_JWKS_URI": "Endpoint delle chiavi",
+    "OIDC_AUDIENCE": "Audience attesa",
+    "OIDC_ROLES_CLAIM": "Claim dei ruoli",
+    "OIDC_NAME_CLAIM": "Claim del nome visualizzato",
+    "OIDC_SESSION_SCOPE": "Scope di sessione (ignorato)",
+    "PORT": "Porta nel container",
+    "TRUST_PROXY": "Proxy attendibili",
+    "APP_PUBLIC_URL": "Indirizzo pubblico",
+    "HOST_LAN_IPS": "Indirizzi della rete locale",
+    "QUIZ_STORE_URL": "Cataloghi della comunità",
+    "QUIZ_STORE_HOSTS": "Host consentiti per i download",
+    "UPDATE_CHECK": "Verifica nuove versioni",
+    "DATABASE_URL": "Database",
+    "REDIS_URL": "Redis",
+    "MEDIA_DIR": "Cartella dei media",
+    "STORE_DIR": "Cartella dei modelli condivisi",
+    "SAMPLES_DIR": "Cartella dei quiz di esempio",
+    "CLIENT_DIR": "Cartella dell’applicazione web",
+    "MEDIA_MAX_BYTES": "Immagine più grande",
+    "MEDIA_MAX_VIDEO_MB": "Video più grande",
+    "MEDIA_MAX_AUDIO_MB": "Suono più grande",
+    "IMPORT_MAX_BYTES": "Quiz importato più grande",
+    "PUBLICATION_MAX_MB": "Quiz più grande per la pubblicazione",
+    "MEDIA_LIBRARY_LINKS": "Librerie di media gratuite",
+    "GAME_READ_DELAY_MS": "Tempo di lettura prima del timer",
+    "GAME_ALL_ANSWERED_DELAY_MS": "Pausa quando tutti hanno risposto",
+    "GAME_AUTO_ADVANCE_MS": "Modalità automatica: tempo su un passaggio",
+    "GAME_MEDIA_WAIT_S": "Attesa per suoni e video",
+    "LIVE_MOTION": "Transizioni sulle schermate dal vivo",
+    "GAME_HOST_GRACE_MS": "Tolleranza del conduttore prima di uscire",
+    "GAME_HOST_WINDOW_MS": "Finestra di ritorno del conduttore",
+    "ADMIN_WEB_SCOPE": "Cosa può modificare il web",
+    "ADMIN_LOCK": "Impostazioni mai modificate dal web",
+    "ADMIN_TOKEN": "Token di amministrazione (modalità locale)",
+    "ADMIN_OVERRIDES": "Valori modificati dal web",
+    "QUIZDOCK_FLAVOR": "Variante dell’immagine",
+    "APP_VERSION": "Versione",
+    "PRISMA_SKIP_CONNECT": "Avvio senza database"
+  },
+  "operations": {
+    "health": {
+      "doctor": "Controllo dello stato di salute"
+    },
+    "migrations": {
+      "status": "Migrazioni del database"
+    },
+    "version": {
+      "check": "Versione"
+    },
+    "seat": {
+      "status": "Postazione del conduttore",
+      "release": "Libera la postazione del conduttore"
+    },
+    "users": {
+      "list": "Account",
+      "set-role": "Assegna o revoca un ruolo",
+      "find": "Trova un account",
+      "search": "Cerca negli account"
+    },
+    "samples": {
+      "load": "Aggiungi i quiz di esempio a un account"
+    },
+    "quizzes": {
+      "list": "Quiz",
+      "transfer": "Cedi un quiz",
+      "export": "Esporta un quiz",
+      "import": "Importa un quiz per un account",
+      "archive": "Archivia un quiz",
+      "restore": "Ripristina un quiz archiviato",
+      "delete": "Elimina un quiz",
+      "orphans": "Quiz che nessuno può raggiungere",
+      "search": "Cerca nei quiz"
+    },
+    "sessions": {
+      "purge": "Elimina le sessioni vecchie"
+    },
+    "settings": {
+      "list": "Impostazioni",
+      "set": "Modifica un’impostazione",
+      "reset": "Annulla una modifica",
+      "export": "Modifiche come .env"
+    },
+    "audit": {
+      "list": "Audit"
+    },
+    "media": {
+      "upload": "Aggiungi un media a quelli dell’istanza",
+      "promote": "Promuovi un file a media dell’istanza",
+      "credit": "Crediti di un media",
+      "remove": "Togli un media da quelli dell’istanza",
+      "delete-file": "Elimina un file",
+      "sweep": "Pulisci i media"
+    },
+    "presets": {
+      "list": "Configurazione rapida",
+      "plan": "Anteprima della configurazione rapida",
+      "apply": "Applica la configurazione rapida"
+    },
+    "setup": {
+      "status": "Configurazione",
+      "token": "Nuovo token di configurazione",
+      "complete": "Completa la configurazione",
+      "reopen": "Riapri la configurazione",
+      "first-admin": "Primo amministratore"
+    },
+    "invite": {
+      "test": "Prova un indirizzo da un telefono",
+      "test-status": "Prova dal telefono"
+    },
+    "stats": {
+      "live": "Cosa si gioca in questo momento",
+      "history": "Gli ultimi dodici mesi"
+    }
+  },
+  "params": {
+    "user": "Account",
+    "roles": "Ruoli",
+    "owner": "Proprietario",
+    "quiz": "Quiz (id)",
+    "to": "Nuovo proprietario",
+    "bundle": "Pacchetto (zip, quiz.json o foglio Kahoot)",
+    "key": "Impostazione",
+    "limit": "Quanti",
+    "operation": "Operazione",
+    "setting": "Impostazione",
+    "value": "Valore",
+    "all": "Tutti",
+    "audience": "Pubblico",
+    "name": "Nome",
+    "address": "Indirizzo",
+    "id": "Id",
+    "internet": "Internet",
+    "accessibility": "Accessibilità",
+    "q": "Ricerca",
+    "status": "Stato",
+    "orphans": "Nessuno può raggiungerli",
+    "offset": "Da"
+  },
+  "columns": {
+    "name": "Nome",
+    "subject": "Soggetto",
+    "email": "E-mail",
+    "roles": "Ruoli",
+    "granted": "Assegnati",
+    "quizzes": "Quiz",
+    "createdAt": "Creato",
+    "id": "Id",
+    "title": "Titolo",
+    "owner": "Proprietario",
+    "status": "Stato",
+    "questions": "Domande",
+    "slug": "Slug",
+    "revision": "Revisione",
+    "updatedAt": "Aggiornato",
+    "holder": "Titolare",
+    "claimedAt": "Presa il",
+    "expiresAt": "Scade",
+    "why": "Perché"
+  },
+  "effects": {
+    "write": "Modifica",
+    "destructive": "Distrugge"
+  },
+  "run": {
+    "read": "Mostra",
+    "write": "Esegui",
+    "preview": "Anteprima",
+    "confirm": "Conferma",
+    "confirmTitle": "Confermare questa modifica?"
+  },
+  "form": {
+    "choose": "Scegli…"
+  },
+  "result": {
+    "done": "Fatto.",
+    "nothing-to-do": "Niente da fare.",
+    "partial": "Fatto, con problemi.",
+    "preview": "Cosa farebbe:",
+    "none": "Nessuno.",
+    "download": "Salva {{name}}"
+  },
+  "refusals": {
+    "unknown_operation": "Operazione sconosciuta.",
+    "forbidden": "Solo amministratori.",
+    "scope_read": "Sola lettura: ADMIN_WEB_SCOPE=read.",
+    "local_mode_token": "Modalità locale: serve il token di amministrazione.",
+    "locked": "Bloccato da ADMIN_LOCK.",
+    "critical": "Critica: mai dal web.",
+    "invalid_params": "Parametri non validi.",
+    "confirmation_invalid": "Conferma scaduta.",
+    "dry_run_unsupported": "Nessuna anteprima.",
+    "not_found": "Non trovato.",
+    "conflict": "Conflitto.",
+    "timeout": "Troppo lungo.",
+    "failed": "Non riuscito.",
+    "demo_read_only": "Demo pubblica: sola lettura."
+  },
+  "quizzes": {
+    "search": "Cerca un quiz",
+    "owner": "Proprietario",
+    "everyone": "Tutti",
+    "status": "Stato",
+    "anyStatus": "Qualsiasi",
+    "statuses": {
+      "draft": "Bozza",
+      "ready": "Pronto",
+      "archived": "Archiviato"
+    },
+    "orphans": "Nessuno può raggiungerli",
+    "none": "Nessun quiz corrisponde.",
+    "count_one": "{{count}} quiz",
+    "count_other": "{{count}} quiz",
+    "questions_one": "{{count}} domanda",
+    "questions_other": "{{count}} domande",
+    "live": "In gioco (PIN {{pin}})",
+    "unreachable": "Il proprietario non può più raggiungerlo",
+    "close": "Chiudi",
+    "columns": {
+      "quiz": "Quiz",
+      "owner": "Proprietario",
+      "updated": "Aggiornato",
+      "actions": "Azioni"
+    },
+    "actions": {
+      "quizzes_import": "Importa un quiz per un account",
+      "samples_load": "Aggiungi i quiz di esempio",
+      "sessions_purge": "Elimina le sessioni vecchie",
+      "open": "Apri",
+      "export": "Esporta",
+      "transfer": "Cedi",
+      "archive": "Archivia",
+      "restore": "Ripristina",
+      "delete": "Elimina"
+    },
+    "transfer": {
+      "title": "Cedi «{{title}}»",
+      "help": "A un altro account: i media usati solo da questo quiz e il suo storico lo seguono; {{owner}} conserva il resto.",
+      "search": "Nome, soggetto o e-mail"
+    },
+    "actionsFor": "Azioni per {{title}}"
+  },
+  "audit": {
+    "filter": "Operazione",
+    "empty": "Ancora niente nell’audit.",
+    "newer": "Più recenti",
+    "older": "Meno recenti",
+    "columns": {
+      "at": "Quando",
+      "who": "Chi",
+      "operation": "Operazione",
+      "params": "Parametri",
+      "outcome": "Esito"
+    },
+    "via": {
+      "cli": "Riga di comando",
+      "api": "Web"
+    },
+    "outcomes": {
+      "done": "Fatto",
+      "nothing-to-do": "Niente da fare",
+      "partial": "In parte",
+      "refused": "Rifiutato",
+      "failed": "Non riuscito"
+    },
+    "anyOperation": "Tutte le operazioni",
+    "previous": "Cosa ha sostituito"
+  },
+  "edit": {
+    "save": "Salva",
+    "back": "Torna a .env",
+    "cancel": "Annulla",
+    "accepts": "Accetta {{accepts}}.",
+    "remove": "Rimuovi",
+    "add": "Aggiungi",
+    "linkName": "Nome",
+    "linkUrl": "Indirizzo",
+    "kinds": {
+      "image": "Immagini",
+      "video": "Video",
+      "audio": "Suoni"
+    },
+    "noLinks": "Nessuna libreria: l’editor non ne mostra (un’istanza senza Internet).",
+    "saved": {
+      "live": "Salvato: si applica da subito.",
+      "next-room": "Salvato: si applica alle sale aperte da ora in poi.",
+      "restart": "Salvato: si applica al prossimo riavvio."
+    }
+  },
+  "overrides": {
+    "count_one": "{{count}} impostazione modificata qui.",
+    "count_other": "{{count}} impostazioni modificate qui.",
+    "export": "Esporta come .env",
+    "exportHelp": "Per fissarle in .env (e poi annullarle qui), o per spostarle su un’altra istanza:",
+    "resetAll": "Annulla tutto"
+  },
+  "setup": {
+    "title": "Configurazione di questa istanza",
+    "invite": "Questa istanza non è ancora completamente configurata.",
+    "inviteLink": "Configurala",
+    "closed": "Questa istanza è configurata: la procedura guidata è chiusa (`qd setup.reopen` la riapre, da una shell).",
+    "home": "Home",
+    "signIn": "Con un provider di identità, la configurazione richiede un account connesso — con il ruolo di amministratore dal provider, per completarla.",
+    "signInLink": "Accedi",
+    "steps": "Passaggi",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "finish": "Completa la configurazione",
+    "finished": "L’istanza è configurata.",
+    "finishedHelp": "La procedura guidata è chiusa definitivamente. Tutto ciò che è stato impostato qui potrà essere modificato in seguito dall’amministrazione, nei limiti di ADMIN_WEB_SCOPE.",
+    "token": {
+      "title": "Token di configurazione",
+      "help": "Chi raggiunge un’istanza nuova non deve possederla: fornisci il token di configurazione scritto nei log dell’istanza all’avvio (o fornito da `qd setup.token` nel container). Funziona una sola volta e scade 24 ore dopo la sua creazione.",
+      "label": "Token",
+      "open": "Inizia"
+    },
+    "step": {
+      "usage": {
+        "title": "Utilizzo",
+        "help": "Tre domande su come verrà usata l’istanza: ogni risposta imposta più impostazioni insieme. Tutto può essere regolato nei passaggi successivi, o in seguito dall’amministrazione."
+      },
+      "health": {
+        "title": "Stato di salute",
+        "help": "Il database, Redis, le migrazioni, le cartelle, le variabili critiche. Ciò che fallisce qui si corregge in .env, poi si riavvia l’istanza."
+      },
+      "identity": {
+        "title": "Identità",
+        "help": "Il nome, la lingua, il logo, dove portano i link di feedback."
+      },
+      "address": {
+        "title": "Indirizzo",
+        "help": "Gli indirizzi proposti ai partecipanti (codice QR, link per entrare), e una prova da un telefono."
+      },
+      "access": {
+        "title": "Accesso",
+        "help": "Chi può entrare. La modalità di autenticazione si imposta in .env, prima dell’avvio."
+      },
+      "limits": {
+        "title": "Limiti e ritmo",
+        "help": "I valori predefiniti vanno bene per la maggior parte delle istanze: cambia un valore solo se la tua è diversa."
+      },
+      "content": {
+        "title": "Contenuti",
+        "help": "I quiz di esempio, pronti da presentare, per la raccolta di un conduttore."
+      },
+      "summary": {
+        "title": "Riepilogo",
+        "help": "Cosa è impostato, e da dove proviene. Completare chiude definitivamente la procedura guidata."
+      }
+    },
+    "phone": {
+      "title": "Prova da un telefono",
+      "help": "Il server non può sapere se un telefono lo raggiunge: solo un telefono può. Scansiona il codice di un indirizzo con un telefono — sul Wi‑Fi degli ospiti o con i dati mobili, come sarebbe un partecipante. Un indirizzo provato viene proposto per primo.",
+      "start": "Prova questo indirizzo",
+      "again": "Prova di nuovo",
+      "scan": "Scansiona con un telefono: la pagina comunica a questa che è arrivata.",
+      "reached": "Raggiunto da un telefono ({{agent}}).",
+      "why": {
+        "title": "Non raggiunto? Le cause abituali",
+        "network": "Non è la stessa rete: un indirizzo locale (192.168…, 10…) risponde solo ai telefoni su quella rete — il Wi‑Fi degli ospiti è spesso un’altra; con i dati mobili non risponde mai.",
+        "isolation": "Ospiti isolati: molte reti Wi‑Fi per ospiti o pubbliche impediscono ai dispositivi di vedersi tra loro. Usa l’indirizzo pubblico, o una rete senza questo isolamento.",
+        "firewall": "Un firewall: la macchina potrebbe rifiutare le connessioni in entrata sulla porta dell’applicazione.",
+        "public": "Un indirizzo pubblico richiede un nome che punti alla macchina e la sua porta aperta da Internet (o un reverse proxy) — e https perché i telefoni possano installare l’app.",
+        "docker": "Docker Desktop, una rete bridge: il container non vede gli indirizzi della macchina — impostali in HOST_LAN_IPS."
+      },
+      "expired": "Questa prova è scaduta: riavviala.",
+      "adoptHelp": "Quando un telefono ha raggiunto un indirizzo, rendilo l’indirizzo d’invito dell’istanza: ogni sala d’attesa parte da esso (APP_PUBLIC_URL). Un conduttore può comunque sceglierne un altro per una partita.",
+      "adoptReadOnly": "L’amministrazione non può modificare le impostazioni qui: l’indirizzo d’invito dell’istanza resta quello impostato dal gestore (APP_PUBLIC_URL). Un conduttore sceglie l’indirizzo di ogni partita nella sala d’attesa.",
+      "other": "Un altro indirizzo",
+      "add": "Aggiungi",
+      "current": "L’indirizzo d’invito dell’istanza",
+      "use": "Usa per gli inviti"
+    },
+    "access": {
+      "firstAdmin": "Modalità locale: il nome che amministrerà l’istanza (accede con esso). Le modifiche dal web richiedono anche ADMIN_TOKEN.",
+      "oidcAdmin": "Con un provider di identità, il ruolo di amministratore proviene da esso (o da `qd user:set-role`)."
+    },
+    "content": {
+      "samples": "Un account (il suo soggetto — local:<name> in modalità locale — o la sua e-mail): i quiz di esempio vanno nella sua raccolta."
+    },
+    "summary": {
+      "set": "Impostato diversamente dai valori predefiniti",
+      "env": "Cosa è stato impostato qui, come estratto di .env — per fissarlo lì:"
+    },
+    "blocked": "Un problema bloccante qui sopra: correggilo (in .env, poi riavvia), verifica di nuovo, e la procedura guidata prosegue."
+  },
+  "usage": {
+    "preview": "Cosa impostano queste risposte:",
+    "nothing": "Niente da cambiare.",
+    "apply": "Applica",
+    "applied": "Applicato: i passaggi successivi lo mostrano.",
+    "skipped": {
+      "locked": "lasciata com’è: bloccata da ADMIN_LOCK",
+      "not-applicable": "lasciata com’è: solo con un provider di identità (AUTH_MODE=oidc)"
+    },
+    "internet": {
+      "question": "Questa istanza raggiunge Internet?",
+      "answers": {
+        "connected": {
+          "title": "Sì",
+          "help": "L’editor propone librerie di media gratuite online."
+        },
+        "offline": {
+          "title": "No",
+          "help": "Solo una rete locale: nessun link a librerie online. Prova l’indirizzo da un telefono nei passaggi successivi."
+        }
+      }
+    },
+    "audience": {
+      "question": "Chi gioca?",
+      "answers": {
+        "colleagues": {
+          "title": "Colleghi, amici",
+          "help": "Le impostazioni standard."
+        },
+        "class": {
+          "title": "Una classe, una formazione",
+          "help": "I partecipanti accedono con il proprio account."
+        },
+        "public": {
+          "title": "Il pubblico, un grande evento",
+          "help": "Aperta a tutti — con un provider di identità — e più tempo per caricare suoni e video su un Wi‑Fi affollato."
+        },
+        "other": {
+          "title": "Un po’ di tutto, altro",
+          "help": "Non si cambia nulla: imposta ciò che ti serve nei passaggi successivi."
+        }
+      }
+    },
+    "accessibility": {
+      "question": "Alcuni partecipanti hanno bisogno di qualcosa di più semplice?",
+      "answers": {
+        "standard": {
+          "title": "No",
+          "help": "Le impostazioni standard."
+        },
+        "adapted": {
+          "title": "Sì",
+          "help": "Nessuna transizione, più tempo per leggere."
+        }
+      }
+    }
+  },
+  "stats": {
+    "live": {
+      "title": "In diretta",
+      "updated": "Aggiornato alle {{time}}",
+      "stale": "Impossibile aggiornare — dati di {{ago}}",
+      "games": "Partite in corso",
+      "players": "Partecipanti connessi",
+      "none": "Nessuna partita in corso in questo momento.",
+      "lobby_one": "{{count}} in sala d’attesa",
+      "lobby_other": "{{count}} in sala d’attesa",
+      "playing_one": "{{count}} in gioco",
+      "playing_other": "{{count}} in gioco"
+    },
+    "columns": {
+      "quiz": "Quiz",
+      "host": "Conduttore",
+      "progress": "A che punto è",
+      "players": "Partecipanti",
+      "since": "Aperta",
+      "month": "Mese"
+    },
+    "pin": "PIN {{pin}}",
+    "phase": {
+      "lobby": "Sala d’attesa",
+      "question": "Domanda {{index}} di {{total}}"
+    },
+    "instance": {
+      "title": "L’istanza",
+      "accounts": "Account",
+      "quizzes": "Quiz pronti da giocare",
+      "media": "Media",
+      "mediaDetail_one": "{{count}} file",
+      "mediaDetail_other": "{{count}} file",
+      "history": "Partite giocate",
+      "lastGame": "l’ultima è terminata {{ago}}",
+      "noGame": "ancora nessuna",
+      "hosts_one": "{{count}} conduttore",
+      "hosts_other": "{{count}} conduttori",
+      "admins_one": "{{count}} amministratore",
+      "admins_other": "{{count}} amministratori",
+      "drafts_one": "{{count}} bozza",
+      "drafts_other": "{{count}} bozze",
+      "archived_one": "{{count}} archiviato",
+      "archived_other": "{{count}} archiviati"
+    },
+    "history": {
+      "title": "Negli ultimi 12 mesi",
+      "none": "Nessuna partita giocata negli ultimi 12 mesi.",
+      "games": "Partite",
+      "players": "Partecipanti",
+      "success": "Tasso di successo",
+      "withAccount": "Partecipanti con un account",
+      "accounts_one": "{{count}} con un account",
+      "accounts_other": "{{count}} con un account",
+      "guests_one": "{{count}} ospite",
+      "guests_other": "{{count}} ospiti",
+      "byMonth": "Per mese",
+      "top": {
+        "quizzes": "Quiz più giocati",
+        "hosts": "Conduttori più attivi"
+      },
+      "oldest": "Lo storico inizia il {{date}}: le partite più vecchie vengono eliminate."
+    }
+  },
+  "accounts": {
+    "search": "Cerca un account (nome, soggetto, e-mail)",
+    "role": "Ruolo",
+    "anyRole": "Qualsiasi ruolo",
+    "roles": {
+      "admin": "Amministratore",
+      "host": "Conduttore di quiz",
+      "player": "Partecipante"
+    },
+    "none": "Nessun account corrisponde.",
+    "count_one": "{{count}} account",
+    "count_other": "{{count}} account",
+    "columns": {
+      "account": "Account",
+      "roles": "Ruoli",
+      "quizzes": "Quiz",
+      "games": "Partite condotte",
+      "created": "Creato",
+      "actions": "Azioni"
+    },
+    "grantedHere": "Assegnato dall’amministrazione",
+    "actionsFor": "Azioni per {{name}}",
+    "editRoles": "Assegna o revoca un ruolo…",
+    "rolesTitle": "Ruoli assegnati a {{name}}",
+    "rolesHelp": "Ciò che l’amministrazione assegna, in aggiunta a ciò che fornisce il provider di identità: quei ruoli restano qualunque cosa sia spuntata qui.",
+    "rolesHint": {
+      "host": "Crea quiz e conduce partite.",
+      "admin": "Accede all’amministrazione."
+    },
+    "cancel": "Annulla",
+    "save": "Salva",
+    "seat": {
+      "title": "Postazione del conduttore",
+      "held": "Occupata da {{name}}, dal {{since}}",
+      "free": "Libera: il prossimo che la prende conduce.",
+      "release": "Libera la postazione"
+    }
+  },
+  "health": {
+    "problems_one": "{{count}} problema da esaminare",
+    "problems_other": "{{count}} problemi da esaminare",
+    "allGood": "Tutto a posto",
+    "checked_one": "{{count}} controllo superato",
+    "checked_other": "{{count}} controlli superati",
+    "again": "Verifica di nuovo",
+    "migrations": {
+      "title": "Migrazioni del database",
+      "applied_one": "{{count}} applicata",
+      "applied_other": "{{count}} applicate",
+      "pending_one": "{{count}} in attesa",
+      "pending_other": "{{count}} in attesa",
+      "failed_one": "{{count}} fallita",
+      "failed_other": "{{count}} fallite",
+      "list": "Migrazioni applicate, dalla più recente"
+    },
+    "version": {
+      "title": "Versione",
+      "current": "Questa istanza: {{version}}",
+      "available": "{{version}} disponibile dal {{date}}",
+      "upToDate": "L’ultima versione stabile",
+      "dev": "Una build di sviluppo: non confrontata",
+      "none": "Ancora nessuna versione stabile pubblicata",
+      "off": "Verifica degli aggiornamenti disattivata (UPDATE_CHECK)",
+      "failed": "GitHub non ha risposto: l’ultima versione è sconosciuta",
+      "checked": "Ultima verifica {{when}}",
+      "details": "Vedi l’aggiornamento"
+    },
+    "level": {
+      "ok": "OK",
+      "warn": "Avviso",
+      "fail": "Problema"
+    }
+  },
+  "doctor": {
+    "group": {
+      "environment": "Ambiente",
+      "database": "Database",
+      "redis": "Redis",
+      "media": "Media",
+      "oidc": "Provider di identità (OIDC)"
+    },
+    "issue": {
+      "unreadable": "{{key}}: non leggibile — viene usato il valore predefinito.",
+      "out-of-bounds": "{{key}}: fuori da ciò che accetta — per ora usato così com’è."
+    },
+    "unset": "{{key}} non è impostato.",
+    "postgres_ok": "PostgreSQL raggiungibile",
+    "postgres_superuser": "QuizDock si connette come superutente PostgreSQL. Per ora non c’è nulla da fare: una prossima versione dello script quizdock gli darà un ruolo dedicato.",
+    "migrations_applied_one": "{{count}} migrazione applicata",
+    "migrations_applied_other": "{{count}} migrazioni applicate",
+    "migrations_pending_one": "{{count}} migrazione in attesa: esegui il passaggio migrate.",
+    "migrations_pending_other": "{{count}} migrazioni in attesa: esegui il passaggio migrate.",
+    "migrations_failed_one": "{{count}} migrazione fallita: vedi prisma migrate resolve.",
+    "migrations_failed_other": "{{count}} migrazioni fallite: vedi prisma migrate resolve.",
+    "postgres_failed": "PostgreSQL non raggiungibile: {{error}}",
+    "redis_ok": "Redis raggiungibile",
+    "redis_failed": "Redis non raggiungibile: {{error}}",
+    "dir_ok": "{{dir}} è scrivibile",
+    "dir_failed": "{{dir}}: {{error}}",
+    "participants_open": "Partecipanti: account o accesso libero, scelto a ogni avvio",
+    "participants_accounts": "Partecipanti: account obbligatori (ALLOW_ANONYMOUS_PARTICIPANTS non impostato)",
+    "provider_internal": "Provider raggiunto su {{url}} dal server",
+    "discovery_ok": "Discovery OK — endpoint del token {{url}}",
+    "discovery_failed": "Discovery {{url}} non riuscita ({{error}}): imposta OIDC_INTERNAL_URL se l’issuer non è raggiungibile dal server.",
+    "jwks_ok_one": "Chiavi di firma raggiungibili ({{count}} chiave)",
+    "jwks_ok_other": "Chiavi di firma raggiungibili ({{count}} chiavi)",
+    "jwks_failed": "Chiavi di firma {{url}}: {{error}}"
+  },
+  "demoReadOnly": "Demo pubblica: l’amministrazione è mostrata così com’è, e da qui non si può modificare nulla. Sulla tua istanza, è tua."
+}

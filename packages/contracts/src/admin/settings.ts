@@ -171,7 +171,20 @@ const isOrigin = (value: string) => /^https?:\/\/[^\s/?#]+\/?$/i.test(value);
 // ── Shared values ───────────────────────────────────────────────────────────
 
 /** The languages the interface speaks (`APP_LANG`). */
-export const UI_LANGUAGES = ['en', 'fr', 'es', 'zh', 'zh-TW', 'tr'] as const;
+export const UI_LANGUAGES = [
+  'en',
+  'fr',
+  'es',
+  'zh',
+  'zh-TW',
+  'tr',
+  'de',
+  'hi',
+  'it',
+  'ja',
+  'pl',
+  'ru',
+] as const;
 
 export type MediaLibraryKind = 'image' | 'video' | 'audio';
 export const MEDIA_LIBRARY_KINDS: MediaLibraryKind[] = ['image', 'video', 'audio'];

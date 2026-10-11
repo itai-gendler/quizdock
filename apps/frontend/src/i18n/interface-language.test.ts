@@ -16,7 +16,7 @@ describe('the interface language (#209)', () => {
   });
 
   it("falls back to the instance's for a language the app does not speak", async () => {
-    await setInterfaceLanguage('de');
+    await setInterfaceLanguage('ko');
     expect(i18next.language).toBe('fr');
   });
 });

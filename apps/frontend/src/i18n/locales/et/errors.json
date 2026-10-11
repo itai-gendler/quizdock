@@ -1,219 +1,219 @@
 {
-    "auth": {
-        "required": "",
-        "login_failed": "",
-        "cross_origin": "",
-        "host_required": "",
-        "host_only": "",
-        "admin_required": "",
-        "oidc_disabled": ""
+  "auth": {
+    "required": "",
+    "login_failed": "",
+    "cross_origin": "",
+    "host_required": "",
+    "host_only": "",
+    "admin_required": "",
+    "oidc_disabled": ""
+  },
+  "host": {
+    "auth_required": "",
+    "forbidden": ""
+  },
+  "quiz": {
+    "not_found": "",
+    "not_ready": "",
+    "empty": "",
+    "requires_question": "",
+    "transition_forbidden": "",
+    "in_use": "",
+    "item_not_in_quiz": "",
+    "reorder_incomplete": "",
+    "incomplete": ""
+  },
+  "session": {
+    "not_found": "",
+    "ended": "",
+    "banned": "",
+    "join_required": "",
+    "already_joined": "",
+    "already_started": "",
+    "quiz_required": "",
+    "reveal_required": "",
+    "timer_not_adjustable": "",
+    "snapshot_not_found": "",
+    "capture_locked": "",
+    "options_locked": "",
+    "join_url_invalid": "",
+    "archive_quiz_gone": "",
+    "locked": "",
+    "open_access_forbidden": "",
+    "open_access_guests_only": "",
+    "next_quiz_unavailable": "",
+    "next_quiz_from_lobby": "",
+    "review_unavailable": "",
+    "step_not_played": ""
+  },
+  "participant": {
+    "not_found": ""
+  },
+  "nickname": {
+    "taken": "",
+    "invalid_length": ""
+  },
+  "pin": {
+    "unavailable": "",
+    "too_many_attempts": ""
+  },
+  "media": {
+    "unsupported_type": "",
+    "file_missing": "",
+    "file_too_large": "",
+    "image_too_large": "",
+    "not_found": "",
+    "demo_disabled": "",
+    "video_with_audio": "",
+    "wrong_kind": "",
+    "embeds_disabled": "",
+    "invalid": "",
+    "quicktime": "",
+    "unsupported_video_codec": "",
+    "unsupported_audio_codec": "",
+    "no_video_track": "",
+    "unreadable_mp3": "",
+    "metadata_invalid": "",
+    "cannot_read": "",
+    "cannot_convert_video": "",
+    "cannot_convert_audio": "",
+    "too_long": "",
+    "canceled": "",
+    "in_use": "",
+    "playing": "",
+    "not_adopted_yet": "",
+    "embed_bounds": ""
+  },
+  "import": {
+    "file_missing": "",
+    "invalid_bundle": "",
+    "bundle_too_large": "",
+    "media_missing": "",
+    "media_unsupported": "",
+    "invalid_item": "",
+    "kahoot_template": "",
+    "kahoot_empty": "",
+    "file_too_large": ""
+  },
+  "question": {
+    "not_in_quiz": "",
+    "invalid_permutation": "",
+    "reorder_incomplete": "",
+    "not_found": "",
+    "accepted_answers": {
+      "not_allowed": "",
+      "required": ""
     },
-    "host": {
-        "auth_required": "",
-        "forbidden": ""
+    "image": {
+      "alt_required": "",
+      "count": "",
+      "no_text": "",
+      "no_visual": "",
+      "picture_required": ""
     },
-    "quiz": {
-        "not_found": "",
-        "not_ready": "",
-        "empty": "",
-        "requires_question": "",
-        "transition_forbidden": "",
-        "in_use": "",
-        "item_not_in_quiz": "",
-        "reorder_incomplete": "",
-        "incomplete": ""
+    "incomplete_in_ready_quiz": "",
+    "multi_select": {
+      "not_allowed": ""
     },
-    "session": {
-        "not_found": "",
-        "ended": "",
-        "banned": "",
-        "join_required": "",
-        "already_joined": "",
-        "already_started": "",
-        "quiz_required": "",
-        "reveal_required": "",
-        "timer_not_adjustable": "",
-        "snapshot_not_found": "",
-        "capture_locked": "",
-        "options_locked": "",
-        "join_url_invalid": "",
-        "archive_quiz_gone": "",
-        "locked": "",
-        "open_access_forbidden": "",
-        "open_access_guests_only": "",
-        "next_quiz_unavailable": "",
-        "next_quiz_from_lobby": "",
-        "review_unavailable": "",
-        "step_not_played": ""
+    "numeric": {
+      "not_allowed": "",
+      "tolerance_required": "",
+      "value_required": ""
     },
-    "participant": {
-        "not_found": ""
+    "options": {
+      "not_allowed": "",
+      "one_correct": "",
+      "some_correct": "",
+      "too_one": "",
+      "too_other": ""
     },
-    "nickname": {
-        "taken": "",
-        "invalid_length": ""
+    "ordering": {
+      "positions": ""
     },
-    "pin": {
-        "unavailable": "",
-        "too_many_attempts": ""
+    "poll": {
+      "no_correct": ""
     },
-    "media": {
-        "unsupported_type": "",
-        "file_missing": "",
-        "file_too_large": "",
-        "image_too_large": "",
-        "not_found": "",
-        "demo_disabled": "",
-        "video_with_audio": "",
-        "wrong_kind": "",
-        "embeds_disabled": "",
-        "invalid": "",
-        "quicktime": "",
-        "unsupported_video_codec": "",
-        "unsupported_audio_codec": "",
-        "no_video_track": "",
-        "unreadable_mp3": "",
-        "metadata_invalid": "",
-        "cannot_read": "",
-        "cannot_convert_video": "",
-        "cannot_convert_audio": "",
-        "too_long": "",
-        "canceled": "",
-        "in_use": "",
-        "playing": "",
-        "not_adopted_yet": "",
-        "embed_bounds": ""
+    "prompt": {
+      "required": ""
     },
-    "import": {
-        "file_missing": "",
-        "invalid_bundle": "",
-        "bundle_too_large": "",
-        "media_missing": "",
-        "media_unsupported": "",
-        "invalid_item": "",
-        "kahoot_template": "",
-        "kahoot_empty": "",
-        "file_too_large": ""
+    "scoring": {
+      "not_available": ""
     },
-    "question": {
-        "not_in_quiz": "",
-        "invalid_permutation": "",
-        "reorder_incomplete": "",
-        "not_found": "",
-        "accepted_answers": {
-            "not_allowed": "",
-            "required": ""
-        },
-        "image": {
-            "alt_required": "",
-            "count": "",
-            "no_text": "",
-            "no_visual": "",
-            "picture_required": ""
-        },
-        "incomplete_in_ready_quiz": "",
-        "multi_select": {
-            "not_allowed": ""
-        },
-        "numeric": {
-            "not_allowed": "",
-            "tolerance_required": "",
-            "value_required": ""
-        },
-        "options": {
-            "not_allowed": "",
-            "one_correct": "",
-            "some_correct": "",
-            "too_one": "",
-            "too_other": ""
-        },
-        "ordering": {
-            "positions": ""
-        },
-        "poll": {
-            "no_correct": ""
-        },
-        "prompt": {
-            "required": ""
-        },
-        "scoring": {
-            "not_available": ""
-        },
-        "true_false": {
-            "two_options": ""
-        }
-    },
-    "validation": "",
-    "internal": "",
-    "error": "",
-    "host_seat": {
-        "taken": "",
-        "manager_forbidden": "",
-        "local_only": "",
-        "already_host": ""
-    },
-    "store": {
-        "demo_disabled": "",
-        "not_ready": "",
-        "license_required": "",
-        "entry_not_found": "",
-        "not_yours": "",
-        "invalid_id": "",
-        "index_unreadable": ""
-    },
-    "publication": {
-        "slug_invalid": "",
-        "not_ready": "",
-        "license": "",
-        "language": "",
-        "tags": "",
-        "too_large": ""
-    },
-    "slide": {
-        "two_sounds": "",
-        "background_conflict": "",
-        "empty": "",
-        "not_found": "",
-        "incomplete_in_ready_quiz": ""
-    },
-    "record": {
-        "not_found": "",
-        "conflict": "",
-        "invalid_reference": ""
-    },
-    "mcp": {
-        "busy": "",
-        "import_failed": "",
-        "rate_limit": ""
-    },
-    "community": {
-        "disabled": "",
-        "download_failed": "",
-        "busy": ""
-    },
-    "admin": {
-        "unknown_operation": "",
-        "forbidden": "",
-        "scope_read": "",
-        "local_mode_token": "",
-        "locked": "",
-        "critical": "",
-        "invalid_params": "",
-        "confirmation_invalid": "",
-        "dry_run_unsupported": "",
-        "not_found": "",
-        "conflict": "",
-        "timeout": "",
-        "failed": "",
-        "too_many_requests": "",
-        "demo_read_only": ""
-    },
-    "setup": {
-        "token_invalid": "",
-        "session_invalid": "",
-        "too_many_attempts": ""
-    },
-    "request": {
-        "too_large": ""
+    "true_false": {
+      "two_options": ""
     }
+  },
+  "validation": "",
+  "internal": "",
+  "error": "",
+  "host_seat": {
+    "taken": "",
+    "manager_forbidden": "",
+    "local_only": "",
+    "already_host": ""
+  },
+  "store": {
+    "demo_disabled": "",
+    "not_ready": "",
+    "license_required": "",
+    "entry_not_found": "",
+    "not_yours": "",
+    "invalid_id": "",
+    "index_unreadable": ""
+  },
+  "publication": {
+    "slug_invalid": "",
+    "not_ready": "",
+    "license": "",
+    "language": "",
+    "tags": "",
+    "too_large": ""
+  },
+  "slide": {
+    "two_sounds": "",
+    "background_conflict": "",
+    "empty": "",
+    "not_found": "",
+    "incomplete_in_ready_quiz": ""
+  },
+  "record": {
+    "not_found": "",
+    "conflict": "",
+    "invalid_reference": ""
+  },
+  "mcp": {
+    "busy": "",
+    "import_failed": "",
+    "rate_limit": ""
+  },
+  "community": {
+    "disabled": "",
+    "download_failed": "",
+    "busy": ""
+  },
+  "admin": {
+    "unknown_operation": "",
+    "forbidden": "",
+    "scope_read": "",
+    "local_mode_token": "",
+    "locked": "",
+    "critical": "",
+    "invalid_params": "",
+    "confirmation_invalid": "",
+    "dry_run_unsupported": "",
+    "not_found": "",
+    "conflict": "",
+    "timeout": "",
+    "failed": "",
+    "too_many_requests": "",
+    "demo_read_only": ""
+  },
+  "setup": {
+    "token_invalid": "",
+    "session_invalid": "",
+    "too_many_attempts": ""
+  },
+  "request": {
+    "too_large": ""
+  }
 }

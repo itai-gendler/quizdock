@@ -1,0 +1,113 @@
+{
+  "status": {
+    "ended": "Beendet",
+    "interrupted": "Unterbrochen",
+    "archived": "Archiviert",
+    "lobby": "Warteraum",
+    "in_progress": "Läuft"
+  },
+  "duration": {
+    "minutesSeconds": "{{minutes}} min {{seconds}} s",
+    "seconds": "{{seconds}} s"
+  },
+  "list": {
+    "title": "Sitzungsverlauf",
+    "backToEditor": "Zurück zum Editor",
+    "empty": "Keine archivierte Sitzung für dieses Quiz. Am Ende einer Sitzung „Ergebnisse dieses Quiz archivieren“ ankreuzen, um sie hier wiederzufinden.",
+    "capture": "Erfassung",
+    "inRoom_one": "Raum · {{count}} Quiz",
+    "inRoom_other": "Raum · {{count}} Quizze",
+    "pin": "PIN {{pin}}",
+    "thDate": "Datum",
+    "thStatus": "Status",
+    "thPlayers": "Teilnehmende",
+    "thSuccess": "Erfolg",
+    "presentIt": "Dieses Quiz präsentieren"
+  },
+  "detail": {
+    "notFound": "Sitzung nicht gefunden.",
+    "fallbackTitle": "Sitzung",
+    "exportCsv": "Exportieren (CSV)",
+    "history": "Verlauf",
+    "statParticipants": "Teilnehmende",
+    "statSuccessRate": "Gesamterfolg",
+    "statQuestions": "Fragen",
+    "questionResultsTitle": "Ergebnisse nach Frage",
+    "thNumber": "#",
+    "thQuestion": "Frage",
+    "thAnswers": "Antworten",
+    "thSuccessRate": "Erfolg",
+    "thAvgTime": "Ø Zeit",
+    "participantsTitle": "Teilnehmende",
+    "noPersonalTracking": "Für diese Sitzung wurde kein individuelles Ergebnis gespeichert: Die persönliche Auswertung war aus — nur die Gesamtergebnisse der Gruppe bleiben erhalten.",
+    "thRank": "Rang",
+    "thNickname": "Spitzname",
+    "thScore": "Punkte",
+    "thCorrect": "Richtig",
+    "thStreak": "Serie",
+    "csvGlobal": {
+      "rank": "Rang",
+      "nickname": "Spitzname",
+      "score": "Punkte",
+      "correct": "Richtig",
+      "answered": "Beantwortet",
+      "maxStreak": "Längste Serie",
+      "avgTime": "Durchschnittszeit (s)",
+      "filenameFallback": "sitzung"
+    },
+    "room": {
+      "intro_one": "Diese Sitzung wurde in einem Raum gespielt: {{count}} Quiz gespeichert, eines nach dem anderen, die Teilnehmenden sind nur einmal beigetreten.",
+      "intro_other": "Diese Sitzung wurde in einem Raum gespielt: {{count}} Quizze gespeichert, eines nach dem anderen, die Teilnehmenden sind nur einmal beigetreten.",
+      "thisSession": "diese Sitzung",
+      "standingsTitle": "Raumwertung",
+      "standingsNote": "Summiert über die archivierten Quizze des Raums.",
+      "noPersonalTracking": "Keine Raumwertung: Mindestens eine seiner Sitzungen hat die Teilnehmenden nicht einzeln erfasst.",
+      "thQuizzes": "Quizze",
+      "exportCsv": "Wertung exportieren (CSV)",
+      "csvFilename": "raum",
+      "defaultName": "Raum von {{host}}"
+    },
+    "notPlayed": "Nicht gespielt",
+    "statQuestionsPlayed_one": "{{count}} von {{total}} Fragen gespielt",
+    "statQuestionsPlayed_other": "{{count}} von {{total}} Fragen gespielt",
+    "statSuccessOf_one": "{{count}} richtige Antwort von {{total}}",
+    "statSuccessOf_other": "{{count}} richtige Antworten von {{total}}"
+  },
+  "player": {
+    "notFound": "Teilnehmende Person nicht gefunden.",
+    "summary": "#{{rank}} · {{score}} Pkt. · {{correct}}/{{answered}} richtig",
+    "exportCsv": "Exportieren (CSV)",
+    "session": "Sitzung",
+    "captureUnavailable": "Antwortdetails sind nicht verfügbar: Die vollständige Erfassung war für diese Sitzung nicht aktiviert. Nur zusammengefasste Ergebnisse bleiben erhalten.",
+    "answersTitle": "Antworten",
+    "thNumber": "#",
+    "thQuestion": "Frage",
+    "thAnswer": "Antwort",
+    "thCorrect": "Richtig",
+    "thPoints": "Punkte",
+    "thTime": "Zeit",
+    "correctAria": "richtig",
+    "incorrectAria": "falsch",
+    "noAnswers": "Keine gespeicherten Antworten.",
+    "csvPlayer": {
+      "number": "#",
+      "question": "Frage",
+      "answer": "Antwort",
+      "correct": "Richtig",
+      "points": "Punkte",
+      "time": "Zeit (s)",
+      "yes": "ja",
+      "no": "nein",
+      "filenameLabel": "teilnehmer"
+    }
+  },
+  "gatherings": {
+    "title": "Sitzungen",
+    "intro": "Was Sie gespielt haben, Raum für Raum: Ein Raum mit mehreren Quizzen ist eine Zeile, seine Wertung eine Seite; ein allein gespieltes Quiz führt zu seinem Bericht.",
+    "none": "Noch nichts gespielt: Präsentieren Sie ein Quiz, die Ergebnisse erscheinen hier.",
+    "thRoom": "Raum",
+    "thQuizzes": "Quizze",
+    "alone": "Einzelnes Quiz",
+    "back": "Sitzungen"
+  }
+}
