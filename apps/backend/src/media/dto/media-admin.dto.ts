@@ -1,7 +1,7 @@
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 
-const kind = z.enum(['image', 'video', 'audio']);
+const kind = z.enum(['image', 'video', 'audio', 'icon', 'font']);
 const sweep = z.object({
   adopted: z.number().int(),
   media: z.number().int(),

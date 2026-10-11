@@ -13,7 +13,7 @@ const MEDIA_ID = '([0-9A-HJKMNP-TV-Z]{26})';
  * added here, to both forms, and to `media-usage.spec.ts`.
  */
 
-/** The relations through which a quiz holds a media in a slot (its foreign keys). */
+/** The relations through which a quiz, or a theme, holds a media in a slot (its foreign keys). */
 export const MEDIA_SLOTS = [
   'coverForQuizzes',
   'questionVisuals',
@@ -23,6 +23,8 @@ export const MEDIA_SLOTS = [
   'slideVideos',
   'slideAudios',
   'options',
+  // A quiz theme's icons, font, sounds and picture (THEMING §2).
+  'themes',
 ] as const satisfies readonly (keyof Prisma.MediaAssetCountOutputTypeSelect)[];
 
 /**

@@ -216,5 +216,23 @@
   },
   "request": {
     "too_large": "Troppo grande per il server: ha rifiutato la richiesta (il suo limite di dimensione)."
+  },
+  "theme": {
+    "not_found": "Tema non trovato.",
+    "not_owner": "Solo il proprietario o un amministratore possono modificare questo tema.",
+    "in_use": "Questo tema è ancora usato da quiz ({{count}}): assegna prima loro un altro tema.",
+    "is_default": "È il tema predefinito dell’istanza: scegli prima un altro tema predefinito.",
+    "invalid_media": "Un file di questo tema manca o non è del tipo richiesto dal suo posto.",
+    "ref_one_of": "Scegli un tema incluso o uno della libreria, non entrambi.",
+    "icon_invalid": "Questo file non è un’icona SVG leggibile.",
+    "icon_not_square": "Un’icona deve essere quadrata (viewBox largo quanto alto).",
+    "icon_empty": "Questa icona non disegna alcuna forma.",
+    "icon_too_large": "Icona troppo grande (al massimo {{maxKb}} KB).",
+    "font_invalid": "Questo file non è un font WOFF2 completo.",
+    "font_too_large": "Font troppo grande (al massimo {{maxMb}} MB)."
+  },
+  "background": {
+    "image_and_gradient": "Uno sfondo è un’immagine o una sfumatura, non entrambe.",
+    "mode_required": "Scegli come disporre l’immagine."
   }
 }

@@ -217,5 +217,23 @@
   },
   "request": {
     "too_large": "Za duże dla serwera: odrzucił żądanie (limit rozmiaru)."
+  },
+  "theme": {
+    "not_found": "Nie znaleziono motywu.",
+    "not_owner": "Tylko właściciel lub administrator może zmienić ten motyw.",
+    "in_use": "Ten motyw jest nadal używany przez quizy ({{count}}): najpierw przypisz im inny motyw.",
+    "is_default": "To domyślny motyw instancji: najpierw wybierz inny motyw domyślny.",
+    "invalid_media": "Brakuje pliku tego motywu lub nie jest on rodzaju wymaganego w tym miejscu.",
+    "ref_one_of": "Wybierz motyw wbudowany albo motyw z biblioteki, nie oba.",
+    "icon_invalid": "Ten plik nie jest czytelną ikoną SVG.",
+    "icon_not_square": "Ikona musi być kwadratowa (viewBox tak szeroki, jak wysoki).",
+    "icon_empty": "Ta ikona nie rysuje żadnego kształtu.",
+    "icon_too_large": "Ikona jest za duża (maksymalnie {{maxKb}} KB).",
+    "font_invalid": "Ten plik nie jest kompletną czcionką WOFF2.",
+    "font_too_large": "Czcionka jest za duża (maksymalnie {{maxMb}} MB)."
+  },
+  "background": {
+    "image_and_gradient": "Tło to obraz albo gradient, nie oba naraz.",
+    "mode_required": "Wybierz, jak ułożyć obraz."
   }
 }

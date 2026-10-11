@@ -214,5 +214,23 @@
   },
   "request": {
     "too_large": "对服务器来说太大：请求被拒绝（超出其大小限制）。"
+  },
+  "theme": {
+    "not_found": "未找到主题。",
+    "not_owner": "只有其所有者或管理员可以修改此主题。",
+    "in_use": "此主题仍被测验使用（{{count}}）：请先为它们更换主题。",
+    "is_default": "这是实例的默认主题：请先选择另一个默认主题。",
+    "invalid_media": "此主题的某个文件缺失，或其类型与所在位置不符。",
+    "ref_one_of": "请选择内置主题或主题库中的主题，不能同时选择。",
+    "icon_invalid": "此文件不是可读取的 SVG 图标。",
+    "icon_not_square": "图标必须是正方形（viewBox 的宽高相等）。",
+    "icon_empty": "此图标未绘制任何形状。",
+    "icon_too_large": "图标过大（最大 {{maxKb}} KB）。",
+    "font_invalid": "此文件不是完整的 WOFF2 字体。",
+    "font_too_large": "字体过大（最大 {{maxMb}} MB）。"
+  },
+  "background": {
+    "image_and_gradient": "背景是图片或渐变，不能两者兼有。",
+    "mode_required": "请选择图片的排布方式。"
   }
 }

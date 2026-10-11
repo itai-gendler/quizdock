@@ -227,7 +227,7 @@ export class MediaController {
       res.status(416).set('Content-Range', `bytes */${size}`);
       return undefined;
     }
-    const { stream, mime } = await this.media.openStream(id, range ?? undefined);
+    const { stream, mime, kind } = await this.media.openStream(id, range ?? undefined);
     if (range) {
       res.status(206).set({
         'Content-Range': `bytes ${range.start}-${range.end}/${size}`,
@@ -236,7 +236,7 @@ export class MediaController {
     } else {
       res.set('Content-Length', String(size));
     }
-    res.set(mediaHeaders(mime));
+    res.set(mediaHeaders(mime, kind));
     return new StreamableFile(stream);
   }
 

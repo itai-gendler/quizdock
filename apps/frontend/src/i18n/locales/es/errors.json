@@ -216,5 +216,23 @@
   },
   "request": {
     "too_large": "Demasiado grande para el servidor: rechazó la solicitud (su límite de tamaño)."
+  },
+  "theme": {
+    "not_found": "Tema no encontrado.",
+    "not_owner": "Solo su propietario o un administrador pueden cambiar este tema.",
+    "in_use": "Este tema aún lo usan cuestionarios ({{count}}): dales antes otro tema.",
+    "is_default": "Es el tema predeterminado de la instancia: elige antes otro tema predeterminado.",
+    "invalid_media": "Falta un archivo de este tema o no es del tipo que requiere su lugar.",
+    "ref_one_of": "Elige un tema incluido o uno de la biblioteca, no ambos.",
+    "icon_invalid": "Este archivo no es un icono SVG legible.",
+    "icon_not_square": "Un icono debe ser cuadrado (su viewBox tan ancho como alto).",
+    "icon_empty": "Este icono no dibuja ninguna forma.",
+    "icon_too_large": "Icono demasiado grande (como máximo {{maxKb}} KB).",
+    "font_invalid": "Este archivo no es una fuente WOFF2 completa.",
+    "font_too_large": "Fuente demasiado grande (como máximo {{maxMb}} MB)."
+  },
+  "background": {
+    "image_and_gradient": "Un fondo es una imagen o un degradado, no ambos.",
+    "mode_required": "Elige cómo se dispone la imagen."
   }
 }

@@ -214,5 +214,23 @@
   },
   "request": {
     "too_large": "對伺服器來說太大：請求被拒絕（超出其大小限制）。"
+  },
+  "theme": {
+    "not_found": "找不到主題。",
+    "not_owner": "只有其擁有者或管理員可以修改此主題。",
+    "in_use": "此主題仍被測驗使用（{{count}}）：請先為它們更換主題。",
+    "is_default": "這是執行個體的預設主題：請先選擇另一個預設主題。",
+    "invalid_media": "此主題的某個檔案遺失，或其類型與所在位置不符。",
+    "ref_one_of": "請選擇內建主題或主題庫中的主題，不能同時選擇。",
+    "icon_invalid": "此檔案不是可讀取的 SVG 圖示。",
+    "icon_not_square": "圖示必須是正方形（viewBox 的寬高相等）。",
+    "icon_empty": "此圖示未繪製任何形狀。",
+    "icon_too_large": "圖示過大（最大 {{maxKb}} KB）。",
+    "font_invalid": "此檔案不是完整的 WOFF2 字型。",
+    "font_too_large": "字型過大（最大 {{maxMb}} MB）。"
+  },
+  "background": {
+    "image_and_gradient": "背景是圖片或漸層，不能兩者兼有。",
+    "mode_required": "請選擇圖片的排列方式。"
   }
 }

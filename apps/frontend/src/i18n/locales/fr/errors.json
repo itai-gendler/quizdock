@@ -216,5 +216,23 @@
   },
   "request": {
     "too_large": "Trop volumineux pour le serveur : il a refusé la requête (sa limite de taille)."
+  },
+  "theme": {
+    "not_found": "Thème introuvable.",
+    "not_owner": "Seuls son propriétaire ou un administrateur peuvent modifier ce thème.",
+    "in_use": "Ce thème est encore utilisé par des quiz ({{count}}) : donnez-leur d’abord un autre thème.",
+    "is_default": "C’est le thème par défaut de l’instance : choisissez d’abord un autre thème par défaut.",
+    "invalid_media": "Un fichier de ce thème manque ou n’est pas du type attendu à sa place.",
+    "ref_one_of": "Choisissez un thème livré ou un thème de la bibliothèque, pas les deux.",
+    "icon_invalid": "Ce fichier n’est pas une icône SVG lisible.",
+    "icon_not_square": "Une icône doit être carrée (son viewBox aussi large que haut).",
+    "icon_empty": "Cette icône ne dessine aucune forme.",
+    "icon_too_large": "Icône trop volumineuse ({{maxKb}} Ko au plus).",
+    "font_invalid": "Ce fichier n’est pas une police WOFF2 complète.",
+    "font_too_large": "Police trop volumineuse ({{maxMb}} Mo au plus)."
+  },
+  "background": {
+    "image_and_gradient": "Un fond est une image ou un dégradé, pas les deux.",
+    "mode_required": "Choisissez comment l’image est disposée."
   }
 }

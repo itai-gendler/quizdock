@@ -17,4 +17,11 @@ describe('mediaHeaders', () => {
       });
     }
   });
+
+  it('serves an SVG or a font only from the icon or font row of a theme', () => {
+    expect(mediaHeaders('image/svg+xml', 'icon')['Content-Type']).toBe('image/svg+xml');
+    expect(mediaHeaders('font/woff2', 'font')['Content-Type']).toBe('font/woff2');
+    expect(mediaHeaders('image/svg+xml', 'image')['Content-Type']).toBe('application/octet-stream');
+    expect(mediaHeaders('image/svg+xml', 'font')['Content-Type']).toBe('application/octet-stream');
+  });
 });

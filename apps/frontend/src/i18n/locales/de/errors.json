@@ -215,5 +215,23 @@
   },
   "request": {
     "too_large": "Zu groß für den Server: Er hat die Anfrage abgelehnt (Größenlimit)."
+  },
+  "theme": {
+    "not_found": "Theme nicht gefunden.",
+    "not_owner": "Nur der Eigentümer oder ein Administrator kann dieses Theme ändern.",
+    "in_use": "Dieses Theme wird noch von Quizzen verwendet ({{count}}): Gib ihnen zuerst ein anderes Theme.",
+    "is_default": "Dies ist das Standard-Theme der Instanz: Wähle zuerst ein anderes Standard-Theme.",
+    "invalid_media": "Eine Datei dieses Themes fehlt oder hat nicht die Art, die ihr Platz verlangt.",
+    "ref_one_of": "Wähle ein mitgeliefertes Theme oder eines aus der Bibliothek, nicht beides.",
+    "icon_invalid": "Diese Datei ist kein lesbares SVG-Symbol.",
+    "icon_not_square": "Ein Symbol muss quadratisch sein (viewBox so breit wie hoch).",
+    "icon_empty": "Dieses Symbol zeichnet keine Form.",
+    "icon_too_large": "Symbol zu groß (höchstens {{maxKb}} KB).",
+    "font_invalid": "Diese Datei ist keine vollständige WOFF2-Schrift.",
+    "font_too_large": "Schrift zu groß (höchstens {{maxMb}} MB)."
+  },
+  "background": {
+    "image_and_gradient": "Ein Hintergrund ist ein Bild oder ein Verlauf, nicht beides.",
+    "mode_required": "Wähle, wie das Bild angeordnet wird."
   }
 }

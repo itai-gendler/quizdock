@@ -448,6 +448,8 @@ export class QuizzesService {
           mediaTailS: src.mediaTailS,
           loudnessTargetLufs: src.loudnessTargetLufs,
           audioTarget: src.audioTarget,
+          themeId: src.themeId,
+          themeBuiltin: src.themeBuiltin,
           questionCount: src.questions.length,
           questions: {
             create: src.questions.map((q) => ({
@@ -540,6 +542,7 @@ export class QuizzesService {
         mediaTailS: dto.mediaTailS,
         loudnessTargetLufs: dto.loudnessTargetLufs,
         audioTarget: dto.audioTarget,
+        ...(dto.theme !== undefined ? await this.themeColumns(dto.theme) : {}),
         license: dto.license,
         tags: dto.tags,
         shared: dto.shared,
@@ -548,6 +551,16 @@ export class QuizzesService {
     // A replaced or dropped cover leaves with its file, unless something else holds it.
     await this.media.releaseUnused([current.coverMediaId], [quiz.coverMediaId]);
     return quiz;
+  }
+
+  /** A quiz's theme (THEMING §2.3): any theme of the library, a shipped one, or none (the default). */
+  private async themeColumns(
+    ref: { builtin?: string; id?: string } | null,
+  ): Promise<{ themeId: string | null; themeBuiltin: string | null }> {
+    if (ref?.id && !(await this.prisma.theme.count({ where: { id: ref.id } }))) {
+      throw new NotFoundException('theme.not_found');
+    }
+    return { themeId: ref?.id ?? null, themeBuiltin: ref?.builtin ?? null };
   }
 
   async remove(ownerId: string, id: string): Promise<void> {

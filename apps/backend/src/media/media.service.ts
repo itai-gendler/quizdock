@@ -23,7 +23,7 @@ import {
   type OnModuleInit,
   PayloadTooLargeException,
 } from '@nestjs/common';
-import type { MediaAsset, MediaKind } from '@prisma/client';
+import type { MediaAsset, MediaKind, Prisma } from '@prisma/client';
 import { GameState, type MediaRejection, sniffMedia, SETTINGS } from '@quiz-dock/contracts';
 import { isDemoMode } from '../demo/demo.config';
 import { type GameId, ROOM_HASH_KEY, gameKeys } from '../game/game.keys';
@@ -32,6 +32,7 @@ import { RedisService } from '../redis/redis.service';
 import { parseUploadMeta } from './dto/media-upload-meta';
 import { mediaLimits, mediaUrl, uploadCeiling } from './media.config';
 import { mediaDimensions } from './media-dimensions';
+import type { LibraryKind } from './media-library.service';
 import { MEDIA_SLOTS, shownInText } from './media-usage.sql';
 import { settings } from '../admin/settings/settings.service';
 
@@ -164,7 +165,7 @@ export class MediaService implements OnModuleInit {
      * `seeding`: the application's own files (the samples), taken on a demo too.
      */
     options: { instance?: boolean; seeding?: boolean } = {},
-  ): Promise<{ mediaId: string; url: string; kind: MediaKind }> {
+  ): Promise<{ mediaId: string; url: string; kind: 'image' | 'audio' | 'video' }> {
     if (isDemoMode() && !options.seeding) {
       throw new ForbiddenException('media.demo_disabled');
     }
@@ -198,28 +199,63 @@ export class MediaService implements OnModuleInit {
       });
     }
     const meta = parseUploadMeta(sniffed.kind, fields);
-    // The same bytes uploaded twice — a re-used jingle, an imported copy — share one file.
-    const sha256 = sha256Of(file.buffer);
-    await this.writeBlobFile(sha256, file.buffer);
+    const asset = await this.store(ownerId, file.buffer, {
+      mime: sniffed.mime,
+      kind: sniffed.kind,
+      name: uploadName(file.originalname),
+      ...(dimensions ?? {}),
+      instance: options.instance ?? false,
+      sourceSha256: sourceSha256Of(fields),
+      ...meta,
+    });
+    return { mediaId: asset.id, url: asset.url, kind: sniffed.kind };
+  }
+
+  /**
+   * Stores a quiz theme's icon or font (THEMING §2.2, §1.3), already checked by the
+   * theme upload: an icon arrives rebuilt from its allowlist.
+   */
+  async storeThemeAsset(
+    ownerId: string,
+    bytes: Buffer,
+    kind: 'icon' | 'font',
+    name: string | undefined,
+  ): Promise<{ mediaId: string; url: string }> {
+    if (isDemoMode()) throw new ForbiddenException('media.demo_disabled');
+    const asset = await this.store(ownerId, bytes, {
+      mime: kind === 'icon' ? 'image/svg+xml' : 'font/woff2',
+      kind,
+      name: uploadName(name),
+    });
+    return { mediaId: asset.id, url: asset.url };
+  }
+
+  /** A new media on these bytes: the same bytes uploaded twice — a re-used jingle, an imported copy — share one file. */
+  private async store(
+    ownerId: string,
+    bytes: Buffer,
+    data: Omit<
+      Prisma.MediaAssetUncheckedCreateInput,
+      'ownerId' | 'url' | 'sizeBytes' | 'blobSha256'
+    > & {
+      mime: string;
+    },
+  ): Promise<MediaAsset> {
+    const sha256 = sha256Of(bytes);
+    await this.writeBlobFile(sha256, bytes);
     const asset = await this.prisma.$transaction(async (tx) => {
       await tx.mediaBlob.upsert({
         where: { sha256 },
-        create: { sha256, mime: sniffed.mime, sizeBytes: BigInt(file.size) },
+        create: { sha256, mime: data.mime, sizeBytes: BigInt(bytes.length) },
         update: {},
       });
       const created = await tx.mediaAsset.create({
         data: {
+          ...data,
           ownerId,
           url: '', // complété après obtention de l'id
-          mime: sniffed.mime,
-          sizeBytes: BigInt(file.size),
-          kind: sniffed.kind,
+          sizeBytes: BigInt(bytes.length),
           blobSha256: sha256,
-          name: uploadName(file.originalname),
-          ...(dimensions ?? {}),
-          instance: options.instance ?? false,
-          sourceSha256: sourceSha256Of(fields),
-          ...meta,
         },
       });
       return tx.mediaAsset.update({
@@ -228,8 +264,8 @@ export class MediaService implements OnModuleInit {
       });
     });
     // A clean-up may have let go of that file between the write and the rows.
-    await this.writeBlobFile(sha256, file.buffer);
-    return { mediaId: asset.id, url: asset.url, kind: sniffed.kind };
+    await this.writeBlobFile(sha256, bytes);
+    return asset;
   }
 
   /** Writes a blob's file unless it is there already; a partial write never takes its name. */
@@ -254,7 +290,7 @@ export class MediaService implements OnModuleInit {
   async openStream(
     id: string,
     span?: { start: number; end: number },
-  ): Promise<{ stream: ReadStream; mime: string; sizeBytes: number }> {
+  ): Promise<{ stream: ReadStream; mime: string; kind: MediaKind; sizeBytes: number }> {
     const asset = await this.prisma.mediaAsset.findUnique({ where: { id } });
     if (!asset) {
       throw new NotFoundException('media.not_found');
@@ -263,6 +299,7 @@ export class MediaService implements OnModuleInit {
     return {
       stream,
       mime: asset.mime,
+      kind: asset.kind,
       sizeBytes: Number(asset.sizeBytes),
     };
   }
@@ -345,10 +382,12 @@ export class MediaService implements OnModuleInit {
   async reuse(
     ownerId: string,
     id: string,
-  ): Promise<{ mediaId: string; url: string; kind: MediaKind }> {
+  ): Promise<{ mediaId: string; url: string; kind: LibraryKind }> {
     const source = await this.prisma.mediaAsset.findFirst({
       where: {
         id,
+        // A theme's icon or font is the theme's: never put to a quiz's use.
+        kind: { in: ['image', 'audio', 'video'] },
         OR: [
           { ownerId, instance: false },
           { instance: true, blobSha256: { not: null } },
@@ -356,9 +395,11 @@ export class MediaService implements OnModuleInit {
       },
     });
     if (!source) throw new NotFoundException('media.not_found');
-    if (!source.blobSha256) return { mediaId: source.id, url: source.url, kind: source.kind };
+    const kind = source.kind as LibraryKind;
+    if (!source.blobSha256) return { mediaId: source.id, url: source.url, kind };
     // A global media carries no alt text: it depends on the use, and on the quiz's language.
-    return this.copyOf(source, ownerId, { instance: false, keepAlt: !source.instance });
+    const copy = await this.copyOf(source, ownerId, { instance: false, keepAlt: !source.instance });
+    return { ...copy, kind };
   }
 
   /**
