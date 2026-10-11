@@ -230,7 +230,9 @@
     "font_invalid": "Bu dosya eksiksiz bir WOFF2 yazı tipi değil.",
     "font_too_large": "Yazı tipi çok büyük (en fazla {{maxMb}} MB).",
     "unknown": "Bu örnek paketteki temayı tanımıyor: quiz varsayılan temayı alır.",
-    "fallback": "Paketteki temanın bir dosyası kullanılamadı: quiz, temanın türediği temayı alır."
+    "fallback": "Paketteki temanın bir dosyası kullanılamadı: quiz, temanın türediği temayı alır.",
+    "unknown_icon": "Bu simge simge bankasında yok.",
+    "unknown_picture": "Bu görsel QuizDock ile gelenlerden biri değil."
   },
   "background": {
     "image_and_gradient": "Arka plan bir resim ya da bir gradyandır, ikisi birden değil.",

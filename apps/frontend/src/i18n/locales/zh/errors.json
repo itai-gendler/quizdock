@@ -229,7 +229,9 @@
     "font_invalid": "此文件不是完整的 WOFF2 字体。",
     "font_too_large": "字体过大（最大 {{maxMb}} MB）。",
     "unknown": "此实例不认识该包中的主题：测验将使用默认主题。",
-    "fallback": "无法使用该包中主题的某个文件：测验将使用其来源主题。"
+    "fallback": "无法使用该包中主题的某个文件：测验将使用其来源主题。",
+    "unknown_icon": "此图标不在图标库中。",
+    "unknown_picture": "此图片不是 QuizDock 自带的图片。"
   },
   "background": {
     "image_and_gradient": "背景是图片或渐变，不能两者兼有。",

@@ -2,6 +2,13 @@ import { z } from 'zod';
 import { gradientSchema } from './background';
 import { OPTION_COLORS } from './question-content';
 import { HEX_COLOR } from './theme-color';
+import {
+  bankIconUrl,
+  isBankIcon,
+  isBuiltinAsset,
+  isShippedPicture,
+  shippedPictureUrl,
+} from './theme-icons';
 
 /**
  * Quiz themes (THEMING §1–2): the look of a quiz on the live screens. A theme is a
@@ -58,6 +65,7 @@ export const BUILTIN_THEMES = [
   'festive',
   'night',
   'high-contrast',
+  'high-contrast-light',
   'halloween',
   'christmas',
   'new-year',
@@ -82,7 +90,8 @@ export function backgroundSchema<R extends z.ZodType<string>>(ref: R) {
     .object({
       color: hex,
       textTone: z.enum(['light', 'dark']),
-      image: ref.optional(),
+      /** A file of the theme's (`ref`), or a shipped picture (`shipped:<file>`). */
+      image: ref.or(shippedPictureRef).optional(),
       mode: z.enum(BACKGROUND_MODES).optional(),
       gradient: gradientSchema.optional(),
       /** `watermark`: % of the screen's short side; `pattern`: tile, same unit. */
@@ -98,9 +107,16 @@ export function backgroundSchema<R extends z.ZodType<string>>(ref: R) {
     .refine((b) => !b.image || b.mode, { message: 'background.mode_required', path: ['mode'] });
 }
 
+/** An icon of the bank, `bank:<group>/<name>` (THEMING §2.2). */
+export const bankIconRef = z.string().refine(isBankIcon, { message: 'theme.unknown_icon' });
+/** A picture shipped with QuizDock, `shipped:<file>`. */
+export const shippedPictureRef = z
+  .string()
+  .refine(isShippedPicture, { message: 'theme.unknown_picture' });
+
 /** A slot: its colour, and its icon (null: the slot's shipped glyph). */
 export function slotSchema<R extends z.ZodType<string>>(ref: R) {
-  return z.object({ color: hex, icon: ref.nullable() });
+  return z.object({ color: hex, icon: ref.or(bankIconRef).nullable() });
 }
 
 export function fontSchema<R extends z.ZodType<string>>(ref: R) {
@@ -173,6 +189,8 @@ export function mapThemeRefs(
   overrides: ThemeOverrides,
   map: (ref: string) => string | undefined,
 ): ThemeOverrides {
+  const own = map;
+  map = (ref) => (isBuiltinAsset(ref) ? ref : own(ref));
   const out: ThemeOverrides = { ...overrides };
   if (overrides.background) {
     const { image, ...rest } = overrides.background;
@@ -206,8 +224,10 @@ export function mapThemeRefs(
 /** Every media id a theme's overrides point to: its icons, font, sounds and picture. */
 export function themeMediaIds(overrides: ThemeOverrides): string[] {
   const ids = new Set<string>();
-  if (overrides.background?.image) ids.add(overrides.background.image);
-  for (const slot of Object.values(overrides.slots ?? {})) if (slot?.icon) ids.add(slot.icon);
+  const image = overrides.background?.image;
+  if (image && !isBuiltinAsset(image)) ids.add(image);
+  for (const slot of Object.values(overrides.slots ?? {}))
+    if (slot?.icon && !isBuiltinAsset(slot.icon)) ids.add(slot.icon);
   if (overrides.font && 'file' in overrides.font) ids.add(overrides.font.file);
   for (const id of Object.values(overrides.sounds ?? {})) if (id) ids.add(id);
   return [...ids];
@@ -219,7 +239,14 @@ export function themeMediaIds(overrides: ThemeOverrides): string[] {
  * the option's shape, the shipped font, the synthesised effect.
  */
 export function themeWithUrls(values: ThemeValues, urls: Record<string, string>): ThemeValues {
-  const url = (id: string | null | undefined) => (id ? urls[id] : undefined);
+  const url = (id: string | null | undefined) =>
+    !id
+      ? undefined
+      : isBankIcon(id)
+        ? bankIconUrl(id)
+        : isShippedPicture(id)
+          ? shippedPictureUrl(id)
+          : urls[id];
   const { image, ...background } = values.background;
   const bgImage = url(image);
   const font = values.font;

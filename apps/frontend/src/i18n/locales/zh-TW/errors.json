@@ -229,7 +229,9 @@
     "font_invalid": "此檔案不是完整的 WOFF2 字型。",
     "font_too_large": "字型過大（最大 {{maxMb}} MB）。",
     "unknown": "此執行個體不認得該套件中的主題：測驗將使用預設主題。",
-    "fallback": "無法使用該套件中主題的某個檔案：測驗將使用其來源主題。"
+    "fallback": "無法使用該套件中主題的某個檔案：測驗將使用其來源主題。",
+    "unknown_icon": "此圖示不在圖示庫中。",
+    "unknown_picture": "此圖片不是 QuizDock 內建的圖片。"
   },
   "background": {
     "image_and_gradient": "背景是圖片或漸層，不能兩者兼有。",

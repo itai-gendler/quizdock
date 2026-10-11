@@ -232,7 +232,9 @@
     "font_invalid": "Ten plik nie jest kompletną czcionką WOFF2.",
     "font_too_large": "Czcionka jest za duża (maksymalnie {{maxMb}} MB).",
     "unknown": "Ta instancja nie zna motywu z pakietu: quiz otrzymuje motyw domyślny.",
-    "fallback": "Nie udało się użyć pliku motywu z pakietu: quiz otrzymuje motyw, z którego on pochodzi."
+    "fallback": "Nie udało się użyć pliku motywu z pakietu: quiz otrzymuje motyw, z którego on pochodzi.",
+    "unknown_icon": "Tej ikony nie ma w banku ikon.",
+    "unknown_picture": "Ten obraz nie należy do dostarczonych z QuizDock."
   },
   "background": {
     "image_and_gradient": "Tło to obraz albo gradient, nie oba naraz.",

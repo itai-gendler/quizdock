@@ -230,7 +230,9 @@
     "font_invalid": "Diese Datei ist keine vollständige WOFF2-Schrift.",
     "font_too_large": "Schrift zu groß (höchstens {{maxMb}} MB).",
     "unknown": "Diese Instanz kennt das Theme des Bundles nicht: Das Quiz erhält das Standard-Theme.",
-    "fallback": "Eine Datei des Themes im Bundle war nicht verwendbar: Das Quiz erhält das Theme, von dem es abstammt."
+    "fallback": "Eine Datei des Themes im Bundle war nicht verwendbar: Das Quiz erhält das Theme, von dem es abstammt.",
+    "unknown_icon": "Dieses Symbol ist nicht in der Symbolbank.",
+    "unknown_picture": "Dieses Bild gehört nicht zu den mit QuizDock gelieferten."
   },
   "background": {
     "image_and_gradient": "Ein Hintergrund ist ein Bild oder ein Verlauf, nicht beides.",

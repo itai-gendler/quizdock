@@ -10,6 +10,7 @@ import {
   themeAccessibility,
   themeMediaIds,
   themeOverridesInput,
+  themeWithUrls,
   type ThemeValues,
 } from '../src';
 
@@ -110,11 +111,32 @@ describe('theme accessibility', () => {
     ).toContain('text_background_contrast');
   });
 
-  it('makes High contrast the accessible theme; the others choose their look', () => {
+  it('makes the two High contrast themes the accessible ones; the others choose their look', () => {
     for (const key of BUILTIN_THEMES)
       expect(themeAccessibility(BUILTIN_THEME_VALUES[key]).status, key).toBe(
-        key === 'high-contrast' ? 'compliant' : 'non_compliant',
+        key.startsWith('high-contrast') ? 'compliant' : 'non_compliant',
       );
+  });
+
+  it('takes icons of the bank and shipped pictures, which are not files of the theme', () => {
+    const o = themeOverridesInput.parse({
+      slots: { red: { color: '#ff0000', icon: 'bank:halloween/ghost' } },
+      background: {
+        color: '#000000',
+        textTone: 'light',
+        image: 'shipped:halloween.svg',
+        mode: 'cover',
+      },
+    });
+    expect(themeMediaIds(o)).toEqual([]);
+    expect(
+      themeOverridesInput.safeParse({
+        slots: { red: { color: '#ff0000', icon: 'bank:halloween/nope' } },
+      }).success,
+    ).toBe(false);
+    const live = themeWithUrls(mergeTheme(BUILTIN_THEME_VALUES.classic, o), {});
+    expect(live.slots.red.icon).toBe('/icons/bank/halloween/ghost.svg');
+    expect(live.background.image).toBe('/themes/halloween.svg');
   });
 
   it('flags text that cannot be read as non-compliant', () => {

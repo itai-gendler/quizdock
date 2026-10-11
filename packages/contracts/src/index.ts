@@ -893,3 +893,4 @@ export * from './theme';
 export * from './theme-accessibility';
 export * from './theme-builtin';
 export * from './theme-color';
+export * from './theme-icons';

@@ -231,7 +231,9 @@
     "font_invalid": "Questo file non è un font WOFF2 completo.",
     "font_too_large": "Font troppo grande (al massimo {{maxMb}} MB).",
     "unknown": "Questa istanza non conosce il tema del pacchetto: il quiz prende il tema predefinito.",
-    "fallback": "Non è stato possibile usare un file del tema del pacchetto: il quiz prende il tema da cui deriva."
+    "fallback": "Non è stato possibile usare un file del tema del pacchetto: il quiz prende il tema da cui deriva.",
+    "unknown_icon": "Questa icona non è nella raccolta di icone.",
+    "unknown_picture": "Questa immagine non è tra quelle fornite con QuizDock."
   },
   "background": {
     "image_and_gradient": "Uno sfondo è un’immagine o una sfumatura, non entrambe.",

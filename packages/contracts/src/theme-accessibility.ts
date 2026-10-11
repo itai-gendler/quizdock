@@ -29,6 +29,8 @@ export const ACCESSIBILITY_CHECKS = [
   'slot_text_contrast',
   /** The prompt's text reaches 4.5:1 on the background as rendered. */
   'text_background_contrast',
+  /** An answer stands out from the background: 3:1 (WCAG 1.4.11). */
+  'slot_background_contrast',
   /** The accent stands out from the background: 3:1. */
   'accent_background_contrast',
   /** Two slots look different. */
@@ -131,8 +133,10 @@ export function themeAccessibility(
     passed: worstContrast(text, extremes) >= TEXT_CONTRAST,
   });
 
-  // No check of the slots against the background: on a theme's background every
-  // answer has its two-tone edge (`BACKDROP_EDGE`), which stands out from any colour.
+  push(
+    'slot_background_contrast',
+    failing((s) => worstContrast(s.rgb, extremes) >= GRAPHIC_CONTRAST),
+  );
 
   checks.push({
     code: 'accent_background_contrast',

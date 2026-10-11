@@ -12,6 +12,7 @@ import {
   BUILTIN_THEME_VALUES,
   type BuiltinTheme,
   DEFAULT_THEME,
+  isBuiltinAsset,
   type ThemeAccessibility,
   type ThemeOverrides,
   type ThemeValues,
@@ -249,9 +250,11 @@ export class ThemesService {
    */
   private async checkMedia(user: User, overrides: ThemeOverrides, kept: string[]): Promise<void> {
     const wanted = new Map<string, MediaKind>();
-    if (overrides.background?.image) wanted.set(overrides.background.image, 'image');
+    // An icon of the bank or a shipped picture is no file of the theme's.
+    const own = (ref: string | null | undefined): ref is string => !!ref && !isBuiltinAsset(ref);
+    if (own(overrides.background?.image)) wanted.set(overrides.background.image, 'image');
     for (const slot of Object.values(overrides.slots ?? {}))
-      if (slot?.icon) wanted.set(slot.icon, 'icon');
+      if (own(slot?.icon)) wanted.set(slot.icon, 'icon');
     if (overrides.font && 'file' in overrides.font) wanted.set(overrides.font.file, 'font');
     for (const id of Object.values(overrides.sounds ?? {})) if (id) wanted.set(id, 'audio');
     if (!wanted.size) return;

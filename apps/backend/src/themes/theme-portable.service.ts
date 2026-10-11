@@ -8,6 +8,7 @@ import {
 import type { Prisma } from '@prisma/client';
 import {
   BUILTIN_THEME_VALUES,
+  isBuiltinAsset,
   type ThemeOverrides,
   mapThemeRefs,
   mergeTheme,
@@ -344,9 +345,10 @@ export class ThemePortableService {
 /** Each file a theme block points to, with the place it fills. */
 function placesOf(overrides: ThemeOverrides) {
   const places = new Map<string, Place>();
-  if (overrides.background?.image) places.set(overrides.background.image, 'image');
+  const own = (ref: string | null | undefined): ref is string => !!ref && !isBuiltinAsset(ref);
+  if (own(overrides.background?.image)) places.set(overrides.background.image, 'image');
   for (const slot of Object.values(overrides.slots ?? {}))
-    if (slot?.icon) places.set(slot.icon, 'icon');
+    if (own(slot?.icon)) places.set(slot.icon, 'icon');
   if (overrides.font && 'file' in overrides.font) places.set(overrides.font.file, 'font');
   for (const path of Object.values(overrides.sounds ?? {})) if (path) places.set(path, 'audio');
   return places;
