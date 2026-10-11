@@ -16,6 +16,7 @@
     "empty": "Nessuna sessione archiviata per questo quiz. Alla fine di una sessione, spunta «Archivia i risultati di questo quiz» per ritrovarla qui.",
     "capture": "Registrazione",
     "inRoom_one": "Sala · {{count}} quiz",
+    "inRoom_many": "Sala · {{count}} quiz",
     "inRoom_other": "Sala · {{count}} quiz",
     "pin": "PIN {{pin}}",
     "thDate": "Data",
@@ -57,6 +58,7 @@
     },
     "room": {
       "intro_one": "Questa sessione è stata giocata in una sala: {{count}} quiz conservato, uno dopo l’altro, con i partecipanti entrati una sola volta.",
+      "intro_many": "Questa sessione è stata giocata in una sala: {{count}} quiz conservati, uno dopo l’altro, con i partecipanti entrati una sola volta.",
       "intro_other": "Questa sessione è stata giocata in una sala: {{count}} quiz conservati, uno dopo l’altro, con i partecipanti entrati una sola volta.",
       "thisSession": "questa sessione",
       "standingsTitle": "Classifica della sala",
@@ -69,8 +71,10 @@
     },
     "notPlayed": "Non giocata",
     "statQuestionsPlayed_one": "{{count}} domanda giocata su {{total}}",
+    "statQuestionsPlayed_many": "{{count}} domande giocate su {{total}}",
     "statQuestionsPlayed_other": "{{count}} domande giocate su {{total}}",
     "statSuccessOf_one": "{{count}} risposta corretta su {{total}}",
+    "statSuccessOf_many": "{{count}} risposte corrette su {{total}}",
     "statSuccessOf_other": "{{count}} risposte corrette su {{total}}"
   },
   "player": {

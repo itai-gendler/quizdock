@@ -19,35 +19,43 @@ function flatKeys(value: unknown, prefix = ''): string[] {
   return Object.entries(value).flatMap(([k, v]) => flatKeys(v, prefix ? `${prefix}.${k}` : k));
 }
 
+const PLURAL = /_(zero|one|two|few|many|other)$/;
+
 /**
- * The keys a language needs beyond `en`'s: the plural forms English lacks,
- * beside each `X_other` — cardinal (`_few`, `_many` in Russian or Polish) and
- * ordinal (`_ordinal_many`: the 6th in Hindi, the 8th in Italian). A missing
- * form falls back to English ("6th").
+ * The keys a language must carry, and those it may carry, for one namespace.
+ * A plural group (`X_one`, `X_other`…) needs the forms of the language's own
+ * grammar — cardinal (`_few`, `_many` in Russian or Polish, `_many` for millions
+ * in French, Spanish or Italian) or ordinal (`_ordinal_many`: the 6th in Hindi,
+ * the 8th in Italian) — as Weblate writes them; it may keep English's others
+ * (`_one` in Chinese), which i18next never picks. Anything else is `en`'s key.
  */
-function pluralExtras(enKeys: string[], lang: string): string[] {
+function expectedKeys(
+  enKeys: string[],
+  lang: string,
+): { required: Set<string>; allowed: Set<string> } {
   const cardinal = new Intl.PluralRules(lang).resolvedOptions().pluralCategories;
   const ordinal = new Intl.PluralRules(lang, { type: 'ordinal' }).resolvedOptions()
     .pluralCategories;
-  // French, Spanish or Italian also have a cardinal `many`, for millions only:
-  // their `_other` covers it, as in every interface string.
-  const extraCardinal = cardinal.includes('few')
-    ? cardinal.filter((f) => f === 'few' || f === 'many')
-    : [];
-  const enKeySet = new Set(enKeys);
-  return enKeys
-    .filter((k) => k.endsWith('_other'))
-    .flatMap((k) => {
-      const stem = k.slice(0, -'other'.length);
-      const forms = stem.endsWith('_ordinal_') ? ordinal : extraCardinal;
-      return forms.map((form) => `${stem}${form}`).filter((key) => !enKeySet.has(key));
-    });
+  const required = new Set<string>();
+  const allowed = new Set<string>(enKeys);
+  for (const key of enKeys) {
+    if (!PLURAL.test(key)) {
+      required.add(key);
+      continue;
+    }
+    const stem = key.replace(PLURAL, '_');
+    for (const form of stem.endsWith('_ordinal_') ? ordinal : cardinal) {
+      required.add(`${stem}${form}`);
+      allowed.add(`${stem}${form}`);
+    }
+  }
+  return { required, allowed };
 }
 
 /**
- * Every language must carry exactly the keys of `en`, namespace by namespace,
- * plus the plural forms its grammar needs: a missing key silently falls back to
- * English, an orphan one is dead weight.
+ * Every language must carry the keys of `en`, namespace by namespace, with the
+ * plural forms of its own grammar: a missing key silently falls back to English
+ * ("6th"), an orphan one is dead weight.
  */
 describe('locale key parity', () => {
   const reference = resources.en as Record<string, unknown>;
@@ -58,11 +66,10 @@ describe('locale key parity', () => {
       const translated = resources[lang] as Record<string, unknown>;
       const problems: string[] = [];
       for (const [ns, enDict] of Object.entries(reference)) {
-        const enFlat = flatKeys(enDict);
-        const enKeys = new Set([...enFlat, ...pluralExtras(enFlat, lang)]);
+        const { required, allowed } = expectedKeys(flatKeys(enDict), lang);
         const langKeys = new Set(flatKeys(translated[ns] ?? {}));
-        const missing = [...enKeys].filter((k) => !langKeys.has(k));
-        const extra = [...langKeys].filter((k) => !enKeys.has(k));
+        const missing = [...required].filter((k) => !langKeys.has(k));
+        const extra = [...langKeys].filter((k) => !allowed.has(k));
         if (missing.length) problems.push(`${ns}: missing ${missing.join(', ')}`);
         if (extra.length) problems.push(`${ns}: extra ${extra.join(', ')}`);
       }

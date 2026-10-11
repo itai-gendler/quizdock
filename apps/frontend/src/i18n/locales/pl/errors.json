@@ -127,7 +127,7 @@
       "not_allowed": "Ten typ pytania nie ma wariantów do wyboru.",
       "one_correct": "Zaznacz poprawną odpowiedź.",
       "some_correct": "Zaznacz co najmniej jedną poprawną odpowiedź.",
-      "too_few": "Dodaj co najmniej 2 odpowiedzi."
+      "not_enough": "Dodaj co najmniej 2 odpowiedzi."
     },
     "ordering": {
       "positions": "Każda odpowiedź potrzebuje własnego miejsca we właściwej kolejności."

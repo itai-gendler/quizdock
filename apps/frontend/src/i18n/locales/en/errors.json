@@ -125,7 +125,7 @@
       "not_allowed": "This type of question has no answers to pick from.",
       "one_correct": "Tick the right answer.",
       "some_correct": "Tick at least one right answer.",
-      "too_few": "Add at least 2 answers."
+      "not_enough": "Add at least 2 answers."
     },
     "ordering": {
       "positions": "Each answer needs its own place in the right order."

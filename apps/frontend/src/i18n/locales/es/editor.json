@@ -46,6 +46,7 @@
     },
     "sharingLegend": "Idioma y uso compartido",
     "sharingSummary_one": "{{license}} · {{count}} etiqueta",
+    "sharingSummary_many": "{{license}} · {{count}} etiquetas",
     "sharingSummary_other": "{{license}} · {{count}} etiquetas",
     "noLicense": "Sin licencia",
     "languageLabel": "Idioma",
@@ -86,11 +87,13 @@
     "empty": "Aún no hay opiniones.",
     "starsAriaLabel": "{{value}} de 5",
     "seeAll_one": "Ver la opinión",
+    "seeAll_many": "Ver las {{count}} opiniones",
     "seeAll_other": "Ver las {{count}} opiniones",
     "backToEditor": "Volver al editor",
     "loadError": "No se pudieron cargar las opiniones.",
     "noneForFilter": "Ninguna opinión con esta nota.",
     "count_one": "{{count}} opinión",
+    "count_many": "{{count}} opiniones",
     "count_other": "{{count}} opiniones"
   },
   "questions": {
@@ -101,6 +104,7 @@
     "deleteQuestion": "Eliminar la pregunta",
     "dragHandle": "Arrastrar para reordenar",
     "itemsCount_one": "{{count}} elemento",
+    "itemsCount_many": "{{count}} elementos",
     "itemsCount_other": "{{count}} elementos",
     "formTitle": "Pregunta",
     "empty": "No hay preguntas. ¡Añade una!",
@@ -465,6 +469,7 @@
         "audio": "Mis medios · sonidos"
       },
       "usedIn_one": "Usado en {{count}} quiz",
+      "usedIn_many": "Usado en {{count}} quizzes",
       "usedIn_other": "Usado en {{count}} quizzes",
       "openKind": {
         "image": "Mis imágenes",
@@ -517,8 +522,10 @@
   },
   "sessions": {
     "running_one": "{{count}} sala lo está jugando",
+    "running_many": "{{count}} salas lo están jugando",
     "running_other": "{{count}} salas lo están jugando",
     "players_one": "{{count}} jugador",
+    "players_many": "{{count}} jugadores",
     "players_other": "{{count}} jugadores",
     "liveEditsHint": "Los cambios de forma (fondos, contraste, explicaciones, diapositivas) llegan a las salas que lo juegan en su siguiente paso; preguntas y respuestas quedan como se lanzaron."
   },
@@ -539,6 +546,7 @@
       "noTags": "Sin etiquetas",
       "size": "Tamaño: {{size}} de {{max}}",
       "uncredited_one": "{{count}} medio sin crédito",
+      "uncredited_many": "{{count}} medios sin crédito",
       "uncredited_other": "{{count}} medios sin crédito",
       "credited": "Todos los medios tienen crédito"
     },
@@ -563,6 +571,7 @@
     "props": {
       "orderShown": "Listadas en el orden correcto.",
       "seconds_one": "{{count}} segundo",
+      "seconds_many": "{{count}} segundos",
       "seconds_other": "{{count}} segundos",
       "muted": "silenciado"
     },
@@ -570,6 +579,7 @@
   },
   "publishChecklist": {
     "title_one": "1 paso por terminar antes de publicar",
+    "title_many": "{{count}} pasos por terminar antes de publicar",
     "title_other": "{{count}} pasos por terminar antes de publicar",
     "description": "Un quiz publicado puede presentarse en cualquier momento, así que cada pregunta debe estar completa. Un borrador guarda todo lo que guardes.",
     "untitled": "Pregunta sin texto",
@@ -577,15 +587,19 @@
   },
   "formIssues": {
     "errors_one": "1 error",
+    "errors_many": "{{count}} errores",
     "errors_other": "{{count}} errores",
     "toFinish_one": "1 cosa por terminar",
+    "toFinish_many": "{{count}} cosas por terminar",
     "toFinish_other": "{{count}} cosas por terminar"
   },
   "importReport": {
     "imported_one": "1 pregunta importada de Kahoot.",
+    "imported_many": "{{count}} preguntas importadas de Kahoot.",
     "imported_other": "{{count}} preguntas importadas de Kahoot.",
     "media": "Las imágenes y los sonidos no se traen.",
     "incomplete_one": "1 pregunta por terminar antes de publicar: está señalada en la lista.",
+    "incomplete_many": "{{count}} preguntas por terminar antes de publicar: están señaladas en la lista.",
     "incomplete_other": "{{count}} preguntas por terminar antes de publicar: están señaladas en la lista.",
     "skipped": "Fila {{row}} descartada: {{reason}}",
     "reasons": {

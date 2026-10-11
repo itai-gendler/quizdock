@@ -125,7 +125,7 @@
       "not_allowed": "Bu soru türünde seçilebilecek yanıtlar yoktur.",
       "one_correct": "Doğru yanıtı işaretleyin.",
       "some_correct": "En az bir doğru yanıtı işaretleyin.",
-      "too_few": "En az 2 yanıt ekleyin."
+      "not_enough": "En az 2 yanıt ekleyin."
     },
     "ordering": {
       "positions": "Her yanıtın doğru sıralamada kendine ait bir yeri olmalıdır."

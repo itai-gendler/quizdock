@@ -16,6 +16,7 @@
     "empty": "Aucune session archivée pour ce quiz. À la fin d’une session, cochez « Archiver les résultats de ce quiz » pour la retrouver ici.",
     "capture": "Capture",
     "inRoom_one": "Salon · {{count}} quiz",
+    "inRoom_many": "Salon · {{count}} quiz",
     "inRoom_other": "Salon · {{count}} quiz",
     "pin": "PIN {{pin}}",
     "thDate": "Date",
@@ -57,6 +58,7 @@
     },
     "room": {
       "intro_one": "Cette session a été jouée dans un salon : {{count}} quiz conservé, l’un après l’autre, les participants n’entrant qu’une fois.",
+      "intro_many": "Cette session a été jouée dans un salon : {{count}} quiz conservés, l’un après l’autre, les participants n’entrant qu’une fois.",
       "intro_other": "Cette session a été jouée dans un salon : {{count}} quiz conservés, l’un après l’autre, les participants n’entrant qu’une fois.",
       "thisSession": "cette session",
       "standingsTitle": "Classement du salon",
@@ -69,8 +71,10 @@
     },
     "notPlayed": "Non jouée",
     "statQuestionsPlayed_one": "{{count}} question jouée sur {{total}}",
+    "statQuestionsPlayed_many": "{{count}} questions jouées sur {{total}}",
     "statQuestionsPlayed_other": "{{count}} questions jouées sur {{total}}",
     "statSuccessOf_one": "{{count}} bonne réponse sur {{total}}",
+    "statSuccessOf_many": "{{count}} bonnes réponses sur {{total}}",
     "statSuccessOf_other": "{{count}} bonnes réponses sur {{total}}"
   },
   "player": {
