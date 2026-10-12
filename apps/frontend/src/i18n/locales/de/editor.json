@@ -527,7 +527,7 @@
   "publication": {
     "open": "Zur Veröffentlichung exportieren",
     "title": "Zur Veröffentlichung exportieren",
-    "description": "Prüft das Quiz anhand dessen, was der Community-Katalog annimmt, und lädt dann die Datei herunter, die Sie in Ihr quizdock-quizzes-Repository hochladen.",
+    "description": "Prüft das Quiz anhand dessen, was der Community-Katalog annimmt, und lädt dann die Datei herunter, die Sie in Ihr quizdock-extensions-Repository hochladen.",
     "download": "Herunterladen",
     "checking": "Quiz wird geprüft…",
     "failed": "Der Export konnte nicht vorbereitet werden.",

@@ -541,7 +541,7 @@
   "publication": {
     "open": "Eksportuj do publikacji",
     "title": "Eksport do publikacji",
-    "description": "Sprawdza quiz pod kątem tego, co przyjmuje katalog społeczności, a potem pobiera plik do przesłania do twojego repozytorium quizdock-quizzes.",
+    "description": "Sprawdza quiz pod kątem tego, co przyjmuje katalog społeczności, a potem pobiera plik do przesłania do twojego repozytorium quizdock-extensions.",
     "download": "Pobierz",
     "checking": "Sprawdzanie quizu…",
     "failed": "Nie udało się przygotować eksportu.",

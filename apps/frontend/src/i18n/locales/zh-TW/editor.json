@@ -527,7 +527,7 @@
   "publication": {
     "open": "匯出以發布",
     "title": "匯出以發布",
-    "description": "依社群目錄的要求檢查測驗，然後下載要上傳到你的 quizdock-quizzes 儲存庫的檔案。",
+    "description": "依社群目錄的要求檢查測驗，然後下載要上傳到你的 quizdock-extensions 儲存庫的檔案。",
     "download": "下載",
     "checking": "正在檢查測驗…",
     "failed": "無法準備匯出。",

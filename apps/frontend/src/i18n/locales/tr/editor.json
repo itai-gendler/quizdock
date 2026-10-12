@@ -527,7 +527,7 @@
   "publication": {
     "open": "Yayınlanmak üzere dışa aktar",
     "title": "Yayınlanmak üzere dışa aktar",
-    "description": "Quizi topluluk kataloğunun koşullarına göre denetler, ardından dosyayı quizdock-quizzes deponuza yükleyebilmeniz için indirir.",
+    "description": "Quizi topluluk kataloğunun koşullarına göre denetler, ardından dosyayı quizdock-extensions deponuza yükleyebilmeniz için indirir.",
     "download": "İndir",
     "checking": "Quiz kontrol ediliyor…",
     "failed": "Dışa aktarma hazırlanamadı.",

@@ -527,7 +527,7 @@
   "publication": {
     "open": "导出以发布",
     "title": "导出以发布",
-    "description": "按社区目录的要求检查测验，然后下载要上传到你的 quizdock-quizzes 仓库的文件。",
+    "description": "按社区目录的要求检查测验，然后下载要上传到你的 quizdock-extensions 仓库的文件。",
     "download": "下载",
     "checking": "正在检查测验…",
     "failed": "无法准备导出。",

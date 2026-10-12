@@ -527,7 +527,7 @@
   "publication": {
     "open": "Export for publication",
     "title": "Export for publication",
-    "description": "Checks the quiz against what the community store accepts, then downloads the file to upload to your quizdock-quizzes repository.",
+    "description": "Checks the quiz against what the community store accepts, then downloads the file to upload to your quizdock-extensions repository.",
     "download": "Download",
     "checking": "Checking the quiz…",
     "failed": "Could not prepare the export.",

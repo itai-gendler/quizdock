@@ -3,7 +3,7 @@
 > The plan for the community catalogue of quiz templates ([#21](https://github.com/quizdock/quiz-dock/issues/21)):
 > the model, the decisions taken, what is delivered, and the ordered list of what remains before the store opens.
 > How the store works inside (formats, CI, publication tool) is specified in
-> [quiz-store's SPECIFICATION.md](https://github.com/quizdock/quiz-store/blob/main/SPECIFICATION.md); this document
+> [quizdock-store's SPECIFICATION.md](https://github.com/quizdock/quizdock-store/blob/main/SPECIFICATION.md); this document
 > keeps the QuizDock side and the road to opening.
 
 Status: **in preparation.** The two store repositories exist and publish, nothing points users to them yet.
@@ -16,10 +16,10 @@ Status: **in preparation.** The two store repositories exist and publish, nothin
 - **The store is an optional satellite.** It depends on QuizDock, never the other way around. An instance without it,
   offline included (#31), loses nothing: the internal template catalogue (#39) stays the main way to share.
 - **Authors host their own quizzes**, as in Obsidian community plugins or Homebrew taps. Each author has one
-  repository created from the template [`quizdock/quizdock-quizzes`](https://github.com/quizdock/quizdock-quizzes)
+  repository created from the template [`quizdock/quizdock-extensions`](https://github.com/quizdock/quizdock-extensions)
   and keeps that name. It holds as many quizzes as they like, **one folder per quiz** (an unzipped *Export for
   publication*). The release of that repository builds the zips and an `index.json`.
-- **The store is a registry of sources**: [`quizdock/quiz-store`](https://github.com/quizdock/quiz-store) lists
+- **The store is a registry of sources**: [`quizdock/quizdock-store`](https://github.com/quizdock/quizdock-store) lists
   index URLs. A maintainer reviews each source once, from a registration form; reports and removal are the
   safeguard afterwards.
 - **Identity**: `<forge host>/<vendor>/<slug>` (`github.com/alice/world-capitals`), built by the store from the
@@ -40,11 +40,12 @@ Status: **in preparation.** The two store repositories exist and publish, nothin
 | Quiz language: instance language by default, editable | #86 (closes #83) | On `dev` |
 | *Export for publication* (checks, slug confirmation, `PUBLICATION_MAX_MB`) | #87 | On `dev` |
 | A manager reads another host's quiz; failed saves say so | #90 (closes #82), tests #91 | On `dev` |
-| Store spec, guide, self-hosting guide, empty registry | quiz-store | Published |
-| Publication CLI and action (folders → reproducible zips + index, rolling release) | quiz-store #1–#3 | Published, tagged `v1.0.0` / `v1` |
-| Registration form (label `registration`) and review procedure | quiz-store #4 | Published |
-| Author template (folders, workflow at `@v1`) | quizdock-quizzes #1–#2 | Published, marked as template |
-| End-to-end test with real exports | `fchaussin/quizdock-quizzes-test` (private, kept) | Passed |
+| Store spec, guide, self-hosting guide, empty registry | quizdock-store | Published |
+| Publication CLI and action (folders → reproducible zips + index, rolling release) | quizdock-store #1–#3 | Published |
+| Registration form (label `registration`) and review procedure | quizdock-store #4 | Published |
+| Themes: `themes/` folders, `.quizdock-theme.zip`, `kind` and `themes` in `index.json`; repositories renamed `quizdock-store` and `quizdock-extensions` | quizdock-store, quizdock-extensions | Published |
+| Author template (folders, workflow at `@main`) | quizdock-extensions #1–#2 | Published, marked as template |
+| End-to-end test with real exports | `fchaussin/quizdock-extensions-test` (private, kept) | Passed |
 
 The end-to-end test checked: the first run starts by itself, `contents: write` is enough for the release, a real
 export publishes, the rebuilt zip weighs exactly what QuizDock exported, an unchanged quiz is not uploaded again, an
@@ -71,8 +72,8 @@ invalid quiz is annotated without blocking the others, and the zip from the rele
   emptying it closes the flow.
 - **A manager sees every quiz but changes none** (RG-14); whether other hosts may have a quiz stays the owner's call,
   by sharing it as a template (RG-17). No copy from the manager's read-only view.
-- **Versions of the action**: authors use `@v1`. A compatible fix is tagged `v1.0.x` and `v1` moves to it; a
-  breaking change is `v2`. Tags are set with the maintainer's agreement only.
+- **Versions of the action**: none until the store is stable; authors use `@main`. Then `0.x`, as every repository
+  of the project; tags are set with the maintainer's agreement only.
 - **Kept out of the README and Docker Hub**: no warning banners; upgrade notes live in the changelog, the release
   notes and the upgrade guide.
 
@@ -89,8 +90,8 @@ a release carries what is on `dev`.
 
 - [ ] Release `dev` into `main`: #80, #81, #84, #86, #87, #90, #91.
 - [ ] The release publishes `schema/quiz-bundle.v3.json` on `main`, at its tag.
-- [ ] quiz-store pins the schema at that tag instead of its copy, with a check that the two stay identical
-  (`publish-action/schema/SOURCE.md`); a `v1.0.x` of the action if anything changes.
+- [ ] quizdock-store pins the schema at that tag instead of its copy, with a check that the two stay identical
+  (`publish-action/schema/SOURCE.md`).
 
 ### 4.2 The store page in QuizDock
 
@@ -117,13 +118,13 @@ Only a real new account can tell (the maintainer runs them):
 - [ ] Whether two-factor authentication is required at once or after a grace period, for an account that pushes.
 - [ ] After sign-up, GitHub brings the user back to the page they came from.
 - [ ] Whether *Use this template* proposes the template's name or leaves it empty (the guide assumes the author
-  types `quizdock-quizzes`).
+  types `quizdock-extensions`).
 
-Each answer updates the guide (`CONTRIBUTING.md`) and the ticked list in quiz-store's specification.
+Each answer updates the guide (`CONTRIBUTING.md`) and the ticked list in quizdock-store's specification.
 
 ### 4.4 Opening
 
-- [ ] Remove "submissions are not open yet" from quiz-store's README and guide.
+- [ ] Remove "submissions are not open yet" from quizdock-store's README and guide.
 - [ ] Post the rewritten text of #21: the model, the contract between the repositories (the JSON Schema), the
   app-side list.
 - [ ] Seed the registry with the sample quizzes (CC BY), published from a repository of the project, so the

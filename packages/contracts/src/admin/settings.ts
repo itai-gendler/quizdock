@@ -566,7 +566,7 @@ export const SETTINGS = {
     defaultText: '_(disabled)_',
     applies: 'live',
     overridable: true,
-    example: 'https://raw.githubusercontent.com/quizdock/quiz-store/main/registry.json',
+    example: 'https://raw.githubusercontent.com/quizdock/quizdock-store/main/registry.json',
   }),
   QUIZ_STORE_HOSTS: define({
     key: 'QUIZ_STORE_HOSTS',

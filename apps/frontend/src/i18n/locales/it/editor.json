@@ -535,7 +535,7 @@
   "publication": {
     "open": "Esporta per la pubblicazione",
     "title": "Esporta per la pubblicazione",
-    "description": "Verifica il quiz rispetto a ciò che il catalogo della comunità accetta, poi scarica il file da caricare nel tuo repository quizdock-quizzes.",
+    "description": "Verifica il quiz rispetto a ciò che il catalogo della comunità accetta, poi scarica il file da caricare nel tuo repository quizdock-extensions.",
     "download": "Scarica",
     "checking": "Verifica del quiz…",
     "failed": "Impossibile preparare l’esportazione.",

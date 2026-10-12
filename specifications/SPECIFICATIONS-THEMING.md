@@ -62,20 +62,14 @@ screenshots; the live screens and their miniatures stay light.
 
 ## 6. Community store
 
-Themes join the store ([SPECIFICATIONS-STORE.md](./SPECIFICATIONS-STORE.md)) on its model:
-- **Same author repository**: a `themes/<slug>/` folder (an unzipped theme bundle) next to `quizzes/`. One
-  registration per author.
-- The author template `quizdock/quizdock-quizzes` is **renamed `quizdock/quizdock-extensions`**, since it no longer
-  holds only quizzes, and the registry `quizdock/quiz-store` is **renamed `quizdock/quizdock-store`** for the same
-  reason. Done before the store opens, while nobody depends on the names; the store docs, guide, STORE spec and the
-  `QUIZ_STORE_URL` examples follow (GitHub's redirects are not relied on for `raw.githubusercontent.com` links).
-- The release builds the theme zips too; `index.json` gains a `kind` (`quiz` / `theme`). The publication action
-  evolves compatibly under `@v1` (quiz-store side).
-- The store page in QuizDock gets a **Themes** tab; installing a theme copies it into the library (copy, never
-  reference; deduplicated as at import, docs/quiz-bundle.md). A quiz published with a full theme carries it.
-- **Licences**: a theme declares CC0, CC BY or CC BY-SA, like a quiz; an imported font declares its own, `OFL-1.1` or
-  one of the three CC licences, anything else refused by the store. Credits for icons, pictures and sounds are the
-  contributor's responsibility: a warning, never a refusal.
+Done on the store's side: the author template is `quizdock/quizdock-extensions` (a `themes/<slug>/`
+folder next to `quizzes/`), the registry `quizdock/quizdock-store`; the publication action builds the
+theme zips and lists them in `index.json` (`kind`, `themes`), checking the theme's licence (CC0, CC BY,
+CC BY-SA) and an imported font's (OFL or the same three), credits a warning.
+
+Still to do: a licence on a theme in the theme editor (until then it is set by hand in `theme.json`).
+The store page in QuizDock — a **Themes** tab, installing a theme as a copy into the library — waits with
+the store's integration into the app.
 
 ---
 

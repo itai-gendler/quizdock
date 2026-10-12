@@ -534,7 +534,7 @@
   "publication": {
     "open": "Exporter pour publication",
     "title": "Exporter pour publication",
-    "description": "Vérifie le quiz selon ce qu’accepte le catalogue communautaire, puis télécharge le fichier à déposer dans votre dépôt quizdock-quizzes.",
+    "description": "Vérifie le quiz selon ce qu’accepte le catalogue communautaire, puis télécharge le fichier à déposer dans votre dépôt quizdock-extensions.",
     "download": "Télécharger",
     "checking": "Vérification du quiz…",
     "failed": "Impossible de préparer l’export.",
