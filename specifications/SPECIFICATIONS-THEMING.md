@@ -31,8 +31,6 @@ and the accessible shipped themes are *High contrast* and *High contrast light*.
 Still to do for lot 1:
 - compare the icons by their silhouette (today: two slots fail only on the same file);
 - check the font's minimum size on the live screens;
-- the quiz editor's own step preview (inside the question form) in the quiz's theme;
-- the console's preview of a room sound hears the quiz theme's sample.
 
 ---
 
