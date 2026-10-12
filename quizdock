@@ -125,7 +125,7 @@ check_secrets() {
   done
   [ "$(mode)" = standalone ] && return 0 # its database is reached from inside the container only
   if [ "$(mode)" = full ] && [ -z "$(env_get KEYCLOAK_DB_USER)" ]; then
-    warn "Keycloak uses the database superuser (an install made before 0.13.2): a coming release of this script will give it its own role; nothing to do for now."
+    warn "Keycloak uses the database superuser (an install made before 0.13.2): \`$0 db:roles\` gives it a role of its own."
   fi
   if [ -n "$weak" ]; then
     warn "default or missing passwords in $ENV_FILE:$weak — set secrets of your own."
@@ -467,6 +467,85 @@ cmd_restore() {
   info "restored. Run \`$0 doctor\` to verify."
 }
 
+# Gives QuizDock (and, in full mode, Keycloak) a PostgreSQL role of its own on an
+# install made before 0.13.2, where both used the superuser: the role owns its
+# database and everything in it, and reaches nothing else. A backup is taken first;
+# .env is changed only once the database is moved, so a failure leaves the
+# instance as it was (on the superuser).
+cmd_db_roles() {
+  need_docker; need_init
+  [ "$(mode)" = standalone ] && die "standalone: its database is reached from inside its container only — nothing to do."
+  super="$(env_get POSTGRES_USER live)"; db="$(env_get POSTGRES_DB quizdock)"
+  app=""; kc=""
+  [ -z "$(env_get QUIZDOCK_DB_USER)" ] && app=quizdock
+  [ "$(mode)" = full ] && [ -z "$(env_get KEYCLOAK_DB_USER)" ] && kc=keycloak
+  [ -n "$app$kc" ] || { info "QuizDock$( [ "$(mode)" = full ] && printf ' and Keycloak') already have roles of their own: nothing to do."; return 0; }
+  # Installs made by `init` named their superuser `quizdock`: the role takes another name.
+  [ "$app" = "$super" ] && app=quizdock_app
+  [ "$kc" = "$super" ] && kc=keycloak_app
+  say "This gives a PostgreSQL role of its own to:"
+  [ -n "$app" ] && say "  QuizDock — role \`$app\`, owner of the \`$db\` database"
+  [ -n "$kc" ] && say "  Keycloak — role \`$kc\`, owner of the \`keycloak\` database"
+  say "The superuser \`$super\` stays, for administering PostgreSQL (backups)."
+  say "A backup is taken first; the app$( [ -n "$kc" ] && printf ' and Keycloak') stop for a moment."
+  confirm "Continue?"
+  cmd_backup
+  info "stopping the app$( [ -n "$kc" ] && printf ' and Keycloak')"
+  compose stop quizdock >/dev/null
+  [ -n "$kc" ] && compose stop keycloak >/dev/null
+  app_pass=""; kc_pass=""
+  if [ -n "$app" ]; then
+    app_pass="$(random_secret)"
+    info "moving $db to $app"
+    move_database "$super" "$db" "$app" "$app_pass" ||
+      { compose up -d >/dev/null; die "the database could not be moved: the instance runs as before, on the superuser (backup above)."; }
+  fi
+  if [ -n "$kc" ]; then
+    kc_pass="$(random_secret)"
+    info "moving keycloak to $kc"
+    move_database "$super" keycloak "$kc" "$kc_pass" ||
+      { compose up -d >/dev/null; die "Keycloak's database could not be moved: the instance runs as before, on the superuser (backup above)."; }
+  fi
+  {
+    say "# Own PostgreSQL roles, given by \`quizdock db:roles\` on $(date +%F)."
+    if [ -n "$app" ]; then say "QUIZDOCK_DB_USER=$app"; say "QUIZDOCK_DB_PASSWORD=$app_pass"; fi
+    if [ -n "$kc" ]; then say "KEYCLOAK_DB_USER=$kc"; say "KEYCLOAK_DB_PASSWORD=$kc_pass"; fi
+  } >>"$ENV_FILE"
+  chmod 600 "$ENV_FILE"
+  info "wrote the roles to $ENV_FILE; starting"
+  compose up -d >/dev/null
+  wait_healthy "http://localhost:$(http_port)/health" 120 || die "app not healthy — check \`$0 logs\`; to go back, remove the lines just added to $ENV_FILE and run \`$0 up\`."
+  admin doctor
+}
+
+# Creates (or re-keys) a login role and makes it the owner of a database and of every
+# object in its public schema, one by one: the bootstrap superuser cannot hand its
+# objects over with REASSIGN OWNED (it owns the system's too).
+move_database() { # move_database <superuser> <database> <role> <password>
+  compose exec -T postgres psql -q -U "$1" -d "$2" -v ON_ERROR_STOP=1 \
+    -v db="$2" -v role="$3" -v pass="$4" <<'SQL'
+SELECT format('CREATE ROLE %I LOGIN', :'role')
+  WHERE NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = :'role') \gexec
+ALTER ROLE :"role" LOGIN PASSWORD :'pass';
+ALTER DATABASE :"db" OWNER TO :"role";
+ALTER SCHEMA public OWNER TO :"role";
+SELECT format('ALTER TABLE %I.%I OWNER TO %I', n.nspname, c.relname, :'role')
+  FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace
+  WHERE n.nspname = 'public' AND c.relkind IN ('r', 'p', 'v', 'm', 'f') \gexec
+SELECT format('ALTER SEQUENCE %I.%I OWNER TO %I', n.nspname, c.relname, :'role')
+  FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace
+  WHERE n.nspname = 'public' AND c.relkind = 'S'
+    AND NOT EXISTS (SELECT 1 FROM pg_depend d WHERE d.objid = c.oid AND d.deptype IN ('a', 'i')) \gexec
+SELECT format('ALTER TYPE %I.%I OWNER TO %I', n.nspname, t.typname, :'role')
+  FROM pg_type t JOIN pg_namespace n ON n.oid = t.typnamespace
+  WHERE n.nspname = 'public' AND t.typtype IN ('e', 'd', 'r', 'm')
+    AND NOT EXISTS (SELECT 1 FROM pg_type a WHERE a.typarray = t.oid) \gexec
+SELECT format('ALTER ROUTINE %s OWNER TO %I', p.oid::regprocedure, :'role')
+  FROM pg_proc p JOIN pg_namespace n ON n.oid = p.pronamespace
+  WHERE n.nspname = 'public' AND p.prokind IN ('f', 'p') \gexec
+SQL
+}
+
 cmd_upgrade() {
   need_docker; need_init
   new_tag="${1:-$(tag)}"
@@ -521,6 +600,8 @@ Maintenance
   backup [dir]          Database dump + media + env → $BACKUP_ROOT/quizdock-<date>/
   restore <dir>         Replace database + media from a backup (asks confirmation)
   upgrade [tag]         backup → pull → restart (migrations) → doctor
+  db:roles              Give QuizDock (and Keycloak) a database role of its own,
+                        on an install made before 0.13.2 (backup first)
 
 Administration (relayed to the CLI inside the container)
   doctor                Check env, database, migrations, Redis, media, OIDC
@@ -555,6 +636,7 @@ case "$cmd" in
   backup) cmd_backup "$@" ;;
   restore) cmd_restore "$@" ;;
   upgrade) cmd_upgrade "$@" ;;
+  db:roles) cmd_db_roles ;;
   doctor)
     need_docker; need_init; check_secrets; admin doctor "$@" ;;
   version | seat:status | seat:release | user:list | user:set-role | samples:load | sessions:purge | migrate:status | quiz:list | quiz:transfer)
