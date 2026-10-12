@@ -44,7 +44,7 @@ export function stepView(
     joinLocked: true,
     // Its clock stands at the question's full time.
     still: true,
-    // Drawn in the quiz's theme, as the room will see it (THEMING §2.6).
+    // Drawn in the quiz's theme, as the room will see it (docs/themes.md).
     theme,
   };
   if (item.kind === 'slide') {

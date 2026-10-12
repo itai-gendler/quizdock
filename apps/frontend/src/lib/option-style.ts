@@ -21,7 +21,7 @@ export const COLOR_BG: Record<string, string> = {
 
 /**
  * The text laid on an answer's colour: white on today's, the theme's pick on a quiz
- * theme's (THEMING §1.2).
+ * theme's (docs/themes.md).
  */
 export const COLOR_FG: Record<string, string> = {
   red: 'text-answer-red-foreground',

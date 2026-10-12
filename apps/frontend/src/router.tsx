@@ -110,7 +110,7 @@ export const templatesRoute = createRoute({
   component: lazyRouteComponent(() => import('./routes/templates-page'), 'TemplatesPage'),
 });
 
-/** The library of quiz themes (THEMING §2.7). */
+/** The library of quiz themes (docs/themes.md). */
 export const themesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/themes',

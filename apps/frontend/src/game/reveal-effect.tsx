@@ -7,7 +7,7 @@ const DURATION_MS = 2600;
 const PIECES = 140;
 
 /**
- * The quiz theme's reveal effect (THEMING §2.5), on the phone of a player who found the
+ * The quiz theme's reveal effect (docs/themes.md), on the phone of a player who found the
  * answer: confetti in the theme's colours, falling once. An exception to the motion
  * rules, bounded: off with the room's *Animations* switch and the device's reduced
  * motion, and never in the way — nothing waits for it, it catches no click.

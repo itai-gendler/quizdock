@@ -223,7 +223,7 @@ export interface SlideGradient {
 }
 /**
  * Full-cover background: an uploaded image, a generated gradient or a plain colour, laid
- * as its `style` says (THEMING §1.1; absent: today's cover).
+ * as its `style` says (docs/themes.md; absent: today's cover).
  */
 export type SlideBackground = (
   | { url: string }
@@ -880,7 +880,7 @@ export interface ServerToClientEvents {
     /** The host's choice for the room (#209); '' = each quiz's. Read by the console. */
     roomLanguage: string;
     /**
-     * The quiz's look (THEMING §2), frozen with the game, its files by URL. Absent: a
+     * The quiz's look (docs/themes.md), frozen with the game, its files by URL. Absent: a
      * lobby with no quiz yet, in the page's own look.
      */
     theme?: ThemeValues;

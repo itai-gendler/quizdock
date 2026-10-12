@@ -212,7 +212,7 @@ export class MediaService implements OnModuleInit {
   }
 
   /**
-   * Stores a quiz theme's icon or font (THEMING §2.2, §1.3), already checked by the
+   * Stores a quiz theme's icon or font (docs/themes.md), already checked by the
    * theme upload: an icon arrives rebuilt from its allowlist.
    */
   async storeThemeAsset(

@@ -41,7 +41,7 @@ export function useRoomMedia(
   }, [view.state, pin]);
 
   // A sample the host chose for the room wins, then the quiz theme's, then the
-  // synthesised effect (THEMING §2.4); the room's mixer keeps the levels in every case.
+  // synthesised effect (docs/themes.md); the room's mixer keeps the levels in every case.
   const roomSounds = useMemo(
     () => withThemeSounds(view.sounds, view.theme),
     [view.sounds, view.theme],

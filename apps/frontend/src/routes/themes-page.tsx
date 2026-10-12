@@ -31,7 +31,7 @@ import { ThemeThumbnail } from '../game/theme-preview';
 import { Modal } from '@/components/ui/modal';
 
 /**
- * The library of quiz themes (THEMING §2.7): the shipped ones, then the hosts'. Every
+ * The library of quiz themes (docs/themes.md): the shipped ones, then the hosts'. Every
  * host uses every theme; its owner and the administrators change it.
  */
 export function ThemesPage() {
@@ -379,7 +379,7 @@ function ThemeCard({
   );
 }
 
-/** Only an accessible theme says so; the others carry no mark (THEMING §1.2). */
+/** Only an accessible theme says so; the others carry no mark (docs/themes.md). */
 export function AccessibleBadge() {
   const { t } = useTranslation('themes');
   return (

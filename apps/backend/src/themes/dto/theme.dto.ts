@@ -21,7 +21,7 @@ export const accessibilitySchema = z.object({
   ),
 });
 
-/** A theme of the library (THEMING §2.3), with the files its overrides point to. */
+/** A theme of the library (docs/themes.md), with the files its overrides point to. */
 export const themeSchema = z.object({
   id: z.string(),
   name: z.string(),

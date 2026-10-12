@@ -564,7 +564,7 @@ function PlayerView({ pin, session }: { pin: string; session: ReturnType<typeof 
   // phase of that question; the phone column is centred inside it.
   // The motion layer (UI system §1.8): the step, and the background this page draws it on.
   const stepKey = stepKeyOf(view);
-  // The question's own background, else the quiz theme's (THEMING §2.4).
+  // The question's own background, else the quiz theme's (docs/themes.md).
   const themed = themeBackdrop(view.theme);
   const phoneBackdrop: Backdrop = view.question?.background
     ? { background: view.question.background, textTone: view.question.textTone ?? 'light' }

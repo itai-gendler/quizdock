@@ -10,7 +10,7 @@ export const gradientSchema = z.object({
 });
 
 /**
- * How a step lays its background (THEMING §1.1): the parts of the background object that
+ * How a step lays its background (docs/themes.md): the parts of the background object that
  * are not the picture or the gradient themselves. Absent: today's cover, veiled for the
  * text tone. Settings the mode does not use are ignored.
  */

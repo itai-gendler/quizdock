@@ -10,7 +10,7 @@ import type { RedisService } from '../redis/redis.service';
 import { ThemePortableService } from './theme-portable.service';
 import { ThemesService } from './themes.service';
 
-/** Themes in bundles (THEMING §3): the quiz bundle's theme block, and the theme bundle. */
+/** Themes in bundles (docs/themes.md): the quiz bundle's theme block, and the theme bundle. */
 describe('ThemePortableService (integration)', () => {
   let prisma: PrismaService;
   let media: MediaService;

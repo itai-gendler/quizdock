@@ -555,7 +555,7 @@ export class QuizzesService {
     return quiz;
   }
 
-  /** A quiz's theme (THEMING §2.3): any theme of the library, a shipped one, or none (the default). */
+  /** A quiz's theme (docs/themes.md): any theme of the library, a shipped one, or none (the default). */
   private async themeColumns(
     ref: { builtin?: string; id?: string } | null,
   ): Promise<{ themeId: string | null; themeBuiltin: string | null }> {

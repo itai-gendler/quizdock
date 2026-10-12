@@ -57,7 +57,7 @@ export function QuizStepsPreview({
   const [device, setDevice] = useState<'projection' | 'phone'>('projection');
   const [answer, setAnswer] = useState(false);
   const url = useMediaUrl();
-  // The quiz's theme: its own, else the instance's default (THEMING §2.4).
+  // The quiz's theme: its own, else the instance's default (docs/themes.md).
   const { data: themes } = useThemesControllerList();
   const theme = useMemo(() => {
     if (!themes) return null;

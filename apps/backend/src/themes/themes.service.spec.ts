@@ -8,7 +8,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import type { RedisService } from '../redis/redis.service';
 import { DEFAULT_THEME_KEY, ThemesService } from './themes.service';
 
-/** The library of quiz themes (THEMING §2.3), on the test database. */
+/** The library of quiz themes (docs/themes.md), on the test database. */
 describe('ThemesService (integration)', () => {
   let prisma: PrismaService;
   let media: MediaService;

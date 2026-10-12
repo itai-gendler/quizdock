@@ -95,7 +95,7 @@ const formatName = (mime: string) =>
   ({ 'audio/mpeg': 'MP3', 'audio/mp4': 'M4A', 'image/jpeg': 'JPEG', 'image/svg+xml': 'SVG' })[
     mime
   ] ?? (mime.split('/')[1] ?? mime).toUpperCase();
-// A theme's icons and fonts (THEMING §2.2, §1.3) are files of the instance too.
+// A theme's icons and fonts (docs/themes.md) are files of the instance too.
 const KIND_ICON = {
   image: ImageIcon,
   video: Film,

@@ -12,7 +12,7 @@ import {
 import { type CSSProperties, type ReactNode, createContext, useContext, useEffect } from 'react';
 
 /**
- * A quiz's look on the live screens (THEMING §2): the projection and the phones, from
+ * A quiz's look on the live screens (docs/themes.md): the projection and the phones, from
  * the lobby to the podium. Its colours reach the page's tokens (`--answer-*`,
  * `--primary`) on the subtree it wraps; the rest is read from the context.
  */

@@ -661,7 +661,7 @@ function QuizEditor({ quiz }: { quiz: QuizDetailDto }) {
               </label>
               <FeedbackSection quizId={quiz.id} />
             </div>
-            {/* Its look on the live screens (THEMING §2.7). */}
+            {/* Its look on the live screens (docs/themes.md). */}
             <QuizThemeField
               value={{ themeId: quiz.themeId, themeBuiltin: quiz.themeBuiltin }}
               disabled={update.isPending}

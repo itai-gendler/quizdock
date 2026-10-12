@@ -53,7 +53,7 @@ export const slideContentSchema = z
     blocks: z.array(slideBlockSchema).max(30).default([]),
     mediaId: z.string().length(26).nullable().optional(),
     gradient: gradientSchema.nullable().optional(),
-    /** How the background is laid (THEMING §1.1); null: today's cover. */
+    /** How the background is laid (docs/themes.md); null: today's cover. */
     backgroundStyle: backgroundStyleSchema.nullable().optional(),
     // Media (#125), set like a question's: a video filling the slide behind its
     // content — looped (else played once), with its sound (else muted) — and a sound.

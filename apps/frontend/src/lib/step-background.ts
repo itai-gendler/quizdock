@@ -2,7 +2,7 @@ import type { BackgroundStyle, SlideBackground, SlideGradient } from '@quiz-dock
 import type { MediaResolver } from './media-url';
 
 /**
- * A step's background as the live screens receive it (THEMING §1.1): its picture or
+ * A step's background as the live screens receive it (docs/themes.md): its picture or
  * its gradient laid as its style says, or its plain colour; null: the quiz theme's.
  */
 export function stepBackground(

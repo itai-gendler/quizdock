@@ -28,7 +28,7 @@ export const PICKED_RING = 'ring-2 ring-black ring-offset-3 ring-offset-white';
 
 /**
  * Full-cover background for a slide, a question, or the quiz's theme: a picture, a
- * generated gradient or a plain colour, laid as its style says (THEMING §1.1) — by
+ * generated gradient or a plain colour, laid as its style says (docs/themes.md) — by
  * default a picture covers the screen, darkened or lightened to match the text tone.
  * The text tone sets the local palette of the subtree (`data-scheme`, index.css):
  * light text means a dark palette, and the other way round. Without a background the

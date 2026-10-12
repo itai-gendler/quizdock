@@ -31,7 +31,7 @@ import {
 import { checkFont, sanitiseIcon } from './theme-assets';
 import { type ThemeRef, ThemesService, isBuiltin, themeFingerprint } from './themes.service';
 
-/** What a quiz bundle says of its theme (THEMING §3.3). */
+/** What a quiz bundle says of its theme (docs/themes.md). */
 export type ThemeExport = 'full' | 'fallback' | 'none';
 
 /** A theme's files in a bundle, by extension (the zip has no mime). */
@@ -60,7 +60,7 @@ export const THEME_BUNDLE_FORMAT = 'quizdock/theme';
 export const THEME_BUNDLE_VERSION = 1;
 const THEME_MANIFEST = 'theme.json';
 
-/** A theme bundle's manifest (`theme.json`, THEMING §3.5): the quiz bundle's theme block. */
+/** A theme bundle's manifest (`theme.json`, docs/themes.md): the quiz bundle's theme block. */
 export const themeBundleSchema = z.object({
   format: z.literal(THEME_BUNDLE_FORMAT),
   version: z.number().int().min(1).max(THEME_BUNDLE_VERSION),
@@ -80,7 +80,7 @@ export interface ImportedTheme {
 type Place = 'image' | 'audio' | 'icon' | 'font';
 
 /**
- * A theme leaving or entering an instance (THEMING §3): as the `theme` block of a quiz
+ * A theme leaving or entering an instance (docs/themes.md): as the `theme` block of a quiz
  * bundle, or alone as a theme bundle. Its files travel in the same flat `media/` folder.
  */
 @Injectable()
@@ -148,7 +148,7 @@ export class ThemePortableService {
   }
 
   /**
-   * A theme block met at import (THEMING §3.4): a shipped theme by its key; a whole
+   * A theme block met at import (docs/themes.md): a shipped theme by its key; a whole
    * theme reused when the library holds an identical one (same parent, overrides and
    * files), else copied, owned by the importer. A key this instance does not know: its
    * default, said. A file refused: the theme's parent instead, said.
@@ -274,7 +274,7 @@ export class ThemePortableService {
     return { ref: { id: created.id }, warnings: [] };
   }
 
-  /** A theme alone, zipped (THEMING §3.5): `theme.json` + `media/`. */
+  /** A theme alone, zipped (docs/themes.md): `theme.json` + `media/`. */
   async exportZip(themeId: string): Promise<{ filename: string; zip: Buffer }> {
     const theme = await this.prisma.theme.findUnique({ where: { id: themeId } });
     if (!theme) throw new NotFoundException('theme.not_found');

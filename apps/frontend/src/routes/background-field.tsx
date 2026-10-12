@@ -17,7 +17,7 @@ export interface BackgroundValue {
   gradient: SlideGradient | null;
   textTone: SlideTextTone;
   textOutline: boolean;
-  /** How the picture is laid, or the plain colour (THEMING §1.1); null: today's cover. */
+  /** How the picture is laid, or the plain colour (docs/themes.md); null: today's cover. */
   style: BackgroundStyle | null;
 }
 

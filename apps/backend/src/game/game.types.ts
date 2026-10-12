@@ -115,7 +115,7 @@ export interface QuizSnapshot {
   slides: SnapshotSlide[];
   /** The credits of the media it plays, shown at the podium (#53; absent before it). */
   credits?: string[];
-  /** Its look on the live screens, resolved when the game opens (THEMING §2.3; absent before it). */
+  /** Its look on the live screens, resolved when the game opens (docs/themes.md; absent before it). */
   theme?: ThemeValues;
 }
 

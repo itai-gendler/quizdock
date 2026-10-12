@@ -52,7 +52,7 @@ enum ThemeAssetKind {
 }
 
 /**
- * The library of quiz themes (THEMING §2.3). Every host lists and uses every theme;
+ * The library of quiz themes (docs/themes.md). Every host lists and uses every theme;
  * its owner and the administrators edit it.
  */
 @ApiTags('themes')
@@ -101,7 +101,7 @@ export class ThemesController {
     return this.themes.uploadAsset(user, kind, file);
   }
 
-  /** A theme bundle into the library (THEMING §3.5): reused when already there, else copied. */
+  /** A theme bundle into the library (docs/themes.md): reused when already there, else copied. */
   @Post('import')
   @AllowManager()
   @ApiConsumes('multipart/form-data')

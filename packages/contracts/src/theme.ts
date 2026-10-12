@@ -11,7 +11,7 @@ import {
 } from './theme-icons';
 
 /**
- * Quiz themes (THEMING §1–2): the look of a quiz on the live screens. A theme is a
+ * Quiz themes (docs/themes.md–2): the look of a quiz on the live screens. A theme is a
  * shipped theme (`BUILTIN_THEMES`) or a user theme: the child of a shipped one, storing
  * only what it overrides. Every setting is bounded (validation level 1).
  *
@@ -21,11 +21,11 @@ import {
 
 const hex = z.string().regex(HEX_COLOR);
 
-/** How a background picture is laid out (THEMING §1.1). */
+/** How a background picture is laid out (docs/themes.md). */
 export const BACKGROUND_MODES = ['watermark', 'cover', 'contain', 'pattern'] as const;
 export type BackgroundMode = (typeof BACKGROUND_MODES)[number];
 
-/** The room effects a theme may replace (THEMING §2.1). */
+/** The room effects a theme may replace (docs/themes.md). */
 export const THEME_SOUNDS = ['ding', 'tick', 'countdown', 'gong'] as const;
 export type ThemeSound = (typeof THEME_SOUNDS)[number];
 
@@ -33,7 +33,7 @@ export type ThemeSound = (typeof THEME_SOUNDS)[number];
 export const MOTION_STYLES = ['standard', 'sober', 'dynamic', 'festive'] as const;
 export type MotionStyle = (typeof MOTION_STYLES)[number];
 
-/** Effects played over the reveal, on the projection only (THEMING §2.5). */
+/** Effects played over the reveal, on the projection only (docs/themes.md). */
 export const REVEAL_EFFECTS = ['confetti'] as const;
 export type RevealEffect = (typeof REVEAL_EFFECTS)[number];
 
@@ -41,7 +41,7 @@ export type RevealEffect = (typeof REVEAL_EFFECTS)[number];
 export const SLOT_MARKERS = ['icons', 'letters', 'numbers'] as const;
 export type SlotMarkers = (typeof SLOT_MARKERS)[number];
 
-/** Fonts shipped in the image (THEMING §1.3); `system` is the device's own. */
+/** Fonts shipped in the image (docs/themes.md); `system` is the device's own. */
 export const THEME_FONTS = [
   'system',
   'atkinson',
@@ -54,10 +54,10 @@ export const THEME_FONTS = [
 ] as const;
 export type ThemeFont = (typeof THEME_FONTS)[number];
 
-/** Licences an imported font may carry (THEMING §6). */
+/** Licences an imported font may carry (docs/themes.md). */
 export const FONT_LICENSES = ['OFL-1.1', 'CC0-1.0', 'CC-BY-4.0', 'CC-BY-SA-4.0'] as const;
 
-/** The shipped themes, read-only and the parents of every user theme (THEMING §2.3). */
+/** The shipped themes, read-only and the parents of every user theme (docs/themes.md). */
 export const BUILTIN_THEMES = [
   'classic',
   'sober',
@@ -81,7 +81,7 @@ export type ThemeSlotName = (typeof OPTION_COLORS)[number];
 export const THEME_NAME_MAX = 60;
 
 /**
- * The background object (THEMING §1.1): a picture laid out by `mode`, or a gradient,
+ * The background object (docs/themes.md): a picture laid out by `mode`, or a gradient,
  * always on a base `color`, with the tone of the text laid on it. Settings a mode does
  * not use are ignored.
  */
@@ -107,7 +107,7 @@ export function backgroundSchema<R extends z.ZodType<string>>(ref: R) {
     .refine((b) => !b.image || b.mode, { message: 'background.mode_required', path: ['mode'] });
 }
 
-/** An icon of the bank, `bank:<group>/<name>` (THEMING §2.2). */
+/** An icon of the bank, `bank:<group>/<name>` (docs/themes.md). */
 export const bankIconRef = z.string().refine(isBankIcon, { message: 'theme.unknown_icon' });
 /** A picture shipped with QuizDock, `shipped:<file>`. */
 export const shippedPictureRef = z
@@ -234,7 +234,7 @@ export function themeMediaIds(overrides: ThemeOverrides): string[] {
 }
 
 /**
- * A theme as the live screens receive it (THEMING §2.6): every file it points to given
+ * A theme as the live screens receive it (docs/themes.md): every file it points to given
  * by its URL. A file missing from `urls` is dropped: the part falls back to no picture,
  * the option's shape, the shipped font, the synthesised effect.
  */

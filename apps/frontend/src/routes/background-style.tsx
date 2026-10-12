@@ -7,7 +7,7 @@ import { Switch } from '@/components/ui/switch';
 export const DEFAULT_MODE: BackgroundMode = 'cover';
 
 /**
- * How a background picture is laid (THEMING §1.1), for a step and for a theme alike:
+ * How a background picture is laid (docs/themes.md), for a step and for a theme alike:
  * its mode, then the settings that mode uses — a veil for a cover, an opacity and a
  * size for the others, a blur and greyscale for all.
  */

@@ -35,7 +35,7 @@ export const sameBackdrop = (a: Backdrop, b: Backdrop) => JSON.stringify(a) === 
 
 /**
  * The backdrop a live screen draws the step on: the slide's background or video, the
- * question's background when it owns the screen, else the quiz theme's (THEMING §2.4),
+ * question's background when it owns the screen, else the quiz theme's (docs/themes.md),
  * else the page.
  */
 export function backdropOf(

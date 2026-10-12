@@ -1,5 +1,5 @@
 /**
- * Colour arithmetic for the themes' accessibility checks (THEMING §1.2): WCAG contrast,
+ * Colour arithmetic for the themes' accessibility checks (docs/themes.md): WCAG contrast,
  * OKLab distance, colour-blindness simulation. Colours are `#rrggbb`; blends happen in
  * sRGB space, as the browser composites them.
  */
@@ -54,7 +54,7 @@ export function blend(top: Rgb, bottom: Rgb, alpha: number): Rgb {
 export const WHITE: Rgb = [1, 1, 1];
 export const BLACK: Rgb = [0, 0, 0];
 
-/** The text colour that reads best on `background`: white or black (THEMING §1.2, level 2). */
+/** The text colour that reads best on `background`: white or black (docs/themes.md, level 2). */
 export function textOn(background: Rgb): Rgb {
   return contrast(WHITE, background) >= contrast(BLACK, background) ? WHITE : BLACK;
 }

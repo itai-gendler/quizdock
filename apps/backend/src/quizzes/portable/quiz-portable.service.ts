@@ -77,7 +77,7 @@ export class QuizPortableService {
   async exportZip(
     id: string,
     ownerId?: string,
-    /** What the bundle says of the quiz's theme (THEMING §3.3). */
+    /** What the bundle says of the quiz's theme (docs/themes.md). */
     theme: ThemeExport = 'full',
   ): Promise<{ filename: string; zip: Buffer }> {
     const found = await this.prisma.quiz.findFirst({
@@ -115,7 +115,7 @@ export class QuizPortableService {
         peakDbfs: row.peakDbfs ?? undefined,
       };
     }
-    // The theme's files join the same folder (THEMING §3.4).
+    // The theme's files join the same folder (docs/themes.md).
     const themeBlock = await this.themes?.exportBlock(
       ThemesService.refOf(quiz),
       theme,

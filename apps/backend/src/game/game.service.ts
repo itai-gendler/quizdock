@@ -340,7 +340,7 @@ export class GameService {
     // Frozen with the rest: a licence's attribution is owed for what was played.
     const credits = (await this.mediaLibrary?.creditsOf(quiz.id)) ?? [];
     if (credits.length > 0) snapshot.credits = credits;
-    // Frozen too: editing the theme changes the next game, never this one (THEMING §2.3).
+    // Frozen too: editing the theme changes the next game, never this one (docs/themes.md).
     if (this.themes) {
       const theme = await this.themes.resolve(ThemesService.refOf(quiz));
       snapshot.theme = themeWithUrls(theme.values, theme.media);

@@ -258,7 +258,7 @@ function snapshotSlide(
   };
 }
 
-/** A step's background: its picture or its gradient, laid as its style says (THEMING §1.1). */
+/** A step's background: its picture or its gradient, laid as its style says (docs/themes.md). */
 function backdropOf(
   media: { url: string } | null,
   gradient: unknown,

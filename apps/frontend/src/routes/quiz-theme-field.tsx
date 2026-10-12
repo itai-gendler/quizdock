@@ -21,7 +21,7 @@ export interface QuizThemeValue {
 }
 
 /**
- * The quiz's look on the live screens (THEMING §2.7): a thumbnail per theme, the
+ * The quiz's look on the live screens (docs/themes.md): a thumbnail per theme, the
  * instance's default first, then the shipped themes, then the hosts'. Only the
  * accessible ones say so.
  */

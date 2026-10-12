@@ -35,7 +35,7 @@ export function BankIcon({ refName, className }: { refName: string; className?: 
 }
 
 /**
- * The icon bank (THEMING §2.2): one icon for one answer — searched by name, by group —
+ * The icon bank (docs/themes.md): one icon for one answer — searched by name, by group —
  * or an SVG of one's own; or, for all eight answers at once, a set of eight.
  */
 export function IconPicker({

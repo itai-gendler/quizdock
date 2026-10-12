@@ -794,7 +794,7 @@ export function SlideView({ slide }: { slide: SlideShowPayload }) {
   const blocks = fillSlideBlocks(slide.blocks, variables);
   // A phone in the room shows the slide's background, not its video (the big screen does).
   const video = slide.video && showsVideo(slide.video, playback) ? slide.video : null;
-  // No background of its own: the quiz theme's (THEMING §2.4), with its text tone.
+  // No background of its own: the quiz theme's (docs/themes.md), with its text tone.
   const theme = useLiveTheme();
   const themed = slide.background || video ? null : themeBackdrop(theme);
   return (

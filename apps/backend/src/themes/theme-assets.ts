@@ -2,7 +2,7 @@ import { BadRequestException } from '@nestjs/common';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
 
 /**
- * A theme's own files (THEMING §2.2, §1.3): its answer icons, monochrome SVG, and its
+ * A theme's own files (docs/themes.md): its answer icons, monochrome SVG, and its
  * font, woff2. Neither is a media the library takes: they are checked here, an icon
  * rebuilt from an allowlist, before being stored.
  */

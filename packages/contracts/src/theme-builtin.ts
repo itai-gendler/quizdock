@@ -3,7 +3,7 @@ import type { BuiltinTheme, ThemeFont, ThemeSlot, ThemeSlotName, ThemeValues } f
 import { ICON_SETS } from './theme-icons';
 
 /**
- * The shipped themes (THEMING §2.3). *Classic* is today's rendering, the default: an
+ * The shipped themes (docs/themes.md). *Classic* is today's rendering, the default: an
  * upgrade changes only its glyphs. Slots list their colours in `OPTION_COLORS` order;
  * a null icon is the slot's shipped glyph (`shape-icon.tsx`).
  */

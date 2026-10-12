@@ -44,7 +44,7 @@ export function bundleJsonSchemaText(): string {
   return `${JSON.stringify(bundleJsonSchema(), null, 2)}\n`;
 }
 
-/** The theme bundle's manifest (`theme.json`, THEMING §3.5), published the same way. */
+/** The theme bundle's manifest (`theme.json`, docs/themes.md), published the same way. */
 export const themeBundleSchemaFile = (version: number) => `schema/theme-bundle.v${version}.json`;
 export const THEME_BUNDLE_SCHEMA_FILE = themeBundleSchemaFile(THEME_BUNDLE_VERSION);
 

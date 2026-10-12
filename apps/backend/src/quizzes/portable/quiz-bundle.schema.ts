@@ -114,7 +114,7 @@ const storeBundleFields = {
 };
 
 /**
- * A step's background as one object (version 8, THEMING §1.1): its picture or gradient,
+ * A step's background as one object (version 8, docs/themes.md): its picture or gradient,
  * its text tone, and how it is laid. Takes the place of `backgroundImage`,
  * `backgroundGradient` and `textTone`, still read; absent, those are a cover.
  */
@@ -136,7 +136,7 @@ const backgroundBundleFields = {
 };
 
 /**
- * The quiz's theme (version 8, THEMING §3.1): a shipped one by its key, or a whole
+ * The quiz's theme (version 8, docs/themes.md): a shipped one by its key, or a whole
  * theme — its parent and what it overrides, its files in `media/`. The same object is
  * the `theme` of a theme bundle (`quizdock/theme`). An unknown key reads as the
  * importing instance's default; the accessibility is recomputed, never trusted.

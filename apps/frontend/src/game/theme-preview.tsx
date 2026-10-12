@@ -17,7 +17,7 @@ import { Surface } from './surface';
 import { LiveTheme, themeBackdrop } from './theme';
 import { type GameView, INITIAL_VIEW } from './use-game-session';
 
-/** The moments a theme is previewed at (THEMING §2.7). */
+/** The moments a theme is previewed at (docs/themes.md). */
 export const PREVIEW_PHASES = ['lobby', 'question', 'reveal', 'podium'] as const;
 export type PreviewPhase = (typeof PREVIEW_PHASES)[number];
 
@@ -100,7 +100,7 @@ export function themePreviewView(
 }
 
 /**
- * The projection and a phone in a theme, at one moment of a game (THEMING §2.7):
+ * The projection and a phone in a theme, at one moment of a game (docs/themes.md):
  * drawn by the live screens themselves.
  */
 export function ThemePreview({

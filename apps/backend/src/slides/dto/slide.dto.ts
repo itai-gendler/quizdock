@@ -13,7 +13,7 @@ export const slideSchema = z.object({
   /** Full-cover background image, if any. */
   mediaId: z.string().nullable(),
   gradient: gradientSchema.nullable(),
-  /** How the background is laid (THEMING §1.1); null: today's cover. */
+  /** How the background is laid (docs/themes.md); null: today's cover. */
   backgroundStyle: backgroundStyleSchema.nullable(),
   videoMediaId: z.string().nullable(),
   videoLoop: z.boolean(),

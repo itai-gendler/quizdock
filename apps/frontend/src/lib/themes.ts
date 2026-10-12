@@ -54,7 +54,7 @@ export function valuesOfRef(ref: ThemeRef | null | undefined, library: ThemeDto[
   return builtinValues(isBuiltinKey(ref?.builtin) ? ref.builtin : 'classic');
 }
 
-/** Whether a theme passes every accessibility check: only those say so (THEMING §1.2). */
+/** Whether a theme passes every accessibility check: only those say so (docs/themes.md). */
 export function isAccessible(theme: ThemeValues | ThemeDto): boolean {
   if ('accessibility' in theme) return theme.accessibility.status === 'compliant';
   return themeAccessibility(theme).status === 'compliant';

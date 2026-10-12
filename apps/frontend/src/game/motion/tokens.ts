@@ -26,7 +26,7 @@ export const MOTION = {
 export type Motion = typeof MOTION;
 
 /**
- * The pace each motion style of a quiz theme sets (THEMING §2.1); `standard` is the
+ * The pace each motion style of a quiz theme sets (docs/themes.md); `standard` is the
  * one above. The room's *Animations* switch and the device's reduced motion still win.
  */
 export const MOTION_BY_STYLE: Record<MotionStyle, Motion> = {

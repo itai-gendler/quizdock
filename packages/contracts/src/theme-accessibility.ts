@@ -16,7 +16,7 @@ import {
 } from './theme-color';
 
 /**
- * A theme's accessibility, computed and never declared (THEMING §1.2): run live in the
+ * A theme's accessibility, computed and never declared (docs/themes.md): run live in the
  * editors and by the server at every save, stored with the theme, informative only.
  * Each failed check has a domain code with its own translated text.
  */
@@ -103,7 +103,7 @@ export function worstContrast(color: Rgb, [dark, light]: [Rgb, Rgb]): number {
 
 /**
  * Icons are compared by their content: two slots with the same picture fail. A
- * silhouette comparison is still to be defined (THEMING §7).
+ * silhouette comparison is still to be defined (docs/themes.md).
  */
 export interface IconFingerprints {
   /** A fingerprint of each slot's icon (its sanitised content); absent: the option's shape. */

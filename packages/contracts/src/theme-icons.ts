@@ -1,5 +1,5 @@
 /**
- * The icon bank (THEMING §2.2): icons shipped with QuizDock for the answers, by group,
+ * The icon bank (docs/themes.md): icons shipped with QuizDock for the answers, by group,
  * and sets of eight to give the eight answers at once. Phosphor Icons, fill style
  * (MIT, `public/licenses/phosphor-icons.txt`); each is `/icons/bank/<group>/<name>.svg`,
  * square, its fill the answer's text colour. A slot names one as `bank:<group>/<name>`.

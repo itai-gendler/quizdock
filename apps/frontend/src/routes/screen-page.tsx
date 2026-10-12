@@ -918,7 +918,7 @@ export function ScreenSurface({
           ) : null}
           {backdrop ? (
             // The step's background owns the surface, bands included: a question's own, else
-            // the quiz theme's (THEMING §2.4).
+            // the quiz theme's (docs/themes.md).
             <Surface
               background={backdrop.background}
               textTone={backdrop.textTone}

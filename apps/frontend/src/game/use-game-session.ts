@@ -130,7 +130,7 @@ export interface GameView {
   mediaControl: (MediaControlPayload & { seq: number; receivedAt: number }) | null;
   /** Whether the quiz plays any sound (projection and console only; null until told). */
   quizHasSound: boolean | null;
-  /** The quiz's look (THEMING §2), frozen with the game; null: the page's own. */
+  /** The quiz's look (docs/themes.md), frozen with the game; null: the page's own. */
   theme: ThemeValues | null;
   /** The room waits for media before `questionIndex`, until `until` (state `MEDIA_LOADING`). */
   mediaWait: { questionIndex: number; until: number } | null;

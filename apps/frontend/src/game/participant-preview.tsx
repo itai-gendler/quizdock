@@ -36,7 +36,7 @@ export function ParticipantPreview({
 }) {
   const { t } = useTranslation('live');
   const clock = useQuestionClock(view);
-  // Without a background of its own, the step is drawn on the quiz theme's (THEMING §2.4).
+  // Without a background of its own, the step is drawn on the quiz theme's (docs/themes.md).
   const themed = themeBackdrop(view.theme);
   const q = view.question;
   let body: React.ReactNode;

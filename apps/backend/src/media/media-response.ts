@@ -15,7 +15,7 @@ const SERVED_TYPES = new Set([
 ]);
 
 /**
- * A quiz theme's icons and fonts (THEMING §2.2, §1.3): served as what they are only from
+ * A quiz theme's icons and fonts (docs/themes.md): served as what they are only from
  * the rows that hold them, written by the theme upload (an SVG sanitised there).
  */
 const THEME_TYPES: Record<string, string> = { icon: 'image/svg+xml', font: 'font/woff2' };

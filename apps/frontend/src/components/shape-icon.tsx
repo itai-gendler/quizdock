@@ -35,7 +35,7 @@ const slotOfShape = (shape: string) => OPTION_ORDER.find((p) => p.shape === shap
 
 /**
  * The mark of an answer, sized by the text around it (1em). `slot`: the option's colour,
- * its slot in the quiz's theme (THEMING §2.2) — the theme may draw its own icon, filled by
+ * its slot in the quiz's theme (docs/themes.md) — the theme may draw its own icon, filled by
  * the text colour through a mask, or letters or numbers instead (`index`: the option's
  * place in its question; else the slot's place in the default order).
  */

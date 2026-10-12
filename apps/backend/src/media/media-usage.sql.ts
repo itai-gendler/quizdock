@@ -23,7 +23,7 @@ export const MEDIA_SLOTS = [
   'slideVideos',
   'slideAudios',
   'options',
-  // A quiz theme's icons, font, sounds and picture (THEMING §2).
+  // A quiz theme's icons, font, sounds and picture (docs/themes.md).
   'themes',
 ] as const satisfies readonly (keyof Prisma.MediaAssetCountOutputTypeSelect)[];
 

@@ -53,7 +53,7 @@ import { AccessibleBadge } from './themes-page';
 const SAVE_DELAY_MS = 600;
 
 /**
- * A theme of the library, changed with its live preview (THEMING §2.7): each part
+ * A theme of the library, changed with its live preview (docs/themes.md): each part
  * follows the shipped theme it starts from until it is changed, and can go back to it.
  * Saved as it is changed; a quiz using it shows it from its next game.
  */

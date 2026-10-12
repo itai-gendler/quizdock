@@ -39,6 +39,7 @@ docs/
 ## Feature notes
 
 - [`quiz-bundle.md`](quiz-bundle.md) — the import / export format of a quiz (`quiz.json` + `media/`).
+- [`themes.md`](themes.md) — quiz themes: what a theme holds, the shipped ones and the library, its files and the icon bank, how the live screens draw it, its accessibility.
 - [`scoring.md`](scoring.md) — the scales: points, speed, streak, per-type variants (closest, partial credit, lenient).
 - [`live-session.md`](live-session.md) — the live session: substance/form snapshot, states, looking back, resuming after a restart, media on every device (experimental), the invitation address.
 - [`dev/load-testing.md`](dev/load-testing.md) — load testing a live game: the benchmark, how many players one instance holds, the sizing it gives (published for operators in [sizing](https://quizdock.github.io/docs/operator/sizing/)).

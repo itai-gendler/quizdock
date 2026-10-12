@@ -61,7 +61,7 @@ const WITH = {
 type ThemeRow = Prisma.ThemeGetPayload<{ include: typeof WITH }>;
 
 /**
- * The library of quiz themes (THEMING §2.3): any host creates themes and owns them,
+ * The library of quiz themes (docs/themes.md): any host creates themes and owns them,
  * every host may use every theme, an administrator may edit or delete any of them and
  * sets the instance's default.
  */
@@ -197,7 +197,7 @@ export class ThemesService {
   }
 
   /**
-   * The theme a quiz shows in (THEMING §2.4): its own, else the instance's default,
+   * The theme a quiz shows in (docs/themes.md): its own, else the instance's default,
    * else *Classic*. A theme gone since is replaced by the default.
    */
   async resolve(ref: ThemeRef | null): Promise<ResolvedTheme> {
@@ -284,7 +284,7 @@ export class ThemesService {
   }
 
   /**
-   * The same theme wherever it is met (THEMING §3.4): its parent and its overrides, each
+   * The same theme wherever it is met (docs/themes.md): its parent and its overrides, each
    * file by its bytes' hash rather than by the media that holds it.
    */
   async fingerprintOf(parent: string, overrides: ThemeOverrides): Promise<string> {
@@ -297,7 +297,7 @@ export class ThemesService {
     return themeFingerprint(parent, overrides, (ref) => hashOf.get(ref));
   }
 
-  /** Computed, never declared (THEMING §1.2); icons compared by their file. */
+  /** Computed, never declared (docs/themes.md); icons compared by their file. */
   async accessibilityOf(
     parent: BuiltinTheme,
     overrides: ThemeOverrides,
