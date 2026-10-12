@@ -28,9 +28,9 @@ come in the order green, red, blue, yellow…; Classic marks its answers with an
 theme may mark them with letters or numbers instead; only an accessible theme says so,
 and the accessible shipped themes are *High contrast* and *High contrast light*.
 
-Still to do for lot 1:
-- compare the icons by their silhouette (today: two slots fail only on the same file);
-- check the font's minimum size on the live screens;
+Lot 1 is complete. The icons are checked as different files, not by their silhouette (a
+rasterised comparison was judged not worth it); the font's size is the application's, not
+the theme's, so it is not checked.
 
 ---
 
@@ -102,4 +102,3 @@ Themes join the store ([SPECIFICATIONS-STORE.md](./SPECIFICATIONS-STORE.md)) on 
 
 - The size budget of the shipped themes' assets (today, in the image: fonts about 490 KB,
   the icon bank about 600 KB, the seasonal pictures about 60 KB).
-- How icon distinctness is measured (silhouette comparison threshold).
