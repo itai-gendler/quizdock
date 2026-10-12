@@ -19,9 +19,10 @@ describe('ThemesService (integration)', () => {
   let admin: User;
   const env = process.env;
   const redis = { scanKeys: jest.fn(async () => [] as string[]) } as unknown as RedisService;
+  // Its own viewBox: identical files share a stored blob, and the suites run in parallel.
   const icon = (d: string) =>
     Buffer.from(
-      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="${d}"/></svg>`,
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.02 24.02"><path d="${d}"/></svg>`,
     );
   const code = async (p: Promise<unknown>) =>
     p.then(
@@ -66,7 +67,8 @@ describe('ThemesService (integration)', () => {
     });
     await prisma.mediaAsset.deleteMany({ where: { ownerId: { in: ids } } });
     const shas = assets.map((a) => a.blobSha256).filter((s): s is string => !!s);
-    await prisma.mediaBlob.deleteMany({ where: { sha256: { in: shas } } });
+    // Only the blobs nothing holds any more: another suite may share one.
+    await prisma.mediaBlob.deleteMany({ where: { sha256: { in: shas }, assets: { none: {} } } });
     await rm(dir, { recursive: true, force: true });
   });
 
