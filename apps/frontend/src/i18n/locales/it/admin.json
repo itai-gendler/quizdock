@@ -779,7 +779,7 @@
     },
     "unset": "{{key}} non è impostato.",
     "postgres_ok": "PostgreSQL raggiungibile",
-    "postgres_superuser": "QuizDock si connette come superutente PostgreSQL. Per ora non c’è nulla da fare: una prossima versione dello script quizdock gli darà un ruolo dedicato.",
+    "postgres_superuser": "QuizDock si connette come superutente PostgreSQL. Sul server, ./quizdock db:roles gli dà un ruolo dedicato, dopo un backup.",
     "migrations_applied_one": "{{count}} migrazione applicata",
     "migrations_applied_many": "{{count}} migrazioni applicate",
     "migrations_applied_other": "{{count}} migrazioni applicate",

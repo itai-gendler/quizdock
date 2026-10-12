@@ -2,6 +2,13 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
+  // jose ships ES modules only (from v6): ts-jest turns them into CommonJS for the tests.
+  // The built server needs nothing: Node loads them through require(esm).
+  transform: {
+    '^.+\\.ts$': 'ts-jest',
+    '/jose/.+\\.js$': ['ts-jest', { tsconfig: { allowJs: true }, diagnostics: false }],
+  },
+  transformIgnorePatterns: ['/node_modules/(?!(\\.pnpm/jose@[^/]+/node_modules/)?jose/)'],
   rootDir: 'src',
   testRegex: '.*\\.spec\\.ts$',
   moduleNameMapper: {

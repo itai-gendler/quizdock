@@ -46,7 +46,7 @@ services:
       PGPASSWORD: ${POSTGRES_PASSWORD:-live}
       # Keycloak's own role (an install made by `init --full` since 0.13.2): its
       # database belongs to it, and it reaches nothing of QuizDock's. Unset (older
-      # installs), Keycloak keeps the database superuser, as before.
+      # installs), Keycloak keeps the database superuser until `quizdock db:roles`.
       KEYCLOAK_DB_USER: ${KEYCLOAK_DB_USER:-}
       KEYCLOAK_DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD:-}
     entrypoint:
@@ -117,8 +117,8 @@ services:
 
   # QuizDock's own database role (an install made by `quizdock init` since 0.13.2):
   # the database belongs to it, the superuser is kept for administering PostgreSQL.
-  # Unset (older installs), the app keeps the superuser, as before. A role set on a
-  # database that already holds data stops here: moving it is a manual step.
+  # Unset (older installs), the app keeps the superuser until `quizdock db:roles`
+  # moves its database. A role set by hand on a database that holds data stops here.
   quizdock-db:
     image: postgres:16-alpine
     environment:
@@ -142,7 +142,7 @@ services:
         owner="$$(psql -d postgres -tAc "SELECT pg_get_userbyid(datdba) FROM pg_database WHERE datname = '$$POSTGRES_DB'")"
         [ "$$owner" = "$$QUIZDOCK_DB_USER" ] && exit 0
         if [ "$$(psql -d "$$POSTGRES_DB" -tAc "SELECT count(*) FROM pg_tables WHERE schemaname = 'public'")" != 0 ]; then
-          echo "QUIZDOCK_DB_USER is set, but $$POSTGRES_DB already holds data owned by $$owner: moving it is not automated yet (a coming release of the quizdock script will); unset QUIZDOCK_DB_USER to start." >&2
+          echo "QUIZDOCK_DB_USER is set, but $$POSTGRES_DB already holds data owned by $$owner: unset QUIZDOCK_DB_USER, then run ./quizdock db:roles, which moves it." >&2
           exit 1
         fi
         psql -d postgres -v ON_ERROR_STOP=1 -v db="$$POSTGRES_DB" -v name="$$QUIZDOCK_DB_USER" <<'SQL'

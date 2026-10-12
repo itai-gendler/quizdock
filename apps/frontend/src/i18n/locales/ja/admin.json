@@ -761,7 +761,7 @@
     },
     "unset": "{{key}} が設定されていません。",
     "postgres_ok": "PostgreSQL に接続可能",
-    "postgres_superuser": "QuizDock は PostgreSQL のスーパーユーザーとして接続しています。現時点で対応は不要です。今後の quizdock スクリプトのリリースで専用のロールが与えられます。",
+    "postgres_superuser": "QuizDock は PostgreSQL のスーパーユーザーとして接続しています。サーバー上で ./quizdock db:roles を実行すると、バックアップを取ったうえで専用のロールが与えられます。",
     "migrations_applied_one": "{{count}}件のマイグレーションを適用済み",
     "migrations_applied_other": "{{count}}件のマイグレーションを適用済み",
     "migrations_pending_one": "{{count}}件のマイグレーションが保留中です。migrate ステップを実行してください。",

@@ -761,7 +761,7 @@
     },
     "unset": "{{key}} सेट नहीं है।",
     "postgres_ok": "PostgreSQL तक पहुँच है",
-    "postgres_superuser": "QuizDock PostgreSQL सुपरयूज़र के रूप में जुड़ता है। अभी कुछ करने की ज़रूरत नहीं: quizdock स्क्रिप्ट की आने वाली रिलीज़ इसे अपनी अलग भूमिका देगी।",
+    "postgres_superuser": "QuizDock PostgreSQL सुपरयूज़र के रूप में जुड़ता है। सर्वर पर, ./quizdock db:roles पहले बैकअप लेकर इसे अपनी अलग भूमिका देता है।",
     "migrations_applied_one": "{{count}} माइग्रेशन लागू",
     "migrations_applied_other": "{{count}} माइग्रेशन लागू",
     "migrations_pending_one": "{{count}} माइग्रेशन बाकी: migrate चरण चलाएँ।",

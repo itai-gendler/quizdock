@@ -797,7 +797,7 @@
     },
     "unset": "{{key}} не задан.",
     "postgres_ok": "PostgreSQL доступен",
-    "postgres_superuser": "QuizDock подключается как суперпользователь PostgreSQL. Пока ничего делать не нужно: в одной из следующих версий скрипт quizdock выделит ему собственную роль.",
+    "postgres_superuser": "QuizDock подключается как суперпользователь PostgreSQL. На сервере ./quizdock db:roles выделяет ему собственную роль, предварительно сделав резервную копию.",
     "migrations_applied_one": "Применена {{count}} миграция",
     "migrations_applied_few": "Применено {{count}} миграции",
     "migrations_applied_many": "Применено {{count}} миграций",
