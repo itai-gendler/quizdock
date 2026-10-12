@@ -201,7 +201,8 @@
       "roomMuted": "Oda sesi kapalı",
       "media": "Medya",
       "mediaLevel": "Medya",
-      "mediaWhen": "Quizin kendi sesi: soru veya slayt sesleri ve videoların sesleri. Yalnızca projeksiyonu etkiler: evden katılanlar sorunun sesini duymaya devam eder."
+      "mediaWhen": "Quizin kendi sesi: soru veya slayt sesleri ve videoların sesleri. Yalnızca projeksiyonu etkiler: evden katılanlar sorunun sesini duymaya devam eder.",
+      "fromTheme": "Quiz temasınınki"
     },
     "slideVideoMuted": "Slaydın videosu sessiz oynatılır.",
     "phase": {

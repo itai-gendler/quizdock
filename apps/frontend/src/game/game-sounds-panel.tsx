@@ -1,3 +1,4 @@
+import type { ThemeValues } from '@quiz-dock/contracts';
 import type { RoomSoundsPayload, RoomSoundsSettings } from '@quiz-dock/contracts';
 import { Play, SlidersHorizontal, Volume2, VolumeX } from 'lucide-react';
 import { Fragment, useState } from 'react';
@@ -9,6 +10,7 @@ import { cn } from '@/lib/utils';
 import { useMediaControllerInstance, useMediaControllerList } from '../api/generated/media/media';
 import { MediaUpload } from '../routes/media-upload';
 import { type RoomEffect, previewEffect } from './media/game-sounds';
+import { withThemeSounds } from './media/use-room-media';
 import { SimpleDialog } from './media/sound-button';
 import { formatPercent } from '@/lib/format';
 
@@ -18,9 +20,12 @@ import { formatPercent } from '@/lib/format';
  */
 export function RoomSoundsButton({
   sounds,
+  theme,
   onChange,
 }: {
   sounds: RoomSoundsPayload | null;
+  /** The quiz's theme: its samples sound where the room has none of its own. */
+  theme?: ThemeValues | null;
   onChange: (patch: RoomSoundsSettings) => void;
 }) {
   const { t } = useTranslation('live');
@@ -44,7 +49,7 @@ export function RoomSoundsButton({
         </span>
       </Button>
       <SimpleDialog open={open} title={t('control.sounds.title')} onClose={() => setOpen(false)}>
-        <GameSoundsControls sounds={sounds} onChange={onChange} />
+        <GameSoundsControls sounds={sounds} theme={theme} onChange={onChange} />
       </SimpleDialog>
     </>
   );
@@ -107,9 +112,11 @@ function SoundSlot({
 
 export function GameSoundsControls({
   sounds,
+  theme = null,
   onChange,
 }: {
   sounds: RoomSoundsPayload;
+  theme?: ThemeValues | null;
   onChange: (patch: RoomSoundsSettings) => void;
 }) {
   const { t } = useTranslation('live');
@@ -279,14 +286,15 @@ export function GameSoundsControls({
                 className="size-8"
                 aria-label={t('control.sounds.preview', { name: t(`control.sounds.${e.on}`) })}
                 title={t('control.sounds.preview', { name: t(`control.sounds.${e.on}`) })}
-                onClick={() => void previewEffect(e.on, sounds)}
+                onClick={() => void previewEffect(e.on, withThemeSounds(sounds, theme) ?? sounds)}
               >
                 <Play className="size-4" />
               </Button>
               {picker(
                 t(`control.sounds.${e.on}Label`),
                 e.url,
-                t('control.sounds.synth'),
+                // Without a sound of the room's own: the quiz theme's, else the built-in one.
+                theme?.sounds[e.on] ? t('control.sounds.fromTheme') : t('control.sounds.synth'),
                 e.id,
                 !sounds[e.on],
               )}

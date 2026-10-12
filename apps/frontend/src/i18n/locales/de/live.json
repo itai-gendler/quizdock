@@ -201,7 +201,8 @@
       "roomMuted": "Raum stumm",
       "media": "Medien",
       "mediaLevel": "Medien",
-      "mediaWhen": "Der eigene Ton des Quiz: der Ton einer Frage oder einer Folie und der der Videos. Nur auf der Projektion: Teilnehmende zu Hause hören die Frage trotzdem."
+      "mediaWhen": "Der eigene Ton des Quiz: der Ton einer Frage oder einer Folie und der der Videos. Nur auf der Projektion: Teilnehmende zu Hause hören die Frage trotzdem.",
+      "fromTheme": "Der des Quiz-Themes"
     },
     "slideVideoMuted": "Das Video der Folie läuft stumm.",
     "phase": {

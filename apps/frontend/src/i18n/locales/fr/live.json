@@ -205,7 +205,8 @@
       "roomMuted": "Salon muet",
       "media": "Médias",
       "mediaLevel": "Médias",
-      "mediaWhen": "Le son propre du quiz : celui d’une question, d’une diapositive, et des vidéos. Sur la projection seulement : un participant à distance entend toujours la question."
+      "mediaWhen": "Le son propre du quiz : celui d’une question, d’une diapositive, et des vidéos. Sur la projection seulement : un participant à distance entend toujours la question.",
+      "fromTheme": "Celui du thème du quiz"
     },
     "slideVideoMuted": "La vidéo de la slide joue sans le son.",
     "phase": {

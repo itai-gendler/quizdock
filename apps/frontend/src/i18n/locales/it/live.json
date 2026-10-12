@@ -205,7 +205,8 @@
       "roomMuted": "Sala silenziata",
       "media": "Media",
       "mediaLevel": "Media",
-      "mediaWhen": "Il suono proprio del quiz: il suono di una domanda o di una slide, e quello dei video. Solo sulla proiezione: un partecipante a casa sente comunque la domanda."
+      "mediaWhen": "Il suono proprio del quiz: il suono di una domanda o di una slide, e quello dei video. Solo sulla proiezione: un partecipante a casa sente comunque la domanda.",
+      "fromTheme": "Quello del tema del quiz"
     },
     "slideVideoMuted": "Il video della slide viene riprodotto senza audio.",
     "phase": {

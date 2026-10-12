@@ -201,7 +201,8 @@
       "roomMuted": "Room muted",
       "media": "Media",
       "mediaLevel": "Media",
-      "mediaWhen": "The quiz's own sound: a question's or a slide's sound, and the videos'. On the projection only: a participant at home still hears the question."
+      "mediaWhen": "The quiz's own sound: a question's or a slide's sound, and the videos'. On the projection only: a participant at home still hears the question.",
+      "fromTheme": "The quiz theme’s"
     },
     "slideVideoMuted": "The slide’s video plays muted.",
     "phase": {

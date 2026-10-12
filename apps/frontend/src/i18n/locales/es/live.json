@@ -205,7 +205,8 @@
       "roomMuted": "Sala en silencio",
       "media": "Medios",
       "mediaLevel": "Medios",
-      "mediaWhen": "El sonido propio del quiz: el de una pregunta, una diapositiva y los vídeos. Solo en la proyección: quien juega a distancia sigue oyendo la pregunta."
+      "mediaWhen": "El sonido propio del quiz: el de una pregunta, una diapositiva y los vídeos. Solo en la proyección: quien juega a distancia sigue oyendo la pregunta.",
+      "fromTheme": "El del tema del cuestionario"
     },
     "slideVideoMuted": "El vídeo de la diapositiva se reproduce sin sonido.",
     "phase": {

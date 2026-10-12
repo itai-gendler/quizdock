@@ -474,6 +474,7 @@ function HostConsole({
       <LockButton locked={view.joinLocked} onToggle={setJoinLocked} />
       <RoomSoundsButton
         sounds={view.sounds}
+        theme={view.theme}
         onChange={(patch) => socket?.emit('host:sounds', { pin, ...patch })}
       />
       <MotionSwitch

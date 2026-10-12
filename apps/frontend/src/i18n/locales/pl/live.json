@@ -209,7 +209,8 @@
       "roomMuted": "Pokój wyciszony",
       "media": "Multimedia",
       "mediaLevel": "Multimedia",
-      "mediaWhen": "Własny dźwięk quizu: dźwięk pytania lub slajdu oraz filmów. Tylko na projekcji: uczestnik w domu nadal słyszy pytanie."
+      "mediaWhen": "Własny dźwięk quizu: dźwięk pytania lub slajdu oraz filmów. Tylko na projekcji: uczestnik w domu nadal słyszy pytanie.",
+      "fromTheme": "Z motywu quizu"
     },
     "slideVideoMuted": "Film slajdu jest odtwarzany bez dźwięku.",
     "phase": {
