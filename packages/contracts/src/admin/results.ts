@@ -1,3 +1,4 @@
+import type { InterfaceLook } from '../interface-look';
 /**
  * What the administration's operations answer (`OperationResult.data`), shared
  * by the backend that builds it and the pages that show it — one declaration,
@@ -247,6 +248,9 @@ export interface HistoryStats {
  * is typed by it, and the backend's handlers declare the same types.
  */
 export interface OperationResults {
+  'look.get': InterfaceLook;
+  'look.set': InterfaceLook;
+  'look.reset': InterfaceLook;
   'settings.list': SettingsList;
   'settings.export': { env: string; count: number };
   'presets.list': PresetsList;

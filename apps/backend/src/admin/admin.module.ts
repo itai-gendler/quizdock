@@ -18,6 +18,8 @@ import { SettingsOperations } from './operations/settings.operations';
 import { StatsOperations } from './operations/stats.operations';
 import { VersionOperations } from './operations/version.operations';
 import { AccountsOperations } from './operations/accounts.operations';
+import { LookOperations } from './operations/look.operations';
+import { LookModule } from '../look/look.module';
 import { GameStateModule } from '../game/game-state.module';
 import { type ConfirmationStore, RedisConfirmationStore } from './runner/confirmations';
 import { OperationRunner } from './runner/operation-runner';
@@ -35,6 +37,7 @@ const OPERATION_GROUPS = [
   StatsOperations,
   AccountsOperations,
   VersionOperations,
+  LookOperations,
 ];
 
 /**
@@ -42,7 +45,7 @@ const OPERATION_GROUPS = [
  * stores. The accesses — `qd`, the admin API — sit on top of it.
  */
 @Module({
-  imports: [UsersModule, QuizzesModule, MediaModule, GameStateModule],
+  imports: [UsersModule, QuizzesModule, MediaModule, GameStateModule, LookModule],
   providers: [
     // The settings by injection, here: the one instance the whole backend reads
     // (module functions read at load or per request, where nothing is injected,

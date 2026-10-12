@@ -102,3 +102,23 @@ export function simulate(c: Rgb, vision: ColorVision): Rgb {
     toGamma(Math.min(1, Math.max(0, m[i * 3] * r + m[i * 3 + 1] * g + m[i * 3 + 2] * b))),
   ) as unknown as Rgb;
 }
+
+/** OKLCH (lightness 0–1, chroma, hue in degrees) of a colour. */
+export function oklch(c: Rgb): [number, number, number] {
+  const [L, a, b] = oklab(c);
+  return [L, Math.hypot(a, b), ((Math.atan2(b, a) * 180) / Math.PI + 360) % 360];
+}
+
+/** The sRGB colour of an OKLCH one, clipped into the gamut. */
+export function fromOklch([L, C, h]: readonly [number, number, number]): Rgb {
+  const a = C * Math.cos((h * Math.PI) / 180);
+  const b = C * Math.sin((h * Math.PI) / 180);
+  const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
+  const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
+  const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
+  return [
+    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+    -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s,
+  ].map((v) => Math.min(1, Math.max(0, toGamma(Math.min(1, Math.max(0, v)))))) as unknown as Rgb;
+}
