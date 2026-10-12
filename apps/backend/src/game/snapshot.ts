@@ -264,11 +264,14 @@ function backdropOf(
   gradient: unknown,
   style: unknown,
 ): SlideBackground | null {
+  const color = (style as BackgroundStyle | null)?.color;
   const base = media
     ? { url: media.url }
     : gradient
       ? { gradient: gradient as SlideGradient }
-      : null;
+      : color
+        ? { color }
+        : null;
   if (!base) return null;
   return style ? { ...base, style: style as BackgroundStyle } : base;
 }

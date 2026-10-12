@@ -47,7 +47,9 @@
     "admin": "管理",
     "setup": "セットアップ",
     "history": "セッション",
-    "historyRoom": "ルーム"
+    "historyRoom": "ルーム",
+    "themes": "テーマ",
+    "theme": "テーマ"
   },
   "demo": {
     "banner": "公開デモ：ホストアカウントは全訪問者で共有され、1時間ごとにすべて消去されます。"

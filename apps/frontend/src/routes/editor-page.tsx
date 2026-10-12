@@ -77,6 +77,7 @@ import { useLaunchSession } from '../game/use-launch-session';
 import { downloadFile } from '../api/download';
 import { apiErrorText } from '../api/http';
 import type { QuizDetailDto, UpdateQuizDto } from '../api/generated/model';
+import { QuizThemeField } from './quiz-theme-field';
 import { quizItems, moveItem, slideLabel, type QuizItem } from '@/lib/quiz-items';
 import { useMediaQuery } from '@/lib/use-media-query';
 import { useUnsavedGuard } from '@/lib/use-unsaved-guard';
@@ -311,6 +312,8 @@ function QuizEditor({ quiz }: { quiz: QuizDetailDto }) {
   const setShared = (shared: boolean) => saveSettings({ shared });
   const setTags = (tags: string[]) => saveSettings({ tags });
   const setMediaTailS = (mediaTailS: number) => saveSettings({ mediaTailS });
+  const setTheme = (theme: { builtin?: string; id?: string } | null) =>
+    saveSettings({ theme: theme as UpdateQuizDto['theme'] });
 
   const changeStatus = (status: 'draft' | 'ready' | 'archived') =>
     guarded(async () => {
@@ -658,6 +661,12 @@ function QuizEditor({ quiz }: { quiz: QuizDetailDto }) {
               </label>
               <FeedbackSection quizId={quiz.id} />
             </div>
+            {/* Its look on the live screens (THEMING §2.7). */}
+            <QuizThemeField
+              value={{ themeId: quiz.themeId, themeBuiltin: quiz.themeBuiltin }}
+              disabled={update.isPending}
+              onChange={(theme) => void setTheme(theme)}
+            />
             <Disclosure
               flush
               className="-mx-3 border-t px-3 pt-1"

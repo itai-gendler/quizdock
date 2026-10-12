@@ -490,14 +490,16 @@
   "background": {
     "legend": "Fond",
     "kind": {
-      "none": "Blanc",
+      "none": "Celui du thème",
       "image": "Image",
-      "gradient": "Dégradé"
+      "gradient": "Dégradé",
+      "colour": "Couleur"
     },
     "color": "Couleur {{index}}",
     "removeColor": "Retirer la couleur {{index}}",
     "addColor": "Ajouter une couleur",
-    "angle": "Angle"
+    "angle": "Angle",
+    "colour": "Couleur"
   },
   "status": {
     "draft": "Brouillon — publiez le quiz pour pouvoir le présenter.",

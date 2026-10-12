@@ -485,14 +485,16 @@
   "background": {
     "legend": "背景",
     "kind": {
-      "none": "白",
+      "none": "テーマのもの",
       "image": "画像",
-      "gradient": "グラデーション"
+      "gradient": "グラデーション",
+      "colour": "色"
     },
     "color": "色 {{index}}",
     "removeColor": "色 {{index}} を削除",
     "addColor": "色を追加",
-    "angle": "角度"
+    "angle": "角度",
+    "colour": "色"
   },
   "status": {
     "draft": "下書き：出題するにはクイズを公開してください。",

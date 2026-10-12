@@ -47,7 +47,9 @@
     "admin": "Administration",
     "setup": "Einrichtung",
     "history": "Sitzungen",
-    "historyRoom": "Raum"
+    "historyRoom": "Raum",
+    "themes": "Themes",
+    "theme": "Theme"
   },
   "demo": {
     "banner": "Öffentliche Demo — ein Quizleitungskonto für alle Besucher; alles wird stündlich gelöscht."

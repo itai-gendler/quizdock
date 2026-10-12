@@ -495,14 +495,16 @@
   "background": {
     "legend": "Фон",
     "kind": {
-      "none": "Белый",
+      "none": "Из темы",
       "image": "Изображение",
-      "gradient": "Градиент"
+      "gradient": "Градиент",
+      "colour": "Цвет"
     },
     "color": "Цвет {{index}}",
     "removeColor": "Удалить цвет {{index}}",
     "addColor": "Добавить цвет",
-    "angle": "Угол"
+    "angle": "Угол",
+    "colour": "Цвет"
   },
   "status": {
     "draft": "Черновик — опубликуйте квиз, чтобы его показать.",

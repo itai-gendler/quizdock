@@ -12,23 +12,23 @@ reference, the others follow its sense, not its words.
 
 ## Roles and places
 
-| Term        | en              | fr                   | es                   | zh            | zh-TW         | Where                                                                          |
-| ----------- | --------------- | -------------------- | -------------------- | ------------- | ------------- | ------------------------------------------------------------------------------ |
-| quiz        | quiz            | quiz                 | quiz                 | 测验          | 測驗          | everywhere                                                                     |
-| my quizzes  | My quizzes      | Mes quiz             | Mis quizzes          | 我的测验      | 我的測驗      | topbar, `/quizzes`                                                             |
-| editor      | Editor          | Éditeur              | Editor               | 编辑器        | 編輯器        | `/quizzes/:id`                                                                 |
+| Term        | en                      | fr                   | es                   | zh            | zh-TW         | Where                                                                          |
+| ----------- | ----------------------- | -------------------- | -------------------- | ------------- | ------------- | ------------------------------------------------------------------------------ |
+| quiz        | quiz                    | quiz                 | quiz                 | 测验          | 測驗          | everywhere                                                                     |
+| my quizzes  | My quizzes              | Mes quiz             | Mis quizzes          | 我的测验      | 我的測驗      | topbar, `/quizzes`                                                             |
+| editor      | Editor                  | Éditeur              | Editor               | 编辑器        | 編輯器        | `/quizzes/:id`                                                                 |
 | host        | Quiz host (role) / host | Animateur            | Anfitrión            | 主持人        | 主持人        | live                                                                           |
-| host seat   | Host seat       | Siège hôte           | Asiento de anfitrión | 主持席位      | 主持席位      | local auth mode                                                                |
-| participant | Participant     | Participant          | Participante         | 参与者        | 參與者        | live, console tab                                                              |
-| nickname    | Nickname        | Pseudo               | Apodo                | 昵称          | 匿稱          | join                                                                           |
-| room        | Room            | Salon                | Sala                 | 房间          | 房間          | live: what one joins with the PIN and stays in, several quizzes in a row (#89) |
-| lobby       | Lobby           | Salle d’attente      | Sala de espera       | 等候室        | 等候室        | live: the room before a quiz starts; never _lobby_ in French                   |
-| session     | Session         | Session              | Sesión               | 会话          | 會話          | afterwards: one quiz played in a room, as _History_ keeps it                   |
-| console     | Console         | Console              | Consola              | 控制台        | 控制台        | `/session/:pin/console`                                                        |
-| projection  | Projection      | Projection           | Proyección           | 投影          | 投影          | `/session/:pin/projection`                                                     |
-| join / PIN  | Join · PIN code | Rejoindre · Code PIN | Unirse · Código PIN  | 加入 · PIN 码 | 加入 · PIN 碼 | `/join`                                                                        |
-| reviews     | Reviews         | Avis                 | Opiniones            | 评价          | 回饋          | `/quizzes/:id/reviews`                                                         |
-| history     | History         | Historique           | Historial            | 历史          | 歷史          | `/quizzes/:id/history`                                                         |
+| host seat   | Host seat               | Siège hôte           | Asiento de anfitrión | 主持席位      | 主持席位      | local auth mode                                                                |
+| participant | Participant             | Participant          | Participante         | 参与者        | 參與者        | live, console tab                                                              |
+| nickname    | Nickname                | Pseudo               | Apodo                | 昵称          | 匿稱          | join                                                                           |
+| room        | Room                    | Salon                | Sala                 | 房间          | 房間          | live: what one joins with the PIN and stays in, several quizzes in a row (#89) |
+| lobby       | Lobby                   | Salle d’attente      | Sala de espera       | 等候室        | 等候室        | live: the room before a quiz starts; never _lobby_ in French                   |
+| session     | Session                 | Session              | Sesión               | 会话          | 會話          | afterwards: one quiz played in a room, as _History_ keeps it                   |
+| console     | Console                 | Console              | Consola              | 控制台        | 控制台        | `/session/:pin/console`                                                        |
+| projection  | Projection              | Projection           | Proyección           | 投影          | 投影          | `/session/:pin/projection`                                                     |
+| join / PIN  | Join · PIN code         | Rejoindre · Code PIN | Unirse · Código PIN  | 加入 · PIN 码 | 加入 · PIN 碼 | `/join`                                                                        |
+| reviews     | Reviews                 | Avis                 | Opiniones            | 评价          | 回饋          | `/quizzes/:id/reviews`                                                         |
+| history     | History                 | Historique           | Historial            | 历史          | 歷史          | `/quizzes/:id/history`                                                         |
 
 ## Content
 
@@ -76,26 +76,26 @@ reference, the others follow its sense, not its words.
 
 ### Turkish (`tr`)
 
-| Concept | Turkish | Usage |
-| --- | --- | --- |
-| quiz | quiz | The authored content, distinct from the room and archived session. |
-| my quizzes | Quizlerim | The quiz bank. |
-| host | sunucu | The person presenting; never the server computer. |
-| host seat | sunucu yetkisi | The single-host lock in local mode. |
-| participant | katılımcı | The person answering, not “oyuncu”. |
-| nickname | takma ad | The name chosen when joining. |
-| room | oda | The live room joined with a PIN; it can run several quizzes. |
-| session | oturum | One completed quiz as shown in History. |
-| console | kontrol paneli | The host's control screen. |
-| projection | yansıtma ekranı | The shared screen seen by the room. |
-| reveal | yanıtları göster | The action that shows correct answers. |
-| leaderboard | sıralama | Live standings. |
-| podium | ödül kürsüsü | Final standings. |
-| reviews | değerlendirmeler | Ratings and comments from participants. |
-| history | geçmiş | Archived sessions and results. |
-| question / slide / option | soru / slayt / seçenek | Quiz content. |
-| scoring / partial credit | puanlama / kısmi puan | How points are awarded. |
-| leave / stop / close | ayrıl / durdur / kapat | A participant leaves the room; the host stops a quiz, closes the room. |
+| Concept                   | Turkish                | Usage                                                                  |
+| ------------------------- | ---------------------- | ---------------------------------------------------------------------- |
+| quiz                      | quiz                   | The authored content, distinct from the room and archived session.     |
+| my quizzes                | Quizlerim              | The quiz bank.                                                         |
+| host                      | sunucu                 | The person presenting; never the server computer.                      |
+| host seat                 | sunucu yetkisi         | The single-host lock in local mode.                                    |
+| participant               | katılımcı              | The person answering, not “oyuncu”.                                    |
+| nickname                  | takma ad               | The name chosen when joining.                                          |
+| room                      | oda                    | The live room joined with a PIN; it can run several quizzes.           |
+| session                   | oturum                 | One completed quiz as shown in History.                                |
+| console                   | kontrol paneli         | The host's control screen.                                             |
+| projection                | yansıtma ekranı        | The shared screen seen by the room.                                    |
+| reveal                    | yanıtları göster       | The action that shows correct answers.                                 |
+| leaderboard               | sıralama               | Live standings.                                                        |
+| podium                    | ödül kürsüsü           | Final standings.                                                       |
+| reviews                   | değerlendirmeler       | Ratings and comments from participants.                                |
+| history                   | geçmiş                 | Archived sessions and results.                                         |
+| question / slide / option | soru / slayt / seçenek | Quiz content.                                                          |
+| scoring / partial credit  | puanlama / kısmi puan  | How points are awarded.                                                |
+| leave / stop / close      | ayrıl / durdur / kapat | A participant leaves the room; the host stops a quiz, closes the room. |
 
 Turkish strings use natural sentence order around `{{placeholders}}`, retain PIN
 and established product names, and use Turkish plural forms only where the UI
@@ -103,27 +103,27 @@ needs distinct forms. The locale checker enforces key and placeholder parity.
 
 ### German (`de`)
 
-| Concept | German | Usage |
-| --- | --- | --- |
-| quiz | Quiz (pl. Quizze) | The authored content, distinct from the room and archived session. |
-| my quizzes | Meine Quizze | The quiz bank. |
-| host | Quizleitung | The person presenting; gender-neutral, never “Host” or “Server”. |
-| host seat | Leitungsplatz | The single-host lock in local mode. |
-| participant | Teilnehmende | The person answering, not “Spieler”. |
-| nickname | Spitzname | The name chosen when joining. |
-| room | Raum | The live room joined with a PIN; it can run several quizzes. |
-| lobby | Warteraum | The room before a quiz starts. |
-| session | Sitzung | One completed quiz as shown in History. |
-| console | Konsole | The host's control screen. |
-| projection | Projektion | The shared screen seen by the room. |
-| reveal | auflösen / Auflösung | The action that shows correct answers. |
-| leaderboard | Rangliste | Live standings. |
-| podium | Podium | Final standings. |
-| reviews | Bewertungen | Ratings and comments from participants. |
-| history | Verlauf | Archived sessions and results. |
-| question / slide / option | Frage / Folie / Antwortmöglichkeit | Quiz content. |
-| scoring / partial credit | Wertung / Teilpunkte | How points are awarded. |
-| leave / stop / close | verlassen / stoppen / schließen | A participant leaves the room; the host stops a quiz, closes the room. |
+| Concept                   | German                             | Usage                                                                  |
+| ------------------------- | ---------------------------------- | ---------------------------------------------------------------------- |
+| quiz                      | Quiz (pl. Quizze)                  | The authored content, distinct from the room and archived session.     |
+| my quizzes                | Meine Quizze                       | The quiz bank.                                                         |
+| host                      | Quizleitung                        | The person presenting; gender-neutral, never “Host” or “Server”.       |
+| host seat                 | Leitungsplatz                      | The single-host lock in local mode.                                    |
+| participant               | Teilnehmende                       | The person answering, not “Spieler”.                                   |
+| nickname                  | Spitzname                          | The name chosen when joining.                                          |
+| room                      | Raum                               | The live room joined with a PIN; it can run several quizzes.           |
+| lobby                     | Warteraum                          | The room before a quiz starts.                                         |
+| session                   | Sitzung                            | One completed quiz as shown in History.                                |
+| console                   | Konsole                            | The host's control screen.                                             |
+| projection                | Projektion                         | The shared screen seen by the room.                                    |
+| reveal                    | auflösen / Auflösung               | The action that shows correct answers.                                 |
+| leaderboard               | Rangliste                          | Live standings.                                                        |
+| podium                    | Podium                             | Final standings.                                                       |
+| reviews                   | Bewertungen                        | Ratings and comments from participants.                                |
+| history                   | Verlauf                            | Archived sessions and results.                                         |
+| question / slide / option | Frage / Folie / Antwortmöglichkeit | Quiz content.                                                          |
+| scoring / partial credit  | Wertung / Teilpunkte               | How points are awarded.                                                |
+| leave / stop / close      | verlassen / stoppen / schließen    | A participant leaves the room; the host stops a quiz, closes the room. |
 
 German uses the neutral infinitive style of German software (“Quiz starten”,
 “Raum schließen”) and “Sie” where a direct address is unavoidable; never “du”.
@@ -135,27 +135,27 @@ native review welcome.
 
 ### Hindi (`hi`)
 
-| Concept | Hindi | Usage |
-| --- | --- | --- |
-| quiz | क्विज़ | The authored content, distinct from the room and archived session. |
-| my quizzes | मेरे क्विज़ | The quiz bank. |
-| host | होस्ट | The person presenting; role name क्विज़ होस्ट. |
-| host seat | होस्ट सीट | The single-host lock in local mode. |
-| participant | प्रतिभागी | The person answering, also where en says “player”; never खिलाड़ी. |
-| nickname | निकनेम | The name chosen when joining. |
-| room | रूम | The live room joined with a PIN; it can run several quizzes. |
-| lobby | लॉबी | The room before a quiz starts. |
-| session | सत्र | One completed quiz as shown in History. |
-| console | कंसोल | The host's control screen. |
-| projection | प्रोजेक्शन | The shared screen seen by the room. |
-| reveal | उत्तर दिखाएँ / उत्तर दिखाया गया | The action that shows correct answers, and its state. |
-| leaderboard | लीडरबोर्ड | Live standings; room standings are अंक तालिका. |
-| podium | विजेता मंच | Final standings. |
-| reviews | समीक्षाएँ | Ratings and comments from participants. |
-| history | इतिहास | Archived sessions and results. |
-| question / slide / answer choice | प्रश्न / स्लाइड / उत्तर विकल्प | Quiz content; विकल्प for short. |
-| scoring / partial credit | स्कोरिंग / आंशिक अंक | How points are awarded; points are अंक. |
-| leave / stop / close | छोड़ें / रोकें / बंद करें | A participant leaves the room; the host stops a quiz, closes the room. |
+| Concept                          | Hindi                           | Usage                                                                  |
+| -------------------------------- | ------------------------------- | ---------------------------------------------------------------------- |
+| quiz                             | क्विज़                          | The authored content, distinct from the room and archived session.     |
+| my quizzes                       | मेरे क्विज़                     | The quiz bank.                                                         |
+| host                             | होस्ट                           | The person presenting; role name क्विज़ होस्ट.                         |
+| host seat                        | होस्ट सीट                       | The single-host lock in local mode.                                    |
+| participant                      | प्रतिभागी                       | The person answering, also where en says “player”; never खिलाड़ी.      |
+| nickname                         | निकनेम                          | The name chosen when joining.                                          |
+| room                             | रूम                             | The live room joined with a PIN; it can run several quizzes.           |
+| lobby                            | लॉबी                            | The room before a quiz starts.                                         |
+| session                          | सत्र                            | One completed quiz as shown in History.                                |
+| console                          | कंसोल                           | The host's control screen.                                             |
+| projection                       | प्रोजेक्शन                      | The shared screen seen by the room.                                    |
+| reveal                           | उत्तर दिखाएँ / उत्तर दिखाया गया | The action that shows correct answers, and its state.                  |
+| leaderboard                      | लीडरबोर्ड                       | Live standings; room standings are अंक तालिका.                         |
+| podium                           | विजेता मंच                      | Final standings.                                                       |
+| reviews                          | समीक्षाएँ                       | Ratings and comments from participants.                                |
+| history                          | इतिहास                          | Archived sessions and results.                                         |
+| question / slide / answer choice | प्रश्न / स्लाइड / उत्तर विकल्प  | Quiz content; विकल्प for short.                                        |
+| scoring / partial credit         | स्कोरिंग / आंशिक अंक            | How points are awarded; points are अंक.                                |
+| leave / stop / close             | छोड़ें / रोकें / बंद करें       | A participant leaves the room; the host stops a quiz, closes the room. |
 
 Hindi strings use everyday UI Hindi in Devanagari with the respectful आप form,
 keeping software loanwords Hindi speakers actually use (क्विज़, रूम, स्लाइड,
@@ -167,29 +167,29 @@ review welcome.
 
 ### Italian (`it`)
 
-| Concept | Italian | Usage |
-| --- | --- | --- |
-| quiz | quiz | The authored content, distinct from the room and archived session; invariable plural. |
-| my quizzes | I miei quiz | The quiz bank (_raccolta_ in running text). |
-| host | conduttore | The person presenting; role _Conduttore di quiz_. |
-| host seat | postazione del conduttore | The single-host lock in local mode; _prendi / prolunga / libera_. |
-| participant | partecipante | The person answering, never “giocatore”. |
-| nickname | soprannome | The name chosen when joining. |
-| room | sala | The live room joined with a PIN; it can run several quizzes. |
-| lobby | sala d’attesa | The room before a quiz starts. |
-| session | sessione | One completed quiz as shown in History. |
-| console | console | The host's control screen. |
-| projection | proiezione | The shared big screen. |
-| reveal | rivelare / rivelazione | The moment answers are shown (_Rivela la risposta_). |
-| leaderboard | classifica | Live and room standings. |
-| podium | podio | Final standings. |
-| reviews | recensioni | Ratings and comments from participants. |
-| history | Storico | Archived sessions and results. |
-| question / slide / answer choice | domanda / slide / scelta di risposta | Quiz content; _slide_ is invariable. |
-| scoring / partial credit | punteggio / punteggio parziale | How points are awarded; _Tutto o niente_ otherwise. |
-| closest wins / tolerate typos | vince la risposta più vicina / tollera gli errori di battitura | Numeric and text scoring rules. |
-| looking back / back to live | sguardo indietro / torna alla diretta | Showing a played step again; nothing is replayed. |
-| leave / stop / close | esci / interrompi / chiudi | A participant leaves the room; the host stops a quiz, closes the room. |
+| Concept                          | Italian                                                        | Usage                                                                                 |
+| -------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| quiz                             | quiz                                                           | The authored content, distinct from the room and archived session; invariable plural. |
+| my quizzes                       | I miei quiz                                                    | The quiz bank (_raccolta_ in running text).                                           |
+| host                             | conduttore                                                     | The person presenting; role _Conduttore di quiz_.                                     |
+| host seat                        | postazione del conduttore                                      | The single-host lock in local mode; _prendi / prolunga / libera_.                     |
+| participant                      | partecipante                                                   | The person answering, never “giocatore”.                                              |
+| nickname                         | soprannome                                                     | The name chosen when joining.                                                         |
+| room                             | sala                                                           | The live room joined with a PIN; it can run several quizzes.                          |
+| lobby                            | sala d’attesa                                                  | The room before a quiz starts.                                                        |
+| session                          | sessione                                                       | One completed quiz as shown in History.                                               |
+| console                          | console                                                        | The host's control screen.                                                            |
+| projection                       | proiezione                                                     | The shared big screen.                                                                |
+| reveal                           | rivelare / rivelazione                                         | The moment answers are shown (_Rivela la risposta_).                                  |
+| leaderboard                      | classifica                                                     | Live and room standings.                                                              |
+| podium                           | podio                                                          | Final standings.                                                                      |
+| reviews                          | recensioni                                                     | Ratings and comments from participants.                                               |
+| history                          | Storico                                                        | Archived sessions and results.                                                        |
+| question / slide / answer choice | domanda / slide / scelta di risposta                           | Quiz content; _slide_ is invariable.                                                  |
+| scoring / partial credit         | punteggio / punteggio parziale                                 | How points are awarded; _Tutto o niente_ otherwise.                                   |
+| closest wins / tolerate typos    | vince la risposta più vicina / tollera gli errori di battitura | Numeric and text scoring rules.                                                       |
+| looking back / back to live      | sguardo indietro / torna alla diretta                          | Showing a played step again; nothing is replayed.                                     |
+| leave / stop / close             | esci / interrompi / chiudi                                     | A participant leaves the room; the host stops a quiz, closes the room.                |
 
 Italian strings address the user with the informal _tu_, and use impersonal
 forms or infinitives for labels. Quotes are «…», apostrophes typographic (’).
@@ -199,31 +199,31 @@ statistics); the locale is machine-assisted — native review welcome.
 
 ### Japanese (`ja`)
 
-| Concept | Japanese | Usage |
-| --- | --- | --- |
-| quiz | クイズ | The authored content, distinct from the room and archived session. |
-| my quizzes | マイクイズ | The quiz bank. |
-| host | ホスト | The person presenting; クイズのホスト as a role name. |
-| host seat | ホスト席 | The single-host lock in local mode; 確保 / 延長 / 解放 (claim / extend / release). |
-| participant | 参加者 | The person answering, never プレイヤー. |
-| nickname | ニックネーム | The name chosen when joining. |
-| room | ルーム | The live room joined with a PIN; it can run several quizzes. |
-| lobby | 待機室 | The room before a quiz starts. |
-| session | セッション | One completed quiz as shown in History. |
-| console | コンソール | The host's control screen. |
-| projection | 投影画面 | The shared big screen; 大画面 when participants refer to it. |
-| reveal | 正解発表 / 正解を発表 | The moment the answers are shown (state) and the console action. |
-| leaderboard | ランキング | Live standings; 順位 for room standings and rank columns. |
-| podium | 表彰台 | Final standings. |
-| reviews | レビュー | Ratings and comments from participants. |
-| history | 履歴 | Archived sessions and results. |
-| question / slide / answer choice | 問題 / スライド / 選択肢 | Quiz content; 第{{n}}問 for a numbered question. |
-| explanation | 解説 | The note shown at the reveal. |
-| present | 出題 | Launching a quiz live (Present, Publish to present). |
-| looking back / back to live | 振り返り / ライブに戻る | The host showing a played step again. |
-| scoring / partial credit | 採点方法 / 部分点 | How points are awarded; 全問正解のみ for all or nothing. |
-| closest wins / tolerate typos | 最も近い答えが勝ち / 誤字を許容 | Numeric and typed-answer scoring. |
-| leave / stop / close | 退出 / 中止 / 閉じる | A participant leaves the room; the host stops a quiz, closes the room. |
+| Concept                          | Japanese                        | Usage                                                                              |
+| -------------------------------- | ------------------------------- | ---------------------------------------------------------------------------------- |
+| quiz                             | クイズ                          | The authored content, distinct from the room and archived session.                 |
+| my quizzes                       | マイクイズ                      | The quiz bank.                                                                     |
+| host                             | ホスト                          | The person presenting; クイズのホスト as a role name.                              |
+| host seat                        | ホスト席                        | The single-host lock in local mode; 確保 / 延長 / 解放 (claim / extend / release). |
+| participant                      | 参加者                          | The person answering, never プレイヤー.                                            |
+| nickname                         | ニックネーム                    | The name chosen when joining.                                                      |
+| room                             | ルーム                          | The live room joined with a PIN; it can run several quizzes.                       |
+| lobby                            | 待機室                          | The room before a quiz starts.                                                     |
+| session                          | セッション                      | One completed quiz as shown in History.                                            |
+| console                          | コンソール                      | The host's control screen.                                                         |
+| projection                       | 投影画面                        | The shared big screen; 大画面 when participants refer to it.                       |
+| reveal                           | 正解発表 / 正解を発表           | The moment the answers are shown (state) and the console action.                   |
+| leaderboard                      | ランキング                      | Live standings; 順位 for room standings and rank columns.                          |
+| podium                           | 表彰台                          | Final standings.                                                                   |
+| reviews                          | レビュー                        | Ratings and comments from participants.                                            |
+| history                          | 履歴                            | Archived sessions and results.                                                     |
+| question / slide / answer choice | 問題 / スライド / 選択肢        | Quiz content; 第{{n}}問 for a numbered question.                                   |
+| explanation                      | 解説                            | The note shown at the reveal.                                                      |
+| present                          | 出題                            | Launching a quiz live (Present, Publish to present).                               |
+| looking back / back to live      | 振り返り / ライブに戻る         | The host showing a played step again.                                              |
+| scoring / partial credit         | 採点方法 / 部分点               | How points are awarded; 全問正解のみ for all or nothing.                           |
+| closest wins / tolerate typos    | 最も近い答えが勝ち / 誤字を許容 | Numeric and typed-answer scoring.                                                  |
+| leave / stop / close             | 退出 / 中止 / 閉じる            | A participant leaves the room; the host stops a quiz, closes the room.             |
 
 Japanese strings use polite です/ます sentences and short noun phrases for labels
 and buttons, full-width punctuation (、。：「」（）) and no spaces between Japanese
@@ -234,28 +234,28 @@ write it. The locale is machine-assisted — native review welcome.
 
 ### Polish (`pl`)
 
-| Concept | Polish | Usage |
-| --- | --- | --- |
-| quiz | quiz | The authored content, distinct from the room and archived session. |
-| my quizzes | Moje quizy | The quiz bank. |
-| host | prowadzący | The person presenting; never “gospodarz” or “host”. |
-| host seat | miejsce prowadzącego | The single-host lock in local mode. |
-| participant | uczestnik | The person answering, not “gracz”. |
-| nickname | pseudonim | The name chosen when joining. |
-| room | pokój | The live room joined with a PIN; it can run several quizzes. |
-| lobby | poczekalnia | The room before a quiz starts. |
-| session | sesja | One completed quiz as shown in History. |
-| console | konsola | The host's control screen. |
-| projection | projekcja | The shared screen seen by the room. |
-| reveal | odsłoń / odsłonięcie | The action that shows correct answers; never “korekta”. |
-| leaderboard | ranking | Live standings; room totals are “klasyfikacja pokoju”. |
-| podium | podium | Final standings. |
-| reviews | opinie | Ratings and comments from participants. |
-| history | historia | Archived sessions and results. |
-| question / slide / answer choice | pytanie / slajd / wariant odpowiedzi | Quiz content; “wariant” for short, never “opcja”. |
-| scoring / partial credit | punktacja / punkty częściowe | How points are awarded. |
-| looking back / back to live | spojrzenie wstecz / wróć do bieżącego | Showing a played step again; nothing is replayed. |
-| leave / stop / close | opuść (wyjdź) / zatrzymaj / zamknij | A participant leaves the room; the host stops a quiz, closes the room. |
+| Concept                          | Polish                                | Usage                                                                  |
+| -------------------------------- | ------------------------------------- | ---------------------------------------------------------------------- |
+| quiz                             | quiz                                  | The authored content, distinct from the room and archived session.     |
+| my quizzes                       | Moje quizy                            | The quiz bank.                                                         |
+| host                             | prowadzący                            | The person presenting; never “gospodarz” or “host”.                    |
+| host seat                        | miejsce prowadzącego                  | The single-host lock in local mode.                                    |
+| participant                      | uczestnik                             | The person answering, not “gracz”.                                     |
+| nickname                         | pseudonim                             | The name chosen when joining.                                          |
+| room                             | pokój                                 | The live room joined with a PIN; it can run several quizzes.           |
+| lobby                            | poczekalnia                           | The room before a quiz starts.                                         |
+| session                          | sesja                                 | One completed quiz as shown in History.                                |
+| console                          | konsola                               | The host's control screen.                                             |
+| projection                       | projekcja                             | The shared screen seen by the room.                                    |
+| reveal                           | odsłoń / odsłonięcie                  | The action that shows correct answers; never “korekta”.                |
+| leaderboard                      | ranking                               | Live standings; room totals are “klasyfikacja pokoju”.                 |
+| podium                           | podium                                | Final standings.                                                       |
+| reviews                          | opinie                                | Ratings and comments from participants.                                |
+| history                          | historia                              | Archived sessions and results.                                         |
+| question / slide / answer choice | pytanie / slajd / wariant odpowiedzi  | Quiz content; “wariant” for short, never “opcja”.                      |
+| scoring / partial credit         | punktacja / punkty częściowe          | How points are awarded.                                                |
+| looking back / back to live      | spojrzenie wstecz / wróć do bieżącego | Showing a played step again; nothing is replayed.                      |
+| leave / stop / close             | opuść (wyjdź) / zatrzymaj / zamknij   | A participant leaves the room; the host stops a quiz, closes the room. |
 
 Labels and buttons use the imperative or infinitive (Zapisz, Anuluj), sentences
 address the user with the informal “ty”; quotes are „…”. Every cardinal plural
@@ -266,29 +266,29 @@ names the kind. The locale is machine-assisted — native review welcome.
 
 ### Russian (`ru`)
 
-| Concept | Russian | Usage |
-| --- | --- | --- |
-| quiz | квиз | The authored content, distinct from the room and archived session. |
-| my quizzes | Мои квизы | The quiz bank. |
-| host | ведущий | The person presenting; never the server (сервер, хост). |
-| host seat | место ведущего | The single-host lock in local mode; занять / продлить / освободить. |
-| participant | участник | The person answering, not “игрок”. |
-| nickname | псевдоним | The name chosen when joining. |
-| room | комната | The live room joined with a PIN; it can run several quizzes. |
-| lobby | зал ожидания | The room before a quiz starts. |
-| session | сессия | One completed quiz as shown in History. |
-| console | пульт | The host's control screen; never “панель управления”. |
-| projection | проекция | The shared screen seen by the room. |
-| reveal | показать ответ / показ ответа | The action (console) and the state that shows correct answers. |
-| leaderboard | таблица лидеров | Live standings; room standings are “рейтинг комнаты”. |
-| podium | пьедестал | Final standings. |
-| reviews | отзывы | Ratings and comments from participants. |
-| history | история | Archived sessions and results. |
-| question / slide / answer choice | вопрос / слайд / вариант ответа | Quiz content. |
-| scoring / partial credit | начисление баллов / частичные баллы | How points are awarded. |
-| tolerate typos / closest wins | допускать опечатки / побеждает ближайший ответ | Scoring rules of text and number questions. |
-| looking back / back to live | повторный просмотр / вернуться к текущему | Showing a played step again; nothing is replayed. |
-| leave / stop / close | выйти / остановить / закрыть | A participant leaves the room; the host stops a quiz, closes the room. |
+| Concept                          | Russian                                        | Usage                                                                  |
+| -------------------------------- | ---------------------------------------------- | ---------------------------------------------------------------------- |
+| quiz                             | квиз                                           | The authored content, distinct from the room and archived session.     |
+| my quizzes                       | Мои квизы                                      | The quiz bank.                                                         |
+| host                             | ведущий                                        | The person presenting; never the server (сервер, хост).                |
+| host seat                        | место ведущего                                 | The single-host lock in local mode; занять / продлить / освободить.    |
+| participant                      | участник                                       | The person answering, not “игрок”.                                     |
+| nickname                         | псевдоним                                      | The name chosen when joining.                                          |
+| room                             | комната                                        | The live room joined with a PIN; it can run several quizzes.           |
+| lobby                            | зал ожидания                                   | The room before a quiz starts.                                         |
+| session                          | сессия                                         | One completed quiz as shown in History.                                |
+| console                          | пульт                                          | The host's control screen; never “панель управления”.                  |
+| projection                       | проекция                                       | The shared screen seen by the room.                                    |
+| reveal                           | показать ответ / показ ответа                  | The action (console) and the state that shows correct answers.         |
+| leaderboard                      | таблица лидеров                                | Live standings; room standings are “рейтинг комнаты”.                  |
+| podium                           | пьедестал                                      | Final standings.                                                       |
+| reviews                          | отзывы                                         | Ratings and comments from participants.                                |
+| history                          | история                                        | Archived sessions and results.                                         |
+| question / slide / answer choice | вопрос / слайд / вариант ответа                | Quiz content.                                                          |
+| scoring / partial credit         | начисление баллов / частичные баллы            | How points are awarded.                                                |
+| tolerate typos / closest wins    | допускать опечатки / побеждает ближайший ответ | Scoring rules of text and number questions.                            |
+| looking back / back to live      | повторный просмотр / вернуться к текущему      | Showing a played step again; nothing is replayed.                      |
+| leave / stop / close             | выйти / остановить / закрыть                   | A participant leaves the room; the host stops a quiz, closes the room. |
 
 Russian uses the four i18next cardinal forms (`_one`, `_few`, `_many`, `_other`),
 always with `{{count}}` since `_one` also covers 21, 31…; `_other` is the

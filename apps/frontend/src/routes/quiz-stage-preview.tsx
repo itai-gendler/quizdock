@@ -1,6 +1,5 @@
 import {
   type SlideBlock,
-  type SlideGradient,
   type SlideShowPayload,
   type PublicOption,
   fillSlideBlocks,
@@ -21,6 +20,7 @@ import { ScaledStage, SlideStage } from '../game/slide-stage';
 import { ShapeIcon } from '@/components/shape-icon';
 import { ImageChoiceGrid } from '../game/image-choice';
 import { type MediaResolver, mediaUrl, useMediaUrl } from '@/lib/media-url';
+import { stepBackground } from '@/lib/step-background';
 import { Surface } from '../game/surface';
 
 /**
@@ -53,6 +53,7 @@ export function slideShowOf(
     | 'blocks'
     | 'mediaId'
     | 'gradient'
+    | 'backgroundStyle'
     | 'videoMediaId'
     | 'videoLoop'
     | 'videoSound'
@@ -69,11 +70,7 @@ export function slideShowOf(
     slideIndex: index,
     questionIndex: 0,
     blocks: quizFields ? fillSlideBlocks(blocks, quizVariables(quizFields)) : blocks,
-    background: slide.mediaId
-      ? { url: url(slide.mediaId) }
-      : slide.gradient
-        ? { gradient: slide.gradient as SlideGradient }
-        : null,
+    background: stepBackground(slide.mediaId, slide.gradient, slide.backgroundStyle, url),
     // Its video, shown still (its first frame) behind the content.
     video: slide.videoMediaId
       ? {
@@ -103,11 +100,12 @@ function withImageUrls(blocks: SlideBlock[], url: MediaResolver): SlideBlock[] {
 /** A question on the 1280×720 stage, on its own background as the projection shows it. */
 export function QuestionPreview({ question }: { question: QuizDetailDtoQuestionsItem }) {
   const url = useMediaUrl();
-  const background = question.backgroundMediaId
-    ? { url: url(question.backgroundMediaId) }
-    : question.backgroundGradient
-      ? { gradient: question.backgroundGradient as SlideGradient }
-      : null;
+  const background = stepBackground(
+    question.backgroundMediaId,
+    question.backgroundGradient,
+    question.backgroundStyle,
+    url,
+  );
   return (
     <Surface
       background={background}

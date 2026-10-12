@@ -6,14 +6,15 @@ import {
   type QuestionMedia,
   type QuestionRevealPayload,
   type QuestionStartPayload,
-  type SlideGradient,
   type MediaPosition,
   type WaveformSize,
   basePointsFor,
   normalizeAnswer,
+  type ThemeValues,
 } from '@quiz-dock/contracts';
 import type { QuizItem } from '@/lib/quiz-items';
 import type { MediaResolver } from '@/lib/media-url';
+import { stepBackground } from '@/lib/step-background';
 import type { QuizDetailDtoQuestionsItem } from '../api/generated/model';
 import { type GameView, INITIAL_VIEW } from '../game/use-game-session';
 import { type StepQuiz, slideQuizFieldsOf, slideShowOf } from './quiz-stage-preview';
@@ -28,7 +29,7 @@ export function stepView(
   index: number,
   quiz: StepQuiz,
   url: MediaResolver,
-  { reveal = false }: { reveal?: boolean } = {},
+  { reveal = false, theme = null }: { reveal?: boolean; theme?: ThemeValues | null } = {},
 ): GameView {
   const item = items[index];
   const questionIndex = items.slice(0, index).filter((i) => i.kind === 'question').length;
@@ -43,6 +44,8 @@ export function stepView(
     joinLocked: true,
     // Its clock stands at the question's full time.
     still: true,
+    // Drawn in the quiz's theme, as the room will see it (THEMING §2.6).
+    theme,
   };
   if (item.kind === 'slide') {
     const slide = slideShowOf(item.slide, index, slideQuizFieldsOf(quiz), url);
@@ -95,11 +98,7 @@ function liveQuestion(
     startedAt: now,
     endsAt: now + q.timeLimitS * 1000,
     listenFirst: q.timerAfterMedia || undefined,
-    background: q.backgroundMediaId
-      ? { url: url(q.backgroundMediaId) }
-      : q.backgroundGradient
-        ? { gradient: q.backgroundGradient as SlideGradient }
-        : null,
+    background: stepBackground(q.backgroundMediaId, q.backgroundGradient, q.backgroundStyle, url),
     textTone: q.textTone,
     textOutline: q.textOutline,
   };

@@ -485,14 +485,16 @@
   "background": {
     "legend": "背景",
     "kind": {
-      "none": "白色",
+      "none": "主題的背景",
       "image": "圖片",
-      "gradient": "漸層"
+      "gradient": "漸層",
+      "colour": "顏色"
     },
     "color": "顏色 {{index}}",
     "removeColor": "移除顏色 {{index}}",
     "addColor": "新增顏色",
-    "angle": "角度"
+    "angle": "角度",
+    "colour": "顏色"
   },
   "status": {
     "draft": "草稿 - 發布後即可開始演示。",

@@ -495,14 +495,16 @@
   "background": {
     "legend": "Tło",
     "kind": {
-      "none": "Białe",
+      "none": "Z motywu",
       "image": "Obraz",
-      "gradient": "Gradient"
+      "gradient": "Gradient",
+      "colour": "Kolor"
     },
     "color": "Kolor {{index}}",
     "removeColor": "Usuń kolor {{index}}",
     "addColor": "Dodaj kolor",
-    "angle": "Kąt"
+    "angle": "Kąt",
+    "colour": "Kolor"
   },
   "status": {
     "draft": "Szkic — opublikuj quiz, aby go prezentować.",

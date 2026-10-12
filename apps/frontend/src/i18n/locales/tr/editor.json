@@ -485,14 +485,16 @@
   "background": {
     "legend": "Arka plan",
     "kind": {
-      "none": "Beyaz",
+      "none": "Temanınki",
       "image": "Resim",
-      "gradient": "Gradyan"
+      "gradient": "Gradyan",
+      "colour": "Renk"
     },
     "color": "Renk {{index}}",
     "removeColor": "{{index}} rengini kaldır",
     "addColor": "Renk ekle",
-    "angle": "Açı"
+    "angle": "Açı",
+    "colour": "Renk"
   },
   "status": {
     "draft": "Taslak — quizi sunmak için yayınlayın.",

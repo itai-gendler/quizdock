@@ -12,6 +12,7 @@ export const namespaces = [
   'join',
   'sessions',
   'store',
+  'themes',
   'auth',
   'errors',
   'validation',

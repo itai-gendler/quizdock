@@ -485,14 +485,16 @@
   "background": {
     "legend": "背景",
     "kind": {
-      "none": "白色",
+      "none": "主题的背景",
       "image": "图片",
-      "gradient": "渐变"
+      "gradient": "渐变",
+      "colour": "颜色"
     },
     "color": "颜色 {{index}}",
     "removeColor": "移除颜色 {{index}}",
     "addColor": "添加颜色",
-    "angle": "角度"
+    "angle": "角度",
+    "colour": "颜色"
   },
   "status": {
     "draft": "草稿 — 发布后即可开始演示。",

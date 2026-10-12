@@ -47,7 +47,9 @@
     "admin": "Administracja",
     "setup": "Konfiguracja",
     "history": "Sesje",
-    "historyRoom": "Pokój"
+    "historyRoom": "Pokój",
+    "themes": "Motywy",
+    "theme": "Motyw"
   },
   "demo": {
     "banner": "Publiczne demo — jedno konto prowadzącego wspólne dla wszystkich odwiedzających; wszystko jest czyszczone co godzinę."

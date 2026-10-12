@@ -486,14 +486,16 @@
   "background": {
     "legend": "बैकग्राउंड",
     "kind": {
-      "none": "सफ़ेद",
+      "none": "थीम वाली",
       "image": "इमेज",
-      "gradient": "ग्रेडिएंट"
+      "gradient": "ग्रेडिएंट",
+      "colour": "रंग"
     },
     "color": "रंग {{index}}",
     "removeColor": "रंग {{index}} हटाएँ",
     "addColor": "रंग जोड़ें",
-    "angle": "कोण"
+    "angle": "कोण",
+    "colour": "रंग"
   },
   "status": {
     "draft": "ड्राफ़्ट — प्रस्तुत करने के लिए क्विज़ प्रकाशित करें।",

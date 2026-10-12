@@ -25,6 +25,7 @@ import type {
   SlideTextAlign,
   SlideTextSize,
   SlideTextTone,
+  BackgroundStyle,
 } from '@quiz-dock/contracts';
 import {
   SLIDE_VARIABLES,
@@ -91,6 +92,7 @@ interface FormValues extends SlideMediaValue {
   gradient: SlideGradient | null;
   textTone: SlideTextTone;
   textOutline: boolean;
+  backgroundStyle: BackgroundStyle | null;
   displayDelayS: number | null;
 }
 
@@ -112,6 +114,7 @@ function initialValues(s?: QuizDetailDtoSlidesItem): FormValues {
     audioTarget: (s?.audioTarget as AudioTarget | null | undefined) ?? null,
     textTone: (s?.textTone as SlideTextTone | undefined) ?? 'light',
     textOutline: s?.textOutline ?? true,
+    backgroundStyle: (s?.backgroundStyle as BackgroundStyle | null | undefined) ?? null,
     displayDelayS: s?.displayDelayS ?? null,
   };
 }
@@ -238,6 +241,7 @@ export function SlideForm({
     audioTarget: values.audioTarget,
     textTone: values.textTone,
     textOutline: values.textOutline,
+    backgroundStyle: values.backgroundStyle,
     displayDelayS: values.displayDelayS,
   });
 
@@ -456,8 +460,9 @@ export function SlideForm({
               gradient: values.gradient,
               textTone: values.textTone,
               textOutline: values.textOutline,
+              style: values.backgroundStyle,
             }}
-            onChange={(b) => patch(b)}
+            onChange={({ style, ...b }) => patch({ ...b, backgroundStyle: style })}
           />
           <FieldMessage issues={[...issuesAt('gradient'), ...issuesAt('mediaId')]} />
         </div>

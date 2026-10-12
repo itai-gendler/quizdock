@@ -47,7 +47,9 @@
     "admin": "Administration",
     "setup": "Setup",
     "history": "Sessions",
-    "historyRoom": "Room"
+    "historyRoom": "Room",
+    "themes": "Themes",
+    "theme": "Theme"
   },
   "demo": {
     "banner": "Public demo — one host account shared by all visitors; everything is wiped every hour."

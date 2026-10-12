@@ -47,7 +47,9 @@
     "admin": "Administración",
     "setup": "Puesta en marcha",
     "history": "Sesiones",
-    "historyRoom": "Sala"
+    "historyRoom": "Sala",
+    "themes": "Temas",
+    "theme": "Tema"
   },
   "demo": {
     "banner": "Demo pública — una sola cuenta de anfitrión compartida por todos los visitantes; todo se borra cada hora."

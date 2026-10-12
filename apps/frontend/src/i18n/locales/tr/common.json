@@ -47,7 +47,9 @@
     "admin": "Yönetim",
     "setup": "İlk ayarlar",
     "history": "Oturumlar",
-    "historyRoom": "Oda"
+    "historyRoom": "Oda",
+    "themes": "Temalar",
+    "theme": "Tema"
   },
   "demo": {
     "banner": "Herkese açık demo — tüm ziyaretçiler aynı sunucu hesabını paylaşır; veriler her saat silinir."

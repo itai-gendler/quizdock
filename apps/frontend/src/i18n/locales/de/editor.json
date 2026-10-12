@@ -485,14 +485,16 @@
   "background": {
     "legend": "Hintergrund",
     "kind": {
-      "none": "Weiß",
+      "none": "Das des Themes",
       "image": "Bild",
-      "gradient": "Verlauf"
+      "gradient": "Verlauf",
+      "colour": "Farbe"
     },
     "color": "Farbe {{index}}",
     "removeColor": "Farbe {{index}} entfernen",
     "addColor": "Farbe hinzufügen",
-    "angle": "Winkel"
+    "angle": "Winkel",
+    "colour": "Farbe"
   },
   "status": {
     "draft": "Entwurf — veröffentlichen Sie das Quiz, um es zu präsentieren.",

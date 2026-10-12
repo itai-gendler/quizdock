@@ -47,7 +47,9 @@
     "admin": "Amministrazione",
     "setup": "Configurazione",
     "history": "Sessioni",
-    "historyRoom": "Sala"
+    "historyRoom": "Sala",
+    "themes": "Temi",
+    "theme": "Tema"
   },
   "demo": {
     "banner": "Demo pubblica — un unico account conduttore condiviso da tutti i visitatori; tutto viene cancellato ogni ora."

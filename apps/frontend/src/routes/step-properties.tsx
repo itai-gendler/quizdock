@@ -176,7 +176,9 @@ export function QuestionProperties({ question: q }: { question: QuizDetailDtoQue
           ? t('background.kind.image')
           : q.backgroundGradient
             ? t('background.kind.gradient')
-            : t('background.kind.none')}
+            : (q.backgroundStyle as { color?: string } | null)?.color
+              ? t('background.kind.colour')
+              : t('background.kind.none')}
       </Row>
 
       <Row label={t('questionForm.answerExplanationLabel')}>

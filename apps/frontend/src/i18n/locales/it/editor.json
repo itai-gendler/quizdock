@@ -491,14 +491,16 @@
   "background": {
     "legend": "Sfondo",
     "kind": {
-      "none": "Bianco",
+      "none": "Quello del tema",
       "image": "Immagine",
-      "gradient": "Sfumatura"
+      "gradient": "Sfumatura",
+      "colour": "Colore"
     },
     "color": "Colore {{index}}",
     "removeColor": "Rimuovi il colore {{index}}",
     "addColor": "Aggiungi un colore",
-    "angle": "Angolo"
+    "angle": "Angolo",
+    "colour": "Colore"
   },
   "status": {
     "draft": "Bozza — pubblica il quiz per presentarlo.",

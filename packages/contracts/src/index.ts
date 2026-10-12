@@ -222,10 +222,14 @@ export interface SlideGradient {
   colors: string[];
 }
 /**
- * Full-cover background: an uploaded image, or a generated gradient, laid as its `style`
- * says (THEMING §1.1; absent: today's cover).
+ * Full-cover background: an uploaded image, a generated gradient or a plain colour, laid
+ * as its `style` says (THEMING §1.1; absent: today's cover).
  */
-export type SlideBackground = ({ url: string } | { gradient: SlideGradient }) & {
+export type SlideBackground = (
+  | { url: string }
+  | { gradient: SlideGradient }
+  | { color: string }
+) & {
   style?: BackgroundStyle;
 };
 

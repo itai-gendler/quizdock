@@ -485,14 +485,16 @@
   "background": {
     "legend": "Background",
     "kind": {
-      "none": "White",
+      "none": "The theme’s",
       "image": "Image",
-      "gradient": "Gradient"
+      "gradient": "Gradient",
+      "colour": "Colour"
     },
     "color": "Colour {{index}}",
     "removeColor": "Remove colour {{index}}",
     "addColor": "Add a colour",
-    "angle": "Angle"
+    "angle": "Angle",
+    "colour": "Colour"
   },
   "status": {
     "draft": "Draft — publish the quiz to present it.",

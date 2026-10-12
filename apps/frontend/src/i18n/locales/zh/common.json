@@ -47,7 +47,9 @@
     "admin": "管理",
     "setup": "初始化",
     "history": "场次",
-    "historyRoom": "房间"
+    "historyRoom": "房间",
+    "themes": "主题",
+    "theme": "主题"
   },
   "demo": {
     "banner": "公开演示——所有访客共用一个主持人账号；每小时清空一次。"

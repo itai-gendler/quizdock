@@ -110,6 +110,22 @@ export const templatesRoute = createRoute({
   component: lazyRouteComponent(() => import('./routes/templates-page'), 'TemplatesPage'),
 });
 
+/** The library of quiz themes (THEMING §2.7). */
+export const themesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/themes',
+  beforeLoad: requireAuth,
+  component: lazyRouteComponent(() => import('./routes/themes-page'), 'ThemesPage'),
+});
+
+/** A theme of the library, edited with its live preview. */
+export const themeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/themes/$themeId',
+  beforeLoad: requireAuth,
+  component: lazyRouteComponent(() => import('./routes/theme-editor-page'), 'ThemeEditorPage'),
+});
+
 export const communityRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/community',
@@ -379,6 +395,8 @@ export const routeTree = rootRoute.addChildren([
   callbackRoute,
   dashboardRoute,
   templatesRoute,
+  themesRoute,
+  themeRoute,
   communityRoute,
   communityPreviewRoute,
   templateRoute,

@@ -490,14 +490,16 @@
   "background": {
     "legend": "Fondo",
     "kind": {
-      "none": "Blanco",
+      "none": "El del tema",
       "image": "Imagen",
-      "gradient": "Degradado"
+      "gradient": "Degradado",
+      "colour": "Color"
     },
     "color": "Color {{index}}",
     "removeColor": "Quitar el color {{index}}",
     "addColor": "Añadir un color",
-    "angle": "Ángulo"
+    "angle": "Ángulo",
+    "colour": "Color"
   },
   "status": {
     "draft": "Borrador — publica el quiz para presentarlo.",

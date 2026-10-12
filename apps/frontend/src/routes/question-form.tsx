@@ -48,6 +48,7 @@ import {
   questionContentSchema,
   questionIssues,
   scoringsFor,
+  type BackgroundStyle,
 } from '@quiz-dock/contracts';
 import { useForm, useStore } from '@tanstack/react-form';
 import { useQueryClient } from '@tanstack/react-query';
@@ -218,6 +219,7 @@ function initialValues(q?: QuizDetailDtoQuestionsItem): FormValues {
       gradient: (q.backgroundGradient as SlideGradient | null | undefined) ?? null,
       textTone: (q.textTone as SlideTextTone | undefined) ?? 'light',
       textOutline: q.textOutline ?? true,
+      style: (q.backgroundStyle as BackgroundStyle | null | undefined) ?? null,
     },
     timeLimitS: q.timeLimitS,
     revealDelayS: q.revealDelayS ?? null,
@@ -1328,6 +1330,7 @@ function buildPayload(v: FormValues) {
     answerExplanation: v.answerExplanation.trim() || null,
     backgroundMediaId: v.background.mediaId,
     backgroundGradient: v.background.gradient,
+    backgroundStyle: v.background.style,
     textTone: v.background.textTone,
     textOutline: v.background.textOutline,
   };
@@ -1558,6 +1561,7 @@ function previewQuestion(v: FormValues): QuizDetailDtoQuestionsItem {
     answerExplanation: p.answerExplanation ?? null,
     backgroundMediaId: v.background.mediaId,
     backgroundGradient: v.background.gradient,
+    backgroundStyle: v.background.style,
     textTone: v.background.textTone,
     textOutline: v.background.textOutline,
     timeLimitS: p.timeLimitS ?? TIME_LIMIT_S.default,

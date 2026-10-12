@@ -19,6 +19,8 @@ const TITLE_KEYS: Record<string, string> = {
   '/community': 'templates',
   '/community/$key': 'template',
   '/templates/$templateId': 'template',
+  '/themes': 'themes',
+  '/themes/$themeId': 'theme',
   '/quizzes/$quizId': 'editor',
   '/quizzes/$quizId/preview': 'preview',
   '/quizzes/$quizId/reviews': 'feedback',
