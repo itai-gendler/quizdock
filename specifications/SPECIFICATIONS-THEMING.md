@@ -76,5 +76,6 @@ the store's integration into the app.
 
 ## 7. Open points
 
-- The size budget of the shipped themes' assets (today, in the image: fonts about 490 KB,
-  the icon bank about 600 KB, the seasonal pictures about 60 KB).
+None. The size of the shipped themes' assets (fonts about 490 KB, the icon bank about 600 KB, the
+seasonal pictures about 60 KB) was given no budget: they load only when a theme uses them, so they
+cost the image about 1.1 MB and no page anything.
