@@ -39,6 +39,7 @@ docs/
 ## Feature notes
 
 - [`quiz-bundle.md`](quiz-bundle.md) — the import / export format of a quiz (`quiz.json` + `media/`).
+- [`look.md`](look.md) — the instance's look: its colours, font, corners and showcase backgrounds, where it is kept, how pages apply it, the Branding and Interface spaces.
 - [`themes.md`](themes.md) — quiz themes: what a theme holds, the shipped ones and the library, its files and the icon bank, how the live screens draw it, its accessibility.
 - [`scoring.md`](scoring.md) — the scales: points, speed, streak, per-type variants (closest, partial credit, lenient).
 - [`live-session.md`](live-session.md) — the live session: substance/form snapshot, states, looking back, resuming after a restart, media on every device (experimental), the invitation address.

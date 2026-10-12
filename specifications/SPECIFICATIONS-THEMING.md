@@ -34,35 +34,18 @@ the theme's, so it is not checked.
 
 ---
 
-## 4. Lot 2 — Instance look
+## 4. Lot 2 — Instance look: shipped
 
-### 4.1 Branding, a separate space
+What lot 2 built — the Branding and Interface spaces, the look and its operations, the
+showcase backgrounds — is described in [`docs/look.md`](../docs/look.md). Decisions taken
+on the way, which lot 3 builds on: the main colour is one colour for light and dark mode,
+under white text, never derived into a scale; only links are lightened on the dark page
+(to 7:1); the watermark is the logo's shape in the text's colour (QuizDock's mark without
+its square); the tokens that fell short of 4.5:1 were darkened — the grey of secondary
+text, the amber and the new green and red text tokens on their tints, the main action's
+green under white text.
 
-The administration gets a **Branding** space for the identity, on the current settings and their environment
-variables: `APP_NAME`, `APP_LANG`, `APP_LOGO_URL`, `APP_FEEDBACK_URL`, the logo in `branding/`. Unchanged mechanism.
-
-### 4.2 Interface theme
-
-A separate space, **stored in the database only** (no environment variable: it holds files and is set with a
-preview):
-- **primary** colour and **accent** colour, the whole token scale derived from them (OKLCH, contrast checked, dark
-  variant included);
-- **font** (docs/themes.md);
-- **corner radius** (square, standard, rounded);
-- **showcase backgrounds** (§4.3);
-- the **compliance** property (docs/themes.md).
-
-`branding/override.css` stays, loaded last, for the cases the settings do not cover.
-
-### 4.3 Showcase backgrounds
-
-Only on the **showcase pages**: home, join, sign-in, error and not-found pages. Working pages (editor, console,
-administration, history) stay plain; the lobby belongs to the quiz theme.
-
-Default: a `watermark` of the **branding logo** (QuizDock's until the instance sets its own, so a white-label instance
-gets its watermark without any setting), in greyscale, faded, centred, sized in `vmin`.
-
-### 4.4 Out of scope
+### Still to do
 
 The identity provider's sign-in page (Keycloak or another): the provider can be anything. A documentation note points
 to its own theming.

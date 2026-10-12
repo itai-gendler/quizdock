@@ -2,7 +2,8 @@
 
 A quiz theme is the look of a quiz on the **live screens**: the projection and the
 players' phones, from the lobby to the podium. The console, the editor and the back
-office never take it (the console's thumbnail of the current step does). Intent and
+office never take it (the console's thumbnail of the current step does): they wear the
+instance's look ([`look.md`](look.md)). Intent and
 remaining work: [`SPECIFICATIONS-THEMING.md`](../specifications/SPECIFICATIONS-THEMING.md).
 
 ## What a theme holds
