@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { ShowcaseBackdrop } from '@/components/showcase-backdrop';
 import { JoinPin } from '@/components/join-pin';
 import { Card, CardContent } from '@/components/ui/card';
 import { PageTitle } from '@/components/ui/page-title';
@@ -12,6 +13,7 @@ export function JoinPage() {
   const { t } = useTranslation(['join', 'common']);
   return (
     <section className="content-phone flex flex-col items-center gap-6 px-4 py-12 text-center">
+      <ShowcaseBackdrop />
       <PageTitle>{t('title')}</PageTitle>
       <Card className="content-sm">
         <CardContent className="pt-6">

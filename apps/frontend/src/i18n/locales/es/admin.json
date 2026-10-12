@@ -14,7 +14,9 @@
     "accounts": "Cuentas",
     "audit": "Auditoría",
     "quizzes": "Quizzes",
-    "media": "Medios"
+    "media": "Medios",
+    "branding": "Marca",
+    "interface": "Interfaz"
   },
   "token": {
     "unset": "Modo local: no se puede cambiar nada desde la web hasta que ADMIN_TOKEN esté definido en .env (32 caracteres o más) y la instancia se haya reiniciado.",
@@ -802,5 +804,78 @@
     "jwks_ok_other": "Claves de firma accesibles ({{count}} claves)",
     "jwks_failed": "Claves de firma {{url}}: {{error}}"
   },
-  "demoReadOnly": "Demo pública: la administración se muestra tal cual y no se puede cambiar nada desde ella. En tu propia instancia, es tuya."
+  "demoReadOnly": "Demo pública: la administración se muestra tal cual y no se puede cambiar nada desde ella. En tu propia instancia, es tuya.",
+  "branding": {
+    "intro": "Quién es la instancia: su nombre, su idioma, su logo, adónde van los comentarios. Cada línea es una variable de entorno, que se cambia aquí como en la página Ajustes.",
+    "APP_NAME": "Nombre de la aplicación",
+    "APP_NAME_hint": "Se muestra en la cabecera, en los títulos de las pestañas y en la app instalada.",
+    "APP_LANG": "Idioma de la interfaz",
+    "APP_LANG_hint": "Para los visitantes cuyo navegador no indica nada mejor.",
+    "APP_LOGO_URL": "Logo",
+    "APP_LOGO_URL_hint": "Un archivo logo.svg (o .png…) en la carpeta branding/, o una dirección https aquí.",
+    "APP_FEEDBACK_URL": "Adónde llevan los enlaces de comentarios",
+    "APP_FEEDBACK_URL_hint": "Los enlaces «Cuéntanos» de la página de inicio; none los oculta.",
+    "logoDefault": "El de QuizDock, hasta que la instancia ponga el suyo.",
+    "css": "Tu propio CSS",
+    "cssHint": "Un branding/override.css se carga al final, para lo que estos ajustes no cubren."
+  },
+  "look": {
+    "intro": "Cómo se ve la aplicación: sus colores, fuente, esquinas y los fondos de sus páginas escaparate. Se guarda en la base de datos y solo se cambia aquí. Un quiz en las pantallas en directo conserva el aspecto de su propio tema.",
+    "saving": "Guardando…",
+    "saved": "Guardado: cada visitante lo ve desde la próxima página que abra.",
+    "reset": "Volver al aspecto de QuizDock",
+    "colours": "Colores",
+    "primary": "Color principal",
+    "primaryHint": "Botones, filtros seleccionados, anillo de foco; su texto es blanco. El mismo color en modo claro y oscuro.",
+    "accent": "Color de acento",
+    "accentHint": "Los enlaces y la marca de la página actual. Por defecto, el color principal. Como texto sobre la página oscura se aclara hasta leerse con comodidad (7:1).",
+    "button": "Botón",
+    "link": "Un enlace",
+    "whiteText": "Texto blanco",
+    "onLight": "Sobre la página clara",
+    "onDark": "Sobre la página oscura",
+    "corners": "Esquinas",
+    "radius": {
+      "square": "Rectas",
+      "standard": "Estándar",
+      "rounded": "Redondeadas"
+    },
+    "cornerSample": {
+      "card": "Tarjeta",
+      "button": "Botón",
+      "field": "Campo"
+    },
+    "showcase": "Fondos de escaparate",
+    "showcaseHint": "Solo las páginas de inicio, unirse, inicio de sesión, error y no encontrada; las páginas de trabajo siguen lisas.",
+    "mode": {
+      "none": "Ninguno",
+      "logo": "Logo como marca de agua",
+      "picture": "Imagen"
+    },
+    "logoHint": "La forma del logo de la marca — el de QuizDock hasta que la instancia defina el suyo — en el color del texto, atenuada y centrada.",
+    "size": "Tamaño",
+    "opacity": "Opacidad",
+    "accessibility": "Accesibilidad",
+    "accessible": "Accesible",
+    "accessibilityHint": "Se mide en los colores, nunca se declara; solo un aspecto accesible lo indica.",
+    "checksMet": "{{met}} de {{total}} comprobaciones superadas",
+    "check": {
+      "button_text_contrast": "El texto blanco de los botones principales alcanza 4.5:1",
+      "primary_on_light": "El color principal destaca de la página (3:1)",
+      "primary_on_dark": "El color principal destaca también de la página oscura (3:1)",
+      "link_on_light": "Los enlaces en el acento se leen sobre la página (4.5:1)",
+      "link_on_dark": "Los enlaces se leen también sobre la página oscura (4.5:1)"
+    },
+    "preview": {
+      "label": "Vista previa",
+      "home": "Inicio",
+      "join": "Unirse",
+      "login": "Iniciar sesión",
+      "notFound": "No encontrada",
+      "quizzes": "Mis quizzes",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "plain": "Una página de trabajo sigue lisa: sin fondo de escaparate."
+    }
+  }
 }

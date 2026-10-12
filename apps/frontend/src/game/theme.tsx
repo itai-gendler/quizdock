@@ -87,16 +87,14 @@ const SYSTEM = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
 
 const loaded = new Set<string>();
 
-/** Adds a font's faces to the document once; the browser fetches them when text uses them. */
-function useFont(font: ThemeValues['font'] | undefined): string | undefined {
-  const family =
-    !font || ('builtin' in font && font.builtin === 'system')
-      ? undefined
-      : 'builtin' in font
-        ? BUILTIN_FONTS[font.builtin as Exclude<ThemeFont, 'system'>].family
-        : `qd-theme-${font.file.replace(/\W/g, '')}`;
-  useEffect(() => {
-    if (!font || !family || loaded.has(family) || typeof FontFace === 'undefined') return;
+/**
+ * Adds a font's faces to the document once — the browser fetches them when text uses
+ * them — and gives its CSS family; undefined for the device's own. `file`: a URL.
+ */
+export function loadFont(font: ThemeValues['font'] | undefined): string | undefined {
+  const family = fontFamilyName(font);
+  if (!font || !family) return undefined;
+  if (!loaded.has(family) && typeof FontFace !== 'undefined') {
     loaded.add(family);
     const faces =
       'builtin' in font
@@ -113,6 +111,23 @@ function useFont(font: ThemeValues['font'] | undefined): string | undefined {
       document.fonts.add(face);
       void face.load().catch(() => undefined);
     }
+  }
+  return `'${family}', ${SYSTEM}`;
+}
+
+function fontFamilyName(font: ThemeValues['font'] | undefined): string | undefined {
+  return !font || ('builtin' in font && font.builtin === 'system')
+    ? undefined
+    : 'builtin' in font
+      ? BUILTIN_FONTS[font.builtin as Exclude<ThemeFont, 'system'>].family
+      : `qd-theme-${font.file.replace(/\W/g, '')}`;
+}
+
+/** `loadFont` from a component: the faces added after render. */
+export function useFont(font: ThemeValues['font'] | undefined): string | undefined {
+  const family = fontFamilyName(font);
+  useEffect(() => {
+    loadFont(font);
   }, [font, family]);
   return family ? `'${family}', ${SYSTEM}` : undefined;
 }

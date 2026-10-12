@@ -14,7 +14,9 @@
     "accounts": "Accounts",
     "audit": "Audit",
     "quizzes": "Quizzes",
-    "media": "Media"
+    "media": "Media",
+    "branding": "Branding",
+    "interface": "Interface"
   },
   "token": {
     "unset": "Local mode: nothing can be changed from the web until ADMIN_TOKEN is set in .env (32 characters or more), then the instance restarted.",
@@ -780,5 +782,78 @@
     "jwks_ok_other": "Signing keys reachable ({{count}} keys)",
     "jwks_failed": "Signing keys {{url}}: {{error}}"
   },
-  "demoReadOnly": "Public demo: the administration is shown as it is, and nothing can be changed from it. On your own instance, it is yours."
+  "demoReadOnly": "Public demo: the administration is shown as it is, and nothing can be changed from it. On your own instance, it is yours.",
+  "branding": {
+    "intro": "Who the instance is: its name, its language, its logo, where feedback goes. Each line is an environment variable, changed here as the Settings page does.",
+    "APP_NAME": "Name of the application",
+    "APP_NAME_hint": "Shown in the header, the tab titles and the installed app.",
+    "APP_LANG": "Language of the interface",
+    "APP_LANG_hint": "For the visitors whose browser says nothing better.",
+    "APP_LOGO_URL": "Logo",
+    "APP_LOGO_URL_hint": "A file logo.svg (or .png…) in the branding/ folder, or an https address here.",
+    "APP_FEEDBACK_URL": "Where feedback links lead",
+    "APP_FEEDBACK_URL_hint": "The “Tell us” links on the home page; none hides them.",
+    "logoDefault": "QuizDock’s, until the instance gives its own.",
+    "css": "Your own CSS",
+    "cssHint": "A branding/override.css is loaded last, for what these settings do not cover."
+  },
+  "look": {
+    "intro": "How the application looks: its colours, font, corners and the backgrounds of its showcase pages. Kept in the database, changed here only. A quiz on the live screens keeps the look of its own theme.",
+    "saving": "Saving…",
+    "saved": "Saved: each visitor sees it from the next page they open.",
+    "reset": "Back to QuizDock’s look",
+    "colours": "Colours",
+    "primary": "Main colour",
+    "primaryHint": "Buttons, the selected filters, the focus ring; their text is white. The same colour in light and dark mode.",
+    "accent": "Accent colour",
+    "accentHint": "Links and the mark of the current page. By default the main colour. As text on the dark page it is lightened until it reads comfortably (7:1).",
+    "button": "Button",
+    "link": "A link",
+    "whiteText": "White text",
+    "onLight": "On the light page",
+    "onDark": "On the dark page",
+    "corners": "Corners",
+    "radius": {
+      "square": "Square",
+      "standard": "Standard",
+      "rounded": "Rounded"
+    },
+    "cornerSample": {
+      "card": "Card",
+      "button": "Button",
+      "field": "Field"
+    },
+    "showcase": "Showcase backgrounds",
+    "showcaseHint": "Home, join, sign-in, error and not-found pages only; working pages stay plain.",
+    "mode": {
+      "none": "None",
+      "logo": "Logo watermark",
+      "picture": "Picture"
+    },
+    "logoHint": "The shape of the branding’s logo — QuizDock’s until the instance sets its own — in the text’s colour, faded, centred.",
+    "size": "Size",
+    "opacity": "Opacity",
+    "accessibility": "Accessibility",
+    "accessible": "Accessible",
+    "accessibilityHint": "Measured on the colours, never declared; only an accessible look says so.",
+    "checksMet": "{{met}} of {{total}} checks met",
+    "check": {
+      "button_text_contrast": "The white text on the main buttons reaches 4.5:1",
+      "primary_on_light": "The main colour stands out from the page (3:1)",
+      "primary_on_dark": "The main colour stands out from the dark page too (3:1)",
+      "link_on_light": "Links in the accent read on the page (4.5:1)",
+      "link_on_dark": "Links read on the dark page too (4.5:1)"
+    },
+    "preview": {
+      "label": "Preview",
+      "home": "Home",
+      "join": "Join",
+      "login": "Sign in",
+      "notFound": "Not found",
+      "quizzes": "My quizzes",
+      "light": "Light",
+      "dark": "Dark",
+      "plain": "A working page stays plain: no showcase background."
+    }
+  }
 }

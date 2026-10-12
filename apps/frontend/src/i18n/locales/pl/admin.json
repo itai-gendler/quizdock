@@ -14,7 +14,9 @@
     "accounts": "Konta",
     "audit": "Dziennik zmian",
     "quizzes": "Quizy",
-    "media": "Multimedia"
+    "media": "Multimedia",
+    "branding": "Marka",
+    "interface": "Interfejs"
   },
   "token": {
     "unset": "Tryb lokalny: przez przeglądarkę nie można niczego zmienić, dopóki ADMIN_TOKEN nie zostanie ustawiony w .env (co najmniej 32 znaki), a instancja ponownie uruchomiona.",
@@ -824,5 +826,78 @@
     "jwks_ok_other": "Klucze podpisujące osiągalne ({{count}} klucza)",
     "jwks_failed": "Klucze podpisujące {{url}}: {{error}}"
   },
-  "demoReadOnly": "Publiczne demo: administracja jest pokazywana taka, jaka jest, i nic nie można w niej zmienić. Na twojej własnej instancji należy do ciebie."
+  "demoReadOnly": "Publiczne demo: administracja jest pokazywana taka, jaka jest, i nic nie można w niej zmienić. Na twojej własnej instancji należy do ciebie.",
+  "branding": {
+    "intro": "Kim jest instancja: jej nazwa, język, logo, dokąd trafiają opinie. Każdy wiersz to zmienna środowiskowa, zmieniana tutaj tak jak na stronie Ustawienia.",
+    "APP_NAME": "Nazwa aplikacji",
+    "APP_NAME_hint": "Wyświetlana w nagłówku, w tytułach kart i w zainstalowanej aplikacji.",
+    "APP_LANG": "Język interfejsu",
+    "APP_LANG_hint": "Dla odwiedzających, których przeglądarka nie wskazuje nic lepszego.",
+    "APP_LOGO_URL": "Logo",
+    "APP_LOGO_URL_hint": "Plik logo.svg (lub .png…) w folderze branding/ albo adres https tutaj.",
+    "APP_FEEDBACK_URL": "Dokąd prowadzą linki do opinii",
+    "APP_FEEDBACK_URL_hint": "Linki „Napisz do nas” na stronie głównej; none je ukrywa.",
+    "logoDefault": "Logo QuizDock, dopóki instancja nie poda własnego.",
+    "css": "Twój własny CSS",
+    "cssHint": "Plik branding/override.css jest ładowany na końcu, dla tego, czego te ustawienia nie obejmują."
+  },
+  "look": {
+    "intro": "Jak wygląda aplikacja: jej kolory, czcionka, narożniki i tła stron wizytówkowych. Przechowywane w bazie danych, zmieniane tylko tutaj. Quiz na ekranach na żywo zachowuje wygląd własnego motywu.",
+    "saving": "Zapisywanie…",
+    "saved": "Zapisano: każdy odwiedzający zobaczy to od następnej otwartej strony.",
+    "reset": "Wróć do wyglądu QuizDock",
+    "colours": "Kolory",
+    "primary": "Kolor główny",
+    "primaryHint": "Przyciski, wybrane filtry, obwódka fokusu; ich tekst jest biały. Ten sam kolor w trybie jasnym i ciemnym.",
+    "accent": "Kolor akcentu",
+    "accentHint": "Linki i znacznik bieżącej strony. Domyślnie kolor główny. Jako tekst na ciemnej stronie jest rozjaśniany, aż będzie się wygodnie czytał (7:1).",
+    "button": "Przycisk",
+    "link": "Link",
+    "whiteText": "Biały tekst",
+    "onLight": "Na jasnej stronie",
+    "onDark": "Na ciemnej stronie",
+    "corners": "Narożniki",
+    "radius": {
+      "square": "Kwadratowe",
+      "standard": "Standardowe",
+      "rounded": "Zaokrąglone"
+    },
+    "cornerSample": {
+      "card": "Karta",
+      "button": "Przycisk",
+      "field": "Pole"
+    },
+    "showcase": "Tła stron wizytówkowych",
+    "showcaseHint": "Tylko strona główna, dołączanie, logowanie, błąd i nie znaleziono; strony robocze pozostają gładkie.",
+    "mode": {
+      "none": "Brak",
+      "logo": "Logo jako znak wodny",
+      "picture": "Obraz"
+    },
+    "logoHint": "Kształt logo marki — logo QuizDock, dopóki instancja nie ustawi własnego — w kolorze tekstu, wyblakły, wyśrodkowany.",
+    "size": "Rozmiar",
+    "opacity": "Krycie",
+    "accessibility": "Dostępność",
+    "accessible": "Dostępny",
+    "accessibilityHint": "Mierzona na kolorach, nigdy deklarowana; tylko dostępny wygląd to pokazuje.",
+    "checksMet": "Spełniono {{met}} z {{total}} testów",
+    "check": {
+      "button_text_contrast": "Biały tekst na głównych przyciskach osiąga 4.5:1",
+      "primary_on_light": "Kolor główny odcina się od strony (3:1)",
+      "primary_on_dark": "Kolor główny odcina się także od ciemnej strony (3:1)",
+      "link_on_light": "Linki w kolorze akcentu są czytelne na stronie (4.5:1)",
+      "link_on_dark": "Linki są czytelne także na ciemnej stronie (4.5:1)"
+    },
+    "preview": {
+      "label": "Podgląd",
+      "home": "Strona główna",
+      "join": "Dołącz",
+      "login": "Zaloguj się",
+      "notFound": "Nie znaleziono",
+      "quizzes": "Moje quizy",
+      "light": "Jasny",
+      "dark": "Ciemny",
+      "plain": "Strona robocza pozostaje gładka: bez tła wizytówkowego."
+    }
+  }
 }

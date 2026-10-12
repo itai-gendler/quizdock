@@ -406,7 +406,7 @@ function QuizPicker({
                 <span className="truncate font-medium">{q.title}</span>
                 {wasPlayed(q) || q.id === playingId ? (
                   <span className="text-muted-foreground flex shrink-0 items-center gap-1 text-xs">
-                    <CircleCheck className="text-success size-3.5" aria-hidden />
+                    <CircleCheck className="text-success-text size-3.5" aria-hidden />
                     {t(
                       q.id === playingId ? 'control.pickerJustPlayed' : 'control.pickerPlayedMark',
                     )}

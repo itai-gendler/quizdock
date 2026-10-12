@@ -14,7 +14,9 @@
     "accounts": "Hesaplar",
     "audit": "Denetim",
     "quizzes": "Quizler",
-    "media": "Medya"
+    "media": "Medya",
+    "branding": "Marka",
+    "interface": "Arayüz"
   },
   "token": {
     "unset": "Yerel mod: ADMIN_TOKEN .env içinde ayarlanıp (32 karakter veya daha uzun) kurulum yeniden başlatılana kadar web üzerinden hiçbir şey değiştirilemez.",
@@ -780,5 +782,78 @@
     "jwks_ok_other": "İmza anahtarları erişilebilir ({{count}} anahtar)",
     "jwks_failed": "İmza anahtarları {{url}}: {{error}}"
   },
-  "demoReadOnly": "Herkese açık demo: yönetim olduğu gibi gösterilir ve buradan hiçbir şey değiştirilemez. Kendi kurulumunuzda tamamen sizindir."
+  "demoReadOnly": "Herkese açık demo: yönetim olduğu gibi gösterilir ve buradan hiçbir şey değiştirilemez. Kendi kurulumunuzda tamamen sizindir.",
+  "branding": {
+    "intro": "Kurulumun kimliği: adı, dili, logosu, geri bildirimlerin nereye gittiği. Her satır bir ortam değişkenidir ve Ayarlar sayfasında olduğu gibi burada değiştirilir.",
+    "APP_NAME": "Uygulamanın adı",
+    "APP_NAME_hint": "Başlıkta, sekme başlıklarında ve yüklü uygulamada gösterilir.",
+    "APP_LANG": "Arayüz dili",
+    "APP_LANG_hint": "Tarayıcısı daha iyisini belirtmeyen ziyaretçiler için.",
+    "APP_LOGO_URL": "Logo",
+    "APP_LOGO_URL_hint": "branding/ klasöründe bir logo.svg (veya .png…) dosyası ya da burada bir https adresi.",
+    "APP_FEEDBACK_URL": "Geri bildirim bağlantılarının gittiği yer",
+    "APP_FEEDBACK_URL_hint": "Ana sayfadaki “Bize yazın” bağlantıları; none onları gizler.",
+    "logoDefault": "Kurulum kendi logosunu verene kadar QuizDock’unki.",
+    "css": "Kendi CSS’iniz",
+    "cssHint": "branding/override.css en son yüklenir; bu ayarların kapsamadığı şeyler için."
+  },
+  "look": {
+    "intro": "Uygulamanın görünümü: renkleri, yazı tipi, köşeleri ve vitrin sayfalarının arka planları. Veritabanında saklanır, yalnızca burada değiştirilir. Canlı ekranlardaki bir quiz kendi temasının görünümünü korur.",
+    "saving": "Kaydediliyor…",
+    "saved": "Kaydedildi: her ziyaretçi bunu açtığı bir sonraki sayfadan itibaren görür.",
+    "reset": "QuizDock görünümüne dön",
+    "colours": "Renkler",
+    "primary": "Ana renk",
+    "primaryHint": "Düğmeler, seçili filtreler, odak halkası; metinleri beyazdır. Açık ve koyu modda aynı renk.",
+    "accent": "Vurgu rengi",
+    "accentHint": "Bağlantılar ve geçerli sayfanın işareti. Varsayılan olarak ana renk. Koyu sayfada metin olarak rahatça okunana kadar açılır (7:1).",
+    "button": "Düğme",
+    "link": "Bir bağlantı",
+    "whiteText": "Beyaz metin",
+    "onLight": "Açık sayfada",
+    "onDark": "Koyu sayfada",
+    "corners": "Köşeler",
+    "radius": {
+      "square": "Köşeli",
+      "standard": "Standart",
+      "rounded": "Yuvarlak"
+    },
+    "cornerSample": {
+      "card": "Kart",
+      "button": "Düğme",
+      "field": "Alan"
+    },
+    "showcase": "Vitrin arka planları",
+    "showcaseHint": "Yalnızca ana sayfa, katılma, oturum açma, hata ve bulunamadı sayfaları; çalışma sayfaları sade kalır.",
+    "mode": {
+      "none": "Yok",
+      "logo": "Logo filigranı",
+      "picture": "Resim"
+    },
+    "logoHint": "Marka logosunun şekli — kurulum kendi logosunu belirleyene kadar QuizDock’unki — metin renginde, soluk, ortalanmış.",
+    "size": "Boyut",
+    "opacity": "Opaklık",
+    "accessibility": "Erişilebilirlik",
+    "accessible": "Erişilebilir",
+    "accessibilityHint": "Renkler üzerinden ölçülür, asla beyan edilmez; yalnızca erişilebilir bir görünüm bunu gösterir.",
+    "checksMet": "{{total}} denetimden {{met}} tanesi karşılandı",
+    "check": {
+      "button_text_contrast": "Ana düğmelerdeki beyaz metin 4.5:1 değerine ulaşıyor",
+      "primary_on_light": "Ana renk sayfadan ayrılıyor (3:1)",
+      "primary_on_dark": "Ana renk koyu sayfadan da ayrılıyor (3:1)",
+      "link_on_light": "Vurgu rengindeki bağlantılar sayfada okunuyor (4.5:1)",
+      "link_on_dark": "Bağlantılar koyu sayfada da okunuyor (4.5:1)"
+    },
+    "preview": {
+      "label": "Önizleme",
+      "home": "Ana sayfa",
+      "join": "Katıl",
+      "login": "Oturum aç",
+      "notFound": "Bulunamadı",
+      "quizzes": "Quizlerim",
+      "light": "Açık",
+      "dark": "Koyu",
+      "plain": "Bir çalışma sayfası sade kalır: vitrin arka planı yok."
+    }
+  }
 }

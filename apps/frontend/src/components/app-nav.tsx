@@ -88,25 +88,31 @@ function NavLinks({ stacked = false, onNavigate }: { stacked?: boolean; onNaviga
   const className = stacked
     ? 'hover:bg-accent rounded-md px-2 py-2 text-sm'
     : 'whitespace-nowrap hover:underline';
+  // The current page, marked in the instance's accent (lib/look.ts).
+  const activeProps = {
+    className: stacked
+      ? 'text-link font-medium'
+      : 'text-link font-medium underline decoration-2 underline-offset-[6px]',
+  };
   return (
     <>
-      <Link to="/quizzes" className={className} onClick={onNavigate}>
+      <Link to="/quizzes" className={className} activeProps={activeProps} onClick={onNavigate}>
         {t('nav.myQuizzes')}
       </Link>
-      <Link to="/templates" className={className} onClick={onNavigate}>
+      <Link to="/templates" className={className} activeProps={activeProps} onClick={onNavigate}>
         {t('nav.templates')}
       </Link>
       {/* The quizzes' looks, next to the quizzes' sources. */}
-      <Link to="/themes" className={className} onClick={onNavigate}>
+      <Link to="/themes" className={className} activeProps={activeProps} onClick={onNavigate}>
         {t('nav.themes')}
       </Link>
       {/* What was played, room by room: a teacher's way back to the results. */}
-      <Link to="/history" className={className} onClick={onNavigate}>
+      <Link to="/history" className={className} activeProps={activeProps} onClick={onNavigate}>
         {t('nav.history')}
       </Link>
       {/* The administration beside the app's own pages, not tucked in the account menu. */}
       {isManager ? (
-        <Link to="/admin" className={className} onClick={onNavigate}>
+        <Link to="/admin" className={className} activeProps={activeProps} onClick={onNavigate}>
           {t('nav.admin')}
         </Link>
       ) : null}

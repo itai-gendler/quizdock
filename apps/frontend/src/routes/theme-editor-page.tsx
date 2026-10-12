@@ -1,12 +1,10 @@
 import {
   BUILTIN_THEME_VALUES,
   type BuiltinTheme,
-  FONT_LICENSES,
   MOTION_STYLES,
   OPTION_ORDER,
   SHIPPED_PICTURES,
   SLOT_MARKERS,
-  THEME_FONTS,
   THEME_NAME_MAX,
   THEME_SOUNDS,
   type ThemeBackground,
@@ -20,7 +18,7 @@ import {
 import { useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate, useParams } from '@tanstack/react-router';
 import { Check, ChevronLeft, Download, Shapes } from 'lucide-react';
-import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Disclosure } from '@/components/ui/disclosure';
@@ -48,6 +46,7 @@ import { gradientCss } from '../game/surface';
 import { ColorRow, PictureLayout, Range } from './background-style';
 import { IconPicker } from './icon-picker';
 import { MediaUpload } from './media-upload';
+import { FontSection } from './font-section';
 import { AccessibleBadge } from './themes-page';
 
 const SAVE_DELAY_MS = 600;
@@ -138,7 +137,7 @@ function Editor({ theme }: { theme: ThemeDto }) {
       <button
         type="button"
         onClick={() => reset(key)}
-        className="text-primary w-fit text-xs hover:underline"
+        className="text-link w-fit text-xs hover:underline"
       >
         {t('editor.reset', { parent: t(`builtin.${parent}`) })}
       </button>
@@ -196,7 +195,7 @@ function Editor({ theme }: { theme: ThemeDto }) {
               t('editor.saving')
             ) : state === 'saved' ? (
               <>
-                <Check className="text-success size-4" />
+                <Check className="text-success-text size-4" />
                 {t('editor.saved')}
               </>
             ) : null}
@@ -630,78 +629,5 @@ function Editor({ theme }: { theme: ThemeDto }) {
         />
       ) : null}
     </section>
-  );
-}
-
-function FontSection({
-  font,
-  origin,
-  onChange,
-  onUpload,
-}: {
-  font: ThemeOverrides['font'] & object;
-  origin: ReactNode;
-  onChange: (f: NonNullable<ThemeOverrides['font']>) => void;
-  onUpload: (file: File, license: (typeof FONT_LICENSES)[number]) => void;
-}) {
-  const { t } = useTranslation('themes');
-  const [license, setLicense] = useState<(typeof FONT_LICENSES)[number]>('OFL-1.1');
-  const fileRef = useRef<HTMLInputElement>(null);
-  const current = 'builtin' in font ? font.builtin : 'own';
-  return (
-    <Disclosure
-      title={t('editor.font')}
-      rememberAs="theme-font"
-      value={current === 'own' ? t('editor.ownFont') : t(`font.${current}`)}
-    >
-      {origin}
-      <label className="flex items-center gap-2 text-sm">
-        <span className="font-medium">{t('editor.font')}</span>
-        <Select
-          className="h-8 w-auto"
-          value={current}
-          onChange={(e) =>
-            e.target.value !== 'own' &&
-            onChange({ builtin: e.target.value as (typeof THEME_FONTS)[number] })
-          }
-        >
-          {THEME_FONTS.map((f) => (
-            <option key={f} value={f}>
-              {t(`font.${f}`)}
-            </option>
-          ))}
-          {current === 'own' ? <option value="own">{t('editor.ownFont')}</option> : null}
-        </Select>
-      </label>
-      <div className="flex flex-wrap items-center gap-2 text-sm">
-        <input
-          ref={fileRef}
-          type="file"
-          accept=".woff2,font/woff2"
-          className="hidden"
-          onChange={(e) => {
-            const f = e.target.files?.[0];
-            if (f) onUpload(f, license);
-            e.target.value = '';
-          }}
-        />
-        <Select
-          className="h-8 w-auto"
-          value={license}
-          aria-label={t('editor.fontLicense')}
-          onChange={(e) => setLicense(e.target.value as (typeof FONT_LICENSES)[number])}
-        >
-          {FONT_LICENSES.map((l) => (
-            <option key={l} value={l}>
-              {l}
-            </option>
-          ))}
-        </Select>
-        <Button variant="outline" size="sm" onClick={() => fileRef.current?.click()}>
-          {t('editor.fontUpload')}
-        </Button>
-      </div>
-      <p className="text-muted-foreground text-xs">{t('editor.fontHint')}</p>
-    </Disclosure>
   );
 }

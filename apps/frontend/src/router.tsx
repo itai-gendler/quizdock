@@ -357,6 +357,23 @@ export const adminSettingsRoute = createRoute({
     'AdminSettingsPage',
   ),
 });
+/** Who the instance is, and how it looks (THEMING lot 2). */
+export const adminBrandingRoute = createRoute({
+  getParentRoute: () => adminRoute,
+  path: 'branding',
+  component: lazyRouteComponent(
+    () => import('./routes/admin/admin-branding-page'),
+    'AdminBrandingPage',
+  ),
+});
+export const adminInterfaceRoute = createRoute({
+  getParentRoute: () => adminRoute,
+  path: 'interface',
+  component: lazyRouteComponent(
+    () => import('./routes/admin/admin-interface-page'),
+    'AdminInterfacePage',
+  ),
+});
 export const adminHealthRoute = createRoute({
   getParentRoute: () => adminRoute,
   path: 'health',
@@ -407,6 +424,8 @@ export const routeTree = rootRoute.addChildren([
     adminIndexRoute,
     adminStatsRoute,
     adminSettingsRoute,
+    adminBrandingRoute,
+    adminInterfaceRoute,
     adminHealthRoute,
     adminAccountsRoute,
     adminAuditRoute,

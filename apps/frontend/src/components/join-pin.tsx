@@ -122,7 +122,7 @@ export function JoinPin({ autoFocus = false }: { autoFocus?: boolean }) {
         ) : found ? (
           <>
             <p className="bg-muted flex w-full items-center justify-center gap-2 rounded-md px-3 py-2 text-sm">
-              <Check className="text-success size-4 shrink-0" aria-hidden />
+              <Check className="text-success-text size-4 shrink-0" aria-hidden />
               <span>
                 <b>{roomLabel(t, found.roomName, found.hostName)}</b>
                 {found.quizTitle ? ` · ${found.quizTitle}` : null}

@@ -846,7 +846,7 @@ function PlayerView({ pin, session }: { pin: string; session: ReturnType<typeof 
           <div className="flex flex-col items-center gap-[0.5em]">
             <ResultMark correct={r.correct} />
             <p
-              className={`text-[2em] font-bold ${r.correct ? 'text-success' : 'text-destructive'}`}
+              className={`text-[2em] font-bold ${r.correct ? 'text-success-text' : 'text-destructive'}`}
             >
               {r.correct ? t('player.correct') : t('player.wrong')}
             </p>
@@ -1076,7 +1076,7 @@ function PlayerView({ pin, session }: { pin: string; session: ReturnType<typeof 
       {/* What the wait is about: the quiz to come and the room filling up. */}
       <div className="bg-muted flex w-full flex-col items-center gap-1 rounded-lg px-3 py-2.5 text-sm">
         {view.youReady ? (
-          <p className="text-success flex items-center gap-1.5 font-semibold">
+          <p className="text-success-text flex items-center gap-1.5 font-semibold">
             <Check className="size-4" />
             {t('player.readyDone')}
           </p>

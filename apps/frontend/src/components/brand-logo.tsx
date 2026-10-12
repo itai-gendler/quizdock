@@ -17,18 +17,19 @@ let firstCandidate = 0;
  * missing file with `index.html` (200), which fails to decode as an image.
  */
 export function BrandLogo({ className }: { className?: string }) {
-  const [index, setIndex] = useState(firstCandidate);
-  const src = LOGO_CANDIDATES[index];
+  const [src, onError] = useLogoCandidate();
   if (src === undefined) return null; // nothing loads → no logo rather than a broken icon
-  return (
-    <img
-      src={src}
-      alt=""
-      className={cn('qd-logo', className)}
-      onError={() => {
-        firstCandidate = Math.max(firstCandidate, index + 1);
-        setIndex(index + 1);
-      }}
-    />
-  );
+  return <img src={src} alt="" className={cn('qd-logo', className)} onError={onError} />;
+}
+
+/** The logo URL to try now, and what an `<img>` calls when it does not decode. */
+export function useLogoCandidate(): [string | undefined, () => void] {
+  const [index, setIndex] = useState(firstCandidate);
+  return [
+    LOGO_CANDIDATES[index],
+    () => {
+      firstCandidate = Math.max(firstCandidate, index + 1);
+      setIndex(index + 1);
+    },
+  ];
 }

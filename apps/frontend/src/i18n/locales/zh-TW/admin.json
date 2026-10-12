@@ -14,7 +14,9 @@
     "accounts": "帳號",
     "audit": "稽核",
     "quizzes": "測驗",
-    "media": "媒體"
+    "media": "媒體",
+    "branding": "品牌",
+    "interface": "介面"
   },
   "token": {
     "unset": "本機模式：在 .env 中設定 ADMIN_TOKEN（32 個字元以上）並重新啟動執行個體之前，無法從網頁變更任何內容。",
@@ -780,5 +782,78 @@
     "jwks_ok_other": "簽章金鑰可連線（{{count}} 個金鑰）",
     "jwks_failed": "簽章金鑰 {{url}}：{{error}}"
   },
-  "demoReadOnly": "公開示範：管理介面依原樣展示，無法在此修改任何內容。在你自己的執行個體上，它完全由你掌控。"
+  "demoReadOnly": "公開示範：管理介面依原樣展示，無法在此修改任何內容。在你自己的執行個體上，它完全由你掌控。",
+  "branding": {
+    "intro": "執行個體的身分：名稱、語言、標誌，以及意見回饋送往何處。每一行都是一個環境變數，在此變更，方式與設定頁面相同。",
+    "APP_NAME": "應用程式名稱",
+    "APP_NAME_hint": "顯示在頁首、分頁標題和已安裝的應用程式中。",
+    "APP_LANG": "介面語言",
+    "APP_LANG_hint": "用於瀏覽器未提供更合適語言的訪客。",
+    "APP_LOGO_URL": "標誌",
+    "APP_LOGO_URL_hint": "branding/ 資料夾中的 logo.svg（或 .png…）檔案，或在此填寫 https 位址。",
+    "APP_FEEDBACK_URL": "意見回饋連結的去向",
+    "APP_FEEDBACK_URL_hint": "首頁上的「告訴我們」連結；none 會隱藏它們。",
+    "logoDefault": "QuizDock 的標誌，直到執行個體提供自己的。",
+    "css": "你自己的 CSS",
+    "cssHint": "branding/override.css 最後載入，用於這些設定未涵蓋的內容。"
+  },
+  "look": {
+    "intro": "應用程式的外觀：顏色、字型、圓角以及展示頁面的背景。儲存在資料庫中，只能在此變更。直播畫面上的測驗保留其自身主題的外觀。",
+    "saving": "正在儲存…",
+    "saved": "已儲存：每位訪客從下一個開啟的頁面起即可看到。",
+    "reset": "恢復 QuizDock 的外觀",
+    "colours": "顏色",
+    "primary": "主色",
+    "primaryHint": "按鈕、選取的篩選器、焦點環；其文字為白色。淺色和深色模式下顏色相同。",
+    "accent": "強調色",
+    "accentHint": "連結和目前頁面的標記。預設為主色。作為深色頁面上的文字時，會調亮到便於閱讀為止（7:1）。",
+    "button": "按鈕",
+    "link": "連結",
+    "whiteText": "白色文字",
+    "onLight": "在淺色頁面上",
+    "onDark": "在深色頁面上",
+    "corners": "圓角",
+    "radius": {
+      "square": "直角",
+      "standard": "標準",
+      "rounded": "圓潤"
+    },
+    "cornerSample": {
+      "card": "卡片",
+      "button": "按鈕",
+      "field": "輸入欄位"
+    },
+    "showcase": "展示頁面背景",
+    "showcaseHint": "僅限首頁、加入、登入、錯誤和找不到頁面；工作頁面保持簡潔。",
+    "mode": {
+      "none": "無",
+      "logo": "標誌浮水印",
+      "picture": "圖片"
+    },
+    "logoHint": "品牌標誌的形狀——執行個體設定自己的標誌之前為 QuizDock 的——以文字顏色、淡化、置中顯示。",
+    "size": "大小",
+    "opacity": "不透明度",
+    "accessibility": "無障礙",
+    "accessible": "無障礙",
+    "accessibilityHint": "依據顏色測量，絕非自我宣稱；只有無障礙的外觀才會如此標示。",
+    "checksMet": "已符合 {{met}}/{{total}} 項檢查",
+    "check": {
+      "button_text_contrast": "主按鈕上的白色文字達到 4.5:1",
+      "primary_on_light": "主色在頁面上清晰可辨（3:1）",
+      "primary_on_dark": "主色在深色頁面上也清晰可辨（3:1）",
+      "link_on_light": "強調色的連結在頁面上清晰可讀（4.5:1）",
+      "link_on_dark": "連結在深色頁面上也清晰可讀（4.5:1）"
+    },
+    "preview": {
+      "label": "預覽",
+      "home": "首頁",
+      "join": "加入",
+      "login": "登入",
+      "notFound": "找不到",
+      "quizzes": "我的測驗",
+      "light": "淺色",
+      "dark": "深色",
+      "plain": "工作頁面保持簡潔：沒有展示背景。"
+    }
+  }
 }

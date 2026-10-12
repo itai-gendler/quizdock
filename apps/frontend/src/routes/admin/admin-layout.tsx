@@ -25,6 +25,8 @@ const SECTIONS = [
     links: [
       { to: '/admin/accounts', key: 'accounts' },
       { to: '/admin/settings', key: 'settings' },
+      { to: '/admin/branding', key: 'branding' },
+      { to: '/admin/interface', key: 'interface' },
       { to: '/admin/health', key: 'health' },
       { to: '/admin/audit', key: 'audit' },
     ],

@@ -1019,7 +1019,7 @@ function HostConsole({
         {key.length ? (
           <p className="text-sm">
             <span className="text-muted-foreground">{t('control.answerKey')}</span>{' '}
-            <span className="text-success font-semibold">
+            <span className="text-success-text font-semibold">
               {key.map((o) => optionLabel(o)).join(' · ')}
             </span>
           </p>
@@ -1645,7 +1645,7 @@ function ParticipantsList({
                 {readiness?.lobby ? (
                   waited.get(p.playerId) ? (
                     <Check
-                      className="size-3.5 text-success"
+                      className="size-3.5 text-success-text"
                       aria-label={t('control.participantReady')}
                     />
                   ) : said.get(p.playerId) ? (
@@ -1656,7 +1656,10 @@ function ParticipantsList({
                   ) : null
                 ) : waited.has(p.playerId) ? (
                   waited.get(p.playerId) ? (
-                    <Check className="size-3.5 text-success" aria-label={t('control.mediaReady')} />
+                    <Check
+                      className="size-3.5 text-success-text"
+                      aria-label={t('control.mediaReady')}
+                    />
                   ) : (
                     <Loader2
                       className="text-muted-foreground size-3.5 animate-spin"

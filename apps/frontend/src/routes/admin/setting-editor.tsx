@@ -75,7 +75,7 @@ export function SettingEditor({ row }: { row: SettingRow; access: SettingsAccess
         >
           {control.options.map((o) => (
             <option key={o} value={o}>
-              {o}
+              {row.key === 'APP_LANG' ? languageName(o) : o}
             </option>
           ))}
         </Select>
@@ -104,7 +104,7 @@ export function SettingEditor({ row }: { row: SettingRow; access: SettingsAccess
               step={control.step}
               value={String(draft ?? '')}
               onChange={(e) => setDraft(e.target.value === '' ? '' : Number(e.target.value))}
-              aria-invalid={!!problem}
+              aria-invalid={!!problem && changed}
               className="w-28"
             />
             {control.unit ? (
@@ -121,7 +121,7 @@ export function SettingEditor({ row }: { row: SettingRow; access: SettingsAccess
           id={id}
           value={String(draft ?? '')}
           onChange={(e) => setDraft(e.target.value)}
-          aria-invalid={!!problem}
+          aria-invalid={!!problem && changed}
         />
       )}
       {problem && changed ? (
@@ -168,7 +168,7 @@ export function SettingEditor({ row }: { row: SettingRow; access: SettingsAccess
           {error}
         </p>
       ) : saved ? (
-        <p role="status" className="text-success text-sm">
+        <p role="status" className="text-success-text text-sm">
           {t(`edit.saved.${row.applies}`)}
         </p>
       ) : null}
@@ -293,4 +293,13 @@ function LinksEditor({
       ) : null}
     </div>
   );
+}
+
+/** A language code as its own speakers name it (`fr` → français), the code if unknown. */
+function languageName(code: string): string {
+  try {
+    return new Intl.DisplayNames([code], { type: 'language' }).of(code) ?? code;
+  } catch {
+    return code;
+  }
 }

@@ -1751,7 +1751,7 @@ function FrameSaveState({ state }: { state: 'idle' | 'saving' | 'saved' }) {
         t('settings.saving')
       ) : (
         <>
-          <Check className="text-success size-3.5" aria-hidden />
+          <Check className="text-success-text size-3.5" aria-hidden />
           {t('settings.saved')}
         </>
       )}

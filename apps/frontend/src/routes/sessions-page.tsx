@@ -694,7 +694,7 @@ export function SessionPlayerPage() {
                     <td className="py-2 pr-2 text-center">
                       {a.isCorrect ? (
                         <Check
-                          className="text-success mx-auto size-4"
+                          className="text-success-text mx-auto size-4"
                           aria-label={t('player.correctAria')}
                         />
                       ) : (

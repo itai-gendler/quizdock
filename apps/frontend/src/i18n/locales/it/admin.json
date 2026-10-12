@@ -14,7 +14,9 @@
     "accounts": "Account",
     "audit": "Audit",
     "quizzes": "Quiz",
-    "media": "Media"
+    "media": "Media",
+    "branding": "Identità",
+    "interface": "Interfaccia"
   },
   "token": {
     "unset": "Modalità locale: non si può modificare nulla dal web finché ADMIN_TOKEN non è impostato in .env (32 caratteri o più) e l’istanza non viene riavviata.",
@@ -802,5 +804,78 @@
     "jwks_ok_other": "Chiavi di firma raggiungibili ({{count}} chiavi)",
     "jwks_failed": "Chiavi di firma {{url}}: {{error}}"
   },
-  "demoReadOnly": "Demo pubblica: l’amministrazione è mostrata così com’è, e da qui non si può modificare nulla. Sulla tua istanza, è tua."
+  "demoReadOnly": "Demo pubblica: l’amministrazione è mostrata così com’è, e da qui non si può modificare nulla. Sulla tua istanza, è tua.",
+  "branding": {
+    "intro": "Chi è l’istanza: il suo nome, la sua lingua, il suo logo, dove vanno i commenti. Ogni riga è una variabile d’ambiente, modificata qui come fa la pagina Impostazioni.",
+    "APP_NAME": "Nome dell’applicazione",
+    "APP_NAME_hint": "Mostrato nell’intestazione, nei titoli delle schede e nell’app installata.",
+    "APP_LANG": "Lingua dell’interfaccia",
+    "APP_LANG_hint": "Per i visitatori il cui browser non indica niente di meglio.",
+    "APP_LOGO_URL": "Logo",
+    "APP_LOGO_URL_hint": "Un file logo.svg (o .png…) nella cartella branding/, oppure un indirizzo https qui.",
+    "APP_FEEDBACK_URL": "Dove portano i link per i commenti",
+    "APP_FEEDBACK_URL_hint": "I link “Diccelo” della pagina iniziale; none li nasconde.",
+    "logoDefault": "Quello di QuizDock, finché l’istanza non ne dà uno suo.",
+    "css": "Il tuo CSS",
+    "cssHint": "Un branding/override.css viene caricato per ultimo, per ciò che queste impostazioni non coprono."
+  },
+  "look": {
+    "intro": "L’aspetto dell’applicazione: i suoi colori, il font, gli angoli e gli sfondi delle sue pagine vetrina. Conservato nel database, modificato solo qui. Un quiz sugli schermi dal vivo mantiene l’aspetto del proprio tema.",
+    "saving": "Salvataggio…",
+    "saved": "Salvato: ogni visitatore lo vede dalla prossima pagina che apre.",
+    "reset": "Torna all’aspetto di QuizDock",
+    "colours": "Colori",
+    "primary": "Colore principale",
+    "primaryHint": "I pulsanti, i filtri selezionati, l’anello di focus; il loro testo è bianco. Lo stesso colore in modalità chiara e scura.",
+    "accent": "Colore d’accento",
+    "accentHint": "I link e il segno della pagina corrente. Per impostazione predefinita il colore principale. Come testo sulla pagina scura viene schiarito finché non si legge comodamente (7:1).",
+    "button": "Pulsante",
+    "link": "Un link",
+    "whiteText": "Testo bianco",
+    "onLight": "Sulla pagina chiara",
+    "onDark": "Sulla pagina scura",
+    "corners": "Angoli",
+    "radius": {
+      "square": "Squadrati",
+      "standard": "Standard",
+      "rounded": "Arrotondati"
+    },
+    "cornerSample": {
+      "card": "Scheda",
+      "button": "Pulsante",
+      "field": "Campo"
+    },
+    "showcase": "Sfondi vetrina",
+    "showcaseHint": "Solo le pagine iniziale, partecipa, accesso, errore e non trovata; le pagine di lavoro restano semplici.",
+    "mode": {
+      "none": "Nessuno",
+      "logo": "Logo in filigrana",
+      "picture": "Immagine"
+    },
+    "logoHint": "La forma del logo dell’identità — quello di QuizDock finché l’istanza non imposta il suo — nel colore del testo, sbiadita, centrata.",
+    "size": "Dimensione",
+    "opacity": "Opacità",
+    "accessibility": "Accessibilità",
+    "accessible": "Accessibile",
+    "accessibilityHint": "Misurata sui colori, mai dichiarata; solo un aspetto accessibile lo indica.",
+    "checksMet": "{{met}} controlli superati su {{total}}",
+    "check": {
+      "button_text_contrast": "Il testo bianco sui pulsanti principali raggiunge 4.5:1",
+      "primary_on_light": "Il colore principale risalta sulla pagina (3:1)",
+      "primary_on_dark": "Il colore principale risalta anche sulla pagina scura (3:1)",
+      "link_on_light": "I link nel colore d’accento si leggono sulla pagina (4.5:1)",
+      "link_on_dark": "I link si leggono anche sulla pagina scura (4.5:1)"
+    },
+    "preview": {
+      "label": "Anteprima",
+      "home": "Home",
+      "join": "Partecipa",
+      "login": "Accedi",
+      "notFound": "Non trovata",
+      "quizzes": "I miei quiz",
+      "light": "Chiaro",
+      "dark": "Scuro",
+      "plain": "Una pagina di lavoro resta semplice: nessuno sfondo vetrina."
+    }
+  }
 }

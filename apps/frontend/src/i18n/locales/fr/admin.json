@@ -14,7 +14,9 @@
     "accounts": "Comptes",
     "audit": "Audit",
     "quizzes": "Quiz",
-    "media": "Médias"
+    "media": "Médias",
+    "branding": "Identité",
+    "interface": "Interface"
   },
   "token": {
     "unset": "Mode local : rien ne peut être changé depuis le web tant qu’ADMIN_TOKEN n’est pas défini dans .env (32 caractères ou plus), puis l’instance redémarrée.",
@@ -802,5 +804,78 @@
     "jwks_ok_other": "Clés de signature joignables ({{count}} clés)",
     "jwks_failed": "Clés de signature {{url}} : {{error}}"
   },
-  "demoReadOnly": "Démo publique : l’administration est montrée telle quelle, et rien ne peut y être modifié. Sur votre propre instance, elle est à vous."
+  "demoReadOnly": "Démo publique : l’administration est montrée telle quelle, et rien ne peut y être modifié. Sur votre propre instance, elle est à vous.",
+  "branding": {
+    "intro": "Qui est l’instance : son nom, sa langue, son logo, où vont les retours. Chaque ligne est une variable d’environnement, modifiée ici comme le fait la page Réglages.",
+    "APP_NAME": "Nom de l’application",
+    "APP_NAME_hint": "Affiché dans l’en-tête, les titres d’onglet et l’application installée.",
+    "APP_LANG": "Langue de l’interface",
+    "APP_LANG_hint": "Pour les visiteurs dont le navigateur ne dit rien de mieux.",
+    "APP_LOGO_URL": "Logo",
+    "APP_LOGO_URL_hint": "Un fichier logo.svg (ou .png…) dans le dossier branding/, ou une adresse https ici.",
+    "APP_FEEDBACK_URL": "Où mènent les liens de retour",
+    "APP_FEEDBACK_URL_hint": "Les liens « Dites-le-nous » de l’accueil ; none les masque.",
+    "logoDefault": "Celui de QuizDock, tant que l’instance n’a pas le sien.",
+    "css": "Votre propre CSS",
+    "cssHint": "Un branding/override.css est chargé en dernier, pour ce que ces réglages ne couvrent pas."
+  },
+  "look": {
+    "intro": "L’apparence de l’application : ses couleurs, sa police, ses coins et les fonds de ses pages vitrines. Gardée en base, modifiée ici seulement. Un quiz sur les écrans en direct garde l’apparence de son propre thème.",
+    "saving": "Enregistrement…",
+    "saved": "Enregistré : chaque visiteur la voit dès la prochaine page qu’il ouvre.",
+    "reset": "Revenir à l’apparence de QuizDock",
+    "colours": "Couleurs",
+    "primary": "Couleur principale",
+    "primaryHint": "Les boutons, les filtres sélectionnés, l’anneau de focus ; leur texte est blanc. La même couleur en mode clair et sombre.",
+    "accent": "Couleur d’accent",
+    "accentHint": "Les liens et le repère de la page courante. Par défaut la couleur principale. En texte sur la page sombre, elle est éclaircie jusqu’à se lire confortablement (7:1).",
+    "button": "Bouton",
+    "link": "Un lien",
+    "whiteText": "Texte blanc",
+    "onLight": "Sur la page claire",
+    "onDark": "Sur la page sombre",
+    "corners": "Coins",
+    "radius": {
+      "square": "Carrés",
+      "standard": "Standard",
+      "rounded": "Arrondis"
+    },
+    "cornerSample": {
+      "card": "Carte",
+      "button": "Bouton",
+      "field": "Champ"
+    },
+    "showcase": "Fonds des pages vitrines",
+    "showcaseHint": "Pages d’accueil, de participation, de connexion, d’erreur et introuvables seulement ; les pages de travail restent sobres.",
+    "mode": {
+      "none": "Aucun",
+      "logo": "Logo en filigrane",
+      "picture": "Image"
+    },
+    "logoHint": "La forme du logo de l’identité — celui de QuizDock tant que l’instance n’a pas défini le sien — dans la couleur du texte, estompée, centrée.",
+    "size": "Taille",
+    "opacity": "Opacité",
+    "accessibility": "Accessibilité",
+    "accessible": "Accessible",
+    "accessibilityHint": "Mesurée sur les couleurs, jamais déclarée ; seule une apparence accessible l’affiche.",
+    "checksMet": "{{met}} vérifications sur {{total}} réussies",
+    "check": {
+      "button_text_contrast": "Le texte blanc des boutons principaux atteint 4.5:1",
+      "primary_on_light": "La couleur principale ressort de la page (3:1)",
+      "primary_on_dark": "La couleur principale ressort aussi de la page sombre (3:1)",
+      "link_on_light": "Les liens dans l’accent se lisent sur la page (4.5:1)",
+      "link_on_dark": "Les liens se lisent aussi sur la page sombre (4.5:1)"
+    },
+    "preview": {
+      "label": "Aperçu",
+      "home": "Accueil",
+      "join": "Rejoindre",
+      "login": "Connexion",
+      "notFound": "Introuvable",
+      "quizzes": "Mes quiz",
+      "light": "Clair",
+      "dark": "Sombre",
+      "plain": "Une page de travail reste sobre : pas de fond de vitrine."
+    }
+  }
 }

@@ -256,7 +256,7 @@ function Field({
 
 const LEVEL_ICON = { ok: CircleCheck, warn: TriangleAlert, fail: CircleAlert } as const;
 const LEVEL_TONE = {
-  ok: 'text-success',
+  ok: 'text-success-text',
   warn: 'text-warning-text',
   fail: 'text-destructive',
 } as const;
@@ -350,7 +350,7 @@ export function ResultView({
         ) : result.outcome === 'nothing-to-do' ? (
           <Info aria-hidden className="text-muted-foreground size-4" />
         ) : (
-          <CircleCheck aria-hidden className="text-success size-4" />
+          <CircleCheck aria-hidden className="text-success-text size-4" />
         )}
         {preview ? t('result.preview') : t(`result.${result.outcome}`)}
       </p>

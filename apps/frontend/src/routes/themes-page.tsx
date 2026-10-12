@@ -460,7 +460,7 @@ function NewThemeDialog({
 export function ManageThemesLink() {
   const { t } = useTranslation('themes');
   return (
-    <Link to="/themes" className="text-primary text-xs hover:underline">
+    <Link to="/themes" className="text-link text-xs hover:underline">
       {t('manage')}
     </Link>
   );

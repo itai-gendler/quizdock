@@ -14,7 +14,7 @@ export function ResultMark({ correct, className }: { correct: boolean; className
       data-correct={correct}
       className={cn(
         'qd-verdict qd-mark size-[4.5em]',
-        correct ? 'text-success' : 'text-destructive',
+        correct ? 'text-success-text' : 'text-destructive',
         className,
       )}
       fill="none"
