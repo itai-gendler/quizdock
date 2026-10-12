@@ -10,14 +10,14 @@ import {
 } from './release-check';
 
 const BODY = `## What's Changed
-* feat(store): add optional community catalogue by @lutfullahkabalak in https://github.com/quizdock/quiz-dock/pull/152
-* Merge dev into main: community catalogue by @fchaussin in https://github.com/quizdock/quiz-dock/pull/182
-* fix(api): answer the application's own pages only by @fchaussin in https://github.com/quizdock/quiz-dock/pull/185
+* feat(store): add optional community catalogue by @lutfullahkabalak in https://github.com/quizdock/quizdock/pull/152
+* Merge dev into main: community catalogue by @fchaussin in https://github.com/quizdock/quizdock/pull/182
+* fix(api): answer the application's own pages only by @fchaussin in https://github.com/quizdock/quizdock/pull/185
 
 ## New Contributors
-* @lutfullahkabalak made their first contribution in https://github.com/quizdock/quiz-dock/pull/152
+* @lutfullahkabalak made their first contribution in https://github.com/quizdock/quizdock/pull/152
 
-**Full Changelog**: https://github.com/quizdock/quiz-dock/compare/v0.12.0...v0.13.0
+**Full Changelog**: https://github.com/quizdock/quizdock/compare/v0.12.0...v0.13.0
 
 ## Upgrading
 
@@ -27,7 +27,7 @@ const BODY = `## What's Changed
 const RELEASE = {
   tag_name: 'v0.13.1',
   published_at: '2026-10-02T18:09:17Z',
-  html_url: 'https://github.com/quizdock/quiz-dock/releases/tag/v0.13.1',
+  html_url: 'https://github.com/quizdock/quizdock/releases/tag/v0.13.1',
   draft: false,
   prerelease: false,
   body: BODY,

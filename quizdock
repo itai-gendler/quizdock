@@ -2,7 +2,7 @@
 # QuizDock operator CLI — install, run, upgrade, back up and administer a
 # self-hosted instance. Needs only Docker (with the compose plugin). POSIX sh.
 #
-#   curl -fsSLO https://raw.githubusercontent.com/quizdock/quiz-dock/main/quizdock
+#   curl -fsSLO https://raw.githubusercontent.com/quizdock/quizdock/main/quizdock
 #   chmod +x quizdock && ./quizdock init
 #
 # Deployment modes, chosen at `init` and remembered in `.env` (QUIZDOCK_MODE):
@@ -18,7 +18,7 @@ set -eu
 IMAGE="${QUIZDOCK_IMAGE:-fchaussin/quizdock}"
 # Where the deployment files come from: the repository at the release installed
 # (QUIZDOCK_RAW, a full URL, overrides it — a mirror, a fork).
-RAW_BASE="https://raw.githubusercontent.com/quizdock/quiz-dock"
+RAW_BASE="https://raw.githubusercontent.com/quizdock/quizdock"
 COMPOSE_FILE="${QUIZDOCK_COMPOSE_FILE:-docker-compose.prod.yml}"
 ENV_FILE="${QUIZDOCK_ENV_FILE:-.env}"
 CONTAINER="${QUIZDOCK_CONTAINER:-quizdock}" # standalone container name
@@ -59,7 +59,7 @@ http_port() { env_get HTTP_PORT 18080; }
 
 # The latest release's tag (vX.Y.Z), or nothing when GitHub cannot be asked.
 latest_release() {
-  curl -fsSL https://api.github.com/repos/quizdock/quiz-dock/releases/latest 2>/dev/null |
+  curl -fsSL https://api.github.com/repos/quizdock/quizdock/releases/latest 2>/dev/null |
     sed -n 's/.*"tag_name": *"\(v[0-9][^"]*\)".*/\1/p' | head -n1
 }
 

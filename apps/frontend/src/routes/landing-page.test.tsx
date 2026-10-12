@@ -78,7 +78,7 @@ describe('LandingPage — feedback', () => {
     renderApp('/');
     const bug = await screen.findByRole('link', { name: 'Signaler un bug' });
     expect(bug.getAttribute('href')).toMatch(
-      /^https:\/\/github\.com\/quizdock\/quiz-dock\/issues\/new\?template=bug\.yml&version=/,
+      /^https:\/\/github\.com\/quizdock\/quizdock\/issues\/new\?template=bug\.yml&version=/,
     );
     expect(bug).toHaveAttribute('target', '_blank');
     expect(screen.getByRole('link', { name: 'Proposer une fonctionnalité' })).toBeInTheDocument();
@@ -87,11 +87,11 @@ describe('LandingPage — feedback', () => {
     ).toContain('language=Fran%C3%A7ais+%28fr%29');
     expect(screen.getByRole('link', { name: 'Poser une question' })).toHaveAttribute(
       'href',
-      'https://github.com/quizdock/quiz-dock/discussions/new?category=q-a',
+      'https://github.com/quizdock/quizdock/discussions/new?category=q-a',
     );
     expect(screen.getByRole('link', { name: 'Donnez-lui une étoile sur GitHub' })).toHaveAttribute(
       'href',
-      'https://github.com/quizdock/quiz-dock',
+      'https://github.com/quizdock/quizdock',
     );
   });
 

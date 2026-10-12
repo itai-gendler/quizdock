@@ -24,7 +24,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { join } from 'node:path';
 
 const PEAKS = 200;
-const UA = 'QuizDock-sample-media/1.0 (https://github.com/quizdock/quiz-dock)';
+const UA = 'QuizDock-sample-media/1.0 (https://github.com/quizdock/quizdock)';
 const args = process.argv.slice(2);
 const force = args.includes('--force');
 const only = args.filter((a) => !a.startsWith('--'));

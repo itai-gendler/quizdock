@@ -94,7 +94,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com); versions follow
 
 > [!WARNING]
 > Read before upgrading.
-> - **Download the latest quizdock script before upgrading (curl -fsSLO https://raw.githubusercontent.com/quizdock/quiz-dock/main/quizdock): the copy you have does not fetch the Compose files. On a first upgrade with it, an existing install gets the release's files as <file>.new; compare and adopt them (mv), or Keycloak and the hardening of this release stay out.**
+> - **Download the latest quizdock script before upgrading (curl -fsSLO https://raw.githubusercontent.com/quizdock/quizdock/main/quizdock): the copy you have does not fetch the Compose files. On a first upgrade with it, an existing install gets the release's files as <file>.new; compare and adopt them (mv), or Keycloak and the hardening of this release stay out.**
 
 ### Bug Fixes
 
@@ -667,7 +667,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com); versions follow
 
 > [!WARNING]
 > Read before upgrading.
-> - **OIDC configuration changed (OIDC_SESSION_SCOPE removed; new OIDC_INTERNAL_URL, OIDC_CLIENT_SECRET, TRUST_PROXY; everyone signs in again), see <https://github.com/quizdock/quiz-dock/blob/main/docs/self-hosting/upgrade-oidc-session.md>**
+> - **OIDC configuration changed (OIDC_SESSION_SCOPE removed; new OIDC_INTERNAL_URL, OIDC_CLIENT_SECRET, TRUST_PROXY; everyone signs in again), see <https://github.com/quizdock/quizdock/blob/main/docs/self-hosting/upgrade-oidc-session.md>**
 
 ### Bug Fixes
 

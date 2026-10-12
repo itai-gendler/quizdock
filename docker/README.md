@@ -6,18 +6,18 @@
 
 <table>
   <tr>
-    <td><a href="https://github.com/quizdock/quiz-dock/releases"><img alt="Release" src="https://img.shields.io/github/v/release/quizdock/quiz-dock?color=6f42c1" /></a></td>
+    <td><a href="https://github.com/quizdock/quizdock/releases"><img alt="Release" src="https://img.shields.io/github/v/release/quizdock/quizdock?color=6f42c1" /></a></td>
     <td><a href="https://hub.docker.com/r/fchaussin/quizdock"><img alt="Docker pulls" src="https://img.shields.io/docker/pulls/fchaussin/quizdock?logo=docker&logoColor=white" /></a></td>
     <td><a href="https://hub.docker.com/r/fchaussin/quizdock/tags"><img alt="Image size" src="https://img.shields.io/docker/image-size/fchaussin/quizdock/latest?logo=docker&logoColor=white&label=size" /></a></td>
-    <td><a href="https://github.com/quizdock/quiz-dock/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/quizdock/quiz-dock?color=blue" /></a></td>
-    <td><a href="https://github.com/quizdock/quiz-dock"><img alt="GitHub stars" src="https://img.shields.io/github/stars/quizdock/quiz-dock?logo=github" /></a></td>
+    <td><a href="https://github.com/quizdock/quizdock/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/quizdock/quizdock?color=blue" /></a></td>
+    <td><a href="https://github.com/quizdock/quizdock"><img alt="GitHub stars" src="https://img.shields.io/github/stars/quizdock/quizdock?logo=github" /></a></td>
   </tr>
 </table>
 
 [Website](https://quizdock.github.io) ·
 [Documentation](https://quizdock.github.io/docs/) ·
 [Live demo](https://quizdock-standalone.onrender.com) ·
-[Source code](https://github.com/quizdock/quiz-dock)
+[Source code](https://github.com/quizdock/quizdock)
 
 QuizDock is an open-source (MIT) live quiz platform for classrooms, teams and events: a
 big screen for the room, a phone for each player, every result in your own database.
@@ -40,7 +40,7 @@ For a lasting instance, use the `quizdock` script: a guided install with Docker 
 PostgreSQL and Redis, plus backups and upgrades.
 
 ```sh
-curl -fsSLO https://raw.githubusercontent.com/quizdock/quiz-dock/main/quizdock
+curl -fsSLO https://raw.githubusercontent.com/quizdock/quizdock/main/quizdock
 chmod +x quizdock
 ./quizdock init
 ./quizdock up

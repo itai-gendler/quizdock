@@ -1,6 +1,6 @@
 # QuizDock — Community store (the store brief)
 
-> The plan for the community catalogue of quiz templates ([#21](https://github.com/quizdock/quiz-dock/issues/21)):
+> The plan for the community catalogue of quiz templates ([#21](https://github.com/quizdock/quizdock/issues/21)):
 > the model, the decisions taken, what is delivered, and the ordered list of what remains before the store opens.
 > How the store works inside (formats, CI, publication tool) is specified in
 > [quizdock-store's SPECIFICATION.md](https://github.com/quizdock/quizdock-store/blob/main/SPECIFICATION.md); this document

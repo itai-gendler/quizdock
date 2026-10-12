@@ -4,7 +4,7 @@
 
 How to write a QuizDock quiz file (`quiz.json`) that the importer accepts, text
 only. It writes manifest version 3 of the format `quizdock/quiz`; the
-structure is also published as a JSON Schema: https://raw.githubusercontent.com/quizdock/quiz-dock/main/schema/quiz-bundle.v3.json
+structure is also published as a JSON Schema: https://raw.githubusercontent.com/quizdock/quizdock/main/schema/quiz-bundle.v3.json
 
 ## The file
 

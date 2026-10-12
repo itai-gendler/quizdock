@@ -9,12 +9,12 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/quizdock/quiz-dock/releases"><img alt="Release" src="https://img.shields.io/github/v/release/quizdock/quiz-dock?logo=github&color=6f42c1" /></a>
-  <a href="https://github.com/quizdock/quiz-dock/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/quizdock/quiz-dock/ci.yml?branch=main&logo=github&label=CI" /></a>
-  <a href="https://github.com/quizdock/quiz-dock/actions/workflows/security.yml"><img alt="Security" src="https://img.shields.io/github/actions/workflow/status/quizdock/quiz-dock/security.yml?branch=main&logo=github&label=security" /></a>
+  <a href="https://github.com/quizdock/quizdock/releases"><img alt="Release" src="https://img.shields.io/github/v/release/quizdock/quizdock?logo=github&color=6f42c1" /></a>
+  <a href="https://github.com/quizdock/quizdock/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/quizdock/quizdock/ci.yml?branch=main&logo=github&label=CI" /></a>
+  <a href="https://github.com/quizdock/quizdock/actions/workflows/security.yml"><img alt="Security" src="https://img.shields.io/github/actions/workflow/status/quizdock/quizdock/security.yml?branch=main&logo=github&label=security" /></a>
   <a href="https://hub.docker.com/r/fchaussin/quizdock"><img alt="Docker pulls" src="https://img.shields.io/docker/pulls/fchaussin/quizdock?logo=docker&logoColor=white&label=pulls" /></a>
   <a href="https://hosted.weblate.org/engage/quizdock/"><img alt="Translation status" src="https://hosted.weblate.org/widget/quizdock/svg-badge.svg" /></a>
-  <a href="https://github.com/quizdock/quiz-dock/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/quizdock/quiz-dock?color=blue" /></a>
+  <a href="https://github.com/quizdock/quizdock/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/quizdock/quizdock?color=blue" /></a>
 </p>
 
 <p align="center">
@@ -25,7 +25,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/quizdock/quiz-dock/main/docs/screenshots/demo.gif" width="800" alt="The host's console, the big screen and a player's phone: players join by PIN, Léa answers first and right, the reveal, the standings, her podium" />
+  <img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/demo.gif" width="800" alt="The host's console, the big screen and a player's phone: players join by PIN, Léa answers first and right, the reveal, the standings, her podium" />
 </p>
 
 QuizDock is a live quiz you run yourself: a host presents a quiz on the big screen, players
@@ -57,7 +57,7 @@ database. The product, its uses and its documentation are on
 The recommended way, with Docker Compose, PostgreSQL and Redis:
 
 ```sh
-curl -fsSLO https://raw.githubusercontent.com/quizdock/quiz-dock/main/quizdock
+curl -fsSLO https://raw.githubusercontent.com/quizdock/quizdock/main/quizdock
 chmod +x quizdock
 ./quizdock init
 ./quizdock up
@@ -76,20 +76,20 @@ Other setups, OIDC and the full option with a bundled Keycloak:
 
 <table>
   <tr>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quiz-dock/main/docs/screenshots/editor.png" alt="Quiz builder" /><br /><sub><b>Quiz builder</b>: eight question types, slides, video and sound</sub></td>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quiz-dock/main/docs/screenshots/console-lobby.png" alt="Host console, lobby" /><br /><sub><b>Host console</b>: PIN, QR code, who is in, the room's sound</sub></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/editor.png" alt="Quiz builder" /><br /><sub><b>Quiz builder</b>: eight question types, slides, video and sound</sub></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/console-lobby.png" alt="Host console, lobby" /><br /><sub><b>Host console</b>: PIN, QR code, who is in, the room's sound</sub></td>
   </tr>
   <tr>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quiz-dock/main/docs/screenshots/player-play.png" alt="A player's phone" /><br /><sub><b>Player</b>: colour and shape on every answer, then their own result</sub></td>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quiz-dock/main/docs/screenshots/projection-reveal.png" alt="Big screen, reveal" /><br /><sub><b>Big screen</b>: distribution, explanation, leaderboard</sub></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/player-play.png" alt="A player's phone" /><br /><sub><b>Player</b>: colour and shape on every answer, then their own result</sub></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/projection-reveal.png" alt="Big screen, reveal" /><br /><sub><b>Big screen</b>: distribution, explanation, leaderboard</sub></td>
   </tr>
   <tr>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quiz-dock/main/docs/screenshots/admin-settings.png" alt="Administration, settings" /><br /><sub><b>Administration</b>: every setting, where it comes from, changed from the page</sub></td>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quiz-dock/main/docs/screenshots/media-library.png" alt="Media library" /><br /><sub><b>Media library</b>: your media and the instance's, with their credits</sub></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/admin-settings.png" alt="Administration, settings" /><br /><sub><b>Administration</b>: every setting, where it comes from, changed from the page</sub></td>
+    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/media-library.png" alt="Media library" /><br /><sub><b>Media library</b>: your media and the instance's, with their credits</sub></td>
   </tr>
 </table>
 
-Every screen: [full gallery](https://github.com/quizdock/quiz-dock/blob/main/docs/screenshots/README.md).
+Every screen: [full gallery](https://github.com/quizdock/quizdock/blob/main/docs/screenshots/README.md).
 
 ## Performance
 
@@ -104,7 +104,7 @@ Rooms of 30 players playing at once, answers acknowledged (ms):
 
 Measured on 2026-09-27: the backend pinned to one 2.1 GHz core, PostgreSQL and Redis on
 the same machine, players simulated over loopback, no media, one run per step. Raw results
-and method: [`docs/dev/load-results`](https://github.com/quizdock/quiz-dock/tree/main/docs/dev/load-results);
+and method: [`docs/dev/load-results`](https://github.com/quizdock/quizdock/tree/main/docs/dev/load-results);
 what it means for a server: [sizing](https://quizdock.github.io/docs/operator/sizing/).
 
 ## Administration and operations
@@ -188,8 +188,8 @@ administration. [Administration](https://quizdock.github.io/docs/admin/overview/
 - **History & exploration** — browse archived sessions: per-question success rates, average times, per-player answer sheets.
 - **CSV export** — overall results and per-player answer sheets.
 - **Licence, tags and language of a quiz** — set in the quiz settings and carried with it, so whoever receives a copy knows what they may do with it and what it is about.
-- **Quiz import / export** — a quiz travels as a [portable bundle](https://github.com/quizdock/quiz-dock/blob/main/docs/quiz-bundle.md) (`quiz.json` + `media/`, zipped): back it up, move it between instances, share it — from the app or the operator CLI. Coming from Kahoot? Its spreadsheet template imports as a draft, the rows to finish flagged. From another tool, a [chatbot prompt](https://quizdock.github.io/docs/host/import-a-quiz/) turns a PDF, screenshots or a spreadsheet into a quiz to import, and a local [MCP connector](https://quizdock.github.io/docs/operator/cli/) _(experimental)_ lets a chatbot client check the quiz and import it itself.
-- **Multilingual** — the instance's language by default, each host's own for their screens, the quiz's or the room's on the big screen and the phones; a [glossary](https://github.com/quizdock/quiz-dock/blob/main/apps/frontend/src/i18n/GLOSSARY.md) keeps the wording consistent across all of them.
+- **Quiz import / export** — a quiz travels as a [portable bundle](https://github.com/quizdock/quizdock/blob/main/docs/quiz-bundle.md) (`quiz.json` + `media/`, zipped): back it up, move it between instances, share it — from the app or the operator CLI. Coming from Kahoot? Its spreadsheet template imports as a draft, the rows to finish flagged. From another tool, a [chatbot prompt](https://quizdock.github.io/docs/host/import-a-quiz/) turns a PDF, screenshots or a spreadsheet into a quiz to import, and a local [MCP connector](https://quizdock.github.io/docs/operator/cli/) _(experimental)_ lets a chatbot client check the quiz and import it itself.
+- **Multilingual** — the instance's language by default, each host's own for their screens, the quiz's or the room's on the big screen and the phones; a [glossary](https://github.com/quizdock/quizdock/blob/main/apps/frontend/src/i18n/GLOSSARY.md) keeps the wording consistent across all of them.
 - **White-label** — name, logo and CSS via env + a mounted folder, no rebuild.
 - **On the home screen** — an icon and a manifest: it can be added to a phone's or a tablet's home screen, and the screen stays on during a game.
 - **Feedback** — under the version on the home page, links to report a bug, suggest a feature, fix a translation or ask a question, pre-filled with the version and the browser, and an invitation to star QuizDock on GitHub; pointed at your own repository or hidden with `APP_FEEDBACK_URL`.
@@ -242,23 +242,23 @@ A hundred ready quizzes to stress the lists (`[stress]` titles, given to the hos
 `--count N`, `--owner <subject>`, `--clean` to remove them):
 `pnpm --filter @quiz-dock/backend db:seed-stress`.
 
-Design references live in [`specifications/`](https://github.com/quizdock/quiz-dock/blob/main/specifications/README.md);
-ongoing notes and decisions in [`docs/`](https://github.com/quizdock/quiz-dock/blob/main/docs/README.md)
-(see the [ADRs](https://github.com/quizdock/quiz-dock/tree/main/docs/adr)).
+Design references live in [`specifications/`](https://github.com/quizdock/quizdock/blob/main/specifications/README.md);
+ongoing notes and decisions in [`docs/`](https://github.com/quizdock/quizdock/blob/main/docs/README.md)
+(see the [ADRs](https://github.com/quizdock/quizdock/tree/main/docs/adr)).
 
 ## Security
 
-<a href="https://github.com/quizdock/quiz-dock/actions/workflows/security.yml"><img alt="Security" src="https://img.shields.io/github/actions/workflow/status/quizdock/quiz-dock/security.yml?branch=main&logo=github&label=security" /></a>
-<a href="https://github.com/quizdock/quiz-dock/tree/main/docs/security"><img alt="Scanned by Trivy" src="https://img.shields.io/badge/scanned%20by-Trivy-1904DA?logo=aqua&logoColor=white" /></a>
+<a href="https://github.com/quizdock/quizdock/actions/workflows/security.yml"><img alt="Security" src="https://img.shields.io/github/actions/workflow/status/quizdock/quizdock/security.yml?branch=main&logo=github&label=security" /></a>
+<a href="https://github.com/quizdock/quizdock/tree/main/docs/security"><img alt="Scanned by Trivy" src="https://img.shields.io/badge/scanned%20by-Trivy-1904DA?logo=aqua&logoColor=white" /></a>
 
 Dependencies and images are scanned on every push, every PR and weekly
-([`Security` workflow](https://github.com/quizdock/quiz-dock/actions/workflows/security.yml)):
+([`Security` workflow](https://github.com/quizdock/quizdock/actions/workflows/security.yml)):
 `pnpm audit` gates app CVEs, Trivy scans the filesystem and the published image (results in
 the **Security** tab). Point-in-time audits live in
-[`docs/security/`](https://github.com/quizdock/quiz-dock/tree/main/docs/security); report a
-vulnerability via [`SECURITY.md`](https://github.com/quizdock/quiz-dock/blob/main/SECURITY.md).
+[`docs/security/`](https://github.com/quizdock/quizdock/tree/main/docs/security); report a
+vulnerability via [`SECURITY.md`](https://github.com/quizdock/quizdock/blob/main/SECURITY.md).
 
 ## License
 
-[MIT](https://github.com/quizdock/quiz-dock/blob/main/LICENSE) — free to use, modify and
+[MIT](https://github.com/quizdock/quizdock/blob/main/LICENSE) — free to use, modify and
 redistribute, including for internal self-hosting, provided the copyright notice is kept.

@@ -19,7 +19,7 @@ import { BUNDLE_FORMAT, BUNDLE_VERSION, quizBundleSchema } from './quiz-bundle.s
 /** The published schema of a manifest version, in the repository and at its public address. */
 export const bundleSchemaFile = (version: number) => `schema/quiz-bundle.v${version}.json`;
 export const bundleSchemaId = (version: number) =>
-  `https://raw.githubusercontent.com/quizdock/quiz-dock/main/${bundleSchemaFile(version)}`;
+  `https://raw.githubusercontent.com/quizdock/quizdock/main/${bundleSchemaFile(version)}`;
 export const BUNDLE_SCHEMA_FILE = bundleSchemaFile(BUNDLE_VERSION);
 export const BUNDLE_SCHEMA_ID = bundleSchemaId(BUNDLE_VERSION);
 
@@ -55,7 +55,7 @@ export function themeBundleJsonSchema(): Record<string, unknown> {
   });
   return {
     $schema,
-    $id: `https://raw.githubusercontent.com/quizdock/quiz-dock/main/${THEME_BUNDLE_SCHEMA_FILE}`,
+    $id: `https://raw.githubusercontent.com/quizdock/quizdock/main/${THEME_BUNDLE_SCHEMA_FILE}`,
     title: `QuizDock theme bundle manifest (${THEME_BUNDLE_FORMAT}), version ${THEME_BUNDLE_VERSION}`,
     description:
       'theme.json at the root of a QuizDock theme bundle, next to its media/ folder. Its theme is the theme block of a quiz bundle; see docs/quiz-bundle.md.',

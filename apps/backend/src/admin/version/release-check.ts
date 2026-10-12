@@ -3,7 +3,7 @@ import { appVersion } from '../../common/app-version';
 import { RecordingOutput } from '../../cli/output';
 
 /** The latest stable release: GitHub leaves the drafts and pre-releases out. */
-export const RELEASES_URL = 'https://api.github.com/repos/quizdock/quiz-dock/releases/latest';
+export const RELEASES_URL = 'https://api.github.com/repos/quizdock/quizdock/releases/latest';
 /** GitHub is asked at most once a day… */
 export const CHECK_EVERY_S = 24 * 60 * 60;
 /** …or an hour after it did not answer. */

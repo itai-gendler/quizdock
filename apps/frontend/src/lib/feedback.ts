@@ -1,5 +1,5 @@
 /** The project's repository: where feedback goes unless the operator says otherwise. */
-export const QUIZDOCK_REPOSITORY = 'https://github.com/quizdock/quiz-dock';
+export const QUIZDOCK_REPOSITORY = 'https://github.com/quizdock/quizdock';
 
 export type FeedbackKind = 'bug' | 'feature' | 'translation' | 'question';
 
