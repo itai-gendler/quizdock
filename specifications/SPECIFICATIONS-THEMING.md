@@ -67,8 +67,9 @@ folder next to `quizzes/`), the registry `quizdock/quizdock-store`; the publicat
 theme zips and lists them in `index.json` (`kind`, `themes`), checking the theme's licence (CC0, CC BY,
 CC BY-SA) and an imported font's (OFL or the same three), credits a warning.
 
-Still to do: a licence on a theme in the theme editor (until then it is set by hand in `theme.json`).
-The store page in QuizDock — a **Themes** tab, installing a theme as a copy into the library — waits with
+A theme carries a licence, set in the theme editor and written to its export.
+
+Still to do: the store page in QuizDock — a **Themes** tab, installing a theme as a copy into the library — waits with
 the store's integration into the app.
 
 ---

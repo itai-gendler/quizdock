@@ -2,6 +2,7 @@ import {
   ACCESSIBILITY_CHECKS,
   ACCESSIBILITY_STATUSES,
   BUILTIN_THEMES,
+  QUIZ_LICENSES,
   THEME_NAME_MAX,
   themeOverridesInput,
 } from '@quiz-dock/contracts';
@@ -37,6 +38,8 @@ export const themeSchema = z.object({
   isDefault: z.boolean(),
   /** Each file its overrides point to, by media id. */
   media: z.record(z.string(), z.object({ url: z.string(), name: z.string().nullable() })),
+  /** The terms others may reuse it under (a store accepts these three); null: none given. */
+  license: z.string().nullable(),
   updatedAt: z.string(),
 });
 export class ThemeDto extends createZodDto(themeSchema) {}
@@ -64,6 +67,7 @@ export const updateThemeSchema = z.object({
   name: name.optional(),
   parent: z.enum(BUILTIN_THEMES).optional(),
   overrides: themeOverridesInput.optional(),
+  license: z.enum(QUIZ_LICENSES).nullable().optional(),
 });
 export class UpdateThemeDto extends createZodDto(updateThemeSchema) {}
 

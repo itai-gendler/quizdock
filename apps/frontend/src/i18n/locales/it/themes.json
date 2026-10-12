@@ -225,7 +225,10 @@
     "motionHint": "L’interruttore Animazioni della sala e il movimento ridotto di ogni dispositivo hanno sempre la precedenza.",
     "accessibility": "Accessibilità",
     "checksMet": "{{met}} controlli superati su {{total}}",
-    "accessibilityHint": "Misurata sui colori del tema, mai dichiarata. Un tema accessibile porta il badge nella libreria e nelle impostazioni del quiz; gli altri non portano nulla. Un proiettore mostra i colori a modo suo: sono indicazioni, nulla viene bloccato."
+    "accessibilityHint": "Misurata sui colori del tema, mai dichiarata. Un tema accessibile porta il badge nella libreria e nelle impostazioni del quiz; gli altri non portano nulla. Un proiettore mostra i colori a modo suo: sono indicazioni, nulla viene bloccato.",
+    "license": "Licenza",
+    "noLicense": "Nessuna licenza",
+    "licenseHelp": "Le condizioni alle quali altri possono riutilizzare il tema; uno store della community ne richiede una. Devi detenere i diritti sulle sue immagini, icone, suoni e font."
   },
   "picker": {
     "legend": "Tema",

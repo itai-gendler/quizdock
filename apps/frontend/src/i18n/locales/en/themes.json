@@ -221,7 +221,10 @@
     "motionHint": "The room's Animations switch and each device's reduced motion always win.",
     "accessibility": "Accessibility",
     "checksMet": "{{met}} of {{total}} checks met",
-    "accessibilityHint": "Measured on the theme's colours, never declared. An accessible theme carries the badge in the library and the quiz settings; the others carry nothing. A projector shows colours its own way: these are guides, nothing is blocked."
+    "accessibilityHint": "Measured on the theme's colours, never declared. An accessible theme carries the badge in the library and the quiz settings; the others carry nothing. A projector shows colours its own way: these are guides, nothing is blocked.",
+    "license": "Licence",
+    "noLicense": "No licence",
+    "licenseHelp": "The terms others may reuse the theme under; a community store needs one. You must hold the rights to its pictures, icons, sounds and font."
   },
   "picker": {
     "legend": "Theme",

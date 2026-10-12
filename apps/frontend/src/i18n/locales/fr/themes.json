@@ -225,7 +225,10 @@
     "motionHint": "L’interrupteur Animations du salon et la réduction des animations de chaque appareil gardent toujours la main.",
     "accessibility": "Accessibilité",
     "checksMet": "{{met}} vérifications sur {{total}}",
-    "accessibilityHint": "Mesurée sur les couleurs du thème, jamais déclarée. Un thème accessible porte le badge dans la bibliothèque et les réglages du quiz ; les autres ne portent rien. Un vidéoprojecteur rend les couleurs à sa façon : ce sont des repères, rien n’est bloqué."
+    "accessibilityHint": "Mesurée sur les couleurs du thème, jamais déclarée. Un thème accessible porte le badge dans la bibliothèque et les réglages du quiz ; les autres ne portent rien. Un vidéoprojecteur rend les couleurs à sa façon : ce sont des repères, rien n’est bloqué.",
+    "license": "Licence",
+    "noLicense": "Aucune licence",
+    "licenseHelp": "Les conditions auxquelles d’autres peuvent réutiliser le thème ; un store communautaire en exige une. Vous devez détenir les droits sur ses images, icônes, sons et police."
   },
   "picker": {
     "legend": "Thème",

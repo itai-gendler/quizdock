@@ -26,5 +26,7 @@ export type ThemeListDtoThemesItem = {
   quizCount: number;
   isDefault: boolean;
   media: ThemeListDtoThemesItemMedia;
+  /** @nullable */
+  license: string | null;
   updatedAt: string;
 };

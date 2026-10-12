@@ -6687,6 +6687,10 @@
                     ]
                   }
                 },
+                "license": {
+                  "type": "string",
+                  "nullable": true
+                },
                 "updatedAt": {
                   "type": "string"
                 }
@@ -6702,6 +6706,7 @@
                 "quizCount",
                 "isDefault",
                 "media",
+                "license",
                 "updatedAt"
               ]
             }
@@ -7157,6 +7162,10 @@
                   ]
                 }
               },
+              "license": {
+                "type": "string",
+                "nullable": true
+              },
               "updatedAt": {
                 "type": "string"
               }
@@ -7172,6 +7181,7 @@
               "quizCount",
               "isDefault",
               "media",
+              "license",
               "updatedAt"
             ]
           },
@@ -7557,6 +7567,10 @@
               ]
             }
           },
+          "license": {
+            "type": "string",
+            "nullable": true
+          },
           "updatedAt": {
             "type": "string"
           }
@@ -7572,6 +7586,7 @@
           "quizCount",
           "isDefault",
           "media",
+          "license",
           "updatedAt"
         ]
       },
@@ -8093,6 +8108,16 @@
               }
             },
             "additionalProperties": false
+          },
+          "license": {
+            "type": "string",
+            "enum": [
+              "CC0-1.0",
+              "CC-BY-4.0",
+              "CC-BY-SA-4.0",
+              null
+            ],
+            "nullable": true
           }
         }
       },

@@ -1,4 +1,6 @@
 import {
+  QUIZ_LICENSES,
+  isQuizLicense,
   BUILTIN_THEME_VALUES,
   type BuiltinTheme,
   MOTION_STYLES,
@@ -47,6 +49,7 @@ import { ColorRow, PictureLayout, Range } from './background-style';
 import { IconPicker } from './icon-picker';
 import { MediaUpload } from './media-upload';
 import { FontSection } from './font-section';
+import { LICENSE_KEYS } from '@/lib/licenses';
 import { AccessibleBadge } from './themes-page';
 
 const SAVE_DELAY_MS = 600;
@@ -78,6 +81,7 @@ function Editor({ theme }: { theme: ThemeDto }) {
   const [device, setDevice] = useState<'both' | 'projection' | 'phone'>('both');
   const [iconFor, setIconFor] = useState<ThemeSlotName | 'all' | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+  const [license, setLicense] = useState<string | null>(theme.license);
   const update = useThemesControllerUpdate();
   const duplicate = useThemesControllerDuplicate();
   const upload = useThemesControllerUploadAsset();
@@ -215,9 +219,45 @@ function Editor({ theme }: { theme: ThemeDto }) {
           {t('export')}
         </Button>
       </div>
-      <p className="text-muted-foreground -mt-2 text-sm">
-        {t('editor.from', { parent: t(`builtin.${parent}`), count: theme.quizCount })}
-      </p>
+      <div className="-mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+        <p className="text-muted-foreground">
+          {t('editor.from', { parent: t(`builtin.${parent}`), count: theme.quizCount })}
+        </p>
+        {/* For an export a store accepts: the terms others may reuse the theme under. */}
+        <label className="flex items-center gap-2" title={t('editor.licenseHelp')}>
+          <span className="font-medium">{t('editor.license')}</span>
+          <Select
+            className="h-8 w-auto"
+            value={license ?? ''}
+            disabled={!editable || update.isPending}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value !== '' && !isQuizLicense(value)) return;
+              setLicense(value || null);
+              update.mutate(
+                { id: theme.id, data: { license: value || null } },
+                {
+                  onSuccess: (res) =>
+                    queryClient.setQueryData(getThemesControllerGetQueryKey(theme.id), res),
+                  onError: (err) => setError(apiErrorText(err)),
+                },
+              );
+            }}
+          >
+            <option value="">{t('editor.noLicense')}</option>
+            {QUIZ_LICENSES.map((l) => (
+              <option key={l} value={l}>
+                {t(`editor:settings.license.${LICENSE_KEYS[l]}`)}
+              </option>
+            ))}
+            {license && !isQuizLicense(license) ? (
+              <option value={license} disabled>
+                {license}
+              </option>
+            ) : null}
+          </Select>
+        </label>
+      </div>
       {!editable ? (
         <Notice>
           <span className="flex flex-wrap items-center gap-3">

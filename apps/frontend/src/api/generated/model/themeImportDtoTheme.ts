@@ -26,5 +26,7 @@ export type ThemeImportDtoTheme = {
   quizCount: number;
   isDefault: boolean;
   media: ThemeImportDtoThemeMedia;
+  /** @nullable */
+  license: string | null;
   updatedAt: string;
 };

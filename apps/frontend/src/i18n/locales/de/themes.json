@@ -221,7 +221,10 @@
     "motionHint": "Der Animationsschalter des Raums und die reduzierte Bewegung jedes Geräts haben immer Vorrang.",
     "accessibility": "Barrierefreiheit",
     "checksMet": "{{met}} von {{total}} Prüfungen erfüllt",
-    "accessibilityHint": "Auf den Farben des Themes gemessen, nie erklärt. Ein barrierefreies Theme trägt das Abzeichen in der Bibliothek und den Quiz-Einstellungen; die anderen tragen nichts. Ein Projektor zeigt Farben auf seine Weise: Das sind Richtwerte, nichts wird blockiert."
+    "accessibilityHint": "Auf den Farben des Themes gemessen, nie erklärt. Ein barrierefreies Theme trägt das Abzeichen in der Bibliothek und den Quiz-Einstellungen; die anderen tragen nichts. Ein Projektor zeigt Farben auf seine Weise: Das sind Richtwerte, nichts wird blockiert.",
+    "license": "Lizenz",
+    "noLicense": "Keine Lizenz",
+    "licenseHelp": "Die Bedingungen, unter denen andere das Theme wiederverwenden dürfen; ein Community-Store verlangt eine. Sie müssen die Rechte an seinen Bildern, Symbolen, Klängen und seiner Schriftart besitzen."
   },
   "picker": {
     "legend": "Theme",

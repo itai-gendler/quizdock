@@ -84,8 +84,8 @@ passes every check says so: an *Accessible* badge and filter; the others carry n
 
 ## Editing
 
-`/themes` lists the shipped themes, then the hosts'. `/themes/:id` edits one, saved as it
-changes, with a preview drawn by the real projection and phone (`ThemePreview`, sample
+`/themes` lists the shipped themes, then the hosts'. `/themes/:id` edits one — its licence
+(CC0, CC BY, CC BY-SA: what a community store accepts) included —, saved as it changes, with a preview drawn by the real projection and phone (`ThemePreview`, sample
 game views in `theme-preview.tsx`) at four moments. The quiz settings pick a theme with
 thumbnails; every preview of the quiz's steps (the preview page, the question and slide
 forms, the cards, the read-only page) shows it. The console's sound preview plays the

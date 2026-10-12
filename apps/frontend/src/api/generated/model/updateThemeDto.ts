@@ -5,6 +5,7 @@
  * API REST du builder de quiz et des restitutions
  * OpenAPI spec version: 0.1.0
  */
+import type { UpdateThemeDtoLicense } from './updateThemeDtoLicense';
 import type { UpdateThemeDtoOverrides } from './updateThemeDtoOverrides';
 import type { UpdateThemeDtoParent } from './updateThemeDtoParent';
 
@@ -16,4 +17,6 @@ export interface UpdateThemeDto {
   name?: string;
   parent?: UpdateThemeDtoParent;
   overrides?: UpdateThemeDtoOverrides;
+  /** @nullable */
+  license?: UpdateThemeDtoLicense;
 }

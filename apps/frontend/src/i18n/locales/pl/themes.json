@@ -229,7 +229,10 @@
     "motionHint": "Przełącznik Animacje pokoju i ograniczenie ruchu każdego urządzenia zawsze mają pierwszeństwo.",
     "accessibility": "Dostępność",
     "checksMet": "Spełniono {{met}} z {{total}} kryteriów",
-    "accessibilityHint": "Mierzona na kolorach motywu, nigdy deklarowana. Dostępny motyw ma odznakę w bibliotece i ustawieniach quizu; pozostałe nie mają niczego. Projektor pokazuje kolory po swojemu: to wskazówki, nic nie jest blokowane."
+    "accessibilityHint": "Mierzona na kolorach motywu, nigdy deklarowana. Dostępny motyw ma odznakę w bibliotece i ustawieniach quizu; pozostałe nie mają niczego. Projektor pokazuje kolory po swojemu: to wskazówki, nic nie jest blokowane.",
+    "license": "Licencja",
+    "noLicense": "Brak licencji",
+    "licenseHelp": "Warunki, na jakich inni mogą ponownie wykorzystać motyw; sklep społeczności jej wymaga. Musisz mieć prawa do jego obrazów, ikon, dźwięków i czcionki."
   },
   "picker": {
     "legend": "Motyw",

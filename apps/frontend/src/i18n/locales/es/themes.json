@@ -225,7 +225,10 @@
     "motionHint": "El interruptor Animaciones de la sala y el movimiento reducido de cada dispositivo siempre tienen prioridad.",
     "accessibility": "Accesibilidad",
     "checksMet": "{{met}} de {{total}} comprobaciones superadas",
-    "accessibilityHint": "Medida sobre los colores del tema, nunca declarada. Un tema accesible lleva la insignia en la biblioteca y en los ajustes del cuestionario; los demás no llevan nada. Un proyector muestra los colores a su manera: son referencias, nada se bloquea."
+    "accessibilityHint": "Medida sobre los colores del tema, nunca declarada. Un tema accesible lleva la insignia en la biblioteca y en los ajustes del cuestionario; los demás no llevan nada. Un proyector muestra los colores a su manera: son referencias, nada se bloquea.",
+    "license": "Licencia",
+    "noLicense": "Sin licencia",
+    "licenseHelp": "Las condiciones con las que otros pueden reutilizar el tema; una tienda comunitaria exige una. Debes tener los derechos sobre sus imágenes, iconos, sonidos y fuente."
   },
   "picker": {
     "legend": "Tema",

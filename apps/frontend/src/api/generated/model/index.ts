@@ -439,6 +439,7 @@ export * from './updateSlideDtoGradient';
 export * from './updateSlideDtoTextTone';
 export * from './updateSlideDtoWaveformSize';
 export * from './updateThemeDto';
+export * from './updateThemeDtoLicense';
 export * from './updateThemeDtoOverrides';
 export * from './updateThemeDtoOverridesBackground';
 export * from './updateThemeDtoOverridesBackgroundGradient';

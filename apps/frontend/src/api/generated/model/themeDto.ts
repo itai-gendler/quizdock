@@ -26,5 +26,7 @@ export interface ThemeDto {
   quizCount: number;
   isDefault: boolean;
   media: ThemeDtoMedia;
+  /** @nullable */
+  license: string | null;
   updatedAt: string;
 }

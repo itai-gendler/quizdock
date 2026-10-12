@@ -221,7 +221,10 @@
     "motionHint": "Odanın Animasyonlar anahtarı ve her cihazın azaltılmış hareket ayarı her zaman önceliklidir.",
     "accessibility": "Erişilebilirlik",
     "checksMet": "{{total}} denetimden {{met}} geçti",
-    "accessibilityHint": "Temanın renkleri üzerinde ölçülür, asla beyan edilmez. Erişilebilir bir tema kitaplıkta ve quiz ayarlarında rozet taşır; diğerleri hiçbir şey taşımaz. Bir projektör renkleri kendi bildiği gibi gösterir: bunlar yol gösterir, hiçbir şey engellenmez."
+    "accessibilityHint": "Temanın renkleri üzerinde ölçülür, asla beyan edilmez. Erişilebilir bir tema kitaplıkta ve quiz ayarlarında rozet taşır; diğerleri hiçbir şey taşımaz. Bir projektör renkleri kendi bildiği gibi gösterir: bunlar yol gösterir, hiçbir şey engellenmez.",
+    "license": "Lisans",
+    "noLicense": "Lisans yok",
+    "licenseHelp": "Başkalarının temayı hangi koşullarla yeniden kullanabileceğini belirler; bir topluluk mağazası bunu gerektirir. Görsellerinin, simgelerinin, seslerinin ve yazı tipinin haklarının sizde olması gerekir."
   },
   "picker": {
     "legend": "Tema",

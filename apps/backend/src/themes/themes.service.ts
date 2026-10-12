@@ -111,6 +111,7 @@ export class ThemesService {
         where: { id },
         data: {
           ...(body.name !== undefined ? { name: body.name } : {}),
+          ...(body.license !== undefined ? { license: body.license } : {}),
           parent,
           ...(await this.computed(parent, overrides)),
           media: { create: themeMediaIds(overrides).map((mediaId) => ({ mediaId })) },
@@ -329,6 +330,7 @@ export class ThemesService {
       media: Object.fromEntries(
         row.media.map((m) => [m.media.id, { url: m.media.url, name: m.media.name }]),
       ),
+      license: row.license,
       updatedAt: row.updatedAt.toISOString(),
     };
   }

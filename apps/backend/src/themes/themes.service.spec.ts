@@ -102,6 +102,14 @@ describe('ThemesService (integration)', () => {
     expect((await themes.update(admin, t.id, { name: 'Renamed' })).name).toBe('Renamed');
   });
 
+  it('carries the licence its owner gives it, for an export a store accepts', async () => {
+    const t = await themes.create(owner, { name: 'Shared', parent: 'classic', overrides: {} });
+    expect(t.license).toBeNull();
+    expect((await themes.update(owner, t.id, { license: 'CC-BY-4.0' })).license).toBe('CC-BY-4.0');
+    expect((await themes.update(owner, t.id, { name: 'Shared!' })).license).toBe('CC-BY-4.0');
+    expect((await themes.update(owner, t.id, { license: null })).license).toBeNull();
+  });
+
   it('takes an icon uploaded for it, sanitised, and compares icons by their file', async () => {
     const a = await themes.uploadAsset(owner, 'icon', { buffer: icon('M0 0H24V24Z') });
     const b = await themes.uploadAsset(owner, 'icon', { buffer: icon('M0 0H24V24Z') });

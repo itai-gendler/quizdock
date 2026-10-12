@@ -1,3 +1,4 @@
+import { LICENSE_KEYS } from '@/lib/licenses';
 import {
   DndContext,
   KeyboardSensor,
@@ -1811,9 +1812,6 @@ function languageOptions(current: string, uiLanguage: string) {
   const [first, ...rest] = codes.map((code) => ({ code, name: languageName(code, uiLanguage) }));
   return [first, ...rest.sort((a, b) => a.name.localeCompare(b.name, uiLanguage))];
 }
-
-/** i18n keys: an SPDX identifier has dots, which i18next reads as nesting. */
-const LICENSE_KEYS = { 'CC0-1.0': 'cc0', 'CC-BY-4.0': 'ccBy', 'CC-BY-SA-4.0': 'ccBySa' } as const;
 
 /**
  * The quiz's tags, as chips: Enter or a comma adds what was typed, turned into
