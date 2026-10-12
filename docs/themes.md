@@ -86,7 +86,9 @@ passes every check says so: an *Accessible* badge and filter; the others carry n
 `/themes` lists the shipped themes, then the hosts'. `/themes/:id` edits one, saved as it
 changes, with a preview drawn by the real projection and phone (`ThemePreview`, sample
 game views in `theme-preview.tsx`) at four moments. The quiz settings pick a theme with
-thumbnails; the quiz preview shows it.
+thumbnails; every preview of the quiz's steps (the preview page, the question and slide
+forms, the cards, the read-only page) shows it. The console's sound preview plays the
+theme's sample of an effect the room has none of its own for.
 
 ## Bundles
 
