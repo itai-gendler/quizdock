@@ -28,17 +28,6 @@ entry in the PR that pays it back.
 - **Way out**: nonces for styles; for images, the editor's image node limited to the
   application's media, then `https:` dropped and the logo's origin read per request.
 
-## A dark theme nothing turns on
-
-- **Where**: `apps/frontend/src/index.css` (`.dark` and its `@custom-variant`), and a few
-  `dark:` classes in the components.
-- **What**: the tokens of a dark theme exist, but no code ever sets the `.dark` class: the
-  app is light only.
-- **Why it is acceptable**: nothing is broken, and removing it would touch many files for
-  no gain (audit 2026-09, F13).
-- **Way out**: either switch it on (`prefers-color-scheme`, a toggle), which is a feature to
-  design and check screen by screen, or delete the tokens and the `dark:` classes.
-
 ## Orval, a heavy generator
 
 - **Where**: `apps/frontend/orval.config.ts`, `pnpm generate:api`, the drift check in

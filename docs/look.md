@@ -16,6 +16,7 @@ as an administrator sets it. A quiz on the live screens wears its own theme
 | `accent` | `--link`: links and the mark of the current page in the header. On the dark page it is lightened, same hue, until it reaches 7:1 (`linkOnDark`). |
 | `font` | a shipped font or an imported woff2, as a theme's (`--font-sans`). |
 | `radius` | `square`, `standard` or `rounded` (`LOOK_RADII`, the `--radius` token). |
+| `colorMode` | `auto` (each device chooses), `light` or `dark` (the instance forces it). |
 | `showcase` | the background of the showcase pages — home, join, sign-in, error, not found; working pages stay plain: `none`, `logo` (a watermark, with its `size` in % of the short side and its `opacity`) or `picture` (a media laid by a background style, as a step's). |
 
 The logo watermark is the logo's shape in the text's colour: QuizDock's mark
@@ -33,13 +34,25 @@ A font or a picture it names becomes one of the instance's media, never swept.
 (`apps/frontend/src/lib/look.ts`) sets the tokens on the document before the first render.
 A change shows from the next page each visitor opens.
 
+## Light or dark
+
+`lib/color-mode.ts` sets `.dark` on the document (the dark tokens of `index.css`). Unless
+the instance forces a mode, a device follows its system, or what its person picked in the
+account menu (*Appearance*: as the system, light, dark), kept in its `localStorage`
+(`qd-color-mode`). The class is set before the first render and again on each page.
+
+The live screens are never dark: a participant's pages (`/join…`) and the projection get
+no `.dark`, and the miniatures of a big screen or a phone drawn inside the interface
+(`ScaledStage`, the participant preview) carry `.light`, which restores the light tokens
+under a dark page.
+
 ## Administration
 
 Two spaces under *Instance*:
 
 - **Branding**: the four identity settings (`APP_NAME`, `APP_LANG`, `APP_LOGO_URL`,
   `APP_FEEDBACK_URL`), each changed as the Settings page changes it.
-- **Interface**: the look, saved as it changes.
+- **Interface**: the look, light or dark included, saved as it changes.
 
 Both beside a preview of five pages (home, join, sign-in, not found, my quizzes), light or
 dark.

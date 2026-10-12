@@ -8,9 +8,9 @@ Three needs, delivered in this order:
 
 1. **Lot 1 — Quiz themes**: the look and feel of a quiz on the live screens (backgrounds, answer slots, font, sounds,
    motion), from a shared library of themes.
-2. **Lot 2 — Instance look**: the organisation's identity (branding) and the look of the interface (theme), set in
+2. **Lot 2 — Instance look** (shipped): the organisation's identity (branding) and the look of the interface (theme), set in
    the administration.
-3. **Lot 3 — Dark mode** for the interface.
+3. **Lot 3 — Dark mode** for the interface (shipped).
 
 The two theme layers never mix: a **quiz theme** dresses the live game (projection and players); the **interface
 theme** dresses the application. The console, the editor and the back office never take a quiz theme.
@@ -52,13 +52,11 @@ to its own theming.
 
 ---
 
-## 5. Lot 3 — Dark mode
+## 5. Lot 3 — Dark mode: shipped
 
-- The interface follows the **system preference** by default; a light / dark / auto switch is remembered **per
-  device**; an admin may force light or dark for the whole instance.
-- The live screens are not concerned: the quiz theme drives them.
-- Clears the tech-debt entry "A dark theme nothing turns on": the existing `.dark` tokens are switched on and every
-  screen checked (Playwright screenshot per screen and state, in both modes).
+Described in [`docs/look.md`](../docs/look.md) (*Light or dark*). Every interface screen was
+checked in both modes with a contrast measure of each visible text, not Playwright
+screenshots; the live screens and their miniatures stay light.
 
 ---
 
