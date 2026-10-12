@@ -876,6 +876,13 @@
       "light": "Clair",
       "dark": "Sombre",
       "plain": "Une page de travail reste sobre : pas de fond de vitrine."
-    }
+    },
+    "colorMode": "Clair ou sombre",
+    "colorModes": {
+      "auto": "Chaque appareil choisit",
+      "light": "Toujours clair",
+      "dark": "Toujours sombre"
+    },
+    "colorModeHint": "Chaque appareil suit son système, ou ce que la personne choisit dans le menu du compte ; forcé, le menu ne le propose plus. Les écrans de jeu ne sont pas concernés : le thème du quiz les habille."
   }
 }

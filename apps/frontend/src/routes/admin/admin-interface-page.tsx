@@ -1,4 +1,6 @@
 import {
+  COLOR_MODES,
+  type ColorMode,
   DARK_PAGE,
   DEFAULT_LOOK,
   type InterfaceLook,
@@ -159,13 +161,13 @@ function LookEditor({ saved }: { saved: InterfaceLook }) {
                 <span className="text-sm underline" style={{ color: look.accent }}>
                   {t('look.link')}
                 </span>
-                <Ratio value={contrast(accent, WHITE)} min={4.5} />
+                <Ratio value={contrast(accent, WHITE)} min={4.5} on="light" />
               </Sample>
               <Sample dark>
                 <span className="text-sm underline" style={{ color: linkDark }}>
                   {t('look.link')}
                 </span>
-                <Ratio value={contrast(parseHex(linkDark), DARK_PAGE)} min={7} dark />
+                <Ratio value={contrast(parseHex(linkDark), DARK_PAGE)} min={7} on="dark" />
               </Sample>
             </div>
             <p className="text-muted-foreground text-xs">{t('look.accentHint')}</p>
@@ -214,6 +216,21 @@ function LookEditor({ saved }: { saved: InterfaceLook }) {
                 </span>
               ))}
             </div>
+          </Disclosure>
+
+          <Disclosure
+            title={t('look.colorMode')}
+            rememberAs="look-color-mode"
+            value={t(`look.colorModes.${look.colorMode}`)}
+          >
+            <Segmented
+              className="w-fit flex-wrap"
+              label={t('look.colorMode')}
+              value={look.colorMode}
+              onChange={(m: ColorMode) => set('colorMode', m)}
+              options={COLOR_MODES.map((m) => ({ value: m, label: t(`look.colorModes.${m}`) }))}
+            />
+            <p className="text-muted-foreground text-xs">{t('look.colorModeHint')}</p>
           </Disclosure>
 
           <Disclosure
@@ -301,7 +318,7 @@ function LookEditor({ saved }: { saved: InterfaceLook }) {
                     aria-hidden
                     className={cn(
                       'mt-0.5 grid size-4 shrink-0 place-items-center rounded-full',
-                      c.passed ? 'bg-success-text text-white' : 'border',
+                      c.passed ? 'bg-main-action text-white' : 'border',
                     )}
                   >
                     {c.passed ? <Check className="size-3" /> : null}
@@ -335,20 +352,24 @@ function Sample({ dark, children }: { dark: boolean; children: ReactNode }) {
   );
 }
 
-/** A contrast ratio, readable where it sits; below its minimum, said so. */
-function Ratio({ value, min, dark = false }: { value: number; min: number; dark?: boolean }) {
+/** A contrast ratio, readable where it sits (the page, a light or a dark sample); below its minimum, said so. */
+function Ratio({
+  value,
+  min,
+  on = 'page',
+}: {
+  value: number;
+  min: number;
+  on?: 'page' | 'light' | 'dark';
+}) {
   const ok = value >= min;
+  const tone = {
+    page: ok ? 'text-muted-foreground' : 'text-destructive-text',
+    light: ok ? 'text-[oklch(0.45_0_0)]' : 'text-[oklch(0.5_0.2_27)]',
+    dark: ok ? 'text-[oklch(0.85_0_0)]' : 'text-[oklch(0.8_0.15_27)]',
+  }[on];
   return (
-    <span
-      className={cn(
-        'text-xs tabular-nums',
-        ok
-          ? dark
-            ? 'text-[oklch(0.85_0_0)]'
-            : 'text-muted-foreground'
-          : cn('font-semibold', dark ? 'text-[oklch(0.8_0.15_27)]' : 'text-destructive'),
-      )}
-    >
+    <span className={cn('text-xs tabular-nums', !ok && 'font-semibold', tone)}>
       {value.toFixed(1)}:1
     </span>
   );

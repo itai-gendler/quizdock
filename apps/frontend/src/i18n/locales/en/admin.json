@@ -854,6 +854,13 @@
       "light": "Light",
       "dark": "Dark",
       "plain": "A working page stays plain: no showcase background."
-    }
+    },
+    "colorMode": "Light or dark",
+    "colorModes": {
+      "auto": "Each device chooses",
+      "light": "Always light",
+      "dark": "Always dark"
+    },
+    "colorModeHint": "Each device follows its system, or what its person picks in the account menu; forced, the menu no longer offers it. The live screens are not concerned: the quiz theme dresses them."
   }
 }

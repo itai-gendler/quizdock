@@ -4,7 +4,10 @@
 /* Inside a surface that carries a background (question or slide, game/surface.tsx). */
 @custom-variant on-backdrop (&:where([data-scheme] *));
 
-:root {
+:root,
+/* Light inside a dark page: the live screens and their previews, a light sample. */
+.light {
+  color-scheme: light;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -31,7 +34,7 @@
   --input: oklch(0.6 0 0);
   --ring: oklch(0.55 0.22 264);
   /* Links and the mark of the current page: the instance's accent (lib/look.ts). */
-  --link: oklch(0.55 0.22 264);
+  --link: var(--link-light, oklch(0.55 0.22 264));
   --success: oklch(0.6 0.17 150);
   --success-foreground: oklch(0.985 0 0);
   /* Green words (a "Ready" badge, a tick, "Saved"): 4.5:1 on white and on its 15% tint. */
@@ -72,6 +75,9 @@
 }
 
 .dark {
+  color-scheme: dark;
+  /* The accent lightened until it reads at 7:1 (lib/look.ts). */
+  --link: var(--link-dark, oklch(0.72 0.15 260));
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);

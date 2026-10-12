@@ -876,6 +876,13 @@
       "light": "Chiaro",
       "dark": "Scuro",
       "plain": "Una pagina di lavoro resta semplice: nessuno sfondo vetrina."
-    }
+    },
+    "colorMode": "Chiaro o scuro",
+    "colorModes": {
+      "auto": "Ogni dispositivo sceglie",
+      "light": "Sempre chiaro",
+      "dark": "Sempre scuro"
+    },
+    "colorModeHint": "Ogni dispositivo segue il proprio sistema, o ciò che la persona sceglie nel menu dell’account; se imposto, il menu non lo propone più. Gli schermi dal vivo non sono interessati: li veste il tema del quiz."
   }
 }

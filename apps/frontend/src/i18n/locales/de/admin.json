@@ -854,6 +854,13 @@
       "light": "Hell",
       "dark": "Dunkel",
       "plain": "Eine Arbeitsseite bleibt schlicht: kein Schaufenster-Hintergrund."
-    }
+    },
+    "colorMode": "Hell oder dunkel",
+    "colorModes": {
+      "auto": "Jedes Gerät wählt",
+      "light": "Immer hell",
+      "dark": "Immer dunkel"
+    },
+    "colorModeHint": "Jedes Gerät folgt seinem System oder dem, was die Person im Kontomenü wählt; ist der Modus erzwungen, bietet das Menü ihn nicht mehr an. Die Live-Bildschirme sind nicht betroffen: Sie tragen das Theme des Quiz."
   }
 }

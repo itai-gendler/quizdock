@@ -54,7 +54,7 @@ export function LookPreview({
       <div
         className={cn(
           'bg-background text-foreground flex min-h-[34rem] flex-col overflow-hidden rounded-xl border font-sans shadow-sm',
-          dark && 'dark',
+          dark ? 'dark' : 'light',
         )}
         style={lookVars(look, dark)}
       >

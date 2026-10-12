@@ -854,6 +854,13 @@
       "light": "Açık",
       "dark": "Koyu",
       "plain": "Bir çalışma sayfası sade kalır: vitrin arka planı yok."
-    }
+    },
+    "colorMode": "Açık veya koyu",
+    "colorModes": {
+      "auto": "Her cihaz seçer",
+      "light": "Her zaman açık",
+      "dark": "Her zaman koyu"
+    },
+    "colorModeHint": "Her cihaz kendi sistemini ya da kişinin hesap menüsünde seçtiğini izler; zorunlu kılındığında menü bu seçeneği artık sunmaz. Canlı ekranlar etkilenmez: onlara quizin teması giydirilir."
   }
 }

@@ -1,4 +1,5 @@
-import { Link, Outlet, useMatches, useNavigate } from '@tanstack/react-router';
+import { Link, Outlet, useLocation, useMatches, useNavigate } from '@tanstack/react-router';
+import { useColorModeFor } from '@/lib/color-mode';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppNav } from '@/components/app-nav';
@@ -50,6 +51,8 @@ export function RootLayout() {
     document.title = key ? `${t(`common:titles.${key}`)} · ${APP_NAME}` : APP_NAME;
   }, [matches, t]);
   const { user, mode, logout } = useAuth();
+  // Light or dark, page by page: a live screen never is dark.
+  useColorModeFor(useLocation().pathname);
   const demo = getDemo();
   const navigate = useNavigate();
   // Three shells: the projected screen has no chrome at all; participants (guests on a

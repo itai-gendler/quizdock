@@ -876,6 +876,13 @@
       "light": "Claro",
       "dark": "Oscuro",
       "plain": "Una página de trabajo sigue lisa: sin fondo de escaparate."
-    }
+    },
+    "colorMode": "Claro u oscuro",
+    "colorModes": {
+      "auto": "Cada dispositivo elige",
+      "light": "Siempre claro",
+      "dark": "Siempre oscuro"
+    },
+    "colorModeHint": "Cada dispositivo sigue su sistema, o lo que su usuario elija en el menú de la cuenta; si se fuerza, el menú deja de ofrecerlo. Las pantallas en directo no se ven afectadas: las viste el tema del quiz."
   }
 }

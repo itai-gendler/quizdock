@@ -21,6 +21,12 @@ describe('interface look', () => {
     ).toBe(false);
   });
 
+  it('reads a look saved before the colour mode as following each device', () => {
+    const older: Partial<typeof DEFAULT_LOOK> = { ...DEFAULT_LOOK };
+    delete older.colorMode;
+    expect(interfaceLookSchema.parse(older).colorMode).toBe('auto');
+  });
+
   it('lightens a link on the dark page until it reads comfortably, the same hue', () => {
     const link = linkOnDark('#2b62ef');
     expect(contrast(parseHex(link), DARK_PAGE)).toBeGreaterThanOrEqual(7);

@@ -49,6 +49,9 @@ export function lookVars(look: ResolvedLook, dark = false): CSSProperties {
     '--primary-foreground': '#ffffff',
     '--ring': look.primary,
     '--link': dark ? look.linkDark : look.accent,
+    // The document's link follows its mode (index.css): both given.
+    '--link-light': look.accent,
+    '--link-dark': look.linkDark,
     '--radius': `${LOOK_RADII[look.radius]}rem`,
     ...(font ? { '--font-sans': font } : {}),
   } as CSSProperties;
@@ -57,5 +60,8 @@ export function lookVars(look: ResolvedLook, dark = false): CSSProperties {
 /** Dresses the whole document, before the first render. */
 export function applyLook(look: ResolvedLook = instanceLook): void {
   const root = document.documentElement.style;
-  for (const [name, value] of Object.entries(lookVars(look))) root.setProperty(name, String(value));
+  for (const [name, value] of Object.entries(lookVars(look))) {
+    // The document's `--link` is chosen by its mode, in index.css.
+    if (name !== '--link') root.setProperty(name, String(value));
+  }
 }

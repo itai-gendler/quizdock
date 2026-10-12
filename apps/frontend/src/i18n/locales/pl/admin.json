@@ -898,6 +898,13 @@
       "light": "Jasny",
       "dark": "Ciemny",
       "plain": "Strona robocza pozostaje gładka: bez tła wizytówkowego."
-    }
+    },
+    "colorMode": "Jasny czy ciemny",
+    "colorModes": {
+      "auto": "Każde urządzenie wybiera",
+      "light": "Zawsze jasny",
+      "dark": "Zawsze ciemny"
+    },
+    "colorModeHint": "Każde urządzenie stosuje ustawienie systemu albo wybór użytkownika w menu konta; wymuszony tryb znika z menu. Nie dotyczy to ekranów na żywo: ich wygląd nadaje motyw quizu."
   }
 }

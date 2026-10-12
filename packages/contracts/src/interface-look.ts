@@ -24,6 +24,10 @@ export type LookRadius = keyof typeof LOOK_RADII;
 
 export const SHOWCASE_MODES = ['none', 'logo', 'picture'] as const;
 
+/** Light or dark (THEMING lot 3): each device's choice (`auto`), or one the instance forces. */
+export const COLOR_MODES = ['auto', 'light', 'dark'] as const;
+export type ColorMode = (typeof COLOR_MODES)[number];
+
 const hex = z.string().regex(HEX_COLOR);
 const mediaId = z.string().length(26);
 
@@ -35,6 +39,8 @@ export const interfaceLookSchema = z
     accent: hex,
     font: fontSchema(mediaId),
     radius: z.enum(Object.keys(LOOK_RADII) as [LookRadius, ...LookRadius[]]),
+    /** `auto`: each device follows its system, or what its person picked. */
+    colorMode: z.enum(COLOR_MODES).default('auto'),
     /** Home, join, sign-in, error and not-found pages; working pages stay plain. */
     showcase: z
       .object({
@@ -59,6 +65,7 @@ export const DEFAULT_LOOK: InterfaceLook = {
   accent: '#2b62ef',
   font: { builtin: 'system' },
   radius: 'standard',
+  colorMode: 'auto',
   showcase: { mode: 'logo', size: 80, opacity: 0.06, picture: null },
 };
 

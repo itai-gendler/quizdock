@@ -24,13 +24,15 @@ import {
 } from './config';
 import { MotionRoot } from './game/motion/motion-root';
 import { trackTimeOnPage } from './lib/demo-duration';
-import { applyLook } from './lib/look';
+import { applyLook, instanceLook } from './lib/look';
+import { startColorMode } from './lib/color-mode';
 import { router } from './router';
 import { loadLanguages } from './i18n';
 import './index.css';
 
 document.title = APP_NAME; // marque runtime (white-label)
 applyLook(); // the instance's look, before anything is drawn
+startColorMode(instanceLook.colorMode); // light or dark, before anything is drawn
 
 // Pas de nouvelle tentative sur une erreur 4xx (401/403/404…) : la réponse ne
 // changera pas et l'UI doit l'afficher tout de suite (ex. siège d'hôte pris).

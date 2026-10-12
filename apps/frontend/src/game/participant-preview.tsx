@@ -99,10 +99,11 @@ export function ParticipantPreview({
   return (
     <div className="flex flex-col items-center gap-3">
       {note ? <p className="text-muted-foreground text-sm">{t('preview.note')}</p> : null}
-      {/* A phone-sized frame with the participant's typographic base. */}
+      {/* A phone-sized frame with the participant's typographic base; light, as the phone
+          is, in a dark page too. */}
       <div
         className={cn(
-          'bg-background w-full max-w-[24em] overflow-hidden rounded-[1.5rem] border-[6px] border-neutral-800 shadow-xl',
+          'light bg-background text-foreground w-full max-w-[24em] overflow-hidden rounded-[1.5rem] border-[6px] border-neutral-800 shadow-xl',
           TYPE_BASE.phone,
         )}
       >

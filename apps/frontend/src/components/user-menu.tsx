@@ -4,6 +4,7 @@ import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 import { useEscape } from '@/lib/shortcuts';
+import { ColorModeSwitch } from './color-mode-switch';
 
 /**
  * Topbar identity of the host, at the far right: the name opens a small menu
@@ -52,11 +53,12 @@ export function UserMenu({
       {open ? (
         <div
           role="menu"
-          className="bg-popover text-popover-foreground absolute right-0 z-30 mt-1 min-w-[11rem] rounded-lg border p-1 shadow-md"
+          className="bg-popover text-popover-foreground absolute right-0 z-30 mt-1 min-w-[14rem] rounded-lg border p-1 shadow-md"
         >
           <p className="text-muted-foreground truncate px-2 py-1.5 text-xs sm:hidden">{user}</p>
           {children ? <div className="flex flex-col gap-1 px-2 py-1.5">{children}</div> : null}
           {children ? <div className="bg-border my-1 h-px" /> : null}
+          <ColorModeSwitch />
           <Link
             to="/profile"
             role="menuitem"

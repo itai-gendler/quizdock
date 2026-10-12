@@ -553,7 +553,7 @@ function Editor({ theme }: { theme: ThemeDto }) {
                     aria-hidden
                     className={
                       c.passed
-                        ? 'bg-success mt-0.5 grid size-4 shrink-0 place-items-center rounded-full text-[0.6rem] text-white'
+                        ? 'bg-main-action mt-0.5 grid size-4 shrink-0 place-items-center rounded-full text-[0.6rem] text-white'
                         : 'mt-0.5 size-4 shrink-0 rounded-full border'
                     }
                   >
