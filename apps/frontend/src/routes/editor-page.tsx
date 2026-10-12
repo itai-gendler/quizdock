@@ -78,6 +78,7 @@ import { downloadFile } from '../api/download';
 import { apiErrorText } from '../api/http';
 import type { QuizDetailDto, UpdateQuizDto } from '../api/generated/model';
 import { QuizThemeField } from './quiz-theme-field';
+import { QuizThemeProvider, useQuizThemeValues } from '@/lib/quiz-theme';
 import { quizItems, moveItem, slideLabel, type QuizItem } from '@/lib/quiz-items';
 import { useMediaQuery } from '@/lib/use-media-query';
 import { useUnsavedGuard } from '@/lib/use-unsaved-guard';
@@ -148,8 +149,18 @@ export function EditorPage() {
   return (
     <>
       {stale}
-      <QuizEditor quiz={data.data} />
+      <ThemedQuizEditor quiz={data.data} />
     </>
+  );
+}
+
+/** The editor, its previews in the quiz's theme (docs/themes.md). */
+function ThemedQuizEditor({ quiz }: { quiz: QuizDetailDto }) {
+  const theme = useQuizThemeValues(quiz);
+  return (
+    <QuizThemeProvider value={theme}>
+      <QuizEditor quiz={quiz} />
+    </QuizThemeProvider>
   );
 }
 

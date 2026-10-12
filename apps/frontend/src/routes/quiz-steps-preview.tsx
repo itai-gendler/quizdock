@@ -25,8 +25,7 @@ import { ScreenSurface } from './screen-page';
 import { stepView } from './step-view';
 import type { GameView } from '../game/use-game-session';
 import { useHotkeys } from 'react-hotkeys-hook';
-import { valuesOfRef } from '@/lib/themes';
-import { useThemesControllerList } from '../api/generated/themes/themes';
+import { useQuizThemeValues } from '@/lib/quiz-theme';
 
 /** What the preview walks: a quiz, or a template read as the quiz a copy would make. */
 export type PreviewQuiz = StepQuiz & {
@@ -57,18 +56,10 @@ export function QuizStepsPreview({
   const [device, setDevice] = useState<'projection' | 'phone'>('projection');
   const [answer, setAnswer] = useState(false);
   const url = useMediaUrl();
-  // The quiz's theme: its own, else the instance's default (docs/themes.md).
-  const { data: themes } = useThemesControllerList();
-  const theme = useMemo(() => {
-    if (!themes) return null;
-    const q = quiz as { themeId?: string | null; themeBuiltin?: string | null };
-    const ref = q.themeId
-      ? { id: q.themeId }
-      : q.themeBuiltin
-        ? { builtin: q.themeBuiltin }
-        : themes.data.defaultTheme;
-    return valuesOfRef(ref, themes.data.themes);
-  }, [themes, quiz]);
+  // The quiz's theme: its own, else the instance's default.
+  const theme = useQuizThemeValues(
+    quiz as { themeId?: string | null; themeBuiltin?: string | null },
+  );
   const step = (delta: number) => setIndex((i) => Math.min(total - 1, Math.max(0, i + delta)));
   const { ref, isFullscreen, toggle, supported } = useFullscreen<HTMLDivElement>();
 

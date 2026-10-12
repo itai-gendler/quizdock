@@ -79,6 +79,8 @@ import { getQuizzesControllerGetQueryKey } from '../api/generated/quizzes/quizze
 import { useSlidesControllerAdd, useSlidesControllerUpdate } from '../api/generated/slides/slides';
 import { columnsTemplate } from '../game/live-components';
 import { SlideStage } from '../game/slide-stage';
+import { LiveTheme } from '../game/theme';
+import { useQuizTheme } from '@/lib/quiz-theme';
 import { BackgroundField } from './background-field';
 import { MediaUpload } from './media-upload';
 import { SlideMediaField, type SlideMediaValue } from './slide-media-field';
@@ -187,6 +189,8 @@ export function SlideForm({
     const timer = window.setTimeout(() => setUndo(null), UNDO_MS);
     return () => window.clearTimeout(timer);
   }, [undo]);
+  // The preview in the quiz's theme, as the room will see it.
+  const quizTheme = useQuizTheme();
   const [showStage, setShowStage] = useState(() => {
     try {
       return localStorage.getItem('slide.preview') !== 'hidden';
@@ -395,7 +399,11 @@ export function SlideForm({
               {showStage ? t('slideForm.hidePreview') : t('slideForm.showPreview')}
             </Button>
           </div>
-          {showStage ? <SlideStage className="rounded-xl border" slide={stage} /> : null}
+          {showStage ? (
+            <LiveTheme theme={quizTheme}>
+              <SlideStage className="rounded-xl border" slide={stage} />
+            </LiveTheme>
+          ) : null}
         </div>
 
         <fieldset id="qf-blocks" className="flex flex-col gap-3">

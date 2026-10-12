@@ -120,6 +120,7 @@ import { Switch } from '@/components/ui/switch';
 import { useMediaUrl } from '@/lib/media-url';
 import { RoomScreen } from './quiz-steps-preview';
 import { stepView } from './step-view';
+import { useQuizTheme } from '@/lib/quiz-theme';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 type QType = QuestionTypeName;
@@ -1484,10 +1485,13 @@ function LivePreview({
     false,
     (v): v is boolean => typeof v === 'boolean',
   );
+  // In the quiz's theme, as the room will see it.
+  const theme = useQuizTheme();
   const view = useMemo(() => {
     const question = previewQuestion(values);
     const view = stepView([{ kind: 'question', id: question.id, question }], 0, NO_QUIZ, url, {
       reveal: answer,
+      theme,
     });
     // Where it stands in the quiz, as the room's band will say.
     return {
@@ -1496,7 +1500,7 @@ function LivePreview({
       totalQuestions: position.total,
       question: view.question && { ...view.question, questionIndex: position.index },
     };
-  }, [values, url, answer, position.index, position.total]);
+  }, [values, url, answer, position.index, position.total, theme]);
   return (
     <Disclosure
       title={t('preview.title')}

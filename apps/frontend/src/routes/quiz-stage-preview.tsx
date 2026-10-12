@@ -21,6 +21,8 @@ import { ShapeIcon } from '@/components/shape-icon';
 import { ImageChoiceGrid } from '../game/image-choice';
 import { type MediaResolver, mediaUrl, useMediaUrl } from '@/lib/media-url';
 import { stepBackground } from '@/lib/step-background';
+import { QuizThemeProvider, useQuizTheme, useQuizThemeValues } from '@/lib/quiz-theme';
+import { LiveTheme, themeBackdrop } from '../game/theme';
 import { Surface } from '../game/surface';
 
 /**
@@ -106,19 +108,24 @@ export function QuestionPreview({ question }: { question: QuizDetailDtoQuestions
     question.backgroundStyle,
     url,
   );
+  // Without a background of its own, the quiz theme's.
+  const theme = useQuizTheme();
+  const themed = background ? null : themeBackdrop(theme);
   return (
-    <Surface
-      background={background}
-      textTone={question.textTone}
-      textOutline={question.textOutline}
-      className="h-full w-full"
-    >
-      {question.type === 'image_choice' ? (
-        <ImageChoicePreview question={question} />
-      ) : (
-        <QuestionBody question={question} />
-      )}
-    </Surface>
+    <LiveTheme theme={theme}>
+      <Surface
+        background={background ?? themed?.background}
+        textTone={themed?.textTone ?? question.textTone}
+        textOutline={themed ? 'url' in themed.background : question.textOutline}
+        className="h-full w-full"
+      >
+        {question.type === 'image_choice' ? (
+          <ImageChoicePreview question={question} />
+        ) : (
+          <QuestionBody question={question} />
+        )}
+      </Surface>
+    </LiveTheme>
   );
 }
 
@@ -269,14 +276,23 @@ export function StepStage({
   className?: string;
 }) {
   const url = useMediaUrl();
-  return item.kind === 'slide' ? (
-    <SlideStage
-      className={cn('rounded-xl border', className)}
-      slide={slideShowOf(item.slide, index, slideQuizFieldsOf(quiz), url)}
-    />
-  ) : (
-    <ScaledStage className={cn('rounded-xl border', className)}>
-      <QuestionPreview question={item.question} />
-    </ScaledStage>
+  // In the quiz's theme: the editor's, else the quiz's own (a card, a read-only page).
+  const own = useQuizThemeValues(quiz as { themeId?: string | null; themeBuiltin?: string | null });
+  const theme = useQuizTheme() ?? own;
+  return (
+    <QuizThemeProvider value={theme}>
+      {item.kind === 'slide' ? (
+        <LiveTheme theme={theme}>
+          <SlideStage
+            className={cn('rounded-xl border', className)}
+            slide={slideShowOf(item.slide, index, slideQuizFieldsOf(quiz), url)}
+          />
+        </LiveTheme>
+      ) : (
+        <ScaledStage className={cn('rounded-xl border', className)}>
+          <QuestionPreview question={item.question} />
+        </ScaledStage>
+      )}
+    </QuizThemeProvider>
   );
 }
