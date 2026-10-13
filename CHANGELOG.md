@@ -4,6 +4,82 @@ All notable changes to QuizDock are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com); versions follow
 [Semantic Versioning](https://semver.org). Generated from conventional commits.
 
+## [0.15.0] - 2026-10-13
+
+### Bug Fixes
+
+- Branding/override.css keeps the last word over the instance's look *(web)*
+- The live check empties only its own bank *(tools)*
+- The quiz list shows each quiz's first step, its main action at the right *(web)*
+- The shipped themes take Classic's settled yellow *(themes)*
+- White text on every answer; High contrast is the accessible theme *(themes)*
+- The shipped palette keeps a true yellow, with black text *(themes)*
+- The reveal effect plays for the players who found the answer *(themes)*
+- Only the host makes a screen the room's projection *(live)*
+- Each language's own plural forms, as Weblate writes them *(i18n)*
+- The error code too_few renamed not_enough *(i18n)*
+- The Estonian files back as Weblate wrote them *(i18n)*
+- Let the locale check accept translations in progress *(i18n)*
+- Tinypool 2.2.0, under vitest (tests only) *(deps)*
+- Seroval 1.6.8, proxy-addr 2.0.8, source-map-js 1.2.2 *(deps)*
+
+### Build
+
+- Bump actions/setup-node *(deps)*
+
+### Dependencies
+
+- Jose 6, Nest 11.2, vitest 4, the overrides pruned *(deps)*
+
+### Documentation
+
+- The screens of 0.15 *(screenshots)*
+- The interface languages, and who picks which, in every README
+- No size budget for the shipped themes' assets *(specs)*
+- Light or dark, lot 3 of theming complete *(look)*
+- The instance's look, lot 2 of theming complete *(look)*
+- Lot 1 of theming complete *(specs)*
+- The previews and the console's sounds *(themes)*
+- Two more lot 1 points done *(specs)*
+- What lot 1 built, the spec keeps what is left *(themes)*
+- Theming, quiz themes, bundle v8, instance look, dark mode *(specs)*
+- Link the translation discussion *(readme)*
+- Invite translators to Weblate, with its badge and status chart *(readme)*
+- The demo GIF films the console, the big screen and a phone *(screenshots)*
+
+### Features
+
+- Themes open as templates do, as cards or a list *(web)*
+- Anyone picks the interface's language *(web)*
+- The top bar's Quizzes holds the quizzes, templates and themes *(web)*
+- Db:roles gives an existing install database roles of its own *(quizdock)*
+- A theme carries a licence, set in its editor *(themes)*
+- Dark mode, per device or forced by the instance *(look)*
+- Branding and interface spaces, showcase backgrounds *(look)*
+- The instance's look, kept and served *(look)*
+- The console hears the quiz theme's sounds in its preview *(themes)*
+- Every step preview shows the quiz's theme *(themes)*
+- The themes' pages, the quiz's theme and a step's background *(themes)*
+- An icon bank, seasonal pictures, two accessible themes *(themes)*
+- Shipped themes on one palette made for white text *(themes)*
+- Bundle version 8 and the theme bundle *(themes)*
+- Animal glyphs for Classic, letters or numbers for any theme *(themes)*
+- Options come green first, then red *(editor)*
+- The live screens show the quiz in its theme *(themes)*
+- A step lays its background as its style says *(themes)*
+- Every device gets the quiz's theme, frozen with the game *(themes)*
+- Theme library API, sanitised icons and fonts *(themes)*
+- The classic theme keeps white text on every slot *(themes)*
+- Quiz theme contracts, shipped themes and accessibility checks *(themes)*
+- Six more languages — German, Hindi, Italian, Japanese, Polish, Russian *(i18n)*
+- The Docker Hub pull counter, read every night *(demo-stats)*
+- The demo's audience for anyone, as JSON at /stats *(demo-stats)*
+
+### Contributors
+
+- Francois Chaussin
+- dependabot[bot]
+
 ## [0.14.1] - 2026-10-05
 
 ### Bug Fixes
@@ -94,7 +170,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com); versions follow
 
 > [!WARNING]
 > Read before upgrading.
-> - **Download the latest quizdock script before upgrading (curl -fsSLO https://raw.githubusercontent.com/quizdock/quizdock/main/quizdock): the copy you have does not fetch the Compose files. On a first upgrade with it, an existing install gets the release's files as <file>.new; compare and adopt them (mv), or Keycloak and the hardening of this release stay out.**
+> - **Download the latest quizdock script before upgrading (curl -fsSLO https://raw.githubusercontent.com/quizdock/quiz-dock/main/quizdock): the copy you have does not fetch the Compose files. On a first upgrade with it, an existing install gets the release's files as <file>.new; compare and adopt them (mv), or Keycloak and the hardening of this release stay out.**
 
 ### Bug Fixes
 
@@ -667,7 +743,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com); versions follow
 
 > [!WARNING]
 > Read before upgrading.
-> - **OIDC configuration changed (OIDC_SESSION_SCOPE removed; new OIDC_INTERNAL_URL, OIDC_CLIENT_SECRET, TRUST_PROXY; everyone signs in again), see <https://github.com/quizdock/quizdock/blob/main/docs/self-hosting/upgrade-oidc-session.md>**
+> - **OIDC configuration changed (OIDC_SESSION_SCOPE removed; new OIDC_INTERNAL_URL, OIDC_CLIENT_SECRET, TRUST_PROXY; everyone signs in again), see <https://github.com/quizdock/quiz-dock/blob/main/docs/self-hosting/upgrade-oidc-session.md>**
 
 ### Bug Fixes
 
