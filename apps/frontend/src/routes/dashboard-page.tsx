@@ -27,7 +27,7 @@ import { isString, isStrings, useSessionState } from '@/lib/use-session-state';
 import { useTranslation } from 'react-i18next';
 import { QuizStatusBadge } from '@/components/quiz-status-badge';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import { Button, twoLineButton } from '@/components/ui/button';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { MenuItem, MenuSeparator } from '@/components/ui/menu-item';
 import { Popover } from '@/components/ui/popover';
@@ -461,18 +461,37 @@ export function DashboardPage() {
           ) : null;
           // One action in view (UI system §3): present a ready quiz, publish a draft to present
           // it, copy someone else's; the rest in the card's ⋮. The card itself opens the quiz.
+          // Another host's shared quiz: presented as it is, keeping nothing — or copied.
+          const presentShared =
+            readOnly && quiz.shared && quiz.status === 'ready' && quiz.questionCount > 0;
           const main = managerOnly ? null : readOnly ? (
             quiz.shared ? (
-              <Button
-                type="button"
-                size="sm"
-                variant="outline"
-                disabled={copying}
-                onClick={() => copy(quiz.id)}
-              >
-                <CopyPlus className="size-4" />
-                {t('createFrom')}
-              </Button>
+              <>
+                {presentShared ? (
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="main-action"
+                    className={twoLineButton}
+                    disabled={isLaunching}
+                    onClick={() => void launch(quiz.id)}
+                  >
+                    <Play className="size-4 shrink-0" />
+                    {t('presentWithoutResults')}
+                  </Button>
+                ) : null}
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  className={twoLineButton}
+                  disabled={copying}
+                  onClick={() => copy(quiz.id)}
+                >
+                  <CopyPlus className="size-4 shrink-0" />
+                  {t('createFrom')}
+                </Button>
+              </>
             ) : null
           ) : quiz.status === 'ready' ? (
             <Button
@@ -523,16 +542,6 @@ export function DashboardPage() {
               <QuizMenu
                 quiz={quiz}
                 own={!readOnly && !managerOnly}
-                onPresentShared={
-                  // Another host's shared quiz: presented as it is, keeping nothing.
-                  readOnly &&
-                  !managerOnly &&
-                  quiz.shared &&
-                  quiz.status === 'ready' &&
-                  quiz.questionCount > 0
-                    ? () => void launch(quiz.id)
-                    : undefined
-                }
                 onStatus={(status) => void setStatus(quiz, status)}
                 onDelete={() => setPendingDelete(quiz)}
               />
@@ -679,15 +688,12 @@ function QuizFacts({ quiz, date }: { quiz: QuizDto; date: (iso: string) => strin
 function QuizMenu({
   quiz,
   own,
-  onPresentShared,
   onStatus,
   onDelete,
 }: {
   quiz: QuizDto;
   /** The caller's own quiz: they may archive and delete it. */
   own: boolean;
-  /** Another host's shared quiz they may present, keeping nothing. */
-  onPresentShared?: () => void;
   onStatus: (status: 'draft' | 'archived') => void;
   onDelete: () => void;
 }) {
@@ -712,17 +718,6 @@ function QuizMenu({
     >
       {(close) => (
         <div className="flex min-w-48 flex-col">
-          {onPresentShared ? (
-            <MenuItem
-              onClick={() => {
-                close();
-                onPresentShared();
-              }}
-            >
-              <Play className="size-4" />
-              {t('presentWithoutResults')}
-            </MenuItem>
-          ) : null}
           <MenuItem
             onClick={() => {
               close();

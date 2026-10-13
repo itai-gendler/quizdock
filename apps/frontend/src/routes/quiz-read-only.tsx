@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Markdown } from '@/components/markdown';
 import { QuizStatusBadge } from '@/components/quiz-status-badge';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button, buttonVariants, twoLineButton } from '@/components/ui/button';
 import { type QuizItem, quizItems, slideLabel } from '@/lib/quiz-items';
 import { cn } from '@/lib/utils';
 import type { QuizDetailDto } from '../api/generated/model';
@@ -32,9 +32,6 @@ import { EmptyState } from '@/components/ui/empty-state';
  * the way to see it played (Preview); a manager also reads its history. A quiz
  * shared with the instance is copied to be made one's own ("Create from this").
  */
-/** The two actions on another host's quiz: a label may take two lines, set tight. */
-const TWO_LINES = 'h-auto min-h-8 py-1 text-left leading-none whitespace-normal';
-
 /** A slide's display time when it sets none (the engine's default, as the editor says). */
 const DEFAULT_SLIDE_SECONDS = 5;
 
@@ -80,8 +77,7 @@ export function QuizReadOnly({ quiz }: { quiz: QuizDetailDto }) {
               <Button
                 type="button"
                 size="sm"
-                variant="outline"
-                className={TWO_LINES}
+                className={twoLineButton}
                 disabled={isLaunching}
                 onClick={() => void launch(quiz.id)}
               >
@@ -93,7 +89,8 @@ export function QuizReadOnly({ quiz }: { quiz: QuizDetailDto }) {
               <Button
                 type="button"
                 size="sm"
-                className={TWO_LINES}
+                variant={presentable ? 'outline' : 'default'}
+                className={twoLineButton}
                 disabled={copying}
                 onClick={() => copy(quiz.id)}
               >
