@@ -29,7 +29,7 @@ Read them in this order to discover the project:
 | 13 | **[SPECIFICATIONS-UI-SYSTEM.md](./SPECIFICATIONS-UI-SYSTEM.md)** | UI system: the cross-cutting rules (actions, vocabulary, frames, contrast, permissive validation in four levels) and the three-lot rework (live, authoring, entry/account/back office), decisions taken, open points | Design, frontend, product |
 | 14 | **[SPECIFICATIONS-THEMING.md](./SPECIFICATIONS-THEMING.md)** | Theming: quiz themes (library, child themes of shipped themes, slots, icons, fonts, sounds, motion), bundle v8 and the theme bundle, instance branding and interface theme, dark mode, themes in the store | Design, frontend, backend, product |
 | 15 | **[SPECIFICATIONS-SELECTION.md](./SPECIFICATIONS-SELECTION.md)** | Selections (draft): a named, saved, shareable list of quizzes launched into a room; the word chosen, what it holds (only what depends on the quizzes), references not copies, the points to evaluate | Product, backend, frontend |
-| 16 | **[SPECIFICATIONS-SHARED-PLAY.md](./SPECIFICATIONS-SHARED-PLAY.md)** | Presenting a shared quiz (draft): other hosts present it as it is, keeping nothing; ratings without nicknames; *share* vs *offer as a template* | Product, backend, frontend |
+| 16 | **[SPECIFICATIONS-SHARED-PLAY.md](./SPECIFICATIONS-SHARED-PLAY.md)** | Presenting a shared quiz (settled, not delivered): other hosts present it as it is, keeping nothing; ratings without nicknames; *share* vs *offer as a template* | Product, backend, frontend |
 
 > The documents refer to one another (for instance `technique §5`, `RG-13`, `données §2.10`). Any change of behaviour must update **the document it concerns, in the same commit** (see the "test & document" policy, technique §18).
 
