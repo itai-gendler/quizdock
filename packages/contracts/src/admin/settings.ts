@@ -273,7 +273,7 @@ export const SETTINGS = {
   APP_LANG: define<string>({
     key: 'APP_LANG',
     description:
-      "UI language for the instance, by default (no browser detection): a host may pick their own for their screens, and the projection and the participants' screens speak the quiz's language or the room's. New quizzes start in this language; each quiz can be set to another in its settings.",
+      "UI language for the instance, by default (no browser detection): anyone may pick their own, kept in their account or on their device; the projection speaks the quiz's language or the room's, and so does a player's phone unless they picked theirs. New quizzes start in this language; each quiz can be set to another in its settings.",
     category: 'identity',
     criticality: 'C4',
     schema: text(),
