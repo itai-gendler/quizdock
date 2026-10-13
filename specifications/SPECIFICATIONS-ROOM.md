@@ -4,7 +4,7 @@
 > quizzes, players join once. The model, the decisions taken, how the live state splits between the room and each
 > game, and the ordered pull requests that deliver it.
 
-Status: **delivered.** Steps 1 to 5; the playlist is left to a later *Programme* (§7).
+Status: **delivered.** Steps 1 to 5; the playlist is left to the *selection* (§7).
 
 ---
 
@@ -23,7 +23,7 @@ Status: **delivered.** Steps 1 to 5; the playlist is left to a later *Programme*
 
 - **Always a room** (§1), not an option next to a "simple game".
 - **Picking quizzes on the fly**: the host console has a quiz picker (their `ready` quizzes) to choose the next quiz
-  at any point. A list prepared beforehand is not part of the room: it belongs to the *Programme* (§7).
+  at any point. A list prepared beforehand is not part of the room: it belongs to the *selection* (§7).
 - **Moving on is the host's call**: after a quiz, the room shows the results, and the host starts the next one when
   ready.
 - **Cumulative scores and stats** across the series, next to each quiz's own: total score, rank, correct answers,
@@ -140,7 +140,7 @@ not drop.
    - A room of one quiz looks as before, apart from its name, *Change quiz* in its lobby and *Next quiz* at its
      podium. The lobby keeps room for #104.
 
-The playlist first planned as a step 6 is left to the *Programme* (§7), which prepares a series instead of
+The playlist first planned as a step 6 is left to the *selection* (§7), which prepares a series instead of
 improvising it.
 
 To settle along the way, each in the PR it touches: the number of quizzes per room, and what the picker does with a
@@ -152,6 +152,5 @@ affected).
 - [#104](https://github.com/quizdock/quizdock/issues/104) — the shared projection and "Ready!", grafted on the room
   lobby.
 - [#93](https://github.com/quizdock/quizdock/issues/93) — game sounds, as room settings.
-- **Programme** (later, SPECIFICATIONS-ROADMAP §7): the room is the live, improvised series; a Programme prepares it.
-  A named, saved, replayable list of quizzes with its settings; each run of it a durable record with its results
-  (a table then makes sense, unlike §5), archiving decided once for the run, runs compared with one another.
+- **Selection** (draft, [SPECIFICATIONS-SELECTION.md](./SPECIFICATIONS-SELECTION.md)): the room is the live,
+  improvised series; a selection prepares it — a named, saved, replayable list of quizzes, launched into a room.
