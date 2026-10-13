@@ -233,5 +233,9 @@
   "picker": {
     "legend": "Tema",
     "default": "Predefinito dell’istanza ({{name}})"
-  }
+  },
+  "newBlank": "Tema vuoto",
+  "newFromShipped": "Da un tema fornito…",
+  "newImport": "Importa un file…",
+  "importing": "Importazione…"
 }

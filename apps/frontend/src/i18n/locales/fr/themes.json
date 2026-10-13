@@ -233,5 +233,9 @@
   "picker": {
     "legend": "Thème",
     "default": "Défaut de l’instance ({{name}})"
-  }
+  },
+  "newBlank": "Thème vierge",
+  "newFromShipped": "À partir d’un thème livré…",
+  "newImport": "Importer un fichier…",
+  "importing": "Import…"
 }

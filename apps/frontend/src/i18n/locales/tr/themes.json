@@ -229,5 +229,9 @@
   "picker": {
     "legend": "Tema",
     "default": "Örneğin varsayılanı ({{name}})"
-  }
+  },
+  "newBlank": "Boş tema",
+  "newFromShipped": "QuizDock ile gelen bir temadan…",
+  "newImport": "Dosya içe aktar…",
+  "importing": "İçe aktarılıyor…"
 }

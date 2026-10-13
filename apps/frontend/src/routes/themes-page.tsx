@@ -1,7 +1,19 @@
 import { BUILTIN_THEMES, type BuiltinTheme, THEME_NAME_MAX } from '@quiz-dock/contracts';
 import { useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate } from '@tanstack/react-router';
-import { Accessibility, EllipsisVertical, Search, Star } from 'lucide-react';
+import {
+  Accessibility,
+  ChevronDown,
+  CopyPlus,
+  EllipsisVertical,
+  LayoutGrid,
+  List as ListIcon,
+  Plus,
+  Search,
+  Sparkles,
+  Star,
+  Upload,
+} from 'lucide-react';
 import { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
@@ -21,7 +33,6 @@ import { apiErrorText } from '../api/http';
 import type { ThemeDto } from '../api/generated/model';
 import {
   getThemesControllerListQueryKey,
-  useThemesControllerCreate,
   useThemesControllerDuplicate,
   useThemesControllerImportTheme,
   useThemesControllerList,
@@ -29,14 +40,16 @@ import {
   useThemesControllerSetDefault,
 } from '../api/generated/themes/themes';
 import { ThemeThumbnail } from '../game/theme-preview';
-import { Modal } from '@/components/ui/modal';
+import { Segmented } from '@/components/ui/segmented';
+import { useStoredView } from '@/lib/use-stored-view';
+import { useNewTheme } from './use-new-theme';
 
 /**
  * The library of quiz themes (docs/themes.md): the shipped ones, then the hosts'. Every
  * host uses every theme; its owner and the administrators change it.
  */
 export function ThemesPage() {
-  const { t } = useTranslation('themes');
+  const { t } = useTranslation(['themes', 'dashboard']);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { isManager } = useRole();
@@ -44,15 +57,16 @@ export function ThemesPage() {
   const list = data?.data;
   const [q, setQ] = useState('');
   const [accessibleOnly, setAccessibleOnly] = useState(false);
-  const [newFrom, setNewFrom] = useState<BuiltinTheme | null>(null);
+  const [view, setView] = useStoredView('quizdock.themes.view', 'grid');
   const [toDelete, setToDelete] = useState<ThemeDto | null>(null);
   const [error, setError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const shippedRef = useRef<HTMLHeadingElement>(null);
 
   const refresh = () =>
     queryClient.invalidateQueries({ queryKey: getThemesControllerListQueryKey() });
   const fail = (err: unknown) => setError(apiErrorText(err));
-  const create = useThemesControllerCreate();
+  const { start: newTheme, busy: creating } = useNewTheme(fail);
   const duplicate = useThemesControllerDuplicate();
   const remove = useThemesControllerRemove();
   const setDefault = useThemesControllerSetDefault();
@@ -71,6 +85,10 @@ export function ThemesPage() {
   );
   const mine = (list?.themes ?? []).filter((th) => matches(th.name, isAccessible(th)));
 
+  const listClass =
+    view === 'grid'
+      ? 'grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+      : 'flex flex-col gap-2';
   const openEditor = (id: string) =>
     void navigate({ to: '/themes/$themeId', params: { themeId: id } });
   const onImport = (file: File | undefined) => {
@@ -109,14 +127,54 @@ export function ThemesPage() {
                 e.target.value = '';
               }}
             />
-            <Button
-              variant="outline"
-              disabled={importTheme.isPending}
-              onClick={() => fileRef.current?.click()}
+            {/* As New quiz: blank, from a shipped theme, from a file. */}
+            <Popover
+              align="end"
+              trigger={({ open, toggle }) => (
+                <Button
+                  onClick={toggle}
+                  aria-expanded={open}
+                  aria-haspopup="menu"
+                  disabled={creating || importTheme.isPending}
+                >
+                  <Plus className="size-4" />
+                  {importTheme.isPending ? t('importing') : t('new')}
+                  <ChevronDown className="size-4" />
+                </Button>
+              )}
             >
-              {t('import')}
-            </Button>
-            <Button onClick={() => setNewFrom('classic')}>{t('new')}</Button>
+              {(close) => (
+                <div className="flex min-w-48 flex-col">
+                  <MenuItem
+                    onClick={() => {
+                      close();
+                      newTheme('classic');
+                    }}
+                  >
+                    <Plus className="size-4" />
+                    {t('newBlank')}
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      close();
+                      shippedRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }}
+                  >
+                    <Sparkles className="size-4" />
+                    {t('newFromShipped')}
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      close();
+                      fileRef.current?.click();
+                    }}
+                  >
+                    <Upload className="size-4" />
+                    {t('newImport')}
+                  </MenuItem>
+                </div>
+              )}
+            </Popover>
           </div>
         }
       />
@@ -150,10 +208,22 @@ export function ThemesPage() {
         >
           {t('accessibleOnly')}
         </button>
+        <Segmented
+          className="ml-auto"
+          label={t('dashboard:display')}
+          value={view}
+          onChange={setView}
+          options={[
+            { value: 'list', label: t('dashboard:viewList'), icon: ListIcon },
+            { value: 'grid', label: t('dashboard:viewGrid'), icon: LayoutGrid },
+          ]}
+        />
       </div>
 
-      <SectionTitle>{t('shipped', { n: shipped.length })}</SectionTitle>
-      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <SectionTitle ref={shippedRef} className="scroll-mt-4">
+        {t('shipped', { n: shipped.length })}
+      </SectionTitle>
+      <ul className={listClass}>
         {shipped.map(({ key, values }) => (
           <ThemeCard
             key={key}
@@ -162,8 +232,9 @@ export function ThemesPage() {
             values={values}
             accessible={isAccessible(values)}
             isDefault={defaultRef.builtin === key}
-            onOpen={() => setNewFrom(key)}
-            primary={{ label: t('newFrom'), onClick: () => setNewFrom(key) }}
+            to={key}
+            view={view}
+            primary={{ label: t('newFrom'), onClick: () => newTheme(key), busy: creating }}
             menu={
               isManager && defaultRef.builtin !== key
                 ? [{ label: t('makeDefault'), onClick: () => onDefault({ builtin: key }) }]
@@ -175,7 +246,7 @@ export function ThemesPage() {
 
       <SectionTitle>{t('library', { n: mine.length })}</SectionTitle>
       {mine.length ? (
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <ul className={listClass}>
           {mine.map((th) => {
             // Refused by the server too; greyed here with its reason (UI system §1.1).
             const why = th.isDefault
@@ -195,11 +266,9 @@ export function ThemesPage() {
                 accessible={isAccessible(th)}
                 isDefault={th.isDefault}
                 usedIn={th.quizCount}
-                onOpen={() => openEditor(th.id)}
-                primary={
-                  th.canEdit ? { label: t('edit'), onClick: () => openEditor(th.id) } : undefined
-                }
-                secondary={{ label: t('duplicate'), onClick: () => onDuplicate(th) }}
+                to={th.id}
+                view={view}
+                primary={{ label: t('newFrom'), onClick: () => onDuplicate(th) }}
                 menu={[
                   {
                     label: t('export'),
@@ -232,27 +301,6 @@ export function ThemesPage() {
           {q || accessibleOnly ? t('noMatch') : t('noneYet')}
         </p>
       )}
-
-      {newFrom ? (
-        <NewThemeDialog
-          parent={newFrom}
-          busy={create.isPending}
-          onCancel={() => setNewFrom(null)}
-          onCreate={(name, parent) =>
-            create.mutate(
-              { data: { name, parent, overrides: {} } },
-              {
-                onSuccess: (res) => {
-                  setNewFrom(null);
-                  void refresh();
-                  openEditor(res.data.id);
-                },
-                onError: fail,
-              },
-            )
-          }
-        />
-      ) : null}
 
       <ConfirmDialog
         open={!!toDelete}
@@ -291,9 +339,9 @@ function ThemeCard({
   accessible,
   isDefault,
   usedIn,
-  onOpen,
+  to,
+  view,
   primary,
-  secondary,
   menu,
 }: {
   name: string;
@@ -302,44 +350,64 @@ function ThemeCard({
   accessible: boolean;
   isDefault: boolean;
   usedIn?: number;
-  onOpen: () => void;
-  primary?: { label: string; onClick: () => void };
-  secondary?: { label: string; onClick: () => void };
+  /** The theme's page: a shipped one's key, a library one's id. */
+  to: string;
+  view: 'grid' | 'list';
+  primary?: { label: string; onClick: () => void; busy?: boolean };
   menu: MenuEntry[];
 }) {
   const { t } = useTranslation('themes');
+  const grid = view === 'grid';
   return (
-    <li className="hover:bg-accent/40 relative flex flex-col overflow-hidden rounded-lg border transition-colors">
-      <button type="button" onClick={onOpen} aria-label={name} className="block text-left">
-        <ThemeThumbnail theme={values} />
-      </button>
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <div className="flex items-start justify-between gap-2">
-          <span className="font-semibold">{name}</span>
-          {accessible ? <AccessibleBadge /> : null}
-        </div>
-        <p className="text-muted-foreground text-xs">{meta}</p>
-        <p className="text-muted-foreground flex flex-wrap gap-x-3 text-xs">
-          {isDefault ? (
-            <span className="text-foreground inline-flex items-center gap-1 font-medium">
-              <Star className="size-3.5" />
-              {t('isDefault')}
-            </span>
-          ) : null}
-          {usedIn !== undefined ? (
-            <span>{usedIn ? t('usedIn', { count: usedIn }) : t('unused')}</span>
-          ) : null}
-        </p>
-      </div>
-      <div className="flex items-center justify-end gap-2 border-t p-3">
+    <li
+      className={cn(
+        'flex overflow-hidden rounded-lg border',
+        grid ? 'flex-col' : 'flex-col sm:flex-row sm:items-center',
+      )}
+    >
+      {/* The card opens the theme, as a template's does. */}
+      <Link
+        to="/themes/$themeId"
+        params={{ themeId: to }}
+        className={cn(
+          'hover:bg-accent flex flex-1 transition-colors',
+          grid ? 'flex-col' : 'min-w-0 items-center gap-3',
+        )}
+      >
+        {grid ? (
+          <ThemeThumbnail theme={values} />
+        ) : (
+          <span className="hidden w-32 shrink-0 overflow-hidden sm:block">
+            <ThemeThumbnail theme={values} />
+          </span>
+        )}
+        <span className={cn('flex min-w-0 flex-1 flex-col', grid ? 'gap-2 p-4' : 'gap-1 p-3')}>
+          <span className="flex items-start justify-between gap-2">
+            <span className="font-semibold">{name}</span>
+            {accessible ? <AccessibleBadge /> : null}
+          </span>
+          <span className="text-muted-foreground text-xs">{meta}</span>
+          <span className="text-muted-foreground flex flex-wrap gap-x-3 text-xs">
+            {isDefault ? (
+              <span className="text-foreground inline-flex items-center gap-1 font-medium">
+                <Star className="size-3.5" />
+                {t('isDefault')}
+              </span>
+            ) : null}
+            {usedIn !== undefined ? (
+              <span>{usedIn ? t('usedIn', { count: usedIn }) : t('unused')}</span>
+            ) : null}
+          </span>
+        </span>
+      </Link>
+      {/* The main action at the right, its ⋮ last. */}
+      <div
+        className={cn('flex items-center justify-end gap-2 border-t p-3', !grid && 'sm:border-t-0')}
+      >
         {primary ? (
-          <Button variant="outline" size="sm" onClick={primary.onClick}>
+          <Button size="sm" onClick={primary.onClick} disabled={primary.busy}>
+            <CopyPlus className="size-4" />
             {primary.label}
-          </Button>
-        ) : null}
-        {secondary ? (
-          <Button variant="ghost" size="sm" onClick={secondary.onClick}>
-            {secondary.label}
           </Button>
         ) : null}
         {menu.length ? (
@@ -387,72 +455,6 @@ export function AccessibleBadge() {
       <Accessibility className="size-3" />
       {t('accessible')}
     </Badge>
-  );
-}
-
-function NewThemeDialog({
-  parent,
-  busy,
-  onCancel,
-  onCreate,
-}: {
-  parent: BuiltinTheme;
-  busy: boolean;
-  onCancel: () => void;
-  onCreate: (name: string, parent: BuiltinTheme) => void;
-}) {
-  const { t } = useTranslation('themes');
-  const [from, setFrom] = useState<BuiltinTheme>(parent);
-  const [name, setName] = useState(t('newName', { parent: t(`builtin.${parent}`) }));
-  return (
-    <Modal onClose={onCancel} className="max-w-3xl" aria-label={t('new')}>
-      <form
-        className="flex max-h-[85dvh] flex-col gap-4 overflow-auto p-5"
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (name.trim()) onCreate(name.trim(), from);
-        }}
-      >
-        <h2 className="text-lg font-semibold">{t('new')}</h2>
-        <label className="flex flex-col gap-1 text-sm">
-          <span className="font-medium">{t('name')}</span>
-          <Input
-            value={name}
-            maxLength={THEME_NAME_MAX}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <div className="flex flex-col gap-1 text-sm">
-          <span className="font-medium">{t('startsFrom')}</span>
-          <p className="text-muted-foreground text-xs">{t('startsFromHint')}</p>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-            {BUILTIN_THEMES.map((key) => (
-              <button
-                key={key}
-                type="button"
-                aria-pressed={from === key}
-                onClick={() => setFrom(key)}
-                className={cn(
-                  'overflow-hidden rounded-md border text-left text-xs',
-                  from === key ? 'ring-primary ring-2' : 'hover:ring-primary/50 hover:ring-1',
-                )}
-              >
-                <ThemeThumbnail theme={builtinValues(key)} />
-                <span className="block px-2 py-1">{t(`builtin.${key}`)}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="flex justify-end gap-2">
-          <Button type="button" variant="ghost" onClick={onCancel}>
-            {t('cancel')}
-          </Button>
-          <Button type="submit" disabled={busy || !name.trim()}>
-            {t('create')}
-          </Button>
-        </div>
-      </form>
-    </Modal>
   );
 }
 

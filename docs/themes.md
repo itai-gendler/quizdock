@@ -84,7 +84,7 @@ passes every check says so: an *Accessible* badge and filter; the others carry n
 
 ## Editing
 
-`/themes` lists the shipped themes, then the hosts'. `/themes/:id` edits one — its licence
+`/themes` (a tab of Quizzes) lists the shipped themes, then the hosts', as cards or a list. A card opens its theme, as a template's does: a shipped one at `/themes/<key>`, read-only, with *New theme from it*, which creates "My <theme>" and opens its editor (no dialog); a library one at `/themes/:id`, which edits it — its licence
 (CC0, CC BY, CC BY-SA: what a community store accepts) included —, saved as it changes, with a preview drawn by the real projection and phone (`ThemePreview`, sample
 game views in `theme-preview.tsx`) at four moments. The quiz settings pick a theme with
 thumbnails; every preview of the quiz's steps (the preview page, the question and slide

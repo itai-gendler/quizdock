@@ -233,5 +233,9 @@
   "picker": {
     "legend": "Tema",
     "default": "Predeterminado de la instancia ({{name}})"
-  }
+  },
+  "newBlank": "Tema en blanco",
+  "newFromShipped": "A partir de un tema incluido…",
+  "newImport": "Importar un archivo…",
+  "importing": "Importando…"
 }

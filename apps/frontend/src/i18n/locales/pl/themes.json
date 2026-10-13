@@ -237,5 +237,9 @@
   "picker": {
     "legend": "Motyw",
     "default": "Domyślny instancji ({{name}})"
-  }
+  },
+  "newBlank": "Pusty motyw",
+  "newFromShipped": "Z dostarczonego motywu…",
+  "newImport": "Importuj plik…",
+  "importing": "Importowanie…"
 }

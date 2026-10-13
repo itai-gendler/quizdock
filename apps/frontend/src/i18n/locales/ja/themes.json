@@ -229,5 +229,9 @@
   "picker": {
     "legend": "テーマ",
     "default": "インスタンスの既定（{{name}}）"
-  }
+  },
+  "newBlank": "空のテーマ",
+  "newFromShipped": "付属のテーマから…",
+  "newImport": "ファイルをインポート…",
+  "importing": "インポート中…"
 }

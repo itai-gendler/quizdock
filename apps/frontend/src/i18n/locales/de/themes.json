@@ -229,5 +229,9 @@
   "picker": {
     "legend": "Theme",
     "default": "Standard der Instanz ({{name}})"
-  }
+  },
+  "newBlank": "Leeres Theme",
+  "newFromShipped": "Aus einem mitgelieferten Theme…",
+  "newImport": "Datei importieren…",
+  "importing": "Wird importiert…"
 }

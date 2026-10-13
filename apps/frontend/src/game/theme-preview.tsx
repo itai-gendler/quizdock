@@ -5,7 +5,8 @@ import {
   type QuestionStartPayload,
   type ThemeValues,
 } from '@quiz-dock/contracts';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { Segmented } from '@/components/ui/segmented';
 import { useTranslation } from 'react-i18next';
 import { Markdown } from '@/components/markdown';
 import { cn } from '@/lib/utils';
@@ -164,5 +165,39 @@ export function ThemeThumbnail({ theme, className }: { theme: ThemeValues; class
         </Surface>
       </LiveTheme>
     </ScaledStage>
+  );
+}
+
+/**
+ * A theme seen at work, beside its editor or on its own page: the moment of the game
+ * and the screen picked above the real projection and phone.
+ */
+export function ThemePreviewPanel({ theme }: { theme: ThemeValues }) {
+  const { t } = useTranslation('themes');
+  const [phase, setPhase] = useState<PreviewPhase>('question');
+  const [device, setDevice] = useState<'both' | 'projection' | 'phone'>('both');
+  return (
+    <div className="bg-muted/40 flex min-w-0 flex-col gap-4 rounded-2xl p-4 lg:sticky lg:top-4">
+      <div className="flex flex-wrap items-center gap-3">
+        <Segmented
+          size="sm"
+          label={t('preview.phase')}
+          value={phase}
+          onChange={setPhase}
+          options={PREVIEW_PHASES.map((p) => ({ value: p, label: t(`preview.phases.${p}`) }))}
+        />
+        <Segmented
+          size="sm"
+          label={t('preview.device')}
+          value={device}
+          onChange={setDevice}
+          options={(['both', 'projection', 'phone'] as const).map((d) => ({
+            value: d,
+            label: t(`preview.devices.${d}`),
+          }))}
+        />
+      </div>
+      <ThemePreview theme={theme} phase={phase} device={device} />
+    </div>
   );
 }

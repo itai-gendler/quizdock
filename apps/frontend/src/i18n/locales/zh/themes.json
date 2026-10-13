@@ -229,5 +229,9 @@
   "picker": {
     "legend": "主题",
     "default": "实例默认（{{name}}）"
-  }
+  },
+  "newBlank": "空白主题",
+  "newFromShipped": "基于自带主题…",
+  "newImport": "导入文件…",
+  "importing": "导入中…"
 }

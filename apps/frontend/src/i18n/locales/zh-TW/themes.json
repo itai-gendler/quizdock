@@ -229,5 +229,9 @@
   "picker": {
     "legend": "主題",
     "default": "執行個體預設（{{name}}）"
-  }
+  },
+  "newBlank": "空白主題",
+  "newFromShipped": "以內建主題為基礎…",
+  "newImport": "匯入檔案…",
+  "importing": "匯入中…"
 }

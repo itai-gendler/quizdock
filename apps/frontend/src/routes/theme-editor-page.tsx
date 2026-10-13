@@ -29,7 +29,8 @@ import { Notice } from '@/components/ui/notice';
 import { Segmented } from '@/components/ui/segmented';
 import { Select } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
-import { themeValuesOf } from '@/lib/themes';
+import { isBuiltinKey, themeValuesOf } from '@/lib/themes';
+import { BuiltinThemePage } from './builtin-theme-page';
 import { downloadFile } from '../api/download';
 import { apiErrorText } from '../api/http';
 import type { ThemeDto } from '../api/generated/model';
@@ -41,7 +42,7 @@ import {
   useThemesControllerUpdate,
   useThemesControllerUploadAsset,
 } from '../api/generated/themes/themes';
-import { PREVIEW_PHASES, type PreviewPhase, ThemePreview } from '../game/theme-preview';
+import { ThemePreviewPanel } from '../game/theme-preview';
 import { ShapeIcon } from '@/components/shape-icon';
 import { LiveTheme } from '../game/theme';
 import { gradientCss } from '../game/surface';
@@ -61,6 +62,15 @@ const SAVE_DELAY_MS = 600;
  */
 export function ThemeEditorPage() {
   const { themeId } = useParams({ from: '/themes/$themeId' });
+  // A shipped theme goes by its key: read-only, as a template is.
+  return isBuiltinKey(themeId) ? (
+    <BuiltinThemePage themeKey={themeId} />
+  ) : (
+    <LibraryTheme themeId={themeId} />
+  );
+}
+
+function LibraryTheme({ themeId }: { themeId: string }) {
   const { t } = useTranslation('themes');
   const { data, error } = useThemesControllerGet(themeId);
   const theme = data?.data;
@@ -77,8 +87,6 @@ function Editor({ theme }: { theme: ThemeDto }) {
   const [overrides, setOverrides] = useState<ThemeOverrides>(theme.overrides as ThemeOverrides);
   const [state, setState] = useState<'saved' | 'saving' | 'error'>('saved');
   const [error, setError] = useState<string | null>(null);
-  const [phase, setPhase] = useState<PreviewPhase>('question');
-  const [device, setDevice] = useState<'both' | 'projection' | 'phone'>('both');
   const [iconFor, setIconFor] = useState<ThemeSlotName | 'all' | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [license, setLicense] = useState<string | null>(theme.license);
@@ -613,28 +621,7 @@ function Editor({ theme }: { theme: ThemeDto }) {
           </Disclosure>
         </fieldset>
 
-        <div className="bg-muted/40 flex min-w-0 flex-col gap-4 rounded-2xl p-4 lg:sticky lg:top-4">
-          <div className="flex flex-wrap items-center gap-3">
-            <Segmented
-              size="sm"
-              label={t('preview.phase')}
-              value={phase}
-              onChange={setPhase}
-              options={PREVIEW_PHASES.map((p) => ({ value: p, label: t(`preview.phases.${p}`) }))}
-            />
-            <Segmented
-              size="sm"
-              label={t('preview.device')}
-              value={device}
-              onChange={setDevice}
-              options={(['both', 'projection', 'phone'] as const).map((d) => ({
-                value: d,
-                label: t(`preview.devices.${d}`),
-              }))}
-            />
-          </div>
-          <ThemePreview theme={values} phase={phase} device={device} />
-        </div>
+        <ThemePreviewPanel theme={values} />
       </div>
 
       {iconFor ? (
