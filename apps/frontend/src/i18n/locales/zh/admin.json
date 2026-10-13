@@ -788,7 +788,7 @@
     "APP_NAME": "应用名称",
     "APP_NAME_hint": "显示在页眉、标签页标题和已安装的应用中。",
     "APP_LANG": "界面语言",
-    "APP_LANG_hint": "用于浏览器未提供更合适语言的访客。",
+    "APP_LANG_hint": "未自行选择语言者所使用的界面语言。",
     "APP_LOGO_URL": "标志",
     "APP_LOGO_URL_hint": "branding/ 文件夹中的 logo.svg（或 .png…）文件，或在此填写 https 地址。",
     "APP_FEEDBACK_URL": "反馈链接的去向",

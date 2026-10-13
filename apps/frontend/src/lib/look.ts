@@ -57,11 +57,25 @@ export function lookVars(look: ResolvedLook, dark = false): CSSProperties {
   } as CSSProperties;
 }
 
-/** Dresses the whole document, before the first render. */
+/** The look's own names on the document: index.css reads them, `override.css` still wins. */
+const DOCUMENT_NAMES: Record<string, string> = {
+  '--primary': '--look-primary',
+  '--primary-foreground': '--look-primary-foreground',
+  '--radius': '--look-radius',
+  '--font-sans': '--look-font',
+  '--link-light': '--link-light',
+  '--link-dark': '--link-dark',
+};
+
+/**
+ * Dresses the whole document, before the first render. Its values go to `--look-*`,
+ * which index.css takes for its tokens (`--primary: var(--look-primary, …)`): a rule of
+ * `branding/override.css` on those tokens keeps the last word, as before.
+ */
 export function applyLook(look: ResolvedLook = instanceLook): void {
   const root = document.documentElement.style;
   for (const [name, value] of Object.entries(lookVars(look))) {
-    // The document's `--link` is chosen by its mode, in index.css.
-    if (name !== '--link') root.setProperty(name, String(value));
+    const target = DOCUMENT_NAMES[name];
+    if (target) root.setProperty(target, String(value));
   }
 }

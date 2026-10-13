@@ -788,7 +788,7 @@
     "APP_NAME": "Name of the application",
     "APP_NAME_hint": "Shown in the header, the tab titles and the installed app.",
     "APP_LANG": "Language of the interface",
-    "APP_LANG_hint": "For the visitors whose browser says nothing better.",
+    "APP_LANG_hint": "The language of the interface for anyone who has not picked theirs.",
     "APP_LOGO_URL": "Logo",
     "APP_LOGO_URL_hint": "A file logo.svg (or .png…) in the branding/ folder, or an https address here.",
     "APP_FEEDBACK_URL": "Where feedback links lead",

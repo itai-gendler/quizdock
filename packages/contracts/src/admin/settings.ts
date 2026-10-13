@@ -1180,7 +1180,7 @@ export const DEPLOYMENT_VARIABLES: DeploymentVariable[] = [
     criticality: 'C1',
     defaultText: '`keycloak` from `init --full`; unset = the database superuser',
     description:
-      "The bundled Keycloak's own PostgreSQL role: its database belongs to it, and it reaches nothing of QuizDock's. Set at install only: an existing Keycloak database stays the superuser's.",
+      "The bundled Keycloak's own PostgreSQL role: its database belongs to it, and it reaches nothing of QuizDock's. Set at install; an existing install gets it from `quizdock db:roles`, which moves Keycloak's database to it.",
   },
   {
     key: 'KEYCLOAK_DB_PASSWORD',

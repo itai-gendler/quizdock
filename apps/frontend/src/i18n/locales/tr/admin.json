@@ -788,7 +788,7 @@
     "APP_NAME": "Uygulamanın adı",
     "APP_NAME_hint": "Başlıkta, sekme başlıklarında ve yüklü uygulamada gösterilir.",
     "APP_LANG": "Arayüz dili",
-    "APP_LANG_hint": "Tarayıcısı daha iyisini belirtmeyen ziyaretçiler için.",
+    "APP_LANG_hint": "Kendi dilini seçmemiş olanlar için arayüz dili.",
     "APP_LOGO_URL": "Logo",
     "APP_LOGO_URL_hint": "branding/ klasöründe bir logo.svg (veya .png…) dosyası ya da burada bir https adresi.",
     "APP_FEEDBACK_URL": "Geri bildirim bağlantılarının gittiği yer",

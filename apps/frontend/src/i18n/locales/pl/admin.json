@@ -832,7 +832,7 @@
     "APP_NAME": "Nazwa aplikacji",
     "APP_NAME_hint": "Wyświetlana w nagłówku, w tytułach kart i w zainstalowanej aplikacji.",
     "APP_LANG": "Język interfejsu",
-    "APP_LANG_hint": "Dla odwiedzających, których przeglądarka nie wskazuje nic lepszego.",
+    "APP_LANG_hint": "Język interfejsu dla osób, które nie wybrały własnego.",
     "APP_LOGO_URL": "Logo",
     "APP_LOGO_URL_hint": "Plik logo.svg (lub .png…) w folderze branding/ albo adres https tutaj.",
     "APP_FEEDBACK_URL": "Dokąd prowadzą linki do opinii",
