@@ -17,10 +17,12 @@ import {
   type PlayerPeek,
   type PlayerPresence,
   type RoomSoundsSettings,
+  themeWithUrls,
 } from '@quiz-dock/contracts';
 import { QuizStatus } from '@prisma/client';
 import { allowsAnonymousParticipants, isOidcMode } from '../auth/auth-mode';
 import { MediaLibraryService } from '../media/media-library.service';
+import { ThemesService } from '../themes/themes.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { normalizeAnswer } from '../questions/dto/question-content.schema';
 import { RedisService } from '../redis/redis.service';
@@ -168,6 +170,7 @@ export class GameService {
     private readonly prisma: PrismaService,
     private readonly redis: RedisService,
     private readonly mediaLibrary?: MediaLibraryService,
+    private readonly themes?: ThemesService,
   ) {}
 
   /**
@@ -337,6 +340,11 @@ export class GameService {
     // Frozen with the rest: a licence's attribution is owed for what was played.
     const credits = (await this.mediaLibrary?.creditsOf(quiz.id)) ?? [];
     if (credits.length > 0) snapshot.credits = credits;
+    // Frozen too: editing the theme changes the next game, never this one (docs/themes.md).
+    if (this.themes) {
+      const theme = await this.themes.resolve(ThemesService.refOf(quiz));
+      snapshot.theme = themeWithUrls(theme.values, theme.media);
+    }
     return snapshot;
   }
 
@@ -503,6 +511,22 @@ export class GameService {
     const seed = (rawAvatar ?? '').trim().slice(0, AVATAR_SEED_MAX);
     // No seed: the nickname, as at the join.
     return this.patchPlayer(pin, playerId, 'avatar', seed, 'nickname');
+  }
+
+  /**
+   * Pairs a screen to the room as its projection: a token of its own, kept in the
+   * room's hash (gone with the room), for the screen to send when it reconnects.
+   */
+  async pairScreen(pin: string): Promise<string> {
+    const token = randomBytes(16).toString('base64url');
+    await this.redis.hset(gameKeys.room(pin), `screen:${token}`, '1');
+    return token;
+  }
+
+  /** Whether `token` is a screen the room's host paired as its projection. */
+  async isPairedScreen(pin: string, token: unknown): Promise<boolean> {
+    if (typeof token !== 'string' || !/^[\w-]{22}$/.test(token)) return false;
+    return (await this.redis.hexists(gameKeys.room(pin), `screen:${token}`)) === 1;
   }
 
   /** The room behind a PIN (null when gone or expired). */

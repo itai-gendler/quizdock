@@ -1,0 +1,599 @@
+{
+  "loading": "読み込み中…",
+  "notFound": "クイズが見つかりません。",
+  "questionType": {
+    "single_choice": "選択式（正解1つ）",
+    "multiple_choice": "選択式（正解複数）",
+    "true_false": "○×",
+    "text_input": "記述式",
+    "numeric": "数値",
+    "ordering": "並べ替え",
+    "poll": "アンケート",
+    "image_choice": "画像選択"
+  },
+  "header": {
+    "history": "履歴",
+    "deleteQuiz": "クイズを削除",
+    "preview": "プレビュー",
+    "export": "エクスポート",
+    "exportError": "クイズをエクスポートできませんでした。",
+    "more": "その他"
+  },
+  "settings": {
+    "title": "設定",
+    "titleLabel": "タイトル",
+    "descriptionLabel": "説明",
+    "descriptionPlaceholder": "説明（任意）…",
+    "save": "保存",
+    "soundLegend": "音声",
+    "soundSummary": "{{lufs}} LUFS・{{target}}・{{tail}}秒の間隔",
+    "mediaTailLabel": "メディア後の間隔",
+    "mediaTailHelp": "問題の音声や動画が制限時間より長い場合、問題の時間はメディアの終わりにこの間隔を加えた長さまで延長されます。再生の途中で切れることはありません。",
+    "seconds": "秒",
+    "loudnessLabel": "音量の均一化",
+    "loudnessHelp": "再生時に、クイズのすべての音声と動画をこのレベルに揃えるため、問題ごとに音量が変わりません。ファイル自体は変更されません。",
+    "loudness": {
+      "14": "大きめ（−14 LUFS、ストリーミング）",
+      "16": "標準（−16 LUFS）",
+      "23": "控えめ（−23 LUFS、放送）"
+    },
+    "audioTargetLabel": "音声が聞こえる端末",
+    "audioTargetHelp": "クイズの音声と動画を再生する端末です。会場内の参加者は投影画面を見ているため、「すべての端末」を選ばない限りスマートフォンは無音のままです（同じ部屋で全端末が鳴るとエコーになります）。問題ごとに別の設定を選ぶこともでき、ホストはセッションごとに変更できます。",
+    "audioTarget": {
+      "projection": "投影画面のみ",
+      "projection_remote": "投影画面とリモート参加者",
+      "everyone": "すべての端末"
+    },
+    "sharingLegend": "言語と共有",
+    "sharingSummary_one": "{{license}}・タグ {{count}}件",
+    "sharingSummary_other": "{{license}}・タグ {{count}}件",
+    "noLicense": "ライセンスなし",
+    "languageLabel": "言語",
+    "languageHelp": "クイズが書かれている言語です。テンプレートに表示され、ストアではこの言語で絞り込めます。",
+    "licenseLabel": "ライセンス",
+    "licenseHelp": "他の人がクイズを再利用できる条件です。テンプレートとして共有するには必須です。内容とメディアの権利を保有している必要があります。",
+    "license": {
+      "cc0": "CC0：条件なし",
+      "ccBy": "CC BY 4.0：作者のクレジット表記",
+      "ccBySa": "CC BY-SA 4.0：クレジット表記、同一条件で共有"
+    },
+    "tagsLabel": "タグ",
+    "tagsPlaceholder": "タグを追加…",
+    "tagsHelp": "テンプレートの中からクイズを見つけるためのキーワードを5つまで設定できます。Enter キーで追加します。",
+    "removeTag": "タグ {{tag}} を削除",
+    "saveError": "変更を保存できませんでした。",
+    "sharedLabel": "このインスタンスの他のホストと共有",
+    "sharedHelp": "他のホストのクイズ一覧に読み取り専用で表示され、そこから自分用のコピーを作成できます。チェックを外すと、あなただけのものになります。",
+    "sharedOn": "共有中",
+    "sharedOff": "非公開",
+    "saving": "保存中…",
+    "saved": "保存しました"
+  },
+  "broadcast": {
+    "fullCaptureHelp": "各参加者の回答の詳細を保存します（個人ごとの追跡）。出題する前に有効にしてください。",
+    "publish": "公開（準備完了）",
+    "presenting": "開始中…",
+    "present": "出題",
+    "backToDraft": "下書きに戻す",
+    "archive": "アーカイブ",
+    "restore": "復元",
+    "fullCaptureNext": "次回の実施時に全回答を記録"
+  },
+  "feedback": {
+    "enableLabel": "参加者のレビューを許可",
+    "enableHelp": "クイズを実施するたびに、終了時に評価パネルが表示されます。",
+    "title": "参加者のレビュー",
+    "empty": "レビューはまだありません。",
+    "starsAriaLabel": "5点中{{value}}点",
+    "seeAll_one": "レビューを見る",
+    "seeAll_other": "{{count}}件のレビューをすべて見る",
+    "backToEditor": "エディターに戻る",
+    "loadError": "レビューを読み込めませんでした。",
+    "noneForFilter": "この評価のレビューはありません。",
+    "count_one": "レビュー {{count}}件",
+    "count_other": "レビュー {{count}}件"
+  },
+  "questions": {
+    "title": "問題（{{count}}）",
+    "add": "追加",
+    "moveUp": "上へ移動",
+    "moveDown": "下へ移動",
+    "deleteQuestion": "問題を削除",
+    "dragHandle": "ドラッグして並べ替え",
+    "itemsCount_one": "{{count}}項目",
+    "itemsCount_other": "{{count}}項目",
+    "formTitle": "問題",
+    "empty": "問題がありません。追加してみましょう！",
+    "collapseList": "リストを折りたたむ",
+    "expandList": "リストを展開",
+    "unfinished": "未完成",
+    "itemActions": "「{{label}}」の操作"
+  },
+  "slides": {
+    "formTitle": "スライド",
+    "add": "スライドを追加",
+    "kind": "スライド",
+    "deleteSlide": "スライドを削除",
+    "durationManual": "手動"
+  },
+  "slideForm": {
+    "bodyPlaceholder": "表示するテキスト…",
+    "contrastLegend": "テキストのコントラスト",
+    "tone": {
+      "light": "明るい文字",
+      "dark": "暗い文字"
+    },
+    "outline": "縁取り（字幕のような光彩）",
+    "displayLegend": "自動送り（自動進行モード）",
+    "displayDelayLabel": "表示時間（秒）",
+    "display": {
+      "default": "既定の表示時間（5秒）",
+      "manual": "手動：ホストがクリック",
+      "custom": "表示時間を指定…"
+    },
+    "displayHint": "手動モードでは、ホストが常に手動で次へ進めます。",
+    "invalidError": "スライドには、タイトル、内容、メディアのいずれかが必要です。",
+    "submitAdd": "追加",
+    "submitUpdate": "保存",
+    "blocksLegend": "内容",
+    "block": {
+      "heading": "見出し",
+      "subheading": "小見出し",
+      "text": "テキスト",
+      "image": "画像",
+      "columns2": "2列",
+      "columns3": "3列"
+    },
+    "dragBlock": "ドラッグしてブロックを並べ替え",
+    "removeBlock": "ブロックを削除",
+    "headingLevel": "レベル",
+    "headingPlaceholder": "見出し…",
+    "imageSize": "サイズ",
+    "imageAlign": "配置",
+    "size": {
+      "small": "小",
+      "medium": "中",
+      "large": "大",
+      "full": "全幅"
+    },
+    "align": {
+      "left": "左",
+      "center": "中央",
+      "right": "右"
+    },
+    "ratio": "列の比率",
+    "textAlign": "テキストの配置",
+    "previewLegend": "プレビュー",
+    "hidePreview": "非表示",
+    "showPreview": "表示",
+    "textSize": "文字サイズ",
+    "sizeShort": {
+      "small": "小",
+      "medium": "中",
+      "large": "大"
+    },
+    "titleEdit": "スライドを編集",
+    "titleAdd": "新しいスライド",
+    "mediaLegend": "スライドのメディア",
+    "videoCover": "内容の背後にスライド全体を覆うように表示します（画面に合わせてトリミング）。",
+    "videoLoop": "ループ",
+    "videoLoopHint": "スライドが表示されている間、繰り返し再生します。オフ：1回だけ再生して最後のフレームで止まり、自動進行モードではスライドが再生終了を待ちます。",
+    "videoSound": "音声",
+    "videoSoundHint": "動画自体の音声を再生します。オフ：ミュートになり、スライドに別の音声を設定できます。",
+    "audioExcludesVideoSound": "スライドにはすでに音声があります。音声は一度に1つです。動画の音声をオンにするには、その音声を削除してください。",
+    "videoSoundExcludesAudio": "動画が自身の音声を再生するため、追加の音声は設定できません。追加するには動画をミュートしてください。",
+    "variablesLegend": "変数",
+    "variablesHint": "見出しやテキストに書くと、スライドが表示されるたびに置き換えられます。クイズの変数はプレビューで値が入り、ルームの変数はクイズの実施時に値が入ります。",
+    "variables": {
+      "title": "クイズのタイトル",
+      "description": "クイズの説明",
+      "questions": "クイズの問題数",
+      "author": "作成者",
+      "tags": "タグ",
+      "license": "ライセンス",
+      "room": "ルーム名",
+      "host": "ホストの名前",
+      "pin": "ルームの PIN",
+      "join": "参加用アドレス（host/join）",
+      "players": "接続中の参加者数",
+      "question": "スライドの次の問題の番号",
+      "total": "クイズの問題数の合計",
+      "remaining": "残りの問題数（次の問題を含む）",
+      "date": "今日の日付",
+      "time": "現在の時刻"
+    },
+    "blockRemoved": "ブロックを削除しました。",
+    "undo": "元に戻す",
+    "emptySkipped": "空です。保存時に省略されます。",
+    "moveToDraft": {
+      "title": "この空のスライドを保存しますか？",
+      "description": "このクイズは公開済みで、いつでも出題できるため、スライドには何かを表示する必要があります。このまま保存するにはクイズを下書きに戻すか、編集を続けてください。"
+    }
+  },
+  "formSaved": "保存しました",
+  "discardConfirm": {
+    "title": "変更を破棄しますか？",
+    "description": "保存されていない変更は失われます。",
+    "confirmLabel": "破棄",
+    "discardAndContinue": "破棄して続ける",
+    "saveAndContinue": "保存して続ける",
+    "saveAndClose": "保存して閉じる"
+  },
+  "emptyPane": {
+    "emptyTitle": "このクイズは空です",
+    "emptyHint": "問題、または導入のスライドから始めましょう。",
+    "selectTitle": "何も選択されていません",
+    "selectHint": "編集するには、リストから項目を選んでください。"
+  },
+  "deleteConfirm": {
+    "title": "このクイズを削除しますか？",
+    "description": "「{{title}}」とその問題は完全に削除されます。この操作は元に戻せません。",
+    "confirmLabel": "削除"
+  },
+  "questionForm": {
+    "typeLabel": "形式",
+    "promptLabel": "問題文",
+    "promptPlaceholder": "問題文を入力…",
+    "playbackLegend": "再生",
+    "timingLegend": "時間",
+    "pointsLegend": "得点",
+    "answerExplanationLabel": "解説（正解と一緒に表示）",
+    "answerExplanationPlaceholder": "これが正解である理由…（任意）",
+    "timeLimitLabel": "制限時間（秒）",
+    "revealDelayLabel": "正解の表示時間（秒）",
+    "revealDelayPlaceholder": "自動",
+    "revealDelayHint": "自動進行モードで、次に進む前に正解を画面に表示しておく時間です。空欄の場合はインスタンスの設定に従います。",
+    "audioTargetLabel": "この音声が聞こえる端末",
+    "audioTargetHint": "この問題の音声や動画を再生する端末です。「すべての端末」には会場内のスマートフォンも含まれ、同じ部屋にあるとエコーになります。",
+    "audioTargetDefault": "ルームでのクイズの設定",
+    "waveformSizeLabel": "波形のサイズ",
+    "waveformSizeHint": "投影画面とスマートフォンに描かれる音声波形の太さです。",
+    "waveformPreview": "波形のプレビュー",
+    "waveformHiddenNote": "投影画面とスマートフォンには表示されません。音声は再生され、コンソールには引き続き表示されます。",
+    "waveformSize": {
+      "S": "小",
+      "M": "中",
+      "L": "大",
+      "hidden": "非表示"
+    },
+    "pointsLabel": "得点",
+    "pointsMode": {
+      "standard": "標準",
+      "double": "2倍",
+      "fixed": "固定（スピードボーナスなし）"
+    },
+    "optionsLegend": "選択肢",
+    "optionAriaLabel": "選択肢 {{index}}",
+    "dragOption": "ドラッグして選択肢を並べ替え",
+    "optionPlaceholder": "選択肢 {{index}}",
+    "orderAriaLabel": "正しい順序における答え {{index}} の位置",
+    "correct": "正解",
+    "removeOption": "選択肢 {{index}} を削除",
+    "addOption": "選択肢を追加",
+    "acceptedAnswersLegend": "正解として認める答え",
+    "answerAriaLabel": "答え {{index}}",
+    "removeAnswer": "答え {{index}} を削除",
+    "addAnswer": "答えを追加",
+    "numericValueLabel": "目標値",
+    "numericToleranceLabel": "許容誤差 ±",
+    "submitUpdate": "保存",
+    "submitAdd": "追加",
+    "invalidError": "問題が無効です。",
+    "scoringLabel": "採点方法",
+    "scoring": {
+      "multiple_choice": {
+        "standard": "全問正解のみ",
+        "partial": "部分点"
+      },
+      "ordering": {
+        "standard": "全問正解のみ",
+        "partial": "部分点"
+      },
+      "text_input": {
+        "standard": "完全一致",
+        "lenient": "誤字を許容"
+      },
+      "numeric": {
+        "standard": "許容誤差内",
+        "closest": "最も近い答えが勝ち"
+      },
+      "image_choice": {
+        "standard": "全問正解のみ",
+        "partial": "部分点"
+      }
+    },
+    "scoringHelp": {
+      "multiple_choice": {
+        "standard": "全問正解のみ：正解をすべてチェックし、誤りを1つもチェックしないこと。",
+        "partial": "部分点：正しいチェックはそれぞれ配分の得点になり、誤ったチェックは1つずつ相殺されます。"
+      },
+      "ordering": {
+        "standard": "全問正解のみ：すべての項目が正しい位置にあること。",
+        "partial": "部分点：正しい位置にある要素の割合に応じて得点。"
+      },
+      "text_input": {
+        "standard": "大文字・小文字とアクセント記号を区別せず、完全に一致すること。",
+        "lenient": "誤字を許容：5文字までは1文字、それより長い場合は2文字までの違いを許容します（大文字・小文字とアクセント記号の正規化後）。"
+      },
+      "numeric": {
+        "standard": "許容誤差内なら正解。得点は回答の速さに応じて変わります。",
+        "closest": "最も近い答えが勝ち：正解発表時に採点します。ぴったり（許容誤差内）なら満点、続いて75／50／30%、それ以降は10%。スピードボーナスはありません。"
+      },
+      "image_choice": {
+        "standard": "全問正解のみ：正しい画像をすべてチェックし、誤りを1つもチェックしないこと。",
+        "partial": "部分点（正しい画像が複数の場合）：正しいチェックはそれぞれ配分の得点になり、誤ったチェックは1つずつ相殺されます。"
+      }
+    },
+    "removeOptionConfirm": {
+      "title": "この選択肢を削除しますか？",
+      "description": "「{{label}}」が問題から削除されます。",
+      "confirmLabel": "削除"
+    },
+    "titleEdit": "問題を編集",
+    "titleAdd": "新しい問題",
+    "stretchedTime": "メディアの長さは{{media}}秒です。問題の時間は{{total}}秒になります（メディアの終わり＋クイズの間隔{{tail}}秒）。",
+    "listenFirstLabel": "メディアの終了時にタイマーを開始",
+    "listenFirstHint": "先に聞いてから答えます。音声や動画の再生中は誰も回答できず、その後に全員が考える時間を最後までもらえます。",
+    "listenFirstTime": "メディアが{{media}}秒再生された後、{{time}}秒の回答時間が始まります。",
+    "promptImageNotice": "問題文の中のこの画像は、問題のメディアに置くほうが適しています。どの画面でもきれいに収まり、スマートフォンで拡大でき、事前に読み込まれます。",
+    "promptImageMove": "メディアに移動",
+    "imagesLegend": "画像",
+    "imageCountLabel": "枚数",
+    "multiSelectLabel": "正解が複数",
+    "multiSelectHint": "参加者は正しい画像をすべてチェックしてから送信します。複数選択の問題と同じように採点されます。",
+    "imageCropNote": "各画像は、投影画面での表示と同じように、タイルいっぱいにトリミングされます。",
+    "imageAdd": "画像を追加",
+    "imageRequired": "この選択肢の画像を選んでください。",
+    "imageAltLabel": "代替テキスト",
+    "imageAltAria": "画像 {{index}} の代替テキスト",
+    "imageAltPlaceholder": "画像が見えない人のために、画像に写っているもの",
+    "imageAltRequired": "画像の説明を書いてください。画像が見えない人にとっては、これが選択肢になります。",
+    "imageCountConfirm": {
+      "title": "画像を2枚だけにしますか？",
+      "description": "最後の2つの選択肢とその画像が削除されます。",
+      "confirmLabel": "削除"
+    },
+    "trueOption": "○",
+    "falseOption": "×",
+    "clampedTime": "{{value}}秒に設定しました。問題の時間は{{min}}〜{{max}}秒です。",
+    "clampedReveal": "{{value}}秒に設定しました。間隔は{{min}}〜{{max}}秒です。",
+    "addOptionMax": "最大{{max}}個",
+    "addAnswerMax": "最大{{max}}個",
+    "moveToDraft": {
+      "title": "この未完成の問題を保存しますか？",
+      "description": "このクイズは公開済みで、いつでも出題できるため、完成した問題しか保存できません。このまま保存するには下書きに戻すか、編集を続けてください。",
+      "confirmLabel": "下書きに戻して保存",
+      "cancelLabel": "編集を続ける"
+    },
+    "optionActions": "選択肢 {{index}} の操作",
+    "removeOptionShort": "削除",
+    "ticksCleared": "形式が変わったため、正解の設定がクリアされました。新しいルールで改めてチェックを入れてください。",
+    "explanationWritten": "記入済み",
+    "explanationEmpty": "未記入",
+    "numericLegend": "答え",
+    "decimalsAllowed": "小数も使えます：3.14、0.5…",
+    "timingSummary": "{{time}}秒",
+    "timingSummaryStretched": "{{time}}秒（メディア込みで{{total}}秒）",
+    "revealDelayAuto": "正解の表示：自動",
+    "revealDelaySummary": "正解の表示：{{seconds}}秒",
+    "place_ordinal_one": "{{count}}番目",
+    "place_ordinal_two": "{{count}}番目",
+    "place_ordinal_few": "{{count}}番目",
+    "place_ordinal_other": "{{count}}番目",
+    "mediaPositionLabel": "大画面での画像の位置",
+    "mediaPositionHint": "テキストに対する画像の位置です。選択肢は常に下に表示されます。",
+    "mediaPosition": {
+      "bottom": "テキストの下",
+      "top": "テキストの上",
+      "left": "テキストの左",
+      "right": "テキストの右"
+    },
+    "revealDelayAutoValue": "自動（{{seconds}}秒）",
+    "revealDelaySummaryAuto": "正解の表示：{{seconds}}秒（自動）"
+  },
+  "preview": {
+    "view": "プレビュー（参加者の表示）",
+    "exitFullscreen": "全画面表示を終了",
+    "fullscreen": "全画面表示",
+    "noQuestions": "このクイズにはまだ問題がありません。",
+    "previous": "前へ",
+    "next": "次へ",
+    "questionPosition": "{{index}} / {{total}}",
+    "correctAnswer": "正解",
+    "optionFallback": "選択肢 {{index}}",
+    "acceptedAnswers": "正解として認める答え：{{answers}}",
+    "numericTarget": "目標値：{{value}}（± {{tolerance}}）",
+    "credits": "クレジット",
+    "video": "問題の動画",
+    "sound": "音声・{{seconds}}秒",
+    "steps": "ステップ",
+    "backToEditor": "エディターに戻る",
+    "device": "端末",
+    "projection": "投影画面",
+    "phone": "スマートフォン",
+    "showAnswer": "正解を表示",
+    "title": "プレビュー",
+    "pin": "固定",
+    "unpin": "固定を解除"
+  },
+  "media": {
+    "alt": "問題のメディア",
+    "remove": "メディアを削除",
+    "uploading": "アップロード中…",
+    "add": "画像を追加",
+    "fileInputLabel": "メディアファイル",
+    "uploadError": "アップロードに失敗しました。",
+    "demoDisabled": "デモインスタンスでは、メディアのアップロードは無効です。",
+    "altLabel": "代替テキスト",
+    "altPlaceholder": "例：フランス代表のユニフォームを着たキリアン・エムバペ",
+    "altHelp": "スクリーンリーダーで読み上げられます。画像が問題の一部を担う場合は写っている内容を説明し、装飾の場合は空欄にしてください。",
+    "slotsLegend": "問題のメディア",
+    "visualLabel": "ビジュアル",
+    "audioLabel": "音声",
+    "kindImage": "画像",
+    "kindVideo": "動画",
+    "none": "なし",
+    "addImage": "画像を追加",
+    "addVideo": "動画を追加",
+    "addAudio": "音声を追加",
+    "videoExcludesAudio": "動画にはすでに音声が含まれているため、追加の音声トラックは設定できません。音声を追加するには動画を削除してください。",
+    "audioExcludesVideo": "動画にはそれ自体の音声が含まれます。動画を選ぶには、音声を削除してください。",
+    "converting": "変換中…",
+    "convertingPercent": "変換中… {{percent}}%",
+    "cancelConversion": "キャンセル",
+    "notice": {
+      "gifFirstFrame": "アニメーション GIF：最初のフレームのみが保持されます。"
+    },
+    "library": {
+      "close": "閉じる",
+      "search": "名前、代替テキスト、クレジットで検索",
+      "loading": "読み込み中…",
+      "empty": "まだ何もありません。アップロードしたメディアはここに保存され、再利用できます。",
+      "noMatch": "この検索に一致するメディアはありません。",
+      "pick": "{{name}} を使用",
+      "unused": "未使用",
+      "delete": "{{name}} を削除",
+      "deleteTitle": "このメディアを削除しますか？",
+      "deleteDescription": "どのクイズにも使われていません。ファイルは完全に削除されます。",
+      "deleteConfirm": "削除",
+      "deleteError": "メディアを削除できませんでした。",
+      "findElsewhere": "他の場所で探す：",
+      "creditReminder": "CC-BY ライセンスの場合は、メディアのクレジットに作者とライセンスを記入してください。",
+      "title": {
+        "image": "マイメディア・画像",
+        "video": "マイメディア・動画",
+        "audio": "マイメディア・音声"
+      },
+      "usedIn_one": "クイズ {{count}}件で使用",
+      "usedIn_other": "クイズ {{count}}件で使用",
+      "openKind": {
+        "image": "マイ画像",
+        "video": "マイ動画",
+        "audio": "マイ音声"
+      },
+      "inHistory": "過去の結果のために保持",
+      "tab": {
+        "mine": "マイメディア",
+        "instance": "グローバルメディア"
+      },
+      "instanceEmpty": "管理者はまだこの種類のグローバルメディアを提供していません。"
+    },
+    "creditLabel": "クレジット",
+    "creditPlaceholder": "例：写真：Lin Wei、CC BY 4.0、openverse.org",
+    "creditHelp": "作者、ライセンス、出典です。プレビューとクイズの最後に表示されます。CC-BY ライセンスでは表記が求められます。"
+  },
+  "background": {
+    "legend": "背景",
+    "kind": {
+      "none": "テーマのもの",
+      "image": "画像",
+      "gradient": "グラデーション",
+      "colour": "色"
+    },
+    "color": "色 {{index}}",
+    "removeColor": "色 {{index}} を削除",
+    "addColor": "色を追加",
+    "angle": "角度",
+    "colour": "色"
+  },
+  "status": {
+    "draft": "下書き：出題するにはクイズを公開してください。",
+    "ready": "出題の準備ができています。",
+    "archived": "アーカイブ済み：編集または出題するには復元してください。"
+  },
+  "deleteItemConfirm": {
+    "questionTitle": "この問題を削除しますか？",
+    "slideTitle": "このスライドを削除しますか？",
+    "description": "「{{label}}」は完全に削除されます。",
+    "confirmLabel": "削除"
+  },
+  "questionTypeHelp": {
+    "single_choice": "2〜8個の選択肢の中に正解が1つ。得点は回答の速さに応じて変わり、連続正解ボーナスもあります。",
+    "multiple_choice": "正解が複数あり、参加者はチェックを入れてから送信します。全問正解のみ得点：チェックした組み合わせが完全に一致する必要があります。",
+    "true_false": "固定の2つの選択肢のうち、1つが正解。最も手軽に遊べる形式です。",
+    "text_input": "参加者が答えを入力します。大文字・小文字、アクセント記号、余分なスペースを無視して、正解として認める答えと照合します。",
+    "numeric": "参加者が数値を入力します。目標値の ± 許容誤差の範囲内なら正解です。",
+    "ordering": "参加者は、位置（#）で決めた順序に選択肢を並べ替えます。全問正解のみ得点。",
+    "poll": "意見を聞くだけの形式です。正解も得点もなく、正解発表時に回答の分布が表示されます。",
+    "image_choice": "選択肢は2枚または4枚の画像で、それぞれに色と形があります。正しい画像は1枚、または設定により複数。単一選択または複数選択と同じように採点されます。"
+  },
+  "sessions": {
+    "running_one": "{{count}}件のルームで実施中",
+    "running_other": "{{count}}件のルームで実施中",
+    "players_one": "参加者 {{count}}人",
+    "players_other": "参加者 {{count}}人",
+    "liveEditsHint": "レイアウトや表示の変更（背景、コントラスト、解説、スライド）は、実施中のルームの次のステップから反映されます。問題と選択肢は開始時のままです。"
+  },
+  "publication": {
+    "open": "公開用にエクスポート",
+    "title": "公開用にエクスポート",
+    "description": "コミュニティストアの受け入れ条件に照らしてクイズを確認し、quizdock-extensions リポジトリにアップロードするファイルをダウンロードします。",
+    "download": "ダウンロード",
+    "checking": "クイズを確認中…",
+    "failed": "エクスポートを準備できませんでした。",
+    "check": {
+      "ready": "クイズは準備完了です",
+      "notReady": "クイズは準備完了ではありません",
+      "language": "言語：{{language}}",
+      "license": "ライセンス：{{license}}",
+      "noLicense": "ライセンスなし",
+      "tags": "タグ：{{tags}}",
+      "noTags": "タグなし",
+      "size": "サイズ：{{size}} / {{max}}",
+      "uncredited_one": "クレジットのないメディア {{count}}件",
+      "uncredited_other": "クレジットのないメディア {{count}}件",
+      "credited": "すべてのメディアにクレジットがあります"
+    },
+    "fix": {
+      "ready": "まずクイズを準備完了にしてください（公開）。",
+      "settings": "クイズの設定の「共有」で設定してください。",
+      "size": "最も重いメディアを軽くするか、削除してください：",
+      "credit": "公開するすべての画像、音声、動画の権利はあなたの責任です。メディアライブラリでクレジット（作者、ライセンス、出典）を記入してください。"
+    },
+    "kind": {
+      "image": "画像",
+      "video": "動画",
+      "audio": "音声"
+    },
+    "slugLabel": "短い名前",
+    "slugHelp": "リポジトリ内でストアがこのクイズを識別する名前です。ファイル：{{file}}",
+    "slugChanged": "「{{previous}}」から変更すると、ストアでは新しいクイズになります。古いファイルをリポジトリから削除してください。"
+  },
+  "readOnly": {
+    "notice": "{{owner}}のクイズです。閲覧はできますが、変更はできません。",
+    "createFrom": "これを元にクイズを作成",
+    "props": {
+      "orderShown": "正しい順序で表示しています。",
+      "seconds_one": "{{count}}秒",
+      "seconds_other": "{{count}}秒",
+      "muted": "ミュート"
+    },
+    "empty": "まだ問題がありません。"
+  },
+  "publishChecklist": {
+    "title_one": "公開前に完成させるステップが1つあります",
+    "title_other": "公開前に完成させるステップが{{count}}つあります",
+    "description": "公開済みのクイズはいつでも出題できるため、すべての問題が完成している必要があります。下書きなら、保存した内容がそのまま残ります。",
+    "untitled": "問題文のない問題",
+    "open": "開く"
+  },
+  "formIssues": {
+    "errors_one": "エラー 1件",
+    "errors_other": "エラー {{count}}件",
+    "toFinish_one": "未完了 1件",
+    "toFinish_other": "未完了 {{count}}件"
+  },
+  "importReport": {
+    "imported_one": "Kahoot から1問をインポートしました。",
+    "imported_other": "Kahoot から{{count}}問をインポートしました。",
+    "media": "画像と音声は引き継がれません。",
+    "incomplete_one": "公開前に完成させる問題が1問あります。リストで印が付いています。",
+    "incomplete_other": "公開前に完成させる問題が{{count}}問あります。リストで印が付いています。",
+    "skipped": "{{row}}行目を除外しました：{{reason}}",
+    "reasons": {
+      "invalid_time": "制限時間が{{min}}〜{{max}}秒の範囲外です",
+      "formula": "数式は読み込まれません",
+      "invalid_content": "QuizDock には長すぎるテキストです"
+    }
+  }
+}

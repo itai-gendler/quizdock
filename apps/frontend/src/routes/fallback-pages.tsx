@@ -1,4 +1,5 @@
 import { Link, useRouter } from '@tanstack/react-router';
+import { ShowcaseBackdrop } from '@/components/showcase-backdrop';
 import { CircleHelp, TriangleAlert } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -19,6 +20,7 @@ function Fallback({
   const { t } = useTranslation('common');
   return (
     <section className="content-sm flex flex-col items-center gap-4 py-16 text-center">
+      <ShowcaseBackdrop />
       <span className="bg-muted text-muted-foreground grid size-12 place-items-center rounded-full">
         {icon}
       </span>

@@ -18,16 +18,14 @@ describe('feedback links', () => {
     const links = feedbackLinks('', context);
     expect(links.map((l) => l.kind)).toEqual(['bug', 'feature', 'translation', 'question']);
     const bug = new URL(links[0].href);
-    expect(bug.origin + bug.pathname).toBe('https://github.com/quizdock/quiz-dock/issues/new');
+    expect(bug.origin + bug.pathname).toBe('https://github.com/quizdock/quizdock/issues/new');
     expect(Object.fromEntries(bug.searchParams)).toEqual({
       template: 'bug.yml',
       version: '0.7.1',
       browser: 'Chrome 143 on Windows',
     });
     expect(new URL(links[2].href).searchParams.get('language')).toBe('Français (fr)');
-    expect(links[3].href).toBe(
-      'https://github.com/quizdock/quiz-dock/discussions/new?category=q-a',
-    );
+    expect(links[3].href).toBe('https://github.com/quizdock/quizdock/discussions/new?category=q-a');
   });
 
   it("leads to the operator's GitHub repository, or to any other address as one link", () => {
@@ -47,9 +45,9 @@ describe('feedback links', () => {
 
 describe('starLink', () => {
   it('invites to star QuizDock while the feedback goes to its repository', () => {
-    expect(starLink(undefined)).toBe('https://github.com/quizdock/quiz-dock');
-    expect(starLink('https://github.com/quizdock/quiz-dock/')).toBe(
-      'https://github.com/quizdock/quiz-dock',
+    expect(starLink(undefined)).toBe('https://github.com/quizdock/quizdock');
+    expect(starLink('https://github.com/quizdock/quizdock/')).toBe(
+      'https://github.com/quizdock/quizdock',
     );
   });
 
@@ -62,7 +60,7 @@ describe('starLink', () => {
 describe('docsLink', () => {
   it('points to QuizDock’s documentation on the same terms as the star', () => {
     expect(docsLink(undefined)).toBe('https://quizdock.github.io/docs/');
-    expect(docsLink('https://github.com/quizdock/quiz-dock/')).toBe(
+    expect(docsLink('https://github.com/quizdock/quizdock/')).toBe(
       'https://quizdock.github.io/docs/',
     );
     expect(docsLink('https://github.com/acme/quiz')).toBeNull();

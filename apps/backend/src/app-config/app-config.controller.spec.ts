@@ -1,50 +1,60 @@
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { DEFAULT_LOOK } from '@quiz-dock/contracts';
+import type { LookService } from '../look/look.service';
 import { AppConfigController } from './app-config.controller';
 
 /** What the page reads: the script run as the browser would, and the config it sets. */
-function served(): Record<string, unknown> {
+async function served(look?: LookService): Promise<Record<string, unknown>> {
   const window: { __APP_CONFIG__?: Record<string, unknown> } = {};
-  new Function('window', new AppConfigController().configJs())(window);
+  new Function('window', await new AppConfigController(look).configJs())(window);
   return window.__APP_CONFIG__!;
 }
 
 describe('AppConfigController — config.js', () => {
+  it('carries the instance’s look, as a browser applies it', async () => {
+    const look = { resolved: async () => ({ ...DEFAULT_LOOK, linkDark: '#9fb8ff' }) };
+    expect((await served(look as unknown as LookService)).look).toMatchObject({
+      primary: DEFAULT_LOOK.primary,
+      linkDark: '#9fb8ff',
+    });
+  });
+
   const env = process.env;
   afterEach(() => {
     process.env = env;
   });
 
-  it('carries where the feedback links lead, empty by default', () => {
+  it('carries where the feedback links lead, empty by default', async () => {
     process.env = { ...env };
     delete process.env.APP_FEEDBACK_URL;
-    expect(served().feedbackUrl).toBe('');
+    expect((await served()).feedbackUrl).toBe('');
   });
 
-  it('carries `none` or an address, whatever it holds', () => {
+  it('carries `none` or an address, whatever it holds', async () => {
     process.env = { ...env, APP_FEEDBACK_URL: 'none' };
-    expect(served().feedbackUrl).toBe('none');
+    expect((await served()).feedbackUrl).toBe('none');
     process.env = { ...env, APP_FEEDBACK_URL: 'https://x.org/"a"\\b' };
-    expect(served().feedbackUrl).toBe('https://x.org/"a"\\b');
+    expect((await served()).feedbackUrl).toBe('https://x.org/"a"\\b');
   });
 
-  it('says whether a new room’s screens move between steps: yes, unless LIVE_MOTION=off', () => {
+  it('says whether a new room’s screens move between steps: yes, unless LIVE_MOTION=off', async () => {
     process.env = { ...env };
     delete process.env.LIVE_MOTION;
-    expect(served().liveMotion).toBe(true);
+    expect((await served()).liveMotion).toBe(true);
     process.env = { ...env, LIVE_MOTION: ' OFF ' };
-    expect(served().liveMotion).toBe(false);
+    expect((await served()).liveMotion).toBe(false);
   });
 
-  it("carries the auto pace's reveal time, in seconds (GAME_AUTO_ADVANCE_MS)", () => {
+  it("carries the auto pace's reveal time, in seconds (GAME_AUTO_ADVANCE_MS)", async () => {
     process.env = { ...env, GAME_AUTO_ADVANCE_MS: '8000' };
-    expect(served().autoAdvanceS).toBe(8);
+    expect((await served()).autoAdvanceS).toBe(8);
   });
 
-  it('keeps a valid script when a value holds a line break (audit B15)', () => {
+  it('keeps a valid script when a value holds a line break (audit B15)', async () => {
     process.env = { ...env, APP_NAME: 'Quiz\nNight' };
-    expect(served().appName).toBe('Quiz\nNight');
+    expect((await served()).appName).toBe('Quiz\nNight');
   });
 });
 

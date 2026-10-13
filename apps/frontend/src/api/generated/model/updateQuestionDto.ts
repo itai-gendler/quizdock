@@ -8,6 +8,7 @@
 import type { UpdateQuestionDtoAcceptedAnswersItem } from './updateQuestionDtoAcceptedAnswersItem';
 import type { UpdateQuestionDtoAudioTarget } from './updateQuestionDtoAudioTarget';
 import type { UpdateQuestionDtoBackgroundGradient } from './updateQuestionDtoBackgroundGradient';
+import type { UpdateQuestionDtoBackgroundStyle } from './updateQuestionDtoBackgroundStyle';
 import type { UpdateQuestionDtoMedia } from './updateQuestionDtoMedia';
 import type { UpdateQuestionDtoMediaPosition } from './updateQuestionDtoMediaPosition';
 import type { UpdateQuestionDtoOptionsItem } from './updateQuestionDtoOptionsItem';
@@ -36,6 +37,8 @@ export interface UpdateQuestionDto {
   backgroundGradient?: UpdateQuestionDtoBackgroundGradient;
   textTone?: UpdateQuestionDtoTextTone;
   textOutline?: boolean;
+  /** @nullable */
+  backgroundStyle?: UpdateQuestionDtoBackgroundStyle;
   media?: UpdateQuestionDtoMedia;
   mediaPosition?: UpdateQuestionDtoMediaPosition;
   /**

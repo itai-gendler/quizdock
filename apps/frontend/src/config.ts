@@ -1,4 +1,5 @@
 import defaultLogoUrl from '@/assets/default-logo.svg';
+import type { ResolvedLook } from './lib/look';
 
 /**
  * Config de marque **runtime** (white-label). Surchargée sans rebuild via
@@ -34,6 +35,8 @@ export interface AppConfig {
   autoAdvanceS?: number;
   /** The public demo counting its audience: where its pages send their time on page. */
   demoDurationUrl?: string;
+  /** The instance's look (THEMING lot 2): absent from an older backend. */
+  look?: ResolvedLook;
 }
 
 const DEFAULTS: AppConfig = {

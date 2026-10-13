@@ -34,7 +34,7 @@ export const QUESTION_TYPES = [
 /** A type of question by its name (the `QuestionType` enum holds the same values). */
 export type QuestionTypeName = (typeof QUESTION_TYPES)[number];
 
-/** Answer colours and shapes, in the order the editor gives them to options 1 to 8. */
+/** Answer colours and shapes: the values an option may take (see `OPTION_ORDER` for their order). */
 export const OPTION_COLORS = [
   'red',
   'blue',
@@ -55,6 +55,24 @@ export const OPTION_SHAPES = [
   'heart',
   'cross',
 ] as const;
+/**
+ * The colour and shape options 1 to 8 get, a pair per position: green first, then red, so
+ * a true/false question reads true in green and false in red.
+ */
+export const OPTION_ORDER = [
+  { color: 'green', shape: 'square' },
+  { color: 'red', shape: 'triangle' },
+  { color: 'blue', shape: 'diamond' },
+  { color: 'yellow', shape: 'circle' },
+  { color: 'purple', shape: 'star' },
+  { color: 'orange', shape: 'hexagon' },
+  { color: 'pink', shape: 'heart' },
+  { color: 'teal', shape: 'cross' },
+] as const satisfies readonly {
+  color: (typeof OPTION_COLORS)[number];
+  shape: (typeof OPTION_SHAPES)[number];
+}[];
+
 /** How many options a type with options takes. */
 export const OPTIONS_MIN = 2;
 export const OPTIONS_MAX = 8;
@@ -259,7 +277,8 @@ export function questionIssues(q: QuestionCompletenessInput): QuestionIssue[] {
     miss({ code: 'question.prompt.required', path: ['prompt'] });
   }
   if (OPTION_TYPES.includes(q.type) && q.type !== 'image_choice') {
-    if (options.length < OPTIONS_MIN) miss({ code: 'question.options.too_few', path: ['options'] });
+    if (options.length < OPTIONS_MIN)
+      miss({ code: 'question.options.not_enough', path: ['options'] });
   }
   switch (q.type) {
     case 'single_choice':

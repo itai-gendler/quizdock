@@ -9,6 +9,7 @@ import type { QuizDetailDtoAudioTarget } from './quizDetailDtoAudioTarget';
 import type { QuizDetailDtoQuestionsItem } from './quizDetailDtoQuestionsItem';
 import type { QuizDetailDtoSlidesItem } from './quizDetailDtoSlidesItem';
 import type { QuizDetailDtoStatus } from './quizDetailDtoStatus';
+import type { QuizDetailDtoThemeBuiltin } from './quizDetailDtoThemeBuiltin';
 
 export interface QuizDetailDto {
   id: string;
@@ -32,6 +33,10 @@ export interface QuizDetailDto {
      */
   loudnessTargetLufs: number;
   audioTarget: QuizDetailDtoAudioTarget;
+  /** @nullable */
+  themeId: string | null;
+  /** @nullable */
+  themeBuiltin: QuizDetailDtoThemeBuiltin;
   /**
      * @minimum -9007199254740991
      * @maximum 9007199254740991

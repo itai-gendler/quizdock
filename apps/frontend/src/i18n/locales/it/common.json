@@ -1,0 +1,71 @@
+{
+  "loading": "Caricamento…",
+  "confirm": "Conferma",
+  "cancel": "Annulla",
+  "close": "Chiudi",
+  "quizStatus": {
+    "draft": "Bozza",
+    "ready": "Pronto",
+    "archived": "Archiviato"
+  },
+  "markdownEditor": {
+    "visual": "Editor visuale",
+    "source": "Markdown",
+    "bold": "Grassetto",
+    "italic": "Corsivo",
+    "code": "Codice",
+    "codeBlock": "Blocco di codice",
+    "bulletList": "Elenco puntato",
+    "orderedList": "Elenco numerato"
+  },
+  "captureConfirm": {
+    "title": "Attivare la registrazione completa delle risposte?",
+    "description": "Ogni risposta di ogni partecipante verrà conservata, con il suo soprannome: sono dati personali (GDPR — informa i partecipanti, cancellali dopo). Gli archivi delle sessioni diventano inoltre molto più pesanti nel database. Riservala al monitoraggio individuale (valutazione, certificazione).",
+    "confirmLabel": "Attiva"
+  },
+  "draft": {
+    "restored": "Bozza ripristinata — le modifiche non salvate sono state recuperate.",
+    "discard": "Scarta la bozza"
+  },
+  "titles": {
+    "login": "Accedi",
+    "dashboard": "I miei quiz",
+    "editor": "Editor",
+    "preview": "Anteprima",
+    "feedback": "Recensioni",
+    "sessions": "Storico",
+    "session": "Sala",
+    "player": "Partecipante",
+    "control": "Console",
+    "screen": "Proiezione",
+    "join": "Partecipa",
+    "live": "Sale aperte",
+    "templates": "Modelli",
+    "profile": "Il mio account",
+    "template": "Modello",
+    "instanceMedia": "Media dell’istanza",
+    "admin": "Amministrazione",
+    "setup": "Configurazione",
+    "history": "Sessioni",
+    "historyRoom": "Sala",
+    "themes": "Temi",
+    "theme": "Tema"
+  },
+  "demo": {
+    "banner": "Demo pubblica — un unico account conduttore condiviso da tutti i visitatori; tutto viene cancellato ogni ora."
+  },
+  "chromiumOnly": "Questa pagina è pensata per Chrome, Edge o un altro browser Chromium. In questo browser il caricamento e la riproduzione di video e suoni potrebbero non funzionare bene.",
+  "play": "Riproduci",
+  "pause": "Pausa",
+  "position": "Posizione nel suono",
+  "fallback": {
+    "notFoundTitle": "Questa pagina non esiste",
+    "notFoundText": "Il link potrebbe essere vecchio, oppure ciò a cui puntava è stato eliminato.",
+    "errorTitle": "Qualcosa è andato storto",
+    "errorText": "Questa pagina ha smesso di funzionare. Ciò che hai salvato è al sicuro.",
+    "backHome": "Torna alla home",
+    "tryAgain": "Riprova"
+  },
+  "stale": "Impossibile aggiornare: ciò che vedi è l’ultima lettura.",
+  "retry": "Riprova"
+}

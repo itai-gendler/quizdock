@@ -112,14 +112,14 @@ describe('store downloads', () => {
     expect(http).toHaveBeenCalledTimes(1);
   });
   it.each([
-    'https://github.com/bob/quizdock-quizzes/releases/download/quizzes/a.zip',
-    'https://github.com/alice/quizdock-quizzes-evil/releases/download/quizzes/a.zip',
-    'https://github.com/alice/quizdock-quizzes/releases/download/quizzes/../other/a.zip',
-    'https://github.com/alice/quizdock-quizzes/releases/download/quizzes/%2f..%2fother/a.zip',
+    'https://github.com/bob/quizdock-extensions/releases/download/quizzes/a.zip',
+    'https://github.com/alice/quizdock-extensions-evil/releases/download/quizzes/a.zip',
+    'https://github.com/alice/quizdock-extensions/releases/download/quizzes/../other/a.zip',
+    'https://github.com/alice/quizdock-extensions/releases/download/quizzes/%2f..%2fother/a.zip',
     'https://assets.example/a.zip',
   ])('refuses a bundle outside the source directory: %s', (value) => {
     const base = sourceBase(
-      'https://github.com/alice/quizdock-quizzes/releases/download/quizzes/index.json',
+      'https://github.com/alice/quizdock-extensions/releases/download/quizzes/index.json',
     );
     expect(() => allowedArtifactUrl(value, base)).toThrow();
   });

@@ -15,12 +15,20 @@ const SERVED_TYPES = new Set([
 ]);
 
 /**
+ * A quiz theme's icons and fonts (docs/themes.md): served as what they are only from
+ * the rows that hold them, written by the theme upload (an SVG sanitised there).
+ */
+const THEME_TYPES: Record<string, string> = { icon: 'image/svg+xml', font: 'font/woff2' };
+
+/**
  * The headers of every media response. `nosniff` keeps the browser to the type
  * sent; the sandbox policy keeps a media opened on its own from running anything
  * on the application's origin.
  */
-export function mediaHeaders(mime: string | undefined): Record<string, string> {
-  const known = mime !== undefined && SERVED_TYPES.has(mime);
+export function mediaHeaders(mime: string | undefined, kind?: string): Record<string, string> {
+  const known =
+    mime !== undefined &&
+    (SERVED_TYPES.has(mime) || (kind !== undefined && THEME_TYPES[kind] === mime));
   return {
     'Content-Type': known ? mime : 'application/octet-stream',
     'X-Content-Type-Options': 'nosniff',

@@ -16,7 +16,7 @@
 | Slug / package / repo | `quiz-dock` |
 | DB / Docker Hub namespace | `quizdock` |
 | npm scope | `@quiz-dock/*` |
-| Code repository | `github.com/quizdock/quiz-dock` |
+| Code repository | `github.com/quizdock/quizdock` |
 | Licence | **MIT** |
 
 The brand name is **white-label at runtime**: an instance can display any other name through
@@ -51,7 +51,7 @@ account being `fchaussin`, the default path would have given `fchaussin.github.i
    ⚠️ Not automatable — GitHub has no API for creating an org; it is a browser action (~1 min).
    It also reserves the name against third parties.
 2. Create the **`quizdock.github.io`** repository in the org → the site is served at `https://quizdock.github.io`.
-3. (Optional) **Transfer the code** from `fchaussin/quiz-dock` to `quizdock/quiz-dock` to keep
+3. (Optional) **Transfer the code** from `fchaussin/quiz-dock` to `quizdock/quizdock` to keep
    everything together. The local remote then needs updating (`git remote set-url`).
 4. (Optional) **Custom domain** (`quizdock.io` / `.fr`): a `CNAME` file in the Pages repository
    plus the DNS record.
@@ -65,7 +65,7 @@ A less tidy URL, but available straight away and without an org.
 
 - [x] **Reserve the GitHub org `quizdock`** (personal account, Free plan).
 - [x] Scaffold the `quizdock.github.io` repository (landing page + Pages workflow) → site online.
-- [x] Transfer the code repository `fchaussin/quiz-dock` → **`quizdock/quiz-dock`** (local remote and site links updated).
+- [x] Transfer the code repository `fchaussin/quiz-dock` → **`quizdock/quizdock`** (local remote and site links updated).
 - [x] **MIT** licence added (`LICENSE` + the `license` field of the `package.json` files + a README section).
 - [ ] (Optional) Reserve npm and Docker Hub before the first public release.
 - [x] Custom domain: dropped — we stay on `quizdock.github.io`.

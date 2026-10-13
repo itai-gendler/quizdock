@@ -86,11 +86,13 @@ export function ProfilePage() {
             </CardContent>
           </Card>
 
-          {/* A host's preferences: their interface language (#209), and the participant
-              access only where a host may open a game to all. */}
-          {me.roles.includes('host') ? (
-            <PreferencesCard participantAccess={mode === 'oidc' && allowsAnonymousParticipants()} />
-          ) : null}
+          {/* Everyone's interface language (#209); a host's participant access, only
+              where a host may open a game to all. */}
+          <PreferencesCard
+            participantAccess={
+              me.roles.includes('host') && mode === 'oidc' && allowsAnonymousParticipants()
+            }
+          />
 
           {/* Le siège n'existe qu'en mode local, et seul son titulaire le voit ; sur
               une démo, il appartient pour de bon au compte partagé. */}

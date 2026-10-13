@@ -31,9 +31,9 @@ describe('Kahoot spreadsheet', () => {
       type: 'single_choice',
       timeLimitS: 30,
       options: [
-        { text: 'A', isCorrect: false, color: 'red' },
-        { text: 'C', isCorrect: true, color: 'yellow' },
-        { text: 'D', isCorrect: false, color: 'green' },
+        { text: 'A', isCorrect: false, color: 'green' },
+        { text: 'C', isCorrect: true, color: 'blue' },
+        { text: 'D', isCorrect: false, color: 'yellow' },
       ],
     });
     expect(result.report).toEqual({ source: 'kahoot', converted: 1, incomplete: [], skipped: [] });

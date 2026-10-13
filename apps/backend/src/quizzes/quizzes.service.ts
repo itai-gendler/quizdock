@@ -448,6 +448,8 @@ export class QuizzesService {
           mediaTailS: src.mediaTailS,
           loudnessTargetLufs: src.loudnessTargetLufs,
           audioTarget: src.audioTarget,
+          themeId: src.themeId,
+          themeBuiltin: src.themeBuiltin,
           questionCount: src.questions.length,
           questions: {
             create: src.questions.map((q) => ({
@@ -459,6 +461,7 @@ export class QuizzesService {
               answerExplanation: q.answerExplanation,
               backgroundMediaId: q.backgroundMediaId,
               backgroundGradient: q.backgroundGradient ?? Prisma.JsonNull,
+              backgroundStyle: q.backgroundStyle ?? Prisma.JsonNull,
               textTone: q.textTone,
               textOutline: q.textOutline,
               timeLimitS: q.timeLimitS,
@@ -510,6 +513,7 @@ export class QuizzesService {
             blocks: s.blocks as Prisma.InputJsonValue,
             mediaId: s.mediaId,
             gradient: s.gradient ?? Prisma.JsonNull,
+            backgroundStyle: s.backgroundStyle ?? Prisma.JsonNull,
             videoMediaId: s.videoMediaId,
             videoLoop: s.videoLoop,
             videoSound: s.videoSound,
@@ -540,6 +544,7 @@ export class QuizzesService {
         mediaTailS: dto.mediaTailS,
         loudnessTargetLufs: dto.loudnessTargetLufs,
         audioTarget: dto.audioTarget,
+        ...(dto.theme !== undefined ? await this.themeColumns(dto.theme) : {}),
         license: dto.license,
         tags: dto.tags,
         shared: dto.shared,
@@ -548,6 +553,16 @@ export class QuizzesService {
     // A replaced or dropped cover leaves with its file, unless something else holds it.
     await this.media.releaseUnused([current.coverMediaId], [quiz.coverMediaId]);
     return quiz;
+  }
+
+  /** A quiz's theme (docs/themes.md): any theme of the library, a shipped one, or none (the default). */
+  private async themeColumns(
+    ref: { builtin?: string; id?: string } | null,
+  ): Promise<{ themeId: string | null; themeBuiltin: string | null }> {
+    if (ref?.id && !(await this.prisma.theme.count({ where: { id: ref.id } }))) {
+      throw new NotFoundException('theme.not_found');
+    }
+    return { themeId: ref?.id ?? null, themeBuiltin: ref?.builtin ?? null };
   }
 
   async remove(ownerId: string, id: string): Promise<void> {
@@ -731,11 +746,22 @@ function toSessionSummary(
   };
 }
 
-/** A copy's title mark, in the quiz's language (the interface's five; English otherwise). */
+/** A copy's title mark, in the quiz's language (the interface's; English otherwise). */
 function copySuffix(language: string): string {
   const base = language.split('-')[0];
   if (language === 'zh-TW' || base === 'zh') return '（副本）';
-  return { fr: '(copie)', es: '(copia)' }[base] ?? '(copy)';
+  const marks: Record<string, string> = {
+    fr: '(copie)',
+    es: '(copia)',
+    tr: '(kopya)',
+    de: '(Kopie)',
+    hi: '(कॉपी)',
+    it: '(copia)',
+    ja: '（コピー）',
+    pl: '(kopia)',
+    ru: '(копия)',
+  };
+  return marks[base] ?? '(copy)';
 }
 
 type QuestionStatRow = {

@@ -204,7 +204,7 @@ function Wizard({ authMode, onLost }: { authMode: 'none' | 'oidc'; onLost: () =>
     return (
       <Card className="flex flex-col items-start gap-3 p-5">
         <p className="flex items-center gap-2 font-semibold">
-          <CircleCheck aria-hidden className="text-success size-5" />
+          <CircleCheck aria-hidden className="text-success-text size-5" />
           {t('setup.finished')}
         </p>
         <p className="text-muted-foreground text-sm">{t('setup.finishedHelp')}</p>

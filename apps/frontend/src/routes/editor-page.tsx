@@ -1,3 +1,4 @@
+import { LICENSE_KEYS } from '@/lib/licenses';
 import {
   DndContext,
   KeyboardSensor,
@@ -77,6 +78,8 @@ import { useLaunchSession } from '../game/use-launch-session';
 import { downloadFile } from '../api/download';
 import { apiErrorText } from '../api/http';
 import type { QuizDetailDto, UpdateQuizDto } from '../api/generated/model';
+import { QuizThemeField } from './quiz-theme-field';
+import { QuizThemeProvider, useQuizThemeValues } from '@/lib/quiz-theme';
 import { quizItems, moveItem, slideLabel, type QuizItem } from '@/lib/quiz-items';
 import { useMediaQuery } from '@/lib/use-media-query';
 import { useUnsavedGuard } from '@/lib/use-unsaved-guard';
@@ -147,8 +150,18 @@ export function EditorPage() {
   return (
     <>
       {stale}
-      <QuizEditor quiz={data.data} />
+      <ThemedQuizEditor quiz={data.data} />
     </>
+  );
+}
+
+/** The editor, its previews in the quiz's theme (docs/themes.md). */
+function ThemedQuizEditor({ quiz }: { quiz: QuizDetailDto }) {
+  const theme = useQuizThemeValues(quiz);
+  return (
+    <QuizThemeProvider value={theme}>
+      <QuizEditor quiz={quiz} />
+    </QuizThemeProvider>
   );
 }
 
@@ -311,6 +324,8 @@ function QuizEditor({ quiz }: { quiz: QuizDetailDto }) {
   const setShared = (shared: boolean) => saveSettings({ shared });
   const setTags = (tags: string[]) => saveSettings({ tags });
   const setMediaTailS = (mediaTailS: number) => saveSettings({ mediaTailS });
+  const setTheme = (theme: { builtin?: string; id?: string } | null) =>
+    saveSettings({ theme: theme as UpdateQuizDto['theme'] });
 
   const changeStatus = (status: 'draft' | 'ready' | 'archived') =>
     guarded(async () => {
@@ -658,6 +673,12 @@ function QuizEditor({ quiz }: { quiz: QuizDetailDto }) {
               </label>
               <FeedbackSection quizId={quiz.id} />
             </div>
+            {/* Its look on the live screens (docs/themes.md). */}
+            <QuizThemeField
+              value={{ themeId: quiz.themeId, themeBuiltin: quiz.themeBuiltin }}
+              disabled={update.isPending}
+              onChange={(theme) => void setTheme(theme)}
+            />
             <Disclosure
               flush
               className="-mx-3 border-t px-3 pt-1"
@@ -1731,7 +1752,7 @@ function FrameSaveState({ state }: { state: 'idle' | 'saving' | 'saved' }) {
         t('settings.saving')
       ) : (
         <>
-          <Check className="text-success size-3.5" aria-hidden />
+          <Check className="text-success-text size-3.5" aria-hidden />
           {t('settings.saved')}
         </>
       )}
@@ -1791,9 +1812,6 @@ function languageOptions(current: string, uiLanguage: string) {
   const [first, ...rest] = codes.map((code) => ({ code, name: languageName(code, uiLanguage) }));
   return [first, ...rest.sort((a, b) => a.name.localeCompare(b.name, uiLanguage))];
 }
-
-/** i18n keys: an SPDX identifier has dots, which i18next reads as nesting. */
-const LICENSE_KEYS = { 'CC0-1.0': 'cc0', 'CC-BY-4.0': 'ccBy', 'CC-BY-SA-4.0': 'ccBySa' } as const;
 
 /**
  * The quiz's tags, as chips: Enter or a comma adds what was typed, turned into

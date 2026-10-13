@@ -1,0 +1,866 @@
+{
+  "title": "Administration",
+  "adminOnly": "Diese Seite ist für die Administration der Instanz.",
+  "loading": "Wird geladen…",
+  "domains": {
+    "instance": "Instanz",
+    "quizzes": "Quizze",
+    "media": "Medien"
+  },
+  "sections": {
+    "statistics": "Statistiken",
+    "settings": "Einstellungen",
+    "health": "Zustand",
+    "accounts": "Konten",
+    "audit": "Protokoll",
+    "quizzes": "Quizze",
+    "media": "Medien",
+    "branding": "Branding",
+    "interface": "Oberfläche"
+  },
+  "token": {
+    "unset": "Lokaler Modus: Über das Web lässt sich nichts ändern, bis ADMIN_TOKEN in .env gesetzt ist (32 Zeichen oder mehr) und die Instanz neu gestartet wurde.",
+    "ask": "Lokaler Modus: Geben Sie das Administrationstoken (ADMIN_TOKEN) ein, um etwas zu ändern. Es wird nur in diesem Tab aufbewahrt.",
+    "use": "Verwenden",
+    "given": "Administrationstoken für diesen Tab angegeben.",
+    "forget": "Vergessen"
+  },
+  "update": {
+    "available": "QuizDock {{version}} ist verfügbar.",
+    "running": "Diese Instanz läuft mit {{current}} · veröffentlicht am {{date}}.",
+    "command": "Auf dem Server, im Ordner der Instanz:",
+    "does": "Es erstellt eine Sicherung, aktualisiert das Image, wendet die Migrationen an und prüft dann den Zustand der Instanz.",
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "changes": "Neuigkeiten",
+    "upgrading": "Vor dem Upgrade",
+    "github": "Auf GitHub ansehen",
+    "hide": "Bis zur nächsten Version ausblenden",
+    "close": "Schließen"
+  },
+  "settings": {
+    "search": "Einstellung suchen",
+    "view": "Darstellung",
+    "views": {
+      "cards": "Karten",
+      "split": "Liste und Detail",
+      "table": "Tabelle"
+    },
+    "filters": {
+      "label": "Nur anzeigen",
+      "changed": "Vom Standard abweichend",
+      "overridden": "Hier geändert",
+      "problem": "Mit einem Problem",
+      "editable": "Änderbar"
+    },
+    "none": "Keine passende Einstellung.",
+    "list": "Einstellungen",
+    "problem": "Ein Problem",
+    "rules": "Zu prüfende Einstellungen:",
+    "envValue": "ersetzt .env:",
+    "access": {
+      "read": "Das Web zeigt alle Einstellungen und ändert keine (ADMIN_WEB_SCOPE=read).",
+      "write": "Das Web darf die Einstellungen der Stufen C2 bis C4 ändern (ADMIN_WEB_SCOPE=write); C1 nie.",
+      "how": "Diese werden in .env gesetzt, danach wird die Instanz neu gestartet.",
+      "locks": "Gesperrt durch ADMIN_LOCK:",
+      "safeMode": "Sicherer Modus (ADMIN_OVERRIDES=ignore): Die hier geänderten Werte bleiben erhalten, werden aber nicht angewendet.",
+      "token": "Lokaler Modus: Eine Änderung erfordert das Administrationstoken.",
+      "noToken": "Lokaler Modus: Über das Web lässt sich nichts ändern, bis ADMIN_TOKEN gesetzt ist.",
+      "readWhy": "Das ist der Standard: Nichts ändert die Instanz über einen Browser, bis die Person, die den Server betreibt, es erlaubt.",
+      "doc": "Wie man Änderungen erlaubt"
+    },
+    "columns": {
+      "variable": "Variable",
+      "value": "Wert",
+      "source": "Quelle",
+      "env": "Wert in .env",
+      "default": "Standard",
+      "level": "Stufe",
+      "applies": "Wirkt"
+    },
+    "issue": {
+      "unreadable": "Nicht lesbar (akzeptiert {{accepts}}): Der Standard wird verwendet.",
+      "out-of-bounds": "Außerhalb des Zulässigen ({{accepts}}): vorerst unverändert verwendet; eine spätere Version wird es durchsetzen."
+    }
+  },
+  "categories": {
+    "identity": "Identität & Erscheinungsbild",
+    "access": "Zugang & Authentifizierung",
+    "network": "Netzwerk & Einladung",
+    "storage": "Speicher",
+    "limits": "Limits",
+    "pace": "Spieltempo",
+    "admin": "Administration",
+    "internal": "Intern"
+  },
+  "source": {
+    "default": "Standard",
+    "env": "Aus .env",
+    "override": "Hier geändert"
+  },
+  "criticality": {
+    "C1": "Kritisch: Start, Daten oder Sicherheit. Angezeigt, nie über das Web geändert.",
+    "C2": "Hoch: wer hereinkommt, wie viel gespeichert werden darf. Jede Änderung wird bestätigt.",
+    "C3": "Normal: wie sich die Instanz verhält.",
+    "C4": "Kosmetisch: Aussehen und Formulierungen."
+  },
+  "applies": {
+    "live": "Sofort",
+    "next-room": "Nächster Raum",
+    "restart": "Beim Neustart"
+  },
+  "appliesHelp": {
+    "live": "Bei der nächsten Verwendung: Ein laufendes Quiz folgt ihr.",
+    "next-room": "In den Räumen, die nach der Änderung geöffnet werden; ein laufender Raum behält seine.",
+    "restart": "Einmal beim Start gelesen: Die Instanz muss neu starten."
+  },
+  "readOnly": {
+    "critical": "Kritisch: nie über das Web",
+    "locked": "Gesperrt durch ADMIN_LOCK",
+    "scope": "Schreibgeschützt (ADMIN_WEB_SCOPE=read)",
+    "safe-mode": "Sicherer Modus",
+    "demo": "Öffentliche Demo: schreibgeschützt"
+  },
+  "value": {
+    "empty": "—",
+    "set": "Gesetzt",
+    "notSet": "Nicht gesetzt",
+    "on": "Ein",
+    "off": "Aus"
+  },
+  "units": {
+    "MB": "MB",
+    "s": "s"
+  },
+  "help": {
+    "accepts": "Akzeptiert",
+    "default": "Standard",
+    "example": "In .env",
+    "applies": "Wirkt",
+    "rules": "Gehört zu",
+    "doc": "In der Dokumentation",
+    "history": "Letzte Änderungen",
+    "noHistory": "Nie über die Administration geändert."
+  },
+  "outside": {
+    "title": "Außerhalb der Anwendung",
+    "intro": "Gelesen von Docker Compose, dem quizdock-Skript, dem Image-Build oder Keycloak, nie von der Anwendung: Sie werden dort geändert, wo sie gelesen werden, nicht hier.",
+    "readBy": "Gelesen von",
+    "what": "Was",
+    "readers": {
+      "compose": "Compose",
+      "keycloak": "Keycloak",
+      "script": "quizdock-Skript",
+      "build": "Image-Build",
+      "dev": "Entwicklungsumgebung",
+      "image": "Das Image"
+    }
+  },
+  "labels": {
+    "APP_NAME": "Name der Anwendung",
+    "APP_LANG": "Sprache der Oberfläche",
+    "APP_LOGO_URL": "Adresse des Logos",
+    "APP_FEEDBACK_URL": "Wohin Feedback-Links führen",
+    "AUTH_MODE": "Authentifizierungsmodus",
+    "DEMO_MODE": "Öffentliche Demo",
+    "ALLOW_ANONYMOUS_PARTICIPANTS": "Teilnehmende ohne Konto",
+    "OIDC_ISSUER": "Identitätsanbieter (Issuer)",
+    "OIDC_CLIENT_ID": "Client-Kennung",
+    "OIDC_CLIENT_SECRET": "Client-Geheimnis",
+    "OIDC_INTERNAL_URL": "Interne Adresse des Anbieters",
+    "OIDC_JWKS_URI": "Schlüssel-Endpunkt",
+    "OIDC_AUDIENCE": "Erwartete Audience",
+    "OIDC_ROLES_CLAIM": "Claim der Rollen",
+    "OIDC_NAME_CLAIM": "Claim des Anzeigenamens",
+    "OIDC_SESSION_SCOPE": "Sitzungs-Scope (ignoriert)",
+    "PORT": "Port im Container",
+    "TRUST_PROXY": "Vertrauenswürdige Proxys",
+    "APP_PUBLIC_URL": "Öffentliche Adresse",
+    "HOST_LAN_IPS": "Adressen im lokalen Netzwerk",
+    "QUIZ_STORE_URL": "Community-Kataloge",
+    "QUIZ_STORE_HOSTS": "Für Downloads erlaubte Hosts",
+    "UPDATE_CHECK": "Nach neuen Versionen suchen",
+    "DATABASE_URL": "Datenbank",
+    "REDIS_URL": "Redis",
+    "MEDIA_DIR": "Medienordner",
+    "STORE_DIR": "Ordner der geteilten Vorlagen",
+    "SAMPLES_DIR": "Ordner der Beispielquizze",
+    "CLIENT_DIR": "Ordner der Webanwendung",
+    "MEDIA_MAX_BYTES": "Größtes Bild",
+    "MEDIA_MAX_VIDEO_MB": "Größtes Video",
+    "MEDIA_MAX_AUDIO_MB": "Größter Ton",
+    "IMPORT_MAX_BYTES": "Größtes importiertes Quiz",
+    "PUBLICATION_MAX_MB": "Größtes Quiz zur Veröffentlichung",
+    "MEDIA_LIBRARY_LINKS": "Freie Mediatheken",
+    "GAME_READ_DELAY_MS": "Lesezeit vor dem Timer",
+    "GAME_ALL_ANSWERED_DELAY_MS": "Pause, wenn alle geantwortet haben",
+    "GAME_AUTO_ADVANCE_MS": "Automatischer Modus: Zeit pro Schritt",
+    "GAME_MEDIA_WAIT_S": "Warten auf Töne und Videos",
+    "LIVE_MOTION": "Übergänge auf den Live-Bildschirmen",
+    "GAME_HOST_GRACE_MS": "Schonfrist der Quizleitung vor dem Verlassen",
+    "GAME_HOST_WINDOW_MS": "Rückkehrfrist der Quizleitung",
+    "ADMIN_WEB_SCOPE": "Was das Web ändern darf",
+    "ADMIN_LOCK": "Nie über das Web geänderte Einstellungen",
+    "ADMIN_TOKEN": "Administrationstoken (lokaler Modus)",
+    "ADMIN_OVERRIDES": "Über das Web geänderte Werte",
+    "QUIZDOCK_FLAVOR": "Image-Variante",
+    "APP_VERSION": "Version",
+    "PRISMA_SKIP_CONNECT": "Ohne Datenbank starten"
+  },
+  "operations": {
+    "health": {
+      "doctor": "Zustandsprüfung"
+    },
+    "migrations": {
+      "status": "Datenbankmigrationen"
+    },
+    "version": {
+      "check": "Version"
+    },
+    "seat": {
+      "status": "Leitungsplatz",
+      "release": "Leitungsplatz freigeben"
+    },
+    "users": {
+      "list": "Konten",
+      "set-role": "Rolle vergeben oder entziehen",
+      "find": "Konto finden",
+      "search": "Konten durchsuchen"
+    },
+    "samples": {
+      "load": "Beispielquizze zu einem Konto hinzufügen"
+    },
+    "quizzes": {
+      "list": "Quizze",
+      "transfer": "Quiz übergeben",
+      "export": "Quiz exportieren",
+      "import": "Quiz für ein Konto importieren",
+      "archive": "Quiz archivieren",
+      "restore": "Archiviertes Quiz wiederherstellen",
+      "delete": "Quiz löschen",
+      "orphans": "Quizze, die niemand erreicht",
+      "search": "Quizze durchsuchen"
+    },
+    "sessions": {
+      "purge": "Alte Sitzungen löschen"
+    },
+    "settings": {
+      "list": "Einstellungen",
+      "set": "Einstellung ändern",
+      "reset": "Änderung zurücknehmen",
+      "export": "Änderungen als .env"
+    },
+    "audit": {
+      "list": "Protokoll"
+    },
+    "media": {
+      "upload": "Medium zu denen der Instanz hinzufügen",
+      "promote": "Datei zu einem Medium der Instanz machen",
+      "credit": "Nachweis eines Mediums",
+      "remove": "Medium aus denen der Instanz entfernen",
+      "delete-file": "Datei löschen",
+      "sweep": "Medien bereinigen"
+    },
+    "presets": {
+      "list": "Schnelleinrichtung",
+      "plan": "Vorschau der Schnelleinrichtung",
+      "apply": "Schnelleinrichtung anwenden"
+    },
+    "setup": {
+      "status": "Einrichtung",
+      "token": "Neues Einrichtungstoken",
+      "complete": "Einrichtung abschließen",
+      "reopen": "Einrichtung wieder öffnen",
+      "first-admin": "Erste Administratorin oder erster Administrator"
+    },
+    "invite": {
+      "test": "Adresse von einem Handy aus testen",
+      "test-status": "Handytest"
+    },
+    "stats": {
+      "live": "Was gerade gespielt wird",
+      "history": "Die letzten zwölf Monate"
+    }
+  },
+  "params": {
+    "user": "Konto",
+    "roles": "Rollen",
+    "owner": "Besitzer",
+    "quiz": "Quiz (ID)",
+    "to": "Neuer Besitzer",
+    "bundle": "Paket (zip, quiz.json oder Kahoot-Tabelle)",
+    "key": "Einstellung",
+    "limit": "Wie viele",
+    "operation": "Operation",
+    "setting": "Einstellung",
+    "value": "Wert",
+    "all": "Alle",
+    "audience": "Publikum",
+    "name": "Name",
+    "address": "Adresse",
+    "id": "ID",
+    "internet": "Internet",
+    "accessibility": "Barrierefreiheit",
+    "q": "Suche",
+    "status": "Status",
+    "orphans": "Niemand erreicht sie",
+    "offset": "Ab"
+  },
+  "columns": {
+    "name": "Name",
+    "subject": "Subject",
+    "email": "E-Mail",
+    "roles": "Rollen",
+    "granted": "Vergeben",
+    "quizzes": "Quizze",
+    "createdAt": "Erstellt",
+    "id": "ID",
+    "title": "Titel",
+    "owner": "Besitzer",
+    "status": "Status",
+    "questions": "Fragen",
+    "slug": "Slug",
+    "revision": "Revision",
+    "updatedAt": "Geändert",
+    "holder": "Inhaber",
+    "claimedAt": "Übernommen",
+    "expiresAt": "Läuft ab",
+    "why": "Warum"
+  },
+  "effects": {
+    "write": "Ändert",
+    "destructive": "Zerstört"
+  },
+  "run": {
+    "read": "Anzeigen",
+    "write": "Ausführen",
+    "preview": "Vorschau",
+    "confirm": "Bestätigen",
+    "confirmTitle": "Diese Änderung bestätigen?"
+  },
+  "form": {
+    "choose": "Auswählen…"
+  },
+  "result": {
+    "done": "Erledigt.",
+    "nothing-to-do": "Nichts zu tun.",
+    "partial": "Erledigt, mit Problemen.",
+    "preview": "Was es tun würde:",
+    "none": "Keine.",
+    "download": "{{name}} speichern"
+  },
+  "refusals": {
+    "unknown_operation": "Unbekannte Operation.",
+    "forbidden": "Nur für die Administration.",
+    "scope_read": "Schreibgeschützt: ADMIN_WEB_SCOPE=read.",
+    "local_mode_token": "Lokaler Modus: Das Administrationstoken ist erforderlich.",
+    "locked": "Gesperrt durch ADMIN_LOCK.",
+    "critical": "Kritisch: nie über das Web.",
+    "invalid_params": "Ungültige Parameter.",
+    "confirmation_invalid": "Bestätigung abgelaufen.",
+    "dry_run_unsupported": "Keine Vorschau.",
+    "not_found": "Nicht gefunden.",
+    "conflict": "Konflikt.",
+    "timeout": "Hat zu lange gedauert.",
+    "failed": "Fehlgeschlagen.",
+    "demo_read_only": "Öffentliche Demo: schreibgeschützt."
+  },
+  "quizzes": {
+    "search": "Quiz suchen",
+    "owner": "Besitzer",
+    "everyone": "Alle",
+    "status": "Status",
+    "anyStatus": "Beliebig",
+    "statuses": {
+      "draft": "Entwurf",
+      "ready": "Bereit",
+      "archived": "Archiviert"
+    },
+    "orphans": "Niemand erreicht sie",
+    "none": "Kein passendes Quiz.",
+    "count_one": "{{count}} Quiz",
+    "count_other": "{{count}} Quizze",
+    "questions_one": "{{count}} Frage",
+    "questions_other": "{{count}} Fragen",
+    "live": "Wird gespielt (PIN {{pin}})",
+    "unreachable": "Besitzer erreicht es nicht mehr",
+    "close": "Schließen",
+    "columns": {
+      "quiz": "Quiz",
+      "owner": "Besitzer",
+      "updated": "Geändert",
+      "actions": "Aktionen"
+    },
+    "actions": {
+      "quizzes_import": "Quiz für ein Konto importieren",
+      "samples_load": "Beispielquizze hinzufügen",
+      "sessions_purge": "Alte Sitzungen löschen",
+      "open": "Öffnen",
+      "export": "Exportieren",
+      "transfer": "Übergeben",
+      "archive": "Archivieren",
+      "restore": "Wiederherstellen",
+      "delete": "Löschen"
+    },
+    "transfer": {
+      "title": "„{{title}}“ übergeben",
+      "help": "An ein anderes Konto: Die Medien, die nur dieses Quiz verwendet, und sein Verlauf gehen mit; {{owner}} behält den Rest.",
+      "search": "Name, Subject oder E-Mail"
+    },
+    "actionsFor": "Aktionen für {{title}}"
+  },
+  "audit": {
+    "filter": "Operation",
+    "empty": "Noch nichts im Protokoll.",
+    "newer": "Neuer",
+    "older": "Älter",
+    "columns": {
+      "at": "Wann",
+      "who": "Wer",
+      "operation": "Operation",
+      "params": "Parameter",
+      "outcome": "Ergebnis"
+    },
+    "via": {
+      "cli": "Kommandozeile",
+      "api": "Web"
+    },
+    "outcomes": {
+      "done": "Erledigt",
+      "nothing-to-do": "Nichts zu tun",
+      "partial": "Teilweise",
+      "refused": "Abgelehnt",
+      "failed": "Fehlgeschlagen"
+    },
+    "anyOperation": "Alle Operationen",
+    "previous": "Was es ersetzt hat"
+  },
+  "edit": {
+    "save": "Speichern",
+    "back": "Zurück zu .env",
+    "cancel": "Abbrechen",
+    "accepts": "Akzeptiert {{accepts}}.",
+    "remove": "Entfernen",
+    "add": "Hinzufügen",
+    "linkName": "Name",
+    "linkUrl": "Adresse",
+    "kinds": {
+      "image": "Bilder",
+      "video": "Videos",
+      "audio": "Töne"
+    },
+    "noLinks": "Keine Mediathek: Der Editor zeigt keine an (eine Instanz ohne Internet).",
+    "saved": {
+      "live": "Gespeichert: Es wirkt ab sofort.",
+      "next-room": "Gespeichert: Es wirkt in den ab jetzt geöffneten Räumen.",
+      "restart": "Gespeichert: Es wirkt beim nächsten Neustart."
+    }
+  },
+  "overrides": {
+    "count_one": "{{count}} Einstellung hier geändert.",
+    "count_other": "{{count}} Einstellungen hier geändert.",
+    "export": "Als .env exportieren",
+    "exportHelp": "Um sie in .env festzuschreiben (und sie dann hier zurückzunehmen) oder um sie auf eine andere Instanz zu übertragen:",
+    "resetAll": "Alles zurücknehmen"
+  },
+  "setup": {
+    "title": "Einrichtung dieser Instanz",
+    "invite": "Diese Instanz ist noch nicht vollständig eingerichtet.",
+    "inviteLink": "Einrichten",
+    "closed": "Diese Instanz ist eingerichtet: Der Assistent ist geschlossen (`qd setup.reopen` öffnet ihn wieder, aus einer Shell).",
+    "home": "Startseite",
+    "signIn": "Mit einem Identitätsanbieter erfordert die Einrichtung ein angemeldetes Konto — mit der Administratorrolle vom Anbieter, um sie abzuschließen.",
+    "signInLink": "Anmelden",
+    "steps": "Schritte",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "finish": "Einrichtung abschließen",
+    "finished": "Die Instanz ist eingerichtet.",
+    "finishedHelp": "Der Assistent ist endgültig geschlossen. Alles, was hier festgelegt wurde, lässt sich später in der Administration ändern, soweit ADMIN_WEB_SCOPE es erlaubt.",
+    "token": {
+      "title": "Einrichtungstoken",
+      "help": "Wer eine frische Instanz erreicht, darf sie nicht in Besitz nehmen: Geben Sie das Einrichtungstoken an, das beim Start in die Protokolle der Instanz geschrieben wird (oder das `qd setup.token` im Container ausgibt). Es funktioniert nur einmal und läuft 24 Stunden nach seiner Erstellung ab.",
+      "label": "Token",
+      "open": "Starten"
+    },
+    "step": {
+      "usage": {
+        "title": "Nutzung",
+        "help": "Drei Fragen dazu, wie die Instanz genutzt wird: Jede Antwort setzt mehrere Einstellungen auf einmal. Alles lässt sich in den nächsten Schritten oder später in der Administration anpassen."
+      },
+      "health": {
+        "title": "Zustand",
+        "help": "Die Datenbank, Redis, die Migrationen, die Ordner, die kritischen Variablen. Was hier fehlschlägt, wird in .env behoben, danach wird die Instanz neu gestartet."
+      },
+      "identity": {
+        "title": "Identität",
+        "help": "Der Name, die Sprache, das Logo, wohin die Feedback-Links führen."
+      },
+      "address": {
+        "title": "Adresse",
+        "help": "Die den Teilnehmenden angebotenen Adressen (QR-Code, Beitrittslink) und ein Test von einem Handy aus."
+      },
+      "access": {
+        "title": "Zugang",
+        "help": "Wer hereinkommen darf. Der Authentifizierungsmodus wird vor dem Start in .env gesetzt."
+      },
+      "limits": {
+        "title": "Limits & Tempo",
+        "help": "Die Standardwerte passen für die meisten Instanzen: Ändern Sie einen Wert nur, wenn Ihre abweicht."
+      },
+      "content": {
+        "title": "Inhalte",
+        "help": "Die Beispielquizze, bereit zum Präsentieren, für die Sammlung einer Quizleitung."
+      },
+      "summary": {
+        "title": "Zusammenfassung",
+        "help": "Was festgelegt ist und woher es stammt. Das Abschließen schließt den Assistenten endgültig."
+      }
+    },
+    "phone": {
+      "title": "Test von einem Handy aus",
+      "help": "Der Server kann nicht wissen, ob ein Handy ihn erreicht: Das kann nur ein Handy. Scannen Sie den Code einer Adresse mit einem Handy — im Gäste-WLAN oder über mobile Daten, so wie es Teilnehmende wären. Eine getestete Adresse wird zuerst angeboten.",
+      "start": "Diese Adresse testen",
+      "again": "Erneut testen",
+      "scan": "Mit einem Handy scannen: Die Seite meldet dieser hier, dass sie durchgekommen ist.",
+      "reached": "Von einem Handy erreicht ({{agent}}).",
+      "why": {
+        "title": "Nicht erreicht? Die üblichen Ursachen",
+        "network": "Nicht dasselbe Netzwerk: Eine lokale Adresse (192.168…, 10…) antwortet nur Handys in diesem Netzwerk — das Gäste-WLAN ist oft ein anderes; über mobile Daten antwortet sie nie.",
+        "isolation": "Isolierte Gäste: Viele Gäste- oder öffentliche WLANs verhindern, dass Geräte einander sehen. Verwenden Sie die öffentliche Adresse oder ein Netzwerk ohne diese Isolierung.",
+        "firewall": "Eine Firewall: Der Rechner lehnt möglicherweise eingehende Verbindungen auf dem Port der Anwendung ab.",
+        "public": "Eine öffentliche Adresse braucht einen Namen, der auf den Rechner zeigt, und einen aus dem Internet offenen Port (oder einen Reverse Proxy) — und https, damit Handys die App installieren können.",
+        "docker": "Docker Desktop, ein Bridge-Netzwerk: Der Container sieht die eigenen Adressen des Rechners nicht — tragen Sie sie in HOST_LAN_IPS ein."
+      },
+      "expired": "Dieser Test ist abgelaufen: Starten Sie ihn erneut.",
+      "adoptHelp": "Sobald ein Handy eine Adresse erreicht hat, machen Sie sie zur Einladungsadresse der Instanz: Jeder Warteraum geht von ihr aus (APP_PUBLIC_URL). Eine Quizleitung kann für ein Quiz trotzdem eine andere wählen.",
+      "adoptReadOnly": "Die Administration kann hier keine Einstellungen ändern: Die Einladungsadresse der Instanz bleibt, wie der Betreiber sie gesetzt hat (APP_PUBLIC_URL). Eine Quizleitung wählt die Adresse jedes Quiz im Warteraum.",
+      "other": "Andere Adresse",
+      "add": "Hinzufügen",
+      "current": "Die Einladungsadresse der Instanz",
+      "use": "Für Einladungen verwenden"
+    },
+    "access": {
+      "firstAdmin": "Lokaler Modus: der Name, der die Instanz verwalten wird (mit ihm meldet man sich an). Änderungen über das Web erfordern außerdem ADMIN_TOKEN.",
+      "oidcAdmin": "Mit einem Identitätsanbieter stammt die Administratorrolle von ihm (oder von `qd user:set-role`)."
+    },
+    "content": {
+      "samples": "Ein Konto (sein Subject — local:<name> im lokalen Modus — oder seine E-Mail): Die Beispielquizze gehen in seine Sammlung."
+    },
+    "summary": {
+      "set": "Abweichend vom Standard gesetzt",
+      "env": "Was hier festgelegt wurde, als Auszug aus .env — um es dort festzuschreiben:"
+    },
+    "blocked": "Ein blockierendes Problem oben: Beheben Sie es (in .env, dann Neustart), prüfen Sie erneut, und der Assistent geht weiter."
+  },
+  "usage": {
+    "preview": "Was diese Antworten setzen:",
+    "nothing": "Nichts zu ändern.",
+    "apply": "Anwenden",
+    "applied": "Angewendet: Die nächsten Schritte zeigen es.",
+    "skipped": {
+      "locked": "unverändert: gesperrt durch ADMIN_LOCK",
+      "not-applicable": "unverändert: nur mit einem Identitätsanbieter (AUTH_MODE=oidc)"
+    },
+    "internet": {
+      "question": "Hat diese Instanz Zugang zum Internet?",
+      "answers": {
+        "connected": {
+          "title": "Ja",
+          "help": "Der Editor bietet freie Online-Mediatheken an."
+        },
+        "offline": {
+          "title": "Nein",
+          "help": "Nur ein lokales Netzwerk: keine Links zu Online-Mediatheken. Testen Sie die Adresse in den nächsten Schritten von einem Handy aus."
+        }
+      }
+    },
+    "audience": {
+      "question": "Wer spielt?",
+      "answers": {
+        "colleagues": {
+          "title": "Kollegen, Freunde",
+          "help": "Die Standardeinstellungen."
+        },
+        "class": {
+          "title": "Eine Klasse, eine Schulung",
+          "help": "Teilnehmende melden sich mit ihrem Konto an."
+        },
+        "public": {
+          "title": "Die Öffentlichkeit, eine große Veranstaltung",
+          "help": "Offen für alle — mit einem Identitätsanbieter — und mehr Zeit zum Laden von Tönen und Videos in einem überlasteten WLAN."
+        },
+        "other": {
+          "title": "Von allem etwas, anderes",
+          "help": "Nichts wird geändert: Legen Sie in den nächsten Schritten fest, was Sie brauchen."
+        }
+      }
+    },
+    "accessibility": {
+      "question": "Brauchen manche Teilnehmende es einfacher?",
+      "answers": {
+        "standard": {
+          "title": "Nein",
+          "help": "Die Standardeinstellungen."
+        },
+        "adapted": {
+          "title": "Ja",
+          "help": "Keine Übergänge, mehr Zeit zum Lesen."
+        }
+      }
+    }
+  },
+  "stats": {
+    "live": {
+      "title": "Live",
+      "updated": "Aktualisiert um {{time}}",
+      "stale": "Konnte nicht erneut gelesen werden — Zahlen von {{ago}}",
+      "games": "Laufende Quizze",
+      "players": "Verbundene Teilnehmende",
+      "none": "Gerade wird kein Quiz gespielt.",
+      "lobby_one": "{{count}} im Warteraum",
+      "lobby_other": "{{count}} im Warteraum",
+      "playing_one": "{{count}} wird gespielt",
+      "playing_other": "{{count}} werden gespielt"
+    },
+    "columns": {
+      "quiz": "Quiz",
+      "host": "Quizleitung",
+      "progress": "Stand",
+      "players": "Teilnehmende",
+      "since": "Geöffnet",
+      "month": "Monat"
+    },
+    "pin": "PIN {{pin}}",
+    "phase": {
+      "lobby": "Warteraum",
+      "question": "Frage {{index}} von {{total}}"
+    },
+    "instance": {
+      "title": "Die Instanz",
+      "accounts": "Konten",
+      "quizzes": "Spielbereite Quizze",
+      "media": "Medien",
+      "mediaDetail_one": "{{count}} Datei",
+      "mediaDetail_other": "{{count}} Dateien",
+      "history": "Gespielte Quizze",
+      "lastGame": "das letzte endete {{ago}}",
+      "noGame": "noch keines",
+      "hosts_one": "{{count}} Quizleitung",
+      "hosts_other": "{{count}} Quizleitungen",
+      "admins_one": "{{count}} Administrator/in",
+      "admins_other": "{{count}} Administrator/innen",
+      "drafts_one": "{{count}} Entwurf",
+      "drafts_other": "{{count}} Entwürfe",
+      "archived_one": "{{count}} archiviert",
+      "archived_other": "{{count}} archiviert"
+    },
+    "history": {
+      "title": "In den letzten 12 Monaten",
+      "none": "In den letzten 12 Monaten wurde kein Quiz gespielt.",
+      "games": "Quizze",
+      "players": "Teilnehmende",
+      "success": "Erfolgsquote",
+      "withAccount": "Teilnehmende mit Konto",
+      "accounts_one": "{{count}} mit Konto",
+      "accounts_other": "{{count}} mit Konto",
+      "guests_one": "{{count}} Gast",
+      "guests_other": "{{count}} Gäste",
+      "byMonth": "Nach Monat",
+      "top": {
+        "quizzes": "Meistgespielte Quizze",
+        "hosts": "Aktivste Quizleitungen"
+      },
+      "oldest": "Der Verlauf beginnt am {{date}}: Ältere Quizze werden gelöscht."
+    }
+  },
+  "accounts": {
+    "search": "Konto suchen (Name, Subject, E-Mail)",
+    "role": "Rolle",
+    "anyRole": "Beliebige Rolle",
+    "roles": {
+      "admin": "Administration",
+      "host": "Quizleitung",
+      "player": "Teilnehmende"
+    },
+    "none": "Kein passendes Konto.",
+    "count_one": "{{count}} Konto",
+    "count_other": "{{count}} Konten",
+    "columns": {
+      "account": "Konto",
+      "roles": "Rollen",
+      "quizzes": "Quizze",
+      "games": "Geleitete Quizze",
+      "created": "Erstellt",
+      "actions": "Aktionen"
+    },
+    "grantedHere": "In der Administration vergeben",
+    "actionsFor": "Aktionen für {{name}}",
+    "editRoles": "Rolle vergeben oder entziehen…",
+    "rolesTitle": "An {{name}} vergebene Rollen",
+    "rolesHelp": "Was die Administration vergibt, zusätzlich zu dem, was der Identitätsanbieter gibt: Diese Rollen bleiben, egal was hier angekreuzt ist.",
+    "rolesHint": {
+      "host": "Erstellt Quizze und leitet sie.",
+      "admin": "Hat Zugang zur Administration."
+    },
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "seat": {
+      "title": "Leitungsplatz",
+      "held": "Belegt von {{name}} seit {{since}}",
+      "free": "Frei: Wer ihn als Nächstes übernimmt, leitet.",
+      "release": "Platz freigeben"
+    }
+  },
+  "health": {
+    "problems_one": "{{count}} Problem zu prüfen",
+    "problems_other": "{{count}} Probleme zu prüfen",
+    "allGood": "Alles in Ordnung",
+    "checked_one": "{{count}} Prüfung bestanden",
+    "checked_other": "{{count}} Prüfungen bestanden",
+    "again": "Erneut prüfen",
+    "migrations": {
+      "title": "Datenbankmigrationen",
+      "applied_one": "{{count}} angewendet",
+      "applied_other": "{{count}} angewendet",
+      "pending_one": "{{count}} ausstehend",
+      "pending_other": "{{count}} ausstehend",
+      "failed_one": "{{count}} fehlgeschlagen",
+      "failed_other": "{{count}} fehlgeschlagen",
+      "list": "Angewendete Migrationen, neueste zuerst"
+    },
+    "version": {
+      "title": "Version",
+      "current": "Diese Instanz: {{version}}",
+      "available": "{{version}} verfügbar seit {{date}}",
+      "upToDate": "Die neueste stabile Version",
+      "dev": "Ein Entwicklungs-Build: nicht verglichen",
+      "none": "Noch keine stabile Version veröffentlicht",
+      "off": "Update-Prüfung aus (UPDATE_CHECK)",
+      "failed": "GitHub hat nicht geantwortet: Die neueste Version ist unbekannt",
+      "checked": "Zuletzt geprüft {{when}}",
+      "details": "Update ansehen"
+    },
+    "level": {
+      "ok": "OK",
+      "warn": "Warnung",
+      "fail": "Problem"
+    }
+  },
+  "doctor": {
+    "group": {
+      "environment": "Umgebung",
+      "database": "Datenbank",
+      "redis": "Redis",
+      "media": "Medien",
+      "oidc": "Identitätsanbieter (OIDC)"
+    },
+    "issue": {
+      "unreadable": "{{key}}: nicht lesbar — der Standard wird verwendet.",
+      "out-of-bounds": "{{key}}: außerhalb des Zulässigen — vorerst unverändert verwendet."
+    },
+    "unset": "{{key}} ist nicht gesetzt.",
+    "postgres_ok": "PostgreSQL erreichbar",
+    "postgres_superuser": "QuizDock verbindet sich als PostgreSQL-Superuser. Auf dem Server gibt ./quizdock db:roles ihm eine eigene Rolle, nach einer vorherigen Sicherung.",
+    "migrations_applied_one": "{{count}} Migration angewendet",
+    "migrations_applied_other": "{{count}} Migrationen angewendet",
+    "migrations_pending_one": "{{count}} Migration ausstehend: Führen Sie den Migrationsschritt aus.",
+    "migrations_pending_other": "{{count}} Migrationen ausstehend: Führen Sie den Migrationsschritt aus.",
+    "migrations_failed_one": "{{count}} Migration fehlgeschlagen: siehe prisma migrate resolve.",
+    "migrations_failed_other": "{{count}} Migrationen fehlgeschlagen: siehe prisma migrate resolve.",
+    "postgres_failed": "PostgreSQL nicht erreichbar: {{error}}",
+    "redis_ok": "Redis erreichbar",
+    "redis_failed": "Redis nicht erreichbar: {{error}}",
+    "dir_ok": "{{dir}} ist beschreibbar",
+    "dir_failed": "{{dir}}: {{error}}",
+    "participants_open": "Teilnehmende: Konten oder offener Zugang, bei jedem Start gewählt",
+    "participants_accounts": "Teilnehmende: Konten erforderlich (ALLOW_ANONYMOUS_PARTICIPANTS nicht gesetzt)",
+    "provider_internal": "Anbieter vom Server aus unter {{url}} erreicht",
+    "discovery_ok": "Discovery OK — Token-Endpunkt {{url}}",
+    "discovery_failed": "Discovery {{url}} fehlgeschlagen ({{error}}): Setzen Sie OIDC_INTERNAL_URL, wenn der Issuer vom Server aus nicht erreichbar ist.",
+    "jwks_ok_one": "Signaturschlüssel erreichbar ({{count}} Schlüssel)",
+    "jwks_ok_other": "Signaturschlüssel erreichbar ({{count}} Schlüssel)",
+    "jwks_failed": "Signaturschlüssel {{url}}: {{error}}"
+  },
+  "demoReadOnly": "Öffentliche Demo: Die Administration wird so gezeigt, wie sie ist, und nichts lässt sich darüber ändern. Auf Ihrer eigenen Instanz gehört sie Ihnen.",
+  "branding": {
+    "intro": "Wer die Instanz ist: ihr Name, ihre Sprache, ihr Logo, wohin Rückmeldungen gehen. Jede Zeile ist eine Umgebungsvariable, die hier so geändert wird wie auf der Seite Einstellungen.",
+    "APP_NAME": "Name der Anwendung",
+    "APP_NAME_hint": "Angezeigt in der Kopfzeile, in den Tab-Titeln und in der installierten App.",
+    "APP_LANG": "Sprache der Oberfläche",
+    "APP_LANG_hint": "Für Besucher, deren Browser nichts Besseres angibt.",
+    "APP_LOGO_URL": "Logo",
+    "APP_LOGO_URL_hint": "Eine Datei logo.svg (oder .png…) im Ordner branding/ oder hier eine https-Adresse.",
+    "APP_FEEDBACK_URL": "Wohin Rückmeldungslinks führen",
+    "APP_FEEDBACK_URL_hint": "Die Links „Sagen Sie es uns“ auf der Startseite; none blendet sie aus.",
+    "logoDefault": "Das von QuizDock, bis die Instanz ein eigenes hat.",
+    "css": "Ihr eigenes CSS",
+    "cssHint": "Eine Datei branding/override.css wird zuletzt geladen, für alles, was diese Einstellungen nicht abdecken."
+  },
+  "look": {
+    "intro": "Wie die Anwendung aussieht: ihre Farben, Schrift, Ecken und die Hintergründe ihrer Schaufensterseiten. In der Datenbank gespeichert, nur hier geändert. Ein Quiz auf den Live-Bildschirmen behält das Aussehen seines eigenen Themes.",
+    "saving": "Wird gespeichert…",
+    "saved": "Gespeichert: Jeder Besucher sieht es ab der nächsten Seite, die er öffnet.",
+    "reset": "Zurück zum Aussehen von QuizDock",
+    "colours": "Farben",
+    "primary": "Hauptfarbe",
+    "primaryHint": "Schaltflächen, die gewählten Filter, der Fokusrahmen; ihr Text ist weiß. Dieselbe Farbe im hellen und im dunklen Modus.",
+    "accent": "Akzentfarbe",
+    "accentHint": "Links und die Markierung der aktuellen Seite. Standardmäßig die Hauptfarbe. Als Text auf der dunklen Seite wird sie aufgehellt, bis sie gut lesbar ist (7:1).",
+    "button": "Schaltfläche",
+    "link": "Ein Link",
+    "whiteText": "Weißer Text",
+    "onLight": "Auf der hellen Seite",
+    "onDark": "Auf der dunklen Seite",
+    "corners": "Ecken",
+    "radius": {
+      "square": "Eckig",
+      "standard": "Standard",
+      "rounded": "Abgerundet"
+    },
+    "cornerSample": {
+      "card": "Karte",
+      "button": "Schaltfläche",
+      "field": "Feld"
+    },
+    "showcase": "Schaufenster-Hintergründe",
+    "showcaseHint": "Nur Start-, Beitritts-, Anmelde-, Fehler- und Nicht-gefunden-Seiten; Arbeitsseiten bleiben schlicht.",
+    "mode": {
+      "none": "Keiner",
+      "logo": "Logo als Wasserzeichen",
+      "picture": "Bild"
+    },
+    "logoHint": "Die Form des Branding-Logos — das von QuizDock, bis die Instanz ein eigenes festlegt — in der Textfarbe, verblasst, zentriert.",
+    "size": "Größe",
+    "opacity": "Deckkraft",
+    "accessibility": "Barrierefreiheit",
+    "accessible": "Barrierefrei",
+    "accessibilityHint": "An den Farben gemessen, nie bloß erklärt; nur ein barrierefreies Aussehen sagt es.",
+    "checksMet": "{{met}} von {{total}} Prüfungen erfüllt",
+    "check": {
+      "button_text_contrast": "Der weiße Text auf den Hauptschaltflächen erreicht 4.5:1",
+      "primary_on_light": "Die Hauptfarbe hebt sich von der Seite ab (3:1)",
+      "primary_on_dark": "Die Hauptfarbe hebt sich auch von der dunklen Seite ab (3:1)",
+      "link_on_light": "Links in der Akzentfarbe sind auf der Seite lesbar (4.5:1)",
+      "link_on_dark": "Links sind auch auf der dunklen Seite lesbar (4.5:1)"
+    },
+    "preview": {
+      "label": "Vorschau",
+      "home": "Start",
+      "join": "Beitreten",
+      "login": "Anmelden",
+      "notFound": "Nicht gefunden",
+      "quizzes": "Meine Quizze",
+      "light": "Hell",
+      "dark": "Dunkel",
+      "plain": "Eine Arbeitsseite bleibt schlicht: kein Schaufenster-Hintergrund."
+    },
+    "colorMode": "Hell oder dunkel",
+    "colorModes": {
+      "auto": "Jedes Gerät wählt",
+      "light": "Immer hell",
+      "dark": "Immer dunkel"
+    },
+    "colorModeHint": "Jedes Gerät folgt seinem System oder dem, was die Person im Kontomenü wählt; ist der Modus erzwungen, bietet das Menü ihn nicht mehr an. Die Live-Bildschirme sind nicht betroffen: Sie tragen das Theme des Quiz."
+  }
+}

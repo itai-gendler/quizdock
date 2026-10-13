@@ -4,7 +4,10 @@
 /* Inside a surface that carries a background (question or slide, game/surface.tsx). */
 @custom-variant on-backdrop (&:where([data-scheme] *));
 
-:root {
+:root,
+/* Light inside a dark page: the live screens and their previews, a light sample. */
+.light {
+  color-scheme: light;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -17,22 +20,31 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  /* 4.5:1 on the grey surfaces (--muted) too, not only on white. */
+  --muted-foreground: oklch(0.5 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
+  /* Red words on its 15% tint (a "Refused" badge): 4.5:1 there too. */
+  --destructive-text: oklch(0.5 0.2 27);
   --border: oklch(0.922 0 0);
   /* A field's outline must reach 3:1 against the page (WCAG 1.4.11); --border stays for
      decorative separators. */
   --input: oklch(0.6 0 0);
   --ring: oklch(0.55 0.22 264);
+  /* Links and the mark of the current page: the instance's accent (lib/look.ts). */
+  --link: var(--link-light, oklch(0.55 0.22 264));
   --success: oklch(0.6 0.17 150);
   --success-foreground: oklch(0.985 0 0);
+  /* Green words (a "Ready" badge, a tick, "Saved"): 4.5:1 on white and on its 15% tint. */
+  --success-text: oklch(0.46 0.14 150);
+  /* The main action's green (Present, Start, Next): white text at 4.5:1, every mode. */
+  --main-action: oklch(0.5 0.15 150);
   /* Amber: the second half of a question's time, a double-points badge, the rating
      stars; `--warning-text` for words in it on a light ground. */
   --warning: oklch(76.9% 0.188 70.08);
-  --warning-text: oklch(55.5% 0.163 48.998);
+  --warning-text: oklch(53% 0.163 48.998);
   /* An answer's colour, as its author picked it: its identity on every screen. */
   --answer-red: oklch(57.7% 0.245 27.325);
   --answer-blue: oklch(54.6% 0.245 262.881);
@@ -43,6 +55,15 @@
   --answer-pink: oklch(59.2% 0.249 0.584);
   --answer-teal: oklch(60% 0.118 184.704);
   --answer-none: oklch(44.6% 0.043 257.281);
+  /* The text laid on each answer colour: white here, a quiz theme picks it (game/theme.tsx). */
+  --answer-red-foreground: oklch(1 0 0);
+  --answer-blue-foreground: oklch(1 0 0);
+  --answer-yellow-foreground: oklch(1 0 0);
+  --answer-green-foreground: oklch(1 0 0);
+  --answer-purple-foreground: oklch(1 0 0);
+  --answer-orange-foreground: oklch(1 0 0);
+  --answer-pink-foreground: oklch(1 0 0);
+  --answer-teal-foreground: oklch(1 0 0);
   /* A wrong answer at the reveal: low contrast, never see-through (UI system §1.4). */
   --answer-off: oklch(0.93 0 0);
   --answer-off-fill: oklch(0.85 0 0);
@@ -54,6 +75,9 @@
 }
 
 .dark {
+  color-scheme: dark;
+  /* The accent lightened until it reads at 7:1 (lib/look.ts). */
+  --link: var(--link-dark, oklch(0.72 0.15 260));
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -70,11 +94,13 @@
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.985 0 0);
+  --destructive-text: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 18%);
   --ring: oklch(0.7 0.18 264);
   --success: oklch(0.7 0.17 150);
   --success-foreground: oklch(0.145 0 0);
+  --success-text: oklch(0.75 0.15 150);
   /* Amber words on a dark ground: the light one would sink into it. */
   --warning-text: oklch(0.82 0.15 75);
 }
@@ -101,6 +127,8 @@
   --accent-foreground: oklch(0.985 0 0);
   --border: oklch(1 0 0 / 25%);
   --input: oklch(1 0 0 / 45%);
+  --success-text: oklch(0.75 0.15 150);
+  --destructive-text: oklch(0.75 0.15 25);
   --qd-halo: 0 0 2px rgb(0 0 0 / 0.95), 0 0 8px rgb(0 0 0 / 0.9), 0 2px 2px rgb(0 0 0 / 0.9);
 }
 [data-scheme='light'] {
@@ -117,6 +145,8 @@
   --accent-foreground: oklch(0.205 0 0);
   --border: oklch(0 0 0 / 20%);
   --input: oklch(0 0 0 / 40%);
+  --success-text: oklch(0.46 0.14 150);
+  --destructive-text: oklch(0.5 0.2 27);
   --qd-halo:
     0 0 2px rgb(255 255 255 / 0.95), 0 0 8px rgb(255 255 255 / 0.9),
     0 2px 2px rgb(255 255 255 / 0.9);
@@ -139,11 +169,15 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-text: var(--destructive-text);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
+  --color-success-text: var(--success-text);
+  --color-main-action: var(--main-action);
+  --color-link: var(--link);
   --color-warning: var(--warning);
   --color-warning-text: var(--warning-text);
   --color-answer-red: var(--answer-red);
@@ -155,6 +189,14 @@
   --color-answer-pink: var(--answer-pink);
   --color-answer-teal: var(--answer-teal);
   --color-answer-none: var(--answer-none);
+  --color-answer-red-foreground: var(--answer-red-foreground);
+  --color-answer-blue-foreground: var(--answer-blue-foreground);
+  --color-answer-yellow-foreground: var(--answer-yellow-foreground);
+  --color-answer-green-foreground: var(--answer-green-foreground);
+  --color-answer-purple-foreground: var(--answer-purple-foreground);
+  --color-answer-orange-foreground: var(--answer-orange-foreground);
+  --color-answer-pink-foreground: var(--answer-pink-foreground);
+  --color-answer-teal-foreground: var(--answer-teal-foreground);
   --color-answer-off-text: var(--answer-off-text);
   --color-podium-1: var(--podium-1);
   --color-podium-2: var(--podium-2);

@@ -25,6 +25,7 @@ import type {
   SlideTextAlign,
   SlideTextSize,
   SlideTextTone,
+  BackgroundStyle,
 } from '@quiz-dock/contracts';
 import {
   SLIDE_VARIABLES,
@@ -78,6 +79,8 @@ import { getQuizzesControllerGetQueryKey } from '../api/generated/quizzes/quizze
 import { useSlidesControllerAdd, useSlidesControllerUpdate } from '../api/generated/slides/slides';
 import { columnsTemplate } from '../game/live-components';
 import { SlideStage } from '../game/slide-stage';
+import { LiveTheme } from '../game/theme';
+import { useQuizTheme } from '@/lib/quiz-theme';
 import { BackgroundField } from './background-field';
 import { MediaUpload } from './media-upload';
 import { SlideMediaField, type SlideMediaValue } from './slide-media-field';
@@ -91,6 +94,7 @@ interface FormValues extends SlideMediaValue {
   gradient: SlideGradient | null;
   textTone: SlideTextTone;
   textOutline: boolean;
+  backgroundStyle: BackgroundStyle | null;
   displayDelayS: number | null;
 }
 
@@ -112,6 +116,7 @@ function initialValues(s?: QuizDetailDtoSlidesItem): FormValues {
     audioTarget: (s?.audioTarget as AudioTarget | null | undefined) ?? null,
     textTone: (s?.textTone as SlideTextTone | undefined) ?? 'light',
     textOutline: s?.textOutline ?? true,
+    backgroundStyle: (s?.backgroundStyle as BackgroundStyle | null | undefined) ?? null,
     displayDelayS: s?.displayDelayS ?? null,
   };
 }
@@ -184,6 +189,8 @@ export function SlideForm({
     const timer = window.setTimeout(() => setUndo(null), UNDO_MS);
     return () => window.clearTimeout(timer);
   }, [undo]);
+  // The preview in the quiz's theme, as the room will see it.
+  const quizTheme = useQuizTheme();
   const [showStage, setShowStage] = useState(() => {
     try {
       return localStorage.getItem('slide.preview') !== 'hidden';
@@ -238,6 +245,7 @@ export function SlideForm({
     audioTarget: values.audioTarget,
     textTone: values.textTone,
     textOutline: values.textOutline,
+    backgroundStyle: values.backgroundStyle,
     displayDelayS: values.displayDelayS,
   });
 
@@ -391,7 +399,11 @@ export function SlideForm({
               {showStage ? t('slideForm.hidePreview') : t('slideForm.showPreview')}
             </Button>
           </div>
-          {showStage ? <SlideStage className="rounded-xl border" slide={stage} /> : null}
+          {showStage ? (
+            <LiveTheme theme={quizTheme}>
+              <SlideStage className="rounded-xl border" slide={stage} />
+            </LiveTheme>
+          ) : null}
         </div>
 
         <fieldset id="qf-blocks" className="flex flex-col gap-3">
@@ -456,8 +468,9 @@ export function SlideForm({
               gradient: values.gradient,
               textTone: values.textTone,
               textOutline: values.textOutline,
+              style: values.backgroundStyle,
             }}
-            onChange={(b) => patch(b)}
+            onChange={({ style, ...b }) => patch({ ...b, backgroundStyle: style })}
           />
           <FieldMessage issues={[...issuesAt('gradient'), ...issuesAt('mediaId')]} />
         </div>

@@ -19,6 +19,21 @@ export const COLOR_BG: Record<string, string> = {
   teal: 'bg-answer-teal',
 };
 
+/**
+ * The text laid on an answer's colour: white on today's, the theme's pick on a quiz
+ * theme's (docs/themes.md).
+ */
+export const COLOR_FG: Record<string, string> = {
+  red: 'text-answer-red-foreground',
+  blue: 'text-answer-blue-foreground',
+  yellow: 'text-answer-yellow-foreground',
+  green: 'text-answer-green-foreground',
+  purple: 'text-answer-purple-foreground',
+  orange: 'text-answer-orange-foreground',
+  pink: 'text-answer-pink-foreground',
+  teal: 'text-answer-teal-foreground',
+};
+
 /** Repli quand l'option n'a pas de couleur connue. */
 export const OPTION_BG_FALLBACK = 'bg-answer-none';
 

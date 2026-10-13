@@ -1,4 +1,5 @@
 import { BookOpen, Star } from 'lucide-react';
+import { ShowcaseBackdrop } from '@/components/showcase-backdrop';
 import { useTranslation } from 'react-i18next';
 import { APP_NAME, APP_VERSION, appConfig, getDemo, isStandalone } from '../config';
 import { docsLink, feedbackLinks, starLink } from '@/lib/feedback';
@@ -16,6 +17,7 @@ export function LandingPage() {
 
   return (
     <section className="qd-home flex flex-col items-center gap-6 py-8 text-center">
+      <ShowcaseBackdrop />
       <PageTitle>{t('landing.title')}</PageTitle>
       <SetupInvite />
       <Card className="content-sm">
@@ -28,13 +30,13 @@ export function LandingPage() {
       </Card>
       {/* A host lands here too: their way on, or the way in for one who is not signed in. */}
       {isHost ? (
-        <Link to="/quizzes" className="text-primary text-sm font-medium">
+        <Link to="/quizzes" className="text-link text-sm font-medium">
           {t('landing.continueToQuizzes')} →
         </Link>
       ) : (
         <p className="text-muted-foreground text-sm">
           {t('landing.hosting')}{' '}
-          <Link to="/login" className="text-foreground underline">
+          <Link to="/login" className="text-link underline">
             {t('landing.signIn')}
           </Link>
         </p>
@@ -80,7 +82,7 @@ function Feedback() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-foreground underline underline-offset-2"
+              className="text-link underline underline-offset-2"
             >
               {single ? t('landing.feedback.other') : t(`landing.feedback.${link.kind}`)}
             </a>
@@ -94,7 +96,7 @@ function Feedback() {
             href={star}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-foreground inline-flex items-center gap-1 underline underline-offset-2"
+            className="text-link inline-flex items-center gap-1 underline underline-offset-2"
           >
             <Star aria-hidden className="size-3" />
             {t('landing.feedback.starLink')}
@@ -106,7 +108,7 @@ function Feedback() {
           href={docs}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-foreground inline-flex items-center gap-1 underline underline-offset-2"
+          className="text-link inline-flex items-center gap-1 underline underline-offset-2"
         >
           <BookOpen aria-hidden className="size-3" />
           {t('landing.feedback.docs')}

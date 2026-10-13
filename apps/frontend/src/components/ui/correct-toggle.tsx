@@ -32,7 +32,7 @@ export function CorrectToggle({
           : 'border-input text-muted-foreground hover:text-foreground',
       )}
     >
-      <Icon className={cn('size-3.5', checked && 'text-success')} aria-hidden />
+      <Icon className={cn('size-3.5', checked && 'text-success-text')} aria-hidden />
       {label}
     </button>
   );

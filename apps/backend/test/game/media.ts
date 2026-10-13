@@ -1,3 +1,4 @@
+import { BUILTIN_THEME_VALUES } from '@quiz-dock/contracts';
 import type { INestApplication } from '@nestjs/common';
 import type { Socket } from 'socket.io-client';
 import { MediaService } from '../../src/media/media.service';
@@ -25,7 +26,7 @@ export function mediaTests(ctx: GameContext): void {
   it('tells every device on attach whether the quiz has sound, the phones too', async () => {
     const host = connect({ localUser: 'Animateur' });
     const { pin } = await host.emitWithAck('host:create', { quizId });
-    const screen = connect();
+    const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
     const media = new Promise((resolve) => screen.once('game:media', resolve));
     await screen.emitWithAck('spectator:join', { pin });
     expect(await media).toEqual({
@@ -35,6 +36,7 @@ export function mediaTests(ctx: GameContext): void {
       audioTarget: 'projection_remote',
       language: expect.any(String), // the quiz's (#209)
       roomLanguage: '',
+      theme: BUILTIN_THEME_VALUES.classic, // none picked: the instance's default (THEMING §2.4)
     }); // the seeded quiz is silent
     // A phone too: the room's next quiz may play sound where this one does not (#89).
     const player = connect();
@@ -42,6 +44,41 @@ export function mediaTests(ctx: GameContext): void {
     await player.emitWithAck('player:join', { pin, nickname: 'Mia' });
     expect(await told).toMatchObject({ hasSound: false });
     host.emit('host:end', { pin });
+  }, 15_000);
+
+  it('shows the quiz in its theme, frozen when the game opens (THEMING §2.3)', async () => {
+    const theme = await prisma.theme.create({
+      data: {
+        ownerId: hostUserId,
+        name: 'Live test',
+        parent: 'night',
+        overrides: { accent: '#ff6a00' },
+        accessibility: { status: 'compliant', checks: [] },
+      },
+    });
+    await prisma.quiz.update({ where: { id: quizId }, data: { themeId: theme.id } });
+    try {
+      const host = connect({ localUser: 'Animateur' });
+      const { pin } = await host.emitWithAck('host:create', { quizId });
+      // Edited once the game is open: the room keeps what it opened with.
+      await prisma.theme.update({
+        where: { id: theme.id },
+        data: { overrides: { accent: '#000000' } },
+      });
+      const player = connect();
+      const told = new Promise<{ theme?: { accent: string; background: unknown } }>((resolve) =>
+        player.once('game:media', resolve),
+      );
+      await player.emitWithAck('player:join', { pin, nickname: 'Theo' });
+      expect((await told).theme).toMatchObject({
+        accent: '#ff6a00',
+        background: BUILTIN_THEME_VALUES.night.background,
+      });
+      host.emit('host:end', { pin });
+    } finally {
+      await prisma.quiz.update({ where: { id: quizId }, data: { themeId: null } });
+      await prisma.theme.delete({ where: { id: theme.id } });
+    }
   }, 15_000);
 
   it('the host steers the sound on every device: an anchor, checked, kept for late screens', async () => {
@@ -79,7 +116,7 @@ export function mediaTests(ctx: GameContext): void {
     try {
       const host = connect({ localUser: 'Animateur' });
       const { pin } = await host.emitWithAck('host:create', { quizId: quiz.id });
-      const screen = connect();
+      const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
       await screen.emitWithAck('spectator:join', { pin });
       const player = connect();
       await player.emitWithAck('player:join', { pin, nickname: 'Ada' });
@@ -129,7 +166,7 @@ export function mediaTests(ctx: GameContext): void {
       expect(again.t).toBeLessThan(0.8);
 
       // A screen that opens now lands where the host put the sound, not on the common start.
-      const late = connect();
+      const late = connect({ localUser: 'Animateur' }); // the host's own projection window
       const replayed = nextEvent<{ t: number; playing: boolean }>(late, 'media:control');
       await late.emitWithAck('spectator:join', { pin });
       expect(await replayed).toMatchObject({ questionIndex: 0, playing: true });
@@ -176,7 +213,7 @@ export function mediaTests(ctx: GameContext): void {
     try {
       const host = connect({ localUser: 'Animateur' });
       const { pin } = await host.emitWithAck('host:create', { quizId: quiz.id });
-      const screen = connect();
+      const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
       await screen.emitWithAck('spectator:join', { pin });
       const q = new Promise<{ media?: { audio?: { size?: string } } }>((resolve) =>
         screen.once('question:start', resolve),
@@ -254,7 +291,7 @@ export function mediaTests(ctx: GameContext): void {
     try {
       const host = connect({ localUser: 'Animateur' });
       const { pin } = await host.emitWithAck('host:create', { quizId: credited.id });
-      const screen = connect();
+      const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
       await screen.emitWithAck('spectator:join', { pin });
       const started = new Promise<void>((resolve) =>
         screen.once('question:start', () => resolve()),
@@ -314,7 +351,7 @@ export function mediaTests(ctx: GameContext): void {
     try {
       const host = connect({ localUser: 'Animateur' });
       const { pin } = await host.emitWithAck('host:create', { quizId: twoQuestions.id });
-      const screen = connect();
+      const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
       await screen.emitWithAck('spectator:join', { pin });
       const player = connect();
       await player.emitWithAck('player:join', { pin, nickname: 'Ada' });
@@ -478,7 +515,7 @@ export function mediaTests(ctx: GameContext): void {
     try {
       const host = connect({ localUser: 'Animateur' });
       const { pin } = await host.emitWithAck('host:create', { quizId: withSound.id });
-      const screen = connect();
+      const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
       const attached = new Promise<{ audioTarget: string }>((resolve) =>
         screen.once('game:media', resolve),
       );
@@ -569,11 +606,14 @@ export function mediaTests(ctx: GameContext): void {
         return last as unknown as Readiness;
       };
 
-      const screen = connect();
+      const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
       await screen.emitWithAck('spectator:join', { pin });
       // A participant's copy of the projection (#104) is never waited for.
       const copy = connect();
       await copy.emitWithAck('spectator:join', { pin, follow: true });
+      // Nor is a projection window opened with the PIN alone: anyone may hold the PIN.
+      const unpaired = connect();
+      await unpaired.emitWithAck('spectator:join', { pin });
       const room = connect();
       await room.emitWithAck('player:join', { pin, nickname: 'Ada' });
       const remote = connect();
@@ -631,7 +671,7 @@ export function mediaTests(ctx: GameContext): void {
   it('relays the projection’s position in the sound to the room, and nobody else’s', async () => {
     const host = connect({ localUser: 'Animateur' });
     const { pin } = await host.emitWithAck('host:create', { quizId });
-    const screen = connect();
+    const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
     await screen.emitWithAck('spectator:join', { pin });
     const player = connect();
     await player.emitWithAck('player:join', { pin, nickname: 'Ada' });
@@ -644,10 +684,56 @@ export function mediaTests(ctx: GameContext): void {
     const copy = connect();
     await copy.emitWithAck('spectator:join', { pin, follow: true });
     copy.emit('media:position', { pin, questionIndex: 0, t: 7, playing: true }); // ignored
+    // Nor does a projection window opened with the PIN alone, or with a made-up token.
+    const unpaired = connect();
+    await unpaired.emitWithAck('spectator:join', { pin, screen: 'x'.repeat(22) });
+    unpaired.emit('media:position', { pin, questionIndex: 0, t: 5, playing: false }); // ignored
     screen.emit('media:position', { pin, questionIndex: 0, t: 1.5, playing: true });
     expect(await atPlayer).toEqual({ questionIndex: 0, t: 1.5, playing: true });
     await settle();
     expect(heard).toEqual([{ questionIndex: 0, t: 1.5, playing: true }]);
+    host.emit('host:end', { pin });
+  }, 15_000);
+
+  it('makes a screen on another computer the projection once the host types the code it shows', async () => {
+    const host = connect({ localUser: 'Animateur' });
+    const { pin } = await host.emitWithAck('host:create', { quizId });
+    const player = connect();
+    await player.emitWithAck('player:join', { pin, nickname: 'Ada' });
+    const heard: unknown[] = [];
+    player.on('media:position', (p) => heard.push(p));
+
+    const screen = connect();
+    const { ok, pairingCode } = await screen.emitWithAck('spectator:join', { pin });
+    expect(ok).toBe(true);
+    expect(pairingCode).toMatch(/^\d{4}$/);
+    // A participant's copy shows no code: it is never meant as the projection.
+    const copy = connect();
+    expect(await copy.emitWithAck('spectator:join', { pin, follow: true })).toEqual({ ok: true });
+    screen.emit('media:position', { pin, questionIndex: 0, t: 3, playing: true }); // not yet
+    await settle();
+    expect(heard).toEqual([]);
+
+    const wrong = pairingCode === '0000' ? '0001' : '0000';
+    expect(await host.emitWithAck('host:pair-screen', { pin, code: wrong })).toEqual({ ok: false });
+    const paired = nextEvent<{ token: string }>(screen, 'screen:paired');
+    expect(await host.emitWithAck('host:pair-screen', { pin, code: pairingCode })).toEqual({
+      ok: true,
+    });
+    const { token } = await paired;
+    expect(token).toMatch(/^[\w-]{22}$/);
+    screen.emit('media:position', { pin, questionIndex: 0, t: 2, playing: true });
+    await settle();
+    expect(heard).toEqual([{ questionIndex: 0, t: 2, playing: true }]);
+    // The code is spent; the token keeps the screen the projection when it reconnects.
+    expect(await host.emitWithAck('host:pair-screen', { pin, code: pairingCode })).toEqual({
+      ok: false,
+    });
+    const again = connect();
+    expect(await again.emitWithAck('spectator:join', { pin, screen: token })).toEqual({ ok: true });
+    again.emit('media:position', { pin, questionIndex: 0, t: 4, playing: true });
+    await settle();
+    expect(heard).toHaveLength(2);
     host.emit('host:end', { pin });
   }, 15_000);
 
@@ -687,7 +773,7 @@ export function mediaTests(ctx: GameContext): void {
     const game = async () => {
       const host = connect({ localUser: 'Animateur' });
       const { pin } = await host.emitWithAck('host:create', { quizId: withSound.id });
-      const screen = connect();
+      const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
       await screen.emitWithAck('spectator:join', { pin });
       const states: string[] = [];
       host.on('game:state', (p: { state: string }) => states.push(p.state));

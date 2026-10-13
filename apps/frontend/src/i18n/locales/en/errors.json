@@ -125,7 +125,7 @@
       "not_allowed": "This type of question has no answers to pick from.",
       "one_correct": "Tick the right answer.",
       "some_correct": "Tick at least one right answer.",
-      "too_few": "Add at least 2 answers."
+      "not_enough": "Add at least 2 answers."
     },
     "ordering": {
       "positions": "Each answer needs its own place in the right order."
@@ -215,5 +215,27 @@
   },
   "request": {
     "too_large": "Too large for the server: it refused the request (its size limit)."
+  },
+  "theme": {
+    "not_found": "Theme not found.",
+    "not_owner": "Only its owner or an administrator can change this theme.",
+    "in_use": "This theme is still used by quizzes ({{count}}): give them another theme first.",
+    "is_default": "This is the instance’s default theme: choose another default first.",
+    "invalid_media": "A file of this theme is missing or is not of the kind its place takes.",
+    "ref_one_of": "Pick a shipped theme or a theme of the library, not both.",
+    "icon_invalid": "This file is not an SVG icon that can be read.",
+    "icon_not_square": "An icon must be square (its viewBox as wide as it is tall).",
+    "icon_empty": "This icon draws no shape.",
+    "icon_too_large": "Icon too large (at most {{maxKb}} KB).",
+    "font_invalid": "This file is not a complete WOFF2 font.",
+    "font_too_large": "Font too large (at most {{maxMb}} MB).",
+    "unknown": "This instance does not know the bundle's theme: the quiz takes the default theme.",
+    "fallback": "A file of the bundle's theme could not be used: the quiz takes the theme it comes from.",
+    "unknown_icon": "This icon is not in the icon bank.",
+    "unknown_picture": "This picture is not one shipped with QuizDock."
+  },
+  "background": {
+    "image_and_gradient": "A background is a picture or a gradient, not both.",
+    "mode_required": "Choose how the picture is laid out."
   }
 }

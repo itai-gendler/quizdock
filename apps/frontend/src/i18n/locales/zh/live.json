@@ -16,6 +16,12 @@
     "shareTitle": "加入 {{appName}} 房间",
     "screenButton": "投影窗口",
     "screenButtonTooltip": "打开用于投影的大屏幕（观众视图）",
+    "screenElsewhere": "从另一台电脑投影",
+    "screenElsewhereHint": "在连接投影仪的电脑上打开此地址或扫描此二维码，然后在此输入该屏幕显示的代码。",
+    "pairCodeLabel": "该屏幕显示的代码",
+    "pairButton": "设为投影",
+    "paired": "该屏幕现在是房间的投影。",
+    "pairFailed": "此房间没有屏幕显示该代码。",
     "captureLabel": "记录所有回答",
     "captureHint": "ⓘ 开始时将通知玩家。保留每位玩家的回答详情以便个人追踪。",
     "trackingLabel": "个人追踪",
@@ -195,7 +201,8 @@
       "roomMuted": "房间已静音",
       "media": "媒体",
       "mediaLevel": "媒体",
-      "mediaWhen": "测验自身的声音：题目、幻灯片的声音以及视频。仅作用于投影：远程参与者仍能听到题目。"
+      "mediaWhen": "测验自身的声音：题目、幻灯片的声音以及视频。仅作用于投影：远程参与者仍能听到题目。",
+      "fromTheme": "测验主题的声音"
     },
     "slideVideoMuted": "幻灯片的视频静音播放。",
     "phase": {
@@ -266,6 +273,8 @@
   },
   "screen": {
     "sessionUnavailable": "房间不可用。",
+    "pairingCode": "投影代码",
+    "pairingHint": "主持人在控制台中输入此代码（投影窗口旁的 ⋮），即可将此屏幕设为房间的投影。",
     "qrLabel": "加入用二维码",
     "exitFullscreen": "退出全屏",
     "fullscreen": "全屏",

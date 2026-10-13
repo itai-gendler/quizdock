@@ -1,6 +1,6 @@
 # QuizDock — Multi-quiz room (the room brief)
 
-> The plan for the multi-quiz room ([#89](https://github.com/quizdock/quiz-dock/issues/89)): one room, a series of
+> The plan for the multi-quiz room ([#89](https://github.com/quizdock/quizdock/issues/89)): one room, a series of
 > quizzes, players join once. The model, the decisions taken, how the live state splits between the room and each
 > game, and the ordered pull requests that deliver it.
 
@@ -149,9 +149,9 @@ affected).
 
 ## 7. What comes after
 
-- [#104](https://github.com/quizdock/quiz-dock/issues/104) — the shared projection and "Ready!", grafted on the room
+- [#104](https://github.com/quizdock/quizdock/issues/104) — the shared projection and "Ready!", grafted on the room
   lobby.
-- [#93](https://github.com/quizdock/quiz-dock/issues/93) — game sounds, as room settings.
+- [#93](https://github.com/quizdock/quizdock/issues/93) — game sounds, as room settings.
 - **Programme** (later, SPECIFICATIONS-ROADMAP §7): the room is the live, improvised series; a Programme prepares it.
   A named, saved, replayable list of quizzes with its settings; each run of it a durable record with its results
   (a table then makes sense, unlike §5), archiving decided once for the run, runs compared with one another.

@@ -1,0 +1,113 @@
+{
+  "status": {
+    "ended": "समाप्त",
+    "interrupted": "बीच में रुका",
+    "archived": "संग्रहीत",
+    "lobby": "लॉबी",
+    "in_progress": "जारी"
+  },
+  "duration": {
+    "minutesSeconds": "{{minutes}} मिनट {{seconds}} से.",
+    "seconds": "{{seconds}} से."
+  },
+  "list": {
+    "title": "सत्रों का इतिहास",
+    "backToEditor": "एडिटर पर वापस जाएँ",
+    "empty": "इस क्विज़ का कोई संग्रहीत सत्र नहीं है। सत्र के अंत में “इस क्विज़ के नतीजे संग्रहीत करें” पर टिक करें, ताकि वह यहाँ मिले।",
+    "capture": "रिकॉर्ड",
+    "inRoom_one": "रूम · {{count}} क्विज़",
+    "inRoom_other": "रूम · {{count}} क्विज़",
+    "pin": "PIN {{pin}}",
+    "thDate": "तारीख",
+    "thStatus": "स्थिति",
+    "thPlayers": "प्रतिभागी",
+    "thSuccess": "सफलता",
+    "presentIt": "यह क्विज़ प्रस्तुत करें"
+  },
+  "detail": {
+    "notFound": "सत्र नहीं मिला।",
+    "fallbackTitle": "सत्र",
+    "exportCsv": "एक्सपोर्ट करें (CSV)",
+    "history": "इतिहास",
+    "statParticipants": "प्रतिभागी",
+    "statSuccessRate": "कुल सफलता",
+    "statQuestions": "प्रश्न",
+    "questionResultsTitle": "प्रश्न के अनुसार नतीजे",
+    "thNumber": "#",
+    "thQuestion": "प्रश्न",
+    "thAnswers": "उत्तर",
+    "thSuccessRate": "सफलता",
+    "thAvgTime": "औसत समय",
+    "participantsTitle": "प्रतिभागी",
+    "noPersonalTracking": "इस सत्र का कोई व्यक्तिगत नतीजा रिकॉर्ड नहीं हुआ: व्यक्तिगत ट्रैकिंग बंद थी — सिर्फ़ समूह के कुल नतीजे रखे गए हैं।",
+    "thRank": "रैंक",
+    "thNickname": "निकनेम",
+    "thScore": "स्कोर",
+    "thCorrect": "सही",
+    "thStreak": "स्ट्रीक",
+    "csvGlobal": {
+      "rank": "रैंक",
+      "nickname": "निकनेम",
+      "score": "स्कोर",
+      "correct": "सही",
+      "answered": "उत्तर दिए",
+      "maxStreak": "सबसे लंबी स्ट्रीक",
+      "avgTime": "औसत समय (से.)",
+      "filenameFallback": "session"
+    },
+    "room": {
+      "intro_one": "यह सत्र एक रूम में खेला गया: {{count}} क्विज़ रखा गया है, एक के बाद एक, प्रतिभागी एक ही बार शामिल हुए।",
+      "intro_other": "यह सत्र एक रूम में खेला गया: {{count}} क्विज़ रखे गए हैं, एक के बाद एक, प्रतिभागी एक ही बार शामिल हुए।",
+      "thisSession": "यह सत्र",
+      "standingsTitle": "रूम की अंक तालिका",
+      "standingsNote": "रूम के संग्रहीत क्विज़ का कुल योग।",
+      "noPersonalTracking": "रूम की कोई अंक तालिका नहीं: इसके कम से कम एक सत्र में प्रतिभागियों को व्यक्तिगत रूप से ट्रैक नहीं किया गया।",
+      "thQuizzes": "क्विज़",
+      "exportCsv": "अंक तालिका एक्सपोर्ट करें (CSV)",
+      "csvFilename": "room",
+      "defaultName": "{{host}} का रूम"
+    },
+    "notPlayed": "नहीं खेला गया",
+    "statQuestionsPlayed_one": "{{total}} में से {{count}} प्रश्न खेला गया",
+    "statQuestionsPlayed_other": "{{total}} में से {{count}} प्रश्न खेले गए",
+    "statSuccessOf_one": "{{total}} में से {{count}} सही उत्तर",
+    "statSuccessOf_other": "{{total}} में से {{count}} सही उत्तर"
+  },
+  "player": {
+    "notFound": "प्रतिभागी नहीं मिला।",
+    "summary": "#{{rank}} · {{score}} अंक · {{correct}}/{{answered}} सही",
+    "exportCsv": "एक्सपोर्ट करें (CSV)",
+    "session": "सत्र",
+    "captureUnavailable": "उत्तरों का विवरण उपलब्ध नहीं है: इस सत्र के लिए पूरा रिकॉर्ड चालू नहीं था। सिर्फ़ कुल नतीजे रखे गए हैं।",
+    "answersTitle": "उत्तर",
+    "thNumber": "#",
+    "thQuestion": "प्रश्न",
+    "thAnswer": "उत्तर",
+    "thCorrect": "सही",
+    "thPoints": "अंक",
+    "thTime": "समय",
+    "correctAria": "सही",
+    "incorrectAria": "गलत",
+    "noAnswers": "कोई उत्तर रिकॉर्ड नहीं हुआ।",
+    "csvPlayer": {
+      "number": "#",
+      "question": "प्रश्न",
+      "answer": "उत्तर",
+      "correct": "सही",
+      "points": "अंक",
+      "time": "समय (से.)",
+      "yes": "हाँ",
+      "no": "नहीं",
+      "filenameLabel": "player"
+    }
+  },
+  "gatherings": {
+    "title": "सत्र",
+    "intro": "आपने जो खेला, रूम के हिसाब से: जिस रूम में कई क्विज़ खेले गए, वह एक पंक्ति है और उसकी अंक तालिका एक पेज; अकेले खेला गया क्विज़ अपनी रिपोर्ट तक ले जाता है।",
+    "none": "अभी तक कुछ नहीं खेला गया: कोई क्विज़ प्रस्तुत करें, उसके नतीजे यहाँ आएँगे।",
+    "thRoom": "रूम",
+    "thQuizzes": "क्विज़",
+    "alone": "अकेला क्विज़",
+    "back": "सत्र"
+  }
+}

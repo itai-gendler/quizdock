@@ -690,8 +690,8 @@ describe('QuestionForm — image choice', () => {
       scoring: 'partial',
       media: { visual: null, audio: null },
       options: [
-        { mediaId: CAT, alt: 'A cat', isCorrect: true, color: 'red', shape: 'triangle' },
-        { mediaId: DOG, alt: 'A dog', isCorrect: true, color: 'blue', shape: 'diamond' },
+        { mediaId: CAT, alt: 'A cat', isCorrect: true, color: 'green', shape: 'square' },
+        { mediaId: DOG, alt: 'A dog', isCorrect: true, color: 'red', shape: 'triangle' },
       ],
     });
     expect(payload.options[0].text).toBeUndefined();

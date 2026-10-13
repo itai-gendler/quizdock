@@ -89,6 +89,8 @@ services:
       - ./apps/frontend/index.html:/app/apps/frontend/index.html
       - ./packages/contracts/src:/app/packages/contracts/src
       # White-label : override logo + CSS à chaud (sans rebuild).
+      # Static files (fonts, the icon bank, the themes' pictures), the branding over them.
+      - ./apps/frontend/public:/app/apps/frontend/public:ro
       - ./branding:/app/apps/frontend/public/branding:ro
     ports:
       - '${VITE_PORT:-15173}:5173'

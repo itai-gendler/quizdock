@@ -1,0 +1,627 @@
+{
+  "loading": "Wczytywanie…",
+  "notFound": "Nie znaleziono quizu.",
+  "questionType": {
+    "single_choice": "Wybór (jedna odpowiedź)",
+    "multiple_choice": "Wybór (wiele odpowiedzi)",
+    "true_false": "Prawda / Fałsz",
+    "text_input": "Odpowiedź tekstowa",
+    "numeric": "Liczba",
+    "ordering": "Kolejność",
+    "poll": "Ankieta",
+    "image_choice": "Wybór obrazów"
+  },
+  "header": {
+    "history": "Historia",
+    "deleteQuiz": "Usuń quiz",
+    "preview": "Podgląd",
+    "export": "Eksportuj",
+    "exportError": "Nie udało się wyeksportować quizu.",
+    "more": "Więcej"
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "titleLabel": "Tytuł",
+    "descriptionLabel": "Opis",
+    "descriptionPlaceholder": "Opis (opcjonalnie)…",
+    "save": "Zapisz",
+    "soundLegend": "Dźwięk",
+    "soundSummary": "{{lufs}} LUFS · {{target}} · pauza {{tail}} s",
+    "mediaTailLabel": "Pauza po multimediach",
+    "mediaTailHelp": "Gdy dźwięk lub film pytania trwa dłużej niż jego czas, pytanie zostaje wydłużone do końca nagrania plus tę pauzę: nic nie jest ucinane w trakcie odtwarzania.",
+    "seconds": "s",
+    "loudnessLabel": "Wyrównanie głośności",
+    "loudnessHelp": "Poziom, do którego przy odtwarzaniu sprowadzany jest każdy dźwięk i film quizu, aby głośność była taka sama od pytania do pytania. Pliki nie są zmieniane.",
+    "loudness": {
+      "14": "Głośno (−14 LUFS, streaming)",
+      "16": "Zrównoważenie (−16 LUFS)",
+      "23": "Cicho (−23 LUFS, nadawanie)"
+    },
+    "audioTargetLabel": "Kto słyszy dźwięk",
+    "audioTargetHelp": "Które urządzenia odtwarzają dźwięki i filmy quizu. Uczestnicy na sali widzą projekcję: ich telefony milczą, chyba że wybrano „Każde urządzenie”, co daje echo, jeśli są w jednym pomieszczeniu. Pytanie może mieć inne ustawienie, a prowadzący może je zmienić na czas sesji.",
+    "audioTarget": {
+      "projection": "Tylko projekcja",
+      "projection_remote": "Projekcja i zdalni uczestnicy",
+      "everyone": "Każde urządzenie"
+    },
+    "sharingLegend": "Język i udostępnianie",
+    "sharingSummary_one": "{{license}} · {{count}} tag",
+    "sharingSummary_few": "{{license}} · {{count}} tagi",
+    "sharingSummary_many": "{{license}} · {{count}} tagów",
+    "sharingSummary_other": "{{license}} · {{count}} tagu",
+    "noLicense": "Brak licencji",
+    "languageLabel": "Język",
+    "languageHelp": "Język, w którym napisano quiz. Uczestnicy widzą go w szablonach, a katalog filtruje według niego.",
+    "licenseLabel": "Licencja",
+    "licenseHelp": "Warunki, na jakich inni mogą ponownie wykorzystać quiz. Wymagana, aby udostępnić go jako szablon. Musisz mieć prawa do jego treści i multimediów.",
+    "license": {
+      "cc0": "CC0 — bez warunków",
+      "ccBy": "CC BY 4.0 — uznanie autorstwa",
+      "ccBySa": "CC BY-SA 4.0 — uznanie autorstwa, na tych samych warunkach"
+    },
+    "tagsLabel": "Tagi",
+    "tagsPlaceholder": "Dodaj tag…",
+    "tagsHelp": "Do 5 słów kluczowych, aby znaleźć quiz wśród szablonów. Naciśnij Enter, aby dodać.",
+    "removeTag": "Usuń tag {{tag}}",
+    "saveError": "Nie udało się zapisać zmiany.",
+    "sharedLabel": "Udostępnij innym prowadzącym tej instancji",
+    "sharedHelp": "Widzą go wśród swoich quizów, tylko do odczytu, i mogą utworzyć z niego własną kopię. Bez zaznaczenia pozostaje tylko twój.",
+    "sharedOn": "Udostępniony",
+    "sharedOff": "Prywatny",
+    "saving": "Zapisywanie…",
+    "saved": "Zapisano"
+  },
+  "broadcast": {
+    "fullCaptureHelp": "Zachowuje szczegóły odpowiedzi każdego uczestnika (śledzenie indywidualne). Włącz przed prezentacją.",
+    "publish": "Opublikuj (gotowy)",
+    "presenting": "Uruchamianie…",
+    "present": "Prezentuj",
+    "backToDraft": "Przywróć do szkicu",
+    "archive": "Archiwizuj",
+    "restore": "Przywróć",
+    "fullCaptureNext": "Pełny zapis odpowiedzi przy następnym rozegraniu"
+  },
+  "feedback": {
+    "enableLabel": "Zezwól uczestnikom na opinie",
+    "enableHelp": "Na koniec quizu, przy każdym rozegraniu, pojawia się panel oceny.",
+    "title": "Opinie uczestników",
+    "empty": "Brak opinii.",
+    "starsAriaLabel": "{{value}} na 5",
+    "seeAll_one": "Zobacz opinię",
+    "seeAll_few": "Zobacz wszystkie {{count}} opinie",
+    "seeAll_many": "Zobacz wszystkie {{count}} opinii",
+    "seeAll_other": "Zobacz wszystkie {{count}} opinii",
+    "backToEditor": "Wróć do edytora",
+    "loadError": "Nie udało się wczytać opinii.",
+    "noneForFilter": "Brak opinii z tą oceną.",
+    "count_one": "{{count}} opinia",
+    "count_few": "{{count}} opinie",
+    "count_many": "{{count}} opinii",
+    "count_other": "{{count}} opinii"
+  },
+  "questions": {
+    "title": "Pytania ({{count}})",
+    "add": "Dodaj",
+    "moveUp": "Przenieś w górę",
+    "moveDown": "Przenieś w dół",
+    "deleteQuestion": "Usuń pytanie",
+    "dragHandle": "Przeciągnij, aby zmienić kolejność",
+    "itemsCount_one": "{{count}} element",
+    "itemsCount_few": "{{count}} elementy",
+    "itemsCount_many": "{{count}} elementów",
+    "itemsCount_other": "{{count}} elementu",
+    "formTitle": "Pytanie",
+    "empty": "Brak pytań. Dodaj pierwsze!",
+    "collapseList": "Zwiń listę",
+    "expandList": "Rozwiń listę",
+    "unfinished": "Niedokończone",
+    "itemActions": "Działania dla „{{label}}”"
+  },
+  "slides": {
+    "formTitle": "Slajd",
+    "add": "Dodaj slajd",
+    "kind": "Slajd",
+    "deleteSlide": "Usuń slajd",
+    "durationManual": "ręcznie"
+  },
+  "slideForm": {
+    "bodyPlaceholder": "Tekst do wyświetlenia…",
+    "contrastLegend": "Kontrast tekstu",
+    "tone": {
+      "light": "Jasny tekst",
+      "dark": "Ciemny tekst"
+    },
+    "outline": "Obrys (poświata, jak w napisach)",
+    "displayLegend": "Automatyczne przejście (tryb automatyczny)",
+    "displayDelayLabel": "Czas trwania (s)",
+    "display": {
+      "default": "Domyślny czas (5 s)",
+      "manual": "Ręcznie: prowadzący klika",
+      "custom": "Własny czas…"
+    },
+    "displayHint": "W trybie ręcznym prowadzący zawsze przechodzi dalej ręcznie.",
+    "invalidError": "Slajd potrzebuje tytułu, treści lub multimediów.",
+    "submitAdd": "Dodaj",
+    "submitUpdate": "Zapisz",
+    "blocksLegend": "Treść",
+    "block": {
+      "heading": "Nagłówek",
+      "subheading": "Podtytuł",
+      "text": "Tekst",
+      "image": "Obraz",
+      "columns2": "2 kolumny",
+      "columns3": "3 kolumny"
+    },
+    "dragBlock": "Przeciągnij, aby zmienić kolejność bloku",
+    "removeBlock": "Usuń blok",
+    "headingLevel": "Poziom",
+    "headingPlaceholder": "Nagłówek…",
+    "imageSize": "Rozmiar",
+    "imageAlign": "Wyrównanie",
+    "size": {
+      "small": "Mały",
+      "medium": "Średni",
+      "large": "Duży",
+      "full": "Pełna szerokość"
+    },
+    "align": {
+      "left": "Do lewej",
+      "center": "Do środka",
+      "right": "Do prawej"
+    },
+    "ratio": "Podział kolumn",
+    "textAlign": "Wyrównanie tekstu",
+    "previewLegend": "Podgląd",
+    "hidePreview": "Ukryj",
+    "showPreview": "Pokaż",
+    "textSize": "Rozmiar tekstu",
+    "sizeShort": {
+      "small": "S",
+      "medium": "M",
+      "large": "L"
+    },
+    "titleEdit": "Edytuj slajd",
+    "titleAdd": "Nowy slajd",
+    "mediaLegend": "Multimedia slajdu",
+    "videoCover": "Wypełnia slajd za jego treścią (przycięte do ekranu).",
+    "videoLoop": "Zapętl",
+    "videoLoopHint": "Odtwarzane, dopóki slajd jest widoczny. Wyłączone: odtwarzane raz i zatrzymuje się na ostatniej klatce — w trybie automatycznym slajd czeka na jego koniec.",
+    "videoSound": "Dźwięk",
+    "videoSoundHint": "Odtwarza dźwięk filmu. Wyłączone: wyciszony, a slajd może mieć własny dźwięk.",
+    "audioExcludesVideoSound": "Slajd ma już dźwięk: jeden dźwięk naraz. Usuń go, aby włączyć dźwięk filmu.",
+    "videoSoundExcludesAudio": "Film odtwarza własny dźwięk: bez dodatkowego dźwięku. Wycisz film, aby dodać dźwięk.",
+    "variablesLegend": "Zmienne",
+    "variablesHint": "Wpisz zmienną w nagłówku lub tekście: zostanie zastąpiona wszędzie, gdzie slajd jest wyświetlany. Zmienne quizu są wypełnione w podglądzie, zmienne pokoju — gdy quiz jest rozgrywany.",
+    "variables": {
+      "title": "Tytuł quizu",
+      "description": "Opis quizu",
+      "questions": "Liczba jego pytań",
+      "author": "Jego autor",
+      "tags": "Jego tagi",
+      "license": "Jego licencja",
+      "room": "Nazwa pokoju",
+      "host": "Imię prowadzącego",
+      "pin": "PIN pokoju",
+      "join": "Adres do dołączenia (host/join)",
+      "players": "Liczba połączonych uczestników",
+      "question": "Numer pytania następującego po slajdzie",
+      "total": "Liczba pytań w quizie",
+      "remaining": "Liczba pozostałych pytań, łącznie z następnym",
+      "date": "Dzisiejsza data",
+      "time": "Godzina"
+    },
+    "blockRemoved": "Usunięto blok.",
+    "undo": "Cofnij",
+    "emptySkipped": "Pusty — pomijany przy zapisie.",
+    "moveToDraft": {
+      "title": "Zapisać ten pusty slajd?",
+      "description": "Ten quiz jest opublikowany, więc można go zaprezentować w każdej chwili: slajd musi coś pokazywać. Przywróć quiz do szkicu, aby zapisać ten slajd w obecnej postaci, albo kontynuuj edycję."
+    }
+  },
+  "formSaved": "Zapisano",
+  "discardConfirm": {
+    "title": "Odrzucić zmiany?",
+    "description": "Niezapisane zmiany zostaną utracone.",
+    "confirmLabel": "Odrzuć",
+    "discardAndContinue": "Odrzuć i kontynuuj",
+    "saveAndContinue": "Zapisz i kontynuuj",
+    "saveAndClose": "Zapisz i zamknij"
+  },
+  "emptyPane": {
+    "emptyTitle": "Ten quiz jest pusty",
+    "emptyHint": "Zacznij od pytania albo od slajdu wprowadzającego.",
+    "selectTitle": "Nic nie zaznaczono",
+    "selectHint": "Wybierz element z listy, aby go edytować."
+  },
+  "deleteConfirm": {
+    "title": "Usunąć ten quiz?",
+    "description": "„{{title}}” i jego pytania zostaną trwale usunięte. Tej operacji nie można cofnąć.",
+    "confirmLabel": "Usuń"
+  },
+  "questionForm": {
+    "typeLabel": "Typ",
+    "promptLabel": "Treść pytania",
+    "promptPlaceholder": "Twoje pytanie…",
+    "playbackLegend": "Odtwarzanie",
+    "timingLegend": "Czas",
+    "pointsLegend": "Punkty",
+    "answerExplanationLabel": "Wyjaśnienie odpowiedzi (pokazywane z poprawną odpowiedzią)",
+    "answerExplanationPlaceholder": "Dlaczego to poprawna odpowiedź… (opcjonalnie)",
+    "timeLimitLabel": "Czas (s)",
+    "revealDelayLabel": "Wyświetlanie odpowiedzi (s)",
+    "revealDelayPlaceholder": "auto",
+    "revealDelayHint": "W trybie automatycznym: jak długo poprawna odpowiedź pozostaje na ekranie przed przejściem dalej. Puste = ustawienie instancji.",
+    "audioTargetLabel": "Kto słyszy ten dźwięk",
+    "audioTargetHint": "Które urządzenia odtwarzają dźwięk lub film tego pytania. „Każde urządzenie” obejmuje telefony na sali, co daje echo, jeśli są w jednym pomieszczeniu.",
+    "audioTargetDefault": "Ustawienie quizu w pokoju",
+    "waveformSizeLabel": "Rozmiar wykresu fali",
+    "waveformSizeHint": "Jak gruby jest wykres fali dźwiękowej na projekcji i na telefonach.",
+    "waveformPreview": "Podgląd wykresu fali",
+    "waveformHiddenNote": "Ukryty na projekcji i telefonach — dźwięk nadal gra, a twoja konsola nadal go pokazuje.",
+    "waveformSize": {
+      "S": "Mały",
+      "M": "Średni",
+      "L": "Duży",
+      "hidden": "Ukryty"
+    },
+    "pointsLabel": "Punkty",
+    "pointsMode": {
+      "standard": "Standardowe",
+      "double": "Podwójne",
+      "fixed": "Stałe (bez bonusu za szybkość)"
+    },
+    "optionsLegend": "Warianty odpowiedzi",
+    "optionAriaLabel": "wariant {{index}}",
+    "dragOption": "Przeciągnij, aby zmienić kolejność wariantu",
+    "optionPlaceholder": "Wariant {{index}}",
+    "orderAriaLabel": "Miejsce odpowiedzi {{index}} we właściwej kolejności",
+    "correct": "Poprawna",
+    "removeOption": "Usuń wariant {{index}}",
+    "addOption": "Dodaj wariant",
+    "acceptedAnswersLegend": "Akceptowane odpowiedzi",
+    "answerAriaLabel": "odpowiedź {{index}}",
+    "removeAnswer": "Usuń odpowiedź {{index}}",
+    "addAnswer": "Dodaj odpowiedź",
+    "numericValueLabel": "Wartość docelowa",
+    "numericToleranceLabel": "Tolerancja ±",
+    "submitUpdate": "Zapisz",
+    "submitAdd": "Dodaj",
+    "invalidError": "Nieprawidłowe pytanie.",
+    "scoringLabel": "Punktacja",
+    "scoring": {
+      "multiple_choice": {
+        "standard": "Wszystko albo nic",
+        "partial": "Punkty częściowe"
+      },
+      "ordering": {
+        "standard": "Wszystko albo nic",
+        "partial": "Punkty częściowe"
+      },
+      "text_input": {
+        "standard": "Dokładne dopasowanie",
+        "lenient": "Toleruj literówki"
+      },
+      "numeric": {
+        "standard": "W granicach tolerancji",
+        "closest": "Wygrywa najbliższa odpowiedź"
+      },
+      "image_choice": {
+        "standard": "Wszystko albo nic",
+        "partial": "Punkty częściowe"
+      }
+    },
+    "scoringHelp": {
+      "multiple_choice": {
+        "standard": "Wszystko albo nic: zaznaczone wszystkie poprawne odpowiedzi i żadnej błędnej.",
+        "partial": "Punkty częściowe: każde poprawne zaznaczenie daje swoją część, każde błędne anuluje jedno."
+      },
+      "ordering": {
+        "standard": "Wszystko albo nic: każdy element na swoim miejscu.",
+        "partial": "Punkty częściowe: odsetek elementów na właściwej pozycji."
+      },
+      "text_input": {
+        "standard": "Dokładne dopasowanie, bez względu na wielkość liter i znaki diakrytyczne.",
+        "lenient": "Toleruj literówki: jedna zmiana do 5 liter, dwie powyżej (po normalizacji wielkości liter i znaków diakrytycznych)."
+      },
+      "numeric": {
+        "standard": "Wynik w granicach tolerancji jest poprawny; punkty zależą od szybkości.",
+        "closest": "Wygrywa najbliższa odpowiedź: punktowana przy odsłonięciu — dokładna (w granicach tolerancji) = pełne punkty, potem 75 / 50 / 30 %, dalej 10 %; bez bonusu za szybkość."
+      },
+      "image_choice": {
+        "standard": "Wszystko albo nic: zaznaczone wszystkie poprawne obrazy i żadnego błędnego.",
+        "partial": "Punkty częściowe (kilka poprawnych obrazów): każde poprawne zaznaczenie daje swoją część, każde błędne anuluje jedno."
+      }
+    },
+    "removeOptionConfirm": {
+      "title": "Usunąć ten wariant?",
+      "description": "„{{label}}” zostanie usunięty z pytania.",
+      "confirmLabel": "Usuń"
+    },
+    "titleEdit": "Edytuj pytanie",
+    "titleAdd": "Nowe pytanie",
+    "stretchedTime": "Nagranie trwa {{media}} s: pytanie potrwa {{total}} s (koniec nagrania + pauza quizu {{tail}} s).",
+    "listenFirstLabel": "Uruchom licznik po zakończeniu nagrania",
+    "listenFirstHint": "Najpierw słuchaj, potem odpowiadaj: nikt nie może odpowiedzieć, gdy gra dźwięk lub film, a potem każdy ma pełny czas do namysłu.",
+    "listenFirstTime": "Nagranie trwa {{media}} s, potem zaczyna się {{time}} s na odpowiedź.",
+    "promptImageNotice": "Ten obraz w treści pytania lepiej sprawdzi się w multimediach pytania: wykadrowany na każdym ekranie, powiększalny na telefonach, wczytywany z wyprzedzeniem.",
+    "promptImageMove": "Przenieś do multimediów",
+    "imagesLegend": "Obrazy",
+    "imageCountLabel": "Ile",
+    "multiSelectLabel": "Kilka poprawnych odpowiedzi",
+    "multiSelectHint": "Uczestnicy zaznaczają każdy poprawny obraz, a potem wysyłają — punktowane jak wybór wielokrotny.",
+    "imageCropNote": "Każdy obraz jest przycinany, aby wypełnić swój kafelek, tak jak pokazuje go projekcja.",
+    "imageAdd": "Dodaj obraz",
+    "imageRequired": "Wybierz obraz dla tej odpowiedzi.",
+    "imageAltLabel": "Tekst alternatywny",
+    "imageAltAria": "Tekst alternatywny obrazu {{index}}",
+    "imageAltPlaceholder": "Co przedstawia obraz, dla osób, które go nie widzą",
+    "imageAltRequired": "Opisz obraz: to odpowiedź dla osób, które go nie widzą.",
+    "imageCountConfirm": {
+      "title": "Zachować tylko 2 obrazy?",
+      "description": "Dwie ostatnie odpowiedzi i ich obrazy zostaną usunięte.",
+      "confirmLabel": "Usuń"
+    },
+    "trueOption": "Prawda",
+    "falseOption": "Fałsz",
+    "clampedTime": "Ustawiono {{value}} s: pytanie trwa od {{min}} do {{max}} s.",
+    "clampedReveal": "Ustawiono {{value}} s: pauza trwa od {{min}} do {{max}} s.",
+    "addOptionMax": "Maks. {{max}} odpowiedzi",
+    "addAnswerMax": "Maks. {{max}} odpowiedzi",
+    "moveToDraft": {
+      "title": "Zapisać to niedokończone pytanie?",
+      "description": "Ten quiz jest opublikowany, więc można go zaprezentować w każdej chwili: przyjmuje tylko kompletne pytania. Przywróć go do szkicu, aby zapisać to pytanie w obecnej postaci, albo kontynuuj edycję.",
+      "confirmLabel": "Przywróć do szkicu i zapisz",
+      "cancelLabel": "Kontynuuj edycję"
+    },
+    "optionActions": "Działania dla wariantu {{index}}",
+    "removeOptionShort": "Usuń",
+    "ticksCleared": "Typ się zmienił: poprawne odpowiedzi zostały wyczyszczone. Zaznacz je ponownie według nowych zasad.",
+    "explanationWritten": "Napisane",
+    "explanationEmpty": "Puste",
+    "numericLegend": "Odpowiedź",
+    "decimalsAllowed": "Ułamki dziesiętne są dozwolone: 3,14, 0,5…",
+    "timingSummary": "{{time}} s",
+    "timingSummaryStretched": "{{time}} s ({{total}} s z nagraniem)",
+    "revealDelayAuto": "wyświetlanie odpowiedzi: auto",
+    "revealDelaySummary": "wyświetlanie odpowiedzi: {{seconds}} s",
+    "place_ordinal_one": "{{count}}.",
+    "place_ordinal_two": "{{count}}.",
+    "place_ordinal_few": "{{count}}.",
+    "place_ordinal_other": "{{count}}.",
+    "mediaPositionLabel": "Obraz na dużym ekranie",
+    "mediaPositionHint": "Gdzie obraz znajduje się względem tekstu; odpowiedzi pozostają poniżej.",
+    "mediaPosition": {
+      "bottom": "Pod tekstem",
+      "top": "Nad tekstem",
+      "left": "Na lewo od tekstu",
+      "right": "Na prawo od tekstu"
+    },
+    "revealDelayAutoValue": "auto ({{seconds}} s)",
+    "revealDelaySummaryAuto": "wyświetlanie odpowiedzi: {{seconds}} s (auto)"
+  },
+  "preview": {
+    "view": "Podgląd (widok uczestnika)",
+    "exitFullscreen": "Zamknij pełny ekran",
+    "fullscreen": "Pełny ekran",
+    "noQuestions": "Ten quiz nie ma jeszcze pytań.",
+    "previous": "Poprzednie",
+    "next": "Następne",
+    "questionPosition": "{{index}} / {{total}}",
+    "correctAnswer": "poprawna odpowiedź",
+    "optionFallback": "Wariant {{index}}",
+    "acceptedAnswers": "Akceptowane odpowiedzi: {{answers}}",
+    "numericTarget": "Cel: {{value}} (± {{tolerance}})",
+    "credits": "Autorstwo",
+    "video": "Film pytania",
+    "sound": "Dźwięk · {{seconds}} s",
+    "steps": "Kroki",
+    "backToEditor": "Wróć do edytora",
+    "device": "Urządzenie",
+    "projection": "Projekcja",
+    "phone": "Telefon",
+    "showAnswer": "Pokaż odpowiedź",
+    "title": "Podgląd",
+    "pin": "Przypnij",
+    "unpin": "Odepnij"
+  },
+  "media": {
+    "alt": "multimedia pytania",
+    "remove": "Usuń multimedia",
+    "uploading": "Przesyłanie…",
+    "add": "Dodaj obraz",
+    "fileInputLabel": "Plik multimedialny",
+    "uploadError": "Przesyłanie nie powiodło się.",
+    "demoDisabled": "Przesyłanie multimediów jest wyłączone na instancji demo.",
+    "altLabel": "Tekst alternatywny",
+    "altPlaceholder": "np. Robert Lewandowski w koszulce reprezentacji Polski",
+    "altHelp": "Odczytywany na głos przez czytniki ekranu. Opisz, co przedstawia obraz, gdy jest częścią pytania; zostaw puste, gdy obraz jest dekoracją.",
+    "slotsLegend": "Multimedia pytania",
+    "visualLabel": "Obraz",
+    "audioLabel": "Dźwięk",
+    "kindImage": "Obraz",
+    "kindVideo": "Film",
+    "none": "Brak",
+    "addImage": "Dodaj obraz",
+    "addVideo": "Dodaj film",
+    "addAudio": "Dodaj dźwięk",
+    "videoExcludesAudio": "Film ma już własny dźwięk: bez dodatkowej ścieżki audio. Usuń film, aby dodać dźwięk.",
+    "audioExcludesVideo": "Film ma już własny dźwięk: usuń dźwięk, aby wybrać film.",
+    "converting": "Konwertowanie…",
+    "convertingPercent": "Konwertowanie… {{percent}} %",
+    "cancelConversion": "Anuluj",
+    "notice": {
+      "gifFirstFrame": "Animowany GIF: zachowano tylko pierwszą klatkę."
+    },
+    "library": {
+      "close": "Zamknij",
+      "search": "Szukaj po nazwie, tekście alternatywnym lub autorstwie",
+      "loading": "Wczytywanie…",
+      "empty": "Na razie nic tu nie ma: przesłane przez ciebie multimedia są tu przechowywane do ponownego użycia.",
+      "noMatch": "Żaden materiał nie pasuje do wyszukiwania.",
+      "pick": "Użyj {{name}}",
+      "unused": "Nieużywany",
+      "delete": "Usuń {{name}}",
+      "deleteTitle": "Usunąć ten materiał?",
+      "deleteDescription": "Nie używa go żaden quiz. Jego plik zostanie usunięty na dobre.",
+      "deleteConfirm": "Usuń",
+      "deleteError": "Nie udało się usunąć materiału.",
+      "findElsewhere": "Znajdź gdzie indziej:",
+      "creditReminder": "Przy licencji CC-BY wpisz autora i licencję w autorstwie materiału.",
+      "title": {
+        "image": "Moje multimedia · obrazy",
+        "video": "Moje multimedia · filmy",
+        "audio": "Moje multimedia · dźwięki"
+      },
+      "usedIn_one": "Używany w {{count}} quizie",
+      "usedIn_few": "Używany w {{count}} quizach",
+      "usedIn_many": "Używany w {{count}} quizach",
+      "usedIn_other": "Używany w {{count}} quizu",
+      "openKind": {
+        "image": "Moje obrazy",
+        "video": "Moje filmy",
+        "audio": "Moje dźwięki"
+      },
+      "inHistory": "Zachowany dla dawnych wyników",
+      "tab": {
+        "mine": "Moje multimedia",
+        "instance": "Multimedia globalne"
+      },
+      "instanceEmpty": "Administratorzy nie udostępnili jeszcze żadnych multimediów globalnych tego rodzaju."
+    },
+    "creditLabel": "Autorstwo",
+    "creditPlaceholder": "np. Zdjęcie: Lin Wei, CC BY 4.0, openverse.org",
+    "creditHelp": "Autor, licencja i źródło. Pokazywane w podglądzie i na końcu quizu — wymaga tego licencja CC-BY."
+  },
+  "background": {
+    "legend": "Tło",
+    "kind": {
+      "none": "Z motywu",
+      "image": "Obraz",
+      "gradient": "Gradient",
+      "colour": "Kolor"
+    },
+    "color": "Kolor {{index}}",
+    "removeColor": "Usuń kolor {{index}}",
+    "addColor": "Dodaj kolor",
+    "angle": "Kąt",
+    "colour": "Kolor"
+  },
+  "status": {
+    "draft": "Szkic — opublikuj quiz, aby go prezentować.",
+    "ready": "Gotowy do prezentacji.",
+    "archived": "Zarchiwizowany — przywróć go, aby edytować lub prezentować."
+  },
+  "deleteItemConfirm": {
+    "questionTitle": "Usunąć to pytanie?",
+    "slideTitle": "Usunąć ten slajd?",
+    "description": "„{{label}}” zostanie trwale usunięty.",
+    "confirmLabel": "Usuń"
+  },
+  "questionTypeHelp": {
+    "single_choice": "Jedna poprawna odpowiedź spośród 2 do 8 wariantów. Punkty zależą od szybkości, plus bonus za serię.",
+    "multiple_choice": "Kilka poprawnych odpowiedzi; uczestnik zaznacza, a potem wysyła. Wszystko albo nic: zaznaczony zestaw musi się dokładnie zgadzać.",
+    "true_false": "Dwa stałe warianty, jeden poprawny. Najszybszy do rozegrania.",
+    "text_input": "Uczestnik wpisuje odpowiedź. Porównywana z akceptowanymi odpowiedziami bez względu na wielkość liter, znaki diakrytyczne i nadmiarowe spacje.",
+    "numeric": "Uczestnik wpisuje liczbę; poprawna, gdy mieści się w ± tolerancji od wartości docelowej.",
+    "ordering": "Uczestnik układa warianty w kolejności wyznaczonej przez pozycje (#). Wszystko albo nic.",
+    "poll": "Tylko opinia: bez poprawnej odpowiedzi, bez punktów; rozkład głosów jest pokazywany przy odsłonięciu.",
+    "image_choice": "Odpowiedziami są obrazy, 2 lub 4, każdy z własnym kolorem i kształtem. Jeden poprawny obraz albo kilka, jeśli tak ustawiono; punktowane jak wybór pojedynczy lub wielokrotny."
+  },
+  "sessions": {
+    "running_one": "Rozgrywa go {{count}} pokój",
+    "running_few": "Rozgrywają go {{count}} pokoje",
+    "running_many": "Rozgrywa go {{count}} pokojów",
+    "running_other": "Rozgrywa go {{count}} pokoju",
+    "players_one": "{{count}} uczestnik",
+    "players_few": "{{count}} uczestników",
+    "players_many": "{{count}} uczestników",
+    "players_other": "{{count}} uczestnika",
+    "liveEditsHint": "Zmiany układu i prezentacji (tła, kontrast, wyjaśnienia, slajdy) docierają do pokojów, które go rozgrywają, przy ich następnym kroku; pytania i odpowiedzi pozostają takie, jak przy uruchomieniu."
+  },
+  "publication": {
+    "open": "Eksportuj do publikacji",
+    "title": "Eksport do publikacji",
+    "description": "Sprawdza quiz pod kątem tego, co przyjmuje katalog społeczności, a potem pobiera plik do przesłania do twojego repozytorium quizdock-extensions.",
+    "download": "Pobierz",
+    "checking": "Sprawdzanie quizu…",
+    "failed": "Nie udało się przygotować eksportu.",
+    "check": {
+      "ready": "Quiz jest gotowy",
+      "notReady": "Quiz nie jest gotowy",
+      "language": "Język: {{language}}",
+      "license": "Licencja: {{license}}",
+      "noLicense": "Brak licencji",
+      "tags": "Tagi: {{tags}}",
+      "noTags": "Brak tagów",
+      "size": "Rozmiar: {{size}} z {{max}}",
+      "uncredited_one": "{{count}} materiał bez autorstwa",
+      "uncredited_few": "{{count}} materiały bez autorstwa",
+      "uncredited_many": "{{count}} materiałów bez autorstwa",
+      "uncredited_other": "{{count}} materiału bez autorstwa",
+      "credited": "Każdy materiał ma podane autorstwo"
+    },
+    "fix": {
+      "ready": "Najpierw oznacz quiz jako gotowy (Opublikuj).",
+      "settings": "Ustaw to w ustawieniach quizu, w sekcji Udostępnianie.",
+      "size": "Odchudź lub usuń najcięższe multimedia:",
+      "credit": "Odpowiadasz za prawa do każdego publikowanego obrazu, dźwięku i filmu. Podaj ich autorstwo w swojej bibliotece multimediów (autor, licencja, źródło)."
+    },
+    "kind": {
+      "image": "Obraz",
+      "video": "Film",
+      "audio": "Dźwięk"
+    },
+    "slugLabel": "Krótka nazwa",
+    "slugHelp": "Jak katalog rozpoznaje ten quiz w twoim repozytorium. Plik: {{file}}",
+    "slugChanged": "Zmiana z „{{previous}}” tworzy dla katalogu nowy quiz: usuń stary plik ze swojego repozytorium."
+  },
+  "readOnly": {
+    "notice": "Quiz użytkownika {{owner}}: możesz go czytać, ale nie zmieniać.",
+    "createFrom": "Utwórz z tego quiz",
+    "props": {
+      "orderShown": "Wymienione we właściwej kolejności.",
+      "seconds_one": "{{count}} sekunda",
+      "seconds_few": "{{count}} sekundy",
+      "seconds_many": "{{count}} sekund",
+      "seconds_other": "{{count}} sekundy",
+      "muted": "wyciszony"
+    },
+    "empty": "Brak pytań."
+  },
+  "publishChecklist": {
+    "title_one": "1 krok do wykonania przed publikacją",
+    "title_few": "{{count}} kroki do wykonania przed publikacją",
+    "title_many": "{{count}} kroków do wykonania przed publikacją",
+    "title_other": "{{count}} kroku do wykonania przed publikacją",
+    "description": "Opublikowany quiz można zaprezentować w każdej chwili, więc każde pytanie musi być kompletne. Szkice zachowują wszystko, co zapiszesz.",
+    "untitled": "Pytanie bez treści",
+    "open": "Otwórz"
+  },
+  "formIssues": {
+    "errors_one": "1 błąd",
+    "errors_few": "{{count}} błędy",
+    "errors_many": "{{count}} błędów",
+    "errors_other": "{{count}} błędu",
+    "toFinish_one": "1 rzecz do dokończenia",
+    "toFinish_few": "{{count}} rzeczy do dokończenia",
+    "toFinish_many": "{{count}} rzeczy do dokończenia",
+    "toFinish_other": "{{count}} rzeczy do dokończenia"
+  },
+  "importReport": {
+    "imported_one": "Zaimportowano 1 pytanie z Kahoot.",
+    "imported_few": "Zaimportowano {{count}} pytania z Kahoot.",
+    "imported_many": "Zaimportowano {{count}} pytań z Kahoot.",
+    "imported_other": "Zaimportowano {{count}} pytania z Kahoot.",
+    "media": "Obrazy i dźwięki nie są przenoszone.",
+    "incomplete_one": "1 pytanie do dokończenia przed publikacją: jest oznaczone na liście.",
+    "incomplete_few": "{{count}} pytania do dokończenia przed publikacją: są oznaczone na liście.",
+    "incomplete_many": "{{count}} pytań do dokończenia przed publikacją: są oznaczone na liście.",
+    "incomplete_other": "{{count}} pytania do dokończenia przed publikacją: są oznaczone na liście.",
+    "skipped": "Pominięto wiersz {{row}}: {{reason}}",
+    "reasons": {
+      "invalid_time": "limit czasu poza zakresem {{min}}–{{max}} sekund",
+      "formula": "formuły nie są odczytywane",
+      "invalid_content": "tekst za długi dla QuizDock"
+    }
+  }
+}

@@ -22,6 +22,7 @@
     "item_not_in_quiz": "Cet élément n’appartient plus à ce quiz : rechargez la page.",
     "reorder_incomplete": "L’ordre envoyé ne contient pas tous les éléments : rechargez la page et réessayez.",
     "incomplete_one": "1 étape est inachevée : complétez-la pour publier le quiz.",
+    "incomplete_many": "{{count}} étapes sont inachevées : complétez-les pour publier le quiz.",
     "incomplete_other": "{{count}} étapes sont inachevées : complétez-les pour publier le quiz."
   },
   "session": {
@@ -125,7 +126,7 @@
       "not_allowed": "Ce type de question n’a pas de réponses à choisir.",
       "one_correct": "Cochez la bonne réponse.",
       "some_correct": "Cochez au moins une bonne réponse.",
-      "too_few": "Ajoutez au moins 2 réponses."
+      "not_enough": "Ajoutez au moins 2 réponses."
     },
     "ordering": {
       "positions": "Chaque réponse doit avoir sa propre place dans le bon ordre."
@@ -215,5 +216,27 @@
   },
   "request": {
     "too_large": "Trop volumineux pour le serveur : il a refusé la requête (sa limite de taille)."
+  },
+  "theme": {
+    "not_found": "Thème introuvable.",
+    "not_owner": "Seuls son propriétaire ou un administrateur peuvent modifier ce thème.",
+    "in_use": "Ce thème est encore utilisé par des quiz ({{count}}) : donnez-leur d’abord un autre thème.",
+    "is_default": "C’est le thème par défaut de l’instance : choisissez d’abord un autre thème par défaut.",
+    "invalid_media": "Un fichier de ce thème manque ou n’est pas du type attendu à sa place.",
+    "ref_one_of": "Choisissez un thème livré ou un thème de la bibliothèque, pas les deux.",
+    "icon_invalid": "Ce fichier n’est pas une icône SVG lisible.",
+    "icon_not_square": "Une icône doit être carrée (son viewBox aussi large que haut).",
+    "icon_empty": "Cette icône ne dessine aucune forme.",
+    "icon_too_large": "Icône trop volumineuse ({{maxKb}} Ko au plus).",
+    "font_invalid": "Ce fichier n’est pas une police WOFF2 complète.",
+    "font_too_large": "Police trop volumineuse ({{maxMb}} Mo au plus).",
+    "unknown": "Cette instance ne connaît pas le thème du bundle : le quiz prend le thème par défaut.",
+    "fallback": "Un fichier du thème du bundle n’a pas pu être utilisé : le quiz prend le thème dont il dérive.",
+    "unknown_icon": "Cette icône ne fait pas partie de la banque d’icônes.",
+    "unknown_picture": "Cette image ne fait pas partie de celles livrées avec QuizDock."
+  },
+  "background": {
+    "image_and_gradient": "Un fond est une image ou un dégradé, pas les deux.",
+    "mode_required": "Choisissez comment l’image est disposée."
   }
 }

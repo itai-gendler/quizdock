@@ -52,9 +52,14 @@ const COMPONENTS: Components = {
     ) : null,
   ul: (p) => <ul {...dom(p)} className="list-disc pl-6 text-left" />,
   ol: (p) => <ol {...dom(p)} className="list-decimal pl-6 text-left" />,
-  code: (p) => <code {...dom(p)} className="rounded bg-black/10 px-1 font-mono text-[0.9em]" />,
+  code: (p) => (
+    <code {...dom(p)} className="rounded bg-foreground/10 px-1 font-mono text-[0.9em]" />
+  ),
   pre: (p) => (
-    <pre {...dom(p)} className="overflow-x-auto rounded bg-black/10 p-3 text-left text-[0.85em]" />
+    <pre
+      {...dom(p)}
+      className="overflow-x-auto rounded bg-foreground/10 p-3 text-left text-[0.85em]"
+    />
   ),
 };
 

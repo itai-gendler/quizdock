@@ -11,7 +11,7 @@ export interface MediaLibraryItem {
   /** The most recent of the author's media on that file: what the editor shows and reuses. */
   id: string;
   url: string;
-  kind: MediaKind;
+  kind: LibraryKind;
   name: string | null;
   alt: string | null;
   credit: string | null;
@@ -28,8 +28,10 @@ export interface MediaLibraryItem {
   inHistory: boolean;
 }
 
-/** A free media library an author can look in, for the kinds it offers. */
-const KINDS: MediaKind[] = ['image', 'video', 'audio'];
+/** The kinds an author's library holds: a theme's icons and fonts belong to the theme. */
+export type LibraryKind = 'image' | 'video' | 'audio';
+const KINDS: LibraryKind[] = ['image', 'video', 'audio'];
+const isLibraryKind = (k: string | undefined): k is LibraryKind => KINDS.includes(k as LibraryKind);
 const LIST_MAX = 300;
 
 /**
@@ -48,7 +50,7 @@ export class MediaLibraryService {
     ownerId: string,
     filter: { kind?: MediaKind; q?: string } = {},
   ): Promise<MediaLibraryItem[]> {
-    const kind = filter.kind && KINDS.includes(filter.kind) ? filter.kind : null;
+    const kind = isLibraryKind(filter.kind) ? filter.kind : null;
     const q = filter.q?.trim() ? `%${filter.q.trim().replace(/[\\%_]/g, '\\$&')}%` : null;
     const rows = await this.prisma.$queryRaw<
       Array<
@@ -59,7 +61,7 @@ export class MediaLibraryService {
         SELECT m.*, COALESCE(m.blob_sha256, m.id) AS file
         FROM media_asset m
         WHERE m.owner_id = ${ownerId} AND NOT m.instance
-          ${kind ? Prisma.sql`AND m.kind = ${kind}::media_kind` : Prisma.empty}
+          AND m.kind::text = ANY(${kind ? [kind] : KINDS})
       ),
       used AS (
         SELECT m.file, COUNT(DISTINCT r.quiz_id)::int AS n
@@ -96,12 +98,12 @@ export class MediaLibraryService {
    * to a kind and to a search on name, alt text and credit.
    */
   async instanceMedia(filter: { kind?: MediaKind; q?: string } = {}): Promise<MediaLibraryItem[]> {
-    const kind = filter.kind && KINDS.includes(filter.kind) ? filter.kind : null;
+    const kind = isLibraryKind(filter.kind) ? filter.kind : null;
     const q = filter.q?.trim() || null;
     const rows = await this.prisma.mediaAsset.findMany({
       where: {
         instance: true,
-        ...(kind ? { kind } : {}),
+        kind: kind ?? { in: KINDS },
         ...(q
           ? {
               OR: [
@@ -133,7 +135,7 @@ export class MediaLibraryService {
       where: {
         sourceSha256,
         // A film in the sound slot keeps its sound only: the same original, another media.
-        ...(kind && KINDS.includes(kind) ? { kind } : {}),
+        kind: isLibraryKind(kind) ? kind : { in: KINDS },
         blobSha256: { not: null },
         OR: [{ ownerId, instance: false }, { instance: true }],
       },
@@ -185,7 +187,7 @@ function toItem(m: MediaAsset): MediaLibraryItem {
   return {
     id: m.id,
     url: m.url,
-    kind: m.kind,
+    kind: m.kind as LibraryKind,
     name: m.name,
     alt: m.alt,
     credit: m.credit,

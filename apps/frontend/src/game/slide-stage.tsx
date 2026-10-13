@@ -29,7 +29,11 @@ export function ScaledStage({ children, className }: { children: ReactNode; clas
   return (
     <div
       ref={ref}
-      className={cn('bg-background relative aspect-video w-full overflow-hidden', className)}
+      // A big screen in miniature: light, as the live screens are, in a dark page too.
+      className={cn(
+        'light bg-background text-foreground relative aspect-video w-full overflow-hidden',
+        className,
+      )}
     >
       <div
         className={cn('absolute top-0 left-0 flex origin-top-left', TYPE_BASE.stage)}

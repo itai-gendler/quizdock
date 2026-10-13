@@ -485,14 +485,16 @@
   "background": {
     "legend": "Arka plan",
     "kind": {
-      "none": "Beyaz",
+      "none": "Temanınki",
       "image": "Resim",
-      "gradient": "Gradyan"
+      "gradient": "Gradyan",
+      "colour": "Renk"
     },
     "color": "Renk {{index}}",
     "removeColor": "{{index}} rengini kaldır",
     "addColor": "Renk ekle",
-    "angle": "Açı"
+    "angle": "Açı",
+    "colour": "Renk"
   },
   "status": {
     "draft": "Taslak — quizi sunmak için yayınlayın.",
@@ -525,7 +527,7 @@
   "publication": {
     "open": "Yayınlanmak üzere dışa aktar",
     "title": "Yayınlanmak üzere dışa aktar",
-    "description": "Quizi topluluk kataloğunun koşullarına göre denetler, ardından dosyayı quizdock-quizzes deponuza yükleyebilmeniz için indirir.",
+    "description": "Quizi topluluk kataloğunun koşullarına göre denetler, ardından dosyayı quizdock-extensions deponuza yükleyebilmeniz için indirir.",
     "download": "İndir",
     "checking": "Quiz kontrol ediliyor…",
     "failed": "Dışa aktarma hazırlanamadı.",

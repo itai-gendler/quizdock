@@ -70,6 +70,6 @@ export default defineConfig({
     testTimeout: 15_000,
     // From Node 25 on, Node has a `localStorage` of its own, which shadows jsdom's:
     // a test would write to one while the code reads the other. jsdom's, always.
-    poolOptions: { forks: { execArgv: ['--no-experimental-webstorage'] } },
+    execArgv: ['--no-experimental-webstorage'],
   },
 });

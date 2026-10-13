@@ -1,3 +1,4 @@
+import { ThemesModule } from '../themes/themes.module';
 import { Module } from '@nestjs/common';
 import { MediaModule } from '../media/media.module';
 import { HistoryController } from './history.controller';
@@ -10,7 +11,7 @@ import { SampleQuizzesService } from './samples/sample-quizzes.service';
 import { QuizValidationController } from './quiz-validation.controller';
 
 @Module({
-  imports: [MediaModule],
+  imports: [MediaModule, ThemesModule],
   controllers: [QuizValidationController, QuizzesController, HistoryController],
   providers: [QuizzesService, SampleQuizzesService, QuizPortableService, QuizPublicationService],
   exports: [SampleQuizzesService, QuizPortableService, QuizzesService],

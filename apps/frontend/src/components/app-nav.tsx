@@ -1,10 +1,12 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 import { LogOut, Menu, UserRound, X } from 'lucide-react';
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LiveSessions } from '@/components/live-sessions';
 import { SeatCountdown, SeatMenuRow } from '@/components/seat-status';
 import { UserMenu } from '@/components/user-menu';
+import { ColorModeSwitch } from '@/components/color-mode-switch';
+import { LanguageMenuRow } from '@/components/language-switch';
 import { cn } from '@/lib/utils';
 import type { AuthMode } from '../auth/auth-context';
 import { useRole } from '../auth/use-role';
@@ -55,6 +57,8 @@ export function AppNav({ user, mode, onLogout }: NavProps) {
             ) : null}
             <Separator />
             <p className="text-muted-foreground truncate px-2 pt-1.5 text-xs">{user}</p>
+            <ColorModeSwitch />
+            <LanguageMenuRow />
             {/* The same entries as the user menu (UI system §4). */}
             <Link
               to="/profile"
@@ -85,24 +89,43 @@ export function AppNav({ user, mode, onLogout }: NavProps) {
 function NavLinks({ stacked = false, onNavigate }: { stacked?: boolean; onNavigate?: () => void }) {
   const { t } = useTranslation('auth');
   const { isManager } = useRole();
+  const pathname = useLocation().pathname;
   const className = stacked
     ? 'hover:bg-accent rounded-md px-2 py-2 text-sm'
     : 'whitespace-nowrap hover:underline';
+  // The current page, marked in the instance's accent (lib/look.ts).
+  const current = stacked
+    ? 'text-link font-medium'
+    : 'text-link font-medium underline decoration-2 underline-offset-[6px]';
+  // Quizzes holds the quizzes, the templates and the themes (its tabs).
+  const inQuizzes = /^\/(quizzes|templates|themes)(\/|$)/.test(pathname);
   return (
     <>
-      <Link to="/quizzes" className={className} onClick={onNavigate}>
-        {t('nav.myQuizzes')}
-      </Link>
-      <Link to="/templates" className={className} onClick={onNavigate}>
-        {t('nav.templates')}
+      <Link
+        to="/quizzes"
+        className={cn(className, inQuizzes && current)}
+        aria-current={inQuizzes ? 'page' : undefined}
+        onClick={onNavigate}
+      >
+        {t('nav.quizzes')}
       </Link>
       {/* What was played, room by room: a teacher's way back to the results. */}
-      <Link to="/history" className={className} onClick={onNavigate}>
+      <Link
+        to="/history"
+        className={className}
+        activeProps={{ className: current }}
+        onClick={onNavigate}
+      >
         {t('nav.history')}
       </Link>
       {/* The administration beside the app's own pages, not tucked in the account menu. */}
       {isManager ? (
-        <Link to="/admin" className={className} onClick={onNavigate}>
+        <Link
+          to="/admin"
+          className={className}
+          activeProps={{ className: current }}
+          onClick={onNavigate}
+        >
           {t('nav.admin')}
         </Link>
       ) : null}

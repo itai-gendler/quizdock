@@ -64,6 +64,8 @@ import {
 import { ImageChoiceGrid } from '../game/image-choice';
 import { cn } from '@/lib/utils';
 import { BACKDROP_EDGE, BACKDROP_PANEL, Surface } from '../game/surface';
+import { LiveTheme, themeBackdrop } from '../game/theme';
+import { RevealEffect } from '../game/reveal-effect';
 import { unlockAudio } from '../game/media/audio-unlock';
 import { claimMediaElements, mediaElementsClaimed } from '../game/media/media-pool';
 import { FollowedWaveform, QuestionMediaStage } from '../game/media/question-media-stage';
@@ -113,7 +115,7 @@ export function PlayerPage() {
   const { pin } = useParams({ from: '/join/$pin' });
   const session = useGameSession(pin, 'player');
   // Once in the game, the interface speaks the audience's language (#209).
-  useAudienceLanguage(session.view.language);
+  useAudienceLanguage(session.view.language, true);
   // The phone stays on between two questions, from the lobby to the end.
   useWakeLock(session.view.status === 'ready' && session.view.state !== 'ENDED');
   return (
@@ -562,24 +564,42 @@ function PlayerView({ pin, session }: { pin: string; session: ReturnType<typeof 
   // phase of that question; the phone column is centred inside it.
   // The motion layer (UI system §1.8): the step, and the background this page draws it on.
   const stepKey = stepKeyOf(view);
+  // The question's own background, else the quiz theme's (docs/themes.md).
+  const themed = themeBackdrop(view.theme);
   const phoneBackdrop: Backdrop = view.question?.background
     ? { background: view.question.background, textTone: view.question.textTone ?? 'light' }
-    : null;
+    : themed;
   const surface = (children: React.ReactNode) => (
-    <LiveMotion on={view.motion}>
-      <Surface
-        background={view.question?.background}
-        textTone={view.question?.textTone}
-        textOutline={view.question?.textOutline}
-        className={cn('flex-1', TYPE_BASE.phone)}
-        overlay={<BackdropFade stepKey={stepKey} backdrop={phoneBackdrop} />}
-      >
-        {participantBar}
-        <StepEnter stepKey={stepKey} className="flex flex-1 flex-col px-4 py-4">
-          {children}
-        </StepEnter>
-      </Surface>
-    </LiveMotion>
+    <LiveTheme theme={view.theme}>
+      <LiveMotion on={view.motion}>
+        <Surface
+          background={
+            phoneBackdrop && 'background' in phoneBackdrop ? phoneBackdrop.background : null
+          }
+          textTone={phoneBackdrop?.textTone}
+          textOutline={
+            view.question?.background
+              ? view.question.textOutline
+              : !!themed && 'url' in themed.background
+          }
+          className={cn('flex-1', TYPE_BASE.phone)}
+          overlay={
+            <>
+              <BackdropFade stepKey={stepKey} backdrop={phoneBackdrop} />
+              {/* The theme's reveal effect: for the players who found the answer. */}
+              {view.state === 'REVEAL' && view.result?.correct ? (
+                <RevealEffect playKey={`reveal:${view.questionIndex}`} />
+              ) : null}
+            </>
+          }
+        >
+          {participantBar}
+          <StepEnter stepKey={stepKey} className="flex flex-1 flex-col px-4 py-4">
+            {children}
+          </StepEnter>
+        </Surface>
+      </LiveMotion>
+    </LiveTheme>
   );
 
   const wrap = (children: React.ReactNode, opts: { wide?: boolean; center?: boolean } = {}) =>
@@ -826,7 +846,7 @@ function PlayerView({ pin, session }: { pin: string; session: ReturnType<typeof 
           <div className="flex flex-col items-center gap-[0.5em]">
             <ResultMark correct={r.correct} />
             <p
-              className={`text-[2em] font-bold ${r.correct ? 'text-success' : 'text-destructive'}`}
+              className={`text-[2em] font-bold ${r.correct ? 'text-success-text' : 'text-destructive'}`}
             >
               {r.correct ? t('player.correct') : t('player.wrong')}
             </p>
@@ -1056,7 +1076,7 @@ function PlayerView({ pin, session }: { pin: string; session: ReturnType<typeof 
       {/* What the wait is about: the quiz to come and the room filling up. */}
       <div className="bg-muted flex w-full flex-col items-center gap-1 rounded-lg px-3 py-2.5 text-sm">
         {view.youReady ? (
-          <p className="text-success flex items-center gap-1.5 font-semibold">
+          <p className="text-success-text flex items-center gap-1.5 font-semibold">
             <Check className="size-4" />
             {t('player.readyDone')}
           </p>

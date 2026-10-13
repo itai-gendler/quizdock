@@ -2,7 +2,8 @@ import { access, readFile } from 'node:fs/promises';
 import { liveMotionDefault } from '../game/live-motion';
 import { demoStatsTarget } from '../demo/demo-stats';
 import { join } from 'node:path';
-import { Controller, Get, Header, NotFoundException, Req, Res } from '@nestjs/common';
+import { Controller, Get, Header, NotFoundException, Optional, Req, Res } from '@nestjs/common';
+import { LookService } from '../look/look.service';
 import { ApiExcludeEndpoint } from '@nestjs/swagger';
 import type { Request, Response } from 'express';
 import { Public } from '../auth/public.decorator';
@@ -25,12 +26,14 @@ export const ICONS = ['favicon.png'];
  */
 @Controller()
 export class AppConfigController {
+  constructor(@Optional() private readonly look?: LookService) {}
+
   @Public() // chargé avant toute authentification (branding du SPA)
   @Get('config.js')
   @ApiExcludeEndpoint() // asset JS (chargé via <script>), pas un endpoint d'API → hors OpenAPI
   @Header('Content-Type', 'application/javascript; charset=utf-8')
   @Header('Cache-Control', 'no-store')
-  configJs(): string {
+  async configJs(): Promise<string> {
     const appName = settings.get(SETTINGS.APP_NAME);
     const lang = instanceLanguage();
 
@@ -53,6 +56,8 @@ export class AppConfigController {
       feedbackUrl,
       liveMotion,
       autoAdvanceS,
+      // The instance's look (THEMING lot 2), applied by every page before it draws.
+      ...(this.look ? { look: await this.look.resolved() } : {}),
     });
     return `window.__APP_CONFIG__ = ${config};\n`;
   }

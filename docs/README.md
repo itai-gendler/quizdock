@@ -39,10 +39,12 @@ docs/
 ## Feature notes
 
 - [`quiz-bundle.md`](quiz-bundle.md) — the import / export format of a quiz (`quiz.json` + `media/`).
+- [`look.md`](look.md) — the instance's look: its colours, font, corners and showcase backgrounds, light or dark, where it is kept, how pages apply it, the Branding and Interface spaces.
+- [`themes.md`](themes.md) — quiz themes: what a theme holds, the shipped ones and the library, its files and the icon bank, how the live screens draw it, its accessibility.
 - [`scoring.md`](scoring.md) — the scales: points, speed, streak, per-type variants (closest, partial credit, lenient).
 - [`live-session.md`](live-session.md) — the live session: substance/form snapshot, states, looking back, resuming after a restart, media on every device (experimental), the invitation address.
 - [`dev/load-testing.md`](dev/load-testing.md) — load testing a live game: the benchmark, how many players one instance holds, the sizing it gives (published for operators in [sizing](https://quizdock.github.io/docs/operator/sizing/)).
 - [`dev/performance-roadmap.md`](dev/performance-roadmap.md) — where the live engine spends its time (profiled), what was done, and the options to go further, in order.
 - [`dev/audit-2026-09.md`](dev/audit-2026-09.md) — the September 2026 code audit (bugs, duplicates, CSS), the decisions taken, and what each lot fixed.
-- [`tech-debt.md`](tech-debt.md) — known shortcuts, what they cost and what would replace them (OIDC tokens at rest in Redis, the CSP's loose points, an unread column, a dark theme nothing turns on).
-- [`../apps/frontend/src/i18n/GLOSSARY.md`](../apps/frontend/src/i18n/GLOSSARY.md) — the interface vocabulary (6 languages) and the choices behind it.
+- [`tech-debt.md`](tech-debt.md) — known shortcuts, what they cost and what would replace them (OIDC tokens at rest in Redis, the CSP's loose points, an unread column).
+- [`../apps/frontend/src/i18n/GLOSSARY.md`](../apps/frontend/src/i18n/GLOSSARY.md) — the interface vocabulary (12 languages) and the choices behind it.

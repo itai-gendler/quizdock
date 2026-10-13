@@ -14,7 +14,9 @@
     "accounts": "Cuentas",
     "audit": "Auditoría",
     "quizzes": "Quizzes",
-    "media": "Medios"
+    "media": "Medios",
+    "branding": "Marca",
+    "interface": "Interfaz"
   },
   "token": {
     "unset": "Modo local: no se puede cambiar nada desde la web hasta que ADMIN_TOKEN esté definido en .env (32 caracteres o más) y la instancia se haya reiniciado.",
@@ -377,8 +379,10 @@
     "orphans": "Nadie puede acceder a ellos",
     "none": "Ningún quiz coincide.",
     "count_one": "{{count}} quiz",
+    "count_many": "{{count}} quizzes",
     "count_other": "{{count}} quizzes",
     "questions_one": "{{count}} pregunta",
+    "questions_many": "{{count}} preguntas",
     "questions_other": "{{count}} preguntas",
     "live": "En curso en una sala (PIN {{pin}})",
     "unreachable": "Su propietario ya no puede acceder a él",
@@ -456,6 +460,7 @@
   },
   "overrides": {
     "count_one": "{{count}} ajuste cambiado aquí.",
+    "count_many": "{{count}} ajustes cambiados aquí.",
     "count_other": "{{count}} ajustes cambiados aquí.",
     "export": "Exportar como .env",
     "exportHelp": "Para fijarlos en .env (y luego deshacerlos aquí), o para llevarlos a otra instancia:",
@@ -617,8 +622,10 @@
       "players": "Jugadores conectados",
       "none": "No hay ninguna partida en curso.",
       "lobby_one": "{{count}} en la sala de espera",
+      "lobby_many": "{{count}} en la sala de espera",
       "lobby_other": "{{count}} en la sala de espera",
       "playing_one": "{{count}} en juego",
+      "playing_many": "{{count}} en juego",
       "playing_other": "{{count}} en juego"
     },
     "columns": {
@@ -640,17 +647,22 @@
       "quizzes": "Quizzes listos para jugar",
       "media": "Medios",
       "mediaDetail_one": "{{count}} archivo",
+      "mediaDetail_many": "{{count}} archivos",
       "mediaDetail_other": "{{count}} archivos",
       "history": "Partidas jugadas",
       "lastGame": "la última terminó {{ago}}",
       "noGame": "ninguna todavía",
       "hosts_one": "{{count}} anfitrión",
+      "hosts_many": "{{count}} anfitriones",
       "hosts_other": "{{count}} anfitriones",
       "admins_one": "{{count}} administrador",
+      "admins_many": "{{count}} administradores",
       "admins_other": "{{count}} administradores",
       "drafts_one": "{{count}} borrador",
+      "drafts_many": "{{count}} borradores",
       "drafts_other": "{{count}} borradores",
       "archived_one": "{{count}} archivado",
+      "archived_many": "{{count}} archivados",
       "archived_other": "{{count}} archivados"
     },
     "history": {
@@ -661,8 +673,10 @@
       "success": "Tasa de aciertos",
       "withAccount": "Jugadores con cuenta",
       "accounts_one": "{{count}} con cuenta",
+      "accounts_many": "{{count}} con cuenta",
       "accounts_other": "{{count}} con cuenta",
       "guests_one": "{{count}} invitado",
+      "guests_many": "{{count}} invitados",
       "guests_other": "{{count}} invitados",
       "byMonth": "Por mes",
       "top": {
@@ -683,6 +697,7 @@
     },
     "none": "Ninguna cuenta coincide.",
     "count_one": "{{count}} cuenta",
+    "count_many": "{{count}} cuentas",
     "count_other": "{{count}} cuentas",
     "columns": {
       "account": "Cuenta",
@@ -712,18 +727,23 @@
   },
   "health": {
     "problems_one": "{{count}} problema que revisar",
+    "problems_many": "{{count}} problemas que revisar",
     "problems_other": "{{count}} problemas que revisar",
     "allGood": "Todo va bien",
     "checked_one": "{{count}} comprobación realizada",
+    "checked_many": "{{count}} comprobaciones realizadas",
     "checked_other": "{{count}} comprobaciones realizadas",
     "again": "Comprobar de nuevo",
     "migrations": {
       "title": "Migraciones de la base de datos",
       "applied_one": "{{count}} aplicada",
+      "applied_many": "{{count}} aplicadas",
       "applied_other": "{{count}} aplicadas",
       "pending_one": "{{count}} pendiente",
+      "pending_many": "{{count}} pendientes",
       "pending_other": "{{count}} pendientes",
       "failed_one": "{{count}} fallida",
+      "failed_many": "{{count}} fallidas",
       "failed_other": "{{count}} fallidas",
       "list": "Migraciones aplicadas, la más reciente primero"
     },
@@ -759,12 +779,15 @@
     },
     "unset": "{{key}} no está definido.",
     "postgres_ok": "PostgreSQL accesible",
-    "postgres_superuser": "QuizDock se conecta como superusuario de PostgreSQL. Nada que hacer por ahora: una próxima versión del script quizdock le dará un rol propio.",
+    "postgres_superuser": "QuizDock se conecta como superusuario de PostgreSQL. En el servidor, ./quizdock db:roles le da un rol propio, tras hacer una copia de seguridad.",
     "migrations_applied_one": "{{count}} migración aplicada",
+    "migrations_applied_many": "{{count}} migraciones aplicadas",
     "migrations_applied_other": "{{count}} migraciones aplicadas",
     "migrations_pending_one": "{{count}} migración pendiente: ejecute el paso de migración.",
+    "migrations_pending_many": "{{count}} migraciones pendientes: ejecute el paso de migración.",
     "migrations_pending_other": "{{count}} migraciones pendientes: ejecute el paso de migración.",
     "migrations_failed_one": "{{count}} migración fallida: vea prisma migrate resolve.",
+    "migrations_failed_many": "{{count}} migraciones fallidas: vea prisma migrate resolve.",
     "migrations_failed_other": "{{count}} migraciones fallidas: vea prisma migrate resolve.",
     "postgres_failed": "PostgreSQL inaccesible: {{error}}",
     "redis_ok": "Redis accesible",
@@ -777,8 +800,89 @@
     "discovery_ok": "Descubrimiento correcto — punto de token {{url}}",
     "discovery_failed": "Descubrimiento {{url}} fallido ({{error}}): defina OIDC_INTERNAL_URL si el emisor no es accesible desde el servidor.",
     "jwks_ok_one": "Claves de firma accesibles ({{count}} clave)",
+    "jwks_ok_many": "Claves de firma accesibles ({{count}} claves)",
     "jwks_ok_other": "Claves de firma accesibles ({{count}} claves)",
     "jwks_failed": "Claves de firma {{url}}: {{error}}"
   },
-  "demoReadOnly": "Demo pública: la administración se muestra tal cual y no se puede cambiar nada desde ella. En tu propia instancia, es tuya."
+  "demoReadOnly": "Demo pública: la administración se muestra tal cual y no se puede cambiar nada desde ella. En tu propia instancia, es tuya.",
+  "branding": {
+    "intro": "Quién es la instancia: su nombre, su idioma, su logo, adónde van los comentarios. Cada línea es una variable de entorno, que se cambia aquí como en la página Ajustes.",
+    "APP_NAME": "Nombre de la aplicación",
+    "APP_NAME_hint": "Se muestra en la cabecera, en los títulos de las pestañas y en la app instalada.",
+    "APP_LANG": "Idioma de la interfaz",
+    "APP_LANG_hint": "Para los visitantes cuyo navegador no indica nada mejor.",
+    "APP_LOGO_URL": "Logo",
+    "APP_LOGO_URL_hint": "Un archivo logo.svg (o .png…) en la carpeta branding/, o una dirección https aquí.",
+    "APP_FEEDBACK_URL": "Adónde llevan los enlaces de comentarios",
+    "APP_FEEDBACK_URL_hint": "Los enlaces «Cuéntanos» de la página de inicio; none los oculta.",
+    "logoDefault": "El de QuizDock, hasta que la instancia ponga el suyo.",
+    "css": "Tu propio CSS",
+    "cssHint": "Un branding/override.css se carga al final, para lo que estos ajustes no cubren."
+  },
+  "look": {
+    "intro": "Cómo se ve la aplicación: sus colores, fuente, esquinas y los fondos de sus páginas escaparate. Se guarda en la base de datos y solo se cambia aquí. Un quiz en las pantallas en directo conserva el aspecto de su propio tema.",
+    "saving": "Guardando…",
+    "saved": "Guardado: cada visitante lo ve desde la próxima página que abra.",
+    "reset": "Volver al aspecto de QuizDock",
+    "colours": "Colores",
+    "primary": "Color principal",
+    "primaryHint": "Botones, filtros seleccionados, anillo de foco; su texto es blanco. El mismo color en modo claro y oscuro.",
+    "accent": "Color de acento",
+    "accentHint": "Los enlaces y la marca de la página actual. Por defecto, el color principal. Como texto sobre la página oscura se aclara hasta leerse con comodidad (7:1).",
+    "button": "Botón",
+    "link": "Un enlace",
+    "whiteText": "Texto blanco",
+    "onLight": "Sobre la página clara",
+    "onDark": "Sobre la página oscura",
+    "corners": "Esquinas",
+    "radius": {
+      "square": "Rectas",
+      "standard": "Estándar",
+      "rounded": "Redondeadas"
+    },
+    "cornerSample": {
+      "card": "Tarjeta",
+      "button": "Botón",
+      "field": "Campo"
+    },
+    "showcase": "Fondos de escaparate",
+    "showcaseHint": "Solo las páginas de inicio, unirse, inicio de sesión, error y no encontrada; las páginas de trabajo siguen lisas.",
+    "mode": {
+      "none": "Ninguno",
+      "logo": "Logo como marca de agua",
+      "picture": "Imagen"
+    },
+    "logoHint": "La forma del logo de la marca — el de QuizDock hasta que la instancia defina el suyo — en el color del texto, atenuada y centrada.",
+    "size": "Tamaño",
+    "opacity": "Opacidad",
+    "accessibility": "Accesibilidad",
+    "accessible": "Accesible",
+    "accessibilityHint": "Se mide en los colores, nunca se declara; solo un aspecto accesible lo indica.",
+    "checksMet": "{{met}} de {{total}} comprobaciones superadas",
+    "check": {
+      "button_text_contrast": "El texto blanco de los botones principales alcanza 4.5:1",
+      "primary_on_light": "El color principal destaca de la página (3:1)",
+      "primary_on_dark": "El color principal destaca también de la página oscura (3:1)",
+      "link_on_light": "Los enlaces en el acento se leen sobre la página (4.5:1)",
+      "link_on_dark": "Los enlaces se leen también sobre la página oscura (4.5:1)"
+    },
+    "preview": {
+      "label": "Vista previa",
+      "home": "Inicio",
+      "join": "Unirse",
+      "login": "Iniciar sesión",
+      "notFound": "No encontrada",
+      "quizzes": "Mis quizzes",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "plain": "Una página de trabajo sigue lisa: sin fondo de escaparate."
+    },
+    "colorMode": "Claro u oscuro",
+    "colorModes": {
+      "auto": "Cada dispositivo elige",
+      "light": "Siempre claro",
+      "dark": "Siempre oscuro"
+    },
+    "colorModeHint": "Cada dispositivo sigue su sistema, o lo que su usuario elija en el menú de la cuenta; si se fuerza, el menú deja de ofrecerlo. Las pantallas en directo no se ven afectadas: las viste el tema del quiz."
+  }
 }

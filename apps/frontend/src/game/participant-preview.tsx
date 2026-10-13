@@ -12,6 +12,7 @@ import {
   SlideView,
   TYPE_BASE,
 } from './live-components';
+import { LiveTheme, themeBackdrop } from './theme';
 import { RoomVariables } from './slide-variables';
 import { Surface } from './surface';
 import { ImageChoiceGrid } from './image-choice';
@@ -35,6 +36,8 @@ export function ParticipantPreview({
 }) {
   const { t } = useTranslation('live');
   const clock = useQuestionClock(view);
+  // Without a background of its own, the step is drawn on the quiz theme's (docs/themes.md).
+  const themed = themeBackdrop(view.theme);
   const q = view.question;
   let body: React.ReactNode;
   if (view.state === 'SLIDE_SHOW' && view.slide) {
@@ -80,7 +83,10 @@ export function ParticipantPreview({
     body = (
       <div className="flex min-h-[32em] w-full flex-col items-center gap-[1em] p-[1em]">
         <h2 className="text-[1.5em] font-bold">{t('player.podium')}</h2>
-        <Podium rows={view.podium.podium} />
+        {/* The room's podium, at a phone's width. */}
+        <div className="w-full text-[0.55em]">
+          <Podium rows={view.podium.podium} />
+        </div>
       </div>
     );
   } else {
@@ -93,22 +99,25 @@ export function ParticipantPreview({
   return (
     <div className="flex flex-col items-center gap-3">
       {note ? <p className="text-muted-foreground text-sm">{t('preview.note')}</p> : null}
-      {/* A phone-sized frame with the participant's typographic base. */}
+      {/* A phone-sized frame with the participant's typographic base; light, as the phone
+          is, in a dark page too. */}
       <div
         className={cn(
-          'bg-background w-full max-w-[24em] overflow-hidden rounded-[1.5rem] border-[6px] border-neutral-800 shadow-xl',
+          'light bg-background text-foreground w-full max-w-[24em] overflow-hidden rounded-[1.5rem] border-[6px] border-neutral-800 shadow-xl',
           TYPE_BASE.phone,
         )}
       >
-        <Surface
-          // A slide brings its own background; the last question's must not show behind it.
-          background={view.state === 'SLIDE_SHOW' ? null : q?.background}
-          textTone={q?.textTone}
-          textOutline={q?.textOutline}
-          className={cn('flex w-full', !q?.background && 'bg-transparent')}
-        >
-          {body}
-        </Surface>
+        <LiveTheme theme={view.theme}>
+          <Surface
+            // A slide brings its own background; the last question's must not show behind it.
+            background={view.state === 'SLIDE_SHOW' ? null : (q?.background ?? themed?.background)}
+            textTone={q?.background ? q.textTone : themed?.textTone}
+            textOutline={q?.background ? q.textOutline : !!themed && 'url' in themed.background}
+            className={cn('flex w-full', !q?.background && !themed && 'bg-transparent')}
+          >
+            {body}
+          </Surface>
+        </LiveTheme>
       </div>
     </div>
   );

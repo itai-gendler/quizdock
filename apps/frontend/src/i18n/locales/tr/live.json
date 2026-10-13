@@ -16,6 +16,12 @@
     "shareTitle": "{{appName}} odasına katılın",
     "screenButton": "Projeksiyon penceresi",
     "screenButtonTooltip": "Yansıtmak için geniş ekranı açar (izleyici görünümü)",
+    "screenElsewhere": "Başka bir bilgisayardan projeksiyon",
+    "screenElsewhereHint": "Projektöre bağlı bilgisayarda bu adresi açın veya bu kodu tarayın. Ardından o ekranın gösterdiği kodu buraya yazın.",
+    "pairCodeLabel": "O ekranda görünen kod",
+    "pairButton": "Projeksiyon yap",
+    "paired": "O ekran artık odanın projeksiyonu.",
+    "pairFailed": "Bu odanın hiçbir ekranı bu kodu göstermiyor.",
     "captureLabel": "Tüm cevapları kaydet",
     "captureHint": "ⓘ Katılımcılar başlangıçta bilgilendirilecektir. Bireysel takip için her katılımcının cevap ayrıntılarını tutar.",
     "trackingLabel": "Kişiselleştirilmiş izleme",
@@ -195,7 +201,8 @@
       "roomMuted": "Oda sesi kapalı",
       "media": "Medya",
       "mediaLevel": "Medya",
-      "mediaWhen": "Quizin kendi sesi: soru veya slayt sesleri ve videoların sesleri. Yalnızca projeksiyonu etkiler: evden katılanlar sorunun sesini duymaya devam eder."
+      "mediaWhen": "Quizin kendi sesi: soru veya slayt sesleri ve videoların sesleri. Yalnızca projeksiyonu etkiler: evden katılanlar sorunun sesini duymaya devam eder.",
+      "fromTheme": "Quiz temasınınki"
     },
     "slideVideoMuted": "Slaydın videosu sessiz oynatılır.",
     "phase": {
@@ -266,6 +273,8 @@
   },
   "screen": {
     "sessionUnavailable": "Oda kullanılamıyor.",
+    "pairingCode": "Projeksiyon kodu",
+    "pairingHint": "Bu ekranı odanın projeksiyonu yapmak için sunucu bu kodu konsola yazar (Projeksiyon penceresinin yanındaki ⋮).",
     "qrLabel": "Katılmak için QR kodu",
     "exitFullscreen": "Tam ekrandan çık",
     "fullscreen": "Tam ekran",

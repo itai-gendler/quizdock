@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from 'react';
+import type { ComponentProps, HTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
 
 /** The one title of a page: the same size and weight on every screen. */
@@ -7,6 +7,6 @@ export function PageTitle({ className, ...props }: HTMLAttributes<HTMLHeadingEle
 }
 
 /** A section of a page. The spaced capitals stay for form legends only. */
-export function SectionTitle({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
+export function SectionTitle({ className, ...props }: ComponentProps<'h2'>) {
   return <h2 className={cn('text-lg font-semibold', className)} {...props} />;
 }

@@ -22,6 +22,8 @@ export * from './admin/settings';
 export * from './admin/operations';
 export * from './admin/results';
 import type { ParticipantAccess } from './preferences';
+import type { ThemeValues } from './theme';
+import type { BackgroundStyle } from './background';
 import type { AudioTarget, LiveAudio, LiveQuestionMedia } from './question-media';
 
 export const CONTRACTS_VERSION = '0.3.0' as const;
@@ -219,8 +221,17 @@ export interface SlideGradient {
   angle: number;
   colors: string[];
 }
-/** Full-cover background: an uploaded image, or a generated gradient. */
-export type SlideBackground = { url: string } | { gradient: SlideGradient };
+/**
+ * Full-cover background: an uploaded image, a generated gradient or a plain colour, laid
+ * as its `style` says (docs/themes.md; absent: today's cover).
+ */
+export type SlideBackground = (
+  | { url: string }
+  | { gradient: SlideGradient }
+  | { color: string }
+) & {
+  style?: BackgroundStyle;
+};
 
 /**
  * A slide's video (#125), filling the slide behind its content (cover).
@@ -651,14 +662,22 @@ export interface ClientToServerEvents {
   'host:media': (p: HostMediaCommand) => void;
   /** Ajoute/retire `deltaS` secondes au chrono de la question courante. */
   'host:adjust-time': (p: { pin: string; deltaS: number }) => void;
-  /** Rejoint la room en lecture seule (fenêtre projetée) — aucune auth, le PIN suffit. */
   /**
-   * A projection window joins read-only. `follow`: a participant's copy of it on
-   * another device (#104) — it follows the projection's position, is never waited
-   * for, and never speaks for the sound.
+   * A projection window joins read-only; the PIN is enough to watch. It is the
+   * room's **projection** — waited for ahead of a media step, speaking for the
+   * sound's position — when its socket is the room's host, or with the `screen`
+   * token the host's pairing gave it (`screen:paired`). Any other screen is a copy,
+   * as one with `follow` (a participant's copy on another device, #104): it follows
+   * the projection's position, is never waited for, never speaks for the sound. A
+   * projection window not paired gets a `pairingCode` to show.
    */
   'spectator:join': (
-    p: { pin: string; follow?: boolean },
+    p: { pin: string; follow?: boolean; screen?: string },
+    ack: (res: { ok: boolean; pairingCode?: string }) => void,
+  ) => void;
+  /** Makes the screen showing `code` the room's projection (one on another computer). */
+  'host:pair-screen': (
+    p: { pin: string; code: string },
     ack: (res: { ok: boolean }) => void,
   ) => void;
   /**
@@ -800,6 +819,11 @@ export interface ServerToClientEvents {
    * when the host switches it. A new room starts from the instance's `LIVE_MOTION`.
    */
   'room:motion': (p: { on: boolean }) => void;
+  /**
+   * To a projection window the host just paired: it is the room's projection now;
+   * `token` keeps it so when it reconnects (`spectator:join.screen`).
+   */
+  'screen:paired': (p: { token: string }) => void;
   /** To a participant back in a lobby: whether they already said they are ready (#104). */
   'lobby:you': (p: { ready: boolean }) => void;
   /** To the participants in a lobby (#104): how many said they are ready, out of how many. */
@@ -855,6 +879,11 @@ export interface ServerToClientEvents {
     language: string;
     /** The host's choice for the room (#209); '' = each quiz's. Read by the console. */
     roomLanguage: string;
+    /**
+     * The quiz's look (docs/themes.md), frozen with the game, its files by URL. Absent: a
+     * lobby with no quiz yet, in the page's own look.
+     */
+    theme?: ThemeValues;
   }) => void;
   /**
    * Erreur typée. **Token uniquement** : le backend n'émet qu'un `code` domaine
@@ -864,3 +893,9 @@ export interface ServerToClientEvents {
   error: (p: { code: string; params?: Record<string, string | number> }) => void;
   pong: (p: { t0: number; t1: number }) => void;
 }
+export * from './theme';
+export * from './theme-accessibility';
+export * from './theme-builtin';
+export * from './theme-color';
+export * from './theme-icons';
+export * from './interface-look';

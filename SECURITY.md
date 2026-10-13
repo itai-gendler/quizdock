@@ -9,7 +9,7 @@ tag of `fchaussin/quizdock` (`:standalone` included: it is rebuilt with each rel
 
 Please **do not** open a public issue for security problems.
 
-- Open a [private security advisory](https://github.com/quizdock/quiz-dock/security/advisories/new)
+- Open a [private security advisory](https://github.com/quizdock/quizdock/security/advisories/new)
   (GitHub → *Security* → *Report a vulnerability*): only the maintainers see it.
 
 Include a description, affected version/tag, reproduction steps and impact. We aim to

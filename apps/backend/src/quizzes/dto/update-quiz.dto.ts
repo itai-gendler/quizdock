@@ -9,6 +9,7 @@ import {
   TAG_RE,
 } from '@quiz-dock/contracts';
 import { z } from 'zod';
+import { themeRefSchema } from '../../themes/dto/theme.dto';
 import { QUIZ_DESCRIPTION_MAX } from './create-quiz.dto';
 
 /** Mise à jour partielle d'un quiz. `null` sur description/cover = effacement. */
@@ -25,6 +26,8 @@ export const updateQuizSchema = z.object({
   /** Which devices play the sounds, unless a question says otherwise. */
   audioTarget: z.enum(AUDIO_TARGETS).optional(),
   coverMediaId: z.string().length(26).nullable().optional(),
+  /** Its look on the live screens; `null`: the instance's default theme. */
+  theme: themeRefSchema.nullable().optional(),
   /** Terms the quiz travels under when shared (#39, #21); `null` clears it. */
   license: z.enum(QUIZ_LICENSES).nullable().optional(),
   /** Shared with the instance's other hosts: read-only for them, to copy from. */

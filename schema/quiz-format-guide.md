@@ -4,7 +4,7 @@
 
 How to write a QuizDock quiz file (`quiz.json`) that the importer accepts, text
 only. It writes manifest version 3 of the format `quizdock/quiz`; the
-structure is also published as a JSON Schema: https://raw.githubusercontent.com/quizdock/quiz-dock/main/schema/quiz-bundle.v3.json
+structure is also published as a JSON Schema: https://raw.githubusercontent.com/quizdock/quizdock/main/schema/quiz-bundle.v3.json
 
 ## The file
 
@@ -51,10 +51,10 @@ Every question:
 - `correctOrderIndex` — ordering questions only.
 - `color` and `shape` go by position, never repeated within a question:
 
-1. `red` / `triangle`
-2. `blue` / `diamond`
-3. `yellow` / `circle`
-4. `green` / `square`
+1. `green` / `square`
+2. `red` / `triangle`
+3. `blue` / `diamond`
+4. `yellow` / `circle`
 5. `purple` / `star`
 6. `orange` / `hexagon`
 7. `pink` / `heart`
@@ -75,11 +75,11 @@ Each `id` is unique within its slide, at most 64 characters.
 A converted quiz carries no media and no layout: the author adds them in
 QuizDock. Never write these fields (a zipped export carries them, with its files):
 
-- the file: `media`;
+- the file: `media`, `theme`;
 - `quiz`: `feedbackEnabled`, `mediaTailS`, `loudnessTargetLufs`, `audioTarget`, `cover`, `slug`, `namespace`, `revision`, `updatedAt`, `domain`, `tags`, `license`;
-- a question: `media`, `audio`, `backgroundImage`, `backgroundGradient`, `textTone`, `textOutline`, `revealDelayS`, `audioTarget`, `waveformSize`, `mediaPosition`, `timerAfterMedia`, `multiSelect`;
+- a question: `media`, `audio`, `backgroundImage`, `backgroundGradient`, `background`, `textTone`, `textOutline`, `revealDelayS`, `audioTarget`, `waveformSize`, `mediaPosition`, `timerAfterMedia`, `multiSelect`;
 - an option: `media`, `alt`;
-- a slide: `backgroundImage`, `backgroundGradient`, `textTone`, `textOutline`, `video`, `videoLoop`, `videoSound`, `audio`, `waveformSize`, `audioTarget`, `displayDelayS`; block types `image`, `columns`;
+- a slide: `backgroundImage`, `backgroundGradient`, `background`, `textTone`, `textOutline`, `video`, `videoLoop`, `videoSound`, `audio`, `waveformSize`, `audioTarget`, `displayDelayS`; block types `image`, `columns`;
 - Markdown images (`![…](…)`) anywhere.
 
 ## Writing it
@@ -142,24 +142,24 @@ draft to finish in the editor.
       "options": [
         {
           "text": "Mars",
-          "color": "red",
-          "shape": "triangle"
+          "color": "green",
+          "shape": "square"
         },
         {
           "text": "Jupiter",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "text": "Venus",
-          "color": "yellow",
-          "shape": "circle"
+          "color": "blue",
+          "shape": "diamond"
         },
         {
           "text": "Mercury",
-          "color": "green",
-          "shape": "square"
+          "color": "yellow",
+          "shape": "circle"
         }
       ]
     },
@@ -171,19 +171,19 @@ draft to finish in the editor.
       "options": [
         {
           "text": "Jupiter",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "Earth",
-          "color": "blue",
-          "shape": "diamond"
+          "color": "red",
+          "shape": "triangle"
         },
         {
           "text": "Saturn",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": true
         }
       ]
@@ -197,14 +197,14 @@ draft to finish in the editor.
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond"
+          "color": "red",
+          "shape": "triangle"
         }
       ]
     },
@@ -233,20 +233,20 @@ draft to finish in the editor.
       "options": [
         {
           "text": "Earth",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "correctOrderIndex": 2
         },
         {
           "text": "Mercury",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "correctOrderIndex": 0
         },
         {
           "text": "Venus",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "correctOrderIndex": 1
         }
       ]
@@ -258,18 +258,18 @@ draft to finish in the editor.
       "options": [
         {
           "text": "Mars",
+          "color": "green",
+          "shape": "square"
+        },
+        {
+          "text": "Saturn",
           "color": "red",
           "shape": "triangle"
         },
         {
-          "text": "Saturn",
+          "text": "Neptune",
           "color": "blue",
           "shape": "diamond"
-        },
-        {
-          "text": "Neptune",
-          "color": "yellow",
-          "shape": "circle"
         }
       ]
     }

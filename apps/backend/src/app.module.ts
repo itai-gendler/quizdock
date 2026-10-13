@@ -7,6 +7,8 @@ import { GameModule } from './game/game.module';
 import { HealthController } from './health/health.controller';
 import { MeController } from './me/me.controller';
 import { MediaModule } from './media/media.module';
+import { ThemesModule } from './themes/themes.module';
+import { LookModule } from './look/look.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { QuestionsModule } from './questions/questions.module';
 import { SlidesModule } from './slides/slides.module';
@@ -68,6 +70,8 @@ const serveStatic = clientDir
     QuestionsModule,
     SlidesModule,
     MediaModule,
+    ThemesModule,
+    LookModule,
     GameModule,
     DemoModule,
     AdminHttpModule,

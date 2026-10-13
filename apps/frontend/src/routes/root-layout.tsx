@@ -1,11 +1,13 @@
-import { Link, Outlet, useMatches, useNavigate } from '@tanstack/react-router';
+import { Link, Outlet, useLocation, useMatches, useNavigate } from '@tanstack/react-router';
+import { useColorModeFor } from '@/lib/color-mode';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppNav } from '@/components/app-nav';
 import { BrandLogo } from '@/components/brand-logo';
-import { useMeControllerGetPreferences } from '../api/generated/me/me';
 import { useAuth } from '../auth/auth-context';
 import { useInterfaceLanguage } from '../i18n/interface-language';
+import { usePersonalLanguage } from '@/lib/personal-language';
+import { LanguageGlobe } from '@/components/language-switch';
 import { APP_NAME, getDemo } from '../config';
 import { cn } from '@/lib/utils';
 
@@ -19,6 +21,8 @@ const TITLE_KEYS: Record<string, string> = {
   '/community': 'templates',
   '/community/$key': 'template',
   '/templates/$templateId': 'template',
+  '/themes': 'themes',
+  '/themes/$themeId': 'theme',
   '/quizzes/$quizId': 'editor',
   '/quizzes/$quizId/preview': 'preview',
   '/quizzes/$quizId/reviews': 'feedback',
@@ -48,6 +52,8 @@ export function RootLayout() {
     document.title = key ? `${t(`common:titles.${key}`)} · ${APP_NAME}` : APP_NAME;
   }, [matches, t]);
   const { user, mode, logout } = useAuth();
+  // Light or dark, page by page: a live screen never is dark.
+  useColorModeFor(useLocation().pathname);
   const demo = getDemo();
   const navigate = useNavigate();
   // Three shells: the projected screen has no chrome at all; participants (guests on a
@@ -60,11 +66,9 @@ export function RootLayout() {
       : routeId.startsWith('/join')
         ? 'participant'
         : 'app';
-  // The interface's language (#209): a host's own screens follow their preference; the
-  // game screens ask for the audience's themselves.
-  const hostScreens = shell === 'app' && !!user;
-  const preferences = useMeControllerGetPreferences({ query: { enabled: hostScreens } });
-  useInterfaceLanguage(hostScreens ? (preferences.data?.data.language ?? null) : null);
+  // The interface's language (#209): the one this person picked, kept in their account
+  // or on the device; the game screens ask for the room's themselves.
+  useInterfaceLanguage(usePersonalLanguage().language);
 
   if (shell === 'bare') {
     return (
@@ -115,8 +119,11 @@ export function RootLayout() {
             </Link>
           )}
           {shell === 'participant' ? (
-            // Filled by the player page (avatar, nickname, Leave) through a portal.
-            <div id="participant-topbar" className="flex items-center gap-2" />
+            <span className="flex items-center gap-2">
+              <LanguageGlobe />
+              {/* Filled by the player page (avatar, nickname, Leave) through a portal. */}
+              <div id="participant-topbar" className="flex items-center gap-2" />
+            </span>
           ) : user ? (
             <AppNav
               user={user}
@@ -126,9 +133,12 @@ export function RootLayout() {
               }}
             />
           ) : (
-            <Link to="/login" className="text-sm hover:underline">
-              {t('nav.loginLink')}
-            </Link>
+            <span className="flex items-center gap-3">
+              <LanguageGlobe />
+              <Link to="/login" className="text-sm hover:underline">
+                {t('nav.loginLink')}
+              </Link>
+            </span>
           )}
         </div>
       </header>

@@ -1,0 +1,71 @@
+{
+  "loading": "Wird geladen…",
+  "confirm": "Bestätigen",
+  "cancel": "Abbrechen",
+  "close": "Schließen",
+  "quizStatus": {
+    "draft": "Entwurf",
+    "ready": "Bereit",
+    "archived": "Archiviert"
+  },
+  "markdownEditor": {
+    "visual": "Visueller Editor",
+    "source": "Markdown",
+    "bold": "Fett",
+    "italic": "Kursiv",
+    "code": "Code",
+    "codeBlock": "Codeblock",
+    "bulletList": "Aufzählung",
+    "orderedList": "Nummerierte Liste"
+  },
+  "captureConfirm": {
+    "title": "Vollständige Antworterfassung einschalten?",
+    "description": "Jede Antwort aller Teilnehmenden wird mit ihrem Spitznamen gespeichert: Das sind personenbezogene Daten (DSGVO — Teilnehmende informieren, danach löschen). Sitzungsarchive werden in der Datenbank außerdem deutlich größer. Nur für individuelle Auswertung verwenden (Prüfung, Zertifizierung).",
+    "confirmLabel": "Einschalten"
+  },
+  "draft": {
+    "restored": "Entwurf wiederhergestellt — Ihre nicht gespeicherten Änderungen wurden zurückgeholt.",
+    "discard": "Entwurf verwerfen"
+  },
+  "titles": {
+    "login": "Anmelden",
+    "dashboard": "Meine Quizze",
+    "editor": "Editor",
+    "preview": "Vorschau",
+    "feedback": "Bewertungen",
+    "sessions": "Verlauf",
+    "session": "Raum",
+    "player": "Teilnahme",
+    "control": "Konsole",
+    "screen": "Projektion",
+    "join": "Beitreten",
+    "live": "Offene Räume",
+    "templates": "Vorlagen",
+    "profile": "Mein Konto",
+    "template": "Vorlage",
+    "instanceMedia": "Medien der Instanz",
+    "admin": "Administration",
+    "setup": "Einrichtung",
+    "history": "Sitzungen",
+    "historyRoom": "Raum",
+    "themes": "Themes",
+    "theme": "Theme"
+  },
+  "demo": {
+    "banner": "Öffentliche Demo — ein Quizleitungskonto für alle Besucher; alles wird stündlich gelöscht."
+  },
+  "chromiumOnly": "Diese Seite ist für Chrome, Edge oder einen anderen Chromium-Browser gebaut. In diesem Browser funktionieren das Hochladen und Abspielen von Videos und Tönen möglicherweise nicht richtig.",
+  "play": "Abspielen",
+  "pause": "Pause",
+  "position": "Position im Ton",
+  "fallback": {
+    "notFoundTitle": "Diese Seite existiert nicht",
+    "notFoundText": "Der Link ist vielleicht veraltet, oder das Ziel wurde gelöscht.",
+    "errorTitle": "Etwas ist schiefgelaufen",
+    "errorText": "Diese Seite funktioniert nicht mehr. Was Sie gespeichert haben, ist sicher.",
+    "backHome": "Zur Startseite",
+    "tryAgain": "Erneut versuchen"
+  },
+  "stale": "Erneutes Lesen fehlgeschlagen: Angezeigt wird der zuletzt gelesene Stand.",
+  "retry": "Erneut versuchen"
+}

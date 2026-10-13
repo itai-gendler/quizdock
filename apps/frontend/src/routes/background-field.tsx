@@ -1,4 +1,4 @@
-import type { SlideGradient, SlideTextTone } from '@quiz-dock/contracts';
+import type { BackgroundStyle, SlideGradient, SlideTextTone } from '@quiz-dock/contracts';
 import { Plus, X } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,7 @@ import { Select } from '@/components/ui/select';
 import { gradientCss } from '../game/surface';
 import { MediaUpload } from './media-upload';
 import { Segmented } from '@/components/ui/segmented';
+import { ColorRow, PictureLayout } from './background-style';
 
 /** What a slide or a question stores about its background. */
 export interface BackgroundValue {
@@ -16,6 +17,8 @@ export interface BackgroundValue {
   gradient: SlideGradient | null;
   textTone: SlideTextTone;
   textOutline: boolean;
+  /** How the picture is laid, or the plain colour (docs/themes.md); null: today's cover. */
+  style: BackgroundStyle | null;
 }
 
 export const NO_BACKGROUND: BackgroundValue = {
@@ -23,14 +26,17 @@ export const NO_BACKGROUND: BackgroundValue = {
   gradient: null,
   textTone: 'light',
   textOutline: true,
+  style: null,
 };
 
 const DEFAULT_GRADIENT: SlideGradient = { angle: 135, colors: ['#1e3a8a', '#7c3aed'] };
+const DEFAULT_COLOUR = '#1e3a8a';
 
 /**
- * Background settings, folded by default (white is the norm): none, an uploaded
- * image, or a gradient built from 2–4 colours and an angle; then the text
- * contrast (tone + outline) once a background exists.
+ * Background settings, folded by default (the quiz theme's is the norm): none — the
+ * theme's —, an uploaded image laid as its style says, a gradient built from 2–4
+ * colours and an angle, or a plain colour; then the text contrast (tone + outline)
+ * once a background of its own exists.
  */
 export function BackgroundField({
   value,
@@ -42,7 +48,7 @@ export function BackgroundField({
   const { t } = useTranslation('editor');
   // The kind follows the value (a discarded draft puts it back); only "image, the file
   // still to come" has no value of its own, so it is kept here until the upload lands.
-  type Kind = 'none' | 'image' | 'gradient';
+  type Kind = 'none' | 'image' | 'gradient' | 'colour';
   const [imagePending, setImagePending] = useState(false);
   const kind: Kind = value.mediaId
     ? 'image'
@@ -50,13 +56,21 @@ export function BackgroundField({
       ? 'gradient'
       : imagePending
         ? 'image'
-        : 'none';
+        : value.style?.color
+          ? 'colour'
+          : 'none';
   const setKind = (k: Kind) => {
     setImagePending(k === 'image');
     onChange({
       ...value,
       mediaId: k === 'image' ? value.mediaId : null,
       gradient: k === 'gradient' ? (value.gradient ?? DEFAULT_GRADIENT) : null,
+      style:
+        k === 'colour'
+          ? { color: value.style?.color ?? DEFAULT_COLOUR }
+          : k === 'image'
+            ? value.style
+            : null,
     });
   };
   const g = value.gradient;
@@ -83,16 +97,33 @@ export function BackgroundField({
         label={t('background.legend')}
         value={kind}
         onChange={setKind}
-        options={(['none', 'image', 'gradient'] as const).map((k) => ({
+        options={(['none', 'image', 'gradient', 'colour'] as const).map((k) => ({
           value: k,
           label: t(`background.kind.${k}`),
         }))}
       />
 
       {kind === 'image' ? (
-        <MediaUpload
-          value={value.mediaId}
-          onChange={(id) => onChange({ ...value, mediaId: id, gradient: null })}
+        <>
+          <MediaUpload
+            value={value.mediaId}
+            onChange={(id) => onChange({ ...value, mediaId: id, gradient: null })}
+          />
+          {value.mediaId ? (
+            <PictureLayout
+              style={value.style ?? {}}
+              textTone={value.textTone}
+              onChange={(style) => onChange({ ...value, style })}
+            />
+          ) : null}
+        </>
+      ) : null}
+
+      {kind === 'colour' ? (
+        <ColorRow
+          label={t('background.colour')}
+          value={value.style?.color ?? DEFAULT_COLOUR}
+          onChange={(color) => onChange({ ...value, style: { color } })}
         />
       ) : null}
 

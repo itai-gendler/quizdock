@@ -16,6 +16,7 @@ import type {
   SlideVideo,
   SlideBlock,
   SlideTextTone,
+  ThemeValues,
 } from '@quiz-dock/contracts';
 import type { GameId } from './game.keys';
 
@@ -114,6 +115,8 @@ export interface QuizSnapshot {
   slides: SnapshotSlide[];
   /** The credits of the media it plays, shown at the podium (#53; absent before it). */
   credits?: string[];
+  /** Its look on the live screens, resolved when the game opens (docs/themes.md; absent before it). */
+  theme?: ThemeValues;
 }
 
 /**

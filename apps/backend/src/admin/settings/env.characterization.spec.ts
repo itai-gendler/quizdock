@@ -70,8 +70,8 @@ function loadFresh<T extends object>(path: string): T {
 }
 
 describe('Identity & branding', () => {
-  const configJs = () => {
-    const js = new AppConfigController().configJs();
+  const configJs = async () => {
+    const js = await new AppConfigController().configJs();
     return JSON.parse(js.replace(/^window\.__APP_CONFIG__ = /, '').replace(/;\n$/, '')) as Record<
       string,
       unknown
@@ -88,8 +88,8 @@ describe('Identity & branding', () => {
     }),
   );
 
-  it('config.js carries the defaults when nothing is set', () => {
-    expect(configJs()).toEqual({
+  it('config.js carries the defaults when nothing is set', async () => {
+    expect(await configJs()).toEqual({
       appName: 'QuizDock',
       lang: 'en',
       logoUrl: '',
@@ -99,14 +99,14 @@ describe('Identity & branding', () => {
     });
   });
 
-  it('config.js carries the values as written, unchecked', () => {
+  it('config.js carries the values as written, unchecked', async () => {
     setEnv({
       APP_NAME: 'Quiz "du" lundi',
       APP_LANG: 'xx',
       APP_LOGO_URL: 'not a url',
       APP_FEEDBACK_URL: 'none',
     });
-    expect(configJs()).toMatchObject({
+    expect(await configJs()).toMatchObject({
       appName: 'Quiz "du" lundi',
       lang: 'xx',
       logoUrl: 'not a url',
@@ -114,9 +114,9 @@ describe('Identity & branding', () => {
     });
   });
 
-  it('APP_NAME empty stays empty, APP_LANG empty falls back to en', () => {
+  it('APP_NAME empty stays empty, APP_LANG empty falls back to en', async () => {
     setEnv({ APP_NAME: '', APP_LANG: '' });
-    expect(configJs()).toMatchObject({ appName: '', lang: 'en' });
+    expect(await configJs()).toMatchObject({ appName: '', lang: 'en' });
     expect(instanceLanguage()).toBe('en');
   });
 
@@ -141,7 +141,7 @@ describe('Identity & branding', () => {
     await expect(new AppConfigController().manifest()).rejects.toBeInstanceOf(NotFoundException);
   });
 
-  it('APP_LOGO_URL adds its origin to the CSP images, an unreadable one adds nothing', () => {
+  it('APP_LOGO_URL adds its origin to the CSP images, an unreadable one adds nothing', async () => {
     const imgSrc = (url?: string) =>
       contentSecurityPolicy(settingsFrom({ APP_LOGO_URL: url }))
         .split('; ')

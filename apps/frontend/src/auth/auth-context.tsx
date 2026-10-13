@@ -82,8 +82,10 @@ export function forgetStoredTokens(): void {
     try {
       // Reading the property itself throws when site data is blocked.
       const store = window[name];
-      for (const key of Object.keys(store)) {
-        if (key.startsWith('oidc.')) store.removeItem(key);
+      // By the Storage API (`key(i)`): not every implementation lists its keys as properties.
+      const keys = Array.from({ length: store.length }, (_, i) => store.key(i));
+      for (const key of keys) {
+        if (key?.startsWith('oidc.')) store.removeItem(key);
       }
     } catch {
       // Storage disabled: there is nothing in it either.

@@ -483,6 +483,20 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "theme",
+            "required": false,
+            "in": "query",
+            "description": "Its theme: whole (default), only its shipped parent, or none (an instance before bundle version 8).",
+            "schema": {
+              "enum": [
+                "full",
+                "fallback",
+                "none"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1550,6 +1564,385 @@
         ]
       }
     },
+    "/api/v1/themes": {
+      "get": {
+        "operationId": "ThemesController_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeListDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "themes"
+        ]
+      },
+      "post": {
+        "operationId": "ThemesController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateThemeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "themes"
+        ]
+      }
+    },
+    "/api/v1/themes/default": {
+      "put": {
+        "operationId": "ThemesController_setDefault",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ThemeRefDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeListDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "themes"
+        ]
+      }
+    },
+    "/api/v1/themes/assets/{kind}": {
+      "post": {
+        "operationId": "ThemesController_uploadAsset",
+        "parameters": [
+          {
+            "name": "kind",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "enum": [
+                "icon",
+                "font"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeAssetResultDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "themes"
+        ]
+      }
+    },
+    "/api/v1/themes/import": {
+      "post": {
+        "operationId": "ThemesController_importTheme",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeImportDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "themes"
+        ]
+      }
+    },
+    "/api/v1/themes/{id}/export": {
+      "get": {
+        "operationId": "ThemesController_exportTheme",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Zip bundle (theme.json + media/)."
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "themes"
+        ]
+      }
+    },
+    "/api/v1/themes/{id}": {
+      "get": {
+        "operationId": "ThemesController_get",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "themes"
+        ]
+      },
+      "put": {
+        "operationId": "ThemesController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateThemeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "themes"
+        ]
+      },
+      "delete": {
+        "operationId": "ThemesController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "409": {
+            "description": "Used by a quiz, or the default theme."
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "themes"
+        ]
+      }
+    },
+    "/api/v1/themes/{id}/duplicate": {
+      "post": {
+        "operationId": "ThemesController_duplicate",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DuplicateThemeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "themes"
+        ]
+      }
+    },
     "/api/v1/store": {
       "get": {
         "operationId": "StoreController_list",
@@ -2553,7 +2946,9 @@
               "enum": [
                 "image",
                 "video",
-                "audio"
+                "audio",
+                "icon",
+                "font"
               ]
             }
           },
@@ -3211,6 +3606,29 @@
               "everyone"
             ]
           },
+          "themeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "themeBuiltin": {
+            "type": "string",
+            "enum": [
+              "classic",
+              "sober",
+              "kids",
+              "festive",
+              "night",
+              "high-contrast",
+              "high-contrast-light",
+              "halloween",
+              "christmas",
+              "new-year",
+              "easter",
+              "summer",
+              null
+            ],
+            "nullable": true
+          },
           "questionCount": {
             "type": "integer",
             "minimum": -9007199254740991,
@@ -3263,6 +3681,8 @@
           "mediaTailS",
           "loudnessTargetLufs",
           "audioTarget",
+          "themeId",
+          "themeBuiltin",
           "questionCount",
           "license",
           "tags",
@@ -3389,6 +3809,29 @@
               "everyone"
             ]
           },
+          "themeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "themeBuiltin": {
+            "type": "string",
+            "enum": [
+              "classic",
+              "sober",
+              "kids",
+              "festive",
+              "night",
+              "high-contrast",
+              "high-contrast-light",
+              "halloween",
+              "christmas",
+              "new-year",
+              "easter",
+              "summer",
+              null
+            ],
+            "nullable": true
+          },
           "questionCount": {
             "type": "integer",
             "minimum": -9007199254740991,
@@ -3482,6 +3925,12 @@
               "incomplete",
               "skipped"
             ]
+          },
+          "importWarnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
@@ -3496,6 +3945,8 @@
           "mediaTailS",
           "loudnessTargetLufs",
           "audioTarget",
+          "themeId",
+          "themeBuiltin",
           "questionCount",
           "license",
           "tags",
@@ -3717,6 +4168,29 @@
               "projection_remote",
               "everyone"
             ]
+          },
+          "themeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "themeBuiltin": {
+            "type": "string",
+            "enum": [
+              "classic",
+              "sober",
+              "kids",
+              "festive",
+              "night",
+              "high-contrast",
+              "high-contrast-light",
+              "halloween",
+              "christmas",
+              "new-year",
+              "easter",
+              "summer",
+              null
+            ],
+            "nullable": true
           },
           "questionCount": {
             "type": "integer",
@@ -3976,6 +4450,62 @@
                 "textOutline": {
                   "type": "boolean"
                 },
+                "backgroundStyle": {
+                  "type": "object",
+                  "properties": {
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "watermark",
+                        "cover",
+                        "contain",
+                        "pattern"
+                      ]
+                    },
+                    "color": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "minimum": 5,
+                      "maximum": 100
+                    },
+                    "opacity": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "grayscale": {
+                      "type": "boolean"
+                    },
+                    "blur": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 20
+                    },
+                    "veil": {
+                      "type": "object",
+                      "properties": {
+                        "color": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        },
+                        "opacity": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.9
+                        }
+                      },
+                      "required": [
+                        "color",
+                        "opacity"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "nullable": true
+                },
                 "timeLimitS": {
                   "type": "integer",
                   "minimum": -9007199254740991,
@@ -4156,6 +4686,7 @@
                 "backgroundGradient",
                 "textTone",
                 "textOutline",
+                "backgroundStyle",
                 "timeLimitS",
                 "revealDelayS",
                 "audioTarget",
@@ -4549,6 +5080,62 @@
                   ],
                   "nullable": true
                 },
+                "backgroundStyle": {
+                  "type": "object",
+                  "properties": {
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "watermark",
+                        "cover",
+                        "contain",
+                        "pattern"
+                      ]
+                    },
+                    "color": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "minimum": 5,
+                      "maximum": 100
+                    },
+                    "opacity": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "grayscale": {
+                      "type": "boolean"
+                    },
+                    "blur": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 20
+                    },
+                    "veil": {
+                      "type": "object",
+                      "properties": {
+                        "color": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        },
+                        "opacity": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.9
+                        }
+                      },
+                      "required": [
+                        "color",
+                        "opacity"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "nullable": true
+                },
                 "videoMediaId": {
                   "type": "string",
                   "nullable": true
@@ -4607,6 +5194,7 @@
                 "blocks",
                 "mediaId",
                 "gradient",
+                "backgroundStyle",
                 "videoMediaId",
                 "videoLoop",
                 "videoSound",
@@ -4632,6 +5220,8 @@
           "mediaTailS",
           "loudnessTargetLufs",
           "audioTarget",
+          "themeId",
+          "themeBuiltin",
           "questionCount",
           "license",
           "tags",
@@ -5247,6 +5837,35 @@
             "maxLength": 26,
             "nullable": true
           },
+          "theme": {
+            "type": "object",
+            "properties": {
+              "builtin": {
+                "type": "string",
+                "enum": [
+                  "classic",
+                  "sober",
+                  "kids",
+                  "festive",
+                  "night",
+                  "high-contrast",
+                  "high-contrast-light",
+                  "halloween",
+                  "christmas",
+                  "new-year",
+                  "easter",
+                  "summer"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "minLength": 26,
+                "maxLength": 26
+              }
+            },
+            "additionalProperties": false,
+            "nullable": true
+          },
           "license": {
             "type": "string",
             "enum": [
@@ -5691,6 +6310,1828 @@
         },
         "required": [
           "credit"
+        ]
+      },
+      "ThemeListDto": {
+        "type": "object",
+        "properties": {
+          "themes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "parent": {
+                  "type": "string",
+                  "enum": [
+                    "classic",
+                    "sober",
+                    "kids",
+                    "festive",
+                    "night",
+                    "high-contrast",
+                    "high-contrast-light",
+                    "halloween",
+                    "christmas",
+                    "new-year",
+                    "easter",
+                    "summer"
+                  ]
+                },
+                "overrides": {
+                  "type": "object",
+                  "properties": {
+                    "background": {
+                      "type": "object",
+                      "properties": {
+                        "color": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        },
+                        "textTone": {
+                          "type": "string",
+                          "enum": [
+                            "light",
+                            "dark"
+                          ]
+                        },
+                        "image": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "minLength": 26,
+                              "maxLength": 26
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "mode": {
+                          "type": "string",
+                          "enum": [
+                            "watermark",
+                            "cover",
+                            "contain",
+                            "pattern"
+                          ]
+                        },
+                        "gradient": {
+                          "type": "object",
+                          "properties": {
+                            "angle": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 360
+                            },
+                            "colors": {
+                              "minItems": 2,
+                              "maxItems": 4,
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "pattern": "^#[0-9a-fA-F]{6}$"
+                              }
+                            }
+                          },
+                          "required": [
+                            "angle",
+                            "colors"
+                          ]
+                        },
+                        "size": {
+                          "type": "integer",
+                          "minimum": 5,
+                          "maximum": 100
+                        },
+                        "opacity": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        "grayscale": {
+                          "type": "boolean"
+                        },
+                        "blur": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 20
+                        },
+                        "veil": {
+                          "type": "object",
+                          "properties": {
+                            "color": {
+                              "type": "string",
+                              "pattern": "^#[0-9a-fA-F]{6}$"
+                            },
+                            "opacity": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 0.9
+                            }
+                          },
+                          "required": [
+                            "color",
+                            "opacity"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "color",
+                        "textTone"
+                      ]
+                    },
+                    "slots": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "icon": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "minLength": 26,
+                                "maxLength": 26
+                              },
+                              {
+                                "type": "string"
+                              }
+                            ],
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "color",
+                          "icon"
+                        ]
+                      }
+                    },
+                    "accent": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "font": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "builtin": {
+                              "type": "string",
+                              "enum": [
+                                "system",
+                                "atkinson",
+                                "lexend",
+                                "nunito",
+                                "fredoka",
+                                "inter",
+                                "bitter",
+                                "comic-neue"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "builtin"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "file": {
+                              "type": "string",
+                              "minLength": 26,
+                              "maxLength": 26
+                            },
+                            "license": {
+                              "type": "string",
+                              "enum": [
+                                "OFL-1.1",
+                                "CC0-1.0",
+                                "CC-BY-4.0",
+                                "CC-BY-SA-4.0"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "file",
+                            "license"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    },
+                    "sounds": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string",
+                        "minLength": 26,
+                        "maxLength": 26
+                      }
+                    },
+                    "motion": {
+                      "type": "object",
+                      "properties": {
+                        "style": {
+                          "type": "string",
+                          "enum": [
+                            "standard",
+                            "sober",
+                            "dynamic",
+                            "festive"
+                          ]
+                        },
+                        "revealEffect": {
+                          "type": "string",
+                          "enum": [
+                            "confetti",
+                            null
+                          ],
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "style",
+                        "revealEffect"
+                      ]
+                    },
+                    "markers": {
+                      "type": "string",
+                      "enum": [
+                        "icons",
+                        "letters",
+                        "numbers"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "accessibility": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "compliant",
+                        "warnings",
+                        "non_compliant"
+                      ]
+                    },
+                    "checks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string",
+                            "enum": [
+                              "slot_text_contrast",
+                              "text_background_contrast",
+                              "slot_background_contrast",
+                              "accent_background_contrast",
+                              "slots_distinct",
+                              "slots_distinct_color_vision",
+                              "icons_distinct"
+                            ]
+                          },
+                          "passed": {
+                            "type": "boolean"
+                          },
+                          "slots": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "enum": [
+                                "red",
+                                "blue",
+                                "yellow",
+                                "green",
+                                "purple",
+                                "orange",
+                                "pink",
+                                "teal"
+                              ]
+                            }
+                          },
+                          "vision": {
+                            "type": "string",
+                            "enum": [
+                              "protanopia",
+                              "deuteranopia",
+                              "tritanopia"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "code",
+                          "passed"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "checks"
+                  ]
+                },
+                "owner": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ]
+                },
+                "canEdit": {
+                  "type": "boolean"
+                },
+                "quizCount": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "isDefault": {
+                  "type": "boolean"
+                },
+                "media": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+                      "url",
+                      "name"
+                    ]
+                  }
+                },
+                "license": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "updatedAt": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "parent",
+                "overrides",
+                "accessibility",
+                "owner",
+                "canEdit",
+                "quizCount",
+                "isDefault",
+                "media",
+                "license",
+                "updatedAt"
+              ]
+            }
+          },
+          "defaultTheme": {
+            "type": "object",
+            "properties": {
+              "builtin": {
+                "type": "string",
+                "enum": [
+                  "classic",
+                  "sober",
+                  "kids",
+                  "festive",
+                  "night",
+                  "high-contrast",
+                  "high-contrast-light",
+                  "halloween",
+                  "christmas",
+                  "new-year",
+                  "easter",
+                  "summer"
+                ]
+              },
+              "id": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "themes",
+          "defaultTheme"
+        ]
+      },
+      "ThemeRefDto": {
+        "type": "object",
+        "properties": {
+          "builtin": {
+            "type": "string",
+            "enum": [
+              "classic",
+              "sober",
+              "kids",
+              "festive",
+              "night",
+              "high-contrast",
+              "high-contrast-light",
+              "halloween",
+              "christmas",
+              "new-year",
+              "easter",
+              "summer"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "minLength": 26,
+            "maxLength": 26
+          }
+        },
+        "additionalProperties": false
+      },
+      "ThemeAssetResultDto": {
+        "type": "object",
+        "properties": {
+          "mediaId": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "strokeRemoved": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "mediaId",
+          "url",
+          "strokeRemoved"
+        ]
+      },
+      "ThemeImportDto": {
+        "type": "object",
+        "properties": {
+          "theme": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "parent": {
+                "type": "string",
+                "enum": [
+                  "classic",
+                  "sober",
+                  "kids",
+                  "festive",
+                  "night",
+                  "high-contrast",
+                  "high-contrast-light",
+                  "halloween",
+                  "christmas",
+                  "new-year",
+                  "easter",
+                  "summer"
+                ]
+              },
+              "overrides": {
+                "type": "object",
+                "properties": {
+                  "background": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "textTone": {
+                        "type": "string",
+                        "enum": [
+                          "light",
+                          "dark"
+                        ]
+                      },
+                      "image": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 26,
+                            "maxLength": 26
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ]
+                      },
+                      "mode": {
+                        "type": "string",
+                        "enum": [
+                          "watermark",
+                          "cover",
+                          "contain",
+                          "pattern"
+                        ]
+                      },
+                      "gradient": {
+                        "type": "object",
+                        "properties": {
+                          "angle": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 360
+                          },
+                          "colors": {
+                            "minItems": 2,
+                            "maxItems": 4,
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "pattern": "^#[0-9a-fA-F]{6}$"
+                            }
+                          }
+                        },
+                        "required": [
+                          "angle",
+                          "colors"
+                        ]
+                      },
+                      "size": {
+                        "type": "integer",
+                        "minimum": 5,
+                        "maximum": 100
+                      },
+                      "opacity": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      "grayscale": {
+                        "type": "boolean"
+                      },
+                      "blur": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 20
+                      },
+                      "veil": {
+                        "type": "object",
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "opacity": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 0.9
+                          }
+                        },
+                        "required": [
+                          "color",
+                          "opacity"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "color",
+                      "textTone"
+                    ]
+                  },
+                  "slots": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "color": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        },
+                        "icon": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "minLength": 26,
+                              "maxLength": 26
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ],
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "color",
+                        "icon"
+                      ]
+                    }
+                  },
+                  "accent": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "font": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "builtin": {
+                            "type": "string",
+                            "enum": [
+                              "system",
+                              "atkinson",
+                              "lexend",
+                              "nunito",
+                              "fredoka",
+                              "inter",
+                              "bitter",
+                              "comic-neue"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "builtin"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "file": {
+                            "type": "string",
+                            "minLength": 26,
+                            "maxLength": 26
+                          },
+                          "license": {
+                            "type": "string",
+                            "enum": [
+                              "OFL-1.1",
+                              "CC0-1.0",
+                              "CC-BY-4.0",
+                              "CC-BY-SA-4.0"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "file",
+                          "license"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "sounds": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string",
+                      "minLength": 26,
+                      "maxLength": 26
+                    }
+                  },
+                  "motion": {
+                    "type": "object",
+                    "properties": {
+                      "style": {
+                        "type": "string",
+                        "enum": [
+                          "standard",
+                          "sober",
+                          "dynamic",
+                          "festive"
+                        ]
+                      },
+                      "revealEffect": {
+                        "type": "string",
+                        "enum": [
+                          "confetti",
+                          null
+                        ],
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+                      "style",
+                      "revealEffect"
+                    ]
+                  },
+                  "markers": {
+                    "type": "string",
+                    "enum": [
+                      "icons",
+                      "letters",
+                      "numbers"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "accessibility": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "compliant",
+                      "warnings",
+                      "non_compliant"
+                    ]
+                  },
+                  "checks": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "enum": [
+                            "slot_text_contrast",
+                            "text_background_contrast",
+                            "slot_background_contrast",
+                            "accent_background_contrast",
+                            "slots_distinct",
+                            "slots_distinct_color_vision",
+                            "icons_distinct"
+                          ]
+                        },
+                        "passed": {
+                          "type": "boolean"
+                        },
+                        "slots": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "red",
+                              "blue",
+                              "yellow",
+                              "green",
+                              "purple",
+                              "orange",
+                              "pink",
+                              "teal"
+                            ]
+                          }
+                        },
+                        "vision": {
+                          "type": "string",
+                          "enum": [
+                            "protanopia",
+                            "deuteranopia",
+                            "tritanopia"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "passed"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "status",
+                  "checks"
+                ]
+              },
+              "owner": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name"
+                ]
+              },
+              "canEdit": {
+                "type": "boolean"
+              },
+              "quizCount": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "isDefault": {
+                "type": "boolean"
+              },
+              "media": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "name"
+                  ]
+                }
+              },
+              "license": {
+                "type": "string",
+                "nullable": true
+              },
+              "updatedAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "parent",
+              "overrides",
+              "accessibility",
+              "owner",
+              "canEdit",
+              "quizCount",
+              "isDefault",
+              "media",
+              "license",
+              "updatedAt"
+            ]
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "theme",
+          "warnings"
+        ]
+      },
+      "ThemeDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parent": {
+            "type": "string",
+            "enum": [
+              "classic",
+              "sober",
+              "kids",
+              "festive",
+              "night",
+              "high-contrast",
+              "high-contrast-light",
+              "halloween",
+              "christmas",
+              "new-year",
+              "easter",
+              "summer"
+            ]
+          },
+          "overrides": {
+            "type": "object",
+            "properties": {
+              "background": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "textTone": {
+                    "type": "string",
+                    "enum": [
+                      "light",
+                      "dark"
+                    ]
+                  },
+                  "image": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 26,
+                        "maxLength": 26
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "watermark",
+                      "cover",
+                      "contain",
+                      "pattern"
+                    ]
+                  },
+                  "gradient": {
+                    "type": "object",
+                    "properties": {
+                      "angle": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 360
+                      },
+                      "colors": {
+                        "minItems": 2,
+                        "maxItems": 4,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      }
+                    },
+                    "required": [
+                      "angle",
+                      "colors"
+                    ]
+                  },
+                  "size": {
+                    "type": "integer",
+                    "minimum": 5,
+                    "maximum": 100
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "grayscale": {
+                    "type": "boolean"
+                  },
+                  "blur": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 20
+                  },
+                  "veil": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "opacity": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 0.9
+                      }
+                    },
+                    "required": [
+                      "color",
+                      "opacity"
+                    ]
+                  }
+                },
+                "required": [
+                  "color",
+                  "textTone"
+                ]
+              },
+              "slots": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "color": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "icon": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 26,
+                          "maxLength": 26
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "color",
+                    "icon"
+                  ]
+                }
+              },
+              "accent": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "font": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "builtin": {
+                        "type": "string",
+                        "enum": [
+                          "system",
+                          "atkinson",
+                          "lexend",
+                          "nunito",
+                          "fredoka",
+                          "inter",
+                          "bitter",
+                          "comic-neue"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "builtin"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "file": {
+                        "type": "string",
+                        "minLength": 26,
+                        "maxLength": 26
+                      },
+                      "license": {
+                        "type": "string",
+                        "enum": [
+                          "OFL-1.1",
+                          "CC0-1.0",
+                          "CC-BY-4.0",
+                          "CC-BY-SA-4.0"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "file",
+                      "license"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "sounds": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string",
+                  "minLength": 26,
+                  "maxLength": 26
+                }
+              },
+              "motion": {
+                "type": "object",
+                "properties": {
+                  "style": {
+                    "type": "string",
+                    "enum": [
+                      "standard",
+                      "sober",
+                      "dynamic",
+                      "festive"
+                    ]
+                  },
+                  "revealEffect": {
+                    "type": "string",
+                    "enum": [
+                      "confetti",
+                      null
+                    ],
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "style",
+                  "revealEffect"
+                ]
+              },
+              "markers": {
+                "type": "string",
+                "enum": [
+                  "icons",
+                  "letters",
+                  "numbers"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "accessibility": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "compliant",
+                  "warnings",
+                  "non_compliant"
+                ]
+              },
+              "checks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "enum": [
+                        "slot_text_contrast",
+                        "text_background_contrast",
+                        "slot_background_contrast",
+                        "accent_background_contrast",
+                        "slots_distinct",
+                        "slots_distinct_color_vision",
+                        "icons_distinct"
+                      ]
+                    },
+                    "passed": {
+                      "type": "boolean"
+                    },
+                    "slots": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "red",
+                          "blue",
+                          "yellow",
+                          "green",
+                          "purple",
+                          "orange",
+                          "pink",
+                          "teal"
+                        ]
+                      }
+                    },
+                    "vision": {
+                      "type": "string",
+                      "enum": [
+                        "protanopia",
+                        "deuteranopia",
+                        "tritanopia"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "passed"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "status",
+              "checks"
+            ]
+          },
+          "owner": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
+          },
+          "canEdit": {
+            "type": "boolean"
+          },
+          "quizCount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "media": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "url",
+                "name"
+              ]
+            }
+          },
+          "license": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "parent",
+          "overrides",
+          "accessibility",
+          "owner",
+          "canEdit",
+          "quizCount",
+          "isDefault",
+          "media",
+          "license",
+          "updatedAt"
+        ]
+      },
+      "CreateThemeDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          },
+          "parent": {
+            "type": "string",
+            "enum": [
+              "classic",
+              "sober",
+              "kids",
+              "festive",
+              "night",
+              "high-contrast",
+              "high-contrast-light",
+              "halloween",
+              "christmas",
+              "new-year",
+              "easter",
+              "summer"
+            ]
+          },
+          "overrides": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "background": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "textTone": {
+                    "type": "string",
+                    "enum": [
+                      "light",
+                      "dark"
+                    ]
+                  },
+                  "image": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 26,
+                        "maxLength": 26
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "watermark",
+                      "cover",
+                      "contain",
+                      "pattern"
+                    ]
+                  },
+                  "gradient": {
+                    "type": "object",
+                    "properties": {
+                      "angle": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 360
+                      },
+                      "colors": {
+                        "minItems": 2,
+                        "maxItems": 4,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      }
+                    },
+                    "required": [
+                      "angle",
+                      "colors"
+                    ]
+                  },
+                  "size": {
+                    "type": "integer",
+                    "minimum": 5,
+                    "maximum": 100
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "grayscale": {
+                    "type": "boolean"
+                  },
+                  "blur": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 20
+                  },
+                  "veil": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "opacity": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 0.9
+                      }
+                    },
+                    "required": [
+                      "color",
+                      "opacity"
+                    ]
+                  }
+                },
+                "required": [
+                  "color",
+                  "textTone"
+                ]
+              },
+              "slots": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "color": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "icon": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 26,
+                          "maxLength": 26
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "color",
+                    "icon"
+                  ]
+                }
+              },
+              "accent": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "font": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "builtin": {
+                        "type": "string",
+                        "enum": [
+                          "system",
+                          "atkinson",
+                          "lexend",
+                          "nunito",
+                          "fredoka",
+                          "inter",
+                          "bitter",
+                          "comic-neue"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "builtin"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "file": {
+                        "type": "string",
+                        "minLength": 26,
+                        "maxLength": 26
+                      },
+                      "license": {
+                        "type": "string",
+                        "enum": [
+                          "OFL-1.1",
+                          "CC0-1.0",
+                          "CC-BY-4.0",
+                          "CC-BY-SA-4.0"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "file",
+                      "license"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "sounds": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string",
+                  "minLength": 26,
+                  "maxLength": 26
+                }
+              },
+              "motion": {
+                "type": "object",
+                "properties": {
+                  "style": {
+                    "type": "string",
+                    "enum": [
+                      "standard",
+                      "sober",
+                      "dynamic",
+                      "festive"
+                    ]
+                  },
+                  "revealEffect": {
+                    "type": "string",
+                    "enum": [
+                      "confetti",
+                      null
+                    ],
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "style",
+                  "revealEffect"
+                ]
+              },
+              "markers": {
+                "type": "string",
+                "enum": [
+                  "icons",
+                  "letters",
+                  "numbers"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "name",
+          "parent"
+        ]
+      },
+      "UpdateThemeDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          },
+          "parent": {
+            "type": "string",
+            "enum": [
+              "classic",
+              "sober",
+              "kids",
+              "festive",
+              "night",
+              "high-contrast",
+              "high-contrast-light",
+              "halloween",
+              "christmas",
+              "new-year",
+              "easter",
+              "summer"
+            ]
+          },
+          "overrides": {
+            "type": "object",
+            "properties": {
+              "background": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "textTone": {
+                    "type": "string",
+                    "enum": [
+                      "light",
+                      "dark"
+                    ]
+                  },
+                  "image": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 26,
+                        "maxLength": 26
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "watermark",
+                      "cover",
+                      "contain",
+                      "pattern"
+                    ]
+                  },
+                  "gradient": {
+                    "type": "object",
+                    "properties": {
+                      "angle": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 360
+                      },
+                      "colors": {
+                        "minItems": 2,
+                        "maxItems": 4,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      }
+                    },
+                    "required": [
+                      "angle",
+                      "colors"
+                    ]
+                  },
+                  "size": {
+                    "type": "integer",
+                    "minimum": 5,
+                    "maximum": 100
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "grayscale": {
+                    "type": "boolean"
+                  },
+                  "blur": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 20
+                  },
+                  "veil": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "opacity": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 0.9
+                      }
+                    },
+                    "required": [
+                      "color",
+                      "opacity"
+                    ]
+                  }
+                },
+                "required": [
+                  "color",
+                  "textTone"
+                ]
+              },
+              "slots": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "color": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "icon": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 26,
+                          "maxLength": 26
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "color",
+                    "icon"
+                  ]
+                }
+              },
+              "accent": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "font": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "builtin": {
+                        "type": "string",
+                        "enum": [
+                          "system",
+                          "atkinson",
+                          "lexend",
+                          "nunito",
+                          "fredoka",
+                          "inter",
+                          "bitter",
+                          "comic-neue"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "builtin"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "file": {
+                        "type": "string",
+                        "minLength": 26,
+                        "maxLength": 26
+                      },
+                      "license": {
+                        "type": "string",
+                        "enum": [
+                          "OFL-1.1",
+                          "CC0-1.0",
+                          "CC-BY-4.0",
+                          "CC-BY-SA-4.0"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "file",
+                      "license"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "sounds": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string",
+                  "minLength": 26,
+                  "maxLength": 26
+                }
+              },
+              "motion": {
+                "type": "object",
+                "properties": {
+                  "style": {
+                    "type": "string",
+                    "enum": [
+                      "standard",
+                      "sober",
+                      "dynamic",
+                      "festive"
+                    ]
+                  },
+                  "revealEffect": {
+                    "type": "string",
+                    "enum": [
+                      "confetti",
+                      null
+                    ],
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "style",
+                  "revealEffect"
+                ]
+              },
+              "markers": {
+                "type": "string",
+                "enum": [
+                  "icons",
+                  "letters",
+                  "numbers"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "license": {
+            "type": "string",
+            "enum": [
+              "CC0-1.0",
+              "CC-BY-4.0",
+              "CC-BY-SA-4.0",
+              null
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "DuplicateThemeDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          }
+        },
+        "required": [
+          "name"
         ]
       },
       "StoreEntryDto": {
@@ -6176,6 +8617,62 @@
                 "textOutline": {
                   "type": "boolean"
                 },
+                "backgroundStyle": {
+                  "type": "object",
+                  "properties": {
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "watermark",
+                        "cover",
+                        "contain",
+                        "pattern"
+                      ]
+                    },
+                    "color": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "minimum": 5,
+                      "maximum": 100
+                    },
+                    "opacity": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "grayscale": {
+                      "type": "boolean"
+                    },
+                    "blur": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 20
+                    },
+                    "veil": {
+                      "type": "object",
+                      "properties": {
+                        "color": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        },
+                        "opacity": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.9
+                        }
+                      },
+                      "required": [
+                        "color",
+                        "opacity"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "nullable": true
+                },
                 "timeLimitS": {
                   "type": "integer",
                   "minimum": -9007199254740991,
@@ -6356,6 +8853,7 @@
                 "backgroundGradient",
                 "textTone",
                 "textOutline",
+                "backgroundStyle",
                 "timeLimitS",
                 "revealDelayS",
                 "audioTarget",
@@ -6749,6 +9247,62 @@
                   ],
                   "nullable": true
                 },
+                "backgroundStyle": {
+                  "type": "object",
+                  "properties": {
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "watermark",
+                        "cover",
+                        "contain",
+                        "pattern"
+                      ]
+                    },
+                    "color": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "minimum": 5,
+                      "maximum": 100
+                    },
+                    "opacity": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "grayscale": {
+                      "type": "boolean"
+                    },
+                    "blur": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 20
+                    },
+                    "veil": {
+                      "type": "object",
+                      "properties": {
+                        "color": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        },
+                        "opacity": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.9
+                        }
+                      },
+                      "required": [
+                        "color",
+                        "opacity"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "nullable": true
+                },
                 "videoMediaId": {
                   "type": "string",
                   "nullable": true
@@ -6807,6 +9361,7 @@
                 "blocks",
                 "mediaId",
                 "gradient",
+                "backgroundStyle",
                 "videoMediaId",
                 "videoLoop",
                 "videoSound",
@@ -7236,6 +9791,62 @@
                 "textOutline": {
                   "type": "boolean"
                 },
+                "backgroundStyle": {
+                  "type": "object",
+                  "properties": {
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "watermark",
+                        "cover",
+                        "contain",
+                        "pattern"
+                      ]
+                    },
+                    "color": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "minimum": 5,
+                      "maximum": 100
+                    },
+                    "opacity": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "grayscale": {
+                      "type": "boolean"
+                    },
+                    "blur": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 20
+                    },
+                    "veil": {
+                      "type": "object",
+                      "properties": {
+                        "color": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        },
+                        "opacity": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.9
+                        }
+                      },
+                      "required": [
+                        "color",
+                        "opacity"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "nullable": true
+                },
                 "timeLimitS": {
                   "type": "integer",
                   "minimum": -9007199254740991,
@@ -7416,6 +10027,7 @@
                 "backgroundGradient",
                 "textTone",
                 "textOutline",
+                "backgroundStyle",
                 "timeLimitS",
                 "revealDelayS",
                 "audioTarget",
@@ -7809,6 +10421,62 @@
                   ],
                   "nullable": true
                 },
+                "backgroundStyle": {
+                  "type": "object",
+                  "properties": {
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "watermark",
+                        "cover",
+                        "contain",
+                        "pattern"
+                      ]
+                    },
+                    "color": {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "size": {
+                      "type": "integer",
+                      "minimum": 5,
+                      "maximum": 100
+                    },
+                    "opacity": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "grayscale": {
+                      "type": "boolean"
+                    },
+                    "blur": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 20
+                    },
+                    "veil": {
+                      "type": "object",
+                      "properties": {
+                        "color": {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        },
+                        "opacity": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.9
+                        }
+                      },
+                      "required": [
+                        "color",
+                        "opacity"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "nullable": true
+                },
                 "videoMediaId": {
                   "type": "string",
                   "nullable": true
@@ -7867,6 +10535,7 @@
                 "blocks",
                 "mediaId",
                 "gradient",
+                "backgroundStyle",
                 "videoMediaId",
                 "videoLoop",
                 "videoSound",
@@ -8012,6 +10681,62 @@
           "textOutline": {
             "default": true,
             "type": "boolean"
+          },
+          "backgroundStyle": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "watermark",
+                  "cover",
+                  "contain",
+                  "pattern"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 5,
+                "maximum": 100
+              },
+              "opacity": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "grayscale": {
+                "type": "boolean"
+              },
+              "blur": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 20
+              },
+              "veil": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 0.9
+                  }
+                },
+                "required": [
+                  "color",
+                  "opacity"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "nullable": true
           },
           "media": {
             "type": "object",
@@ -8538,6 +11263,62 @@
           "textOutline": {
             "type": "boolean"
           },
+          "backgroundStyle": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "watermark",
+                  "cover",
+                  "contain",
+                  "pattern"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 5,
+                "maximum": 100
+              },
+              "opacity": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "grayscale": {
+                "type": "boolean"
+              },
+              "blur": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 20
+              },
+              "veil": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 0.9
+                  }
+                },
+                "required": [
+                  "color",
+                  "opacity"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "nullable": true
+          },
           "timeLimitS": {
             "type": "integer",
             "minimum": -9007199254740991,
@@ -8718,6 +11499,7 @@
           "backgroundGradient",
           "textTone",
           "textOutline",
+          "backgroundStyle",
           "timeLimitS",
           "revealDelayS",
           "audioTarget",
@@ -8830,6 +11612,62 @@
           "textOutline": {
             "default": true,
             "type": "boolean"
+          },
+          "backgroundStyle": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "watermark",
+                  "cover",
+                  "contain",
+                  "pattern"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 5,
+                "maximum": 100
+              },
+              "opacity": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "grayscale": {
+                "type": "boolean"
+              },
+              "blur": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 20
+              },
+              "veil": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 0.9
+                  }
+                },
+                "required": [
+                  "color",
+                  "opacity"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "nullable": true
           },
           "media": {
             "type": "object",
@@ -9503,6 +12341,62 @@
             ],
             "nullable": true
           },
+          "backgroundStyle": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "watermark",
+                  "cover",
+                  "contain",
+                  "pattern"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 5,
+                "maximum": 100
+              },
+              "opacity": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "grayscale": {
+                "type": "boolean"
+              },
+              "blur": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 20
+              },
+              "veil": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 0.9
+                  }
+                },
+                "required": [
+                  "color",
+                  "opacity"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "nullable": true
+          },
           "videoMediaId": {
             "type": "string",
             "minLength": 26,
@@ -9938,6 +12832,62 @@
             ],
             "nullable": true
           },
+          "backgroundStyle": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "watermark",
+                  "cover",
+                  "contain",
+                  "pattern"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 5,
+                "maximum": 100
+              },
+              "opacity": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "grayscale": {
+                "type": "boolean"
+              },
+              "blur": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 20
+              },
+              "veil": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 0.9
+                  }
+                },
+                "required": [
+                  "color",
+                  "opacity"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "nullable": true
+          },
           "videoMediaId": {
             "type": "string",
             "nullable": true
@@ -9996,6 +12946,7 @@
           "blocks",
           "mediaId",
           "gradient",
+          "backgroundStyle",
           "videoMediaId",
           "videoLoop",
           "videoSound",
@@ -10404,6 +13355,62 @@
             ],
             "nullable": true
           },
+          "backgroundStyle": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "watermark",
+                  "cover",
+                  "contain",
+                  "pattern"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 5,
+                "maximum": 100
+              },
+              "opacity": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "grayscale": {
+                "type": "boolean"
+              },
+              "blur": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 20
+              },
+              "veil": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 0.9
+                  }
+                },
+                "required": [
+                  "color",
+                  "opacity"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "nullable": true
+          },
           "videoMediaId": {
             "type": "string",
             "minLength": 26,
@@ -10722,7 +13729,9 @@
                   "enum": [
                     "image",
                     "video",
-                    "audio"
+                    "audio",
+                    "icon",
+                    "font"
                   ]
                 },
                 "files": {
@@ -10933,7 +13942,9 @@
                   "enum": [
                     "image",
                     "video",
-                    "audio"
+                    "audio",
+                    "icon",
+                    "font"
                   ]
                 },
                 "mime": {

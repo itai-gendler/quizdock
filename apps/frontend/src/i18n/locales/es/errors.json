@@ -22,6 +22,7 @@
     "item_not_in_quiz": "Este elemento ya no pertenece a este quiz: recarga la página.",
     "reorder_incomplete": "Al orden enviado le faltan elementos: recarga la página e inténtalo de nuevo.",
     "incomplete_one": "1 paso está sin terminar: complétalo para publicar el quiz.",
+    "incomplete_many": "{{count}} pasos están sin terminar: complétalos para publicar el quiz.",
     "incomplete_other": "{{count}} pasos están sin terminar: complétalos para publicar el quiz."
   },
   "session": {
@@ -125,7 +126,7 @@
       "not_allowed": "Este tipo de pregunta no tiene respuestas para elegir.",
       "one_correct": "Marca la respuesta correcta.",
       "some_correct": "Marca al menos una respuesta correcta.",
-      "too_few": "Añade al menos 2 respuestas."
+      "not_enough": "Añade al menos 2 respuestas."
     },
     "ordering": {
       "positions": "Cada respuesta necesita su propio lugar en el orden correcto."
@@ -215,5 +216,27 @@
   },
   "request": {
     "too_large": "Demasiado grande para el servidor: rechazó la solicitud (su límite de tamaño)."
+  },
+  "theme": {
+    "not_found": "Tema no encontrado.",
+    "not_owner": "Solo su propietario o un administrador pueden cambiar este tema.",
+    "in_use": "Este tema aún lo usan cuestionarios ({{count}}): dales antes otro tema.",
+    "is_default": "Es el tema predeterminado de la instancia: elige antes otro tema predeterminado.",
+    "invalid_media": "Falta un archivo de este tema o no es del tipo que requiere su lugar.",
+    "ref_one_of": "Elige un tema incluido o uno de la biblioteca, no ambos.",
+    "icon_invalid": "Este archivo no es un icono SVG legible.",
+    "icon_not_square": "Un icono debe ser cuadrado (su viewBox tan ancho como alto).",
+    "icon_empty": "Este icono no dibuja ninguna forma.",
+    "icon_too_large": "Icono demasiado grande (como máximo {{maxKb}} KB).",
+    "font_invalid": "Este archivo no es una fuente WOFF2 completa.",
+    "font_too_large": "Fuente demasiado grande (como máximo {{maxMb}} MB).",
+    "unknown": "Esta instancia no conoce el tema del paquete: el cuestionario toma el tema predeterminado.",
+    "fallback": "No se pudo usar un archivo del tema del paquete: el cuestionario toma el tema del que deriva.",
+    "unknown_icon": "Este icono no está en el banco de iconos.",
+    "unknown_picture": "Esta imagen no es de las incluidas con QuizDock."
+  },
+  "background": {
+    "image_and_gradient": "Un fondo es una imagen o un degradado, no ambos.",
+    "mode_required": "Elige cómo se dispone la imagen."
   }
 }

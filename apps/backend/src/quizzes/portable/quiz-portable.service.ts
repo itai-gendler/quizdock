@@ -23,6 +23,8 @@ import {
 } from './quiz-bundle';
 import { type BundleMediaMeta, type QuizBundle, quizBundleSchema } from './quiz-bundle.schema';
 import { mediaUrl } from '../../media/media.config';
+import { type ThemeExport, ThemePortableService } from '../../themes/theme-portable.service';
+import { ThemesService } from '../../themes/themes.service';
 
 import { kahootSpreadsheet, type KahootImportReport } from './kahoot-spreadsheet';
 
@@ -62,6 +64,7 @@ export class QuizPortableService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly media: MediaService,
+    private readonly themes?: ThemePortableService,
   ) {}
 
   /**
@@ -71,7 +74,12 @@ export class QuizPortableService {
    * **not** move `revision`: that counter belongs to sharing (#39), and a backup
    * export must not announce a new version of a template.
    */
-  async exportZip(id: string, ownerId?: string): Promise<{ filename: string; zip: Buffer }> {
+  async exportZip(
+    id: string,
+    ownerId?: string,
+    /** What the bundle says of the quiz's theme (docs/themes.md). */
+    theme: ThemeExport = 'full',
+  ): Promise<{ filename: string; zip: Buffer }> {
     const found = await this.prisma.quiz.findFirst({
       where: { id, ownerId },
       include: EXPORT_INCLUDE,
@@ -107,11 +115,24 @@ export class QuizPortableService {
         peakDbfs: row.peakDbfs ?? undefined,
       };
     }
+    // The theme's files join the same folder (docs/themes.md).
+    const themeBlock = await this.themes?.exportBlock(
+      ThemesService.refOf(quiz),
+      theme,
+      async (mediaId) => {
+        const file = await this.themes!.fileOf(mediaId);
+        if (!file) return undefined;
+        files[file.path] = [new Uint8Array(file.bytes), { level: 0 }];
+        if (Object.keys(file.meta).length) metaByPath[file.path] = file.meta;
+        return file.path;
+      },
+    );
     // A media that could not be read keeps its route: harmless on re-import (rejected as missing).
     const bundle = toBundle(
       quiz,
       (mediaId) => pathById.get(mediaId) ?? mediaUrl(mediaId),
       metaByPath,
+      { theme: themeBlock, styles: theme !== 'none' },
     );
     files[MANIFEST] = strToU8(JSON.stringify(bundle, null, 2));
     const zip = Buffer.from(zipSync(files, { level: 6 }));
@@ -124,7 +145,7 @@ export class QuizPortableService {
     file: BundleFile | undefined,
     /** The application's own bundle (a sample): its media are taken on a demo too. */
     options: { seeding?: boolean } = {},
-  ): Promise<Quiz & { importReport?: KahootImportReport }> {
+  ): Promise<Quiz & { importReport?: KahootImportReport; importWarnings?: string[] }> {
     if (!file) throw new BadRequestException('import.file_missing');
     const kahoot = kahootSpreadsheet(file.buffer, file.originalname);
     const unpacked = kahoot
@@ -191,6 +212,12 @@ export class QuizPortableService {
       throw err;
     }
 
+    // Its theme (version 8): reused, copied, or given up for its parent, said.
+    const theme = (await this.themes?.importBlock(ownerId, bundle.theme, files, bundle.media)) ?? {
+      ref: null,
+      warnings: [],
+    };
+
     const result = await this.prisma.$transaction(async (tx) => {
       const quiz = await tx.quiz.create({
         data: {
@@ -203,6 +230,8 @@ export class QuizPortableService {
           loudnessTargetLufs: imported.loudnessTargetLufs,
           audioTarget: imported.audioTarget,
           coverMediaId: imported.coverMediaId,
+          themeId: theme.ref && 'id' in theme.ref ? theme.ref.id : null,
+          themeBuiltin: theme.ref && 'builtin' in theme.ref ? theme.ref.builtin : null,
           // A copy carries nothing of its origin (#39), its slug included: the new
           // owner's first export fixes one, or a republished copy would share it (#21).
           slug: null,
@@ -237,7 +266,11 @@ export class QuizPortableService {
       }
       return quiz;
     });
-    return kahoot ? { ...result, importReport: kahoot.report } : result;
+    return {
+      ...result,
+      ...(kahoot ? { importReport: kahoot.report } : {}),
+      ...(theme.warnings.length ? { importWarnings: theme.warnings } : {}),
+    };
   }
 
   /** A zip (manifest + media) or a bare JSON manifest. */

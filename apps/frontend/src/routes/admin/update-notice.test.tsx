@@ -18,7 +18,7 @@ const status = (over: Record<string, unknown> = {}) => ({
       latest: {
         version: '0.13.0',
         publishedAt: '2026-10-02T18:09:17Z',
-        url: 'https://github.com/quizdock/quiz-dock/releases/tag/v0.13.0',
+        url: 'https://github.com/quizdock/quizdock/releases/tag/v0.13.0',
         changes: ['feat(store): add optional community catalogue'],
         upgrading: ['**Migrations**: two new tables.'],
       },

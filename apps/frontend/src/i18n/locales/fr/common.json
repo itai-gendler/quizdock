@@ -47,7 +47,9 @@
     "admin": "Administration",
     "setup": "Mise en service",
     "history": "Séances",
-    "historyRoom": "Salon"
+    "historyRoom": "Salon",
+    "themes": "Thèmes",
+    "theme": "Thème"
   },
   "demo": {
     "banner": "Démo publique — un seul compte animateur partagé par tous les visiteurs ; tout est effacé chaque heure."

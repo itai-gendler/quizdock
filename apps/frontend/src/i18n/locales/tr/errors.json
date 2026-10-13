@@ -125,7 +125,7 @@
       "not_allowed": "Bu soru türünde seçilebilecek yanıtlar yoktur.",
       "one_correct": "Doğru yanıtı işaretleyin.",
       "some_correct": "En az bir doğru yanıtı işaretleyin.",
-      "too_few": "En az 2 yanıt ekleyin."
+      "not_enough": "En az 2 yanıt ekleyin."
     },
     "ordering": {
       "positions": "Her yanıtın doğru sıralamada kendine ait bir yeri olmalıdır."
@@ -215,5 +215,27 @@
   },
   "request": {
     "too_large": "Sunucu için çok büyük: isteği reddetti (boyut sınırı)."
+  },
+  "theme": {
+    "not_found": "Tema bulunamadı.",
+    "not_owner": "Bu temayı yalnızca sahibi veya bir yönetici değiştirebilir.",
+    "in_use": "Bu tema hâlâ bazı quizlerde kullanılıyor ({{count}}): önce onlara başka bir tema verin.",
+    "is_default": "Bu, örneğin varsayılan teması: önce başka bir varsayılan tema seçin.",
+    "invalid_media": "Bu temanın bir dosyası eksik veya yerinin gerektirdiği türde değil.",
+    "ref_one_of": "Hazır bir tema ya da kitaplıktan bir tema seçin, ikisini birden değil.",
+    "icon_invalid": "Bu dosya okunabilir bir SVG simgesi değil.",
+    "icon_not_square": "Bir simge kare olmalıdır (viewBox genişliği yüksekliğine eşit).",
+    "icon_empty": "Bu simge hiçbir şekil çizmiyor.",
+    "icon_too_large": "Simge çok büyük (en fazla {{maxKb}} KB).",
+    "font_invalid": "Bu dosya eksiksiz bir WOFF2 yazı tipi değil.",
+    "font_too_large": "Yazı tipi çok büyük (en fazla {{maxMb}} MB).",
+    "unknown": "Bu örnek paketteki temayı tanımıyor: quiz varsayılan temayı alır.",
+    "fallback": "Paketteki temanın bir dosyası kullanılamadı: quiz, temanın türediği temayı alır.",
+    "unknown_icon": "Bu simge simge bankasında yok.",
+    "unknown_picture": "Bu görsel QuizDock ile gelenlerden biri değil."
+  },
+  "background": {
+    "image_and_gradient": "Arka plan bir resim ya da bir gradyandır, ikisi birden değil.",
+    "mode_required": "Resmin nasıl yerleşeceğini seçin."
   }
 }

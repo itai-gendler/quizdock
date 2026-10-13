@@ -13,8 +13,8 @@ const sound: LiveQuestionMedia = {
   audio: { url: '/api/v1/media/a', durationMs: 4000, peaks: new Array(200).fill(0.5), gainDb: 0 },
 };
 
-let play: ReturnType<typeof vi.fn>;
-let pause: ReturnType<typeof vi.fn>;
+let play: ReturnType<typeof vi.fn<(el: HTMLMediaElement) => Promise<void>>>;
+let pause: ReturnType<typeof vi.fn<() => void>>;
 
 beforeEach(() => {
   play = vi.fn(async () => undefined);

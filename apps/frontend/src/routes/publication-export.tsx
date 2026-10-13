@@ -178,7 +178,7 @@ function Row({
   children?: ReactNode;
 }) {
   const Icon = warn ? AlertTriangle : ok ? Check : X;
-  const tone = warn ? 'text-warning-text' : ok ? 'text-success' : 'text-destructive';
+  const tone = warn ? 'text-warning-text' : ok ? 'text-success-text' : 'text-destructive';
   return (
     <li className="flex gap-2">
       <Icon className={`mt-0.5 size-4 shrink-0 ${tone}`} aria-hidden />

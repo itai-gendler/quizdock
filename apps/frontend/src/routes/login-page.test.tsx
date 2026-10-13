@@ -26,7 +26,7 @@ describe('LoginPage', () => {
     // l'identité locale est mémorisée
     expect(localStorage.getItem('live.localUser')).toBe('Marie');
     // navigation effective vers le tableau de bord (rendu après login)
-    expect(await screen.findByText('Mes quiz')).toBeInTheDocument();
+    expect(await screen.findByRole('link', { name: 'Quiz' })).toBeInTheDocument();
   });
 
   it('seat held: offers to take part, and a name that is not the holder signs nobody in', async () => {
@@ -49,7 +49,7 @@ describe('LoginPage', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Revenir' }));
 
     expect(await screen.findByRole('alert')).toHaveTextContent('ne tient pas le siège');
-    expect(screen.queryByRole('heading', { name: 'Mes quiz' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Quiz' })).not.toBeInTheDocument();
     // Identité non conservée : pas de nav hôte, pas d'accès au tableau de bord.
     expect(localStorage.getItem('live.localUser')).toBeNull();
   });
@@ -79,7 +79,7 @@ describe('LoginPage', () => {
     );
     const claim = fetchMock.mock.calls.find(([u]) => String(u).includes('/claim'))!;
     expect(JSON.parse(String(claim[1]?.body))).toEqual({ expiresInMinutes: null });
-    expect(await screen.findByRole('heading', { name: 'Mes quiz' })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: 'Quiz' })).toBeInTheDocument();
   });
 
   it('shows who holds the seat and until when', async () => {

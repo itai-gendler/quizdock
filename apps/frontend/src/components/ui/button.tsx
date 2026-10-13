@@ -14,7 +14,7 @@ export const buttonVariants = cva(
           'border border-destructive/50 bg-background text-destructive hover:bg-destructive/10',
         // Action principale affirmative (ex. « Présenter » → mise en live). Vert
         // dérivé du token --success, pas d'une couleur de palette en dur.
-        'main-action': 'bg-success text-success-foreground hover:bg-success/90',
+        'main-action': 'bg-main-action text-white hover:bg-main-action/90',
         // A button is identified by its label: the light separator line, not a field's outline.
         outline: 'border border-border bg-background hover:bg-accent hover:text-accent-foreground',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',

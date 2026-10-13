@@ -1,5 +1,5 @@
 import { createZodDto } from 'nestjs-zod';
-import { AUDIO_TARGETS } from '@quiz-dock/contracts';
+import { AUDIO_TARGETS, BUILTIN_THEMES } from '@quiz-dock/contracts';
 import { z } from 'zod';
 import { KAHOOT_SKIP_REASONS } from '../portable/kahoot-spreadsheet';
 
@@ -19,6 +19,9 @@ export const quizSchema = z.object({
   loudnessTargetLufs: z.number().int(),
   /** Which devices play the sounds, unless a question says otherwise. */
   audioTarget: z.enum(AUDIO_TARGETS),
+  /** Its theme of the library, or a shipped one by its key; both null: the instance's default. */
+  themeId: z.string().nullable(),
+  themeBuiltin: z.enum(BUILTIN_THEMES).nullable(),
   questionCount: z.number().int(),
   /** SPDX identifier, required to share the quiz; an imported one may be outside the list offered. */
   license: z.string().nullable(),
@@ -54,5 +57,7 @@ export class QuizImportDto extends createZodDto(
         ),
       })
       .optional(),
+    /** What the import gave up, as domain codes (`theme.unknown`, `theme.fallback`). */
+    importWarnings: z.array(z.string()).optional(),
   }),
 ) {}

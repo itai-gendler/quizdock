@@ -100,6 +100,10 @@ enum MediaKind {
   image
   audio
   video
+  /// A quiz theme's answer icon: a monochrome SVG, sanitised at upload (THEMING §2.2).
+  icon
+  /// A quiz theme's font, woff2 (THEMING §1.3).
+  font
 
   @@map("media_kind")
 }
@@ -173,6 +177,7 @@ model User {
 
   quizzes        Quiz[]
   mediaAssets    MediaAsset[]
+  themes         Theme[]
   hostedSessions GameSessionLog[]
   playerResults  PlayerResultLog[]
   hostSeat       HostSeat?
@@ -196,47 +201,52 @@ model HostSeat {
 
 /// §2.2 — quiz (banque privée du animateur).
 model Quiz {
-  id                 String         @id @default(ulid()) @db.Char(26)
-  ownerId            String         @map("owner_id") @db.Char(26)
+  id                 String      @id @default(ulid()) @db.Char(26)
+  ownerId            String      @map("owner_id") @db.Char(26)
   title              String
   description        String?
-  coverMediaId       String?        @map("cover_media_id") @db.Char(26)
-  status             QuizStatus     @default(draft)
+  coverMediaId       String?     @map("cover_media_id") @db.Char(26)
+  status             QuizStatus  @default(draft)
   /// Shared with the instance's other hosts: listed in their bank, read-only, to copy from
   /// ("Create from this"). Off by default: a private quiz is the owner's alone.
-  shared             Boolean        @default(false)
-  language           String         @default("fr")
-  questionCount      Int            @default(0) @map("question_count")
+  shared             Boolean     @default(false)
+  language           String      @default("fr")
+  questionCount      Int         @default(0) @map("question_count")
   /// Quiz Store identity (docs/quiz-bundle.md): kebab-case, taken from an imported bundle or set at first export.
   slug               String?
   /// `<username>/<slug>` once submitted to a Quiz Store; null for a quiz that never left this instance.
   namespace          String?
   /// Publication counter: bumped every time the quiz is shared to the template
   /// catalogue (#39), carried over by import. An export does not move it.
-  revision           Int            @default(0)
+  revision           Int         @default(0)
   /// ULID of the template this quiz is shared as, minted at the first share and
   /// never rewritten — withdrawing the entry and sharing again keeps the same
   /// template for everyone holding a copy (RG-17). Null when never shared, and
   /// on an imported copy: a copy carries nothing of its origin.
-  publicationId      String?        @map("publication_id") @db.Char(26)
+  publicationId      String?     @map("publication_id") @db.Char(26)
   domain             String?
-  tags               String[]       @default([])
+  tags               String[]    @default([])
   license            String?
   /// Players may rate the quiz at the end of a session (§2.11); off = no panel, `player:rate` refused.
-  feedbackEnabled    Boolean        @default(true) @map("feedback_enabled")
+  feedbackEnabled    Boolean     @default(true) @map("feedback_enabled")
   /// Pause kept after a question's sound or video before its time can run out (s, 0–30):
   /// a question whose media outlasts its timer is stretched, never cut mid-play.
-  mediaTailS         Int            @default(1) @map("media_tail_s")
+  mediaTailS         Int         @default(1) @map("media_tail_s")
   /// Level every sound and video is brought to at playback (LUFS): -14 loud, -16 balanced, -23 calm.
-  loudnessTargetLufs Int            @default(-16) @map("loudness_target_lufs")
+  loudnessTargetLufs Int         @default(-16) @map("loudness_target_lufs")
   /// Which devices play the sounds, unless a question or the game says otherwise.
-  audioTarget        AudioTarget    @default(projection_remote) @map("audio_target")
-  createdAt          DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt          DateTime       @updatedAt @map("updated_at") @db.Timestamptz(6)
-  archivedAt         DateTime?      @map("archived_at") @db.Timestamptz(6)
+  audioTarget        AudioTarget @default(projection_remote) @map("audio_target")
+  /// Its look on the live screens (THEMING §2): one of the library's themes, or a shipped
+  /// one by its key; neither = the instance's default theme.
+  themeId            String?     @map("theme_id") @db.Char(26)
+  themeBuiltin       String?     @map("theme_builtin")
+  createdAt          DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt          DateTime    @updatedAt @map("updated_at") @db.Timestamptz(6)
+  archivedAt         DateTime?   @map("archived_at") @db.Timestamptz(6)
 
   owner       User             @relation(fields: [ownerId], references: [id])
   coverMedia  MediaAsset?      @relation("QuizCover", fields: [coverMediaId], references: [id])
+  theme       Theme?           @relation(fields: [themeId], references: [id], onDelete: Restrict)
   questions   Question[]
   slides      Slide[]
   sessionLogs GameSessionLog[]
@@ -262,6 +272,9 @@ model Question {
   /// Optional full-cover background, like a slide's: image or generated gradient (exclusive).
   backgroundMediaId  String?         @map("background_media_id") @db.Char(26)
   backgroundGradient Json?           @map("background_gradient")
+  /// How the background is laid (THEMING §1.1): `{ mode, size, opacity, grayscale, blur, veil, color }`;
+  /// null = today's cover, veiled for the text tone.
+  backgroundStyle    Json?           @map("background_style")
   textTone           SlideTextTone   @default(light) @map("text_tone")
   textOutline        Boolean         @default(true) @map("text_outline")
   timeLimitS         Int             @default(20) @map("time_limit_s")
@@ -369,6 +382,8 @@ model Slide {
   audioTarget      AudioTarget?  @map("audio_target")
   /// Optional generated background: `{ angle, colors[] }` (exclusive with `mediaId`).
   gradient         Json?
+  /// How the background is laid, as a question's `backgroundStyle`.
+  backgroundStyle  Json?         @map("background_style")
   /// Auto-mode display time in seconds: null = engine default, 0 = the host clicks (manual override).
   displayDelayS    Int?          @map("display_delay_s")
   textTone         SlideTextTone @default(light) @map("text_tone")
@@ -438,6 +453,7 @@ model MediaAsset {
   slideVideos         Slide[]        @relation("SlideVideo")
   slideAudios         Slide[]        @relation("SlideAudio")
   options             AnswerOption[] @relation("OptionMedia")
+  themes              ThemeMedia[]   @relation("ThemeMedia")
 
   @@index([ownerId])
   @@index([blobSha256])
@@ -617,4 +633,48 @@ model InstanceSetting {
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
 
   @@map("instance_setting")
+}
+
+/// A quiz theme of the library (THEMING §2.3): the child of a shipped theme, storing only
+/// what it overrides. Every host may use it; its owner and the admins edit it.
+model Theme {
+  id            String   @id @default(ulid()) @db.Char(26)
+  ownerId       String   @map("owner_id") @db.Char(26)
+  name          String
+  /// The shipped theme it inherits from, live, and falls back to (`BUILTIN_THEMES`).
+  parent        String
+  /// What it overrides of its parent (`themeOverridesInput`), assets by media id.
+  overrides     Json     @default("{}")
+  /// Computed at every save (`themeAccessibility`), never declared.
+  accessibility Json
+  /// Store identity, as a quiz's: kebab-case, carried by a theme bundle.
+  slug          String?
+  license       String?
+  revision      Int      @default(0)
+  /// SHA-256 of the parent, the overrides and the assets' bytes: an identical theme met
+  /// again at import is reused, not copied (THEMING §3.4).
+  fingerprint   String?  @db.Char(64)
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  owner   User         @relation(fields: [ownerId], references: [id])
+  quizzes Quiz[]
+  media   ThemeMedia[]
+
+  @@index([ownerId])
+  @@index([fingerprint])
+  @@map("theme")
+}
+
+/// The media a theme's overrides point to, so a media in use is never swept or deleted.
+model ThemeMedia {
+  themeId String @map("theme_id") @db.Char(26)
+  mediaId String @map("media_id") @db.Char(26)
+
+  theme Theme      @relation(fields: [themeId], references: [id], onDelete: Cascade)
+  media MediaAsset @relation("ThemeMedia", fields: [mediaId], references: [id], onDelete: Restrict)
+
+  @@id([themeId, mediaId])
+  @@index([mediaId])
+  @@map("theme_media")
 }

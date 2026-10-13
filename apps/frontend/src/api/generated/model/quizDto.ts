@@ -7,6 +7,7 @@
  */
 import type { QuizDtoAudioTarget } from './quizDtoAudioTarget';
 import type { QuizDtoStatus } from './quizDtoStatus';
+import type { QuizDtoThemeBuiltin } from './quizDtoThemeBuiltin';
 
 export interface QuizDto {
   id: string;
@@ -30,6 +31,10 @@ export interface QuizDto {
      */
   loudnessTargetLufs: number;
   audioTarget: QuizDtoAudioTarget;
+  /** @nullable */
+  themeId: string | null;
+  /** @nullable */
+  themeBuiltin: QuizDtoThemeBuiltin;
   /**
      * @minimum -9007199254740991
      * @maximum 9007199254740991

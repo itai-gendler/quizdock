@@ -1,5 +1,5 @@
-import type { RoomSoundsPayload } from '@quiz-dock/contracts';
-import { useEffect } from 'react';
+import type { RoomSoundsPayload, ThemeValues } from '@quiz-dock/contracts';
+import { useEffect, useMemo } from 'react';
 import type { GameSocket } from '../game-client';
 import type { GameView } from '../use-game-session';
 import { anchorOf } from './followed';
@@ -40,8 +40,14 @@ export function useRoomMedia(
     if (view.state === 'LOBBY') clearRoomPositions(pin);
   }, [view.state, pin]);
 
+  // A sample the host chose for the room wins, then the quiz theme's, then the
+  // synthesised effect (docs/themes.md); the room's mixer keeps the levels in every case.
+  const roomSounds = useMemo(
+    () => withThemeSounds(view.sounds, view.theme),
+    [view.sounds, view.theme],
+  );
   useGameSounds(
-    view.sounds,
+    roomSounds,
     {
       state: view.state,
       questionIndex: view.questionIndex,
@@ -74,4 +80,20 @@ export function useRoomMedia(
       cancelled = true;
     };
   }, [preload, view.preload, socket, pin]);
+}
+
+/** The room's sounds, each effect the host left without a sample taking the theme's. */
+export function withThemeSounds(
+  sounds: RoomSoundsPayload | null,
+  theme: ThemeValues | null,
+): RoomSoundsPayload | null {
+  const own = theme?.sounds;
+  if (!sounds || !own || Object.keys(own).length === 0) return sounds;
+  return {
+    ...sounds,
+    tickUrl: sounds.tickUrl ?? own.tick ?? null,
+    dingUrl: sounds.dingUrl ?? own.ding ?? null,
+    countdownUrl: sounds.countdownUrl ?? own.countdown ?? null,
+    gongUrl: sounds.gongUrl ?? own.gong ?? null,
+  };
 }

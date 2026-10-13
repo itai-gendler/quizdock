@@ -64,7 +64,11 @@ export function groupChecks(output: OutputEntry[]): Group[] {
 }
 
 const ICON = { ok: CircleCheck, warn: TriangleAlert, fail: CircleAlert } as const;
-const TONE = { ok: 'text-success', warn: 'text-warning-text', fail: 'text-destructive' } as const;
+const TONE = {
+  ok: 'text-success-text',
+  warn: 'text-warning-text',
+  fail: 'text-destructive',
+} as const;
 
 /**
  * The instance's health (§3.7): a verdict first — everything fine, or what is
@@ -105,7 +109,7 @@ export function HealthPage() {
               {problems.length + migrationProblems ? (
                 <TriangleAlert aria-hidden className="text-warning-text size-6" />
               ) : (
-                <CircleCheck aria-hidden className="text-success size-6" />
+                <CircleCheck aria-hidden className="text-success-text size-6" />
               )}
               <div className="flex flex-col">
                 <span className="font-medium">

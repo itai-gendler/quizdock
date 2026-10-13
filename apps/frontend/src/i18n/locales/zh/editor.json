@@ -485,14 +485,16 @@
   "background": {
     "legend": "背景",
     "kind": {
-      "none": "白色",
+      "none": "主题的背景",
       "image": "图片",
-      "gradient": "渐变"
+      "gradient": "渐变",
+      "colour": "颜色"
     },
     "color": "颜色 {{index}}",
     "removeColor": "移除颜色 {{index}}",
     "addColor": "添加颜色",
-    "angle": "角度"
+    "angle": "角度",
+    "colour": "颜色"
   },
   "status": {
     "draft": "草稿 — 发布后即可开始演示。",
@@ -525,7 +527,7 @@
   "publication": {
     "open": "导出以发布",
     "title": "导出以发布",
-    "description": "按社区目录的要求检查测验，然后下载要上传到你的 quizdock-quizzes 仓库的文件。",
+    "description": "按社区目录的要求检查测验，然后下载要上传到你的 quizdock-extensions 仓库的文件。",
     "download": "下载",
     "checking": "正在检查测验…",
     "failed": "无法准备导出。",

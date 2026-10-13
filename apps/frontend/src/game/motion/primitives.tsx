@@ -1,13 +1,14 @@
 import { animate, stagger } from 'motion/react';
 import { useMotionLevel } from './level';
 import { type RefObject, useEffect, useLayoutEffect, useRef } from 'react';
-import { EASE_OUT, MOTION } from './tokens';
+import { EASE_OUT, useMotion } from './tokens';
 
 /** A count that beats when it changes (answers coming in). */
 export function Pulse({ value, className }: { value: number | string; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const last = useRef(value);
   const level = useMotionLevel();
+  const motion = useMotion();
   const reduced = level !== 'full';
   useEffect(() => {
     if (last.current === value || reduced || !ref.current) {
@@ -15,8 +16,8 @@ export function Pulse({ value, className }: { value: number | string; className?
       return;
     }
     last.current = value;
-    void animate(ref.current, { scale: [1.3, 1] }, { duration: MOTION.pop, ease: 'easeOut' });
-  }, [value, reduced]);
+    void animate(ref.current, { scale: [1.3, 1] }, { duration: motion.pop, ease: 'easeOut' });
+  }, [value, reduced, motion]);
   return (
     <span ref={ref} className={className} style={{ display: 'inline-block' }}>
       {value}
@@ -39,6 +40,7 @@ export function useStandingsMotion(
   track = 'standings',
 ) {
   const level = useMotionLevel();
+  const motion = useMotion();
   const reduced = level !== 'full';
   const signature = rows.map((r) => `${r.nickname}:${r.rank}:${r.score}`).join('|');
   useLayoutEffect(() => {
@@ -60,12 +62,12 @@ export function useStandingsMotion(
       // A newcomer to the list comes from just below it.
       const shift = (was ? Math.min(was.rank, last + 1) : last + 1) - row.rank;
       if (shift !== 0 && pitch > 0) {
-        void animate(el, { y: [shift * pitch, 0] }, { duration: MOTION.move, ease: EASE_OUT });
+        void animate(el, { y: [shift * pitch, 0] }, { duration: motion.move, ease: EASE_OUT });
       }
       const score = el.querySelector<HTMLElement>('[data-score]');
       if (score && was && was.score !== row.score) {
         void animate(was.score, row.score, {
-          duration: MOTION.count,
+          duration: motion.count,
           ease: 'easeOut',
           onUpdate: (v) => (score.textContent = String(Math.round(v))),
         });
@@ -73,7 +75,7 @@ export function useStandingsMotion(
     });
     // Only a new showing of the standings moves; a re-render with the same rows does not.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [signature, track, reduced]);
+  }, [signature, track, reduced, motion]);
 }
 
 /**
@@ -82,6 +84,7 @@ export function useStandingsMotion(
  */
 export function useRevealMotion(ref: RefObject<HTMLElement | null>, key: string) {
   const level = useMotionLevel();
+  const motion = useMotion();
   const reduced = level !== 'full';
   useLayoutEffect(() => {
     const root = ref.current;
@@ -92,22 +95,22 @@ export function useRevealMotion(ref: RefObject<HTMLElement | null>, key: string)
       void animate(
         el,
         { width: ['0%', width] },
-        { duration: MOTION.move, delay: 0.05 * i, ease: EASE_OUT },
+        { duration: motion.move, delay: 0.05 * i, ease: EASE_OUT },
       );
     });
-    const after = MOTION.move;
+    const after = motion.move;
     const dim = root.querySelectorAll<HTMLElement>('[data-dim]');
     if (dim.length)
-      void animate(dim, { opacity: [1, 0.5] }, { delay: after, duration: MOTION.pop });
+      void animate(dim, { opacity: [1, 0.5] }, { delay: after, duration: motion.pop });
     const marks = root.querySelectorAll<HTMLElement>('[data-mark]');
     if (marks.length) {
       void animate(
         marks,
         { scale: [0, 1.25, 1], opacity: [0, 1] },
-        { delay: after, duration: MOTION.pop },
+        { delay: after, duration: motion.pop },
       );
     }
-  }, [key, reduced, ref]);
+  }, [key, reduced, ref, motion]);
 }
 
 /**

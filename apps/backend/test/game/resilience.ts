@@ -44,7 +44,7 @@ export function resilienceTests(ctx: GameContext): void {
     const player = connect();
     await player.emitWithAck('player:join', { pin, nickname: 'Frank' });
 
-    const spectator = connect();
+    const spectator = connect({ localUser: 'Animateur' }); // the host's own projection window
     // Le projeté qui s'attache après les arrivées reçoit l'instantané du lobby (§6).
     const rosterP = new Promise<{ players: Array<{ nickname: string }> }>((resolve) =>
       spectator.on('game:roster', (r) => resolve(r as never)),

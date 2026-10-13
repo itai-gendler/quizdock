@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.1.0
  */
 import type { CreateSlideDtoAudioTarget } from './createSlideDtoAudioTarget';
+import type { CreateSlideDtoBackgroundStyle } from './createSlideDtoBackgroundStyle';
 import type { CreateSlideDtoBlocksItem } from './createSlideDtoBlocksItem';
 import type { CreateSlideDtoGradient } from './createSlideDtoGradient';
 import type { CreateSlideDtoTextTone } from './createSlideDtoTextTone';
@@ -22,6 +23,8 @@ export interface CreateSlideDto {
   mediaId?: string | null;
   /** @nullable */
   gradient?: CreateSlideDtoGradient;
+  /** @nullable */
+  backgroundStyle?: CreateSlideDtoBackgroundStyle;
   /**
      * @minLength 26
      * @maxLength 26

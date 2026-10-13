@@ -2,9 +2,9 @@ import { m, stagger, useAnimate } from 'motion/react';
 import { useMotionLevel } from './level';
 import { type ReactNode, useLayoutEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { gradientCss } from '../surface';
+import { backgroundFill } from '../surface';
 import { type Backdrop, sameBackdrop } from './step';
-import { EASE_OUT, MOTION } from './tokens';
+import { EASE_OUT, useMotion } from './tokens';
 
 /**
  * Over a live screen, when the step changes: the previous background, alone,
@@ -14,6 +14,7 @@ import { EASE_OUT, MOTION } from './tokens';
  */
 export function BackdropFade({ stepKey, backdrop }: { stepKey: string; backdrop: Backdrop }) {
   const level = useMotionLevel();
+  const motion = useMotion();
   const last = useRef({ stepKey, backdrop });
   const [ghost, setGhost] = useState<{ id: string; backdrop: Backdrop } | null>(null);
   useLayoutEffect(() => {
@@ -27,6 +28,7 @@ export function BackdropFade({ stepKey, backdrop }: { stepKey: string; backdrop:
   if (!ghost) return null;
   const b = ghost.backdrop;
   const veil = b && b.textTone === 'dark' ? 'bg-white/55' : 'bg-black/40';
+  const picture = b && 'background' in b && 'url' in b.background ? b.background : null;
   return (
     <m.div
       key={ghost.id}
@@ -35,21 +37,25 @@ export function BackdropFade({ stepKey, backdrop }: { stepKey: string; backdrop:
       className={cn('pointer-events-none absolute inset-0 z-50', !b && 'bg-background')}
       style={
         b && 'background' in b
-          ? 'gradient' in b.background
-            ? { backgroundImage: gradientCss(b.background.gradient) }
-            : {
-                backgroundImage: `url("${b.background.url}")`,
+          ? picture
+            ? {
+                ...backgroundFill(picture),
+                backgroundImage: `url("${picture.url}")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }
+            : backgroundFill(b.background)
           : undefined
       }
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
-      transition={{ duration: MOTION.fade, ease: 'easeInOut' }}
+      transition={{ duration: motion.fade, ease: 'easeInOut' }}
       onAnimationComplete={() => setGhost(null)}
     >
-      {b ? <div className={cn('absolute inset-0', veil)} /> : null}
+      {/* A picture or a video lingers under its veil; a gradient or a colour as it is. */}
+      {b && (!('background' in b) || picture) ? (
+        <div className={cn('absolute inset-0', veil)} />
+      ) : null}
     </m.div>
   );
 }
@@ -70,20 +76,27 @@ export function StepEnter({
 }) {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const level = useMotionLevel();
+  const motion = useMotion();
   const shown = useRef<string | null>(null);
   useLayoutEffect(() => {
+    // The same step again (its theme's pace arrived): nothing comes in twice.
+    if (shown.current === stepKey) return;
     const first = shown.current === null;
     shown.current = stepKey;
     // The screen opening on a step shows it as it is; only a change moves.
     if (first || !scope.current || level === 'none') return;
     const parts = partsOf(scope.current);
     if (parts.length === 0) return;
-    void animate(parts, level === 'fade' ? { opacity: [0, 1] } : { opacity: [0, 1], y: [16, 0] }, {
-      duration: MOTION.enter,
-      delay: stagger(MOTION.stagger, { startDelay: MOTION.enterDelay }),
-      ease: EASE_OUT,
-    });
-  }, [stepKey, animate, level, scope]);
+    void animate(
+      parts,
+      level === 'fade' ? { opacity: [0, 1] } : { opacity: [0, 1], y: [motion.rise, 0] },
+      {
+        duration: motion.enter,
+        delay: stagger(motion.stagger, { startDelay: motion.enterDelay }),
+        ease: EASE_OUT,
+      },
+    );
+  }, [stepKey, animate, level, scope, motion]);
   return (
     <div ref={scope} className={className}>
       {children}

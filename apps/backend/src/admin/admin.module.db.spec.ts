@@ -54,25 +54,27 @@ describe('AdminModule (integration)', () => {
   });
 
   it('stats.live counts the instance as the database holds it, the games played right now', async () => {
-    // Other suites write to the same database meanwhile: a figure is checked
-    // between the counts read just before and just after it.
+    // Other suites write to the same database meanwhile, deleting and creating: the
+    // figures are checked against counts that did not move while they were read.
     const counts = () =>
       Promise.all([
         prisma.user.count({ where: { deletedAt: null } }),
         prisma.quiz.count({ where: { status: 'draft' } }),
         prisma.gameSessionLog.count(),
       ]);
-    const before = await counts();
-    const outcome = await runner.run({ id: 'stats.live', raw: {}, actor: cli });
-    const after = await counts();
-    const stats = (outcome as { result: { data: LiveStats } }).result.data;
-    const between = (value: number, i: number) => {
-      expect(value).toBeGreaterThanOrEqual(Math.min(before[i], after[i]));
-      expect(value).toBeLessThanOrEqual(Math.max(before[i], after[i]));
-    };
-    between(stats.instance.accounts.total, 0);
-    between(stats.instance.quizzes.draft, 1);
-    between(stats.instance.history.sessions, 2);
+    let stats!: LiveStats;
+    let stable: number[] | null = null;
+    for (let attempt = 0; attempt < 20 && !stable; attempt++) {
+      const before = await counts();
+      const outcome = await runner.run({ id: 'stats.live', raw: {}, actor: cli });
+      const after = await counts();
+      stats = (outcome as { result: { data: LiveStats } }).result.data;
+      if (before.every((n, i) => n === after[i])) stable = before;
+    }
+    expect(stable).not.toBeNull();
+    expect(stats.instance.accounts.total).toBe(stable![0]);
+    expect(stats.instance.quizzes.draft).toBe(stable![1]);
+    expect(stats.instance.history.sessions).toBe(stable![2]);
     expect(stats.totals.games).toBe(stats.games.length);
     expect(stats.totals.lobby + stats.totals.playing).toBe(stats.totals.games);
   });
@@ -92,6 +94,9 @@ describe('AdminModule (integration)', () => {
     const seatOf = async () =>
       ((await runner.run({ id: 'users.search', raw: {}, actor: cli })) as Page).result.data;
     const user = await prisma.user.findUniqueOrThrow({ where: { oidcSubject: subject } });
+    // The seat is shared state of the test database (the game suites hold it for their
+    // host while they run): whose it was is given back at once.
+    const previous = await prisma.hostSeat.findUnique({ where: { id: 1 } });
     const hold = (expiresAt: Date) =>
       prisma.hostSeat.upsert({
         where: { id: 1 },
@@ -106,7 +111,12 @@ describe('AdminModule (integration)', () => {
       await hold(new Date(Date.now() - 60_000));
       expect((await seatOf()).seat).toBeNull();
     } finally {
-      await prisma.hostSeat.deleteMany({ where: { userId: user.id } });
+      if (previous) {
+        const { id, ...seat } = previous;
+        await prisma.hostSeat.update({ where: { id }, data: seat });
+      } else {
+        await prisma.hostSeat.deleteMany({ where: { userId: user.id } });
+      }
     }
   });
 

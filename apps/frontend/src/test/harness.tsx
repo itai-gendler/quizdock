@@ -23,7 +23,8 @@ export function mockApi(handlers: ApiHandler[]): ReturnType<typeof vi.fn> {
     const handler = handlers.find(
       (h) =>
         (h.method ?? 'GET').toUpperCase() === method &&
-        (typeof h.path === 'string' ? url.includes(h.path) : h.path.test(url)),
+        // A string names the end of the path (`/quizzes` is the list, not a quiz of it).
+        (typeof h.path === 'string' ? url.split('?')[0].endsWith(h.path) : h.path.test(url)),
     );
     const status = handler?.status ?? (handler ? 200 : 404);
     const body = handler?.body === undefined ? '' : JSON.stringify(handler.body);

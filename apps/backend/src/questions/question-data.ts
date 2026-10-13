@@ -17,6 +17,7 @@ export function questionData(dto: QuestionContent) {
     answerExplanation: dto.answerExplanation || null,
     backgroundMediaId: dto.backgroundMediaId || null,
     backgroundGradient: dto.backgroundGradient ?? Prisma.JsonNull,
+    backgroundStyle: dto.backgroundStyle ?? Prisma.JsonNull,
     textTone: dto.textTone,
     textOutline: dto.textOutline,
     timeLimitS: dto.timeLimitS,

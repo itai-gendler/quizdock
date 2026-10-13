@@ -10,3 +10,6 @@ schema/**
 apps/backend/samples/**
 # Documentation rédigée à la main (tableaux ASCII / wireframes) — ne pas reformater
 **/*.md
+# Translations in progress on Weblate, kept byte for byte as Weblate writes them
+# (4-space JSON) so its rebases stay clean, until it writes 2-space JSON.
+apps/frontend/src/i18n/locales/et/**

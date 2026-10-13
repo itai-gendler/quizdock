@@ -10,6 +10,7 @@ export function slideData(dto: SlideContent) {
     blocks: dto.blocks as Prisma.InputJsonValue,
     mediaId: dto.mediaId || null,
     gradient: dto.gradient ?? Prisma.JsonNull,
+    backgroundStyle: dto.backgroundStyle ?? Prisma.JsonNull,
     videoMediaId: dto.videoMediaId || null,
     videoLoop: dto.videoLoop,
     videoSound: dto.videoSound,

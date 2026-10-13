@@ -17,10 +17,17 @@ import { usePodiumMotion, useRevealMotion, useStandingsMotion } from './motion/p
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { Markdown } from '@/components/markdown';
-import { COLOR_BG, COLOR_BG_SOFT, COLOR_TEXT, OPTION_BG_FALLBACK } from '@/lib/option-style';
+import {
+  COLOR_BG,
+  COLOR_BG_SOFT,
+  COLOR_FG,
+  COLOR_TEXT,
+  OPTION_BG_FALLBACK,
+} from '@/lib/option-style';
 import { cn } from '@/lib/utils';
 import { Avatar } from './avatar';
 import { BACKDROP_EDGE, BACKDROP_PANEL, PICKED_RING, Surface } from './surface';
+import { themeBackdrop, useLiveTheme } from './theme';
 import { SlideVariablesContext } from './slide-variables';
 import { SlidePlaybackContext, SlideSound, SlideVideoLayer, showsVideo } from './media/slide-media';
 import { ShapeIcon } from '@/components/shape-icon';
@@ -124,7 +131,8 @@ export function OptionGrid({
             data-correct={correctIds ? String(!!isCorrect) : undefined}
             data-picked={isPicked || undefined}
             className={cn(
-              'qd-answer flex items-center gap-[0.6em] rounded-[0.75em] px-[0.9em] py-[0.45em] text-left leading-[1em] font-semibold text-white shadow transition [text-shadow:none]',
+              'qd-answer flex items-center gap-[0.6em] rounded-[0.75em] px-[0.9em] py-[0.45em] text-left leading-[1em] font-semibold shadow transition [text-shadow:none]',
+              COLOR_FG[o.color] ?? 'text-white',
               // Five answers and more: lower tiles, so four rows still leave room above.
               many ? 'min-h-[2.6em]' : 'min-h-[3.25em]',
               long ? 'text-[0.95em]' : many ? 'text-[1em]' : 'text-[1.125em]',
@@ -141,7 +149,7 @@ export function OptionGrid({
             style={gauges ? { background: gaugeFill(o.color, pct, !!isCorrect) } : undefined}
           >
             <span aria-hidden className="shrink-0 text-[1.35em] leading-none">
-              <ShapeIcon shape={o.shape} />
+              <ShapeIcon shape={o.shape} slot={o.color} index={i} />
             </span>
             {o.text ? (
               <Markdown
@@ -199,7 +207,7 @@ export function OptionKey({
       className={cn('qd-answers flex w-full flex-col gap-[0.4em] text-left', BACKDROP_PANEL)}
       data-layout="list"
     >
-      {options.map((o) => (
+      {options.map((o, i) => (
         <li
           key={o.id}
           data-color={o.color}
@@ -215,7 +223,7 @@ export function OptionKey({
             aria-hidden
             className={cn('shrink-0 text-[1.25em] leading-none', COLOR_TEXT[o.color])}
           >
-            <ShapeIcon shape={o.shape} />
+            <ShapeIcon shape={o.shape} slot={o.color} index={i} />
           </span>
           {o.media ? <OptionThumb media={o.media} /> : null}
           {o.text ? (
@@ -277,7 +285,8 @@ export function OptionTiles({
             data-correct={correctIds ? String(!!isCorrect) : undefined}
             data-picked={isPicked || undefined}
             className={cn(
-              'qd-answer relative flex items-center justify-center rounded-[0.75em] text-[1.6em] leading-none text-white shadow transition [text-shadow:none]',
+              'qd-answer relative flex items-center justify-center rounded-[0.75em] text-[1.6em] leading-none shadow transition [text-shadow:none]',
+              COLOR_FG[o.color] ?? 'text-white',
               // Low enough to leave the prompt its room; five answers and more, lower still.
               many ? 'min-h-[2em]' : 'min-h-[2.75em]',
               lastOdd(i, options.length),
@@ -288,7 +297,7 @@ export function OptionTiles({
             )}
           >
             <span aria-hidden>
-              <ShapeIcon shape={o.shape} />
+              <ShapeIcon shape={o.shape} slot={o.color} index={i} />
             </span>
             {/* A state is a mark, never a ring colour alone. */}
             {isCorrect ? (
@@ -355,7 +364,7 @@ export function Distribution({
       data-motion="own"
       className={cn('qd-distribution flex w-full flex-col gap-[0.5em]', BACKDROP_PANEL)}
     >
-      {options.map((o) => {
+      {options.map((o, i) => {
         const n = reveal.distribution[o.id] ?? 0;
         const pct = Math.round((n / total) * 100);
         const isCorrect = reveal.correctOptionIds?.includes(o.id);
@@ -377,7 +386,7 @@ export function Distribution({
                 COLOR_TEXT[o.color],
               )}
             >
-              <ShapeIcon shape={o.shape} />
+              <ShapeIcon shape={o.shape} slot={o.color} index={i} />
             </span>
             {/* A picture answer shows its picture: the bar alone would say only its colour. */}
             {o.media ? <OptionThumb media={o.media} /> : null}
@@ -785,12 +794,15 @@ export function SlideView({ slide }: { slide: SlideShowPayload }) {
   const blocks = fillSlideBlocks(slide.blocks, variables);
   // A phone in the room shows the slide's background, not its video (the big screen does).
   const video = slide.video && showsVideo(slide.video, playback) ? slide.video : null;
+  // No background of its own: the quiz theme's (docs/themes.md), with its text tone.
+  const theme = useLiveTheme();
+  const themed = slide.background || video ? null : themeBackdrop(theme);
   return (
     <Surface
-      background={slide.background}
+      background={slide.background ?? themed?.background}
       // A video behind the content (#125), played as the screen's playback says.
       backdrop={video ? <SlideVideoLayer video={video} /> : null}
-      textTone={slide.textTone}
+      textTone={themed?.textTone ?? slide.textTone}
       textOutline={slide.textOutline}
       // No explicit height: a flex parent stretches it (`h-full` would opt out of stretching).
       className="qd-slide w-full flex-1"

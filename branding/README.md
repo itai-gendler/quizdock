@@ -6,7 +6,7 @@ an empty folder simply leaves the app with its own logo and no style override.
 
 | What | How |
 |------|-----|
-| **App name / language** | `APP_NAME` / `APP_LANG` environment variables (see `.env`), or the administration's settings. The backend serves `/config.js` from the current settings: a change applies at the next page load. |
+| **App name / language** | `APP_NAME` / `APP_LANG` environment variables (see `.env`), or the administration's Branding space. The backend serves `/config.js` from the current settings: a change applies at the next page load. |
 | **Logo** | Drop one `logo.<ext>` here (served at `/branding/logo.<ext>`). Any web format works: the page tries `svg`, `avif`, `webp`, `png`, `jpg`, `jpeg`, `gif` in that order and keeps the first file that loads. Keep a single logo file — with several, the one earliest in that order wins. |
 | **Logo hosted elsewhere** | `APP_LOGO_URL` (a CDN URL, a path outside this folder). Set, it skips the lookup below entirely. |
 | **CSS override** | Edit `override.css` (loaded last, so it overrides any variable or rule). Optional: remove it and nothing is overridden. |

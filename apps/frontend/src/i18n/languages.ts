@@ -12,13 +12,27 @@ export const namespaces = [
   'join',
   'sessions',
   'store',
+  'themes',
   'auth',
   'errors',
   'validation',
   'admin',
 ] as const;
 
-export const supportedLngs = ['en', 'fr', 'es', 'zh', 'zh-TW', 'tr'] as const;
+export const supportedLngs = [
+  'en',
+  'fr',
+  'es',
+  'zh',
+  'zh-TW',
+  'tr',
+  'de',
+  'hi',
+  'it',
+  'ja',
+  'pl',
+  'ru',
+] as const;
 export type AppLang = (typeof supportedLngs)[number];
 export type Namespace = (typeof namespaces)[number];
 
@@ -44,4 +58,16 @@ export function resolveLang(): AppLang {
   return (supportedLngs as readonly string[]).includes(configured)
     ? (configured as AppLang)
     : DEFAULT_LANG;
+}
+
+/** The two Chinese scripts, as their readers name them: the region would say less. */
+const NATIVE: Partial<Record<string, string>> = { zh: '中文（简体）', 'zh-TW': '中文（繁體）' };
+
+/**
+ * A language in its own words (`fr` → Français), for a language menu: one finds one's
+ * own in a list one cannot read.
+ */
+export function nativeName(tag: string): string {
+  const own = NATIVE[tag] ?? languageName(tag, tag);
+  return own.charAt(0).toLocaleUpperCase(tag) + own.slice(1);
 }

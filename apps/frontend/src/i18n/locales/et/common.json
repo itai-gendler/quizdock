@@ -1,0 +1,11 @@
+{
+  "loading": "Laadin andmeid…",
+  "confirm": "Kinnita",
+  "cancel": "Katkesta",
+  "close": "Sulge",
+  "quizStatus": {
+    "draft": "Kavand",
+    "ready": "Valmis",
+    "archived": "Arhiveeritud"
+  }
+}

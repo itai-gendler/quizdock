@@ -14,7 +14,9 @@
     "accounts": "账号",
     "audit": "审计",
     "quizzes": "测验",
-    "media": "媒体"
+    "media": "媒体",
+    "branding": "品牌",
+    "interface": "界面"
   },
   "token": {
     "unset": "本地模式：在 .env 中设置 ADMIN_TOKEN（32 个字符或以上）并重启实例之前，无法通过网页更改任何内容。",
@@ -759,7 +761,7 @@
     },
     "unset": "{{key}} 未设置。",
     "postgres_ok": "PostgreSQL 可访问",
-    "postgres_superuser": "QuizDock 以 PostgreSQL 超级用户身份连接。目前无需操作：quizdock 脚本的后续版本将为它创建专属角色。",
+    "postgres_superuser": "QuizDock 以 PostgreSQL 超级用户身份连接。在服务器上运行 ./quizdock db:roles，会先进行备份，再为它创建专属角色。",
     "migrations_applied_one": "已应用 {{count}} 个迁移",
     "migrations_applied_other": "已应用 {{count}} 个迁移",
     "migrations_pending_one": "{{count}} 个迁移待应用：请运行迁移步骤。",
@@ -780,5 +782,85 @@
     "jwks_ok_other": "签名密钥可访问（{{count}} 个密钥）",
     "jwks_failed": "签名密钥 {{url}}：{{error}}"
   },
-  "demoReadOnly": "公开演示：管理界面按原样展示，无法在此修改任何内容。在你自己的实例上，它完全由你掌控。"
+  "demoReadOnly": "公开演示：管理界面按原样展示，无法在此修改任何内容。在你自己的实例上，它完全由你掌控。",
+  "branding": {
+    "intro": "实例的身份：名称、语言、标志，以及反馈发往何处。每一行都是一个环境变量，在此修改，方式与设置页面相同。",
+    "APP_NAME": "应用名称",
+    "APP_NAME_hint": "显示在页眉、标签页标题和已安装的应用中。",
+    "APP_LANG": "界面语言",
+    "APP_LANG_hint": "用于浏览器未提供更合适语言的访客。",
+    "APP_LOGO_URL": "标志",
+    "APP_LOGO_URL_hint": "branding/ 文件夹中的 logo.svg（或 .png…）文件，或在此填写 https 地址。",
+    "APP_FEEDBACK_URL": "反馈链接的去向",
+    "APP_FEEDBACK_URL_hint": "首页上的“告诉我们”链接；none 会隐藏它们。",
+    "logoDefault": "QuizDock 的标志，直到实例提供自己的。",
+    "css": "你自己的 CSS",
+    "cssHint": "branding/override.css 最后加载，用于这些设置未涵盖的内容。"
+  },
+  "look": {
+    "intro": "应用的外观：颜色、字体、圆角以及展示页面的背景。保存在数据库中，只能在此更改。直播屏幕上的测验保留其自身主题的外观。",
+    "saving": "正在保存…",
+    "saved": "已保存：每位访客从下一个打开的页面起即可看到。",
+    "reset": "恢复 QuizDock 的外观",
+    "colours": "颜色",
+    "primary": "主色",
+    "primaryHint": "按钮、选中的筛选器、焦点环；其文字为白色。浅色和深色模式下颜色相同。",
+    "accent": "强调色",
+    "accentHint": "链接和当前页面的标记。默认为主色。作为深色页面上的文字时，会调亮到便于阅读为止（7:1）。",
+    "button": "按钮",
+    "link": "链接",
+    "whiteText": "白色文字",
+    "onLight": "在浅色页面上",
+    "onDark": "在深色页面上",
+    "corners": "圆角",
+    "radius": {
+      "square": "直角",
+      "standard": "标准",
+      "rounded": "圆润"
+    },
+    "cornerSample": {
+      "card": "卡片",
+      "button": "按钮",
+      "field": "输入框"
+    },
+    "showcase": "展示页面背景",
+    "showcaseHint": "仅限首页、加入、登录、错误和未找到页面；工作页面保持简洁。",
+    "mode": {
+      "none": "无",
+      "logo": "标志水印",
+      "picture": "图片"
+    },
+    "logoHint": "品牌标志的形状——实例设置自己的标志之前为 QuizDock 的——以文字颜色、淡化、居中显示。",
+    "size": "大小",
+    "opacity": "不透明度",
+    "accessibility": "无障碍",
+    "accessible": "无障碍",
+    "accessibilityHint": "根据颜色测量，绝非自我声明；只有无障碍的外观才会如此标示。",
+    "checksMet": "已满足 {{met}}/{{total}} 项检查",
+    "check": {
+      "button_text_contrast": "主按钮上的白色文字达到 4.5:1",
+      "primary_on_light": "主色在页面上清晰可辨（3:1）",
+      "primary_on_dark": "主色在深色页面上也清晰可辨（3:1）",
+      "link_on_light": "强调色的链接在页面上清晰可读（4.5:1）",
+      "link_on_dark": "链接在深色页面上也清晰可读（4.5:1）"
+    },
+    "preview": {
+      "label": "预览",
+      "home": "首页",
+      "join": "加入",
+      "login": "登录",
+      "notFound": "未找到",
+      "quizzes": "我的测验",
+      "light": "浅色",
+      "dark": "深色",
+      "plain": "工作页面保持简洁：没有展示背景。"
+    },
+    "colorMode": "浅色或深色",
+    "colorModes": {
+      "auto": "由各设备选择",
+      "light": "始终浅色",
+      "dark": "始终深色"
+    },
+    "colorModeHint": "每台设备跟随其系统设置，或用户在账号菜单中的选择；强制设定后，菜单中不再提供此选项。直播屏幕不受影响：它们使用测验的主题。"
+  }
 }

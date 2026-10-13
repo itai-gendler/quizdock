@@ -312,7 +312,9 @@ describe('quiz bundle', () => {
       BundleContentError,
     );
     // A bundle from a newer schema is refused, as an older importer refuses this one.
-    expect(quizBundleSchema.safeParse({ ...bundle, version: 8 }).success).toBe(false);
+    expect(quizBundleSchema.safeParse({ ...bundle, version: BUNDLE_VERSION + 1 }).success).toBe(
+      false,
+    );
     // What makes it true: the published v5 schema, the one a 0.8 / 0.9 importer matches, refuses it.
     const v5 = JSON.parse(
       readFileSync(

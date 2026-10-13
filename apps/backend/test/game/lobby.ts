@@ -88,7 +88,7 @@ export function lobbyTests(ctx: GameContext): void {
   it('host:join-url: the invitation address reaches every screen, also on (re)attach, and locks at start', async () => {
     const host = connect({ localUser: 'Animateur' });
     const { pin } = await host.emitWithAck('host:create', { quizId });
-    const screen = connect();
+    const screen = connect({ localUser: 'Animateur' }); // the host's own projection window
     const urlP = new Promise<{ baseUrl: string | null }>((resolve) =>
       screen.once('game:join-url', (p) => resolve(p as never)),
     );
@@ -97,7 +97,7 @@ export function lobbyTests(ctx: GameContext): void {
     expect(await urlP).toEqual({ baseUrl: 'http://192.168.1.103:15173' });
 
     // A screen that attaches later gets it with the state burst.
-    const late = connect();
+    const late = connect({ localUser: 'Animateur' }); // the host's own projection window
     const lateP = new Promise<{ baseUrl: string | null }>((resolve) =>
       late.once('game:join-url', (p) => resolve(p as never)),
     );

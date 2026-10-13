@@ -1,0 +1,71 @@
+{
+  "loading": "Wczytywanie…",
+  "confirm": "Potwierdź",
+  "cancel": "Anuluj",
+  "close": "Zamknij",
+  "quizStatus": {
+    "draft": "Szkic",
+    "ready": "Gotowy",
+    "archived": "Zarchiwizowany"
+  },
+  "markdownEditor": {
+    "visual": "Edytor wizualny",
+    "source": "Markdown",
+    "bold": "Pogrubienie",
+    "italic": "Kursywa",
+    "code": "Kod",
+    "codeBlock": "Blok kodu",
+    "bulletList": "Lista punktowana",
+    "orderedList": "Lista numerowana"
+  },
+  "captureConfirm": {
+    "title": "Włączyć pełny zapis odpowiedzi?",
+    "description": "Każda odpowiedź każdego uczestnika zostanie zachowana wraz z jego pseudonimem: to dane osobowe (RODO — poinformuj uczestników, usuń je po wszystkim). Archiwa sesji stają się też znacznie cięższe w bazie danych. Zarezerwuj to dla indywidualnego śledzenia wyników (ocenianie, certyfikacja).",
+    "confirmLabel": "Włącz"
+  },
+  "draft": {
+    "restored": "Przywrócono szkic — odzyskano twoje niezapisane zmiany.",
+    "discard": "Odrzuć szkic"
+  },
+  "titles": {
+    "login": "Logowanie",
+    "dashboard": "Moje quizy",
+    "editor": "Edytor",
+    "preview": "Podgląd",
+    "feedback": "Opinie",
+    "sessions": "Historia",
+    "session": "Pokój",
+    "player": "Uczestnik",
+    "control": "Konsola",
+    "screen": "Projekcja",
+    "join": "Dołącz",
+    "live": "Otwarte pokoje",
+    "templates": "Szablony",
+    "profile": "Moje konto",
+    "template": "Szablon",
+    "instanceMedia": "Multimedia instancji",
+    "admin": "Administracja",
+    "setup": "Konfiguracja",
+    "history": "Sesje",
+    "historyRoom": "Pokój",
+    "themes": "Motywy",
+    "theme": "Motyw"
+  },
+  "demo": {
+    "banner": "Publiczne demo — jedno konto prowadzącego wspólne dla wszystkich odwiedzających; wszystko jest czyszczone co godzinę."
+  },
+  "chromiumOnly": "Ta strona jest przygotowana dla Chrome, Edge lub innej przeglądarki opartej na Chromium. W tej przeglądarce przesyłanie i odtwarzanie filmów i dźwięków może działać niepoprawnie.",
+  "play": "Odtwórz",
+  "pause": "Wstrzymaj",
+  "position": "Pozycja w nagraniu",
+  "fallback": {
+    "notFoundTitle": "Ta strona nie istnieje",
+    "notFoundText": "Link może być nieaktualny albo to, do czego prowadził, zostało usunięte.",
+    "errorTitle": "Coś poszło nie tak",
+    "errorText": "Ta strona przestała działać. To, co zapisano, jest bezpieczne.",
+    "backHome": "Wróć na stronę główną",
+    "tryAgain": "Spróbuj ponownie"
+  },
+  "stale": "Nie udało się odczytać ponownie: widać ostatni odczyt.",
+  "retry": "Spróbuj ponownie"
+}

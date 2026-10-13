@@ -86,7 +86,7 @@ export function QuestionProperties({ question: q }: { question: QuizDetailDtoQue
                     {o.text || o.alt || t('preview.optionFallback', { index: o.orderIndex + 1 })}
                   </span>
                   {o.isCorrect ? (
-                    <span className="text-success flex items-center gap-1 text-xs">
+                    <span className="text-success-text flex items-center gap-1 text-xs">
                       <Check className="size-3.5" aria-hidden />
                       {t('questionForm.correct')}
                     </span>
@@ -176,7 +176,9 @@ export function QuestionProperties({ question: q }: { question: QuizDetailDtoQue
           ? t('background.kind.image')
           : q.backgroundGradient
             ? t('background.kind.gradient')
-            : t('background.kind.none')}
+            : (q.backgroundStyle as { color?: string } | null)?.color
+              ? t('background.kind.colour')
+              : t('background.kind.none')}
       </Row>
 
       <Row label={t('questionForm.answerExplanationLabel')}>

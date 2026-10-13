@@ -25,6 +25,8 @@ const SECTIONS = [
     links: [
       { to: '/admin/accounts', key: 'accounts' },
       { to: '/admin/settings', key: 'settings' },
+      { to: '/admin/branding', key: 'branding' },
+      { to: '/admin/interface', key: 'interface' },
       { to: '/admin/health', key: 'health' },
       { to: '/admin/audit', key: 'audit' },
     ],
@@ -39,7 +41,7 @@ export function AdminLayout() {
     return <p className="text-muted-foreground">{t('adminOnly')}</p>;
   }
   return (
-    <div className="content-lg flex flex-col gap-6">
+    <div className="flex flex-col gap-6">
       <PageTitle>{t('title')}</PageTitle>
       {/* Tabs on the page's rule, evenly spaced: the open one underlined. */}
       <nav aria-label={t('title')} className="flex flex-wrap border-b">

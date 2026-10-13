@@ -187,7 +187,10 @@ function PhoneTest({
       ) : null}
       {test ? (
         reached ? (
-          <p role="status" className="text-success flex items-center gap-2 text-sm font-medium">
+          <p
+            role="status"
+            className="text-success-text flex items-center gap-2 text-sm font-medium"
+          >
             <CircleCheck aria-hidden className="size-4" />
             {t('setup.phone.reached', { agent: reached.agent })}
           </p>

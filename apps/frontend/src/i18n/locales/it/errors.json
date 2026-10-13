@@ -1,0 +1,242 @@
+{
+  "auth": {
+    "required": "Autenticazione richiesta.",
+    "login_failed": "Impossibile completare l’accesso. Riprova.",
+    "cross_origin": "Questa richiesta non proviene dalla pagina dell’applicazione stessa.",
+    "host_required": "Ruolo di conduttore richiesto.",
+    "host_only": "Questa è un’azione da conduttore; un amministratore gestisce l’istanza, non presenta.",
+    "admin_required": "Ruolo di amministratore richiesto.",
+    "oidc_disabled": "L’accesso con un provider di identità non è attivo su questa istanza."
+  },
+  "host": {
+    "auth_required": "Autenticazione del conduttore richiesta.",
+    "forbidden": "Non sei il conduttore di questa sala."
+  },
+  "quiz": {
+    "not_found": "Quiz non trovato.",
+    "not_ready": "Il quiz deve essere «pronto» per essere giocato (RG-02).",
+    "empty": "Il quiz non ha domande.",
+    "requires_question": "Un quiz deve avere almeno una domanda per diventare «pronto» (RG-02).",
+    "transition_forbidden": "Cambio di stato non consentito: {{from}} → {{target}}.",
+    "in_use": "Questo quiz è in gioco in una sala: chiudi prima la sala.",
+    "item_not_in_quiz": "Questo elemento non appartiene più a questo quiz: ricarica la pagina.",
+    "reorder_incomplete": "Nell’ordine inviato mancano alcuni elementi: ricarica la pagina e riprova.",
+    "incomplete_one": "1 passaggio è incompleto: completalo per pubblicare il quiz.",
+    "incomplete_many": "{{count}} passaggi sono incompleti: completali per pubblicare il quiz.",
+    "incomplete_other": "{{count}} passaggi sono incompleti: completali per pubblicare il quiz."
+  },
+  "session": {
+    "not_found": "Sala non trovata o chiusa.",
+    "ended": "La sala è chiusa.",
+    "banned": "Il conduttore ti ha rimosso da questa sala.",
+    "join_required": "Entra nella sala prima di rispondere.",
+    "already_joined": "Sei già in questa sala.",
+    "already_started": "Il quiz è già iniziato.",
+    "quiz_required": "Prima scegli il quiz.",
+    "reveal_required": "Azione possibile solo dopo la rivelazione.",
+    "timer_not_adjustable": "Il timer può essere regolato solo durante una domanda.",
+    "snapshot_not_found": "Istantanea della sessione non trovata.",
+    "capture_locked": "La registrazione completa può essere cambiata solo prima dell’inizio del quiz.",
+    "options_locked": "Queste opzioni possono essere cambiate solo prima dell’inizio del quiz.",
+    "join_url_invalid": "Indirizzo d’invito non valido (atteso http(s)://host[:port]).",
+    "archive_quiz_gone": "Il quiz è stato eliminato mentre veniva giocato: è terminato senza archivio.",
+    "locked": "Questa sala non accetta più nuovi partecipanti.",
+    "open_access_forbidden": "L’accesso libero non è consentito su questo server.",
+    "open_access_guests_only": "Con accesso libero i partecipanti non hanno un account: nessun monitoraggio personale, nessun nome preso da un account.",
+    "next_quiz_unavailable": "Questo quiz non può essere giocato dopo in questa sala.",
+    "next_quiz_from_lobby": "Il quiz successivo si sceglie nella sala d’attesa della sala.",
+    "review_unavailable": "Puoi tornare a guardare un passaggio solo tra due domande.",
+    "step_not_played": "Questo passaggio non è ancora stato giocato."
+  },
+  "participant": {
+    "not_found": "Partecipante non trovato."
+  },
+  "nickname": {
+    "taken": "Questo soprannome è già usato in questa sala.",
+    "invalid_length": "Il soprannome deve avere tra {{min}} e {{max}} caratteri."
+  },
+  "pin": {
+    "unavailable": "Impossibile assegnare un PIN, riprova.",
+    "too_many_attempts": "Troppi PIN errati da questo indirizzo. Riprova tra un minuto."
+  },
+  "media": {
+    "unsupported_type": "Formato non supportato: un’immagine, un video MP4 (H.264) o un suono (MP3, M4A). L’editor converte gli altri file che questo browser sa leggere; SVG non è accettato.",
+    "file_missing": "File mancante (campo «file»).",
+    "file_too_large": "File troppo grande (al massimo {{maxMb}} MB per questo tipo di media).",
+    "image_too_large": "Questa immagine è troppo grande (al massimo {{maxMp}} megapixel).",
+    "not_found": "Media non trovato.",
+    "demo_disabled": "Il caricamento dei media è disattivato sull’istanza demo.",
+    "video_with_audio": "Un video ha già il suo suono: rimuovi la traccia audio o il video.",
+    "wrong_kind": "Questo media non è del tipo accettato da questo spazio.",
+    "embeds_disabled": "I video di YouTube e Vimeo sono disattivati su questa istanza.",
+    "invalid": "I media della domanda non sono validi.",
+    "quicktime": "I file QuickTime (.mov) non sono accettati. Esporta il video in MP4 (H.264), per esempio con HandBrake (handbrake.fr).",
+    "unsupported_video_codec": "Codec video non supportato ({{codec}}). Solo H.264 si riproduce ovunque. Un video girato con un iPhone è spesso HEVC: convertilo in MP4 H.264, per esempio con HandBrake (handbrake.fr), o imposta la fotocamera su «Più compatibile».",
+    "unsupported_audio_codec": "Il suono di questo video ({{codec}}) non è AAC. Esportalo di nuovo in MP4 H.264 + AAC, per esempio con HandBrake (handbrake.fr).",
+    "no_video_track": "Questo file non contiene video. Per un suono da solo, usa lo spazio del suono.",
+    "unreadable_mp3": "Questo suono non può essere letto: il file sembra danneggiato.",
+    "metadata_invalid": "Ciò che è stato misurato sul suono non è valido ({{field}}). Riprova il caricamento.",
+    "cannot_read": "Questo browser non può leggere questo file. Prova un altro browser, o convertilo prima con uno strumento dedicato (HandBrake per i video, Audacity per i suoni).",
+    "cannot_convert_video": "Questo browser non può convertire questo video in MP4 H.264. Usa Chrome, Edge o Safari, oppure convertilo prima con HandBrake (handbrake.fr).",
+    "cannot_convert_audio": "Questo browser non può convertire questo suono in AAC. Prova un altro browser, oppure convertilo prima con Audacity (audacityteam.org).",
+    "too_long": "Troppo lungo per rientrare nel limite di {{maxMb}} MB per questo tipo di media, anche compresso. Accorcialo prima.",
+    "canceled": "Conversione annullata.",
+    "in_use": "Questo media è ancora usato da un quiz o da una sessione: rimuovilo prima da lì.",
+    "playing": "Una sala sta usando questo media proprio ora: riprova quando chiude.",
+    "not_adopted_yet": "Questo file viene spostato nell’archivio condiviso: riprova tra un momento.",
+    "embed_bounds": "L’inizio e la fine del video non tornano: la fine deve venire dopo l’inizio."
+  },
+  "import": {
+    "file_missing": "File mancante (campo «file»).",
+    "invalid_bundle": "Non è un pacchetto QuizDock (quiz.json + media/, compresso in zip).",
+    "bundle_too_large": "Questo pacchetto è troppo grande una volta estratto, o contiene troppi file.",
+    "media_missing": "Il media «{{path}}» è referenziato ma manca dal pacchetto.",
+    "media_unsupported": "Media non supportato «{{path}}» (png, jpg, gif, webp, avif, mp3, ogg, wav, m4a).",
+    "invalid_item": "L’elemento {{item}} del pacchetto non è valido ({{field}}).",
+    "kahoot_template": "Usa il modello di foglio di calcolo originale di Kahoot (.xlsx), con un solo foglio.",
+    "kahoot_empty": "Nessuna domanda valida trovata. Controlla la riga {{row}} e il modello Kahoot.",
+    "file_too_large": "File troppo grande da importare (al massimo {{maxMb}} MB)."
+  },
+  "question": {
+    "not_in_quiz": "La domanda non fa parte del quiz.",
+    "invalid_permutation": "Le posizioni devono formare una permutazione 0..n-1.",
+    "reorder_incomplete": "Il riordino deve elencare tutte le domande del quiz.",
+    "not_found": "Domanda non trovata.",
+    "accepted_answers": {
+      "not_allowed": "Solo una domanda a risposta scritta prevede risposte accettate.",
+      "required": "Aggiungi almeno una risposta accettata."
+    },
+    "image": {
+      "alt_required": "Descrivi questa immagine per chi non può vederla.",
+      "count": "Una scelta per immagini richiede 2 o 4 immagini.",
+      "no_text": "Una risposta a immagine non ha testo.",
+      "no_visual": "Una scelta per immagini non ha un’immagine o un video propri: le sue risposte sono le immagini.",
+      "picture_required": "Scegli un’immagine per questa risposta."
+    },
+    "incomplete_in_ready_quiz": "Questo quiz è pubblicato: riportalo in bozza per salvare una domanda incompleta.",
+    "multi_select": {
+      "not_allowed": "Più immagini corrette valgono solo per una scelta per immagini."
+    },
+    "numeric": {
+      "not_allowed": "Solo una domanda numerica prevede un valore da trovare e una tolleranza.",
+      "tolerance_required": "Imposta la tolleranza (0 per il numero esatto).",
+      "value_required": "Imposta il numero da trovare."
+    },
+    "options": {
+      "not_allowed": "Questo tipo di domanda non ha risposte tra cui scegliere.",
+      "one_correct": "Spunta la risposta corretta.",
+      "some_correct": "Spunta almeno una risposta corretta.",
+      "not_enough": "Aggiungi almeno 2 risposte."
+    },
+    "ordering": {
+      "positions": "Ogni risposta ha bisogno del proprio posto nell’ordine corretto."
+    },
+    "poll": {
+      "no_correct": "Un sondaggio non ha una risposta corretta."
+    },
+    "prompt": {
+      "required": "Scrivi la domanda, o aggiungi un’immagine o un suono che la ponga."
+    },
+    "scoring": {
+      "not_available": "Questo punteggio non si applica a questo tipo di domanda."
+    },
+    "true_false": {
+      "two_options": "Vero o falso richiede esattamente 2 risposte."
+    }
+  },
+  "validation": "Alcuni campi non sono validi.",
+  "internal": "Errore interno.",
+  "error": "Si è verificato un errore.",
+  "host_seat": {
+    "taken": "La postazione del conduttore è già occupata.",
+    "manager_forbidden": "Un amministratore non prende la postazione del conduttore.",
+    "local_only": "Solo la modalità locale ha una postazione del conduttore.",
+    "already_host": "Sei già un conduttore: nessuna postazione da prendere."
+  },
+  "store": {
+    "demo_disabled": "La condivisione è disattivata su un’istanza demo.",
+    "not_ready": "Si può condividere solo un quiz segnato come «pronto».",
+    "license_required": "Imposta una licenza prima di condividere: un modello è fatto per essere riutilizzato, quindi le condizioni viaggiano con esso.",
+    "entry_not_found": "Questo modello non è più nel catalogo.",
+    "not_yours": "Solo il suo autore, o un amministratore, può ritirare un modello.",
+    "invalid_id": "Identificativo del modello non valido.",
+    "index_unreadable": "L’indice del catalogo non può essere letto; chiedi al tuo amministratore."
+  },
+  "publication": {
+    "slug_invalid": "Il nome breve deve contenere lettere minuscole, cifre e trattini.",
+    "not_ready": "Solo un quiz pronto può essere esportato per la pubblicazione.",
+    "license": "Scegli una licenza (CC0, CC BY o CC BY-SA) prima di esportare per la pubblicazione.",
+    "language": "La lingua del quiz non è valida.",
+    "tags": "Aggiungi almeno un tag prima di esportare per la pubblicazione.",
+    "too_large": "Il quiz è troppo grande per il catalogo della comunità."
+  },
+  "slide": {
+    "two_sounds": "Una slide riproduce un suono alla volta: silenzia il suo video o rimuovi il suo suono.",
+    "background_conflict": "Uno sfondo è un’immagine o una sfumatura, non entrambe.",
+    "empty": "La slide non mostra nulla: aggiungi un titolo, un testo, un’immagine, uno sfondo o un video.",
+    "not_found": "Questa slide non esiste più: è stata eliminata nel frattempo.",
+    "incomplete_in_ready_quiz": "Questo quiz è pubblicato: riportalo in bozza per salvare una slide che non mostra nulla."
+  },
+  "record": {
+    "not_found": "Questo elemento non esiste più: è stato eliminato nel frattempo.",
+    "conflict": "Qualcuno ha salvato nello stesso momento. Riprova.",
+    "invalid_reference": "Questo fa riferimento a qualcosa che non esiste più."
+  },
+  "mcp": {
+    "busy": "Un’importazione è già in corso. Attendi che finisca.",
+    "import_failed": "Impossibile importare il quiz. Controlla i log del server.",
+    "rate_limit": "Troppe richieste del connettore. Riprova tra un minuto."
+  },
+  "community": {
+    "disabled": "Il catalogo della comunità è disattivato.",
+    "download_failed": "Impossibile scaricare o verificare il quiz.",
+    "busy": "Il catalogo della comunità è occupato. Riprova a breve."
+  },
+  "admin": {
+    "unknown_operation": "Operazione amministrativa sconosciuta.",
+    "forbidden": "Ruolo di amministratore richiesto.",
+    "scope_read": "L’amministrazione web è in sola lettura su questa istanza (ADMIN_WEB_SCOPE=read).",
+    "local_mode_token": "Modalità locale: fornisci il token di amministrazione (ADMIN_TOKEN) per modificare qualsiasi cosa.",
+    "locked": "Bloccato da ADMIN_LOCK: {{keys}}.",
+    "critical": "Un’impostazione critica non si cambia mai dal web.",
+    "invalid_params": "Parametri non validi: {{message}}",
+    "confirmation_invalid": "La conferma è scaduta: riprova.",
+    "dry_run_unsupported": "Questa operazione non può essere mostrata in anteprima.",
+    "not_found": "Non trovato: {{message}}",
+    "conflict": "Non possibile adesso: {{message}}",
+    "timeout": "L’operazione ha impiegato troppo tempo.",
+    "failed": "L’operazione non è riuscita: {{message}}",
+    "too_many_requests": "Troppi tentativi: attendi un momento.",
+    "demo_read_only": "Questa è una demo pubblica: l’amministrazione è mostrata in sola lettura."
+  },
+  "setup": {
+    "token_invalid": "Questo token di configurazione non è valido (errato, già usato o scaduto): `qd setup.token` ne fornisce uno nuovo.",
+    "session_invalid": "La sessione di configurazione è terminata: fornisci un nuovo token di configurazione.",
+    "too_many_attempts": "Troppi token errati: attendi un quarto d’ora."
+  },
+  "request": {
+    "too_large": "Troppo grande per il server: ha rifiutato la richiesta (il suo limite di dimensione)."
+  },
+  "theme": {
+    "not_found": "Tema non trovato.",
+    "not_owner": "Solo il proprietario o un amministratore possono modificare questo tema.",
+    "in_use": "Questo tema è ancora usato da quiz ({{count}}): assegna prima loro un altro tema.",
+    "is_default": "È il tema predefinito dell’istanza: scegli prima un altro tema predefinito.",
+    "invalid_media": "Un file di questo tema manca o non è del tipo richiesto dal suo posto.",
+    "ref_one_of": "Scegli un tema incluso o uno della libreria, non entrambi.",
+    "icon_invalid": "Questo file non è un’icona SVG leggibile.",
+    "icon_not_square": "Un’icona deve essere quadrata (viewBox largo quanto alto).",
+    "icon_empty": "Questa icona non disegna alcuna forma.",
+    "icon_too_large": "Icona troppo grande (al massimo {{maxKb}} KB).",
+    "font_invalid": "Questo file non è un font WOFF2 completo.",
+    "font_too_large": "Font troppo grande (al massimo {{maxMb}} MB).",
+    "unknown": "Questa istanza non conosce il tema del pacchetto: il quiz prende il tema predefinito.",
+    "fallback": "Non è stato possibile usare un file del tema del pacchetto: il quiz prende il tema da cui deriva.",
+    "unknown_icon": "Questa icona non è nella raccolta di icone.",
+    "unknown_picture": "Questa immagine non è tra quelle fornite con QuizDock."
+  },
+  "background": {
+    "image_and_gradient": "Uno sfondo è un’immagine o una sfumatura, non entrambe.",
+    "mode_required": "Scegli come disporre l’immagine."
+  }
+}

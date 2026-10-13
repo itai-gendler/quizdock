@@ -1,0 +1,866 @@
+{
+  "title": "管理",
+  "adminOnly": "このページはインスタンスの管理者専用です。",
+  "loading": "読み込み中…",
+  "domains": {
+    "instance": "インスタンス",
+    "quizzes": "クイズ",
+    "media": "メディア"
+  },
+  "sections": {
+    "statistics": "統計",
+    "settings": "設定",
+    "health": "ヘルス",
+    "accounts": "アカウント",
+    "audit": "監査",
+    "quizzes": "クイズ",
+    "media": "メディア",
+    "branding": "ブランディング",
+    "interface": "インターフェース"
+  },
+  "token": {
+    "unset": "ローカルモード：.env に ADMIN_TOKEN（32文字以上）を設定してインスタンスを再起動するまで、Web からは何も変更できません。",
+    "ask": "ローカルモード：変更するには管理トークン（ADMIN_TOKEN）を入力してください。このタブ内でのみ保持されます。",
+    "use": "使用",
+    "given": "このタブで管理トークンが入力されています。",
+    "forget": "破棄"
+  },
+  "update": {
+    "available": "QuizDock {{version}} が利用可能です。",
+    "running": "このインスタンスは {{current}} で動作しています（{{date}} 公開）。",
+    "command": "サーバー上で、インスタンスのフォルダーにて：",
+    "does": "バックアップを取り、イメージを更新し、マイグレーションを適用してから、インスタンスのヘルスを確認します。",
+    "copy": "コピー",
+    "copied": "コピーしました",
+    "changes": "新機能",
+    "upgrading": "アップグレードの前に",
+    "github": "GitHub で見る",
+    "hide": "次のバージョンまで非表示",
+    "close": "閉じる"
+  },
+  "settings": {
+    "search": "設定を検索",
+    "view": "レイアウト",
+    "views": {
+      "cards": "カード",
+      "split": "リストと詳細",
+      "table": "表"
+    },
+    "filters": {
+      "label": "絞り込み",
+      "changed": "既定値から変更済み",
+      "overridden": "ここで変更済み",
+      "problem": "問題あり",
+      "editable": "編集可能"
+    },
+    "none": "一致する設定はありません。",
+    "list": "設定",
+    "problem": "問題あり",
+    "rules": "確認が必要な設定：",
+    "envValue": ".env の値を置き換え：",
+    "access": {
+      "read": "Web ではすべての設定を表示しますが、何も変更しません（ADMIN_WEB_SCOPE=read）。",
+      "write": "Web からは C2〜C4 レベルの設定を変更できます（ADMIN_WEB_SCOPE=write）。C1 は決して変更できません。",
+      "how": "これらは .env で設定し、インスタンスを再起動します。",
+      "locks": "ADMIN_LOCK によりロック：",
+      "safeMode": "セーフモード（ADMIN_OVERRIDES=ignore）：ここで変更した値は保持されますが、適用されません。",
+      "token": "ローカルモード：変更には管理トークンが必要です。",
+      "noToken": "ローカルモード：ADMIN_TOKEN を設定するまで、Web からは何も変更できません。",
+      "readWhy": "これが既定です。サーバーの運用者が許可するまで、ブラウザーからインスタンスを変更することはできません。",
+      "doc": "変更を許可する方法"
+    },
+    "columns": {
+      "variable": "変数",
+      "value": "値",
+      "source": "出所",
+      "env": ".env の値",
+      "default": "既定値",
+      "level": "レベル",
+      "applies": "適用"
+    },
+    "issue": {
+      "unreadable": "読み取れません（受け付ける値：{{accepts}}）。既定値が使われます。",
+      "out-of-bounds": "受け付ける範囲外です（{{accepts}}）。当面はそのまま使われますが、今後のリリースで強制されます。"
+    }
+  },
+  "categories": {
+    "identity": "名称とブランディング",
+    "access": "アクセスと認証",
+    "network": "ネットワークと招待",
+    "storage": "ストレージ",
+    "limits": "上限",
+    "pace": "進行ペース",
+    "admin": "管理",
+    "internal": "内部"
+  },
+  "source": {
+    "default": "既定値",
+    "env": ".env から",
+    "override": "ここで変更"
+  },
+  "criticality": {
+    "C1": "重大：起動、データ、セキュリティに関わります。表示のみで、Web からは変更できません。",
+    "C2": "高：誰が入れるか、どれだけ保存できるか。変更のたびに確認します。",
+    "C3": "通常：インスタンスの動作。",
+    "C4": "外観：見た目と文言。"
+  },
+  "applies": {
+    "live": "即時",
+    "next-room": "次のルーム",
+    "restart": "再起動時"
+  },
+  "appliesHelp": {
+    "live": "次に使われるときから。進行中のクイズにも反映されます。",
+    "next-room": "変更後に開かれたルームに適用されます。進行中のルームは現在の値を維持します。",
+    "restart": "起動時に一度だけ読み込まれます。インスタンスの再起動が必要です。"
+  },
+  "readOnly": {
+    "critical": "重大：Web からは変更不可",
+    "locked": "ADMIN_LOCK によりロック",
+    "scope": "読み取り専用（ADMIN_WEB_SCOPE=read）",
+    "safe-mode": "セーフモード",
+    "demo": "公開デモ：読み取り専用"
+  },
+  "value": {
+    "empty": "—",
+    "set": "設定済み",
+    "notSet": "未設定",
+    "on": "オン",
+    "off": "オフ"
+  },
+  "units": {
+    "MB": "MB",
+    "s": "秒"
+  },
+  "help": {
+    "accepts": "受け付ける値",
+    "default": "既定値",
+    "example": ".env での記述",
+    "applies": "適用",
+    "rules": "関連する設定",
+    "doc": "ドキュメント",
+    "history": "最近の変更",
+    "noHistory": "管理画面から変更されたことはありません。"
+  },
+  "outside": {
+    "title": "アプリケーションの外部",
+    "intro": "Docker Compose、quizdock スクリプト、イメージのビルド、Keycloak が読み込むもので、アプリケーションは読み込みません。ここではなく、読み込まれる場所で変更してください。",
+    "readBy": "読み込み元",
+    "what": "内容",
+    "readers": {
+      "compose": "Compose",
+      "keycloak": "Keycloak",
+      "script": "quizdock スクリプト",
+      "build": "イメージのビルド",
+      "dev": "開発スタック",
+      "image": "イメージ"
+    }
+  },
+  "labels": {
+    "APP_NAME": "アプリケーション名",
+    "APP_LANG": "インターフェースの言語",
+    "APP_LOGO_URL": "ロゴのアドレス",
+    "APP_FEEDBACK_URL": "フィードバックリンクの行き先",
+    "AUTH_MODE": "認証モード",
+    "DEMO_MODE": "公開デモ",
+    "ALLOW_ANONYMOUS_PARTICIPANTS": "アカウントなしの参加者",
+    "OIDC_ISSUER": "ID プロバイダー（issuer）",
+    "OIDC_CLIENT_ID": "クライアント識別子",
+    "OIDC_CLIENT_SECRET": "クライアントシークレット",
+    "OIDC_INTERNAL_URL": "プロバイダーの内部アドレス",
+    "OIDC_JWKS_URI": "鍵のエンドポイント",
+    "OIDC_AUDIENCE": "想定するオーディエンス",
+    "OIDC_ROLES_CLAIM": "ロールのクレーム",
+    "OIDC_NAME_CLAIM": "表示名のクレーム",
+    "OIDC_SESSION_SCOPE": "セッションのスコープ（無視）",
+    "PORT": "コンテナー内のポート",
+    "TRUST_PROXY": "信頼するプロキシ",
+    "APP_PUBLIC_URL": "公開アドレス",
+    "HOST_LAN_IPS": "ローカルネットワークのアドレス",
+    "QUIZ_STORE_URL": "コミュニティカタログ",
+    "QUIZ_STORE_HOSTS": "ダウンロードを許可するホスト",
+    "UPDATE_CHECK": "新しいバージョンの確認",
+    "DATABASE_URL": "データベース",
+    "REDIS_URL": "Redis",
+    "MEDIA_DIR": "メディアフォルダー",
+    "STORE_DIR": "共有テンプレートのフォルダー",
+    "SAMPLES_DIR": "サンプルクイズのフォルダー",
+    "CLIENT_DIR": "Web アプリケーションのフォルダー",
+    "MEDIA_MAX_BYTES": "画像の最大サイズ",
+    "MEDIA_MAX_VIDEO_MB": "動画の最大サイズ",
+    "MEDIA_MAX_AUDIO_MB": "音声の最大サイズ",
+    "IMPORT_MAX_BYTES": "インポートするクイズの最大サイズ",
+    "PUBLICATION_MAX_MB": "公開用クイズの最大サイズ",
+    "MEDIA_LIBRARY_LINKS": "無料メディアライブラリ",
+    "GAME_READ_DELAY_MS": "タイマー開始前の読み時間",
+    "GAME_ALL_ANSWERED_DELAY_MS": "全員の回答後の間隔",
+    "GAME_AUTO_ADVANCE_MS": "自動進行モード：1ステップの時間",
+    "GAME_MEDIA_WAIT_S": "音声と動画の待ち時間",
+    "LIVE_MOTION": "ライブ画面のトランジション",
+    "GAME_HOST_GRACE_MS": "ホスト離脱までの猶予",
+    "GAME_HOST_WINDOW_MS": "ホストが戻れる時間",
+    "ADMIN_WEB_SCOPE": "Web から変更できる範囲",
+    "ADMIN_LOCK": "Web から変更しない設定",
+    "ADMIN_TOKEN": "管理トークン（ローカルモード）",
+    "ADMIN_OVERRIDES": "Web から変更した値",
+    "QUIZDOCK_FLAVOR": "イメージの種類",
+    "APP_VERSION": "バージョン",
+    "PRISMA_SKIP_CONNECT": "データベースなしで起動"
+  },
+  "operations": {
+    "health": {
+      "doctor": "ヘルスチェック"
+    },
+    "migrations": {
+      "status": "データベースのマイグレーション"
+    },
+    "version": {
+      "check": "バージョン"
+    },
+    "seat": {
+      "status": "ホスト席",
+      "release": "ホスト席を解放"
+    },
+    "users": {
+      "list": "アカウント",
+      "set-role": "ロールの付与または取り消し",
+      "find": "アカウントを探す",
+      "search": "アカウントを検索"
+    },
+    "samples": {
+      "load": "サンプルクイズをアカウントに追加"
+    },
+    "quizzes": {
+      "list": "クイズ",
+      "transfer": "クイズを譲渡",
+      "export": "クイズをエクスポート",
+      "import": "アカウントにクイズをインポート",
+      "archive": "クイズをアーカイブ",
+      "restore": "アーカイブ済みクイズを復元",
+      "delete": "クイズを削除",
+      "orphans": "誰もアクセスできないクイズ",
+      "search": "クイズを検索"
+    },
+    "sessions": {
+      "purge": "古いセッションを削除"
+    },
+    "settings": {
+      "list": "設定",
+      "set": "設定を変更",
+      "reset": "変更を取り消す",
+      "export": ".env 形式の変更内容"
+    },
+    "audit": {
+      "list": "監査"
+    },
+    "media": {
+      "upload": "インスタンスのメディアに追加",
+      "promote": "ファイルをインスタンスのメディアに昇格",
+      "credit": "メディアのクレジット",
+      "remove": "インスタンスのメディアから外す",
+      "delete-file": "ファイルを削除",
+      "sweep": "メディアをクリーンアップ"
+    },
+    "presets": {
+      "list": "クイックセットアップ",
+      "plan": "クイックセットアップのプレビュー",
+      "apply": "クイックセットアップを適用"
+    },
+    "setup": {
+      "status": "セットアップ",
+      "token": "新しいセットアップトークン",
+      "complete": "セットアップを完了",
+      "reopen": "セットアップを再開",
+      "first-admin": "最初の管理者"
+    },
+    "invite": {
+      "test": "スマートフォンからアドレスをテスト",
+      "test-status": "スマートフォンテスト"
+    },
+    "stats": {
+      "live": "現在実施中のもの",
+      "history": "過去12か月"
+    }
+  },
+  "params": {
+    "user": "アカウント",
+    "roles": "ロール",
+    "owner": "所有者",
+    "quiz": "クイズ（ID）",
+    "to": "新しい所有者",
+    "bundle": "バンドル（zip、quiz.json、または Kahoot シート）",
+    "key": "設定",
+    "limit": "件数",
+    "operation": "操作",
+    "setting": "設定",
+    "value": "値",
+    "all": "すべて",
+    "audience": "対象者",
+    "name": "名前",
+    "address": "アドレス",
+    "id": "ID",
+    "internet": "インターネット",
+    "accessibility": "アクセシビリティ",
+    "q": "検索",
+    "status": "状態",
+    "orphans": "誰もアクセスできない",
+    "offset": "開始位置"
+  },
+  "columns": {
+    "name": "名前",
+    "subject": "サブジェクト",
+    "email": "メールアドレス",
+    "roles": "ロール",
+    "granted": "付与",
+    "quizzes": "クイズ",
+    "createdAt": "作成日",
+    "id": "ID",
+    "title": "タイトル",
+    "owner": "所有者",
+    "status": "状態",
+    "questions": "問題",
+    "slug": "スラッグ",
+    "revision": "リビジョン",
+    "updatedAt": "更新日",
+    "holder": "保持者",
+    "claimedAt": "確保日時",
+    "expiresAt": "期限",
+    "why": "理由"
+  },
+  "effects": {
+    "write": "変更",
+    "destructive": "破壊的"
+  },
+  "run": {
+    "read": "表示",
+    "write": "実行",
+    "preview": "プレビュー",
+    "confirm": "確認",
+    "confirmTitle": "この変更を確定しますか？"
+  },
+  "form": {
+    "choose": "選択…"
+  },
+  "result": {
+    "done": "完了しました。",
+    "nothing-to-do": "何もすることはありません。",
+    "partial": "完了しましたが、問題がありました。",
+    "preview": "実行される内容：",
+    "none": "なし。",
+    "download": "{{name}} を保存"
+  },
+  "refusals": {
+    "unknown_operation": "不明な操作です。",
+    "forbidden": "管理者専用です。",
+    "scope_read": "読み取り専用：ADMIN_WEB_SCOPE=read。",
+    "local_mode_token": "ローカルモード：管理トークンが必要です。",
+    "locked": "ADMIN_LOCK によりロックされています。",
+    "critical": "重大：Web からは変更できません。",
+    "invalid_params": "無効なパラメーターです。",
+    "confirmation_invalid": "確認の有効期限が切れました。",
+    "dry_run_unsupported": "プレビューはありません。",
+    "not_found": "見つかりません。",
+    "conflict": "競合しています。",
+    "timeout": "時間がかかりすぎました。",
+    "failed": "失敗しました。",
+    "demo_read_only": "公開デモ：読み取り専用です。"
+  },
+  "quizzes": {
+    "search": "クイズを検索",
+    "owner": "所有者",
+    "everyone": "全員",
+    "status": "状態",
+    "anyStatus": "すべて",
+    "statuses": {
+      "draft": "下書き",
+      "ready": "準備完了",
+      "archived": "アーカイブ済み"
+    },
+    "orphans": "誰もアクセスできない",
+    "none": "一致するクイズはありません。",
+    "count_one": "クイズ {{count}}件",
+    "count_other": "クイズ {{count}}件",
+    "questions_one": "{{count}}問",
+    "questions_other": "{{count}}問",
+    "live": "実施中（PIN {{pin}}）",
+    "unreachable": "所有者がアクセスできなくなっています",
+    "close": "閉じる",
+    "columns": {
+      "quiz": "クイズ",
+      "owner": "所有者",
+      "updated": "更新日",
+      "actions": "操作"
+    },
+    "actions": {
+      "quizzes_import": "アカウントにクイズをインポート",
+      "samples_load": "サンプルクイズを追加",
+      "sessions_purge": "古いセッションを削除",
+      "open": "開く",
+      "export": "エクスポート",
+      "transfer": "譲渡",
+      "archive": "アーカイブ",
+      "restore": "復元",
+      "delete": "削除"
+    },
+    "transfer": {
+      "title": "「{{title}}」を譲渡",
+      "help": "別のアカウントへ譲渡します。このクイズだけが使うメディアと履歴も一緒に移り、それ以外は {{owner}} の手元に残ります。",
+      "search": "名前、サブジェクト、メールアドレス"
+    },
+    "actionsFor": "{{title}} の操作"
+  },
+  "audit": {
+    "filter": "操作",
+    "empty": "監査ログはまだありません。",
+    "newer": "新しい順",
+    "older": "古い順",
+    "columns": {
+      "at": "日時",
+      "who": "実行者",
+      "operation": "操作",
+      "params": "パラメーター",
+      "outcome": "結果"
+    },
+    "via": {
+      "cli": "コマンドライン",
+      "api": "Web"
+    },
+    "outcomes": {
+      "done": "完了",
+      "nothing-to-do": "対象なし",
+      "partial": "一部完了",
+      "refused": "拒否",
+      "failed": "失敗"
+    },
+    "anyOperation": "すべての操作",
+    "previous": "置き換えた値"
+  },
+  "edit": {
+    "save": "保存",
+    "back": ".env の値に戻す",
+    "cancel": "キャンセル",
+    "accepts": "受け付ける値：{{accepts}}。",
+    "remove": "削除",
+    "add": "追加",
+    "linkName": "名前",
+    "linkUrl": "アドレス",
+    "kinds": {
+      "image": "画像",
+      "video": "動画",
+      "audio": "音声"
+    },
+    "noLinks": "ライブラリなし：エディターには何も表示されません（インターネットに接続しないインスタンス）。",
+    "saved": {
+      "live": "保存しました。今すぐ適用されます。",
+      "next-room": "保存しました。今後開かれるルームに適用されます。",
+      "restart": "保存しました。次回の再起動時に適用されます。"
+    }
+  },
+  "overrides": {
+    "count_one": "ここで変更された設定が{{count}}件あります。",
+    "count_other": "ここで変更された設定が{{count}}件あります。",
+    "export": ".env 形式でエクスポート",
+    "exportHelp": ".env に固定する（その後ここで取り消す）、または別のインスタンスに移す場合：",
+    "resetAll": "すべて取り消す"
+  },
+  "setup": {
+    "title": "インスタンスのセットアップ",
+    "invite": "このインスタンスはまだセットアップが完了していません。",
+    "inviteLink": "セットアップする",
+    "closed": "このインスタンスはセットアップ済みで、ウィザードは閉じています（シェルから `qd setup.reopen` で再び開けます）。",
+    "home": "ホーム",
+    "signIn": "ID プロバイダーを使う場合、セットアップにはサインイン済みのアカウントが必要です。完了するには、プロバイダーから付与された管理者ロールが必要です。",
+    "signInLink": "サインイン",
+    "steps": "ステップ",
+    "previous": "前へ",
+    "next": "次へ",
+    "finish": "セットアップを完了",
+    "finished": "インスタンスのセットアップが完了しました。",
+    "finishedHelp": "ウィザードは完全に閉じられました。ここで設定した内容は、ADMIN_WEB_SCOPE が許す範囲で、後から管理画面で変更できます。",
+    "token": {
+      "title": "セットアップトークン",
+      "help": "新しいインスタンスにたどり着いた人がそのまま所有者になってはいけません。起動時にインスタンスのログに書き出されたセットアップトークン（またはコンテナー内で `qd setup.token` により取得したもの）を入力してください。一度しか使えず、作成から24時間で期限切れになります。",
+      "label": "トークン",
+      "open": "開始"
+    },
+    "step": {
+      "usage": {
+        "title": "利用目的",
+        "help": "インスタンスの使い方について3つの質問に答えます。各回答で複数の設定がまとめて決まります。すべて次のステップで、または後から管理画面で調整できます。"
+      },
+      "health": {
+        "title": "ヘルス",
+        "help": "データベース、Redis、マイグレーション、フォルダー、重大な変数。ここで失敗した項目は .env で修正し、インスタンスを再起動してください。"
+      },
+      "identity": {
+        "title": "名称",
+        "help": "名前、言語、ロゴ、フィードバックリンクの行き先。"
+      },
+      "address": {
+        "title": "アドレス",
+        "help": "参加者に提示するアドレス（QR コード、参加リンク）と、スマートフォンからのテスト。"
+      },
+      "access": {
+        "title": "アクセス",
+        "help": "誰が入れるか。認証モードは起動前に .env で設定します。"
+      },
+      "limits": {
+        "title": "上限と進行ペース",
+        "help": "既定値はほとんどのインスタンスに適しています。異なる場合にのみ値を変更してください。"
+      },
+      "content": {
+        "title": "コンテンツ",
+        "help": "すぐに出題できるサンプルクイズを、ホストのバンクに追加します。"
+      },
+      "summary": {
+        "title": "まとめ",
+        "help": "設定内容とその出所。完了するとウィザードは完全に閉じられます。"
+      }
+    },
+    "phone": {
+      "title": "スマートフォンからテスト",
+      "help": "スマートフォンからアクセスできるかどうかはサーバーにはわからず、スマートフォンでしか確かめられません。参加者と同じ条件（ゲスト用 Wi-Fi やモバイルデータ通信）で、スマートフォンからアドレスのコードをスキャンしてください。テスト済みのアドレスが最初に提示されます。",
+      "start": "このアドレスをテスト",
+      "again": "もう一度テスト",
+      "scan": "スマートフォンでスキャンしてください。届いたことを、開いたページがこの画面に知らせます。",
+      "reached": "スマートフォンからアクセスできました（{{agent}}）。",
+      "why": {
+        "title": "届かない場合のよくある原因",
+        "network": "ネットワークが違う：ローカルアドレス（192.168…、10…）は同じネットワーク上のスマートフォンにしか応答しません。ゲスト用 Wi-Fi は別のネットワークであることが多く、モバイルデータ通信では応答しません。",
+        "isolation": "端末間の分離：多くのゲスト用・公衆 Wi-Fi では端末同士が互いに見えません。公開アドレスを使うか、分離のないネットワークを使ってください。",
+        "firewall": "ファイアウォール：マシンがアプリケーションのポートへの接続を拒否している可能性があります。",
+        "public": "公開アドレスには、マシンを指すドメイン名と、インターネットから開いたポート（またはリバースプロキシ）が必要です。スマートフォンにアプリをインストールするには https も必要です。",
+        "docker": "Docker Desktop、ブリッジネットワーク：コンテナーからはマシン自身のアドレスが見えません。HOST_LAN_IPS に設定してください。"
+      },
+      "expired": "このテストは期限切れです。もう一度開始してください。",
+      "adoptHelp": "スマートフォンからアクセスできたアドレスは、インスタンスの招待アドレスにしてください。すべての待機室がこのアドレスから始まります（APP_PUBLIC_URL）。ホストは回ごとに別のアドレスを選ぶこともできます。",
+      "adoptReadOnly": "ここでは管理画面から設定を変更できません。インスタンスの招待アドレスは運用者が設定したまま（APP_PUBLIC_URL）です。ホストは待機室で回ごとにアドレスを選びます。",
+      "other": "別のアドレス",
+      "add": "追加",
+      "current": "インスタンスの招待アドレス",
+      "use": "招待に使用"
+    },
+    "access": {
+      "firstAdmin": "ローカルモード：インスタンスを管理する人の名前です（その名前でサインインします）。Web から変更するには ADMIN_TOKEN も必要です。",
+      "oidcAdmin": "ID プロバイダーを使う場合、管理者ロールはプロバイダーから（または `qd user:set-role` で）付与されます。"
+    },
+    "content": {
+      "samples": "アカウント（サブジェクト（ローカルモードでは local:<name>）またはメールアドレス）：サンプルクイズはそのバンクに追加されます。"
+    },
+    "summary": {
+      "set": "既定値と異なる設定",
+      "env": "ここで設定した内容の .env 抜粋です。.env に固定する場合に使います："
+    },
+    "blocked": "上に進行を妨げる問題があります。修正し（.env で修正して再起動）、再確認すると、ウィザードが先に進みます。"
+  },
+  "usage": {
+    "preview": "これらの回答で設定される内容：",
+    "nothing": "変更するものはありません。",
+    "apply": "適用",
+    "applied": "適用しました。次のステップに反映されています。",
+    "skipped": {
+      "locked": "変更なし：ADMIN_LOCK によりロック",
+      "not-applicable": "変更なし：ID プロバイダー使用時のみ（AUTH_MODE=oidc）"
+    },
+    "internet": {
+      "question": "このインスタンスはインターネットに接続できますか？",
+      "answers": {
+        "connected": {
+          "title": "はい",
+          "help": "エディターにオンラインの無料メディアライブラリが表示されます。"
+        },
+        "offline": {
+          "title": "いいえ",
+          "help": "ローカルネットワークのみ：オンラインライブラリへのリンクはありません。次のステップでスマートフォンからアドレスをテストしてください。"
+        }
+      }
+    },
+    "audience": {
+      "question": "誰が参加しますか？",
+      "answers": {
+        "colleagues": {
+          "title": "同僚、友人",
+          "help": "標準の設定です。"
+        },
+        "class": {
+          "title": "クラス、研修",
+          "help": "参加者は自分のアカウントでサインインします。"
+        },
+        "public": {
+          "title": "一般の人、大規模イベント",
+          "help": "誰でも参加可能（ID プロバイダー使用時）。混雑した Wi-Fi でも音声や動画を読み込めるよう、待ち時間を長くします。"
+        },
+        "other": {
+          "title": "いろいろ、その他",
+          "help": "何も変更しません。必要な設定は次のステップで行ってください。"
+        }
+      }
+    },
+    "accessibility": {
+      "question": "配慮が必要な参加者はいますか？",
+      "answers": {
+        "standard": {
+          "title": "いいえ",
+          "help": "標準の設定です。"
+        },
+        "adapted": {
+          "title": "はい",
+          "help": "トランジションなし、読む時間を長めに。"
+        }
+      }
+    }
+  },
+  "stats": {
+    "live": {
+      "title": "ライブ",
+      "updated": "{{time}} 更新",
+      "stale": "再読み込みできませんでした。{{ago}}の数値です",
+      "games": "進行中のクイズ",
+      "players": "接続中の参加者",
+      "none": "現在実施中のクイズはありません。",
+      "lobby_one": "待機室に{{count}}件",
+      "lobby_other": "待機室に{{count}}件",
+      "playing_one": "{{count}}件実施中",
+      "playing_other": "{{count}}件実施中"
+    },
+    "columns": {
+      "quiz": "クイズ",
+      "host": "ホスト",
+      "progress": "進行状況",
+      "players": "参加者",
+      "since": "開始",
+      "month": "月"
+    },
+    "pin": "PIN {{pin}}",
+    "phase": {
+      "lobby": "待機室",
+      "question": "問題 {{index}} / {{total}}"
+    },
+    "instance": {
+      "title": "インスタンス",
+      "accounts": "アカウント",
+      "quizzes": "実施可能なクイズ",
+      "media": "メディア",
+      "mediaDetail_one": "{{count}}ファイル",
+      "mediaDetail_other": "{{count}}ファイル",
+      "history": "実施回数",
+      "lastGame": "最後の回は{{ago}}に終了",
+      "noGame": "まだありません",
+      "hosts_one": "ホスト {{count}}人",
+      "hosts_other": "ホスト {{count}}人",
+      "admins_one": "管理者 {{count}}人",
+      "admins_other": "管理者 {{count}}人",
+      "drafts_one": "下書き {{count}}件",
+      "drafts_other": "下書き {{count}}件",
+      "archived_one": "アーカイブ済み {{count}}件",
+      "archived_other": "アーカイブ済み {{count}}件"
+    },
+    "history": {
+      "title": "過去12か月",
+      "none": "過去12か月に実施されたクイズはありません。",
+      "games": "実施回数",
+      "players": "参加者",
+      "success": "正答率",
+      "withAccount": "アカウントのある参加者",
+      "accounts_one": "アカウントあり {{count}}人",
+      "accounts_other": "アカウントあり {{count}}人",
+      "guests_one": "ゲスト {{count}}人",
+      "guests_other": "ゲスト {{count}}人",
+      "byMonth": "月別",
+      "top": {
+        "quizzes": "よく実施されたクイズ",
+        "hosts": "活発なホスト"
+      },
+      "oldest": "履歴は{{date}}から始まります。それより古い回は削除されています。"
+    }
+  },
+  "accounts": {
+    "search": "アカウントを検索（名前、サブジェクト、メールアドレス）",
+    "role": "ロール",
+    "anyRole": "すべてのロール",
+    "roles": {
+      "admin": "管理者",
+      "host": "クイズのホスト",
+      "player": "参加者"
+    },
+    "none": "一致するアカウントはありません。",
+    "count_one": "アカウント {{count}}件",
+    "count_other": "アカウント {{count}}件",
+    "columns": {
+      "account": "アカウント",
+      "roles": "ロール",
+      "quizzes": "クイズ",
+      "games": "ホストした回数",
+      "created": "作成日",
+      "actions": "操作"
+    },
+    "grantedHere": "管理画面から付与",
+    "actionsFor": "{{name}} の操作",
+    "editRoles": "ロールの付与または取り消し…",
+    "rolesTitle": "{{name}} に付与されたロール",
+    "rolesHelp": "ID プロバイダーが与えるロールに加えて、管理画面が付与するロールです。プロバイダー由来のロールは、ここでのチェックに関係なく維持されます。",
+    "rolesHint": {
+      "host": "クイズを作成し、ホストを務めます。",
+      "admin": "管理画面にアクセスできます。"
+    },
+    "cancel": "キャンセル",
+    "save": "保存",
+    "seat": {
+      "title": "ホスト席",
+      "held": "{{since}} から {{name}} が使用中",
+      "free": "空いています。次に確保した人がホストになります。",
+      "release": "席を解放"
+    }
+  },
+  "health": {
+    "problems_one": "確認が必要な問題が{{count}}件あります",
+    "problems_other": "確認が必要な問題が{{count}}件あります",
+    "allGood": "すべて正常です",
+    "checked_one": "{{count}}件のチェックに合格",
+    "checked_other": "{{count}}件のチェックに合格",
+    "again": "再確認",
+    "migrations": {
+      "title": "データベースのマイグレーション",
+      "applied_one": "{{count}}件適用済み",
+      "applied_other": "{{count}}件適用済み",
+      "pending_one": "{{count}}件保留中",
+      "pending_other": "{{count}}件保留中",
+      "failed_one": "{{count}}件失敗",
+      "failed_other": "{{count}}件失敗",
+      "list": "適用済みのマイグレーション（新しい順）"
+    },
+    "version": {
+      "title": "バージョン",
+      "current": "このインスタンス：{{version}}",
+      "available": "{{version}} が {{date}} から利用可能",
+      "upToDate": "最新の安定版です",
+      "dev": "開発ビルド：比較しません",
+      "none": "安定版はまだ公開されていません",
+      "off": "更新の確認はオフです（UPDATE_CHECK）",
+      "failed": "GitHub から応答がなく、最新バージョンは不明です",
+      "checked": "最終確認：{{when}}",
+      "details": "アップデートを見る"
+    },
+    "level": {
+      "ok": "OK",
+      "warn": "警告",
+      "fail": "問題"
+    }
+  },
+  "doctor": {
+    "group": {
+      "environment": "環境",
+      "database": "データベース",
+      "redis": "Redis",
+      "media": "メディア",
+      "oidc": "ID プロバイダー（OIDC）"
+    },
+    "issue": {
+      "unreadable": "{{key}}：読み取れません。既定値が使われます。",
+      "out-of-bounds": "{{key}}：受け付ける範囲外です。当面はそのまま使われます。"
+    },
+    "unset": "{{key}} が設定されていません。",
+    "postgres_ok": "PostgreSQL に接続可能",
+    "postgres_superuser": "QuizDock は PostgreSQL のスーパーユーザーとして接続しています。サーバー上で ./quizdock db:roles を実行すると、バックアップを取ったうえで専用のロールが与えられます。",
+    "migrations_applied_one": "{{count}}件のマイグレーションを適用済み",
+    "migrations_applied_other": "{{count}}件のマイグレーションを適用済み",
+    "migrations_pending_one": "{{count}}件のマイグレーションが保留中です。migrate ステップを実行してください。",
+    "migrations_pending_other": "{{count}}件のマイグレーションが保留中です。migrate ステップを実行してください。",
+    "migrations_failed_one": "{{count}}件のマイグレーションが失敗しました。prisma migrate resolve を参照してください。",
+    "migrations_failed_other": "{{count}}件のマイグレーションが失敗しました。prisma migrate resolve を参照してください。",
+    "postgres_failed": "PostgreSQL に接続できません：{{error}}",
+    "redis_ok": "Redis に接続可能",
+    "redis_failed": "Redis に接続できません：{{error}}",
+    "dir_ok": "{{dir}} は書き込み可能です",
+    "dir_failed": "{{dir}}：{{error}}",
+    "participants_open": "参加者：アカウントまたはオープンアクセスを開始時に選択",
+    "participants_accounts": "参加者：アカウント必須（ALLOW_ANONYMOUS_PARTICIPANTS 未設定）",
+    "provider_internal": "サーバーから {{url}} でプロバイダーに接続",
+    "discovery_ok": "ディスカバリー OK：トークンエンドポイント {{url}}",
+    "discovery_failed": "ディスカバリー {{url}} に失敗しました（{{error}}）。サーバーから issuer に到達できない場合は、OIDC_INTERNAL_URL を設定してください。",
+    "jwks_ok_one": "署名鍵に接続可能（{{count}}個の鍵）",
+    "jwks_ok_other": "署名鍵に接続可能（{{count}}個の鍵）",
+    "jwks_failed": "署名鍵 {{url}}：{{error}}"
+  },
+  "demoReadOnly": "公開デモ：管理画面はそのまま表示されていますが、ここからは何も変更できません。自分のインスタンスでは、自由に管理できます。",
+  "branding": {
+    "intro": "インスタンスの素性：名前、言語、ロゴ、フィードバックの送り先。各行は環境変数で、設定ページと同じようにここで変更できます。",
+    "APP_NAME": "アプリケーション名",
+    "APP_NAME_hint": "ヘッダー、タブのタイトル、インストールされたアプリに表示されます。",
+    "APP_LANG": "インターフェースの言語",
+    "APP_LANG_hint": "ブラウザがより適切な言語を示さない訪問者向けです。",
+    "APP_LOGO_URL": "ロゴ",
+    "APP_LOGO_URL_hint": "branding/ フォルダー内の logo.svg（または .png…）ファイル、またはここに https アドレス。",
+    "APP_FEEDBACK_URL": "フィードバックリンクの行き先",
+    "APP_FEEDBACK_URL_hint": "ホームページの「ご意見をお聞かせください」リンク。none で非表示になります。",
+    "logoDefault": "インスタンスが独自のロゴを設定するまでは QuizDock のもの。",
+    "css": "独自の CSS",
+    "cssHint": "branding/override.css は最後に読み込まれ、これらの設定でカバーされない部分に使えます。"
+  },
+  "look": {
+    "intro": "アプリケーションの見た目：色、フォント、角、ショーケースページの背景。データベースに保存され、ここでのみ変更できます。ライブ画面のクイズは自身のテーマの見た目を保ちます。",
+    "saving": "保存中…",
+    "saved": "保存しました：各訪問者は次に開くページから反映されます。",
+    "reset": "QuizDock の見た目に戻す",
+    "colours": "色",
+    "primary": "メインカラー",
+    "primaryHint": "ボタン、選択中のフィルター、フォーカスリング。文字は白です。ライトモードとダークモードで同じ色です。",
+    "accent": "アクセントカラー",
+    "accentHint": "リンクと現在のページの目印。既定ではメインカラー。ダークページ上の文字としては、快適に読めるまで明るくされます（7:1）。",
+    "button": "ボタン",
+    "link": "リンク",
+    "whiteText": "白い文字",
+    "onLight": "ライトページ上",
+    "onDark": "ダークページ上",
+    "corners": "角",
+    "radius": {
+      "square": "四角",
+      "standard": "標準",
+      "rounded": "丸み"
+    },
+    "cornerSample": {
+      "card": "カード",
+      "button": "ボタン",
+      "field": "入力欄"
+    },
+    "showcase": "ショーケースの背景",
+    "showcaseHint": "ホーム、参加、サインイン、エラー、見つからないページのみ。作業用ページは無地のままです。",
+    "mode": {
+      "none": "なし",
+      "logo": "ロゴの透かし",
+      "picture": "画像"
+    },
+    "logoHint": "ブランディングのロゴの形 — インスタンスが独自のものを設定するまでは QuizDock のもの — を文字の色で、淡く、中央に。",
+    "size": "サイズ",
+    "opacity": "不透明度",
+    "accessibility": "アクセシビリティ",
+    "accessible": "アクセシブル",
+    "accessibilityHint": "色から測定され、自己申告ではありません。アクセシブルな見た目だけがそう表示されます。",
+    "checksMet": "{{total}} 項目中 {{met}} 項目を満たしています",
+    "check": {
+      "button_text_contrast": "メインボタンの白い文字が 4.5:1 に達する",
+      "primary_on_light": "メインカラーがページから目立つ（3:1）",
+      "primary_on_dark": "メインカラーがダークページでも目立つ（3:1）",
+      "link_on_light": "アクセントカラーのリンクがページ上で読める（4.5:1）",
+      "link_on_dark": "リンクがダークページでも読める（4.5:1）"
+    },
+    "preview": {
+      "label": "プレビュー",
+      "home": "ホーム",
+      "join": "参加",
+      "login": "サインイン",
+      "notFound": "見つかりません",
+      "quizzes": "マイクイズ",
+      "light": "ライト",
+      "dark": "ダーク",
+      "plain": "作業用ページは無地のまま：ショーケースの背景はありません。"
+    },
+    "colorMode": "ライトまたはダーク",
+    "colorModes": {
+      "auto": "各端末が選択",
+      "light": "常にライト",
+      "dark": "常にダーク"
+    },
+    "colorModeHint": "各端末はシステムの設定、またはアカウントメニューで本人が選んだ設定に従います。固定するとメニューには表示されなくなります。ライブ画面は対象外です。クイズのテーマが適用されます。"
+  }
+}

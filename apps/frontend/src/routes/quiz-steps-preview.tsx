@@ -25,6 +25,7 @@ import { ScreenSurface } from './screen-page';
 import { stepView } from './step-view';
 import type { GameView } from '../game/use-game-session';
 import { useHotkeys } from 'react-hotkeys-hook';
+import { useQuizThemeValues } from '@/lib/quiz-theme';
 
 /** What the preview walks: a quiz, or a template read as the quiz a copy would make. */
 export type PreviewQuiz = StepQuiz & {
@@ -55,6 +56,10 @@ export function QuizStepsPreview({
   const [device, setDevice] = useState<'projection' | 'phone'>('projection');
   const [answer, setAnswer] = useState(false);
   const url = useMediaUrl();
+  // The quiz's theme: its own, else the instance's default.
+  const theme = useQuizThemeValues(
+    quiz as { themeId?: string | null; themeBuiltin?: string | null },
+  );
   const step = (delta: number) => setIndex((i) => Math.min(total - 1, Math.max(0, i + delta)));
   const { ref, isFullscreen, toggle, supported } = useFullscreen<HTMLDivElement>();
 
@@ -65,9 +70,9 @@ export function QuizStepsPreview({
   const item = items[index];
   // One view per step: the live screens key their media and clocks on it.
   const view = useMemo(
-    () => (total > 0 ? stepView(items, index, quiz, url, { reveal: answer }) : null),
+    () => (total > 0 ? stepView(items, index, quiz, url, { reveal: answer, theme }) : null),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [quiz, index, answer, url],
+    [quiz, index, answer, url, theme],
   );
   return (
     <div className="flex w-full flex-col gap-6">

@@ -33,6 +33,7 @@ import {
   type SlideTextTone,
   ACCEPTED_ANSWERS_MAX,
   OPTION_COLORS,
+  OPTION_ORDER,
   OPTION_SHAPES,
   OPTION_TYPES,
   OPTIONS_MAX,
@@ -47,6 +48,7 @@ import {
   questionContentSchema,
   questionIssues,
   scoringsFor,
+  type BackgroundStyle,
 } from '@quiz-dock/contracts';
 import { useForm, useStore } from '@tanstack/react-form';
 import { useQueryClient } from '@tanstack/react-query';
@@ -118,13 +120,13 @@ import { Switch } from '@/components/ui/switch';
 import { useMediaUrl } from '@/lib/media-url';
 import { RoomScreen } from './quiz-steps-preview';
 import { stepView } from './step-view';
+import { useQuizTheme } from '@/lib/quiz-theme';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 type QType = QuestionTypeName;
 const TYPES = QUESTION_TYPES;
 // Eight distinct colour+shape pairs, one per position: no two options ever look alike (max 8).
-const COLORS = OPTION_COLORS;
-const SHAPES = OPTION_SHAPES;
+const PAIRS = OPTION_ORDER;
 const SINGLE_CORRECT: QType[] = ['single_choice', 'true_false'];
 
 interface OptionValue {
@@ -176,8 +178,8 @@ function newOption(i: number, text = '', isCorrect = false): OptionValue {
   return {
     key: optionKey(),
     text,
-    color: COLORS[i % COLORS.length],
-    shape: SHAPES[i % SHAPES.length],
+    color: PAIRS[i % PAIRS.length].color,
+    shape: PAIRS[i % PAIRS.length].shape,
     isCorrect,
     correctOrderIndex: i,
     mediaId: null,
@@ -218,6 +220,7 @@ function initialValues(q?: QuizDetailDtoQuestionsItem): FormValues {
       gradient: (q.backgroundGradient as SlideGradient | null | undefined) ?? null,
       textTone: (q.textTone as SlideTextTone | undefined) ?? 'light',
       textOutline: q.textOutline ?? true,
+      style: (q.backgroundStyle as BackgroundStyle | null | undefined) ?? null,
     },
     timeLimitS: q.timeLimitS,
     revealDelayS: q.revealDelayS ?? null,
@@ -484,8 +487,8 @@ export function QuestionForm({
       'options',
       next.map((o, i) => ({
         ...o,
-        color: COLORS[i % COLORS.length],
-        shape: SHAPES[i % SHAPES.length],
+        color: PAIRS[i % PAIRS.length].color,
+        shape: PAIRS[i % PAIRS.length].shape,
         correctOrderIndex: places[i],
       })),
     );
@@ -1328,6 +1331,7 @@ function buildPayload(v: FormValues) {
     answerExplanation: v.answerExplanation.trim() || null,
     backgroundMediaId: v.background.mediaId,
     backgroundGradient: v.background.gradient,
+    backgroundStyle: v.background.style,
     textTone: v.background.textTone,
     textOutline: v.background.textOutline,
   };
@@ -1340,8 +1344,8 @@ function buildPayload(v: FormValues) {
       options: v.options.map((o) => ({
         mediaId: o.mediaId ?? undefined,
         alt: o.alt.trim(),
-        color: o.color as (typeof COLORS)[number],
-        shape: o.shape as (typeof SHAPES)[number],
+        color: o.color as (typeof OPTION_COLORS)[number],
+        shape: o.shape as (typeof OPTION_SHAPES)[number],
         isCorrect: o.isCorrect,
       })),
     };
@@ -1353,8 +1357,8 @@ function buildPayload(v: FormValues) {
         text: o.text || undefined,
         // A picture an answer already holds (an imported quiz) is kept, not lost on save.
         mediaId: o.mediaId ?? undefined,
-        color: o.color as (typeof COLORS)[number],
-        shape: o.shape as (typeof SHAPES)[number],
+        color: o.color as (typeof OPTION_COLORS)[number],
+        shape: o.shape as (typeof OPTION_SHAPES)[number],
         isCorrect: o.isCorrect,
         correctOrderIndex: v.type === 'ordering' ? o.correctOrderIndex : undefined,
       })),
@@ -1481,10 +1485,13 @@ function LivePreview({
     false,
     (v): v is boolean => typeof v === 'boolean',
   );
+  // In the quiz's theme, as the room will see it.
+  const theme = useQuizTheme();
   const view = useMemo(() => {
     const question = previewQuestion(values);
     const view = stepView([{ kind: 'question', id: question.id, question }], 0, NO_QUIZ, url, {
       reveal: answer,
+      theme,
     });
     // Where it stands in the quiz, as the room's band will say.
     return {
@@ -1493,7 +1500,7 @@ function LivePreview({
       totalQuestions: position.total,
       question: view.question && { ...view.question, questionIndex: position.index },
     };
-  }, [values, url, answer, position.index, position.total]);
+  }, [values, url, answer, position.index, position.total, theme]);
   return (
     <Disclosure
       title={t('preview.title')}
@@ -1558,6 +1565,7 @@ function previewQuestion(v: FormValues): QuizDetailDtoQuestionsItem {
     answerExplanation: p.answerExplanation ?? null,
     backgroundMediaId: v.background.mediaId,
     backgroundGradient: v.background.gradient,
+    backgroundStyle: v.background.style,
     textTone: v.background.textTone,
     textOutline: v.background.textOutline,
     timeLimitS: p.timeLimitS ?? TIME_LIMIT_S.default,

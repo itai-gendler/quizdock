@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.1.0
  */
 import type { QuizDetailDtoSlidesItemAudioTarget } from './quizDetailDtoSlidesItemAudioTarget';
+import type { QuizDetailDtoSlidesItemBackgroundStyle } from './quizDetailDtoSlidesItemBackgroundStyle';
 import type { QuizDetailDtoSlidesItemBlocksItem } from './quizDetailDtoSlidesItemBlocksItem';
 import type { QuizDetailDtoSlidesItemGradient } from './quizDetailDtoSlidesItemGradient';
 import type { QuizDetailDtoSlidesItemTextTone } from './quizDetailDtoSlidesItemTextTone';
@@ -26,6 +27,8 @@ export type QuizDetailDtoSlidesItem = {
   mediaId: string | null;
   /** @nullable */
   gradient: QuizDetailDtoSlidesItemGradient;
+  /** @nullable */
+  backgroundStyle: QuizDetailDtoSlidesItemBackgroundStyle;
   /** @nullable */
   videoMediaId: string | null;
   videoLoop: boolean;

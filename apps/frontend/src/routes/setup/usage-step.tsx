@@ -164,7 +164,7 @@ export function UsageStep() {
               {t('usage.apply')}
             </Button>
             {applied ? (
-              <p role="status" className="text-success text-sm">
+              <p role="status" className="text-success-text text-sm">
                 {t('usage.applied')}
               </p>
             ) : null}

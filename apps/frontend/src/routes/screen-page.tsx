@@ -38,6 +38,7 @@ import { ReadinessMeter } from '../game/media/readiness-meter';
 import { anchorOf, followed } from '../game/media/followed';
 import { SoundUnlockOverlay } from '../game/media/sound-unlock-overlay';
 import { BACKDROP_EDGE, Surface } from '../game/surface';
+import { LiveTheme, themeBackdrop } from '../game/theme';
 import { ImageChoiceGrid } from '../game/image-choice';
 import { useQuestionClock } from '../game/use-countdown';
 import { joinHostLabel, joinUrlFor } from '../game/join-url';
@@ -46,14 +47,16 @@ import type { GameSocket } from '../game/game-client';
 import { playsSound } from '@quiz-dock/contracts';
 
 /**
- * The states where the question is on screen, drawn on its background. Not the
- * wait for the next one, the podium or the end: those keep the page's colours.
+ * The states where the question is on screen, drawn on its background. Not the wait
+ * for the next one, the podium or the end: those are drawn on the quiz theme's.
  */
 const QUESTION_STATES = new Set<string>(['QUESTION_SHOW', 'ANSWERING', 'REVEAL', 'LEADERBOARD']);
 
 /**
  * Écran de jeu projeté (grand écran, §4). Socket **spectateur** en lecture seule :
  * aucune auth, le PIN suffit, jamais de bonne réponse avant le reveal (anti-triche §7).
+ * It is the room's projection when opened by the host, or once paired from the
+ * console with the code it shows; otherwise it only follows.
  * Se reconnecte seul au rechargement (le PIN est dans l'URL). Plein écran pour la
  * vidéoprojection.
  */
@@ -102,6 +105,7 @@ export function ScreenView({
   /** A participant's copy (#104); `sound` when it plays the sound (a remote participant). */
   follow?: { sound: boolean };
 }) {
+  const { t } = useTranslation('live');
   const session = useGameSession(pin, 'spectator', { follow: !!follow });
   // The audience's language (#209): the room's choice, else the quiz's.
   useAudienceLanguage(session.view.language);
@@ -117,6 +121,17 @@ export function ScreenView({
         role={follow ? 'follow' : playMedia ? 'lead' : 'preview'}
         sound={follow?.sound ?? true}
       />
+      {/* A projection window on another computer, not paired yet: it follows until
+          the host types this code in the console. */}
+      {session.pairingCode ? (
+        <div className="bg-background/95 fixed bottom-3 left-3 z-50 flex max-w-xs flex-col gap-1 rounded-md border p-3 shadow-md">
+          <span className="text-muted-foreground text-xs">{t('screen.pairingCode')}</span>
+          <span className="font-mono text-2xl font-bold tracking-[0.3em]">
+            {session.pairingCode}
+          </span>
+          <span className="text-muted-foreground text-xs">{t('screen.pairingHint')}</span>
+        </div>
+      ) : null}
     </>
   );
 }
@@ -847,62 +862,77 @@ export function ScreenSurface({
     </div>
   );
 
+  const ownBackground =
+    onBackground && !!view.question?.background && !!view.state && QUESTION_STATES.has(view.state);
+  const themed = themeBackdrop(view.theme);
+  const backdrop =
+    ownBackground && view.question?.background
+      ? {
+          background: view.question.background,
+          textTone: view.question.textTone,
+          textOutline: view.question.textOutline,
+        }
+      : themed
+        ? // The halo is for text laid on a picture; a colour or a gradient keeps plain text.
+          { ...themed, textOutline: 'url' in themed.background }
+        : null;
+
   return (
-    <LiveMotion on={view.motion}>
-      <div
-        ref={ref}
-        data-state={view.state ?? 'none'}
-        className={cn(
-          'qd-screen bg-background relative flex flex-col',
-          boxed ? 'h-full w-full overflow-hidden' : 'min-h-dvh',
-          // A question fits the screen exactly; the rest may grow.
-          !boxed &&
-            (view.state === 'ANSWERING' ||
-              view.state === 'QUESTION_SHOW' ||
-              view.state === 'REVEAL' ||
-              view.state === 'LEADERBOARD') &&
-            'h-dvh',
-          // One typographic base for the whole projected page; everything inside is in em.
-          boxed ? TYPE_BASE.stage : TYPE_BASE.screen,
-        )}
-      >
-        {fullscreenBtn}
-        {soundButton ? (
-          <SoundButton
-            size="lg"
-            align="start"
-            className={cn('absolute top-4 left-4 z-40', BACKDROP_EDGE)}
-            onUnmute={() => void unlockAudio()}
-          />
-        ) : null}
-        {/* A quiz with sound asks for the unlocking click as soon as this window opens,
+    <LiveTheme theme={view.theme}>
+      <LiveMotion on={view.motion}>
+        <div
+          ref={ref}
+          data-state={view.state ?? 'none'}
+          className={cn(
+            'qd-screen bg-background relative flex flex-col',
+            boxed ? 'h-full w-full overflow-hidden' : 'min-h-dvh',
+            // A question fits the screen exactly; the rest may grow.
+            !boxed &&
+              (view.state === 'ANSWERING' ||
+                view.state === 'QUESTION_SHOW' ||
+                view.state === 'REVEAL' ||
+                view.state === 'LEADERBOARD') &&
+              'h-dvh',
+            // One typographic base for the whole projected page; everything inside is in em.
+            boxed ? TYPE_BASE.stage : TYPE_BASE.screen,
+          )}
+        >
+          {fullscreenBtn}
+          {soundButton ? (
+            <SoundButton
+              size="lg"
+              align="start"
+              className={cn('absolute top-4 left-4 z-40', BACKDROP_EDGE)}
+              onUnmute={() => void unlockAudio()}
+            />
+          ) : null}
+          {/* A quiz with sound asks for the unlocking click as soon as this window opens,
           whatever the moment of the session; a silent quiz never asks. */}
-        {(playMedia || (role === 'follow' && sound)) &&
-        !soundUnlocked &&
-        !deviceSound.muted &&
-        (view.quizHasSound || soundsOn) &&
-        view.state !== 'ENDED' ? (
-          // The projection cannot be muted from here: the console does it.
-          <SoundUnlockOverlay allowSilent={role === 'follow'} />
-        ) : null}
-        {onBackground &&
-        view.question?.background &&
-        view.state &&
-        QUESTION_STATES.has(view.state) ? (
-          // A question with a background owns the surface, bands included.
-          <Surface
-            background={view.question.background}
-            textTone={view.question.textTone}
-            textOutline={view.question.textOutline}
-            className="absolute inset-0"
-          >
-            {frame}
-          </Surface>
-        ) : (
-          frame
-        )}
-        <BackdropFade stepKey={stepKey} backdrop={backdropOf(view, onBackground)} />
-      </div>
-    </LiveMotion>
+          {(playMedia || (role === 'follow' && sound)) &&
+          !soundUnlocked &&
+          !deviceSound.muted &&
+          (view.quizHasSound || soundsOn) &&
+          view.state !== 'ENDED' ? (
+            // The projection cannot be muted from here: the console does it.
+            <SoundUnlockOverlay allowSilent={role === 'follow'} />
+          ) : null}
+          {backdrop ? (
+            // The step's background owns the surface, bands included: a question's own, else
+            // the quiz theme's (docs/themes.md).
+            <Surface
+              background={backdrop.background}
+              textTone={backdrop.textTone}
+              textOutline={backdrop.textOutline}
+              className={ownBackground ? 'absolute inset-0' : 'flex-1'}
+            >
+              {frame}
+            </Surface>
+          ) : (
+            frame
+          )}
+          <BackdropFade stepKey={stepKey} backdrop={backdropOf(view, onBackground, view.theme)} />
+        </div>
+      </LiveMotion>
+    </LiveTheme>
   );
 }

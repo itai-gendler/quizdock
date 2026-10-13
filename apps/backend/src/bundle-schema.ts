@@ -1,7 +1,12 @@
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { BUNDLE_GUIDE_FILE, bundleGuideText } from './quizzes/portable/bundle-guide';
-import { BUNDLE_SCHEMA_FILE, bundleJsonSchemaText } from './quizzes/portable/bundle-json-schema';
+import {
+  BUNDLE_SCHEMA_FILE,
+  THEME_BUNDLE_SCHEMA_FILE,
+  bundleJsonSchemaText,
+  themeBundleJsonSchemaText,
+} from './quizzes/portable/bundle-json-schema';
 
 /**
  * Writes the bundle JSON Schema of the current manifest version and the format
@@ -11,3 +16,4 @@ import { BUNDLE_SCHEMA_FILE, bundleJsonSchemaText } from './quizzes/portable/bun
 const ROOT = join(__dirname, '..', '..', '..');
 writeFileSync(join(ROOT, BUNDLE_SCHEMA_FILE), bundleJsonSchemaText());
 writeFileSync(join(ROOT, BUNDLE_GUIDE_FILE), bundleGuideText());
+writeFileSync(join(ROOT, THEME_BUNDLE_SCHEMA_FILE), themeBundleJsonSchemaText());

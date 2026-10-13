@@ -68,7 +68,9 @@
     "kind": {
       "image": "Images",
       "video": "Videos",
-      "audio": "Sounds"
+      "audio": "Sounds",
+      "icon": "Theme icons",
+      "font": "Theme fonts"
     },
     "disk": {
       "title": "Disk",
@@ -209,5 +211,8 @@
   "statusCount_other": "{{count}} statuses",
   "publishToPresent": "Publish to present",
   "quizActions": "Actions for “{{title}}”",
-  "results": "Results"
+  "results": "Results",
+  "newQuizBlank": "Blank quiz",
+  "newQuizFromTemplate": "From a template…",
+  "newQuizImport": "Import a file…"
 }

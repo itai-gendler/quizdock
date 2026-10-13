@@ -274,7 +274,14 @@ describe('DashboardPage', () => {
       { method: 'POST', path: '/quizzes', status: 201, body: quiz({ id: 'fresh' }) },
     ]);
     renderApp('/quizzes');
-    const create = await screen.findByText('Nouveau quiz');
+    // The empty bank's own button (the header's opens the New quiz menu).
+    const create = await waitFor(() => {
+      const button = screen
+        .getAllByRole('button', { name: /Nouveau quiz/ })
+        .find((b) => !b.hasAttribute('aria-haspopup'));
+      if (!button) throw new Error('the empty bank is not drawn yet');
+      return button;
+    });
     fireEvent.click(create);
     fireEvent.click(create); // a double click makes one quiz
     const bodyOf = (suffix: string) => {
@@ -467,7 +474,9 @@ describe('DashboardPage', () => {
     ]);
     everyone();
     renderApp('/quizzes');
+    // From the header's menu: a blank quiz.
     fireEvent.click((await screen.findAllByRole('button', { name: /Nouveau quiz/ }))[0]);
+    fireEvent.click(await screen.findByRole('button', { name: 'Quiz vierge' }));
     expect(await screen.findByRole('alert')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /Créer un quiz à partir de ceci/ }));
     await waitFor(() => expect(screen.getAllByRole('alert')).toHaveLength(2));

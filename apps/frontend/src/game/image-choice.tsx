@@ -1,7 +1,7 @@
 import { type PublicOption, TILE_RATIO } from '@quiz-dock/contracts';
 import type { ReactNode } from 'react';
 import { ShapeIcon } from '@/components/shape-icon';
-import { COLOR_BG, OPTION_BG_FALLBACK } from '@/lib/option-style';
+import { COLOR_BG, COLOR_FG, OPTION_BG_FALLBACK } from '@/lib/option-style';
 import { cn } from '@/lib/utils';
 import { BACKDROP_EDGE } from './surface';
 
@@ -23,13 +23,18 @@ export function ShapeBadge({
     <span
       aria-hidden
       className={cn(
-        'inline-flex size-[1.8em] shrink-0 items-center justify-center rounded-[0.3em] text-white',
+        'inline-flex size-[1.8em] shrink-0 items-center justify-center rounded-[0.3em]',
+        COLOR_FG[color] ?? 'text-white',
         'shadow-[0_0_0_0.12em_rgb(255_255_255/0.9),0_0.1em_0.5em_rgb(0_0_0/0.55)]',
         COLOR_BG[color] ?? OPTION_BG_FALLBACK,
         className,
       )}
     >
-      <ShapeIcon shape={shape} className="size-[1.1em] drop-shadow-[0_0_0.08em_rgb(0_0_0/0.7)]" />
+      <ShapeIcon
+        shape={shape}
+        slot={color}
+        className="size-[1.1em] drop-shadow-[0_0_0.08em_rgb(0_0_0/0.7)]"
+      />
     </span>
   );
 }
