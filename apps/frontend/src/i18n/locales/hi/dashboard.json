@@ -211,5 +211,8 @@
   "statusCount_other": "{{count}} स्थितियाँ",
   "publishToPresent": "प्रस्तुत करने के लिए प्रकाशित करें",
   "quizActions": "“{{title}}” के लिए कार्रवाइयाँ",
-  "results": "नतीजे"
+  "results": "नतीजे",
+  "newQuizBlank": "खाली क्विज़",
+  "newQuizFromTemplate": "टेम्पलेट से…",
+  "newQuizImport": "फ़ाइल इंपोर्ट करें…"
 }

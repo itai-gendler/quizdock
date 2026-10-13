@@ -247,5 +247,8 @@
   "statusCount_other": "{{count}} statusu",
   "publishToPresent": "Opublikuj, aby prezentować",
   "quizActions": "Działania dla „{{title}}”",
-  "results": "Wyniki"
+  "results": "Wyniki",
+  "newQuizBlank": "Pusty quiz",
+  "newQuizFromTemplate": "Z szablonu…",
+  "newQuizImport": "Importuj plik…"
 }

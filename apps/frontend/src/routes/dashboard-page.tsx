@@ -10,6 +10,7 @@ import {
   LayoutGrid,
   List as ListIcon,
   ChartColumn,
+  ChevronDown,
   ListChecks,
   Lock,
   Play,
@@ -30,6 +31,7 @@ import { Button } from '@/components/ui/button';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { MenuItem, MenuSeparator } from '@/components/ui/menu-item';
 import { Popover } from '@/components/ui/popover';
+import { QuizzesHeader } from '@/components/quizzes-header';
 import { Combobox } from '@/components/ui/combobox';
 import { MultiSelect } from '@/components/ui/multi-select';
 import { Input } from '@/components/ui/input';
@@ -57,7 +59,6 @@ import type { QuizDto } from '../api/generated/model';
 import { ApiError, apiErrorText } from '../api/http';
 import { ListSkeleton } from '@/components/ui/loading';
 import { mediaUrl } from '@/lib/media-url';
-import { PageTitle } from '@/components/ui/page-title';
 import { EmptyState } from '@/components/ui/empty-state';
 
 /** Rows per page: enough to scan, short enough to stay on one screen. */
@@ -219,35 +220,72 @@ export function DashboardPage() {
 
   return (
     <section className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
-        <PageTitle>{isManager ? t('allQuizzes') : t('title')}</PageTitle>
-        <div className={cn('flex flex-wrap items-center gap-2', managerOnly && 'hidden')}>
-          <input
-            ref={fileInput}
-            type="file"
-            accept=".zip,.json,.xlsx,application/zip,application/json,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            className="hidden"
-            aria-label={t('import')}
-            onChange={(e) => {
-              onImportFile(e.target.files?.[0]);
-              e.target.value = '';
-            }}
-          />
-          <Button
-            type="button"
-            variant="outline"
-            disabled={importQuiz.isPending}
-            onClick={() => fileInput.current?.click()}
-          >
-            <Upload className="size-4" />
-            {importQuiz.isPending ? t('importing') : t('import')}
-          </Button>
-          <Button type="button" onClick={onCreate} disabled={creating}>
-            <Plus className="size-4" />
-            {t('newQuiz')}
-          </Button>
-        </div>
-      </div>
+      <QuizzesHeader
+        actions={
+          <div className={cn('flex flex-wrap items-center gap-2', managerOnly && 'hidden')}>
+            <input
+              ref={fileInput}
+              type="file"
+              accept=".zip,.json,.xlsx,application/zip,application/json,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              className="hidden"
+              aria-label={t('import')}
+              onChange={(e) => {
+                onImportFile(e.target.files?.[0]);
+                e.target.value = '';
+              }}
+            />
+            {/* Three ways to start a quiz: blank, from a template, from a file. */}
+            <Popover
+              align="end"
+              trigger={({ open, toggle }) => (
+                <Button
+                  type="button"
+                  onClick={toggle}
+                  aria-expanded={open}
+                  aria-haspopup="menu"
+                  disabled={creating || importQuiz.isPending}
+                >
+                  <Plus className="size-4" />
+                  {importQuiz.isPending ? t('importing') : t('newQuiz')}
+                  <ChevronDown className="size-4" />
+                </Button>
+              )}
+            >
+              {(close) => (
+                <div className="flex min-w-48 flex-col">
+                  <MenuItem
+                    onClick={() => {
+                      close();
+                      onCreate();
+                    }}
+                  >
+                    <Plus className="size-4" />
+                    {t('newQuizBlank')}
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      close();
+                      void navigate({ to: '/templates' });
+                    }}
+                  >
+                    <Sparkles className="size-4" />
+                    {t('newQuizFromTemplate')}
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      close();
+                      fileInput.current?.click();
+                    }}
+                  >
+                    <Upload className="size-4" />
+                    {t('newQuizImport')}
+                  </MenuItem>
+                </div>
+              )}
+            </Popover>
+          </div>
+        }
+      />
       {importQuiz.error ? (
         <p className="text-destructive text-sm" role="alert">
           {apiErrorText(importQuiz.error, t('importError'))}

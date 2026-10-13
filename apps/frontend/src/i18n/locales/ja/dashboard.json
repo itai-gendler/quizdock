@@ -211,5 +211,8 @@
   "statusCount_other": "状態 {{count}}件",
   "publishToPresent": "公開して出題",
   "quizActions": "「{{title}}」の操作",
-  "results": "結果"
+  "results": "結果",
+  "newQuizBlank": "空のクイズ",
+  "newQuizFromTemplate": "テンプレートから…",
+  "newQuizImport": "ファイルをインポート…"
 }

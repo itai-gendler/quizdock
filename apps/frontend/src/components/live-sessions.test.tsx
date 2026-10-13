@@ -20,8 +20,8 @@ describe('LiveSessions (barre du haut)', () => {
       { method: 'GET', path: '/quizzes', body: [] },
     ]);
     renderApp('/quizzes');
-    // « Mes quiz » est à la fois le lien de navigation et le titre de la page.
-    expect(await screen.findByRole('heading', { name: 'Mes quiz' })).toBeInTheDocument();
+    // « Quiz » est à la fois le lien de navigation et le titre de la page.
+    expect(await screen.findByRole('heading', { name: 'Quiz' })).toBeInTheDocument();
     expect(screen.queryByText(/en direct/)).toBeNull();
   });
 

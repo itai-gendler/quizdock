@@ -211,5 +211,8 @@
   "statusCount_other": "{{count}} Status",
   "publishToPresent": "Zum Präsentieren veröffentlichen",
   "quizActions": "Aktionen für „{{title}}“",
-  "results": "Ergebnisse"
+  "results": "Ergebnisse",
+  "newQuizBlank": "Leeres Quiz",
+  "newQuizFromTemplate": "Aus einer Vorlage…",
+  "newQuizImport": "Datei importieren…"
 }

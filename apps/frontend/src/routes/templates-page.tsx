@@ -31,7 +31,7 @@ import { apiErrorText } from '../api/http';
 import { useRole } from '../auth/use-role';
 import { SlideStage } from '../game/slide-stage';
 import { ListSkeleton, LoadFailed } from '@/components/ui/loading';
-import { PageTitle } from '@/components/ui/page-title';
+import { QuizzesHeader } from '@/components/quizzes-header';
 import { EmptyState } from '@/components/ui/empty-state';
 
 const PAGE_SIZE = 20;
@@ -93,8 +93,8 @@ export function TemplatesPage() {
 
   return (
     <section className="flex flex-col gap-6">
+      <QuizzesHeader />
       <header className="flex flex-col gap-1">
-        <PageTitle>{t('title')}</PageTitle>
         <p className="text-muted-foreground max-w-prose text-sm">{t('intro')}</p>
         {hasCommunityStore() && isHost ? (
           <Link to="/community" className="underline text-sm">

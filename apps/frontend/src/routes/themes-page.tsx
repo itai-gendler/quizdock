@@ -9,7 +9,8 @@ import { Button } from '@/components/ui/button';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { Input } from '@/components/ui/input';
 import { MenuItem } from '@/components/ui/menu-item';
-import { PageTitle, SectionTitle } from '@/components/ui/page-title';
+import { SectionTitle } from '@/components/ui/page-title';
+import { QuizzesHeader } from '@/components/quizzes-header';
 import { Popover } from '@/components/ui/popover';
 import { fold } from '@/lib/text';
 import { builtinValues, isAccessible, themeValuesOf } from '@/lib/themes';
@@ -95,32 +96,31 @@ export function ThemesPage() {
 
   return (
     <section className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <header className="flex flex-col gap-1">
-          <PageTitle>{t('title')}</PageTitle>
-          <p className="text-muted-foreground max-w-prose text-sm">{t('intro')}</p>
-        </header>
-        <div className="flex gap-2">
-          <input
-            ref={fileRef}
-            type="file"
-            accept=".zip,application/zip"
-            className="hidden"
-            onChange={(e) => {
-              onImport(e.target.files?.[0]);
-              e.target.value = '';
-            }}
-          />
-          <Button
-            variant="outline"
-            disabled={importTheme.isPending}
-            onClick={() => fileRef.current?.click()}
-          >
-            {t('import')}
-          </Button>
-          <Button onClick={() => setNewFrom('classic')}>{t('new')}</Button>
-        </div>
-      </div>
+      <QuizzesHeader
+        actions={
+          <div className="flex gap-2">
+            <input
+              ref={fileRef}
+              type="file"
+              accept=".zip,application/zip"
+              className="hidden"
+              onChange={(e) => {
+                onImport(e.target.files?.[0]);
+                e.target.value = '';
+              }}
+            />
+            <Button
+              variant="outline"
+              disabled={importTheme.isPending}
+              onClick={() => fileRef.current?.click()}
+            >
+              {t('import')}
+            </Button>
+            <Button onClick={() => setNewFrom('classic')}>{t('new')}</Button>
+          </div>
+        }
+      />
+      <p className="text-muted-foreground max-w-prose text-sm">{t('intro')}</p>
 
       {error ? (
         <p role="alert" className="text-destructive text-sm">

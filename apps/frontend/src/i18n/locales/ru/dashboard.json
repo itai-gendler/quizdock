@@ -247,5 +247,8 @@
   "statusCount_other": "{{count}} статуса",
   "publishToPresent": "Опубликуйте, чтобы показать",
   "quizActions": "Действия для «{{title}}»",
-  "results": "Результаты"
+  "results": "Результаты",
+  "newQuizBlank": "Пустой квиз",
+  "newQuizFromTemplate": "Из шаблона…",
+  "newQuizImport": "Импортировать файл…"
 }

@@ -211,5 +211,8 @@
   "statusCount_other": "{{count}} durum",
   "publishToPresent": "Sunmak için yayımla",
   "quizActions": "“{{title}}” için işlemler",
-  "results": "Sonuçlar"
+  "results": "Sonuçlar",
+  "newQuizBlank": "Boş quiz",
+  "newQuizFromTemplate": "Bir şablondan…",
+  "newQuizImport": "Dosya içe aktar…"
 }

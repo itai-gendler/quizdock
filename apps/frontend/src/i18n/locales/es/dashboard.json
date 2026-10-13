@@ -229,5 +229,8 @@
   "statusCount_other": "{{count}} estados",
   "publishToPresent": "Publicar para presentar",
   "quizActions": "Acciones de «{{title}}»",
-  "results": "Resultados"
+  "results": "Resultados",
+  "newQuizBlank": "Quiz en blanco",
+  "newQuizFromTemplate": "Desde una plantilla…",
+  "newQuizImport": "Importar un archivo…"
 }
