@@ -31,6 +31,7 @@ import { GAME_TTL_S, type GameId, gameKeys } from './game.keys';
 import { type PlayerStats, type SeriesStats, answerStats, sumGames } from './player-stats';
 import { type RankedPlayer, rankPlayers } from './results';
 import { DEFAULT_ROOM_SOUNDS, type RoomSounds } from './game.types';
+import { isForeignKeyViolation } from './prisma-errors';
 import type {
   AnswerRecord,
   GameFields,
@@ -321,10 +322,14 @@ export class GameService {
     await pipe.exec();
   }
 
-  /** The snapshot of a quiz the host may play: theirs, `ready`, with at least one question. */
+  /**
+   * The snapshot of a quiz the host may play: `ready`, with at least one question,
+   * theirs or shared by another host — then `borrowed`, and the game keeps nothing
+   * (SPECIFICATIONS-SHARED-PLAY).
+   */
   private async playableSnapshot(hostUserId: string, quizId: string): Promise<QuizSnapshot> {
     const quiz = await this.prisma.quiz.findFirst({
-      where: { id: quizId, ownerId: hostUserId },
+      where: { id: quizId, OR: [{ ownerId: hostUserId }, { shared: true }] },
       include: QUIZ_SNAPSHOT_INCLUDE,
     });
     if (!quiz) {
@@ -337,6 +342,7 @@ export class GameService {
       throw new BadRequestException('quiz.empty');
     }
     const snapshot = buildSnapshot(quiz);
+    if (quiz.ownerId !== hostUserId) snapshot.borrowed = true;
     // Frozen with the rest: a licence's attribution is owed for what was played.
     const credits = (await this.mediaLibrary?.creditsOf(quiz.id)) ?? [];
     if (credits.length > 0) snapshot.credits = credits;
@@ -378,6 +384,7 @@ export class GameService {
       slideIndex: -1,
       slideMediaStartAt: 0,
       slidePausedAt: 0,
+      keepResults: snapshot?.borrowed !== true,
     };
     pipe.hset(gameKeys.game(gameId), gameHash(game));
     pipe.expire(gameKeys.game(gameId), GAME_TTL_S);
@@ -849,18 +856,25 @@ export class GameService {
     // Lines kept; other control characters (NUL included, which the database refuses) dropped.
     const text = typeof comment === 'string' ? comment.replace(/(?!\n)\p{Cc}/gu, '').trim() : '';
     const cleanComment = text ? text.slice(0, 2000) : null;
-    await this.prisma.quizFeedback.upsert({
-      where: { pin_playerId_quizId: { pin, playerId, quizId: rated.quizId } },
-      create: {
-        quizId: rated.quizId,
-        pin,
-        playerId,
-        nickname: player.nickname,
-        rating,
-        comment: cleanComment,
-      },
-      update: { rating, comment: cleanComment },
-    });
+    try {
+      await this.prisma.quizFeedback.upsert({
+        where: { pin_playerId_quizId: { pin, playerId, quizId: rated.quizId } },
+        create: {
+          quizId: rated.quizId,
+          pin,
+          playerId,
+          // Another host's audience stays unnamed to the quiz's owner.
+          nickname: snapshot?.borrowed ? null : player.nickname,
+          rating,
+          comment: cleanComment,
+        },
+        update: { rating, comment: cleanComment },
+      });
+    } catch (err) {
+      // The quiz was deleted meanwhile (a shared one, by its owner): nothing to rate.
+      if (isForeignKeyViolation(err)) return { ok: false };
+      throw err;
+    }
     return { ok: true };
   }
 

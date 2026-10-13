@@ -15,6 +15,7 @@ export type QuizFeedbackSummaryDtoItemsItem = {
   rating: number;
   /** @nullable */
   comment: string | null;
-  nickname: string;
+  /** @nullable */
+  nickname: string | null;
   createdAt: string;
 };

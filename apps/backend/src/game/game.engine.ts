@@ -56,6 +56,7 @@ import type {
   SnapshotQuestion,
 } from './game.types';
 import { noticeOf } from './game.types';
+import { isForeignKeyViolation } from './prisma-errors';
 import { RedisService } from '../redis/redis.service';
 import { buildRevealCommon } from './reveal';
 import { isDeferred, rankClosest, scoreAnswer } from './scoring';
@@ -2510,9 +2511,4 @@ function requireNumber(value: unknown): asserts value is number {
   if (typeof value !== 'number' || !Number.isFinite(value)) {
     throw new BadRequestException('validation');
   }
-}
-
-/** Prisma's foreign-key violation (P2003), e.g. archiving a session whose quiz was deleted. */
-function isForeignKeyViolation(err: unknown): boolean {
-  return typeof err === 'object' && err !== null && (err as { code?: string }).code === 'P2003';
 }

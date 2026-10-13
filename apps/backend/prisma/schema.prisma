@@ -587,7 +587,8 @@ model QuizFeedback {
   quizId    String   @map("quiz_id") @db.Char(26)
   pin       String   @db.Char(6)
   playerId  String   @map("player_id")
-  nickname  String
+  /// Null for a rating from another host's game of a shared quiz: their audience stays unnamed.
+  nickname  String?
   rating    Int
   comment   String?
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)

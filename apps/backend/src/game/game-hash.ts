@@ -93,5 +93,7 @@ export function deserializeGame(raw: Record<string, string>): GameFields {
     prevState: raw.prevState,
     pausedRemainingMs: raw.pausedRemainingMs ? Number(raw.pausedRemainingMs) : undefined,
     reviewStep: raw.reviewStep ?? '',
+    // Written by every game opened since it exists; an older game keeps its results.
+    keepResults: raw.keepResults !== '0',
   };
 }
