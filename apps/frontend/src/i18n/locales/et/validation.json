@@ -1,1 +1,10 @@
-{}
+{
+  "invalid_type": "Vigane väärtuse tüüp.",
+  "too_small": "Väärtus on liiga väike või liiga lühike.",
+  "too_big": "Väärtus on liiga suur või liiga pikk.",
+  "invalid_format": "Vigane vorming.",
+  "invalid_value": "Väärtus pole lubatud.",
+  "unrecognized_keys": "Tundmatu väli.",
+  "custom": "Vigane väärtus.",
+  "_default": "Vigane väli."
+}
