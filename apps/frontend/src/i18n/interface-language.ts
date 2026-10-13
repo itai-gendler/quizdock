@@ -4,10 +4,10 @@ import { contentLang, loadNamespace } from './content-language';
 import { namespaces, resolveLang } from './languages';
 
 /**
- * The interface's language (#209). The instance's by default (`APP_LANG`); a host's
- * own screens follow their preference; the audience's screens (the projection, a
- * participant's once in a game) follow the room's choice, else the quiz's language.
- * A language the app does not speak falls back to the instance's.
+ * The interface's language (#209). The instance's by default (`APP_LANG`); anyone may
+ * pick their own — kept in their account when signed in, else on the device. The
+ * projection speaks the room's language; a player's phone in a game too, unless its
+ * player picked one. A language the app does not speak falls back to the instance's.
  */
 
 let latest = 0;
@@ -25,28 +25,33 @@ export async function setInterfaceLanguage(tag: string | null): Promise<void> {
   document.documentElement.lang = lang;
 }
 
-let audience: string | null = null;
+/** The room's language on a game screen; `overridable`: a player's phone, not the projection. */
+let audience: { tag: string; overridable: boolean } | null = null;
 const listeners = new Set<() => void>();
 const subscribe = (listener: () => void) => {
   listeners.add(listener);
   return () => void listeners.delete(listener);
 };
-const tell = (tag: string | null) => {
-  audience = tag;
+const tell = (next: typeof audience) => {
+  audience = next;
   for (const listener of listeners) listener();
 };
 
-/** A game screen asks for the audience's language while it is shown (null: not known yet). */
-export function useAudienceLanguage(tag: string | null | undefined): void {
+/**
+ * A game screen asks for the room's language while it is shown (null: not known yet).
+ * `overridable`: a player's own choice comes first (their phone); the projection's never.
+ */
+export function useAudienceLanguage(tag: string | null | undefined, overridable = false): void {
   useEffect(() => {
-    tell(tag ?? null);
+    tell(tag ? { tag, overridable } : null);
     return () => tell(null);
-  }, [tag]);
+  }, [tag, overridable]);
 }
 
-/** Applies the language: the audience's on a game screen, else `hostLanguage`, else the instance's. */
-export function useInterfaceLanguage(hostLanguage: string | null): void {
-  const wanted = useSyncExternalStore(subscribe, () => audience) ?? hostLanguage;
+/** Applies the language: the room's on a game screen (unless a player picked theirs), else `personal`, else the instance's. */
+export function useInterfaceLanguage(personal: string | null): void {
+  const room = useSyncExternalStore(subscribe, () => audience);
+  const wanted = room && !(room.overridable && personal) ? room.tag : personal;
   useEffect(() => {
     // A language that does not load leaves the one shown: nothing else to do.
     setInterfaceLanguage(wanted).catch(() => undefined);

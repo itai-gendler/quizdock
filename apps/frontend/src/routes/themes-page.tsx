@@ -1,7 +1,7 @@
 import { BUILTIN_THEMES, type BuiltinTheme, THEME_NAME_MAX } from '@quiz-dock/contracts';
 import { useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate } from '@tanstack/react-router';
-import { Accessibility, MoreHorizontal, Search, Star } from 'lucide-react';
+import { Accessibility, EllipsisVertical, Search, Star } from 'lucide-react';
 import { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
@@ -347,7 +347,7 @@ function ThemeCard({
             align="end"
             trigger={({ toggle }) => (
               <Button variant="ghost" size="sm" onClick={toggle} aria-label={t('more', { name })}>
-                <MoreHorizontal className="size-4" />
+                <EllipsisVertical className="size-4" />
               </Button>
             )}
           >

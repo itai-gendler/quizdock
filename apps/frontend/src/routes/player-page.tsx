@@ -115,7 +115,7 @@ export function PlayerPage() {
   const { pin } = useParams({ from: '/join/$pin' });
   const session = useGameSession(pin, 'player');
   // Once in the game, the interface speaks the audience's language (#209).
-  useAudienceLanguage(session.view.language);
+  useAudienceLanguage(session.view.language, true);
   // The phone stays on between two questions, from the lobby to the end.
   useWakeLock(session.view.status === 'ready' && session.view.state !== 'ENDED');
   return (

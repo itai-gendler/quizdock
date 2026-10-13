@@ -6,6 +6,7 @@ import { LiveSessions } from '@/components/live-sessions';
 import { SeatCountdown, SeatMenuRow } from '@/components/seat-status';
 import { UserMenu } from '@/components/user-menu';
 import { ColorModeSwitch } from '@/components/color-mode-switch';
+import { LanguageMenuRow } from '@/components/language-switch';
 import { cn } from '@/lib/utils';
 import type { AuthMode } from '../auth/auth-context';
 import { useRole } from '../auth/use-role';
@@ -57,6 +58,7 @@ export function AppNav({ user, mode, onLogout }: NavProps) {
             <Separator />
             <p className="text-muted-foreground truncate px-2 pt-1.5 text-xs">{user}</p>
             <ColorModeSwitch />
+            <LanguageMenuRow />
             {/* The same entries as the user menu (UI system §4). */}
             <Link
               to="/profile"
