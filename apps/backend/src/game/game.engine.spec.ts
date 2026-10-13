@@ -1076,8 +1076,13 @@ describe('GameEngine (characterization)', () => {
         const { remainingMs } = roomOf<{ remainingMs: number }>('game:mode').at(-1)!;
         for (const wait of [0, 60]) {
           await new Promise((r) => setTimeout(r, wait));
+          // The end is the remainder from the moment the screen attached: bracketed by
+          // the clock before and after, so a slow run never fails it.
+          const before = Date.now();
           const shown = (await reattach()).of<Timing>('question:start')[0];
-          expect(Math.abs(shown.endsAt - Date.now() - remainingMs)).toBeLessThan(40);
+          const after = Date.now();
+          expect(shown.endsAt - remainingMs).toBeGreaterThanOrEqual(before);
+          expect(shown.endsAt - remainingMs).toBeLessThanOrEqual(after);
         }
       });
 
