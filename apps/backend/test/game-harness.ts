@@ -7,7 +7,7 @@ import { PrismaService } from '../src/prisma/prisma.service';
 
 /**
  * Harness of the live game integration tests: a real Nest app on a free port,
- * real Socket.IO clients, the test database and Redis database 1.
+ * real Socket.IO clients, the worker's test database and Redis database.
  *
  * It lives outside `src/` so the production build never ships it.
  * See docs/dev/game-gateway-tests-refactor.md.
@@ -78,7 +78,7 @@ const DEFAULT_QUESTIONS: Prisma.QuizUncheckedCreateInput['questions'] = {
 };
 
 export async function bootGameApp(): Promise<GameHarness> {
-  // Set by the Jest global setup: a test database and Redis database 1, never the dev ones.
+  // Set per worker by the Jest setup: a test database and Redis database, never the dev ones.
   if (!process.env.DATABASE_URL?.includes('_test')) {
     throw new Error('DATABASE_URL must point at a test database (see test/jest.global-setup.ts)');
   }

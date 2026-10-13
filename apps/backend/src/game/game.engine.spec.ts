@@ -17,10 +17,11 @@ import {
 import type { PrismaService } from '../prisma/prisma.service';
 import { RedisService } from '../redis/redis.service';
 import type { SessionArchiveService } from './session-archive.service';
+import { onTestRedis } from '../../test/test-targets';
 
 /**
  * Characterization of the game engine through its public API only: a real
- * Redis (database 1, see the Jest global setup), a fake Socket.IO server that
+ * Redis (the worker's own, see the Jest global setup), a fake Socket.IO server that
  * records what is sent to the room and to each socket. No database: the quiz
  * is never found again, so the frozen snapshot is the one played.
  *
@@ -226,7 +227,7 @@ describe('GameEngine (characterization)', () => {
     (await game.getSnapshot(gameId))!.questions[index].options[0].id;
 
   beforeAll(() => {
-    if (!process.env.REDIS_URL?.endsWith('/1')) {
+    if (!onTestRedis()) {
       throw new Error('REDIS_URL must point at the test database (see test/jest.global-setup.ts)');
     }
     redis = new RedisService();

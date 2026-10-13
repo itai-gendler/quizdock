@@ -2,6 +2,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { RedisService } from '../redis/redis.service';
 import { gameKeys } from './game.keys';
 import { GameService } from './game.service';
+import { onTestRedis } from '../../test/test-targets';
 
 /**
  * A new room and its first game, then the next game it plays, as Redis holds
@@ -17,7 +18,7 @@ describe('GameService: the hashes of a new session (integration)', () => {
   const pins: string[] = [];
 
   beforeAll(async () => {
-    if (!process.env.DATABASE_URL?.includes('_test') || !process.env.REDIS_URL?.endsWith('/1')) {
+    if (!process.env.DATABASE_URL?.includes('_test') || !onTestRedis()) {
       throw new Error('Test database and Redis only (see test/jest.global-setup.ts)');
     }
     prisma = new PrismaService();

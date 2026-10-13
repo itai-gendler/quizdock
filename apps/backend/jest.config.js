@@ -1,3 +1,5 @@
+const { availableParallelism } = require('node:os');
+
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
   preset: 'ts-jest',
@@ -20,6 +22,9 @@ module.exports = {
   // la fin des tests (le teardown best-effort peut laisser des handles ouverts).
   forceExit: true,
   testTimeout: 20000,
-  // A database of their own for the integration tests (never the development one).
+  // A database of their own for the integration tests (never the development one),
+  // copied per worker, with a Redis database per worker: 15 at most (see the setup).
   globalSetup: '<rootDir>/../test/jest.global-setup.ts',
+  setupFiles: ['<rootDir>/../test/jest.worker-env.ts'],
+  maxWorkers: Math.min(Math.max(availableParallelism() - 1, 1), 15),
 };

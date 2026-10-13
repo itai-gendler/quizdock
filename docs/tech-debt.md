@@ -47,7 +47,7 @@ entry in the PR that pays it back.
 
 ## Small gaps in the live game (audit 2026-10)
 
-Four known gaps left by the review of the changes after v0.13.2, each rare or harmless.
+Three known gaps left by the review of the changes after v0.13.2, each rare or harmless.
 
 - **Picking a quiz twice** — `nextQuiz` in `apps/backend/src/game/game.engine.ts`: its
   double-click lock is per game, and the game changes with the pick, so a second click
@@ -61,7 +61,3 @@ Four known gaps left by the review of the changes after v0.13.2, each rare or ha
   the language goes to `user.locale`, the rest to the JSON column, in two statements. A
   failure between them returns an error with the language already saved. Way out: one
   transaction.
-- **A test that fails in a crowd** — `apps/backend/src/game/game.engine.spec.ts`, *an
-  unknown game is not found (audit G7)*: it passes alone, and now and then fails when
-  every suite runs in parallel on the test Redis. Way out: find what it shares with
-  another suite (a PIN, a key) and give it its own.

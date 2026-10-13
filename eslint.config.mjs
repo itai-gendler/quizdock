@@ -75,6 +75,8 @@ export default tseslint.config(
       sourceType: 'commonjs',
       globals: { ...globals.node },
     },
+    // CommonJS loads its modules with require().
+    rules: { '@typescript-eslint/no-require-imports': 'off' },
   },
   prettier,
 );

@@ -11,10 +11,10 @@ import { timingTests } from '../../test/game/timing';
 /**
  * Test d'INTÉGRATION : vraie connexion socket.io-client → gateway /game.
  * Requiert Postgres + Redis joignables (dev compose / services CI) ; la base est
- * `<db>_test`, créée par le global setup de Jest.
+ * `<db>_test_<worker>`, copiée par le global setup de Jest.
  *
  * One entry file, one app, one domain per module in test/game/. The domains share
- * the host seat and Redis database 1, so they must run serially: a single spec
+ * the host seat and the worker's Redis database, so they must run serially: a single spec
  * file guarantees it, whatever the number of Jest workers. Run one domain with
  * `npx jest src/game/game.gateway.spec.ts -t lobby`.
  */
