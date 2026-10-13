@@ -788,7 +788,7 @@
     "APP_NAME": "應用程式名稱",
     "APP_NAME_hint": "顯示在頁首、分頁標題和已安裝的應用程式中。",
     "APP_LANG": "介面語言",
-    "APP_LANG_hint": "用於瀏覽器未提供更合適語言的訪客。",
+    "APP_LANG_hint": "未自行選擇語言者所使用的介面語言。",
     "APP_LOGO_URL": "標誌",
     "APP_LOGO_URL_hint": "branding/ 資料夾中的 logo.svg（或 .png…）檔案，或在此填寫 https 位址。",
     "APP_FEEDBACK_URL": "意見回饋連結的去向",

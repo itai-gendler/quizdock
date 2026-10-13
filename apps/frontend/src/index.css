@@ -8,15 +8,16 @@
 /* Light inside a dark page: the live screens and their previews, a light sample. */
 .light {
   color-scheme: light;
-  --radius: 0.625rem;
+  /* The instance's look (lib/look.ts) when it sets one; override.css still wins. */
+  --radius: var(--look-radius, 0.625rem);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.55 0.22 264);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: var(--look-primary, oklch(0.55 0.22 264));
+  --primary-foreground: var(--look-primary-foreground, oklch(0.985 0 0));
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -32,7 +33,7 @@
   /* A field's outline must reach 3:1 against the page (WCAG 1.4.11); --border stays for
      decorative separators. */
   --input: oklch(0.6 0 0);
-  --ring: oklch(0.55 0.22 264);
+  --ring: var(--look-primary, oklch(0.55 0.22 264));
   /* Links and the mark of the current page: the instance's accent (lib/look.ts). */
   --link: var(--link-light, oklch(0.55 0.22 264));
   --success: oklch(0.6 0.17 150);
@@ -84,8 +85,8 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.7 0.18 264);
-  --primary-foreground: oklch(0.145 0 0);
+  --primary: var(--look-primary, oklch(0.7 0.18 264));
+  --primary-foreground: var(--look-primary-foreground, oklch(0.145 0 0));
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -97,7 +98,7 @@
   --destructive-text: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 18%);
-  --ring: oklch(0.7 0.18 264);
+  --ring: var(--look-primary, oklch(0.7 0.18 264));
   --success: oklch(0.7 0.17 150);
   --success-foreground: oklch(0.145 0 0);
   --success-text: oklch(0.75 0.15 150);
@@ -232,7 +233,7 @@
  */
 @theme {
   /* The app's typeface: a font of the brand's goes here (override.css). */
-  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: var(--look-font, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
   --container-shell: 90rem;
   --container-content-lg: 72rem;
   --container-content-md: 48rem;

@@ -810,7 +810,7 @@
     "APP_NAME": "Nombre de la aplicación",
     "APP_NAME_hint": "Se muestra en la cabecera, en los títulos de las pestañas y en la app instalada.",
     "APP_LANG": "Idioma de la interfaz",
-    "APP_LANG_hint": "Para los visitantes cuyo navegador no indica nada mejor.",
+    "APP_LANG_hint": "El idioma de la interfaz para quien no haya elegido el suyo.",
     "APP_LOGO_URL": "Logo",
     "APP_LOGO_URL_hint": "Un archivo logo.svg (o .png…) en la carpeta branding/, o una dirección https aquí.",
     "APP_FEEDBACK_URL": "Adónde llevan los enlaces de comentarios",
