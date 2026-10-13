@@ -73,18 +73,6 @@ export function QuizReadOnly({ quiz }: { quiz: QuizDetailDto }) {
                 {t('header.history')}
               </Link>
             ) : null}
-            {presentable ? (
-              <Button
-                type="button"
-                size="sm"
-                className={twoLineButton}
-                disabled={isLaunching}
-                onClick={() => void launch(quiz.id)}
-              >
-                <Play className="size-4 shrink-0" />
-                {t('readOnly.presentWithoutResults')}
-              </Button>
-            ) : null}
             {quiz.shared && isHost ? (
               <Button
                 type="button"
@@ -96,6 +84,19 @@ export function QuizReadOnly({ quiz }: { quiz: QuizDetailDto }) {
               >
                 <CopyPlus className="size-4 shrink-0" />
                 {t('readOnly.createFrom')}
+              </Button>
+            ) : null}
+            {presentable ? (
+              <Button
+                type="button"
+                size="sm"
+                variant="main-action"
+                className={twoLineButton}
+                disabled={isLaunching}
+                onClick={() => void launch(quiz.id)}
+              >
+                <Play className="size-4 shrink-0" />
+                {t('readOnly.presentWithoutResults')}
               </Button>
             ) : null}
             {copyError || launchError ? (

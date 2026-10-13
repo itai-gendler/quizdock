@@ -101,7 +101,7 @@ describe('DashboardPage', () => {
     );
   });
 
-  it("another host's shared, ready quiz: presented keeping nothing first, copied second", async () => {
+  it("another host's shared, ready quiz: copied, or presented keeping nothing as the main action, last", async () => {
     mockApi([
       {
         method: 'GET',
@@ -125,8 +125,8 @@ describe('DashboardPage', () => {
       name: /Présenter sans garder les résultats/,
     });
     const copy = screen.getByRole('button', { name: /Créer un quiz à partir de ceci/ });
-    // Both in view, the presenting one first.
-    expect(present.compareDocumentPosition(copy) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    // Both in view, the main one last, where a card always has it.
+    expect(copy.compareDocumentPosition(present) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it('one action per card, the rest in its ⋮; the card opens the quiz (UI system §3)', async () => {

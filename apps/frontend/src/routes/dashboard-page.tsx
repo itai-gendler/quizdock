@@ -461,12 +461,24 @@ export function DashboardPage() {
           ) : null;
           // One action in view (UI system §3): present a ready quiz, publish a draft to present
           // it, copy someone else's; the rest in the card's ⋮. The card itself opens the quiz.
-          // Another host's shared quiz: presented as it is, keeping nothing — or copied.
+          // Another host's shared quiz: copied, or presented as it is, keeping nothing — the main
+          // action last, where a card always has it.
           const presentShared =
             readOnly && quiz.shared && quiz.status === 'ready' && quiz.questionCount > 0;
           const main = managerOnly ? null : readOnly ? (
             quiz.shared ? (
               <>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  className={twoLineButton}
+                  disabled={copying}
+                  onClick={() => copy(quiz.id)}
+                >
+                  <CopyPlus className="size-4 shrink-0" />
+                  {t('createFrom')}
+                </Button>
                 {presentShared ? (
                   <Button
                     type="button"
@@ -480,17 +492,6 @@ export function DashboardPage() {
                     {t('presentWithoutResults')}
                   </Button>
                 ) : null}
-                <Button
-                  type="button"
-                  size="sm"
-                  variant="outline"
-                  className={twoLineButton}
-                  disabled={copying}
-                  onClick={() => copy(quiz.id)}
-                >
-                  <CopyPlus className="size-4 shrink-0" />
-                  {t('createFrom')}
-                </Button>
               </>
             ) : null
           ) : quiz.status === 'ready' ? (
