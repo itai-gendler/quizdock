@@ -65,3 +65,28 @@ Four known gaps left by the review of the changes after v0.13.2, each rare or ha
   unknown game is not found (audit G7)*: it passes alone, and now and then fails when
   every suite runs in parallel on the test Redis. Way out: find what it shares with
   another suite (a PIN, a key) and give it its own.
+
+## Left open by the audit of 2026-10-03
+
+What [the audit](security/audit-2026-10-03.md) found and did not close.
+
+- **Tokens not bound to the client** (S3) — `apps/backend/src/auth/oidc/oidc-client.ts`:
+  ID tokens are refused, but without `OIDC_AUDIENCE` an access token is not checked
+  against `OIDC_CLIENT_ID` (`azp` or `aud`). Why: requiring it would break Bearer clients
+  holding another `client_id`, which the documentation allows. Cost: in a shared realm,
+  another application's tokens are accepted. Way out: require the binding unless an
+  audience or a list of accepted clients is configured.
+- **A `closest` bonus overwritten** (B6, assumed) — `submit` in
+  `apps/backend/src/game/game.engine.ts`: it writes back a score read before
+  `ANSWER_ONCE_SCRIPT`, so a reveal settling the question in between (`settleClosest`)
+  can lose its bonus. Way out: an atomic increment, or no write when nothing changed.
+- **The audit filtered by setting stops at 200** (B9) —
+  `apps/backend/src/admin/audit/audit.repository.ts`: `touching` takes the last
+  `AUDIT_PAGE_MAX` ids before `before` applies, so older pages come back empty. Way out:
+  `id < before` inside its SQL.
+- **Schema drift on the roles** — `user.roles` and `user.assigned_roles` have a
+  `DEFAULT '{}'` in the database (migration `20260923190000_user_roles_set`) that
+  `schema.prisma` does not declare. Way out: `@default([])` in the schema, checked with
+  `prisma migrate diff`.
+- **Two dependencies out of place** (M5) — `apps/backend/package.json`: `ts-loader` is
+  unused, `pg` is used by the tests only but sits under `dependencies`.
