@@ -1,12 +1,13 @@
 import { RedisService } from './redis.service';
+import { onTestRedis } from '../../test/test-targets';
 
-/** Against the test Redis (database 1, see the Jest global setup). */
+/** Against the worker's test Redis (see the Jest global setup). */
 describe('RedisService.scanKeys', () => {
   let redis: RedisService;
   const prefix = `scan-test-${Date.now()}`;
 
   beforeAll(async () => {
-    if (!process.env.REDIS_URL?.endsWith('/1')) {
+    if (!onTestRedis()) {
       throw new Error('REDIS_URL must point at the test database (see test/jest.global-setup.ts)');
     }
     redis = new RedisService();

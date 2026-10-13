@@ -3,6 +3,7 @@ import { GameService } from './game.service';
 import type { PlayerRecord } from './game.types';
 import type { PrismaService } from '../prisma/prisma.service';
 import { RedisService } from '../redis/redis.service';
+import { onTestRedis } from '../../test/test-targets';
 
 /**
  * Changes to a player's record made at the same time must all stick: a
@@ -36,7 +37,7 @@ describe('GameService: concurrent changes to a player', () => {
   };
 
   beforeAll(() => {
-    if (!process.env.REDIS_URL?.endsWith('/1')) {
+    if (!onTestRedis()) {
       throw new Error('REDIS_URL must point at the test database (see test/jest.global-setup.ts)');
     }
     redis = new RedisService();

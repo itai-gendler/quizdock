@@ -7,7 +7,7 @@ import { PrismaService } from '../src/prisma/prisma.service';
 
 /**
  * Harness of the live game integration tests: a real Nest app on a free port,
- * real Socket.IO clients, the test database and Redis database 1.
+ * real Socket.IO clients, the worker's test database and Redis database.
  *
  * It lives outside `src/` so the production build never ships it.
  * See docs/dev/game-gateway-tests-refactor.md.
@@ -78,13 +78,18 @@ const DEFAULT_QUESTIONS: Prisma.QuizUncheckedCreateInput['questions'] = {
 };
 
 export async function bootGameApp(): Promise<GameHarness> {
-  // Set by the Jest global setup: a test database and Redis database 1, never the dev ones.
+  // Set per worker by the Jest setup: a test database and Redis database, never the dev ones.
   if (!process.env.DATABASE_URL?.includes('_test')) {
     throw new Error('DATABASE_URL must point at a test database (see test/jest.global-setup.ts)');
   }
   Object.assign(process.env, GAME_TEST_ENV);
   const app = await NestFactory.create(AppModule, { logger: false });
-  await app.listen(0);
+  // Test servers listen on 127.0.0.1 (here, and the apps the supertest specs start
+  // before their requests). On the wildcard address, macOS hands out a port another
+  // program already holds on 127.0.0.1 (an editor's helper, a sync agent…), and a
+  // request to 127.0.0.1 then reaches that program: a 401 or a 404 from nowhere, now
+  // and then. Bound to 127.0.0.1, a server never gets such a port.
+  await app.listen(0, '127.0.0.1');
   const prisma = app.get(PrismaService);
 
   // In local mode the role comes from the host seat: give it to the test host
@@ -104,7 +109,7 @@ export async function bootGameApp(): Promise<GameHarness> {
 
   const address = app.getHttpServer().address();
   const port = typeof address === 'object' && address ? address.port : 0;
-  const url = `http://localhost:${port}/game`;
+  const url = `http://127.0.0.1:${port}/game`;
   const sockets: Socket[] = [];
   const quizIds: string[] = [];
 

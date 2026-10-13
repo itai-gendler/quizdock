@@ -256,7 +256,7 @@ export function lobbyTests(ctx: GameContext): void {
       });
     const foreign = ctx.h.connect(undefined, { origin: 'https://elsewhere.example' });
     expect(await outcome(foreign)).toBe('refused');
-    const own = ctx.h.connect(undefined, { origin: `http://localhost:${ctx.h.port}` });
+    const own = ctx.h.connect(undefined, { origin: `http://127.0.0.1:${ctx.h.port}` });
     expect(await outcome(own)).toBe('connected');
   });
 }
