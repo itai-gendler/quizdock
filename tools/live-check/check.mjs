@@ -193,7 +193,9 @@ async function main() {
     for (const game of await api('GET', '/games/mine')) {
       await api('POST', `/games/${game.pin}/end`).catch(() => undefined);
     }
+    // Its own quizzes only: an administrator's list holds the other hosts' too.
     for (const quiz of await api('GET', '/quizzes')) {
+      if (quiz.editable === false) continue;
       if (quiz.status === 'ready')
         await api('PATCH', `/quizzes/${quiz.id}/status`, { status: 'draft' }).catch(
           () => undefined,
