@@ -19,7 +19,7 @@
   "questionCount_one": "{{count}} question",
   "questionCount_other": "{{count}} questions",
   "present": "Present",
-  "presentWithoutResults": "Present without keeping results",
+  "presentWithoutResults": "Present\nwithout keeping results",
   "running_one": "{{count}} room open",
   "running_other": "{{count}} rooms open",
   "seatTaken": "The host seat is held by someone else: you can only join rooms as a participant.",
@@ -202,7 +202,7 @@
     "answer1": "Answer 1",
     "answer2": "Answer 2"
   },
-  "createFrom": "Create a quiz from this",
+  "createFrom": "Create a quiz\nfrom this",
   "readOnly": "Read-only: shared by another host",
   "filterOwner": "Owner",
   "ownerAll": "Everyone",

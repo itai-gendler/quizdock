@@ -562,8 +562,8 @@
   },
   "readOnly": {
     "notice": "{{owner}}'ın quizi: Okuyabilirsiniz, değiştiremezsiniz.",
-    "presentWithoutResults": "Sonuçları saklamadan sun",
-    "createFrom": "Bu quizden yeni bir quiz oluştur",
+    "presentWithoutResults": "Sonuçları saklamadan\nsun",
+    "createFrom": "Bu quizden\nyeni bir quiz oluştur",
     "props": {
       "orderShown": "Doğru sırada listelenmiştir.",
       "seconds_one": "{{count}} saniye",

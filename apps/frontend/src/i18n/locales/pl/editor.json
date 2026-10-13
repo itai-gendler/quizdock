@@ -578,8 +578,8 @@
   },
   "readOnly": {
     "notice": "Quiz użytkownika {{owner}}: możesz go czytać, ale nie zmieniać.",
-    "presentWithoutResults": "Prezentuj bez zachowywania wyników",
-    "createFrom": "Utwórz z tego quiz",
+    "presentWithoutResults": "Prezentuj\nbez zachowywania wyników",
+    "createFrom": "Utwórz\nz tego quiz",
     "props": {
       "orderShown": "Wymienione we właściwej kolejności.",
       "seconds_one": "{{count}} sekunda",

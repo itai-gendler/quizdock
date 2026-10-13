@@ -570,8 +570,8 @@
   },
   "readOnly": {
     "notice": "Quiz de {{owner}} : vous pouvez le consulter, pas le modifier.",
-    "presentWithoutResults": "Présenter sans garder les résultats",
-    "createFrom": "Créer un quiz à partir de ceci",
+    "presentWithoutResults": "Présenter\nsans garder les résultats",
+    "createFrom": "Créer un quiz\nà partir de ceci",
     "props": {
       "orderShown": "Listées dans le bon ordre.",
       "seconds_one": "{{count}} seconde",

@@ -562,8 +562,8 @@
   },
   "readOnly": {
     "notice": "{{owner}}'s quiz: you can read it, not change it.",
-    "presentWithoutResults": "Present without keeping results",
-    "createFrom": "Create a quiz from this",
+    "presentWithoutResults": "Present\nwithout keeping results",
+    "createFrom": "Create a quiz\nfrom this",
     "props": {
       "orderShown": "Listed in the right order.",
       "seconds_one": "{{count}} second",

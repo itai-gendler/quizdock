@@ -121,7 +121,7 @@ describe('TemplatesPage (galerie)', () => {
     renderApp('/templates');
 
     expect(
-      await screen.findByRole('button', { name: /Créer un quiz à partir de ceci/ }),
+      await screen.findByRole('button', { name: /Créer un quiz\s+à partir de ceci/ }),
     ).toBeInTheDocument();
     localStorage.clear();
   });
@@ -255,7 +255,7 @@ describe('TemplatePage (aperçu)', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('Rotterdam')).toBeInTheDocument();
     expect(
-      screen.getByRole('button', { name: /Créer un quiz à partir de ceci/ }),
+      screen.getByRole('button', { name: /Créer un quiz\s+à partir de ceci/ }),
     ).toBeInTheDocument();
     // Not Alice's template, not an admin: nothing to withdraw.
     expect(screen.queryByRole('button', { name: 'Plus d’actions' })).toBeNull();

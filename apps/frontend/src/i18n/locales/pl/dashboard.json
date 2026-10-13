@@ -25,7 +25,7 @@
   "questionCount_many": "{{count}} pytań",
   "questionCount_other": "{{count}} pytania",
   "present": "Prezentuj",
-  "presentWithoutResults": "Prezentuj bez zachowywania wyników",
+  "presentWithoutResults": "Prezentuj\nbez zachowywania wyników",
   "running_one": "{{count}} otwarty pokój",
   "running_few": "{{count}} otwarte pokoje",
   "running_many": "{{count}} otwartych pokojów",
@@ -236,7 +236,7 @@
     "answer1": "Odpowiedź 1",
     "answer2": "Odpowiedź 2"
   },
-  "createFrom": "Utwórz z tego quiz",
+  "createFrom": "Utwórz\nz tego quiz",
   "readOnly": "Tylko do odczytu: udostępnione przez innego prowadzącego",
   "filterOwner": "Właściciel",
   "ownerAll": "Wszyscy",

@@ -19,7 +19,7 @@
   "questionCount_one": "{{count}} soru",
   "questionCount_other": "{{count}} soru",
   "present": "Sun",
-  "presentWithoutResults": "Sonuçları saklamadan sun",
+  "presentWithoutResults": "Sonuçları saklamadan\nsun",
   "running_one": "{{count}} oda açık",
   "running_other": "{{count}} oda açık",
   "seatTaken": "Sunucu yetkisi başka biri tarafından tutuluyor: odalara yalnızca katılımcı olarak katılabilirsiniz.",
@@ -202,7 +202,7 @@
     "answer1": "Yanıt 1",
     "answer2": "Yanıt 2"
   },
-  "createFrom": "Bu quizden yeni bir quiz oluştur",
+  "createFrom": "Bu quizden\nyeni bir quiz oluştur",
   "readOnly": "Salt okunur: başka bir sunucu tarafından paylaşılır",
   "filterOwner": "Sahip",
   "ownerAll": "Herkes",

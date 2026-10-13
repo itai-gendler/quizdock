@@ -22,7 +22,7 @@
   "questionCount_many": "{{count}} domande",
   "questionCount_other": "{{count}} domande",
   "present": "Presenta",
-  "presentWithoutResults": "Presenta senza conservare i risultati",
+  "presentWithoutResults": "Presenta\nsenza conservare i risultati",
   "running_one": "{{count}} sala aperta",
   "running_many": "{{count}} sale aperte",
   "running_other": "{{count}} sale aperte",
@@ -219,7 +219,7 @@
     "answer1": "Risposta 1",
     "answer2": "Risposta 2"
   },
-  "createFrom": "Crea un quiz da questo",
+  "createFrom": "Crea un quiz\nda questo",
   "readOnly": "Sola lettura: condiviso da un altro conduttore",
   "filterOwner": "Proprietario",
   "ownerAll": "Tutti",

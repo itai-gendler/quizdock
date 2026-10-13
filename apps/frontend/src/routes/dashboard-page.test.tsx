@@ -90,7 +90,7 @@ describe('DashboardPage', () => {
     // Nothing of an owner's: no editing, no presenting.
     expect(screen.queryByRole('button', { name: /Éditer/ })).toBeNull();
     expect(screen.queryByRole('button', { name: /Présenter/ })).toBeNull();
-    fireEvent.click(screen.getByRole('button', { name: /Créer un quiz à partir de ceci/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Créer un quiz\s+à partir de ceci/ }));
     await waitFor(() =>
       expect(
         fetchMock.mock.calls.some(
@@ -122,9 +122,9 @@ describe('DashboardPage', () => {
     everyone();
     renderApp('/quizzes');
     const present = await screen.findByRole('button', {
-      name: /Présenter sans garder les résultats/,
+      name: /Présenter\s+sans garder les résultats/,
     });
-    const copy = screen.getByRole('button', { name: /Créer un quiz à partir de ceci/ });
+    const copy = screen.getByRole('button', { name: /Créer un quiz\s+à partir de ceci/ });
     // Both in view, the main one last, where a card always has it.
     expect(copy.compareDocumentPosition(present) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
@@ -506,7 +506,7 @@ describe('DashboardPage', () => {
     fireEvent.click((await screen.findAllByRole('button', { name: /Nouveau quiz/ }))[0]);
     fireEvent.click(await screen.findByRole('button', { name: 'Quiz vierge' }));
     expect(await screen.findByRole('alert')).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: /Créer un quiz à partir de ceci/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Créer un quiz\s+à partir de ceci/ }));
     await waitFor(() => expect(screen.getAllByRole('alert')).toHaveLength(2));
   });
 });

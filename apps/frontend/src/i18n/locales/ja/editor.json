@@ -562,8 +562,8 @@
   },
   "readOnly": {
     "notice": "{{owner}}のクイズです。閲覧はできますが、変更はできません。",
-    "presentWithoutResults": "結果を残さずに出題",
-    "createFrom": "これを元にクイズを作成",
+    "presentWithoutResults": "結果を残さずに\n出題",
+    "createFrom": "これを元に\nクイズを作成",
     "props": {
       "orderShown": "正しい順序で表示しています。",
       "seconds_one": "{{count}}秒",

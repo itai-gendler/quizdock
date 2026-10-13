@@ -562,8 +562,8 @@
   },
   "readOnly": {
     "notice": "Quiz von {{owner}}: Sie können es lesen, aber nicht ändern.",
-    "presentWithoutResults": "Präsentieren, ohne Ergebnisse zu behalten",
-    "createFrom": "Quiz daraus erstellen",
+    "presentWithoutResults": "Präsentieren,\nohne Ergebnisse zu behalten",
+    "createFrom": "Quiz\ndaraus erstellen",
     "props": {
       "orderShown": "In der richtigen Reihenfolge aufgeführt.",
       "seconds_one": "{{count}} Sekunde",

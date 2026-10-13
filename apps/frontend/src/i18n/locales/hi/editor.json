@@ -563,8 +563,8 @@
   },
   "readOnly": {
     "notice": "{{owner}} का क्विज़: आप इसे पढ़ सकते हैं, बदल नहीं सकते।",
-    "presentWithoutResults": "नतीजे रखे बिना प्रस्तुत करें",
-    "createFrom": "इससे क्विज़ बनाएँ",
+    "presentWithoutResults": "नतीजे रखे बिना\nप्रस्तुत करें",
+    "createFrom": "इससे\nक्विज़ बनाएँ",
     "props": {
       "orderShown": "सही क्रम में दिखाया गया।",
       "seconds_one": "{{count}} सेकंड",

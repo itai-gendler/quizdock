@@ -562,8 +562,8 @@
   },
   "readOnly": {
     "notice": "{{owner}} 的測驗：你可以檢視，但不能修改。",
-    "presentWithoutResults": "不保留結果地示範",
-    "createFrom": "以此建立測驗",
+    "presentWithoutResults": "不保留結果地\n示範",
+    "createFrom": "以此\n建立測驗",
     "props": {
       "orderShown": "依正確順序列出。",
       "seconds_one": "{{count}} 秒",

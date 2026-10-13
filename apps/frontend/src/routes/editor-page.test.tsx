@@ -434,9 +434,11 @@ describe('EditorPage', () => {
       ]);
       const { router } = renderApp('/quizzes/q1');
       expect(
-        await screen.findByRole('button', { name: /Créer un quiz à partir de ceci/ }),
+        await screen.findByRole('button', { name: /Créer un quiz\s+à partir de ceci/ }),
       ).toBeInTheDocument();
-      fireEvent.click(screen.getByRole('button', { name: /Présenter sans garder les résultats/ }));
+      fireEvent.click(
+        screen.getByRole('button', { name: /Présenter\s+sans garder les résultats/ }),
+      );
       await waitFor(() => expect(router.state.location.pathname).toBe('/session/482913/console'));
     });
 
@@ -451,9 +453,9 @@ describe('EditorPage', () => {
       ]);
       renderApp('/quizzes/q1');
       expect(
-        await screen.findByRole('button', { name: /Créer un quiz à partir de ceci/ }),
+        await screen.findByRole('button', { name: /Créer un quiz\s+à partir de ceci/ }),
       ).toBeInTheDocument();
-      expect(screen.queryByRole('button', { name: /Présenter sans garder/ })).toBeNull();
+      expect(screen.queryByRole('button', { name: /Présenter\s+sans garder/ })).toBeNull();
     });
   });
 
