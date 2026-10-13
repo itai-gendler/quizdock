@@ -503,8 +503,8 @@ export function DashboardPage() {
           ) : null;
           const actions = (
             // Above the card's link, so they stay their own buttons.
+            // The main action at the right, where the eye ends, its ⋮ last (UI system §3).
             <span className="relative z-10 flex items-center gap-2">
-              {main}
               {/* Its results, once played: part of a teacher's way, not hidden in the menu. */}
               {quiz.sessionCount ? (
                 <Button
@@ -519,6 +519,7 @@ export function DashboardPage() {
                   {t('results')}
                 </Button>
               ) : null}
+              {main}
               <QuizMenu
                 quiz={quiz}
                 own={!readOnly && !managerOnly}
@@ -570,7 +571,13 @@ export function DashboardPage() {
               key={quiz.id}
               className="hover:bg-accent relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4"
             >
-              <QuizCover quiz={quiz} className="hidden size-14 shrink-0 rounded-md sm:flex" />
+              {/* Its first step, as the grid shows it, small. */}
+              <QuizFirstStep
+                quizId={quiz.id}
+                hasCover={!!quiz.coverMediaId}
+                fallback={<QuizCover quiz={quiz} className="h-full w-full" />}
+                className="hidden w-32 shrink-0 rounded-md border sm:block"
+              />
               {/* Le titre peut être long : il tronque au lieu de pousser les actions hors écran. */}
               <span className="flex min-w-0 flex-1 flex-col gap-1">
                 <span className="flex min-w-0 items-center gap-2">
