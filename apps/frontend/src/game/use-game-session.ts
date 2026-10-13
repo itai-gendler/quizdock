@@ -96,6 +96,8 @@ export interface GameView {
   participantAccess: ParticipantAccess;
   /** Closed to new participants by the host. */
   joinLocked: boolean;
+  /** False for another host's shared quiz presented as it is: nothing of the game is kept. */
+  keepResults: boolean;
   /** Renseigné si l'hôte a banni ce joueur (durée en minutes) — son client l'affiche. */
   kicked: { minutes: number } | null;
   /** The live connection is down (reconnecting): what shows may be out of date. */
@@ -198,6 +200,7 @@ export const INITIAL_VIEW: GameView = {
   pickOwnName: true,
   participantAccess: 'account',
   joinLocked: false,
+  keepResults: true,
   kicked: null,
   connectionLost: false,
   mode: 'manual',
@@ -513,6 +516,7 @@ export function useGameSession(pin: string, role: LiveRole, opts: { follow?: boo
         pickOwnName: p.pickOwnName,
         participantAccess: p.participantAccess,
         joinLocked: p.joinLocked,
+        keepResults: p.keepResults !== false,
       });
     // Banni par l'hôte : on purge la session locale (pas d'auto-reconnexion) et on
     // bascule la vue en écran d'exclusion.

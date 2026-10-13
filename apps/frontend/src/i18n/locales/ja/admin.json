@@ -183,7 +183,7 @@
     "DATABASE_URL": "データベース",
     "REDIS_URL": "Redis",
     "MEDIA_DIR": "メディアフォルダー",
-    "STORE_DIR": "共有テンプレートのフォルダー",
+    "STORE_DIR": "テンプレートのフォルダー",
     "SAMPLES_DIR": "サンプルクイズのフォルダー",
     "CLIENT_DIR": "Web アプリケーションのフォルダー",
     "MEDIA_MAX_BYTES": "画像の最大サイズ",

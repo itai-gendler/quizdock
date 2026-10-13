@@ -153,9 +153,9 @@
     "already_host": "Sie sind bereits Quizleitung: kein Platz zu übernehmen."
   },
   "store": {
-    "demo_disabled": "Teilen ist auf einer Demo-Instanz ausgeschaltet.",
-    "not_ready": "Nur ein Quiz mit dem Status „Bereit“ kann geteilt werden.",
-    "license_required": "Legen Sie vor dem Teilen eine Lizenz fest: Eine Vorlage ist zur Wiederverwendung gedacht, also reisen die Bedingungen mit.",
+    "demo_disabled": "Auf einer Demo-Instanz können keine Vorlagen angeboten werden.",
+    "not_ready": "Nur ein als „bereit“ markiertes Quiz kann als Vorlage angeboten werden.",
+    "license_required": "Legen Sie eine Lizenz fest, bevor Sie es als Vorlage anbieten: Eine Vorlage ist zur Wiederverwendung gedacht, die Bedingungen reisen mit.",
     "entry_not_found": "Diese Vorlage ist nicht mehr im Katalog.",
     "not_yours": "Nur die Autorin oder der Autor oder die Administration kann eine Vorlage zurückziehen.",
     "invalid_id": "Ungültige Vorlagenkennung.",

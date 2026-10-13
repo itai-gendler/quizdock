@@ -46,6 +46,9 @@ export class SessionArchiveService {
     meta: GameMeta,
     opts: { interrupted?: boolean; bestEffort?: boolean } = {},
   ): Promise<void> {
+    // The one guard for every path (end, next quiz, the host gone): a game playing
+    // another host's shared quiz keeps nothing, and says nothing about it.
+    if (meta.keepResults === false) return;
     try {
       const snapshot = await this.game.getSnapshot(meta.id);
       if (!snapshot) return;

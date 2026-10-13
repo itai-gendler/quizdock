@@ -183,7 +183,7 @@
     "DATABASE_URL": "Veritabanı",
     "REDIS_URL": "Redis",
     "MEDIA_DIR": "Medya klasörü",
-    "STORE_DIR": "Paylaşılan şablonlar klasörü",
+    "STORE_DIR": "Şablonlar klasörü",
     "SAMPLES_DIR": "Örnek quizler klasörü",
     "CLIENT_DIR": "Web uygulaması klasörü",
     "MEDIA_MAX_BYTES": "En büyük görsel boyutu",

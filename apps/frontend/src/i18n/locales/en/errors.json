@@ -153,9 +153,9 @@
     "already_host": "You are a host already: no seat to take."
   },
   "store": {
-    "demo_disabled": "Sharing is off on a demo instance.",
-    "not_ready": "Only a quiz marked “ready” can be shared.",
-    "license_required": "Set a licence before sharing: a template is meant to be reused, so the terms travel with it.",
+    "demo_disabled": "Templates cannot be offered on a demo instance.",
+    "not_ready": "Only a quiz marked “ready” can be offered as a template.",
+    "license_required": "Set a licence before offering it as a template: a template is meant to be reused, so the terms travel with it.",
     "entry_not_found": "This template is no longer in the catalogue.",
     "not_yours": "Only its author, or an administrator, can withdraw a template.",
     "invalid_id": "Invalid template identifier.",

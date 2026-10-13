@@ -24,7 +24,7 @@ describe('TemplatesPage (galerie)', () => {
     renderApp('/templates');
 
     expect(await screen.findByText('Ports du monde')).toBeInTheDocument();
-    expect(screen.getByText(/partagé par Alice/)).toBeInTheDocument();
+    expect(screen.getByText(/proposé par Alice/)).toBeInTheDocument();
     expect(screen.getByText('10 questions')).toBeInTheDocument();
     // La carte mène à l'aperçu : c'est là qu'on décide.
     expect(screen.getByRole('link', { name: /Ports du monde/ })).toHaveAttribute(
@@ -89,13 +89,13 @@ describe('TemplatesPage (galerie)', () => {
     localStorage.clear();
   });
 
-  it('dit qu’aucun modèle n’est partagé, et mène aux quiz d’où l’on en partage un', async () => {
+  it('dit qu’aucun modèle n’est proposé, et mène aux quiz d’où l’on en propose un', async () => {
     localStorage.setItem('live.localUser', 'Marc');
     mockApi([{ method: 'GET', path: '/store', body: [] }]);
     renderApp('/templates');
 
     expect(await screen.findByText('Aucun modèle pour l’instant')).toBeInTheDocument();
-    expect(screen.getByText(/Partagez-en un depuis un quiz « prêt »/)).toBeInTheDocument();
+    expect(screen.getByText(/Proposez-en un depuis un quiz « prêt »/)).toBeInTheDocument();
     // The header has its own "My quizzes": the empty state's is the last one.
     const links = screen.getAllByRole('link', { name: 'Mes quiz' });
     expect(links.at(-1)).toHaveAttribute('href', '/quizzes');
@@ -121,16 +121,16 @@ describe('TemplatesPage (galerie)', () => {
     renderApp('/templates');
 
     expect(
-      await screen.findByRole('button', { name: /Créer un quiz à partir de ceci/ }),
+      await screen.findByRole('button', { name: /Créer un quiz\s+à partir de ceci/ }),
     ).toBeInTheDocument();
     localStorage.clear();
   });
 
-  it('dit quand rien n’a encore été partagé', async () => {
+  it('dit quand rien n’a encore été proposé', async () => {
     localStorage.setItem('live.localUser', 'Marc');
     mockApi([{ method: 'GET', path: '/store', body: [] }]);
     renderApp('/templates');
-    expect(await screen.findByText(/Aucun modèle n’a encore été partagé/)).toBeInTheDocument();
+    expect(await screen.findByText(/Aucun modèle n’a encore été proposé/)).toBeInTheDocument();
     localStorage.clear();
     vi.unstubAllGlobals();
   });
@@ -255,7 +255,7 @@ describe('TemplatePage (aperçu)', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('Rotterdam')).toBeInTheDocument();
     expect(
-      screen.getByRole('button', { name: /Créer un quiz à partir de ceci/ }),
+      screen.getByRole('button', { name: /Créer un quiz\s+à partir de ceci/ }),
     ).toBeInTheDocument();
     // Not Alice's template, not an admin: nothing to withdraw.
     expect(screen.queryByRole('button', { name: 'Plus d’actions' })).toBeNull();

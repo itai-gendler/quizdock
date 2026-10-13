@@ -19,6 +19,7 @@
   "questionCount_one": "{{count}}問",
   "questionCount_other": "{{count}}問",
   "present": "出題",
+  "presentWithoutResults": "結果を残さずに\n出題",
   "running_one": "{{count}}件のルームが開いています",
   "running_other": "{{count}}件のルームが開いています",
   "seatTaken": "ホスト席は他の人が使用中です。参加者としてルームに参加することしかできません。",
@@ -201,7 +202,7 @@
     "answer1": "答え1",
     "answer2": "答え2"
   },
-  "createFrom": "これを元にクイズを作成",
+  "createFrom": "これを元に\nクイズを作成",
   "readOnly": "読み取り専用：他のホストが共有",
   "filterOwner": "所有者",
   "ownerAll": "全員",

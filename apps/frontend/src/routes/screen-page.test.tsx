@@ -38,6 +38,7 @@ const view = (partial: Partial<GameView>): GameView => ({
   pickOwnName: true,
   participantAccess: 'account',
   joinLocked: false,
+  keepResults: true,
   kicked: null,
   connectionLost: false,
   mode: 'manual',

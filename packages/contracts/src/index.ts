@@ -730,6 +730,11 @@ export interface SessionNotice {
   participantAccess: ParticipantAccess;
   /** Closed to new participants by the host. */
   joinLocked: boolean;
+  /**
+   * False for another host's shared quiz presented as it is: nothing of the game is
+   * recorded (capture and tracking then false too). Absent from older servers: true.
+   */
+  keepResults?: boolean;
 }
 
 /** The room waits for media before a step (a question, or the slide `slideIndex`), until `until`. */

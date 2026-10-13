@@ -51,7 +51,7 @@
     "languageLabel": "語言",
     "languageHelp": "測驗所用的語言。範本中會顯示，目錄也依語言篩選。",
     "licenseLabel": "授權條款",
-    "licenseHelp": "他人可以在何種條件下再次使用此測驗。以範本分享前必須選擇。你必須擁有其內容與媒體的權利。",
+    "licenseHelp": "他人重複使用該測驗的條款。作為範本提供時必填。你必須擁有其內容和媒體的權利。",
     "license": {
       "cc0": "CC0 — 無條件",
       "ccBy": "CC BY 4.0 — 姓名標示",
@@ -63,7 +63,7 @@
     "removeTag": "移除標籤 {{tag}}",
     "saveError": "無法儲存變更。",
     "sharedLabel": "與本實例的其他主持人共享",
-    "sharedHelp": "他們會在自己的測驗中看到它（唯讀），並可建立自己的副本。不勾選則只有你能看到。",
+    "sharedHelp": "他們會在自己的測驗中看到它（唯讀）：可以不保留結果地示範它，或建立自己的副本。不勾選則只有你能看到。",
     "sharedOn": "已共享",
     "sharedOff": "私人",
     "saving": "正在儲存…",
@@ -84,6 +84,7 @@
     "enableHelp": "每次測驗結束時向參與者提供回饋界面。",
     "title": "玩家回饋",
     "empty": "暫無回饋。",
+    "anonymous": "匿名",
     "starsAriaLabel": "{{value}} / 5 星",
     "seeAll_one": "檢視回饋",
     "seeAll_other": "檢視全部 {{count}} 則回饋",
@@ -561,7 +562,8 @@
   },
   "readOnly": {
     "notice": "{{owner}} 的測驗：你可以檢視，但不能修改。",
-    "createFrom": "以此建立測驗",
+    "presentWithoutResults": "不保留結果地\n示範",
+    "createFrom": "以此\n建立測驗",
     "props": {
       "orderShown": "依正確順序列出。",
       "seconds_one": "{{count}} 秒",

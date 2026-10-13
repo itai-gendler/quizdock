@@ -43,6 +43,7 @@ const view = (partial: Partial<GameView>): GameView => ({
   pickOwnName: true,
   participantAccess: 'account',
   joinLocked: false,
+  keepResults: true,
   kicked: null,
   connectionLost: false,
   mode: 'manual',
@@ -235,6 +236,34 @@ describe('ControlPage: the room’s next quiz (#89)', () => {
     );
   });
 
+  it('a game that keeps nothing offers no archiving, and says why in the lobby', async () => {
+    localStorage.setItem('live.localUser', 'Animateur');
+    hookState.value = view({
+      state: GameState.Podium,
+      quizId: 'q1',
+      keepResults: false,
+      podium: { podium: [{ nickname: 'Ada', score: 900, rank: 1 }] },
+    });
+    const { unmount } = renderApp('/session/482913/console');
+    fireEvent.click(await screen.findByRole('button', { name: /Retour à la salle d’attente/ }));
+    const dialog = await screen.findByRole('dialog');
+    expect(within(dialog).queryByRole('checkbox')).toBeNull();
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Retour à la salle d’attente' }));
+    expect(fakeSocket.emit).toHaveBeenCalledWith(
+      'host:back-to-lobby',
+      { pin: '482913', archive: false },
+      expect.any(Function),
+    );
+    unmount();
+
+    hookState.value = view({ state: GameState.Lobby, quizId: 'q1', keepResults: false });
+    renderApp('/session/482913/console');
+    expect(
+      (await screen.findAllByText(/Le quiz d’un autre animateur, présenté tel quel/)).length,
+    ).toBe(2);
+    expect(screen.getByRole('switch', { name: /Enregistrer toutes les réponses/ })).toBeDisabled();
+  });
+
   it('in a lobby with no quiz, picks the host’s next playable quiz', async () => {
     localStorage.setItem('live.localUser', 'Animateur');
     mockApi([
@@ -258,6 +287,12 @@ describe('ControlPage: the room’s next quiz (#89)', () => {
           quiz('q3', 'A draft', { status: 'draft' }),
           quiz('q4', 'Someone else’s', { ownerId: 'other' }),
           quiz('q5', 'Empty', { questionCount: 0 }),
+          quiz('q7', 'Shared by Bea', {
+            ownerId: 'other',
+            shared: true,
+            editable: false,
+            ownerName: 'Bea',
+          }),
         ],
       },
     ]);
@@ -286,6 +321,10 @@ describe('ControlPage: the room’s next quiz (#89)', () => {
     expect(screen.queryByRole('option', { name: /A draft/ })).toBeNull();
     expect(screen.queryByRole('option', { name: /Someone else’s/ })).toBeNull();
     expect(screen.queryByRole('option', { name: /Empty/ })).toBeNull();
+    // Another host's shared quiz too, said to keep nothing.
+    expect(screen.getByRole('option', { name: /Shared by Bea/ })).toHaveTextContent(
+      'de Bea, rien n’est gardé',
+    );
     // A tag narrows the list; the search looks into the description too.
     fireEvent.click(screen.getByRole('button', { name: 'history' }));
     expect(screen.queryByRole('option', { name: /Round two/ })).toBeNull();

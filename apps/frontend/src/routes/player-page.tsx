@@ -97,8 +97,9 @@ const STICKY_ON_BACKDROP =
  */
 function trackingNotice(
   t: (key: string) => string,
-  view: Pick<GameView, 'personalTracking' | 'fullCapture' | 'participantAccess'>,
+  view: Pick<GameView, 'personalTracking' | 'fullCapture' | 'participantAccess' | 'keepResults'>,
 ): string {
+  if (!view.keepResults) return t('player.nothingRecordedNotice');
   if (!view.personalTracking) return t('player.noTrackingNotice');
   const account = getAuthMode() === 'oidc' && view.participantAccess === 'account';
   if (view.fullCapture) return t(account ? 'player.captureNotice' : 'player.captureNoticeGuest');

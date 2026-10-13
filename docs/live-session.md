@@ -12,6 +12,17 @@ explanations, reveal delays, the quiz's feedback flag, and the slides in full
 (blocks, backgrounds, timing, insertions, removals). A question deleted
 meanwhile keeps its frozen version.
 
+## Another host's shared quiz
+
+A host may present a quiz another host shares (`quiz.shared`), as it is: `ready`,
+with a question. Its snapshot is marked `borrowed` and its game `keepResults: false`
+(the game hash, and the `notice` every screen receives, capture and tracking then
+false). `SessionArchiveService.archive()` writes nothing for such a game, whatever
+the path: ending, going back to the lobby, the host gone for good. Its ratings
+still reach the quiz, with `quiz_feedback.nickname` null. The owner may edit,
+unshare or delete the quiz meanwhile: the game plays its snapshot to the end, and
+a rating after a deletion is refused.
+
 ## States
 
 `LOBBY → (SLIDE_SHOW | [MEDIA_LOADING →] ANSWERING → REVEAL)* → PODIUM → ENDED`,

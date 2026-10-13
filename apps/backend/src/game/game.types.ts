@@ -117,6 +117,8 @@ export interface QuizSnapshot {
   credits?: string[];
   /** Its look on the live screens, resolved when the game opens (docs/themes.md; absent before it). */
   theme?: ThemeValues;
+  /** Another host's shared quiz, presented as it is: the game keeps nothing (`keepResults`). */
+  borrowed?: true;
 }
 
 /**
@@ -328,6 +330,12 @@ export interface GameMeta {
   reviewStep?: string;
   /** Base URL of the invitations (QR, link) chosen by the host; '' = each screen's own origin. */
   joinBaseUrl?: string;
+  /**
+   * False when the game plays another host's shared quiz as it is
+   * (SPECIFICATIONS-SHARED-PLAY): nothing of it reaches PostgreSQL but its ratings,
+   * without nicknames. Absent = true.
+   */
+  keepResults?: boolean;
 }
 
 /** The fields of the game hash (`game:{id}`): everything in `GameMeta` the room does not hold. */
@@ -368,14 +376,22 @@ export type { AnswerValue };
 export function noticeOf(
   meta: Pick<
     GameMeta,
-    'fullCapture' | 'personalTracking' | 'pickOwnName' | 'participantAccess' | 'joinLocked'
+    | 'fullCapture'
+    | 'personalTracking'
+    | 'pickOwnName'
+    | 'participantAccess'
+    | 'joinLocked'
+    | 'keepResults'
   >,
 ): SessionNotice {
+  // A game that keeps nothing captures and tracks nothing, whatever the room chose.
+  const keepResults = meta.keepResults !== false;
   return {
-    fullCapture: meta.fullCapture,
-    personalTracking: meta.personalTracking,
+    fullCapture: keepResults && meta.fullCapture,
+    personalTracking: keepResults && meta.personalTracking,
     pickOwnName: meta.pickOwnName,
     participantAccess: meta.participantAccess,
     joinLocked: meta.joinLocked,
+    keepResults,
   };
 }

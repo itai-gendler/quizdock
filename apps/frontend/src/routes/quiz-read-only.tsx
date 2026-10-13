@@ -1,16 +1,25 @@
 import { Link } from '@tanstack/react-router';
 import { apiErrorText } from '../api/http';
-import { CopyPlus, ExternalLink, Eye, History, LayoutTemplate, ListOrdered } from 'lucide-react';
+import {
+  CopyPlus,
+  ExternalLink,
+  Eye,
+  History,
+  LayoutTemplate,
+  ListOrdered,
+  Play,
+} from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Markdown } from '@/components/markdown';
 import { QuizStatusBadge } from '@/components/quiz-status-badge';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button, buttonVariants, twoLineButton } from '@/components/ui/button';
 import { type QuizItem, quizItems, slideLabel } from '@/lib/quiz-items';
 import { cn } from '@/lib/utils';
 import type { QuizDetailDto } from '../api/generated/model';
 import { useRole } from '../auth/use-role';
 import { useCopyQuiz } from './use-copy-quiz';
+import { useLaunchSession } from '../game/use-launch-session';
 import { StepStage } from './quiz-stage-preview';
 import { QuestionProperties, SlideProperties } from './step-properties';
 import { PageTitle } from '@/components/ui/page-title';
@@ -30,6 +39,9 @@ export function QuizReadOnly({ quiz }: { quiz: QuizDetailDto }) {
   const { t } = useTranslation(['editor', 'common']);
   const { isManager, isHost } = useRole();
   const { copy, copying, copyError } = useCopyQuiz();
+  const { launch, isLaunching, error: launchError, dialog: launchDialog } = useLaunchSession();
+  // Another host's shared quiz: presented as it is, keeping nothing (SPECIFICATIONS-SHARED-PLAY).
+  const presentable = quiz.shared && isHost && quiz.status === 'ready' && quiz.questionCount > 0;
   const [selectedIndex, setSelectedIndex] = useState(0);
   const items = quizItems(quiz);
   const selected = items[Math.min(selectedIndex, items.length - 1)] as QuizItem | undefined;
@@ -62,16 +74,37 @@ export function QuizReadOnly({ quiz }: { quiz: QuizDetailDto }) {
               </Link>
             ) : null}
             {quiz.shared && isHost ? (
-              <Button type="button" size="sm" disabled={copying} onClick={() => copy(quiz.id)}>
-                <CopyPlus className="size-4" />
+              <Button
+                type="button"
+                size="sm"
+                variant={presentable ? 'outline' : 'default'}
+                className={twoLineButton}
+                disabled={copying}
+                onClick={() => copy(quiz.id)}
+              >
+                <CopyPlus className="size-4 shrink-0" />
                 {t('readOnly.createFrom')}
               </Button>
             ) : null}
-            {copyError ? (
+            {presentable ? (
+              <Button
+                type="button"
+                size="sm"
+                variant="main-action"
+                className={twoLineButton}
+                disabled={isLaunching}
+                onClick={() => void launch(quiz.id)}
+              >
+                <Play className="size-4 shrink-0" />
+                {t('readOnly.presentWithoutResults')}
+              </Button>
+            ) : null}
+            {copyError || launchError ? (
               <p className="text-destructive text-sm" role="alert">
-                {apiErrorText(copyError)}
+                {copyError ? apiErrorText(copyError) : launchError}
               </p>
             ) : null}
+            {launchDialog}
           </div>
         </div>
         <div

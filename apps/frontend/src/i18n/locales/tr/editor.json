@@ -51,7 +51,7 @@
     "languageLabel": "Dil",
     "languageHelp": "Quizin yazıldığı dil. Katılımcılar bunu şablonlarda görür ve mağaza buna göre filtreler.",
     "licenseLabel": "Lisans",
-    "licenseHelp": "Başkalarının quizi hangi koşullarla yeniden kullanabileceğini belirler. Şablon paylaşmak için gereklidir. İçerik ve medya haklarının sizde olması gerekir.",
+    "licenseHelp": "Başkalarının quizi hangi koşullarla yeniden kullanabileceği. Şablon olarak sunmak için gereklidir. İçeriğinin ve medyasının haklarına sahip olmalısınız.",
     "license": {
       "cc0": "CC0 — koşul yok",
       "ccBy": "CC BY 4.0 — yazara itibar edin",
@@ -63,7 +63,7 @@
     "removeTag": "{{tag}} etiketini kaldır",
     "saveError": "Değişiklik kaydedilemedi.",
     "sharedLabel": "Bu kurulumdaki diğer sunucularla paylaş",
-    "sharedHelp": "Diğer sunucular quizi salt okunur olarak görebilir ve kendi kopyalarını oluşturabilir. Kapalıysa yalnızca siz görebilirsiniz.",
+    "sharedHelp": "Diğer sunucular quizi salt okunur olarak görür: sonuçları saklamadan sunabilir veya kendi kopyalarını oluşturabilirler. Kapalıysa yalnızca siz görebilirsiniz.",
     "sharedOn": "Paylaşıldı",
     "sharedOff": "Özel",
     "saving": "Kaydediliyor…",
@@ -84,6 +84,7 @@
     "enableHelp": "Quiz tamamlandığında katılımcılara değerlendirme formu gösterilir.",
     "title": "Katılımcı değerlendirmeleri",
     "empty": "Henüz geri bildirim yok.",
+    "anonymous": "Anonim",
     "starsAriaLabel": "5 üzerinden {{value}}",
     "seeAll_one": "Değerlendirmeyi gör",
     "seeAll_other": "{{count}} değerlendirmeyi gör",
@@ -561,7 +562,8 @@
   },
   "readOnly": {
     "notice": "{{owner}}'ın quizi: Okuyabilirsiniz, değiştiremezsiniz.",
-    "createFrom": "Bu quizden yeni bir quiz oluştur",
+    "presentWithoutResults": "Sonuçları saklamadan\nsun",
+    "createFrom": "Bu quizden\nyeni bir quiz oluştur",
     "props": {
       "orderShown": "Doğru sırada listelenmiştir.",
       "seconds_one": "{{count}} saniye",

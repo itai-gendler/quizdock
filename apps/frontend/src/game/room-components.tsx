@@ -140,7 +140,11 @@ export function QuizPickButton({
   const quizzes = useQuizzesControllerList({ query: { enabled: open } }).data?.data ?? [];
   const playable = quizzes.filter(
     (q) =>
-      q.ownerId === me?.id && q.status === 'ready' && q.questionCount > 0 && q.id !== currentQuizId,
+      // Theirs, or shared by another host — then played keeping nothing (SPECIFICATIONS-SHARED-PLAY).
+      (q.ownerId === me?.id || q.shared) &&
+      q.status === 'ready' &&
+      q.questionCount > 0 &&
+      q.id !== currentQuizId,
   );
   const picked = playable.some((q) => q.id === quizId) ? quizId : '';
   const label = t(replacing ? 'control.changeQuiz' : 'control.chooseQuiz');
@@ -215,10 +219,13 @@ export function BackToLobbyButton({
   pin,
   socket,
   mode,
+  offerArchive = true,
 }: {
   pin: string;
   socket: GameSocket | null;
   mode: 'podium' | 'stop';
+  /** False for a game that keeps nothing (another host's shared quiz): no choice to offer. */
+  offerArchive?: boolean;
 }) {
   const stop = mode === 'stop';
   const { t } = useTranslation(['live', 'common']);
@@ -233,7 +240,10 @@ export function BackToLobbyButton({
     setSending(true);
     setError(null);
     try {
-      await emitWithAckOrError(socket, 'host:back-to-lobby', { pin, archive });
+      await emitWithAckOrError(socket, 'host:back-to-lobby', {
+        pin,
+        archive: offerArchive && archive,
+      });
       setOpen(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
@@ -268,13 +278,15 @@ export function BackToLobbyButton({
           setError(null);
         }}
       >
-        <CheckboxField
-          className="rounded-md border p-3"
-          checked={archive}
-          onChange={setArchive}
-          label={t(stop ? 'control.archiveSoFarLabel' : 'control.archiveLabel')}
-          hint={t(stop ? 'control.archiveSoFarHint' : 'control.archiveHint')}
-        />
+        {offerArchive ? (
+          <CheckboxField
+            className="rounded-md border p-3"
+            checked={archive}
+            onChange={setArchive}
+            label={t(stop ? 'control.archiveSoFarLabel' : 'control.archiveLabel')}
+            hint={t(stop ? 'control.archiveSoFarHint' : 'control.archiveHint')}
+          />
+        ) : null}
         {error ? <p className="text-destructive text-sm">{error}</p> : null}
       </ConfirmDialog>
     </>
@@ -420,6 +432,9 @@ function QuizPicker({
                 <span>{t('control.quizQuestions', { count: q.questionCount })}</span>
                 <span>· {q.language.toUpperCase()}</span>
                 <span>· {t('control.pickerUpdated', { date: date(q.updatedAt) })}</span>
+                {q.editable === false ? (
+                  <span>· {t('control.pickerShared', { name: q.ownerName ?? '' })}</span>
+                ) : null}
                 {q.tags.slice(0, 3).map((tag) => (
                   <span key={tag} className="bg-muted rounded px-1">
                     {tag}

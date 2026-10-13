@@ -183,7 +183,7 @@
     "DATABASE_URL": "Database",
     "REDIS_URL": "Redis",
     "MEDIA_DIR": "Media folder",
-    "STORE_DIR": "Shared templates folder",
+    "STORE_DIR": "Templates folder",
     "SAMPLES_DIR": "Sample quizzes folder",
     "CLIENT_DIR": "Web application folder",
     "MEDIA_MAX_BYTES": "Largest image",

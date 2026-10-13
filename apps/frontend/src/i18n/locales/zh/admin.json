@@ -183,7 +183,7 @@
     "DATABASE_URL": "数据库",
     "REDIS_URL": "Redis",
     "MEDIA_DIR": "媒体文件夹",
-    "STORE_DIR": "共享模板文件夹",
+    "STORE_DIR": "模板文件夹",
     "SAMPLES_DIR": "示例测验文件夹",
     "CLIENT_DIR": "网页应用文件夹",
     "MEDIA_MAX_BYTES": "图片大小上限",

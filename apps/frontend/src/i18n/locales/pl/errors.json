@@ -155,9 +155,9 @@
     "already_host": "Już jesteś prowadzącym: nie ma miejsca do zajęcia."
   },
   "store": {
-    "demo_disabled": "Udostępnianie jest wyłączone na instancji demo.",
-    "not_ready": "Udostępnić można tylko quiz oznaczony jako „gotowy”.",
-    "license_required": "Ustaw licencję przed udostępnieniem: szablon ma być ponownie wykorzystywany, więc warunki idą razem z nim.",
+    "demo_disabled": "Na instancji demonstracyjnej nie można proponować szablonów.",
+    "not_ready": "Tylko quiz oznaczony jako „gotowy” może zostać zaproponowany jako szablon.",
+    "license_required": "Ustaw licencję przed zaproponowaniem go jako szablonu: szablon służy do ponownego użycia, więc warunki idą razem z nim.",
     "entry_not_found": "Tego szablonu nie ma już w katalogu.",
     "not_yours": "Szablon może wycofać tylko jego autor lub administrator.",
     "invalid_id": "Nieprawidłowy identyfikator szablonu.",

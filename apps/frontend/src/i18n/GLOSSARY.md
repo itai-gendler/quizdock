@@ -29,23 +29,32 @@ reference, the others follow its sense, not its words.
 | join / PIN  | Join · PIN code         | Rejoindre · Code PIN | Unirse · Código PIN  | 加入 · PIN 码 | 加入 · PIN 碼 | `/join`                                                                        |
 | reviews     | Reviews                 | Avis                 | Opiniones            | 评价          | 回饋          | `/quizzes/:id/reviews`                                                         |
 | history     | History                 | Historique           | Historial            | 历史          | 歷史          | `/quizzes/:id/history`                                                         |
+| templates   | Templates               | Modèles              | Plantillas           | 模板          | 範本          | `/templates`: copies offered to the instance's hosts (RG-17)                   |
 
 ## Content
 
-| Term                     | en                             | fr                                    | es                               | zh                   | zh-TW                |
-| ------------------------ | ------------------------------ | ------------------------------------- | -------------------------------- | -------------------- | -------------------- |
-| question                 | Question                       | Question                              | Pregunta                         | 题目                 | 題目                 |
-| slide                    | Slide                          | Slide                                 | Diapositiva                      | 幻灯片               | 簡報                 |
-| answer choice            | Answer choice                  | Choix de réponse                      | Opción de respuesta              | 选项                 | 選項                 |
-| image choice             | Image choice                   | Choix en images                       | Elección con imágenes            | 图片选择             | 圖片選擇             |
-| alternative text         | Alternative text               | Texte alternatif                      | Texto alternativo                | 替代文字             | 替代文字             |
-| explanation              | Explanation                    | Explication                           | Explicación                      | 解析                 | 解析                 |
-| background               | Background                     | Fond                                  | Fondo                            | 背景                 | 背景                 |
-| outline (text halo)      | Outline (halo, like subtitles) | Contour (halo, comme des sous-titres) | Contorno (halo, como subtítulos) | 描边（光晕，如字幕） | 描邊（光暈，如字幕） |
-| draft / ready / archived | Draft / Ready / Archived       | Brouillon / Prêt / Archivé            | Borrador / Listo / Archivado     | 草稿 / 就绪 / 已归档 | 草稿 / 就緒 / 已歸檔 |
-| publish                  | Publish (ready)                | Publier (prêt)                        | Publicar (listo)                 | 发布（就绪）         | 發布（就緒）         |
-| present                  | Present                        | Présenter                             | Presentar                        | 演示                 | 示範                 |
-| import / export          | Import / Export                | Importer / Exporter                   | Importar / Exportar              | 导入 / 导出          | 匯入 / 匯出          |
+| Term                            | en                              | fr                                    | es                                   | zh                   | zh-TW                |
+| ------------------------------- | ------------------------------- | ------------------------------------- | ------------------------------------ | -------------------- | -------------------- |
+| question                        | Question                        | Question                              | Pregunta                             | 题目                 | 題目                 |
+| slide                           | Slide                           | Slide                                 | Diapositiva                          | 幻灯片               | 簡報                 |
+| answer choice                   | Answer choice                   | Choix de réponse                      | Opción de respuesta                  | 选项                 | 選項                 |
+| image choice                    | Image choice                    | Choix en images                       | Elección con imágenes                | 图片选择             | 圖片選擇             |
+| alternative text                | Alternative text                | Texte alternatif                      | Texto alternativo                    | 替代文字             | 替代文字             |
+| explanation                     | Explanation                     | Explication                           | Explicación                          | 解析                 | 解析                 |
+| background                      | Background                      | Fond                                  | Fondo                                | 背景                 | 背景                 |
+| outline (text halo)             | Outline (halo, like subtitles)  | Contour (halo, comme des sous-titres) | Contorno (halo, como subtítulos)     | 描边（光晕，如字幕） | 描邊（光暈，如字幕） |
+| draft / ready / archived        | Draft / Ready / Archived        | Brouillon / Prêt / Archivé            | Borrador / Listo / Archivado         | 草稿 / 就绪 / 已归档 | 草稿 / 就緒 / 已歸檔 |
+| publish                         | Publish (ready)                 | Publier (prêt)                        | Publicar (listo)                     | 发布（就绪）         | 發布（就緒）         |
+| present                         | Present                         | Présenter                             | Presentar                            | 演示                 | 示範                 |
+| import / export                 | Import / Export                 | Importer / Exporter                   | Importar / Exportar                  | 导入 / 导出          | 匯入 / 匯出          |
+| share (with the hosts)          | Share                           | Partager                              | Compartir                            | 共享                 | 分享                 |
+| offer as a template             | Offer as a template             | Proposer comme modèle                 | Ofrecer como plantilla               | 作为模板提供         | 作為範本提供         |
+| present without keeping results | Present without keeping results | Présenter sans garder les résultats   | Presentar sin guardar los resultados | 不保留结果地演示     | 不保留結果地示範     |
+
+*Share* is only the instance sharing: the original, which the other hosts read, present
+without keeping results, or create a quiz from. Putting a copy in the catalogue is
+*offering it as a template*, never *sharing* it, and *publish* stays the move from draft
+to ready.
 
 ## Play
 
