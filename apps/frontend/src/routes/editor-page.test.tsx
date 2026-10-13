@@ -422,6 +422,41 @@ describe('EditorPage', () => {
     });
   });
 
+  describe("another host's shared quiz, opened by a host (SPECIFICATIONS-SHARED-PLAY)", () => {
+    it('offers to present it without keeping results, next to creating a quiz from it', async () => {
+      mockApi([
+        {
+          method: 'GET',
+          path: '/quizzes/q1',
+          body: detail({ editable: false, shared: true, status: 'ready', ownerName: 'Alice' }),
+        },
+        { method: 'GET', path: '/me', body: { id: 'h', displayName: 'H', roles: ['host'] } },
+      ]);
+      const { router } = renderApp('/quizzes/q1');
+      expect(
+        await screen.findByRole('button', { name: /Créer un quiz à partir de ceci/ }),
+      ).toBeInTheDocument();
+      fireEvent.click(screen.getByRole('button', { name: /Présenter sans garder les résultats/ }));
+      await waitFor(() => expect(router.state.location.pathname).toBe('/session/482913/console'));
+    });
+
+    it('offers no presenting while it is a draft', async () => {
+      mockApi([
+        {
+          method: 'GET',
+          path: '/quizzes/q1',
+          body: detail({ editable: false, shared: true, ownerName: 'Alice' }),
+        },
+        { method: 'GET', path: '/me', body: { id: 'h', displayName: 'H', roles: ['host'] } },
+      ]);
+      renderApp('/quizzes/q1');
+      expect(
+        await screen.findByRole('button', { name: /Créer un quiz à partir de ceci/ }),
+      ).toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: /Présenter sans garder/ })).toBeNull();
+    });
+  });
+
   describe('a save the server refuses says so, instead of snapping back in silence (#82)', () => {
     const FAILED = 'Impossible d’enregistrer la modification.';
     const refused = (method: string, path: string) => ({ method, path, status: 500, body: {} });

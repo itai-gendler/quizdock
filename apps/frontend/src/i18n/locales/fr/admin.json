@@ -183,7 +183,7 @@
     "DATABASE_URL": "Base de données",
     "REDIS_URL": "Redis",
     "MEDIA_DIR": "Dossier des médias",
-    "STORE_DIR": "Dossier des modèles partagés",
+    "STORE_DIR": "Dossier des modèles",
     "SAMPLES_DIR": "Dossier des quiz d’exemple",
     "CLIENT_DIR": "Dossier de l’application web",
     "MEDIA_MAX_BYTES": "Taille maximale d’une image",

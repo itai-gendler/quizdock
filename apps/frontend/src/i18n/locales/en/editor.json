@@ -51,7 +51,7 @@
     "languageLabel": "Language",
     "languageHelp": "The language the quiz is written in. Players see it in the templates, and a store filters by it.",
     "licenseLabel": "Licence",
-    "licenseHelp": "The terms others may reuse the quiz under. Required to share it as a template. You must hold the rights to its content and media.",
+    "licenseHelp": "The terms others may reuse the quiz under. Required to offer it as a template. You must hold the rights to its content and media.",
     "license": {
       "cc0": "CC0 — no conditions",
       "ccBy": "CC BY 4.0 — credit the author",
@@ -63,7 +63,7 @@
     "removeTag": "Remove tag {{tag}}",
     "saveError": "Could not save the change.",
     "sharedLabel": "Share with the instance’s other hosts",
-    "sharedHelp": "They see it in their quizzes, read-only, and can create their own copy from it. Unchecked, it stays yours alone.",
+    "sharedHelp": "They see it in their quizzes, read-only: they can present it without keeping results, or create their own copy from it. Unchecked, it stays yours alone.",
     "sharedOn": "Shared",
     "sharedOff": "Private",
     "saving": "Saving…",
@@ -84,6 +84,7 @@
     "enableHelp": "A rating panel is offered at the end of the quiz, every time it is played.",
     "title": "Player feedback",
     "empty": "No feedback yet.",
+    "anonymous": "Anonymous",
     "starsAriaLabel": "{{value}} out of 5",
     "seeAll_one": "See the review",
     "seeAll_other": "See all {{count}} reviews",
@@ -561,6 +562,7 @@
   },
   "readOnly": {
     "notice": "{{owner}}'s quiz: you can read it, not change it.",
+    "presentWithoutResults": "Present without keeping results",
     "createFrom": "Create a quiz from this",
     "props": {
       "orderShown": "Listed in the right order.",

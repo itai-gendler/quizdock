@@ -327,7 +327,13 @@ function HostConsole({
     );
   }
   if (view.state === 'ENDED') {
-    return <SessionOver message={t('control.sessionEnded')} quizId={view.quizId} />;
+    // A game that kept nothing has no results to see.
+    return (
+      <SessionOver
+        message={t('control.sessionEnded')}
+        quizId={view.keepResults ? view.quizId : null}
+      />
+    );
   }
 
   // ── The frame (UI system §2.1): the same in every phase ─────────────────────
@@ -514,11 +520,16 @@ function HostConsole({
             />
           )
         ) : phase === 'podium' ? null : (
-          <BackToLobbyButton pin={pin} socket={socket} mode="stop" />
+          <BackToLobbyButton
+            pin={pin}
+            socket={socket}
+            mode="stop"
+            offerArchive={view.keepResults}
+          />
         )}
         <EndGameButton
           label={inLobby ? t('control.stopSession') : t('control.endSession')}
-          offerArchive={!inLobby}
+          offerArchive={!inLobby && view.keepResults}
           onConfirm={endGame}
         />
       </div>
@@ -666,18 +677,26 @@ function HostConsole({
             }}
           />
           <div className="grid gap-3 md:grid-cols-2">
+            {/* Another host's shared quiz: nothing of it is kept, whatever the room chose. */}
             <SettingSwitch
               checked={view.fullCapture}
+              disabled={!view.keepResults}
               onChange={(checked) => (checked ? setConfirmCapture(true) : setCapture(false))}
               label={t('control.captureLabel')}
-              hint={t('control.captureHint')}
+              hint={view.keepResults ? t('control.captureHint') : t('control.keepsNothingHint')}
             />
             <SettingSwitch
               checked={view.personalTracking}
-              disabled={openAccess}
+              disabled={openAccess || !view.keepResults}
               onChange={(personalTracking) => setOptions({ personalTracking })}
               label={t('control.trackingLabel')}
-              hint={openAccess ? t('control.trackingOpenAccessHint') : t('control.trackingHint')}
+              hint={
+                !view.keepResults
+                  ? t('control.keepsNothingHint')
+                  : openAccess
+                    ? t('control.trackingOpenAccessHint')
+                    : t('control.trackingHint')
+              }
             />
             {/* Nom affiché (RG-15) : n'a de sens que si les participants ont un compte. */}
             {authMode === 'oidc' && !openAccess ? (
@@ -861,7 +880,9 @@ function HostConsole({
       </div>
     );
     status = t('control.statusQuizOver');
-    primary = <BackToLobbyButton pin={pin} socket={socket} mode="podium" />;
+    primary = (
+      <BackToLobbyButton pin={pin} socket={socket} mode="podium" offerArchive={view.keepResults} />
+    );
   } else if (state === 'LEADERBOARD' && !reviewing) {
     // The quiz's standings after a reveal (#198): what the projection shows.
     centre = (

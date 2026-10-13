@@ -19,6 +19,7 @@
   "questionCount_one": "{{count}} प्रश्न",
   "questionCount_other": "{{count}} प्रश्न",
   "present": "प्रस्तुत करें",
+  "presentWithoutResults": "नतीजे रखे बिना प्रस्तुत करें",
   "running_one": "{{count}} रूम खुला है",
   "running_other": "{{count}} रूम खुले हैं",
   "seatTaken": "होस्ट सीट किसी और के पास है: आप सिर्फ़ प्रतिभागी के रूप में रूम में शामिल हो सकते हैं।",

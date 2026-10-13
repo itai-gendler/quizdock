@@ -154,9 +154,9 @@
     "already_host": "Sei già un conduttore: nessuna postazione da prendere."
   },
   "store": {
-    "demo_disabled": "La condivisione è disattivata su un’istanza demo.",
-    "not_ready": "Si può condividere solo un quiz segnato come «pronto».",
-    "license_required": "Imposta una licenza prima di condividere: un modello è fatto per essere riutilizzato, quindi le condizioni viaggiano con esso.",
+    "demo_disabled": "Su un’istanza demo non si possono proporre modelli.",
+    "not_ready": "Solo un quiz «pronto» può essere proposto come modello.",
+    "license_required": "Scegli una licenza prima di proporlo come modello: un modello è fatto per essere riutilizzato, e le sue condizioni viaggiano con lui.",
     "entry_not_found": "Questo modello non è più nel catalogo.",
     "not_yours": "Solo il suo autore, o un amministratore, può ritirare un modello.",
     "invalid_id": "Identificativo del modello non valido.",

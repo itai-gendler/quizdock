@@ -113,6 +113,7 @@ describe('GameService: the hashes of a new session (integration)', () => {
       slideIndex: '-1',
       slideMediaStartAt: '0',
       slidePausedAt: '0',
+      keepResults: '1', // the host's own quiz: its results may be kept
     });
   });
 

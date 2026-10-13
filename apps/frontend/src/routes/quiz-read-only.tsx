@@ -1,6 +1,14 @@
 import { Link } from '@tanstack/react-router';
 import { apiErrorText } from '../api/http';
-import { CopyPlus, ExternalLink, Eye, History, LayoutTemplate, ListOrdered } from 'lucide-react';
+import {
+  CopyPlus,
+  ExternalLink,
+  Eye,
+  History,
+  LayoutTemplate,
+  ListOrdered,
+  Play,
+} from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Markdown } from '@/components/markdown';
@@ -11,6 +19,7 @@ import { cn } from '@/lib/utils';
 import type { QuizDetailDto } from '../api/generated/model';
 import { useRole } from '../auth/use-role';
 import { useCopyQuiz } from './use-copy-quiz';
+import { useLaunchSession } from '../game/use-launch-session';
 import { StepStage } from './quiz-stage-preview';
 import { QuestionProperties, SlideProperties } from './step-properties';
 import { PageTitle } from '@/components/ui/page-title';
@@ -23,6 +32,9 @@ import { EmptyState } from '@/components/ui/empty-state';
  * the way to see it played (Preview); a manager also reads its history. A quiz
  * shared with the instance is copied to be made one's own ("Create from this").
  */
+/** The two actions on another host's quiz: a label may take two lines, set tight. */
+const TWO_LINES = 'h-auto min-h-8 py-1 text-left leading-none whitespace-normal';
+
 /** A slide's display time when it sets none (the engine's default, as the editor says). */
 const DEFAULT_SLIDE_SECONDS = 5;
 
@@ -30,6 +42,9 @@ export function QuizReadOnly({ quiz }: { quiz: QuizDetailDto }) {
   const { t } = useTranslation(['editor', 'common']);
   const { isManager, isHost } = useRole();
   const { copy, copying, copyError } = useCopyQuiz();
+  const { launch, isLaunching, error: launchError, dialog: launchDialog } = useLaunchSession();
+  // Another host's shared quiz: presented as it is, keeping nothing (SPECIFICATIONS-SHARED-PLAY).
+  const presentable = quiz.shared && isHost && quiz.status === 'ready' && quiz.questionCount > 0;
   const [selectedIndex, setSelectedIndex] = useState(0);
   const items = quizItems(quiz);
   const selected = items[Math.min(selectedIndex, items.length - 1)] as QuizItem | undefined;
@@ -61,17 +76,37 @@ export function QuizReadOnly({ quiz }: { quiz: QuizDetailDto }) {
                 {t('header.history')}
               </Link>
             ) : null}
+            {presentable ? (
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className={TWO_LINES}
+                disabled={isLaunching}
+                onClick={() => void launch(quiz.id)}
+              >
+                <Play className="size-4 shrink-0" />
+                {t('readOnly.presentWithoutResults')}
+              </Button>
+            ) : null}
             {quiz.shared && isHost ? (
-              <Button type="button" size="sm" disabled={copying} onClick={() => copy(quiz.id)}>
-                <CopyPlus className="size-4" />
+              <Button
+                type="button"
+                size="sm"
+                className={TWO_LINES}
+                disabled={copying}
+                onClick={() => copy(quiz.id)}
+              >
+                <CopyPlus className="size-4 shrink-0" />
                 {t('readOnly.createFrom')}
               </Button>
             ) : null}
-            {copyError ? (
+            {copyError || launchError ? (
               <p className="text-destructive text-sm" role="alert">
-                {apiErrorText(copyError)}
+                {copyError ? apiErrorText(copyError) : launchError}
               </p>
             ) : null}
+            {launchDialog}
           </div>
         </div>
         <div

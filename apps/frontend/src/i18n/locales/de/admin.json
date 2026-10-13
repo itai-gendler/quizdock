@@ -183,7 +183,7 @@
     "DATABASE_URL": "Datenbank",
     "REDIS_URL": "Redis",
     "MEDIA_DIR": "Medienordner",
-    "STORE_DIR": "Ordner der geteilten Vorlagen",
+    "STORE_DIR": "Ordner der Vorlagen",
     "SAMPLES_DIR": "Ordner der Beispielquizze",
     "CLIENT_DIR": "Ordner der Webanwendung",
     "MEDIA_MAX_BYTES": "Größtes Bild",

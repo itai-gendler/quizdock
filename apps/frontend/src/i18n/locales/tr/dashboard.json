@@ -19,6 +19,7 @@
   "questionCount_one": "{{count}} soru",
   "questionCount_other": "{{count}} soru",
   "present": "Sun",
+  "presentWithoutResults": "Sonuçları saklamadan sun",
   "running_one": "{{count}} oda açık",
   "running_other": "{{count}} oda açık",
   "seatTaken": "Sunucu yetkisi başka biri tarafından tutuluyor: odalara yalnızca katılımcı olarak katılabilirsiniz.",

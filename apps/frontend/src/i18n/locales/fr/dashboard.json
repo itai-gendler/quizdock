@@ -22,6 +22,7 @@
   "questionCount_many": "{{count}} questions",
   "questionCount_other": "{{count}} questions",
   "present": "Présenter",
+  "presentWithoutResults": "Présenter sans garder les résultats",
   "running_one": "{{count}} salon ouvert",
   "running_many": "{{count}} salons ouverts",
   "running_other": "{{count}} salons ouverts",

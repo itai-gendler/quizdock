@@ -101,6 +101,32 @@ describe('DashboardPage', () => {
     );
   });
 
+  it("another host's shared, ready quiz is presented from its ⋮, keeping nothing", async () => {
+    mockApi([
+      {
+        method: 'GET',
+        path: '/quizzes',
+        body: [
+          quiz({
+            id: 'shared',
+            title: 'Partagé',
+            status: 'ready',
+            questionCount: 3,
+            editable: false,
+            shared: true,
+            ownerName: 'Alice',
+          }),
+        ],
+      },
+    ]);
+    everyone();
+    renderApp('/quizzes');
+    fireEvent.click(await screen.findByRole('button', { name: 'Actions pour « Partagé »' }));
+    expect(
+      await screen.findByRole('button', { name: /Présenter sans garder les résultats/ }),
+    ).toBeInTheDocument();
+  });
+
   it('one action per card, the rest in its ⋮; the card opens the quiz (UI system §3)', async () => {
     const fetchMock = mockApi([
       {

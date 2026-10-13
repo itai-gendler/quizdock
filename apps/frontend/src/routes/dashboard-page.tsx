@@ -523,6 +523,16 @@ export function DashboardPage() {
               <QuizMenu
                 quiz={quiz}
                 own={!readOnly && !managerOnly}
+                onPresentShared={
+                  // Another host's shared quiz: presented as it is, keeping nothing.
+                  readOnly &&
+                  !managerOnly &&
+                  quiz.shared &&
+                  quiz.status === 'ready' &&
+                  quiz.questionCount > 0
+                    ? () => void launch(quiz.id)
+                    : undefined
+                }
                 onStatus={(status) => void setStatus(quiz, status)}
                 onDelete={() => setPendingDelete(quiz)}
               />
@@ -669,12 +679,15 @@ function QuizFacts({ quiz, date }: { quiz: QuizDto; date: (iso: string) => strin
 function QuizMenu({
   quiz,
   own,
+  onPresentShared,
   onStatus,
   onDelete,
 }: {
   quiz: QuizDto;
   /** The caller's own quiz: they may archive and delete it. */
   own: boolean;
+  /** Another host's shared quiz they may present, keeping nothing. */
+  onPresentShared?: () => void;
   onStatus: (status: 'draft' | 'archived') => void;
   onDelete: () => void;
 }) {
@@ -699,6 +712,17 @@ function QuizMenu({
     >
       {(close) => (
         <div className="flex min-w-48 flex-col">
+          {onPresentShared ? (
+            <MenuItem
+              onClick={() => {
+                close();
+                onPresentShared();
+              }}
+            >
+              <Play className="size-4" />
+              {t('presentWithoutResults')}
+            </MenuItem>
+          ) : null}
           <MenuItem
             onClick={() => {
               close();

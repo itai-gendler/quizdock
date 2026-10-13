@@ -19,6 +19,7 @@
   "questionCount_one": "{{count}} 道题",
   "questionCount_other": "{{count}} 道题",
   "present": "演示",
+  "presentWithoutResults": "不保留结果地演示",
   "running_one": "{{count}} 个房间开放中",
   "running_other": "{{count}} 个房间开放中",
   "seatTaken": "主持人席位已被他人占用：你只能以参与者身份加入房间。",

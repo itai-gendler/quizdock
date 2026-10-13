@@ -183,7 +183,7 @@
     "DATABASE_URL": "資料庫",
     "REDIS_URL": "Redis",
     "MEDIA_DIR": "媒體資料夾",
-    "STORE_DIR": "共用範本資料夾",
+    "STORE_DIR": "範本資料夾",
     "SAMPLES_DIR": "範例測驗資料夾",
     "CLIENT_DIR": "網頁應用程式資料夾",
     "MEDIA_MAX_BYTES": "圖片大小上限",

@@ -19,6 +19,7 @@
   "questionCount_one": "{{count}} question",
   "questionCount_other": "{{count}} questions",
   "present": "Present",
+  "presentWithoutResults": "Present without keeping results",
   "running_one": "{{count}} room open",
   "running_other": "{{count}} rooms open",
   "seatTaken": "The host seat is held by someone else: you can only join rooms as a participant.",

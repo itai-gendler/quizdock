@@ -183,7 +183,7 @@
     "DATABASE_URL": "Base de datos",
     "REDIS_URL": "Redis",
     "MEDIA_DIR": "Carpeta de medios",
-    "STORE_DIR": "Carpeta de plantillas compartidas",
+    "STORE_DIR": "Carpeta de plantillas",
     "SAMPLES_DIR": "Carpeta de quizzes de ejemplo",
     "CLIENT_DIR": "Carpeta de la aplicación web",
     "MEDIA_MAX_BYTES": "Tamaño máximo de una imagen",

@@ -183,7 +183,7 @@
     "DATABASE_URL": "Baza danych",
     "REDIS_URL": "Redis",
     "MEDIA_DIR": "Folder multimediów",
-    "STORE_DIR": "Folder udostępnionych szablonów",
+    "STORE_DIR": "Folder szablonów",
     "SAMPLES_DIR": "Folder przykładowych quizów",
     "CLIENT_DIR": "Folder aplikacji webowej",
     "MEDIA_MAX_BYTES": "Największy obraz",

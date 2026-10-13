@@ -19,6 +19,7 @@
   "questionCount_one": "{{count}} Frage",
   "questionCount_other": "{{count}} Fragen",
   "present": "Präsentieren",
+  "presentWithoutResults": "Präsentieren, ohne Ergebnisse zu behalten",
   "running_one": "{{count}} Raum offen",
   "running_other": "{{count}} Räume offen",
   "seatTaken": "Der Leitungsplatz ist von jemand anderem belegt: Sie können Räumen nur als Teilnehmende beitreten.",

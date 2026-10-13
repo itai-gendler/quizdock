@@ -53,7 +53,7 @@
     "languageLabel": "Język",
     "languageHelp": "Język, w którym napisano quiz. Uczestnicy widzą go w szablonach, a katalog filtruje według niego.",
     "licenseLabel": "Licencja",
-    "licenseHelp": "Warunki, na jakich inni mogą ponownie wykorzystać quiz. Wymagana, aby udostępnić go jako szablon. Musisz mieć prawa do jego treści i multimediów.",
+    "licenseHelp": "Warunki, na jakich inni mogą ponownie użyć quizu. Wymagana, aby zaproponować go jako szablon. Musisz mieć prawa do jego treści i multimediów.",
     "license": {
       "cc0": "CC0 — bez warunków",
       "ccBy": "CC BY 4.0 — uznanie autorstwa",
@@ -65,7 +65,7 @@
     "removeTag": "Usuń tag {{tag}}",
     "saveError": "Nie udało się zapisać zmiany.",
     "sharedLabel": "Udostępnij innym prowadzącym tej instancji",
-    "sharedHelp": "Widzą go wśród swoich quizów, tylko do odczytu, i mogą utworzyć z niego własną kopię. Bez zaznaczenia pozostaje tylko twój.",
+    "sharedHelp": "Widzą go wśród swoich quizów, tylko do odczytu: mogą go prezentować bez zachowywania wyników albo utworzyć z niego własną kopię. Bez zaznaczenia pozostaje tylko twój.",
     "sharedOn": "Udostępniony",
     "sharedOff": "Prywatny",
     "saving": "Zapisywanie…",
@@ -86,6 +86,7 @@
     "enableHelp": "Na koniec quizu, przy każdym rozegraniu, pojawia się panel oceny.",
     "title": "Opinie uczestników",
     "empty": "Brak opinii.",
+    "anonymous": "Anonimowo",
     "starsAriaLabel": "{{value}} na 5",
     "seeAll_one": "Zobacz opinię",
     "seeAll_few": "Zobacz wszystkie {{count}} opinie",
@@ -577,6 +578,7 @@
   },
   "readOnly": {
     "notice": "Quiz użytkownika {{owner}}: możesz go czytać, ale nie zmieniać.",
+    "presentWithoutResults": "Prezentuj bez zachowywania wyników",
     "createFrom": "Utwórz z tego quiz",
     "props": {
       "orderShown": "Wymienione we właściwej kolejności.",
