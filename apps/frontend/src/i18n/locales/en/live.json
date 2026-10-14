@@ -230,6 +230,10 @@
     "statusQuizOver": "Quiz over",
     "beforeStarting": "Before starting",
     "beforeStartingHint": "Fixed once the quiz starts.",
+    "settingsTabs": {
+      "data": "Data",
+      "screens": "Screens and sound"
+    },
     "invite": "Invite players",
     "showQuestion": "Show Q{{n}}",
     "showSlide": "Show the slide",

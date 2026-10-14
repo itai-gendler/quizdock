@@ -230,6 +230,10 @@
     "statusQuizOver": "测验结束",
     "beforeStarting": "开始之前",
     "beforeStartingHint": "测验开始后即固定。",
+    "settingsTabs": {
+      "data": "数据",
+      "screens": "屏幕与声音"
+    },
     "invite": "邀请玩家",
     "showQuestion": "显示第 {{n}} 题",
     "showSlide": "显示幻灯片",

@@ -235,6 +235,10 @@
     "statusQuizOver": "Quiz terminato",
     "beforeStarting": "Prima di iniziare",
     "beforeStartingHint": "Fissato all’avvio del quiz.",
+    "settingsTabs": {
+      "data": "Dati",
+      "screens": "Schermi e audio"
+    },
     "invite": "Invita i partecipanti",
     "showQuestion": "Mostra D{{n}}",
     "showSlide": "Mostra la slide",

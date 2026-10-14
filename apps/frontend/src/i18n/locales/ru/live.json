@@ -240,6 +240,10 @@
     "statusQuizOver": "Квиз окончен",
     "beforeStarting": "Перед началом",
     "beforeStartingHint": "Фиксируется после начала квиза.",
+    "settingsTabs": {
+      "data": "Данные",
+      "screens": "Экраны и звук"
+    },
     "invite": "Пригласить участников",
     "showQuestion": "Показать В{{n}}",
     "showSlide": "Показать слайд",

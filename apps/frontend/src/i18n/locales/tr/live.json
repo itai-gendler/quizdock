@@ -230,6 +230,10 @@
     "statusQuizOver": "Quiz bitti",
     "beforeStarting": "Başlamadan önce",
     "beforeStartingHint": "Quiz başladıktan sonra değiştirilemez.",
+    "settingsTabs": {
+      "data": "Veriler",
+      "screens": "Ekranlar ve ses"
+    },
     "invite": "Katılımcıları davet et",
     "showQuestion": "{{n}}. soruyu göster",
     "showSlide": "Slaytı göster",

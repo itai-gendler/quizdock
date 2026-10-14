@@ -230,6 +230,10 @@
     "statusQuizOver": "क्विज़ खत्म",
     "beforeStarting": "शुरू करने से पहले",
     "beforeStartingHint": "क्विज़ शुरू होने के बाद तय हो जाता है।",
+    "settingsTabs": {
+      "data": "डेटा",
+      "screens": "स्क्रीन और ध्वनि"
+    },
     "invite": "प्रतिभागियों को आमंत्रित करें",
     "showQuestion": "प्र{{n}} दिखाएँ",
     "showSlide": "स्लाइड दिखाएँ",
