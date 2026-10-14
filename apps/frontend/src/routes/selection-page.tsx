@@ -1,7 +1,33 @@
+import {
+  DndContext,
+  type DragEndEvent,
+  KeyboardSensor,
+  PointerSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  SortableContext,
+  arrayMove,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 import { useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate } from '@tanstack/react-router';
-import { ArrowDown, ArrowLeft, ArrowUp, CopyPlus, ListPlus, Play, Trash2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowUp,
+  CopyPlus,
+  EllipsisVertical,
+  ExternalLink,
+  ListPlus,
+  Pencil,
+  Play,
+  Trash2,
+} from 'lucide-react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, twoLineButton } from '@/components/ui/button';
 import { CheckboxField } from '@/components/ui/checkbox-field';
@@ -9,8 +35,11 @@ import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { EmptyState } from '@/components/ui/empty-state';
 import { Input } from '@/components/ui/input';
 import { LoadFailed, PageLoading } from '@/components/ui/loading';
+import { MenuItem, MenuSeparator } from '@/components/ui/menu-item';
+import { Popover } from '@/components/ui/popover';
 import { PageTitle, SectionTitle } from '@/components/ui/page-title';
 import { Select } from '@/components/ui/select';
+import { SortableRow } from '@/components/sortable-row';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import { apiErrorText } from '../api/http';
@@ -120,11 +149,16 @@ function SelectionEditor({ selection }: { selection: SelectionDetailDto }) {
       items: next.map((i) => ({ quizId: i.quizId, mode: i.mode, autoStart: i.autoStart })),
     });
   };
-  const move = (from: number, to: number) => {
-    const next = [...items];
-    const [moved] = next.splice(from, 1);
-    next.splice(to, 0, moved);
-    saveItems(next);
+  const move = (from: number, to: number) => saveItems(arrayMove(items, from, to));
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
+  const onDragEnd = ({ active, over }: DragEndEvent) => {
+    if (!over || active.id === over.id) return;
+    const from = items.findIndex((i) => i.quizId === active.id);
+    const to = items.findIndex((i) => i.quizId === over.id);
+    if (from >= 0 && to >= 0) move(from, to);
   };
   const change = (index: number, patch: Partial<Item>) =>
     saveItems(items.map((item, i) => (i === index ? { ...item, ...patch } : item)));
@@ -198,19 +232,30 @@ function SelectionEditor({ selection }: { selection: SelectionDetailDto }) {
             {t('noQuiz')}
           </EmptyState>
         ) : (
-          <ol className="flex flex-col gap-2">
-            {items.map((item, i) => (
-              <ItemRow
-                key={item.quizId}
-                item={item}
-                index={i}
-                last={i === items.length - 1}
-                onMove={(to) => move(i, to)}
-                onChange={(patch) => change(i, patch)}
-                onRemove={() => saveItems(items.filter((_, j) => j !== i))}
-              />
-            ))}
-          </ol>
+          <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={onDragEnd}>
+            <SortableContext
+              items={items.map((i) => i.quizId)}
+              strategy={verticalListSortingStrategy}
+            >
+              <ol className="flex flex-col gap-2">
+                {items.map((item, i) => (
+                  <SortableRow key={item.quizId} id={item.quizId} handleLabel={t('dragHandle')}>
+                    {(handle) => (
+                      <ItemRow
+                        item={item}
+                        index={i}
+                        last={i === items.length - 1}
+                        handle={handle}
+                        onMove={(to) => move(i, to)}
+                        onChange={(patch) => change(i, patch)}
+                        onRemove={() => saveItems(items.filter((_, j) => j !== i))}
+                      />
+                    )}
+                  </SortableRow>
+                ))}
+              </ol>
+            </SortableContext>
+          </DndContext>
         )}
       </section>
       <AddQuizDialog
@@ -231,6 +276,7 @@ function ItemRow({
   item,
   index,
   last,
+  handle,
   onMove,
   onChange,
   onRemove,
@@ -238,28 +284,27 @@ function ItemRow({
   item: Item;
   index: number;
   last: boolean;
+  /** Its drag handle; the arrows stay for the keyboard. */
+  handle: ReactNode;
   onMove: (to: number) => void;
   onChange: (patch: Partial<Item>) => void;
   onRemove: () => void;
 }) {
   const { t } = useTranslation('selections');
   return (
-    <li
+    <div
       className={cn(
         'flex flex-col gap-3 rounded-lg border p-3 sm:flex-row sm:items-center',
         // One the owner may read but not play: greyed, with why.
         item.unplayable && 'bg-muted/40',
       )}
     >
-      <span className="text-muted-foreground w-6 shrink-0 text-sm tabular-nums">{index + 1}.</span>
+      <span className="flex shrink-0 items-center gap-1">
+        {handle}
+        <span className="text-muted-foreground w-6 text-sm tabular-nums">{index + 1}.</span>
+      </span>
       <span className={cn('flex min-w-0 flex-1 flex-col gap-0.5', item.unplayable && 'opacity-60')}>
-        <Link
-          to="/quizzes/$quizId"
-          params={{ quizId: item.quizId }}
-          className="truncate font-medium hover:underline"
-        >
-          {item.title}
-        </Link>
+        <span className="truncate font-medium">{item.title}</span>
         <span className="text-muted-foreground flex flex-wrap gap-x-2 text-xs">
           <span>{t('questionCount', { count: item.questionCount })}</span>
           {item.ownerName ? <span>· {t('ownedBy', { name: item.ownerName })}</span> : null}
@@ -303,18 +348,67 @@ function ItemRow({
         >
           <ArrowDown className="size-4" />
         </Button>
+        <ItemMenu item={item} onRemove={onRemove} />
+      </span>
+    </div>
+  );
+}
+
+/** A line's ⋮: open or preview its quiz, or take it out of the selection. */
+function ItemMenu({ item, onRemove }: { item: Item; onRemove: () => void }) {
+  const { t } = useTranslation('selections');
+  const navigate = useNavigate();
+  return (
+    <Popover
+      align="end"
+      trigger={({ open, toggle }) => (
         <Button
           type="button"
           variant="ghost"
           size="icon"
           className="size-8"
-          aria-label={t('remove', { title: item.title })}
-          onClick={onRemove}
+          aria-label={t('itemActions', { title: item.title })}
+          aria-expanded={open}
+          onClick={toggle}
         >
-          <Trash2 className="size-4" />
+          <EllipsisVertical className="size-4" />
         </Button>
-      </span>
-    </li>
+      )}
+    >
+      {(close) => (
+        <div className="flex min-w-48 flex-col">
+          <MenuItem
+            onClick={() => {
+              close();
+              void navigate({ to: '/quizzes/$quizId', params: { quizId: item.quizId } });
+            }}
+          >
+            <Pencil className="size-4" />
+            {t('openQuiz')}
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              close();
+              window.open(`/quizzes/${item.quizId}/preview`, '_blank', 'noopener');
+            }}
+          >
+            <ExternalLink className="size-4" />
+            {t('preview')}
+          </MenuItem>
+          <MenuSeparator />
+          <MenuItem
+            destructive
+            onClick={() => {
+              close();
+              onRemove();
+            }}
+          >
+            <Trash2 className="size-4" />
+            {t('removeItem')}
+          </MenuItem>
+        </div>
+      )}
+    </Popover>
   );
 }
 

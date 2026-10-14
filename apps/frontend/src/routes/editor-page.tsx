@@ -12,10 +12,9 @@ import {
   SortableContext,
   arrayMove,
   sortableKeyboardCoordinates,
-  useSortable,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+import { SortableRow } from '@/components/sortable-row';
 import { useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate, useRouterState } from '@tanstack/react-router';
 import {
@@ -27,7 +26,6 @@ import {
   Download,
   EllipsisVertical,
   ExternalLink,
-  GripVertical,
   History,
   LayoutTemplate,
   ListOrdered,
@@ -957,7 +955,7 @@ function QuizEditor({ quiz }: { quiz: QuizDetailDto }) {
               >
                 <ul className="flex flex-col gap-0.5">
                   {items.map((item, i) => (
-                    <SortableRow key={item.id} id={item.id}>
+                    <SortableRow key={item.id} id={item.id} handleLabel={t('questions.dragHandle')}>
                       {(handle) => (
                         <ItemRow
                           item={item}
@@ -1242,41 +1240,6 @@ const DEFAULT_SLIDE_SECONDS = 5;
 function questionNumber(items: QuizItem[], index: number): number | null {
   if (items[index].kind !== 'question') return null;
   return items.slice(0, index + 1).filter((it) => it.kind === 'question').length;
-}
-
-/** Sortable `<li>`: hands its drag handle props to the row (arrows stay for keyboard/a11y). */
-function SortableRow({ id, children }: { id: string; children: (handle: ReactNode) => ReactNode }) {
-  const { t } = useTranslation('editor');
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    setActivatorNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id });
-  const handle = (
-    <button
-      type="button"
-      ref={setActivatorNodeRef}
-      aria-label={t('questions.dragHandle')}
-      className="text-muted-foreground hover:text-foreground -ml-1 cursor-grab touch-none rounded p-1 active:cursor-grabbing"
-      {...attributes}
-      {...listeners}
-    >
-      <GripVertical className="size-4" />
-    </button>
-  );
-  return (
-    <li
-      ref={setNodeRef}
-      style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={cn(isDragging && 'bg-background relative z-10 shadow-md')}
-    >
-      {children(handle)}
-    </li>
-  );
 }
 
 /**

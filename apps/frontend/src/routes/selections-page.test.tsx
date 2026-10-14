@@ -124,6 +124,18 @@ describe('SelectionPage', () => {
       JSON.parse(String(put?.[1]?.body)).items.map((i: { quizId: string }) => i.quizId),
     ).toEqual(['q2', 'q1']);
     expect(screen.getByText(/Aucun lancement gardé/)).toBeInTheDocument();
+    // A line does not open its quiz: its ⋮ does, or takes it out of the selection.
+    expect(screen.queryByRole('link', { name: 'Géographie' })).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Plus pour « Géographie »' }));
+    expect(screen.getByRole('button', { name: /Ouvrir le quiz/ })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /Retirer de la sélection/ }));
+    await waitFor(() =>
+      expect(fetchMock.mock.calls.filter(([, o]) => o?.method === 'PUT')).toHaveLength(2),
+    );
+    const removed = fetchMock.mock.calls.filter(([, o]) => o?.method === 'PUT')[1];
+    expect(
+      JSON.parse(String(removed[1]?.body)).items.map((i: { quizId: string }) => i.quizId),
+    ).toEqual(['q2']);
   });
 
   it('another host reads it, and creates their own from it', async () => {
