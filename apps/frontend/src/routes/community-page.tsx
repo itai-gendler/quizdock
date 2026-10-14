@@ -3,8 +3,7 @@ import { Link, useNavigate } from '@tanstack/react-router';
 import { useQueryClient } from '@tanstack/react-query';
 import { ArrowLeft, CopyPlus, Globe, LayoutGrid, List as ListIcon, SearchX } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Button, twoLineButton } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Notice } from '@/components/ui/notice';
 import { PageTitle } from '@/components/ui/page-title';
@@ -24,7 +23,6 @@ import { apiErrorText } from '../api/http';
 import { useRole } from '../auth/use-role';
 import { hasCommunityStore } from '../config';
 import { fold } from '@/lib/text';
-import { cn } from '@/lib/utils';
 
 export function CommunityPage() {
   const { t, i18n } = useTranslation(['store', 'dashboard']);
@@ -169,51 +167,75 @@ export function CommunityPage() {
               view === 'grid' ? 'grid gap-4 sm:grid-cols-2 lg:grid-cols-3' : 'flex flex-col gap-2'
             }
           >
-            {filtered.slice((current - 1) * 20, current * 20).map((entry) => (
-              <li
-                key={entry.key}
-                className={cn(
-                  'bg-card flex overflow-hidden rounded-xl border',
-                  view === 'grid' ? 'flex-col' : 'flex-col sm:flex-row sm:items-center',
-                )}
-              >
+            {filtered.slice((current - 1) * 20, current * 20).map((entry) => {
+              // As a quiz's card in My quizzes: the whole card hovers, its title's link
+              // covers it, the action above it its own button.
+              const titleLink = (
                 <Link
                   to="/community/$key"
                   params={{ key: entry.key }}
-                  className="hover:bg-accent flex min-w-0 flex-1 flex-col gap-2 p-4 transition-colors"
+                  className="min-w-0 truncate font-semibold after:absolute after:inset-0 after:content-['']"
                 >
-                  <span className="font-semibold">{entry.title}</span>
-                  {entry.description ? (
-                    <span className="text-muted-foreground line-clamp-2 text-sm">
-                      {entry.description}
-                    </span>
-                  ) : null}
-                  <span className="flex flex-wrap items-center gap-3">
-                    <Badge variant="muted">{entry.language}</Badge>
-                    <span className="text-muted-foreground text-sm">
-                      {t('questionCount', { count: entry.questionCount })}
-                    </span>
+                  {entry.title}
+                </Link>
+              );
+              const facts = (
+                <>
+                  <span className="text-muted-foreground flex flex-wrap items-center gap-x-1 text-xs">
+                    <span>{t('questionCount', { count: entry.questionCount })}</span>
+                    <span>· {entry.language.toUpperCase()}</span>
+                    <span>· {entry.author}</span>
+                    <span>· {t('licence', { name: entry.license })}</span>
                   </span>
-                  <span className="text-muted-foreground text-xs">
-                    {entry.author} · {t('licence', { name: entry.license })}
-                  </span>
-                  <span className="text-muted-foreground break-all text-xs">
+                  <span className="text-muted-foreground text-xs break-all">
                     {t('community.source', { source: entry.id })}
                   </span>
-                </Link>
-                <div className={view === 'grid' ? 'border-t p-3' : 'border-t p-3 sm:border-t-0'}>
+                </>
+              );
+              const action = (
+                <span className="relative z-10 flex items-center justify-end gap-2">
                   <Button
+                    type="button"
                     size="sm"
-                    className={view === 'grid' ? 'w-full' : 'w-full sm:w-auto'}
+                    variant="outline"
+                    className={twoLineButton}
                     disabled={take.isPending}
                     onClick={() => void create(entry.key)}
                   >
-                    <CopyPlus className="size-4" />
+                    <CopyPlus className="size-4 shrink-0" />
                     {t('createFrom')}
                   </Button>
-                </div>
-              </li>
-            ))}
+                </span>
+              );
+              return view === 'grid' ? (
+                <li
+                  key={entry.key}
+                  className="hover:bg-accent/60 relative flex flex-col overflow-hidden rounded-lg border transition-colors"
+                >
+                  <span className="flex flex-1 flex-col gap-2 p-4">
+                    {titleLink}
+                    {entry.description ? (
+                      <span className="text-muted-foreground line-clamp-2 text-sm">
+                        {entry.description}
+                      </span>
+                    ) : null}
+                    <span className="mt-auto flex flex-col gap-1 pt-1">{facts}</span>
+                  </span>
+                  <span className="flex justify-end border-t p-3">{action}</span>
+                </li>
+              ) : (
+                <li
+                  key={entry.key}
+                  className="hover:bg-accent/60 relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4"
+                >
+                  <span className="flex min-w-0 flex-1 flex-col gap-1">
+                    {titleLink}
+                    {facts}
+                  </span>
+                  {action}
+                </li>
+              );
+            })}
           </ul>
           <Pagination page={current} pages={pages} onChange={setPage} />
         </>
