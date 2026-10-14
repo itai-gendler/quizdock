@@ -125,6 +125,7 @@ function SelectionEditor({ selection }: { selection: SelectionDetailDto }) {
   const [description, setDescription] = useState(selection.description ?? '');
   const [items, setItems] = useState<Item[]>(selection.items);
   const [adding, setAdding] = useState(false);
+  const [selected, setSelected] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => setItems(selection.items), [selection.items]);
 
@@ -237,7 +238,7 @@ function SelectionEditor({ selection }: { selection: SelectionDetailDto }) {
               items={items.map((i) => i.quizId)}
               strategy={verticalListSortingStrategy}
             >
-              <ol className="flex flex-col gap-2">
+              <ol className="flex flex-col gap-0.5">
                 {items.map((item, i) => (
                   <SortableRow key={item.quizId} id={item.quizId} handleLabel={t('dragHandle')}>
                     {(handle) => (
@@ -246,6 +247,8 @@ function SelectionEditor({ selection }: { selection: SelectionDetailDto }) {
                         index={i}
                         last={i === items.length - 1}
                         handle={handle}
+                        active={selected === item.quizId}
+                        onSelect={() => setSelected(selected === item.quizId ? null : item.quizId)}
                         onMove={(to) => move(i, to)}
                         onChange={(patch) => change(i, patch)}
                         onRemove={() => saveItems(items.filter((_, j) => j !== i))}
@@ -277,6 +280,8 @@ function ItemRow({
   index,
   last,
   handle,
+  active,
+  onSelect,
   onMove,
   onChange,
   onRemove,
@@ -284,80 +289,145 @@ function ItemRow({
   item: Item;
   index: number;
   last: boolean;
-  /** Its drag handle; the arrows stay for the keyboard. */
+  /** Its drag handle, shown once the line is selected. */
   handle: ReactNode;
+  /** The line selected: it shows how to move it, and its settings. */
+  active: boolean;
+  onSelect: () => void;
   onMove: (to: number) => void;
   onChange: (patch: Partial<Item>) => void;
   onRemove: () => void;
 }) {
   const { t } = useTranslation('selections');
+  const pace = item.mode === 'auto' ? t('paceAuto') : t('paceManual');
   return (
     <div
       className={cn(
-        'flex flex-col gap-3 rounded-lg border p-3 sm:flex-row sm:items-center',
-        // One the owner may read but not play: greyed, with why.
-        item.unplayable && 'bg-muted/40',
+        'flex flex-col rounded-xl border border-transparent transition-colors',
+        active ? 'bg-primary/5 border-primary/30' : 'hover:bg-accent/60',
       )}
     >
-      <span className="flex shrink-0 items-center gap-1">
-        {handle}
-        <span className="text-muted-foreground w-6 text-sm tabular-nums">{index + 1}.</span>
-      </span>
-      <span className={cn('flex min-w-0 flex-1 flex-col gap-0.5', item.unplayable && 'opacity-60')}>
-        <span className="truncate font-medium">{item.title}</span>
-        <span className="text-muted-foreground flex flex-wrap gap-x-2 text-xs">
-          <span>{t('questionCount', { count: item.questionCount })}</span>
-          {item.ownerName ? <span>· {t('ownedBy', { name: item.ownerName })}</span> : null}
-          {item.unplayable ? <span>· {t(`unplayable.${item.unplayable}`)}</span> : null}
-        </span>
-      </span>
-      <span className="flex flex-wrap items-center gap-2">
-        <Select
-          className="h-8 w-auto"
-          value={item.mode}
-          aria-label={t('pace', { title: item.title })}
-          onChange={(e) => onChange({ mode: e.target.value as Item['mode'] })}
-        >
-          <option value="manual">{t('paceManual')}</option>
-          <option value="auto">{t('paceAuto')}</option>
-        </Select>
-        <CheckboxField
-          checked={item.autoStart}
-          onChange={(autoStart) => onChange({ autoStart })}
-          label={t('autoStart')}
-        />
-        <Button
+      <div className="flex items-stretch gap-1">
+        {/* As the quiz editor's steps: the selected line shows how to move it, nothing on hover only. */}
+        {active ? <div className="flex items-center pl-1">{handle}</div> : null}
+        <button
           type="button"
-          variant="ghost"
-          size="icon"
-          className="size-8"
-          disabled={index === 0}
-          aria-label={t('moveUp', { title: item.title })}
-          onClick={() => onMove(index - 1)}
+          aria-current={active ? 'true' : undefined}
+          onClick={onSelect}
+          className="flex min-w-0 flex-1 items-start gap-3 py-3 pr-2 pl-2 text-left"
         >
-          <ArrowUp className="size-4" />
-        </Button>
-        <Button
-          type="button"
-          variant="ghost"
-          size="icon"
-          className="size-8"
-          disabled={last}
-          aria-label={t('moveDown', { title: item.title })}
-          onClick={() => onMove(index + 1)}
-        >
-          <ArrowDown className="size-4" />
-        </Button>
-        <ItemMenu item={item} onRemove={onRemove} />
-      </span>
+          <span
+            className={cn(
+              'mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-md text-xs font-semibold tabular-nums',
+              active ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground',
+            )}
+          >
+            {index + 1}
+          </span>
+          {/* One the owner may read but not play: greyed, with why. */}
+          <span className={cn('min-w-0 flex-1', item.unplayable && 'opacity-60')}>
+            <span className="line-clamp-2 block text-sm font-medium">{item.title}</span>
+            <span className="text-muted-foreground mt-0.5 flex flex-wrap gap-x-1 text-xs">
+              <span>{t('questionCount', { count: item.questionCount })}</span>
+              {item.ownerName ? <span>· {t('ownedBy', { name: item.ownerName })}</span> : null}
+              <span>· {pace}</span>
+              {item.autoStart ? <span>· {t('autoStart')}</span> : null}
+              {item.unplayable ? <span>· {t(`unplayable.${item.unplayable}`)}</span> : null}
+            </span>
+          </span>
+        </button>
+        <div className="flex items-center gap-0.5 pr-1">
+          {active ? (
+            <>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="size-7"
+                disabled={index === 0}
+                aria-label={t('moveUp', { title: item.title })}
+                onClick={() => onMove(index - 1)}
+              >
+                <ArrowUp className="size-3.5" />
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="size-7"
+                disabled={last}
+                aria-label={t('moveDown', { title: item.title })}
+                onClick={() => onMove(index + 1)}
+              >
+                <ArrowDown className="size-3.5" />
+              </Button>
+            </>
+          ) : null}
+          <ItemMenu
+            item={item}
+            canMoveUp={index > 0}
+            canMoveDown={!last}
+            onMove={(d) => onMove(index + d)}
+            onRemove={onRemove}
+          />
+        </div>
+      </div>
+      {active ? (
+        <div className="flex flex-wrap items-center gap-3 px-3 pb-3">
+          <Select
+            className="h-8 w-auto"
+            value={item.mode}
+            aria-label={t('pace', { title: item.title })}
+            onChange={(e) => onChange({ mode: e.target.value as Item['mode'] })}
+          >
+            <option value="manual">{t('paceManual')}</option>
+            <option value="auto">{t('paceAuto')}</option>
+          </Select>
+          <CheckboxField
+            checked={item.autoStart}
+            onChange={(autoStart) => onChange({ autoStart })}
+            label={t('autoStart')}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }
 
-/** A line's ⋮: open or preview its quiz, or take it out of the selection. */
-function ItemMenu({ item, onRemove }: { item: Item; onRemove: () => void }) {
+/** A line's ⋮, as the quiz editor's: open or preview its quiz, move it, or take it out. */
+function ItemMenu({
+  item,
+  canMoveUp,
+  canMoveDown,
+  onMove,
+  onRemove,
+}: {
+  item: Item;
+  canMoveUp: boolean;
+  canMoveDown: boolean;
+  onMove: (direction: -1 | 1) => void;
+  onRemove: () => void;
+}) {
   const { t } = useTranslation('selections');
   const navigate = useNavigate();
+  const entry = (
+    label: string,
+    icon: ReactNode,
+    run: () => void,
+    close: () => void,
+    disabled = false,
+  ) => (
+    <MenuItem
+      disabled={disabled}
+      onClick={() => {
+        close();
+        run();
+      }}
+    >
+      {icon}
+      {label}
+    </MenuItem>
+  );
   return (
     <Popover
       align="end"
@@ -366,7 +436,7 @@ function ItemMenu({ item, onRemove }: { item: Item; onRemove: () => void }) {
           type="button"
           variant="ghost"
           size="icon"
-          className="size-8"
+          className="size-7"
           aria-label={t('itemActions', { title: item.title })}
           aria-expanded={open}
           onClick={toggle}
@@ -377,24 +447,33 @@ function ItemMenu({ item, onRemove }: { item: Item; onRemove: () => void }) {
     >
       {(close) => (
         <div className="flex min-w-48 flex-col">
-          <MenuItem
-            onClick={() => {
-              close();
-              void navigate({ to: '/quizzes/$quizId', params: { quizId: item.quizId } });
-            }}
-          >
-            <Pencil className="size-4" />
-            {t('openQuiz')}
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              close();
-              window.open(`/quizzes/${item.quizId}/preview`, '_blank', 'noopener');
-            }}
-          >
-            <ExternalLink className="size-4" />
-            {t('preview')}
-          </MenuItem>
+          {entry(
+            t('openQuiz'),
+            <Pencil className="size-4" />,
+            () => void navigate({ to: '/quizzes/$quizId', params: { quizId: item.quizId } }),
+            close,
+          )}
+          {entry(
+            t('preview'),
+            <ExternalLink className="size-4" />,
+            () => window.open(`/quizzes/${item.quizId}/preview`, '_blank', 'noopener'),
+            close,
+          )}
+          <MenuSeparator />
+          {entry(
+            t('moveUp', { title: item.title }),
+            <ArrowUp className="size-4" />,
+            () => onMove(-1),
+            close,
+            !canMoveUp,
+          )}
+          {entry(
+            t('moveDown', { title: item.title }),
+            <ArrowDown className="size-4" />,
+            () => onMove(1),
+            close,
+            !canMoveDown,
+          )}
           <MenuSeparator />
           <MenuItem
             destructive

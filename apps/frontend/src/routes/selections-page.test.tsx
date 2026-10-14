@@ -115,6 +115,9 @@ describe('SelectionPage', () => {
     renderApp('/selections/s1');
     expect(await screen.findByText(/brouillon : ne peut pas être joué/)).toBeInTheDocument();
     expect(screen.getByText(/2 de ses quiz ne sont pas partagés/)).toBeInTheDocument();
+    // As the quiz editor's steps: the arrows show once the line is selected.
+    expect(screen.queryByRole('button', { name: 'Monter « Histoire »' })).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: /^2\s*Histoire/ }));
     fireEvent.click(screen.getByRole('button', { name: 'Monter « Histoire »' }));
     await waitFor(() =>
       expect(fetchMock.mock.calls.some(([, o]) => o?.method === 'PUT')).toBe(true),
