@@ -108,6 +108,7 @@ const quiz = (id: string, title: string, over: Record<string, unknown> = {}) => 
 describe('ControlPage: who is ready in the lobby (#104)', () => {
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
     vi.clearAllMocks();
   });
 
@@ -145,6 +146,7 @@ describe('ControlPage: who is ready in the lobby (#104)', () => {
 describe('ControlPage: the Projection tab (audit F9)', () => {
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
     vi.clearAllMocks();
   });
 
@@ -176,6 +178,7 @@ describe('ControlPage: the Projection tab (audit F9)', () => {
 describe('ControlPage: the room’s name (#89)', () => {
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
     vi.clearAllMocks();
   });
 
@@ -200,6 +203,7 @@ describe('ControlPage: the room’s name (#89)', () => {
 describe('ControlPage: the room’s next quiz (#89)', () => {
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
     vi.clearAllMocks();
     vi.unstubAllGlobals();
   });
@@ -402,6 +406,7 @@ describe('ControlPage: the room’s next quiz (#89)', () => {
 describe('ControlPage (console hôte)', () => {
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
     vi.clearAllMocks();
   });
 
@@ -449,6 +454,8 @@ describe('ControlPage (console hôte)', () => {
     localStorage.setItem('live.localUser', 'Animateur');
     hookState.value = view({ players: [{ playerId: 'p1', nickname: 'Alice' }] });
     renderApp('/session/482913/console');
+    // In the lobby's second tab of settings.
+    fireEvent.click(await screen.findByRole('tab', { name: 'Écrans et son' }));
     fireEvent.change(await screen.findByLabelText('Langue des écrans'), {
       target: { value: 'tr' },
     });
@@ -486,6 +493,7 @@ describe('ControlPage (console hôte)', () => {
       },
     });
     renderApp('/session/482913/console');
+    fireEvent.click(await screen.findByRole('tab', { name: 'Écrans et son' }));
 
     const select = await screen.findByLabelText('Qui entend le son dans ce quiz');
     expect(select).toHaveValue('projection_remote');
@@ -665,9 +673,42 @@ describe('ControlPage (console hôte)', () => {
 
     await waitFor(() => expect(share).toHaveBeenCalledTimes(1));
     expect(share.mock.calls[0][0].url).toContain('/join/482913');
-    // The link, never an image of the QR code; the PIN rides in the text.
-    expect(share.mock.calls[0][0]).not.toHaveProperty('files');
-    expect(share.mock.calls[0][0].text).toContain('482913');
+    // The link alone, its PIN in it: no text a target would glue to it, no QR picture.
+    expect(share.mock.calls[0][0]).toEqual({ url: expect.stringMatching(/\/join\/482913$/) });
+    vi.unstubAllGlobals();
+  });
+
+  it('previews the projection in the room’s language, the console staying in its own', async () => {
+    localStorage.setItem('live.localUser', 'Animateur');
+    hookState.value = view({ state: GameState.Lobby, language: 'en' });
+    renderApp('/session/482913/console');
+    fireEvent.click(await screen.findByRole('tab', { name: /Projection/ }));
+    expect(await screen.findByText('Join at')).toBeInTheDocument(); // the room's English
+    expect(screen.getByRole('tab', { name: /Console/ })).toBeInTheDocument(); // the host's French
+    expect(screen.queryByText('Rejoignez sur')).toBeNull();
+  });
+
+  it('the projection on another computer is shared as its link alone', async () => {
+    localStorage.setItem('live.localUser', 'Animateur');
+    hookState.value = view({});
+    const share = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal('navigator', { ...navigator, share });
+    renderApp('/session/482913/console');
+    fireEvent.click(
+      await screen.findByRole('button', { name: /Projeter depuis un autre ordinateur/ }),
+    );
+    const popover = screen
+      .getByText(/Projeter depuis un autre ordinateur/, { selector: 'span' })
+      .closest('form')!;
+    await act(async () => {
+      within(popover)
+        .getByRole('button', { name: /Partager/ })
+        .click();
+    });
+    await waitFor(() => expect(share).toHaveBeenCalledTimes(1));
+    expect(share.mock.calls[0][0]).toEqual({
+      url: expect.stringMatching(/\/session\/482913\/projection$/),
+    });
     vi.unstubAllGlobals();
   });
 
