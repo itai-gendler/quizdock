@@ -4,7 +4,7 @@
 > ([SPECIFICATIONS-ROOM.md](./SPECIFICATIONS-ROOM.md)) improvises a series of quizzes live; a selection prepares one.
 > The model, the decisions taken, the data, and the tests.
 
-Status: **settled** (2026-10-14), nothing delivered.
+Status: **delivered on `dev`** (2026-10-14), not released yet.
 
 ---
 
