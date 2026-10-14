@@ -3,9 +3,9 @@ import type { BuiltinTheme, ThemeFont, ThemeSlot, ThemeSlotName, ThemeValues } f
 import { ICON_SETS } from './theme-icons';
 
 /**
- * The shipped themes (docs/themes.md). *Classic* is today's rendering, the default: an
- * upgrade changes only its glyphs. Slots list their colours in `OPTION_COLORS` order;
- * a null icon is the slot's shipped glyph (`shape-icon.tsx`).
+ * The shipped themes (docs/themes.md). *Classic* is the default. Slots list their colours
+ * in `OPTION_COLORS` order; a null icon is the slot's shipped glyph, an animal
+ * (`shape-icon.tsx`), which *Kids* keeps.
  */
 
 const slots = (colors: string[]): Record<ThemeSlotName, ThemeSlot> => {
@@ -24,6 +24,50 @@ const slots = (colors: string[]): Record<ThemeSlotName, ThemeSlot> => {
   ) as Record<ThemeSlotName, ThemeSlot>;
 };
 
+/**
+ * The same slots, each with an icon of the bank (`group/name`), given in the default order
+ * of the answers (green, red, blue, yellow…).
+ */
+const withIcons = (
+  base: Record<ThemeSlotName, ThemeSlot>,
+  icons: string[],
+): Record<ThemeSlotName, ThemeSlot> =>
+  Object.fromEntries(
+    OPTION_ORDER.map((p, i) => [p.color, { ...base[p.color], icon: `bank:${icons[i]}` }]),
+  ) as Record<ThemeSlotName, ThemeSlot>;
+
+/** Geometric, but not the usual triangle, diamond, circle and square; no two alike. */
+const SHAPES = [
+  'symbols/star-five',
+  'symbols/hexagon',
+  'symbols/x-bold',
+  'symbols/crescent',
+  'symbols/heart',
+  'symbols/semicircle',
+  'symbols/star-four',
+  'symbols/bowtie',
+];
+const PARTY = [
+  'new-year/confetti',
+  'new-year/balloon',
+  'objects/gift',
+  'objects/crown',
+  'new-year/music-notes',
+  'new-year/sparkle',
+  'objects/bell',
+  'new-year/champagne',
+];
+const NIGHT_SKY = [
+  'nature/moon',
+  'nature/star',
+  'travel/rocket',
+  'nature/cloud',
+  'nature/lightning',
+  'nature/snowflake',
+  'nature/drop',
+  'nature/mountains',
+];
+
 const CLASSIC_SLOTS = [
   '#e7000b',
   '#155dfc',
@@ -33,6 +77,18 @@ const CLASSIC_SLOTS = [
   '#ff6900',
   '#e60076',
   '#009689',
+];
+
+/** Classic's hues, less saturated (its settled yellow kept): Sober's quieter answers. */
+const SOBER_SLOTS = [
+  '#c8423b',
+  '#3b6cc9',
+  '#fe9a00',
+  '#2f9461',
+  '#7f57c2',
+  '#dd6a2e',
+  '#c4507f',
+  '#2b8a84',
 ];
 
 /**
@@ -105,7 +161,7 @@ function seasonal(t: {
 export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
   classic: {
     background: { color: '#ffffff', textTone: 'dark' },
-    slots: slots(CLASSIC_SLOTS),
+    slots: withIcons(slots(CLASSIC_SLOTS), SHAPES),
     accent: '#2b62ef',
     font: { builtin: 'system' },
     sounds: {},
@@ -114,12 +170,12 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
   },
   sober: {
     background: { color: '#f5f5f4', textTone: 'dark' },
-    slots: slots(CLASSIC_SLOTS),
+    slots: slots(SOBER_SLOTS),
     accent: '#334155',
     font: { builtin: 'inter' },
     sounds: {},
     motion: { style: 'sober', revealEffect: null },
-    markers: 'icons',
+    markers: 'letters',
   },
   kids: {
     background: {
@@ -140,7 +196,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
       textTone: 'light',
       gradient: { angle: 135, colors: ['#2a0a4a', '#5b1a6e', '#8a1c4a'] },
     },
-    slots: slots(CLASSIC_SLOTS),
+    slots: withIcons(slots(CLASSIC_SLOTS), PARTY),
     accent: '#ffc93c',
     font: { builtin: 'nunito' },
     sounds: {},
@@ -149,7 +205,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
   },
   night: {
     background: { color: '#0f172a', textTone: 'light' },
-    slots: slots(CLASSIC_SLOTS),
+    slots: withIcons(slots(CLASSIC_SLOTS), NIGHT_SKY),
     accent: '#38bdf8',
     font: { builtin: 'system' },
     sounds: {},
@@ -158,7 +214,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
   },
   'high-contrast': {
     background: { color: '#000000', textTone: 'light' },
-    slots: slots(ACCESSIBLE_ON_DARK),
+    slots: withIcons(slots(ACCESSIBLE_ON_DARK), SHAPES),
     accent: '#ffe14d',
     font: { builtin: 'atkinson' },
     sounds: {},
@@ -167,7 +223,7 @@ export const BUILTIN_THEME_VALUES: Record<BuiltinTheme, ThemeValues> = {
   },
   'high-contrast-light': {
     background: { color: '#ffffff', textTone: 'dark' },
-    slots: slots(ACCESSIBLE),
+    slots: withIcons(slots(ACCESSIBLE), SHAPES),
     accent: '#1d4ed8',
     font: { builtin: 'atkinson' },
     sounds: {},
