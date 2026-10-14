@@ -303,13 +303,20 @@ function ItemRow({
   return (
     <div
       className={cn(
-        'flex flex-col rounded-xl border border-transparent transition-colors',
+        'group flex flex-col rounded-xl border border-transparent transition-colors',
         active ? 'bg-primary/5 border-primary/30' : 'hover:bg-accent/60',
       )}
     >
       <div className="flex items-stretch gap-1">
-        {/* As the quiz editor's steps: the selected line shows how to move it, nothing on hover only. */}
-        {active ? <div className="flex items-center pl-1">{handle}</div> : null}
+        {/* Its handle shows on hover, and stays on the selected line (kept in place: nothing moves). */}
+        <div
+          className={cn(
+            'flex items-center pl-1 transition-opacity',
+            active ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 focus-within:opacity-100',
+          )}
+        >
+          {handle}
+        </div>
         <button
           type="button"
           aria-current={active ? 'true' : undefined}
