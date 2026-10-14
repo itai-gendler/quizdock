@@ -237,5 +237,13 @@
   "background": {
     "image_and_gradient": "Ein Hintergrund ist ein Bild oder ein Verlauf, nicht beides.",
     "mode_required": "Wähle, wie das Bild angeordnet wird."
+  },
+  "selection": {
+    "not_found": "Auswahl nicht gefunden.",
+    "nothing_playable": "Kein Quiz dieser Auswahl kann gespielt werden.",
+    "too_many_quizzes": "Eine Auswahl enthält höchstens 50 Quizze.",
+    "duplicate_quiz": "Ein Quiz erscheint nur einmal in einer Auswahl.",
+    "quiz_not_found": "Dieses Quiz kann nicht hinzugefügt werden: Es gehört weder Ihnen noch ist es mit Ihnen geteilt.",
+    "nothing_to_save": "Dieser Raum hat kein Quiz gespielt, das Sie in einer Auswahl behalten können."
   }
 }

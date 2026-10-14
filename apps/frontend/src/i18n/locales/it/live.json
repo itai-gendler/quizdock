@@ -530,5 +530,13 @@
     },
     "muteBus": "Silenzia {{bus}}",
     "unmuteBus": "Riattiva {{bus}}"
+  },
+  "selection": {
+    "title": "Selezione: {{name}}",
+    "position": "{{at}} di {{count}}",
+    "next": "successivo",
+    "played": "giocato",
+    "save": "Salva come selezione",
+    "saved": "Salvata come selezione: aprila"
   }
 }

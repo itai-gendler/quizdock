@@ -542,5 +542,13 @@
     },
     "muteBus": "Wycisz: {{bus}}",
     "unmuteBus": "Włącz: {{bus}}"
+  },
+  "selection": {
+    "title": "Zestaw: {{name}}",
+    "position": "{{at}} z {{count}}",
+    "next": "następny",
+    "played": "rozegrany",
+    "save": "Zapisz jako zestaw",
+    "saved": "Zapisano jako zestaw: otwórz"
   }
 }

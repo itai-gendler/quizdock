@@ -238,5 +238,13 @@
   "background": {
     "image_and_gradient": "Uno sfondo è un’immagine o una sfumatura, non entrambe.",
     "mode_required": "Scegli come disporre l’immagine."
+  },
+  "selection": {
+    "not_found": "Selezione non trovata.",
+    "nothing_playable": "Nessun quiz di questa selezione può essere giocato.",
+    "too_many_quizzes": "Una selezione contiene al massimo 50 quiz.",
+    "duplicate_quiz": "Un quiz compare una sola volta in una selezione.",
+    "quiz_not_found": "Questo quiz non può essere aggiunto: non è tuo né condiviso con te.",
+    "nothing_to_save": "Questa sala non ha giocato nessun quiz che tu possa tenere in una selezione."
   }
 }

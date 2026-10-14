@@ -518,5 +518,13 @@
     },
     "muteBus": "{{bus}}をミュート",
     "unmuteBus": "{{bus}}のミュートを解除"
+  },
+  "selection": {
+    "title": "セレクション：{{name}}",
+    "position": "{{count}} 件中 {{at}} 件目",
+    "next": "次",
+    "played": "出題済み",
+    "save": "セレクションとして保存",
+    "saved": "セレクションとして保存しました：開く"
   }
 }

@@ -5,6 +5,8 @@ import { ImageChoiceGrid, optionLabel } from '../game/image-choice';
 import {
   LobbyCountdown,
   BackToLobbyButton,
+  RoomSelectionPanel,
+  SaveAsSelectionButton,
   QuizPickButton,
   RoomStandingsPanel,
   roomLabel,
@@ -332,6 +334,9 @@ function HostConsole({
       <SessionOver
         message={t('control.sessionEnded')}
         quizId={view.keepResults ? view.quizId : null}
+        saveAsSelection={
+          !view.selection && (view.standings?.quizzesPlayed ?? 0) > 0 ? pin : undefined
+        }
       />
     );
   }
@@ -636,6 +641,12 @@ function HostConsole({
   let centre: React.ReactNode;
   let status: React.ReactNode;
   let primary: React.ReactNode;
+  // The room's selection, or, once it played something, the way to keep it as one.
+  const selectionBlock = view.selection ? (
+    <RoomSelectionPanel selection={view.selection} />
+  ) : (view.standings?.quizzesPlayed ?? 0) > 0 ? (
+    <SaveAsSelectionButton pin={pin} />
+  ) : null;
 
   if (phase === 'lobby' && noQuiz) {
     // Back from a quiz: the room waits in its lobby for the host to pick the next.
@@ -643,6 +654,7 @@ function HostConsole({
       <>
         {invite}
         {view.standings ? <RoomStandingsPanel standings={view.standings} max={5} /> : null}
+        {selectionBlock}
         <p className="text-muted-foreground text-sm">{t('control.noQuizYetHint')}</p>
       </>
     );
@@ -660,6 +672,7 @@ function HostConsole({
       <>
         {invite}
         {view.standings ? <RoomStandingsPanel standings={view.standings} max={5} /> : null}
+        {selectionBlock}
         <section className="flex flex-col gap-3">
           <div>
             <SectionTitle>{t('control.beforeStarting')}</SectionTitle>
@@ -1351,11 +1364,14 @@ function SessionOver({
   message,
   muted = false,
   quizId,
+  saveAsSelection,
 }: {
   message: string;
   muted?: boolean;
   /** The quiz just played: its results come first once the room is closed. */
   quizId?: string | null;
+  /** The room just closed, when it played quizzes: offered to keep as a selection. */
+  saveAsSelection?: string;
 }) {
   const { t } = useTranslation('live');
   return (
@@ -1371,6 +1387,7 @@ function SessionOver({
           {t('control.seeResults')}
         </Link>
       ) : null}
+      {saveAsSelection ? <SaveAsSelectionButton pin={saveAsSelection} /> : null}
       <Link to="/quizzes" className="underline">
         {t('control.backToQuizzes')}
       </Link>

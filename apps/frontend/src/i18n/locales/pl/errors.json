@@ -239,5 +239,13 @@
   "background": {
     "image_and_gradient": "Tło to obraz albo gradient, nie oba naraz.",
     "mode_required": "Wybierz, jak ułożyć obraz."
+  },
+  "selection": {
+    "not_found": "Nie znaleziono zestawu.",
+    "nothing_playable": "Żadnego quizu z tego zestawu nie można rozegrać.",
+    "too_many_quizzes": "Zestaw zawiera co najwyżej 50 quizów.",
+    "duplicate_quiz": "Quiz występuje w zestawie tylko raz.",
+    "quiz_not_found": "Nie można dodać tego quizu: nie jest twój ani nie jest ci udostępniony.",
+    "nothing_to_save": "Ten pokój nie rozegrał żadnego quizu, który możesz zachować w zestawie."
   }
 }

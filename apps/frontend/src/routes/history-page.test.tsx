@@ -19,6 +19,7 @@ describe('History by gathering', () => {
         method: 'GET',
         path: '/history/rooms/room-1',
         body: {
+          roomId: 'room-1',
           name: null,
           hostName: 'Marc',
           sessions: [
@@ -64,5 +65,38 @@ describe('History by gathering', () => {
     expect(await screen.findByRole('link', { name: 'Géométrie' })).toBeInTheDocument();
     // Back to the sessions: the page's own link, beside the top bar's.
     expect(screen.getAllByRole('link', { name: 'Séances' })).toHaveLength(2);
+  });
+
+  it('a room’s card saves its archived quizzes as a selection', async () => {
+    const fetchMock = mockApi([
+      {
+        method: 'GET',
+        path: '/history/rooms/room-1',
+        body: {
+          roomId: 'room-1',
+          name: 'Jeudi',
+          hostName: 'Marc',
+          sessions: [
+            { ...session('a', 'Fractions'), current: false },
+            { ...session('b', 'Géométrie'), current: false },
+          ],
+          standings: null,
+        },
+      },
+      {
+        method: 'POST',
+        path: '/selections/from-room',
+        status: 201,
+        body: { id: 'sel', name: 'Jeudi', items: [] },
+      },
+    ]);
+    renderApp('/history/room-1');
+    fireEvent.click(await screen.findByRole('button', { name: /Enregistrer comme sélection/ }));
+    expect(await screen.findByRole('link', { name: /Enregistré comme sélection/ })).toHaveAttribute(
+      'href',
+      '/selections/sel',
+    );
+    const post = fetchMock.mock.calls.find(([, o]) => o?.method === 'POST');
+    expect(JSON.parse(String(post?.[1]?.body))).toEqual({ roomId: 'room-1' });
   });
 });

@@ -238,5 +238,13 @@
   "background": {
     "image_and_gradient": "Un fond est une image ou un dégradé, pas les deux.",
     "mode_required": "Choisissez comment l’image est disposée."
+  },
+  "selection": {
+    "not_found": "Sélection introuvable.",
+    "nothing_playable": "Aucun quiz de cette sélection ne peut être joué.",
+    "too_many_quizzes": "Une sélection contient au plus 50 quiz.",
+    "duplicate_quiz": "Un quiz n’apparaît qu’une fois dans une sélection.",
+    "quiz_not_found": "Ce quiz ne peut pas être ajouté : il n’est ni à vous ni partagé avec vous.",
+    "nothing_to_save": "Ce salon n’a joué aucun quiz que vous puissiez garder dans une sélection."
   }
 }

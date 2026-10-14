@@ -518,5 +518,13 @@
     },
     "muteBus": "{{bus}} sesini kapat",
     "unmuteBus": "{{bus}} sesini aç"
+  },
+  "selection": {
+    "title": "Seçki: {{name}}",
+    "position": "{{count}} quizden {{at}}.",
+    "next": "sıradaki",
+    "played": "oynandı",
+    "save": "Seçki olarak kaydet",
+    "saved": "Seçki olarak kaydedildi: aç"
   }
 }
