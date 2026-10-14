@@ -24,7 +24,10 @@ import { MenuItem } from '@/components/ui/menu-item';
 import { SectionTitle } from '@/components/ui/page-title';
 import { QuizzesHeader } from '@/components/quizzes-header';
 import { Popover } from '@/components/ui/popover';
+import { FilterField } from '@/components/ui/filter-field';
+import { Select } from '@/components/ui/select';
 import { fold } from '@/lib/text';
+import { isString, useSessionState } from '@/lib/use-session-state';
 import { builtinValues, isAccessible, themeValuesOf } from '@/lib/themes';
 import { cn } from '@/lib/utils';
 import { useRole } from '../auth/use-role';
@@ -55,7 +58,8 @@ export function ThemesPage() {
   const { isManager } = useRole();
   const { data } = useThemesControllerList();
   const list = data?.data;
-  const [q, setQ] = useState('');
+  const [q, setQ] = useSessionState('quizdock.themes.filter.search', '', isString);
+  const [owner, setOwner] = useSessionState('quizdock.themes.filter.owner', '', isString);
   const [accessibleOnly, setAccessibleOnly] = useState(false);
   const [view, setView] = useStoredView('quizdock.themes.view', 'grid');
   const [toDelete, setToDelete] = useState<ThemeDto | null>(null);
@@ -83,7 +87,13 @@ export function ThemesPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [q, accessibleOnly, t],
   );
-  const mine = (list?.themes ?? []).filter((th) => matches(th.name, isAccessible(th)));
+  // Every host uses every theme: everyone's by default, narrowed to one host's on demand.
+  const owners = [
+    ...new Map((list?.themes ?? []).map((th) => [th.owner.id, th.owner])).values(),
+  ].sort((a, b) => a.name.localeCompare(b.name));
+  const mine = (list?.themes ?? []).filter(
+    (th) => matches(th.name, isAccessible(th)) && (!owner || th.owner.id === owner),
+  );
 
   const listClass =
     view === 'grid'
@@ -186,17 +196,30 @@ export function ThemesPage() {
         </p>
       ) : null}
 
-      <div className="flex flex-wrap items-center gap-3">
-        <label className="relative w-full max-w-xs">
+      {/* As My quizzes' bar: the search takes the room, the filters follow, the display last. */}
+      <div className="flex flex-wrap items-end gap-3">
+        <label className="relative min-w-[12rem] flex-1 basis-full sm:basis-auto">
+          <span className="sr-only">{t('search')}</span>
           <Search className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
           <Input
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={t('search')}
-            aria-label={t('search')}
             className="pl-8"
           />
         </label>
+        {owners.length > 1 ? (
+          <FilterField label={t('dashboard:filterOwner')}>
+            <Select value={owner} onChange={(e) => setOwner(e.target.value)}>
+              <option value="">{t('dashboard:ownerAll')}</option>
+              {owners.map((o) => (
+                <option key={o.id} value={o.id}>
+                  {o.name}
+                </option>
+              ))}
+            </Select>
+          </FilterField>
+        ) : null}
         <button
           type="button"
           aria-pressed={accessibleOnly}
@@ -209,7 +232,6 @@ export function ThemesPage() {
           {t('accessibleOnly')}
         </button>
         <Segmented
-          className="ml-auto"
           label={t('dashboard:display')}
           value={view}
           onChange={setView}
