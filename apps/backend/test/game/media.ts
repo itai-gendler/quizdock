@@ -1,4 +1,4 @@
-import { BUILTIN_THEME_VALUES } from '@quiz-dock/contracts';
+import { BUILTIN_THEME_VALUES, themeWithUrls } from '@quiz-dock/contracts';
 import type { INestApplication } from '@nestjs/common';
 import type { Socket } from 'socket.io-client';
 import { MediaService } from '../../src/media/media.service';
@@ -36,7 +36,7 @@ export function mediaTests(ctx: GameContext): void {
       audioTarget: 'projection_remote',
       language: expect.any(String), // the quiz's (#209)
       roomLanguage: '',
-      theme: BUILTIN_THEME_VALUES.classic, // none picked: the instance's default (THEMING §2.4)
+      theme: themeWithUrls(BUILTIN_THEME_VALUES.classic, {}), // none picked: the instance's default (THEMING §2.4)
     }); // the seeded quiz is silent
     // A phone too: the room's next quiz may play sound where this one does not (#89).
     const player = connect();
