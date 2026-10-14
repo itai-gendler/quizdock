@@ -196,50 +196,55 @@ export function ThemesPage() {
         </p>
       ) : null}
 
-      {/* As My quizzes' bar: the search takes the room, the filters follow, the display last. */}
-      <div className="flex flex-wrap items-end gap-3">
-        <label className="relative min-w-[12rem] flex-1 basis-full sm:basis-auto">
-          <span className="sr-only">{t('search')}</span>
-          <Search className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
-          <Input
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder={t('search')}
-            className="pl-8"
+      <div className="flex flex-col gap-3">
+        {/* As My quizzes' bar: the search takes the room, the filters follow, the display last. */}
+        <div className="flex flex-wrap items-end gap-3">
+          <label className="relative min-w-[12rem] flex-1 basis-full sm:basis-auto">
+            <span className="sr-only">{t('search')}</span>
+            <Search className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
+            <Input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder={t('search')}
+              className="pl-8"
+            />
+          </label>
+          {owners.length > 1 ? (
+            <FilterField label={t('dashboard:filterOwner')}>
+              <Select value={owner} onChange={(e) => setOwner(e.target.value)}>
+                <option value="">{t('dashboard:ownerAll')}</option>
+                {owners.map((o) => (
+                  <option key={o.id} value={o.id}>
+                    {o.name}
+                  </option>
+                ))}
+              </Select>
+            </FilterField>
+          ) : null}
+          <Segmented
+            label={t('dashboard:display')}
+            value={view}
+            onChange={setView}
+            options={[
+              { value: 'list', label: t('dashboard:viewList'), icon: ListIcon },
+              { value: 'grid', label: t('dashboard:viewGrid'), icon: LayoutGrid },
+            ]}
           />
-        </label>
-        {owners.length > 1 ? (
-          <FilterField label={t('dashboard:filterOwner')}>
-            <Select value={owner} onChange={(e) => setOwner(e.target.value)}>
-              <option value="">{t('dashboard:ownerAll')}</option>
-              {owners.map((o) => (
-                <option key={o.id} value={o.id}>
-                  {o.name}
-                </option>
-              ))}
-            </Select>
-          </FilterField>
-        ) : null}
-        <button
-          type="button"
-          aria-pressed={accessibleOnly}
-          onClick={() => setAccessibleOnly((v) => !v)}
-          className={cn(
-            'rounded-full border px-3 py-1 text-xs',
-            accessibleOnly && 'bg-primary text-primary-foreground border-transparent',
-          )}
-        >
-          {t('accessibleOnly')}
-        </button>
-        <Segmented
-          label={t('dashboard:display')}
-          value={view}
-          onChange={setView}
-          options={[
-            { value: 'list', label: t('dashboard:viewList'), icon: ListIcon },
-            { value: 'grid', label: t('dashboard:viewGrid'), icon: LayoutGrid },
-          ]}
-        />
+        </div>
+        {/* As My quizzes' tags: the chips on their own line, under the bar. */}
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            aria-pressed={accessibleOnly}
+            onClick={() => setAccessibleOnly((v) => !v)}
+            className={cn(
+              'rounded-full border px-3 py-1 text-xs',
+              accessibleOnly && 'bg-primary text-primary-foreground border-transparent',
+            )}
+          >
+            {t('accessibleOnly')}
+          </button>
+        </div>
       </div>
 
       <SectionTitle ref={shippedRef} className="scroll-mt-4">
