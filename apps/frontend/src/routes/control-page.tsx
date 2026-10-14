@@ -87,6 +87,7 @@ import { type QuestionClock, useQuestionClock } from '../game/use-countdown';
 import { ChromiumNotice } from '@/components/chromium-notice';
 import { QuestionMediaStage } from '../game/media/question-media-stage';
 import { ParticipantPreview } from '../game/participant-preview';
+import { InAudienceLanguage } from '../i18n/audience-language';
 import { ScaledStage } from '../game/slide-stage';
 import { joinBase, joinHostLabel, joinUrlFor } from '../game/join-url';
 import { JoinAddressPicker } from '../game/join-address-picker';
@@ -1096,11 +1097,16 @@ function HostConsole({
           {tab === 'screen' ? (
             // The projection's 16:9, scaled to the column. The console's own session: a
             // second one would re-join the room on the host's socket.
-            <ScaledStage className="rounded-xl border">
-              <ScreenSurface pin={pin} view={view} socket={socket} role="preview" fit="box" />
-            </ScaledStage>
+            // In the room's language, as the projection speaks it (#209).
+            <InAudienceLanguage tag={view.language}>
+              <ScaledStage className="rounded-xl border">
+                <ScreenSurface pin={pin} view={view} socket={socket} role="preview" fit="box" />
+              </ScaledStage>
+            </InAudienceLanguage>
           ) : tab === 'player' ? (
-            <ParticipantPreview view={view} pin={pin} />
+            <InAudienceLanguage tag={view.language}>
+              <ParticipantPreview view={view} pin={pin} />
+            </InAudienceLanguage>
           ) : (
             <div className="flex min-w-0 flex-col gap-5">{centre}</div>
           )}

@@ -620,6 +620,16 @@ describe('ControlPage (console hôte)', () => {
     vi.unstubAllGlobals();
   });
 
+  it('previews the projection in the room’s language, the console staying in its own', async () => {
+    localStorage.setItem('live.localUser', 'Animateur');
+    hookState.value = view({ state: GameState.Lobby, language: 'en' });
+    renderApp('/session/482913/console');
+    fireEvent.click(await screen.findByRole('tab', { name: /Projection/ }));
+    expect(await screen.findByText('Join at')).toBeInTheDocument(); // the room's English
+    expect(screen.getByRole('tab', { name: /Console/ })).toBeInTheDocument(); // the host's French
+    expect(screen.queryByText('Rejoignez sur')).toBeNull();
+  });
+
   it('the projection on another computer is shared as its link alone', async () => {
     localStorage.setItem('live.localUser', 'Animateur');
     hookState.value = view({});
