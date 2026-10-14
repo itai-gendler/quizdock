@@ -5,7 +5,7 @@ the quiz and its media, open the room, players join, questions, reveals, podium 
 administration of the instance. After them, every question type and slide as the
 big screen shows them. The README shows a selection.
 
-They are the sample quizzes the application ships (France, Taiwan, Türkiye), whose pictures
+They are three of the sample quizzes the application ships (France, Taiwan, Türkiye), whose pictures
 and sounds come from Wikimedia Commons, credited in the app. `tools/screenshots/run.sh` takes
 them all again, with the animated GIF, on a stack of their own (`tools/screenshots/`): see its header.
 

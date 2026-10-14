@@ -1,0 +1,92 @@
+{
+  "media": [
+    {
+      "file": "seville.webp",
+      "commons": "File:Plaza de España, Sevilla.jpg",
+      "alt": "The arcades and towers of the Plaza de España in Seville, by a canal",
+      "license": "Public domain",
+      "author": "Wzwz at German Wikipedia",
+      "page": "https://commons.wikimedia.org/wiki/File:Plaza_de_Espa%C3%B1a,_Sevilla.jpg"
+    },
+    {
+      "file": "madrid.webp",
+      "commons": "File:Gran Vía (Madrid) 1.jpg",
+      "alt": "The Gran Vía avenue in Madrid lined with grand buildings",
+      "license": "CC BY 2.0",
+      "author": "Felipe Gabaldón",
+      "page": "https://commons.wikimedia.org/wiki/File:Gran_V%C3%ADa_(Madrid)_1.jpg"
+    },
+    {
+      "file": "teide.webp",
+      "commons": "File:Mount Teide (16804649490).jpg",
+      "alt": "A snow-capped volcano above a landscape of dark lava",
+      "license": "CC BY 2.0",
+      "author": "oatsy40",
+      "page": "https://commons.wikimedia.org/wiki/File:Mount_Teide_(16804649490).jpg"
+    },
+    {
+      "file": "milan-cathedral.webp",
+      "commons": "File:Duomo Cathedral, Milan. - panoramio.jpg",
+      "alt": "A white marble Gothic façade with many spires",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 3.0",
+      "author": "2alessio8",
+      "page": "https://commons.wikimedia.org/wiki/File:Duomo_Cathedral,_Milan._-_panoramio.jpg"
+    },
+    {
+      "file": "sagrada-familia.webp",
+      "commons": "File:Sagrada Família, Barcelona.jpg",
+      "alt": "A basilica with tall spires rising above a city by the sea",
+      "width": 640,
+      "square": true,
+      "license": "CC0",
+      "author": "Julian Lupyan",
+      "page": "https://commons.wikimedia.org/wiki/File:Sagrada_Fam%C3%ADlia,_Barcelona.jpg"
+    },
+    {
+      "file": "st-basils.webp",
+      "commons": "File:Moscow, Saint Basil's Cathedral, Moscow, Russia.jpg",
+      "alt": "A church with colourful onion domes",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 4.0",
+      "author": "Vyacheslav Argenberg",
+      "page": "https://commons.wikimedia.org/wiki/File:Moscow,_Saint_Basil%27s_Cathedral,_Moscow,_Russia.jpg"
+    },
+    {
+      "file": "cologne-cathedral.webp",
+      "commons": "File:Cologne-Cathedral-May-2010.jpg",
+      "alt": "A dark Gothic cathedral tower seen from below",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 4.0",
+      "author": "Acediscovery",
+      "page": "https://commons.wikimedia.org/wiki/File:Cologne-Cathedral-May-2010.jpg"
+    },
+    {
+      "file": "paella.webp",
+      "commons": "File:Paella de fruit de mer.jpg",
+      "alt": "A pan of yellow rice with mussels, peppers and peas",
+      "license": "CC0",
+      "author": "Wilfredor",
+      "page": "https://commons.wikimedia.org/wiki/File:Paella_de_fruit_de_mer.jpg"
+    },
+    {
+      "file": "flamenco.webp",
+      "commons": "File:Sorolla Bailaoras en el Cafe Novedades de Sevilla (1914).jpg",
+      "alt": "A painting of two flamenco dancers in ruffled dresses on a café stage",
+      "license": "Public domain",
+      "author": "Joaquín Sorolla",
+      "page": "https://commons.wikimedia.org/wiki/File:Sorolla_Bailaoras_en_el_Cafe_Novedades_de_Sevilla_(1914).jpg"
+    },
+    {
+      "file": "alhambra.webp",
+      "commons": "File:Alhambra hill over Granada Spain.jpg",
+      "alt": "The Alhambra’s walls and towers on a wooded hill above Granada",
+      "license": "CC0",
+      "author": "Jebulon",
+      "page": "https://commons.wikimedia.org/wiki/File:Alhambra_hill_over_Granada_Spain.jpg"
+    }
+  ]
+}

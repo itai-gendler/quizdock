@@ -1,0 +1,466 @@
+{
+  "format": "quizdock/quiz",
+  "version": 6,
+  "quiz": {
+    "title": "Discover Germany",
+    "description": "Sample quiz — geography, history and culture of Germany.",
+    "language": "en",
+    "license": "CC-BY-4.0",
+    "revision": 1,
+    "feedbackEnabled": true,
+    "cover": null
+  },
+  "items": [
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "intro-title",
+          "text": "Discover Germany",
+          "level": 1,
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "intro-text",
+          "md": "Quick questions about *Deutschland* — from the Baltic coast to the Bavarian Alps.",
+          "align": "center",
+          "size": "large"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundImage": "media/brandenburg-gate-night.webp"
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "What is the capital of Germany?",
+      "answerExplanation": "Berlin became the capital of reunified Germany in 1990.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Munich",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Bonn",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Hamburg",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        },
+        {
+          "text": "Berlin",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/berlin.webp"
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "Germany shares a land border with nine countries.",
+      "answerExplanation": "Its neighbours are Denmark, Poland, Czechia, Austria, Switzerland, France, Luxembourg, Belgium and the Netherlands.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "False",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "numeric",
+      "prompt": "How tall is the Zugspitze, the highest mountain in Germany, in metres? Closest answer wins.",
+      "answerExplanation": "The Zugspitze, on the border with Austria, rises to 2,962 m.",
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "closest",
+      "numericValue": 2962,
+      "numericTolerance": 20,
+      "options": [],
+      "acceptedAnswers": [],
+      "media": "media/zugspitze.webp"
+    },
+    {
+      "kind": "question",
+      "timeLimitS": 20,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "type": "image_choice",
+      "prompt": "Which of these is Neuschwanstein Castle?",
+      "answerExplanation": "Neuschwanstein was built in Bavaria for King Ludwig II, from 1869.",
+      "options": [
+        {
+          "media": "media/chambord.webp",
+          "alt": "A Renaissance château with round towers and many chimneys",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "media": "media/himeji.webp",
+          "alt": "A white Japanese castle with layered roofs behind pine trees",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "media": "media/neuschwanstein.webp",
+          "alt": "A white castle with slender turrets on a wooded hillside",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        },
+        {
+          "media": "media/bran.webp",
+          "alt": "A castle with red-tiled towers above a forest",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "kind": "question",
+      "type": "multiple_choice",
+      "prompt": "Which of these composers were born in Germany?",
+      "answerExplanation": "Mozart was born in Salzburg, now in Austria.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Johann Sebastian Bach",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Wolfgang Amadeus Mozart",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Ludwig van Beethoven",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        },
+        {
+          "text": "Johannes Brahms",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "text_input",
+      "prompt": "Which German city hosts the Oktoberfest every year?",
+      "answerExplanation": "Munich’s Oktoberfest was first held in 1810, for a royal wedding.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "lenient",
+      "options": [],
+      "acceptedAnswers": [
+        "Munich",
+        "München",
+        "Muenchen"
+      ]
+    },
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "market-title",
+          "text": "Christmas markets",
+          "level": 2,
+          "align": "center"
+        },
+        {
+          "type": "image",
+          "id": "market-picture",
+          "media": "media/christmas-market.webp",
+          "size": "medium",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "market-text",
+          "md": "Through Advent, wooden stalls fill town squares with gingerbread, candles and carols.",
+          "align": "center"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundGradient": {
+        "angle": 135,
+        "colors": [
+          "#7f1d1d",
+          "#450a0a"
+        ]
+      }
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Who printed books in Europe with movable metal type in the 15th century?",
+      "answerExplanation": "Johannes Gutenberg printed his famous Bible in Mainz in the 1450s.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Martin Luther",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Johannes Gutenberg",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "text": "Albrecht Dürer",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        },
+        {
+          "text": "Johann Wolfgang von Goethe",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "ordering",
+      "prompt": "Order these German cities from north to south.",
+      "answerExplanation": null,
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Munich",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false,
+          "correctOrderIndex": 3
+        },
+        {
+          "text": "Hamburg",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false,
+          "correctOrderIndex": 0
+        },
+        {
+          "text": "Frankfurt",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false,
+          "correctOrderIndex": 2
+        },
+        {
+          "text": "Berlin",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false,
+          "correctOrderIndex": 1
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Which sea washes Germany’s northern coast, along with the North Sea?",
+      "answerExplanation": "The chalk cliffs of Rügen, Germany’s largest island, rise above the Baltic Sea.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "double",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Baltic Sea",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Black Sea",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Adriatic Sea",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        },
+        {
+          "text": "Mediterranean Sea",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/ruegen.webp"
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "Hamburg is the largest city in Germany.",
+      "answerExplanation": "Berlin is the largest city in Germany; Hamburg comes second.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "False",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "poll",
+      "prompt": "Which German experience would you pick?",
+      "answerExplanation": null,
+      "timeLimitS": 15,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "A Christmas market",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "A castle tour",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Hiking in the Black Forest",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        },
+        {
+          "text": "A cruise on the Rhine",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    }
+  ],
+  "media": {
+    "media/brandenburg-gate-night.webp": {
+      "name": "brandenburg-gate-night.webp",
+      "alt": "The Brandenburg Gate lit up at night",
+      "credit": "Leonhard Lenz · CC0 · Wikimedia Commons"
+    },
+    "media/berlin.webp": {
+      "name": "berlin.webp",
+      "alt": "The Berlin TV tower rising above the river Spree",
+      "credit": "Andreas Praefcke · CC BY 3.0 · Wikimedia Commons"
+    },
+    "media/zugspitze.webp": {
+      "name": "zugspitze.webp",
+      "alt": "Rocky Alpine peaks above a green lake and a forest",
+      "credit": "Octagon · CC BY 3.0 · Wikimedia Commons"
+    },
+    "media/chambord.webp": {
+      "name": "chambord.webp",
+      "alt": "A Renaissance château with round towers and many chimneys",
+      "credit": "xiquinhosilva · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/himeji.webp": {
+      "name": "himeji.webp",
+      "alt": "A white Japanese castle with layered roofs behind pine trees",
+      "credit": "Jakub Hałun · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/neuschwanstein.webp": {
+      "name": "neuschwanstein.webp",
+      "alt": "A white castle with slender turrets on a wooded hillside",
+      "credit": "Wilfredor · CC0 · Wikimedia Commons"
+    },
+    "media/bran.webp": {
+      "name": "bran.webp",
+      "alt": "A castle with red-tiled towers above a forest",
+      "credit": "Calatorinlume · CC0 · Wikimedia Commons"
+    },
+    "media/ruegen.webp": {
+      "name": "ruegen.webp",
+      "alt": "White chalk cliffs above the sea, among autumn trees",
+      "credit": "Lars0001 · Public domain · Wikimedia Commons"
+    },
+    "media/christmas-market.webp": {
+      "name": "christmas-market.webp",
+      "alt": "Wooden Christmas market stalls lit with lights at dusk",
+      "credit": "Daderot · CC0 · Wikimedia Commons"
+    }
+  }
+}

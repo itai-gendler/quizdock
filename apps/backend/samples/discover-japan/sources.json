@@ -1,0 +1,92 @@
+{
+  "media": [
+    {
+      "file": "mount-fuji.webp",
+      "commons": "File:Fuji Kawaguchi 357.JPG",
+      "alt": "Snow-capped Mount Fuji above Lake Kawaguchi",
+      "license": "CC0",
+      "author": "Marion & Christoph Aistleitner",
+      "page": "https://commons.wikimedia.org/wiki/File:Fuji_Kawaguchi_357.JPG"
+    },
+    {
+      "file": "tokyo.webp",
+      "commons": "File:Minato City, Tokyo, Japan.jpg",
+      "alt": "Tokyo’s towers at sunset, with the red Tokyo Tower in the middle",
+      "license": "CC BY 4.0",
+      "author": "David Kernan",
+      "page": "https://commons.wikimedia.org/wiki/File:Minato_City,_Tokyo,_Japan.jpg"
+    },
+    {
+      "file": "wat-arun.webp",
+      "commons": "File:Phra Prang Wat Arun during day.jpg",
+      "alt": "A tall pointed temple tower on the bank of a wide river",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 4.0",
+      "author": "Supanut Arunoprayote",
+      "page": "https://commons.wikimedia.org/wiki/File:Phra_Prang_Wat_Arun_during_day.jpg"
+    },
+    {
+      "file": "kinkakuji.webp",
+      "commons": "File:Golden Pavilion, Kinkaku-ji, Kyoto, 20240820 1523 5130.jpg",
+      "alt": "A gold-covered pavilion with dark roofs, reflected in a pond",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 4.0",
+      "author": "Jakub Hałun",
+      "page": "https://commons.wikimedia.org/wiki/File:Golden_Pavilion,_Kinkaku-ji,_Kyoto,_20240820_1523_5130.jpg"
+    },
+    {
+      "file": "borobudur.webp",
+      "commons": "File:Borobudur Indonesia 1.jpg",
+      "alt": "Bell-shaped stone stupas on a temple terrace at sunrise",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 4.0",
+      "author": "Philip Nalangan",
+      "page": "https://commons.wikimedia.org/wiki/File:Borobudur_Indonesia_1.jpg"
+    },
+    {
+      "file": "taj-mahal.webp",
+      "commons": "File:Taj Mahal-10.jpg",
+      "alt": "A white marble mausoleum with a great dome and four minarets, beside a river",
+      "width": 640,
+      "square": true,
+      "license": "Public domain",
+      "author": "David Castor",
+      "page": "https://commons.wikimedia.org/wiki/File:Taj_Mahal-10.jpg"
+    },
+    {
+      "file": "sushi.webp",
+      "commons": "File:2007feb-sushi-odaiba-manytypes.jpg",
+      "alt": "A wooden board of assorted sushi with tuna, salmon and egg",
+      "license": "CC BY 2.5",
+      "author": "Nesnad",
+      "page": "https://commons.wikimedia.org/wiki/File:2007feb-sushi-odaiba-manytypes.jpg"
+    },
+    {
+      "file": "shinkansen.webp",
+      "commons": "File:020 N700 Series Shinkansen 新幹線 arriving at Kyoto Station, Japan.jpg",
+      "alt": "A long white high-speed train on a viaduct",
+      "license": "CC BY 3.0",
+      "author": "Marek Ślusarczyk (Tupungato)",
+      "page": "https://commons.wikimedia.org/wiki/File:020_N700_Series_Shinkansen_%E6%96%B0%E5%B9%B9%E7%B7%9A_arriving_at_Kyoto_Station,_Japan.jpg"
+    },
+    {
+      "file": "cherry-blossoms.webp",
+      "commons": "File:Cherry blossoms and Chidori Bridge, Matsue Castle - Apr 5, 2026.jpg",
+      "alt": "A cherry tree in full bloom beside a moat and a white bridge",
+      "license": "CC BY 4.0",
+      "author": "Spiegel",
+      "page": "https://commons.wikimedia.org/wiki/File:Cherry_blossoms_and_Chidori_Bridge,_Matsue_Castle_-_Apr_5,_2026.jpg"
+    },
+    {
+      "file": "kyoto.webp",
+      "commons": "File:Kiyomizu-dera, a Buddhist temple in eastern Kyoto, Kyoto Prefecture; September 2008 (01).jpg",
+      "alt": "The red gate of Kiyomizu-dera temple in Kyoto",
+      "license": "CC BY 2.0",
+      "author": "RomanKetchup",
+      "page": "https://commons.wikimedia.org/wiki/File:Kiyomizu-dera,_a_Buddhist_temple_in_eastern_Kyoto,_Kyoto_Prefecture;_September_2008_(01).jpg"
+    }
+  ]
+}

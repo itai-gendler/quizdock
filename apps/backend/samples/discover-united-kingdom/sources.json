@@ -1,0 +1,92 @@
+{
+  "media": [
+    {
+      "file": "westminster-dusk.webp",
+      "commons": "File:Big Ben and the Palace of Westminster at Blue Hour.jpg",
+      "alt": "The Palace of Westminster and Big Ben lit up beside the Thames at dusk",
+      "license": "CC BY 4.0",
+      "author": "Grizzlyil",
+      "page": "https://commons.wikimedia.org/wiki/File:Big_Ben_and_the_Palace_of_Westminster_at_Blue_Hour.jpg"
+    },
+    {
+      "file": "edinburgh-castle.webp",
+      "commons": "File:Edinburgh Castle from Prince's Street.jpg",
+      "alt": "Edinburgh Castle on its volcanic rock under a blue sky",
+      "license": "CC BY 4.0",
+      "author": "Jdforrester",
+      "page": "https://commons.wikimedia.org/wiki/File:Edinburgh_Castle_from_Prince%27s_Street.jpg"
+    },
+    {
+      "file": "giants-causeway.webp",
+      "commons": "File:The Giant's Causeway landscape.jpg",
+      "alt": "Hexagonal basalt columns on a rocky shore by the sea",
+      "license": "CC0",
+      "author": "Yujin",
+      "page": "https://commons.wikimedia.org/wiki/File:The_Giant%27s_Causeway_landscape.jpg"
+    },
+    {
+      "file": "ben-nevis.webp",
+      "commons": "File:BenNevis2005.jpg",
+      "alt": "A broad grey mountain rising above green hills",
+      "license": "Public domain",
+      "author": "Thincat",
+      "page": "https://commons.wikimedia.org/wiki/File:BenNevis2005.jpg"
+    },
+    {
+      "file": "carnac.webp",
+      "commons": "File:Ménec alignements, Carnac (17339234049).jpg",
+      "alt": "Rows of rough standing stones in a heath",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 2.0",
+      "author": "Andy Hay",
+      "page": "https://commons.wikimedia.org/wiki/File:M%C3%A9nec_alignements,_Carnac_(17339234049).jpg"
+    },
+    {
+      "file": "moai.webp",
+      "commons": "File:Easter Island, Ahu Tongariki (6691281879).jpg",
+      "alt": "A row of giant stone heads on a platform",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 2.0",
+      "author": "Arian Zwegers",
+      "page": "https://commons.wikimedia.org/wiki/File:Easter_Island,_Ahu_Tongariki_(6691281879).jpg"
+    },
+    {
+      "file": "stonehenge.webp",
+      "commons": "File:Stonehenge2007 07 30.jpg",
+      "alt": "A circle of huge standing stones topped by lintels on a grassy plain",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 2.0",
+      "author": "garethwiscombe",
+      "page": "https://commons.wikimedia.org/wiki/File:Stonehenge2007_07_30.jpg"
+    },
+    {
+      "file": "poulnabrone.webp",
+      "commons": "File:Count Clare - Poulnabrone Dolmen.jpg",
+      "alt": "A stone table tomb with a flat capstone on rocky ground",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 4.0",
+      "author": "P. Hughes",
+      "page": "https://commons.wikimedia.org/wiki/File:Count_Clare_-_Poulnabrone_Dolmen.jpg"
+    },
+    {
+      "file": "fish-and-chips.webp",
+      "commons": "File:Fish and Chips Bath, UK.jpg",
+      "alt": "A piece of battered fried fish on a tray of chips",
+      "license": "CC0",
+      "author": "Gvjekoslav",
+      "page": "https://commons.wikimedia.org/wiki/File:Fish_and_Chips_Bath,_UK.jpg"
+    },
+    {
+      "file": "cream-tea.webp",
+      "commons": "File:Classic cream tea - Nymans Garden Riding House.jpg",
+      "alt": "Scones with a pot of clotted cream and a pot of jam next to a cup of tea",
+      "license": "CC0",
+      "author": "Andy Li",
+      "page": "https://commons.wikimedia.org/wiki/File:Classic_cream_tea_-_Nymans_Garden_Riding_House.jpg"
+    }
+  ]
+}

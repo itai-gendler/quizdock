@@ -131,8 +131,8 @@ administration. [Administration](https://quizdock.github.io/docs/admin/overview/
   text, numeric, reorder, poll, and image choice — pictures as the answers), images with
   alternative text, Markdown everywhere, content
   slides between questions, backgrounds, answer explanations at the reveal. A new quiz
-  starts from a draft: an intro slide and a first question to complete. Three sample
-  quizzes wait in the templates (France, Taiwan, Türkiye), every question
+  starts from a draft: an intro slide and a first question to complete. Twelve sample
+  quizzes wait in the templates, one per country, every question
   type in them, with pictures and sounds from Wikimedia Commons.
 - **Video & sound** — videos and sounds in questions and slides,
   loudness-matched, drawn as a waveform with a playhead; played on the projection and on

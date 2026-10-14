@@ -1,0 +1,465 @@
+{
+  "format": "quizdock/quiz",
+  "version": 6,
+  "quiz": {
+    "title": "Discover China",
+    "description": "Sample quiz — geography, history and culture of China.",
+    "language": "en",
+    "license": "CC-BY-4.0",
+    "revision": 1,
+    "feedbackEnabled": true,
+    "cover": null
+  },
+  "items": [
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "intro-title",
+          "text": "Discover China",
+          "level": 1,
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "intro-text",
+          "md": "Quick questions about *Zhōngguó* — from the Great Wall to the Yangtze.",
+          "align": "center",
+          "size": "large"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundImage": "media/great-wall.webp"
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "What is the capital of China?",
+      "answerExplanation": "Beijing, in the north, is home to the Forbidden City and the Temple of Heaven.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Shanghai",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Beijing",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "text": "Xi’an",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        },
+        {
+          "text": "Nanjing",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/temple-of-heaven.webp"
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "The Yangtze is the longest river in Asia.",
+      "answerExplanation": "It flows about 6,300 km and reaches the sea at Shanghai.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "False",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/yangtze.webp"
+    },
+    {
+      "kind": "question",
+      "type": "numeric",
+      "prompt": "How many animals make up the Chinese zodiac?",
+      "answerExplanation": "The cycle runs from the Rat to the Pig, one animal for each year.",
+      "timeLimitS": 15,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "numericValue": 12,
+      "numericTolerance": 0,
+      "options": [],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "timeLimitS": 20,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "type": "image_choice",
+      "prompt": "Which of these is the Terracotta Army?",
+      "answerExplanation": "The clay soldiers were buried near Xi’an more than 2,200 years ago.",
+      "options": [
+        {
+          "media": "media/moai.webp",
+          "alt": "A huge stone head with a long face, on a grassy hillside",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "media": "media/stonehenge.webp",
+          "alt": "A ring of standing stones on a green plain",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "media": "media/terracotta-army.webp",
+          "alt": "Rows of life-size clay soldiers standing in long trenches",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        },
+        {
+          "media": "media/sphinx.webp",
+          "alt": "A stone lion with a human head, with a pyramid behind it",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "kind": "question",
+      "type": "multiple_choice",
+      "prompt": "Which of these were invented in ancient China?",
+      "answerExplanation": "The telescope was first made in the Netherlands, around 1608.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Paper",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Telescope",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Gunpowder",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        },
+        {
+          "text": "Compass",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "text_input",
+      "prompt": "Name this bamboo-eating bear, found in the wild only in China.",
+      "answerExplanation": "Wild giant pandas live in the mountain forests of central China.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "lenient",
+      "options": [],
+      "acceptedAnswers": [
+        "Giant panda",
+        "Panda"
+      ],
+      "media": "media/panda.webp"
+    },
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "palace-title",
+          "text": "The Forbidden City",
+          "level": 2,
+          "align": "center"
+        },
+        {
+          "type": "image",
+          "id": "palace-picture",
+          "media": "media/forbidden-city.webp",
+          "size": "medium",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "palace-text",
+          "md": "Beijing’s *Forbidden City* was the palace of China’s emperors for nearly 500 years.",
+          "align": "center"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundGradient": {
+        "angle": 135,
+        "colors": [
+          "#991b1b",
+          "#450a0a"
+        ]
+      }
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Whose teachings are collected in the Analects?",
+      "answerExplanation": "The Analects gather the sayings of Confucius, who lived around 551–479 BC.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Laozi",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Mencius",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Confucius",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        },
+        {
+          "text": "Sun Tzu",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "ordering",
+      "prompt": "Order these Chinese dynasties, oldest first.",
+      "answerExplanation": null,
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Ming",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false,
+          "correctOrderIndex": 3
+        },
+        {
+          "text": "Qin",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false,
+          "correctOrderIndex": 0
+        },
+        {
+          "text": "Tang",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false,
+          "correctOrderIndex": 2
+        },
+        {
+          "text": "Han",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false,
+          "correctOrderIndex": 1
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Who was the first emperor of a unified China?",
+      "answerExplanation": "Qin Shi Huang unified China in 221 BC and founded the Qin dynasty.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "double",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Qin Shi Huang",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Kublai Khan",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Emperor Wu of Han",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        },
+        {
+          "text": "Emperor Taizong",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "The Great Wall of China can be seen with the naked eye from the Moon.",
+      "answerExplanation": "The wall is far too narrow — it is hard to spot even from low orbit.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "False",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "poll",
+      "prompt": "Which Chinese experience would you pick?",
+      "answerExplanation": null,
+      "timeLimitS": 15,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Walking the Great Wall",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Cruising the Yangtze",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Pandas in Chengdu",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        },
+        {
+          "text": "Dim sum in a tea house",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    }
+  ],
+  "media": {
+    "media/great-wall.webp": {
+      "name": "great-wall.webp",
+      "alt": "The Great Wall winding over green hills at Jinshanling",
+      "credit": "Mx. Granger · CC0 · Wikimedia Commons"
+    },
+    "media/temple-of-heaven.webp": {
+      "name": "temple-of-heaven.webp",
+      "alt": "The round, triple-roofed Hall of Prayer at Beijing’s Temple of Heaven",
+      "credit": "Balon Greyjoy · CC0 · Wikimedia Commons"
+    },
+    "media/yangtze.webp": {
+      "name": "yangtze.webp",
+      "alt": "The Yangtze River between steep green cliffs",
+      "credit": "Dong Zhang perfumekiller · CC0 · Wikimedia Commons"
+    },
+    "media/moai.webp": {
+      "name": "moai.webp",
+      "alt": "A huge stone head with a long face, on a grassy hillside",
+      "credit": "Yvan Neault · CC BY 3.0 · Wikimedia Commons"
+    },
+    "media/stonehenge.webp": {
+      "name": "stonehenge.webp",
+      "alt": "A ring of standing stones on a green plain",
+      "credit": "Hotolmo22 · CC0 · Wikimedia Commons"
+    },
+    "media/terracotta-army.webp": {
+      "name": "terracotta-army.webp",
+      "alt": "Rows of life-size clay soldiers standing in long trenches",
+      "credit": "xiquinhosilva · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/sphinx.webp": {
+      "name": "sphinx.webp",
+      "alt": "A stone lion with a human head, with a pyramid behind it",
+      "credit": "Hesham Ebaid · CC0 · Wikimedia Commons"
+    },
+    "media/panda.webp": {
+      "name": "panda.webp",
+      "alt": "A black-and-white bear among bamboo leaves",
+      "credit": "randychiu · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/forbidden-city.webp": {
+      "name": "forbidden-city.webp",
+      "alt": "Red halls with golden roofs and white marble terraces in the Forbidden City",
+      "credit": "Ray Devlin · CC BY 2.0 · Wikimedia Commons"
+    }
+  }
+}

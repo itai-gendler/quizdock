@@ -1,0 +1,84 @@
+{
+  "media": [
+    {
+      "file": "brandenburg-gate-night.webp",
+      "commons": "File:Brandenburger Tor Berlin at night 2023-12-17 01.jpg",
+      "alt": "The Brandenburg Gate lit up at night",
+      "license": "CC0",
+      "author": "Leonhard Lenz",
+      "page": "https://commons.wikimedia.org/wiki/File:Brandenburger_Tor_Berlin_at_night_2023-12-17_01.jpg"
+    },
+    {
+      "file": "berlin.webp",
+      "commons": "File:Berlin Spree Blick zum Fernsehturm.jpg",
+      "alt": "The Berlin TV tower rising above the river Spree",
+      "license": "CC BY 3.0",
+      "author": "Andreas Praefcke",
+      "page": "https://commons.wikimedia.org/wiki/File:Berlin_Spree_Blick_zum_Fernsehturm.jpg"
+    },
+    {
+      "file": "zugspitze.webp",
+      "commons": "File:Eibsee & Zugspitze.jpg",
+      "alt": "Rocky Alpine peaks above a green lake and a forest",
+      "license": "CC BY 3.0",
+      "author": "Octagon",
+      "page": "https://commons.wikimedia.org/wiki/File:Eibsee_%26_Zugspitze.jpg"
+    },
+    {
+      "file": "chambord.webp",
+      "commons": "File:Château de Chambord (2019).jpg",
+      "alt": "A Renaissance château with round towers and many chimneys",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 2.0",
+      "author": "xiquinhosilva",
+      "page": "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_de_Chambord_(2019).jpg"
+    },
+    {
+      "file": "himeji.webp",
+      "commons": "File:Himeji Castle, Japan, 20240819 1029 4714.jpg",
+      "alt": "A white Japanese castle with layered roofs behind pine trees",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 4.0",
+      "author": "Jakub Hałun",
+      "page": "https://commons.wikimedia.org/wiki/File:Himeji_Castle,_Japan,_20240819_1029_4714.jpg"
+    },
+    {
+      "file": "neuschwanstein.webp",
+      "commons": "File:Neuschwanstein Castle 2024.jpg",
+      "alt": "A white castle with slender turrets on a wooded hillside",
+      "width": 640,
+      "square": true,
+      "license": "CC0",
+      "author": "Wilfredor",
+      "page": "https://commons.wikimedia.org/wiki/File:Neuschwanstein_Castle_2024.jpg"
+    },
+    {
+      "file": "bran.webp",
+      "commons": "File:Bran Castle - Castelul Bran.JPG",
+      "alt": "A castle with red-tiled towers above a forest",
+      "width": 640,
+      "square": true,
+      "license": "CC0",
+      "author": "Calatorinlume",
+      "page": "https://commons.wikimedia.org/wiki/File:Bran_Castle_-_Castelul_Bran.JPG"
+    },
+    {
+      "file": "ruegen.webp",
+      "commons": "File:Koenigsstuhl Ruegen.jpg",
+      "alt": "White chalk cliffs above the sea, among autumn trees",
+      "license": "Public domain",
+      "author": "Lars0001",
+      "page": "https://commons.wikimedia.org/wiki/File:Koenigsstuhl_Ruegen.jpg"
+    },
+    {
+      "file": "christmas-market.webp",
+      "commons": "File:Christmas market, 2015 - Heidelberg, Germany - DSC01495.jpg",
+      "alt": "Wooden Christmas market stalls lit with lights at dusk",
+      "license": "CC0",
+      "author": "Daderot",
+      "page": "https://commons.wikimedia.org/wiki/File:Christmas_market,_2015_-_Heidelberg,_Germany_-_DSC01495.jpg"
+    }
+  ]
+}

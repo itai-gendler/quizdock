@@ -1,0 +1,84 @@
+{
+  "media": [
+    {
+      "file": "krakow-square.webp",
+      "commons": "File:Krakow´s Main Square at dusk (9156827273).jpg",
+      "alt": "Kraków’s Main Market Square lit up at dusk",
+      "license": "CC BY 2.0",
+      "author": "Jorge Láscar from Australia",
+      "page": "https://commons.wikimedia.org/wiki/File:Krakow%C2%B4s_Main_Square_at_dusk_(9156827273).jpg"
+    },
+    {
+      "file": "warsaw.webp",
+      "commons": "File:Old Town Market Square, 2026, Warsaw, Poland.jpg",
+      "alt": "Colourful merchant houses around the Old Town Market Square in Warsaw",
+      "license": "CC BY 4.0",
+      "author": "Igor123121",
+      "page": "https://commons.wikimedia.org/wiki/File:Old_Town_Market_Square,_2026,_Warsaw,_Poland.jpg"
+    },
+    {
+      "file": "moose.webp",
+      "commons": "File:A bull moose animal mammal.jpg",
+      "alt": "A large deer with wide flat antlers, lying in the grass",
+      "width": 640,
+      "square": true,
+      "license": "Public domain",
+      "author": "Ryan Hagerty",
+      "page": "https://commons.wikimedia.org/wiki/File:A_bull_moose_animal_mammal.jpg"
+    },
+    {
+      "file": "bison.webp",
+      "commons": "File:European Bison.jpg",
+      "alt": "Dark brown, heavy-shouldered wild cattle at the edge of a forest",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 2.0",
+      "author": "Frank Vassen",
+      "page": "https://commons.wikimedia.org/wiki/File:European_Bison.jpg"
+    },
+    {
+      "file": "highland-cattle.webp",
+      "commons": "File:Highland-cattle-1161694.jpg",
+      "alt": "Shaggy ginger cattle with long horns on a moor",
+      "width": 640,
+      "square": true,
+      "license": "CC0",
+      "author": "Miquel Rosselló Calafell",
+      "page": "https://commons.wikimedia.org/wiki/File:Highland-cattle-1161694.jpg"
+    },
+    {
+      "file": "yak.webp",
+      "commons": "File:Yak in Khövsgöl 01.jpg",
+      "alt": "A long-haired black and white ox on a grassy plain",
+      "width": 640,
+      "square": true,
+      "license": "CC0",
+      "author": "Bernard Gagnon",
+      "page": "https://commons.wikimedia.org/wiki/File:Yak_in_Kh%C3%B6vsg%C3%B6l_01.jpg"
+    },
+    {
+      "file": "wawel.webp",
+      "commons": "File:Wawel castle.jpg",
+      "alt": "Wawel Castle and Cathedral, with red roofs and green domes",
+      "license": "CC BY 3.0",
+      "author": "FotoCavallo",
+      "page": "https://commons.wikimedia.org/wiki/File:Wawel_castle.jpg"
+    },
+    {
+      "file": "pierogi.webp",
+      "commons": "File:Pierogi (32294883476).jpg",
+      "alt": "A plate of pierogi dumplings sprinkled with herbs",
+      "license": "CC BY 2.0",
+      "author": "Alper Çuğun from Berlin, Germany",
+      "page": "https://commons.wikimedia.org/wiki/File:Pierogi_(32294883476).jpg"
+    },
+    {
+      "file": "marie-curie.webp",
+      "commons": "File:Marie Curie (c. 1900).jpg",
+      "alt": "Marie Curie seated beside a laboratory bench, around 1900",
+      "license": "Public domain",
+      "author": "Unknown author",
+      "page": "https://commons.wikimedia.org/wiki/File:Marie_Curie_(c._1900).jpg"
+    }
+  ]
+}

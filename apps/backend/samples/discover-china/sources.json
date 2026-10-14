@@ -1,0 +1,84 @@
+{
+  "media": [
+    {
+      "file": "great-wall.webp",
+      "commons": "File:Great Wall at Jinshanling.JPG",
+      "alt": "The Great Wall winding over green hills at Jinshanling",
+      "license": "CC0",
+      "author": "Mx. Granger",
+      "page": "https://commons.wikimedia.org/wiki/File:Great_Wall_at_Jinshanling.JPG"
+    },
+    {
+      "file": "temple-of-heaven.webp",
+      "commons": "File:20200110 Temple of Heaven-1.jpg",
+      "alt": "The round, triple-roofed Hall of Prayer at Beijing’s Temple of Heaven",
+      "license": "CC0",
+      "author": "Balon Greyjoy",
+      "page": "https://commons.wikimedia.org/wiki/File:20200110_Temple_of_Heaven-1.jpg"
+    },
+    {
+      "file": "yangtze.webp",
+      "commons": "File:A view of Yangtze River, China (Unsplash).jpg",
+      "alt": "The Yangtze River between steep green cliffs",
+      "license": "CC0",
+      "author": "Dong Zhang perfumekiller",
+      "page": "https://commons.wikimedia.org/wiki/File:A_view_of_Yangtze_River,_China_(Unsplash).jpg"
+    },
+    {
+      "file": "moai.webp",
+      "commons": "File:Easter Island Rano Raraku Moai (112996865).jpeg",
+      "alt": "A huge stone head with a long face, on a grassy hillside",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 3.0",
+      "author": "Yvan Neault",
+      "page": "https://commons.wikimedia.org/wiki/File:Easter_Island_Rano_Raraku_Moai_(112996865).jpeg"
+    },
+    {
+      "file": "stonehenge.webp",
+      "commons": "File:Stonehenge complex, 2024.jpg",
+      "alt": "A ring of standing stones on a green plain",
+      "width": 640,
+      "square": true,
+      "license": "CC0",
+      "author": "Hotolmo22",
+      "page": "https://commons.wikimedia.org/wiki/File:Stonehenge_complex,_2024.jpg"
+    },
+    {
+      "file": "terracotta-army.webp",
+      "commons": "File:51714-Terracota-Army.jpg",
+      "alt": "Rows of life-size clay soldiers standing in long trenches",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 2.0",
+      "author": "xiquinhosilva",
+      "page": "https://commons.wikimedia.org/wiki/File:51714-Terracota-Army.jpg"
+    },
+    {
+      "file": "sphinx.webp",
+      "commons": "File:Sphinx with the third pyramid.jpg",
+      "alt": "A stone lion with a human head, with a pyramid behind it",
+      "width": 640,
+      "square": true,
+      "license": "CC0",
+      "author": "Hesham Ebaid",
+      "page": "https://commons.wikimedia.org/wiki/File:Sphinx_with_the_third_pyramid.jpg"
+    },
+    {
+      "file": "panda.webp",
+      "commons": "File:Ailuropoda melanoleuca -San Diego Zoo -upper body-8a.jpg",
+      "alt": "A black-and-white bear among bamboo leaves",
+      "license": "CC BY 2.0",
+      "author": "randychiu",
+      "page": "https://commons.wikimedia.org/wiki/File:Ailuropoda_melanoleuca_-San_Diego_Zoo_-upper_body-8a.jpg"
+    },
+    {
+      "file": "forbidden-city.webp",
+      "commons": "File:Forbidden City - Beijing (3048773129).jpg",
+      "alt": "Red halls with golden roofs and white marble terraces in the Forbidden City",
+      "license": "CC BY 2.0",
+      "author": "Ray Devlin",
+      "page": "https://commons.wikimedia.org/wiki/File:Forbidden_City_-_Beijing_(3048773129).jpg"
+    }
+  ]
+}

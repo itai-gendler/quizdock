@@ -1,0 +1,466 @@
+{
+  "format": "quizdock/quiz",
+  "version": 6,
+  "quiz": {
+    "title": "Discover Poland",
+    "description": "Sample quiz — geography, history and culture of Poland.",
+    "language": "en",
+    "license": "CC-BY-4.0",
+    "revision": 1,
+    "feedbackEnabled": true,
+    "cover": null
+  },
+  "items": [
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "intro-title",
+          "text": "Discover Poland",
+          "level": 1,
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "intro-text",
+          "md": "Quick questions about *Polska* — from the Baltic coast to the Tatra Mountains.",
+          "align": "center",
+          "size": "large"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundImage": "media/krakow-square.webp"
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "What is the capital of Poland?",
+      "answerExplanation": "Warsaw, on the Vistula, is also Poland’s largest city.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Kraków",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Gdańsk",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Warsaw",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        },
+        {
+          "text": "Wrocław",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/warsaw.webp"
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "Poland has a coastline on the Baltic Sea.",
+      "answerExplanation": "Gdańsk and Gdynia are Poland’s main Baltic ports.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "False",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "numeric",
+      "prompt": "How many provinces (voivodeships) does Poland have?",
+      "answerExplanation": "Poland has been divided into 16 voivodeships since 1999.",
+      "timeLimitS": 15,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "numericValue": 16,
+      "numericTolerance": 0,
+      "options": [],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "timeLimitS": 20,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "type": "image_choice",
+      "prompt": "Which of these is the European bison, the żubr?",
+      "answerExplanation": "The European bison, Europe’s heaviest land animal, was returned to the wild in Białowieża Forest in the 1950s.",
+      "options": [
+        {
+          "media": "media/moose.webp",
+          "alt": "A large deer with wide flat antlers, lying in the grass",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "media": "media/bison.webp",
+          "alt": "Dark brown, heavy-shouldered wild cattle at the edge of a forest",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "media": "media/highland-cattle.webp",
+          "alt": "Shaggy ginger cattle with long horns on a moor",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        },
+        {
+          "media": "media/yak.webp",
+          "alt": "A long-haired black and white ox on a grassy plain",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "kind": "question",
+      "type": "multiple_choice",
+      "prompt": "Which of these famous people were born in what is now Poland?",
+      "answerExplanation": "Mozart was born in Salzburg, in today’s Austria.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Frédéric Chopin",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Marie Curie",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "text": "Wolfgang Amadeus Mozart",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        },
+        {
+          "text": "Nicolaus Copernicus",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "text_input",
+      "prompt": "Which Polish city is home to Wawel Castle?",
+      "answerExplanation": "Wawel Castle, above the Vistula, was the seat of Polish kings for centuries.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "lenient",
+      "options": [],
+      "acceptedAnswers": [
+        "Kraków",
+        "Krakow",
+        "Cracow"
+      ],
+      "media": "media/wawel.webp"
+    },
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "pierogi-title",
+          "text": "Pierogi",
+          "level": 2,
+          "align": "center"
+        },
+        {
+          "type": "image",
+          "id": "pierogi-picture",
+          "media": "media/pierogi.webp",
+          "size": "medium",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "pierogi-text",
+          "md": "Pierogi are filled dumplings — with potato and cheese, cabbage, meat or fruit.",
+          "align": "center"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundGradient": {
+        "angle": 135,
+        "colors": [
+          "#991b1b",
+          "#450a0a"
+        ]
+      }
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Which river flows through both Kraków and Warsaw?",
+      "answerExplanation": "The Vistula, about 1,050 km long, is Poland’s longest river.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Oder",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Vistula",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "text": "Warta",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        },
+        {
+          "text": "Bug",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "ordering",
+      "prompt": "Order these Polish cities from north to south.",
+      "answerExplanation": null,
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Wrocław",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false,
+          "correctOrderIndex": 2
+        },
+        {
+          "text": "Gdańsk",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false,
+          "correctOrderIndex": 0
+        },
+        {
+          "text": "Kraków",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false,
+          "correctOrderIndex": 3
+        },
+        {
+          "text": "Warsaw",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false,
+          "correctOrderIndex": 1
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Marie Curie won two Nobel Prizes. In which fields?",
+      "answerExplanation": "She won the Physics prize in 1903 and the Chemistry prize in 1911.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "double",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Physics and Chemistry",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Chemistry and Medicine",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Physics and Peace",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        },
+        {
+          "text": "Medicine and Literature",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/marie-curie.webp"
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "Poland’s currency is the euro.",
+      "answerExplanation": "Poland’s currency is the złoty.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "False",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "poll",
+      "prompt": "Which Polish experience would you pick?",
+      "answerExplanation": null,
+      "timeLimitS": 15,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Kraków’s Old Town",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Hiking in the Tatras",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Baltic beaches",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        },
+        {
+          "text": "Białowieża Forest",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    }
+  ],
+  "media": {
+    "media/krakow-square.webp": {
+      "name": "krakow-square.webp",
+      "alt": "Kraków’s Main Market Square lit up at dusk",
+      "credit": "Jorge Láscar from Australia · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/warsaw.webp": {
+      "name": "warsaw.webp",
+      "alt": "Colourful merchant houses around the Old Town Market Square in Warsaw",
+      "credit": "Igor123121 · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/moose.webp": {
+      "name": "moose.webp",
+      "alt": "A large deer with wide flat antlers, lying in the grass",
+      "credit": "Ryan Hagerty · Public domain · Wikimedia Commons"
+    },
+    "media/bison.webp": {
+      "name": "bison.webp",
+      "alt": "Dark brown, heavy-shouldered wild cattle at the edge of a forest",
+      "credit": "Frank Vassen · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/highland-cattle.webp": {
+      "name": "highland-cattle.webp",
+      "alt": "Shaggy ginger cattle with long horns on a moor",
+      "credit": "Miquel Rosselló Calafell · CC0 · Wikimedia Commons"
+    },
+    "media/yak.webp": {
+      "name": "yak.webp",
+      "alt": "A long-haired black and white ox on a grassy plain",
+      "credit": "Bernard Gagnon · CC0 · Wikimedia Commons"
+    },
+    "media/wawel.webp": {
+      "name": "wawel.webp",
+      "alt": "Wawel Castle and Cathedral, with red roofs and green domes",
+      "credit": "FotoCavallo · CC BY 3.0 · Wikimedia Commons"
+    },
+    "media/pierogi.webp": {
+      "name": "pierogi.webp",
+      "alt": "A plate of pierogi dumplings sprinkled with herbs",
+      "credit": "Alper Çuğun from Berlin, Germany · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/marie-curie.webp": {
+      "name": "marie-curie.webp",
+      "alt": "Marie Curie seated beside a laboratory bench, around 1900",
+      "credit": "Unknown author · Public domain · Wikimedia Commons"
+    }
+  }
+}

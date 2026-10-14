@@ -11,9 +11,18 @@ describe('the shipped samples', () => {
 
   it('all in English', () => {
     expect(samples.map((s) => [s.key, s.manifest.quiz.language])).toEqual([
+      ['discover-china', 'en'],
       ['discover-france', 'en'],
+      ['discover-germany', 'en'],
+      ['discover-india', 'en'],
+      ['discover-italy', 'en'],
+      ['discover-japan', 'en'],
+      ['discover-poland', 'en'],
+      ['discover-russia', 'en'],
+      ['discover-spain', 'en'],
       ['discover-taiwan', 'en'],
       ['discover-turkiye', 'en'],
+      ['discover-united-kingdom', 'en'],
     ]);
   });
 

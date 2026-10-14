@@ -27,7 +27,7 @@ describe('LandingPage — demo limitations', () => {
     expect(await screen.findByText(/Ce que cette démo ne fait pas/i)).toBeInTheDocument();
     expect(screen.getByText(/chaque visiteur est demo_user/i)).toBeInTheDocument();
     // The three samples the backend puts back in the shared bank at each reset.
-    expect(screen.getByText(/quiz d’exemple France, Taïwan et Türkiye/i)).toBeInTheDocument();
+    expect(screen.getByText(/quiz d’exemple, un par pays/i)).toBeInTheDocument();
     expect(screen.getByText(/Aucun envoi de média/i)).toBeInTheDocument();
     // The reset waits for an open room, but not past DEMO_RESET_MAX_DEFER_MS.
     expect(screen.getByText(/effacé chaque heure : quiz.*3 heures au plus/i)).toBeInTheDocument();

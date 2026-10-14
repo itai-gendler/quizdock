@@ -1,0 +1,76 @@
+{
+  "media": [
+    {
+      "file": "peterhof.webp",
+      "commons": "File:Grand Cascade of Peterhof 1.jpg",
+      "alt": "The Grand Cascade of Peterhof, golden statues and fountains before a palace",
+      "license": "CC0",
+      "author": "Vasilii Martynov",
+      "page": "https://commons.wikimedia.org/wiki/File:Grand_Cascade_of_Peterhof_1.jpg"
+    },
+    {
+      "file": "saint-petersburg.webp",
+      "commons": "File:Peter and Paul Fortress at sunset, St. Petersburg, Russia (9537961018).jpg",
+      "alt": "The spire of the Peter and Paul Fortress across the Neva at sunset",
+      "license": "CC BY 2.0",
+      "author": "l0da_ralta",
+      "page": "https://commons.wikimedia.org/wiki/File:Peter_and_Paul_Fortress_at_sunset,_St._Petersburg,_Russia_(9537961018).jpg"
+    },
+    {
+      "file": "sagrada-familia.webp",
+      "commons": "File:Sagrada Família Nativity Façade from Ground, Barcelona, 2023.jpg",
+      "alt": "A façade covered in carved stone, below tall pierced spires",
+      "width": 640,
+      "square": true,
+      "license": "CC0",
+      "author": "Julian Lupyan",
+      "page": "https://commons.wikimedia.org/wiki/File:Sagrada_Fam%C3%ADlia_Nativity_Fa%C3%A7ade_from_Ground,_Barcelona,_2023.jpg"
+    },
+    {
+      "file": "cologne-cathedral.webp",
+      "commons": "File:Cologne-Cathedral-May-2010.jpg",
+      "alt": "A dark Gothic spire soaring above a stone nave",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 4.0",
+      "author": "Acediscovery",
+      "page": "https://commons.wikimedia.org/wiki/File:Cologne-Cathedral-May-2010.jpg"
+    },
+    {
+      "file": "saint-basils.webp",
+      "commons": "File:Catedral de San Basilio, Moscú, Rusia, 2016-10-03, DD 05-06 HDR.jpg",
+      "alt": "A church crowned with colourful onion domes, lit at night",
+      "width": 640,
+      "square": true,
+      "license": "Public domain",
+      "author": "Diego Delso",
+      "page": "https://commons.wikimedia.org/wiki/File:Catedral_de_San_Basilio,_Mosc%C3%BA,_Rusia,_2016-10-03,_DD_05-06_HDR.jpg"
+    },
+    {
+      "file": "milan-cathedral.webp",
+      "commons": "File:Duomo facade, Milan, Italy (9471457573).jpg",
+      "alt": "A white marble Gothic façade bristling with pinnacles",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 2.0",
+      "author": "l0da_ralta",
+      "page": "https://commons.wikimedia.org/wiki/File:Duomo_facade,_Milan,_Italy_(9471457573).jpg"
+    },
+    {
+      "file": "baikal.webp",
+      "commons": "File:Baikal, Cape Burhan, Olkhon Island, Lake Baikal, Russia.jpg",
+      "alt": "A rocky cape on Olkhon Island above the clear blue water of Lake Baikal",
+      "license": "CC BY 4.0",
+      "author": "Vyacheslav Argenberg",
+      "page": "https://commons.wikimedia.org/wiki/File:Baikal,_Cape_Burhan,_Olkhon_Island,_Lake_Baikal,_Russia.jpg"
+    },
+    {
+      "file": "matryoshka.webp",
+      "commons": "File:Army of Matryoshka dolls (2995294027).jpg",
+      "alt": "Rows of painted matryoshka dolls with red headscarves",
+      "license": "CC BY 2.0",
+      "author": "Marcos Leal",
+      "page": "https://commons.wikimedia.org/wiki/File:Army_of_Matryoshka_dolls_(2995294027).jpg"
+    }
+  ]
+}
