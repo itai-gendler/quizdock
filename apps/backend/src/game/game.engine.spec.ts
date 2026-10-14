@@ -1241,9 +1241,17 @@ describe('GameEngine (characterization)', () => {
       const t0 = await startedAt(snapshotOf([question()]), players);
       const counts = () => roomOf<{ answered: number; total: number }>('answer:count');
       const before = counts().length;
-      await engine.submit(pin, 'p1', 0, 'x', t0 + 1);
-      await engine.submit(pin, 'p2', 0, 'x', t0 + 1);
-      await engine.submit(pin, 'p3', 0, 'x', t0 + 1);
+      // The three within one window whatever the machine's speed: the clock held still
+      // while they come in (a busy run took over the window between two of them).
+      const now = Date.now();
+      const clock = jest.spyOn(Date, 'now').mockReturnValue(now);
+      try {
+        await engine.submit(pin, 'p1', 0, 'x', t0 + 1);
+        await engine.submit(pin, 'p2', 0, 'x', t0 + 1);
+        await engine.submit(pin, 'p3', 0, 'x', t0 + 1);
+      } finally {
+        clock.mockRestore();
+      }
       // The first at once; the two that follow within the window, together at its end.
       expect(counts().slice(before)).toEqual([{ answered: 1, total: 4 }]);
       await eventually(async () => counts().length === before + 2);
