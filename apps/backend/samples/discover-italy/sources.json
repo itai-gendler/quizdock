@@ -1,0 +1,92 @@
+{
+  "media": [
+    {
+      "file": "colosseum.webp",
+      "commons": "File:Colosseum of Rome, Italy.jpg",
+      "alt": "The Colosseum in Rome, its arches lit at dusk",
+      "license": "CC0",
+      "author": "Wilfredor",
+      "page": "https://commons.wikimedia.org/wiki/File:Colosseum_of_Rome,_Italy.jpg"
+    },
+    {
+      "file": "rome.webp",
+      "commons": "File:0 Tibre - Pont Vittorio Emanuele II - San Spirito in Sassia - St-Pierre (Vatican).jpg",
+      "alt": "The Tiber in Rome, with an arched bridge and a great dome behind",
+      "license": "CC BY 3.0",
+      "author": "Jean-Pol GRANDMONT",
+      "page": "https://commons.wikimedia.org/wiki/File:0_Tibre_-_Pont_Vittorio_Emanuele_II_-_San_Spirito_in_Sassia_-_St-Pierre_(Vatican).jpg"
+    },
+    {
+      "file": "vesuvius.webp",
+      "commons": "File:Mount Vesuvius from Pompeii2.jpg",
+      "alt": "Mount Vesuvius rising beyond the ruined walls of Pompeii",
+      "license": "CC0",
+      "author": "Jebulon",
+      "page": "https://commons.wikimedia.org/wiki/File:Mount_Vesuvius_from_Pompeii2.jpg"
+    },
+    {
+      "file": "big-ben.webp",
+      "commons": "File:Big Ben in 2025.01.jpg",
+      "alt": "A tall clock tower beside a Gothic palace",
+      "width": 640,
+      "square": true,
+      "license": "CC0",
+      "author": "CAPTAIN RAJU",
+      "page": "https://commons.wikimedia.org/wiki/File:Big_Ben_in_2025.01.jpg"
+    },
+    {
+      "file": "giralda.webp",
+      "commons": "File:Giralda - Cathedral of Seville - Sevilla, Spain - DSC07538.JPG",
+      "alt": "A brick bell tower with a lattice pattern above a cathedral",
+      "width": 640,
+      "square": true,
+      "license": "CC0",
+      "author": "Daderot",
+      "page": "https://commons.wikimedia.org/wiki/File:Giralda_-_Cathedral_of_Seville_-_Sevilla,_Spain_-_DSC07538.JPG"
+    },
+    {
+      "file": "belem-tower.webp",
+      "commons": "File:Belem Tower (46384128782).jpg",
+      "alt": "A small stone fortress tower by a river",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 2.0",
+      "author": "Neil",
+      "page": "https://commons.wikimedia.org/wiki/File:Belem_Tower_(46384128782).jpg"
+    },
+    {
+      "file": "pisa-tower.webp",
+      "commons": "File:Leaning Tower of Pisa, 2023.jpg",
+      "alt": "A round white marble bell tower with tiers of arches",
+      "width": 640,
+      "square": true,
+      "license": "CC0",
+      "author": "Julian Lupyan",
+      "page": "https://commons.wikimedia.org/wiki/File:Leaning_Tower_of_Pisa,_2023.jpg"
+    },
+    {
+      "file": "venice.webp",
+      "commons": "File:Venice view, Grand Canal, Venice, Italy.jpg",
+      "alt": "A gondola on the Grand Canal in Venice, a domed church behind",
+      "license": "CC BY 4.0",
+      "author": "Vyacheslav Argenberg",
+      "page": "https://commons.wikimedia.org/wiki/File:Venice_view,_Grand_Canal,_Venice,_Italy.jpg"
+    },
+    {
+      "file": "pizza.webp",
+      "commons": "File:Pizza Margherita (14565452088).jpg",
+      "alt": "A pizza topped with tomatoes, mozzarella and basil leaves",
+      "license": "CC BY 2.0",
+      "author": "jeffreyw",
+      "page": "https://commons.wikimedia.org/wiki/File:Pizza_Margherita_(14565452088).jpg"
+    },
+    {
+      "file": "sistine-ceiling.webp",
+      "commons": "File:Lightmatter Sistine Chapel ceiling.jpg",
+      "alt": "The painted ceiling of the Sistine Chapel, full of figures",
+      "license": "CC BY 2.5",
+      "author": "Aaron Logan",
+      "page": "https://commons.wikimedia.org/wiki/File:Lightmatter_Sistine_Chapel_ceiling.jpg"
+    }
+  ]
+}
