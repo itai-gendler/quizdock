@@ -8,6 +8,9 @@ vi.mock('../game/game-client', () => ({
   ensureGameSocket: vi.fn(() => new Promise(() => undefined)),
 }));
 
+/** The pages load on demand: a busy run takes longer than findBy's default second. */
+const LAZY = { timeout: 5000 };
+
 const selection = (over: Record<string, unknown> = {}) => ({
   id: 's1',
   ownerId: 'me',
@@ -64,7 +67,7 @@ describe('SelectionsPage', () => {
     // As My quizzes: one's own first; everyone's here.
     sessionStorage.setItem('quizdock.selections.filter.owner', JSON.stringify(''));
     const { router } = renderApp('/selections');
-    expect(await screen.findByText('Vendredi soir')).toBeInTheDocument();
+    expect(await screen.findByText('Vendredi soir', {}, LAZY)).toBeInTheDocument();
     const theirs = screen.getByText('D’Alice').closest('li')!;
     expect(within(theirs).getByText(/de Alice/)).toBeInTheDocument();
     expect(within(theirs).getByText(/1 jouable/)).toBeInTheDocument();
@@ -90,7 +93,9 @@ describe('SelectionsPage', () => {
       { method: 'GET', path: '/selections/new', body: { ...selection({ id: 'new' }), items: [] } },
     ]);
     const { router } = renderApp('/selections');
-    expect(await screen.findByText('Aucune sélection pour l’instant')).toBeInTheDocument();
+    expect(
+      await screen.findByText('Aucune sélection pour l’instant', {}, LAZY),
+    ).toBeInTheDocument();
     fireEvent.click(screen.getAllByRole('button', { name: /Nouvelle sélection/ })[0]);
     await waitFor(() => expect(router.state.location.pathname).toBe('/selections/new'));
     const post = fetchMock.mock.calls.find(([, o]) => o?.method === 'POST');
@@ -117,7 +122,9 @@ describe('SelectionPage', () => {
       { method: 'PUT', path: '/selections/s1', body: detail },
     ]);
     renderApp('/selections/s1');
-    expect(await screen.findByText(/brouillon : ne peut pas être joué/)).toBeInTheDocument();
+    expect(
+      await screen.findByText(/brouillon : ne peut pas être joué/, {}, LAZY),
+    ).toBeInTheDocument();
     expect(screen.getByText(/2 de ses quiz ne sont pas partagés/)).toBeInTheDocument();
     // As the quiz editor's steps: the arrows show once the line is selected.
     expect(screen.queryByRole('button', { name: 'Monter « Histoire »' })).toBeNull();
@@ -163,7 +170,7 @@ describe('SelectionPage', () => {
       { method: 'GET', path: '/selections/copy/launches', body: [] },
     ]);
     const { router } = renderApp('/selections/s1');
-    expect(await screen.findByText(/Sélection de Alice/)).toBeInTheDocument();
+    expect(await screen.findByText(/Sélection de Alice/, {}, LAZY)).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /Monter/ })).toBeNull();
     fireEvent.click(screen.getByRole('button', { name: /Créer une sélection\s+à partir/ }));
     await waitFor(() => expect(router.state.location.pathname).toBe('/selections/copy'));

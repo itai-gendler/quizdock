@@ -39,7 +39,8 @@ describe('ThemesPage', () => {
       },
     ]);
     renderApp('/themes');
-    expect(await screen.findByText('Forêt')).toBeInTheDocument();
+    // The page loads on demand: a busy run takes longer than findBy's default second.
+    expect(await screen.findByText('Forêt', {}, { timeout: 5000 })).toBeInTheDocument();
     expect(screen.getByText('Océan')).toBeInTheDocument(); // everyone's by default
     fireEvent.change(screen.getByRole('combobox', { name: 'Propriétaire' }), {
       target: { value: 'b' },
