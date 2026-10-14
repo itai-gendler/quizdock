@@ -299,6 +299,7 @@ export class SelectionsService {
       items: lines.map((l) => ({
         quizId: l.quizId,
         title: l.title,
+        coverMediaId: l.coverMediaId,
         ...(l.ownerId === userId ? {} : { ownerName: l.ownerName }),
         status: l.status,
         questionCount: l.questionCount,

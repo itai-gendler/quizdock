@@ -31,6 +31,8 @@ export class SelectionDto extends createZodDto(selectionSchema) {}
 export const selectionItemSchema = z.object({
   quizId: z.string(),
   title: z.string(),
+  /** Its cover, pictured when it has no slide. */
+  coverMediaId: z.string().nullable(),
   /** Its owner's name, for another host's quiz. */
   ownerName: z.string().optional(),
   status: z.enum(['draft', 'ready', 'archived']),

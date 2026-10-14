@@ -53,6 +53,26 @@ export function SelectionFan({
   );
 }
 
+/** One quiz of a selection, small, as its first step shows it: a line's thumbnail. */
+export function QuizThumb({
+  quizId,
+  coverMediaId,
+  className,
+}: {
+  quizId: string;
+  coverMediaId: string | null;
+  className?: string;
+}) {
+  return (
+    <QuizFirstStep
+      quizId={quizId}
+      hasCover={!!coverMediaId}
+      fallback={<Cover coverMediaId={coverMediaId} />}
+      className={cn('overflow-hidden rounded-sm border', className)}
+    />
+  );
+}
+
 function Cover({ coverMediaId }: { coverMediaId: string | null }) {
   return coverMediaId ? (
     <img src={mediaUrl(coverMediaId)} alt="" loading="lazy" className="size-full object-cover" />

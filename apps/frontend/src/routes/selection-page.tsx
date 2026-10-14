@@ -58,6 +58,7 @@ import {
 } from '../api/generated/selections/selections';
 import { QuizPicker } from '../game/room-components';
 import { useLaunchSession } from '../game/use-launch-session';
+import { QuizThumb } from './selection-fan';
 import { selectionRoute } from '../router';
 
 /** At most this many quizzes in a selection (the server says so too). */
@@ -427,10 +428,10 @@ function ItemRow({
   const { t } = useTranslation('selections');
   const pace = item.mode === 'auto' ? t('paceAuto') : t('paceManual');
   return (
-    // Four columns — handle, number, text, actions — so its settings sit under its title.
+    // Five columns — handle, number, picture, text, actions — its settings under its title.
     <div
       className={cn(
-        'group grid grid-cols-[auto_auto_minmax(0,1fr)_auto] items-center gap-x-2 rounded-xl border border-transparent transition-colors',
+        'group grid grid-cols-[auto_auto_auto_minmax(0,1fr)_auto] items-center gap-x-2 rounded-xl border border-transparent transition-colors',
         active ? 'bg-primary/5 border-primary/30' : 'hover:bg-accent/60',
       )}
     >
@@ -452,6 +453,10 @@ function ItemRow({
         )}
       >
         {index + 1}
+      </span>
+      {/* Its first step, small: which quiz it is at a glance. */}
+      <span aria-hidden onClick={onSelect} className={cn('w-20', item.unplayable && 'opacity-60')}>
+        <QuizThumb quizId={item.quizId} coverMediaId={item.coverMediaId} />
       </span>
       <button
         type="button"
@@ -507,7 +512,7 @@ function ItemRow({
         />
       </div>
       {active ? (
-        <div className="col-start-3 col-end-5 flex flex-wrap items-center gap-3 pr-1 pb-3">
+        <div className="col-start-4 col-end-6 flex flex-wrap items-center gap-3 pr-1 pb-3">
           <Select
             className="h-8 w-auto"
             value={item.mode}
@@ -662,6 +667,7 @@ function AddQuizDialog({
         onAdd({
           quizId: quiz.id,
           title: quiz.title,
+          coverMediaId: quiz.coverMediaId,
           ...(quiz.editable === false ? { ownerName: quiz.ownerName } : {}),
           status: quiz.status,
           questionCount: quiz.questionCount,
@@ -795,6 +801,9 @@ function SelectionReadOnly({ selection }: { selection: SelectionDetailDto }) {
           >
             <span className="text-muted-foreground w-6 shrink-0 text-sm tabular-nums">
               {i + 1}.
+            </span>
+            <span className={cn('w-20 shrink-0', item.unplayable && 'opacity-60')}>
+              <QuizThumb quizId={item.quizId} coverMediaId={item.coverMediaId} />
             </span>
             <span className={cn('flex min-w-0 flex-col', item.unplayable && 'opacity-60')}>
               <span className="truncate font-medium">{item.title}</span>

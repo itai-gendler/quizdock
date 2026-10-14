@@ -8582,6 +8582,10 @@
                 "title": {
                   "type": "string"
                 },
+                "coverMediaId": {
+                  "type": "string",
+                  "nullable": true
+                },
                 "ownerName": {
                   "type": "string"
                 },
@@ -8622,6 +8626,7 @@
               "required": [
                 "quizId",
                 "title",
+                "coverMediaId",
                 "status",
                 "questionCount",
                 "mode",

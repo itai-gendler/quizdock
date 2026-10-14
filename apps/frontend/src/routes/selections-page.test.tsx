@@ -29,6 +29,7 @@ const selection = (over: Record<string, unknown> = {}) => ({
 const item = (quizId: string, title: string, over: Record<string, unknown> = {}) => ({
   quizId,
   title,
+  coverMediaId: null,
   status: 'ready',
   questionCount: 4,
   mode: 'manual',

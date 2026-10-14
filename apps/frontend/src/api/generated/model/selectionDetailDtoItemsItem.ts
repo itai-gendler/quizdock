@@ -12,6 +12,8 @@ import type { SelectionDetailDtoItemsItemUnplayable } from './selectionDetailDto
 export type SelectionDetailDtoItemsItem = {
   quizId: string;
   title: string;
+  /** @nullable */
+  coverMediaId: string | null;
   ownerName?: string;
   status: SelectionDetailDtoItemsItemStatus;
   /**
