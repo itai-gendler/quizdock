@@ -13,6 +13,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { QuestionsModule } from './questions/questions.module';
 import { SlidesModule } from './slides/slides.module';
 import { QuizzesModule } from './quizzes/quizzes.module';
+import { SelectionsModule } from './selections/selections.module';
 import { StoreModule } from './store/store.module';
 import { RedisModule } from './redis/redis.module';
 import { UsersModule } from './users/users.module';
@@ -66,6 +67,7 @@ const serveStatic = clientDir
     AuthModule,
     UsersModule,
     QuizzesModule,
+    SelectionsModule,
     StoreModule,
     QuestionsModule,
     SlidesModule,

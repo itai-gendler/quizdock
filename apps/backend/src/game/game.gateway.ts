@@ -123,7 +123,8 @@ export class GameGateway implements OnGatewayInit, OnGatewayDisconnect {
     @ConnectedSocket() socket: GameSocket,
     @MessageBody()
     payload: {
-      quizId: string;
+      quizId?: string;
+      selectionId?: string;
       fullCapture?: boolean;
       personalTracking?: boolean;
       pickOwnName?: boolean;

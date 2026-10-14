@@ -281,6 +281,7 @@ export class QuizzesService {
     });
     if (sessions.length < 2) return null;
     return {
+      roomId,
       // The name it had last (the host may rename the room between two quizzes).
       name: sessions[sessions.length - 1].roomName,
       hostName: sessions[0].host.displayName,
