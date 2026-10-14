@@ -117,6 +117,8 @@ export interface QuizSnapshot {
   credits?: string[];
   /** Its look on the live screens, resolved when the game opens (docs/themes.md; absent before it). */
   theme?: ThemeValues;
+  /** Another host's shared quiz, presented as it is: the game keeps nothing (`keepResults`). */
+  borrowed?: true;
 }
 
 /**
@@ -174,6 +176,8 @@ export interface RoomMeta {
   motion: boolean;
   /** The language of the audience's screens chosen by the host (#209); '' = each quiz's. */
   audienceLanguage: string;
+  /** The selection the room was opened from (SPECIFICATIONS-SELECTION); absent or '' = none. */
+  selectionId?: string;
 }
 
 /** The room's game sounds as kept: the host's choices (media ids) and their URLs. */
@@ -248,6 +252,7 @@ export const ROOM_FIELDS = [
   'sounds',
   'motion',
   'audienceLanguage',
+  'selectionId',
 ] as const;
 
 /**
@@ -328,6 +333,14 @@ export interface GameMeta {
   reviewStep?: string;
   /** Base URL of the invitations (QR, link) chosen by the host; '' = each screen's own origin. */
   joinBaseUrl?: string;
+  /** The selection the room was opened from (SPECIFICATIONS-SELECTION), if any. */
+  selectionId?: string;
+  /**
+   * False when the game plays another host's shared quiz as it is
+   * (SPECIFICATIONS-SHARED-PLAY): nothing of it reaches PostgreSQL but its ratings,
+   * without nicknames. Absent = true.
+   */
+  keepResults?: boolean;
 }
 
 /** The fields of the game hash (`game:{id}`): everything in `GameMeta` the room does not hold. */
@@ -368,14 +381,22 @@ export type { AnswerValue };
 export function noticeOf(
   meta: Pick<
     GameMeta,
-    'fullCapture' | 'personalTracking' | 'pickOwnName' | 'participantAccess' | 'joinLocked'
+    | 'fullCapture'
+    | 'personalTracking'
+    | 'pickOwnName'
+    | 'participantAccess'
+    | 'joinLocked'
+    | 'keepResults'
   >,
 ): SessionNotice {
+  // A game that keeps nothing captures and tracks nothing, whatever the room chose.
+  const keepResults = meta.keepResults !== false;
   return {
-    fullCapture: meta.fullCapture,
-    personalTracking: meta.personalTracking,
+    fullCapture: keepResults && meta.fullCapture,
+    personalTracking: keepResults && meta.personalTracking,
     pickOwnName: meta.pickOwnName,
     participantAccess: meta.participantAccess,
     joinLocked: meta.joinLocked,
+    keepResults,
   };
 }

@@ -4,16 +4,12 @@
     "sessionUnavailable": "Room unavailable.",
     "backToQuizzes": "Back to my quizzes",
     "share": "Share",
-    "shareTooltip": "Share the invitation (PIN + link) via the share sheet or clipboard",
+    "shareTooltip": "Share the invitation link — its PIN in it — through the share sheet or the clipboard",
     "shareScreenTooltip": "Open the projection screen to share the QR code",
     "qrLabel": "QR code to join",
     "pinLabel": "PIN code",
-    "shareCopied": "Invitation copied (PIN + link) to the clipboard.",
+    "shareCopied": "Link copied to the clipboard.",
     "shareByHand": "Copy this address and send it: {{url}}",
-    "shareText": "Join the {{appName}} room 🎮",
-    "sharePin": "PIN: {{pin}}",
-    "shareLink": "Direct link: {{url}}",
-    "shareTitle": "Join the {{appName}} room",
     "screenButton": "Projection window",
     "screenButtonTooltip": "Opens the large screen to project (spectator view)",
     "screenElsewhere": "Project from another computer",
@@ -24,6 +20,7 @@
     "pairFailed": "No screen of this room shows that code.",
     "captureLabel": "Record all answers",
     "captureHint": "ⓘ Players will be informed at startup. Keeps each player's answer details for individual tracking.",
+    "keepsNothingHint": "ⓘ Another host’s quiz, presented as it is: nothing of it is kept.",
     "trackingLabel": "Personalised tracking",
     "trackingHint": "ⓘ On, results are recorded under each participant’s account (archived leaderboard, history). Off, no individual result is kept — only the group’s overall results. The live game is unaffected.",
     "trackingOpenAccessHint": "ⓘ Unavailable in open access: participants have no account, nothing individual is kept.",
@@ -158,6 +155,7 @@
     "pickerTags": "Tags",
     "pickerJustPlayed": "just played",
     "pickerUpdated": "modified {{date}}",
+    "pickerShared": "by {{name}}, nothing kept",
     "renameRoom": "Rename the room",
     "roomNameLabel": "Room name",
     "readyCount_one": "Ready: {{ready}} / {{count}} participant",
@@ -232,6 +230,10 @@
     "statusQuizOver": "Quiz over",
     "beforeStarting": "Before starting",
     "beforeStartingHint": "Fixed once the quiz starts.",
+    "settingsTabs": {
+      "data": "Data",
+      "screens": "Screens and sound"
+    },
     "invite": "Invite players",
     "showQuestion": "Show Q{{n}}",
     "showSlide": "Show the slide",
@@ -359,6 +361,7 @@
     "captureNotice": "ⓘ Your taking part and your score are recorded under your account — and every one of your answers is kept.",
     "trackingNotice": "ⓘ Your taking part and your score are recorded under your account.",
     "noTrackingNotice": "ⓘ Your individual results are not recorded — only the group’s overall results are.",
+    "nothingRecordedNotice": "ⓘ Nothing of this quiz is recorded: neither your taking part nor your answers.",
     "trackingNoticeGuest": "ⓘ Your taking part and your score are recorded with each quiz's results, under your nickname.",
     "captureNoticeGuest": "ⓘ Your taking part and your score are recorded with each quiz's results, under your nickname — and every one of your answers is kept.",
     "answerNumberPlaceholder": "Your answer (number)",
@@ -515,5 +518,13 @@
     },
     "muteBus": "Mute {{bus}}",
     "unmuteBus": "Unmute {{bus}}"
+  },
+  "selection": {
+    "title": "Selection: {{name}}",
+    "position": "{{at}} of {{count}}",
+    "next": "next",
+    "played": "played",
+    "save": "Save as a selection",
+    "saved": "Saved as a selection: open it"
   }
 }

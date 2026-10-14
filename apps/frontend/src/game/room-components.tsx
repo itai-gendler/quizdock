@@ -1,5 +1,6 @@
-import type { RoomStandingsPayload } from '@quiz-dock/contracts';
-import { CircleCheck, ListChecks, ListPlus, Square } from 'lucide-react';
+import type { RoomSelectionPayload, RoomStandingsPayload } from '@quiz-dock/contracts';
+import { Link } from '@tanstack/react-router';
+import { BookmarkPlus, CircleCheck, Circle, ListChecks, ListPlus, Square } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TagFilter, tagsOf } from '@/components/tag-filter';
@@ -12,6 +13,8 @@ import { cn } from '@/lib/utils';
 import { useMeControllerMe } from '../api/generated/me/me';
 import type { QuizDto } from '../api/generated/model';
 import { useQuizzesControllerList } from '../api/generated/quizzes/quizzes';
+import { selectionsControllerFromRoom } from '../api/generated/selections/selections';
+import { apiErrorText } from '../api/http';
 import { type GameSocket, emitWithAckOrError } from './game-client';
 import { serverNow } from './clock';
 import { LeaderboardList } from './live-components';
@@ -112,6 +115,110 @@ export function RoomStandingsPanel({
 }
 
 /**
+ * The selection the room was opened from, as its console sees it (SPECIFICATIONS-SELECTION):
+ * the quizzes its host may play in order, those played ticked, the one the lobby picks
+ * marked next — the host can still change it.
+ */
+export function RoomSelectionPanel({ selection }: { selection: RoomSelectionPayload }) {
+  const { t } = useTranslation('live');
+  const at = selection.items.findIndex((i) => i.quizId === selection.nextQuizId);
+  return (
+    <div className="flex w-full flex-col gap-[0.5em]">
+      <h3 className="text-muted-foreground font-semibold">
+        {t('selection.title', { name: selection.name })}
+        {at >= 0 ? (
+          <span className="font-normal">
+            {' '}
+            · {t('selection.position', { at: at + 1, count: selection.items.length })}
+          </span>
+        ) : null}
+      </h3>
+      <ol className="flex flex-col gap-1 text-sm">
+        {selection.items.map((item) => {
+          const next = item.quizId === selection.nextQuizId;
+          return (
+            <li
+              key={item.quizId}
+              className={cn(
+                'flex items-center gap-2',
+                next ? 'font-medium' : 'text-muted-foreground',
+              )}
+            >
+              {item.played ? (
+                <CircleCheck className="text-success-text size-4 shrink-0" aria-hidden />
+              ) : (
+                <Circle className="size-4 shrink-0" aria-hidden />
+              )}
+              <span className="truncate">{item.title}</span>
+              {next ? <span className="text-xs">({t('selection.next')})</span> : null}
+              {item.played ? <span className="sr-only">{t('selection.played')}</span> : null}
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
+
+/**
+ * *Save as a selection* (SPECIFICATIONS-SELECTION): the quizzes the room played, in
+ * order with their pace, become a new selection of the host's — then opened from a link.
+ */
+export function SaveAsSelectionButton({
+  pin,
+  roomId,
+  className,
+}: {
+  /** A live room (the console)… */
+  pin?: string;
+  /** …or one of the archive (History): its archived quizzes, at the manual pace. */
+  roomId?: string;
+  className?: string;
+}) {
+  const { t } = useTranslation('live');
+  const [saved, setSaved] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  if (saved) {
+    return (
+      <Link
+        to="/selections/$selectionId"
+        params={{ selectionId: saved }}
+        className={cn('text-link text-sm font-medium underline', className)}
+      >
+        {t('selection.saved')}
+      </Link>
+    );
+  }
+  return (
+    <span className={cn('flex flex-col items-start gap-1', className)}>
+      <Button
+        type="button"
+        variant="outline"
+        size="sm"
+        disabled={busy}
+        onClick={() => {
+          setBusy(true);
+          setError(null);
+          selectionsControllerFromRoom(pin ? { pin } : { roomId })
+            .then((res) => setSaved(res.data.id))
+            .catch((err: unknown) => setError(apiErrorText(err)))
+            .finally(() => setBusy(false));
+        }}
+      >
+        <BookmarkPlus className="size-4" />
+        {t('selection.save')}
+      </Button>
+      {error ? (
+        <span className="text-destructive text-xs" role="alert">
+          {error}
+        </span>
+      ) : null}
+    </span>
+  );
+}
+
+/**
  * The quiz the room's lobby plays (`host:next-quiz`): picked there — a room goes back to
  * its lobby with none after a quiz — or replacing the one picked, nothing of it played.
  * Only the host's own quizzes that can be played — `ready`, with a question — are
@@ -140,7 +247,11 @@ export function QuizPickButton({
   const quizzes = useQuizzesControllerList({ query: { enabled: open } }).data?.data ?? [];
   const playable = quizzes.filter(
     (q) =>
-      q.ownerId === me?.id && q.status === 'ready' && q.questionCount > 0 && q.id !== currentQuizId,
+      // Theirs, or shared by another host — then played keeping nothing (SPECIFICATIONS-SHARED-PLAY).
+      (q.ownerId === me?.id || q.shared) &&
+      q.status === 'ready' &&
+      q.questionCount > 0 &&
+      q.id !== currentQuizId,
   );
   const picked = playable.some((q) => q.id === quizId) ? quizId : '';
   const label = t(replacing ? 'control.changeQuiz' : 'control.chooseQuiz');
@@ -215,10 +326,13 @@ export function BackToLobbyButton({
   pin,
   socket,
   mode,
+  offerArchive = true,
 }: {
   pin: string;
   socket: GameSocket | null;
   mode: 'podium' | 'stop';
+  /** False for a game that keeps nothing (another host's shared quiz): no choice to offer. */
+  offerArchive?: boolean;
 }) {
   const stop = mode === 'stop';
   const { t } = useTranslation(['live', 'common']);
@@ -233,7 +347,10 @@ export function BackToLobbyButton({
     setSending(true);
     setError(null);
     try {
-      await emitWithAckOrError(socket, 'host:back-to-lobby', { pin, archive });
+      await emitWithAckOrError(socket, 'host:back-to-lobby', {
+        pin,
+        archive: offerArchive && archive,
+      });
       setOpen(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
@@ -268,13 +385,15 @@ export function BackToLobbyButton({
           setError(null);
         }}
       >
-        <CheckboxField
-          className="rounded-md border p-3"
-          checked={archive}
-          onChange={setArchive}
-          label={t(stop ? 'control.archiveSoFarLabel' : 'control.archiveLabel')}
-          hint={t(stop ? 'control.archiveSoFarHint' : 'control.archiveHint')}
-        />
+        {offerArchive ? (
+          <CheckboxField
+            className="rounded-md border p-3"
+            checked={archive}
+            onChange={setArchive}
+            label={t(stop ? 'control.archiveSoFarLabel' : 'control.archiveLabel')}
+            hint={t(stop ? 'control.archiveSoFarHint' : 'control.archiveHint')}
+          />
+        ) : null}
         {error ? <p className="text-destructive text-sm">{error}</p> : null}
       </ConfirmDialog>
     </>
@@ -289,7 +408,7 @@ type PickableQuiz = QuizDto;
  * it is — its cover, title, the start of its description, its size, language,
  * tags and last change. Built on the combobox, kept open.
  */
-function QuizPicker({
+export function QuizPicker({
   quizzes,
   value,
   onChange,
@@ -420,6 +539,9 @@ function QuizPicker({
                 <span>{t('control.quizQuestions', { count: q.questionCount })}</span>
                 <span>· {q.language.toUpperCase()}</span>
                 <span>· {t('control.pickerUpdated', { date: date(q.updatedAt) })}</span>
+                {q.editable === false ? (
+                  <span>· {t('control.pickerShared', { name: q.ownerName ?? '' })}</span>
+                ) : null}
                 {q.tags.slice(0, 3).map((tag) => (
                   <span key={tag} className="bg-muted rounded px-1">
                     {tag}

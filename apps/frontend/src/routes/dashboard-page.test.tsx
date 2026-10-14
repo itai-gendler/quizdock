@@ -90,7 +90,7 @@ describe('DashboardPage', () => {
     // Nothing of an owner's: no editing, no presenting.
     expect(screen.queryByRole('button', { name: /Éditer/ })).toBeNull();
     expect(screen.queryByRole('button', { name: /Présenter/ })).toBeNull();
-    fireEvent.click(screen.getByRole('button', { name: /Créer un quiz à partir de ceci/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Créer un quiz\s+à partir de ceci/ }));
     await waitFor(() =>
       expect(
         fetchMock.mock.calls.some(
@@ -99,6 +99,34 @@ describe('DashboardPage', () => {
         ),
       ).toBe(true),
     );
+  });
+
+  it("another host's shared, ready quiz: copied, or presented keeping nothing as the main action, last", async () => {
+    mockApi([
+      {
+        method: 'GET',
+        path: '/quizzes',
+        body: [
+          quiz({
+            id: 'shared',
+            title: 'Partagé',
+            status: 'ready',
+            questionCount: 3,
+            editable: false,
+            shared: true,
+            ownerName: 'Alice',
+          }),
+        ],
+      },
+    ]);
+    everyone();
+    renderApp('/quizzes');
+    const present = await screen.findByRole('button', {
+      name: /Présenter\s+sans garder les résultats/,
+    });
+    const copy = screen.getByRole('button', { name: /Créer un quiz\s+à partir de ceci/ });
+    // Both in view, the main one last, where a card always has it.
+    expect(copy.compareDocumentPosition(present) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
   it('one action per card, the rest in its ⋮; the card opens the quiz (UI system §3)', async () => {
@@ -478,7 +506,7 @@ describe('DashboardPage', () => {
     fireEvent.click((await screen.findAllByRole('button', { name: /Nouveau quiz/ }))[0]);
     fireEvent.click(await screen.findByRole('button', { name: 'Quiz vierge' }));
     expect(await screen.findByRole('alert')).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: /Créer un quiz à partir de ceci/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Créer un quiz\s+à partir de ceci/ }));
     await waitFor(() => expect(screen.getAllByRole('alert')).toHaveLength(2));
   });
 });

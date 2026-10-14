@@ -1,0 +1,459 @@
+{
+  "format": "quizdock/quiz",
+  "version": 6,
+  "quiz": {
+    "title": "Discover Russia",
+    "description": "Sample quiz — geography, history and culture of Russia.",
+    "language": "en",
+    "license": "CC-BY-4.0",
+    "revision": 2,
+    "feedbackEnabled": true,
+    "cover": null
+  },
+  "items": [
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "intro-title",
+          "text": "Discover Russia",
+          "level": 1,
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "intro-text",
+          "md": "Quick questions about the world’s largest country — from the Baltic to the Pacific.",
+          "align": "center",
+          "size": "large"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundImage": "media/peterhof.webp"
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "What is the capital of Russia?",
+      "answerExplanation": "Moscow, on the Moskva River, is the largest city in Russia.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Saint Petersburg",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Moscow",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Novosibirsk",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Kazan",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "Russia is the largest country in the world by area.",
+      "answerExplanation": "It covers about 17 million km², spanning Eastern Europe and northern Asia.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "False",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "numeric",
+      "prompt": "In which year did Peter the Great found Saint Petersburg? Closest answer wins.",
+      "answerExplanation": "Peter the Great founded the city on the Neva in 1703.",
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "closest",
+      "numericValue": 1703,
+      "numericTolerance": 5,
+      "options": [],
+      "acceptedAnswers": [],
+      "media": "media/saint-petersburg.webp"
+    },
+    {
+      "kind": "question",
+      "timeLimitS": 20,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "type": "image_choice",
+      "prompt": "Which of these is Saint Basil’s Cathedral?",
+      "answerExplanation": "Saint Basil’s, on Moscow’s Red Square, was built between 1555 and 1561.",
+      "options": [
+        {
+          "media": "media/sagrada-familia.webp",
+          "alt": "A façade covered in carved stone, below tall pierced spires",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "media": "media/cologne-cathedral.webp",
+          "alt": "A dark Gothic spire soaring above a stone nave",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "media": "media/saint-basils.webp",
+          "alt": "A church crowned with colourful onion domes, lit at night",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "media": "media/milan-cathedral.webp",
+          "alt": "A white marble Gothic façade bristling with pinnacles",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "kind": "question",
+      "type": "multiple_choice",
+      "prompt": "Which of these writers were Russian?",
+      "answerExplanation": "Charles Dickens was English; Pushkin is often called the founder of modern Russian literature.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Leo Tolstoy",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Fyodor Dostoevsky",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Charles Dickens",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Alexander Pushkin",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "text_input",
+      "prompt": "What is the name of the world’s deepest lake, in Siberia?",
+      "answerExplanation": "Lake Baikal is also the world’s oldest lake, more than 20 million years old.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "lenient",
+      "options": [],
+      "acceptedAnswers": [
+        "Baikal",
+        "Lake Baikal"
+      ],
+      "media": "media/baikal.webp"
+    },
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "matryoshka-title",
+          "text": "Matryoshka",
+          "level": 2,
+          "align": "center"
+        },
+        {
+          "type": "image",
+          "id": "matryoshka-picture",
+          "media": "media/matryoshka.webp",
+          "size": "medium",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "matryoshka-text",
+          "md": "Matryoshka dolls nest one inside another — the first set was made in the 1890s.",
+          "align": "center"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundGradient": {
+        "angle": 135,
+        "colors": [
+          "#b91c1c",
+          "#422006"
+        ]
+      }
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Into which sea does the Volga, Europe’s longest river, flow?",
+      "answerExplanation": "The Volga runs about 3,500 km before reaching the Caspian Sea.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Black Sea",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Baltic Sea",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "White Sea",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Caspian Sea",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "ordering",
+      "prompt": "Order these Russian cities from west to east.",
+      "answerExplanation": null,
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Novosibirsk",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false,
+          "correctOrderIndex": 2
+        },
+        {
+          "text": "Saint Petersburg",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false,
+          "correctOrderIndex": 0
+        },
+        {
+          "text": "Vladivostok",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false,
+          "correctOrderIndex": 3
+        },
+        {
+          "text": "Moscow",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false,
+          "correctOrderIndex": 1
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Which composer wrote the ballet Swan Lake?",
+      "answerExplanation": "Tchaikovsky’s Swan Lake premiered at the Bolshoi Theatre in Moscow in 1877.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "double",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Tchaikovsky",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Rachmaninoff",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Stravinsky",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Prokofiev",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "Siberia lies west of the Ural Mountains.",
+      "answerExplanation": "The Urals divide European Russia from Siberia, which lies to the east.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "False",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "poll",
+      "prompt": "Which Russian experience would you pick?",
+      "answerExplanation": null,
+      "timeLimitS": 15,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "The Trans-Siberian Railway",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "A ballet in Saint Petersburg",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Lake Baikal",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "The volcanoes of Kamchatka",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    }
+  ],
+  "media": {
+    "media/peterhof.webp": {
+      "name": "peterhof.webp",
+      "alt": "The Grand Cascade of Peterhof, golden statues and fountains before a palace",
+      "credit": "Vasilii Martynov · CC0 · Wikimedia Commons"
+    },
+    "media/saint-petersburg.webp": {
+      "name": "saint-petersburg.webp",
+      "alt": "The spire of the Peter and Paul Fortress across the Neva at sunset",
+      "credit": "l0da_ralta · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/sagrada-familia.webp": {
+      "name": "sagrada-familia.webp",
+      "alt": "A façade covered in carved stone, below tall pierced spires",
+      "credit": "Julian Lupyan · CC0 · Wikimedia Commons"
+    },
+    "media/cologne-cathedral.webp": {
+      "name": "cologne-cathedral.webp",
+      "alt": "A dark Gothic spire soaring above a stone nave",
+      "credit": "Acediscovery · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/saint-basils.webp": {
+      "name": "saint-basils.webp",
+      "alt": "A church crowned with colourful onion domes, lit at night",
+      "credit": "Diego Delso · Public domain · Wikimedia Commons"
+    },
+    "media/milan-cathedral.webp": {
+      "name": "milan-cathedral.webp",
+      "alt": "A white marble Gothic façade bristling with pinnacles",
+      "credit": "l0da_ralta · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/baikal.webp": {
+      "name": "baikal.webp",
+      "alt": "A rocky cape on Olkhon Island above the clear blue water of Lake Baikal",
+      "credit": "Vyacheslav Argenberg · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/matryoshka.webp": {
+      "name": "matryoshka.webp",
+      "alt": "Rows of painted matryoshka dolls with red headscarves",
+      "credit": "Marcos Leal · CC BY 2.0 · Wikimedia Commons"
+    }
+  }
+}

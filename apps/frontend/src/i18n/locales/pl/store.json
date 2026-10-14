@@ -1,8 +1,8 @@
 {
-  "title": "Udostępnione szablony",
-  "intro": "Quizy udostępnione przez prowadzących z tej instancji. Wzięcie szablonu umieszcza niezależną kopię w twoim banku — możesz ją przemianować, skrócić i prezentować. Później nic nie jest ci odsyłane z powrotem.",
+  "title": "Szablony",
+  "intro": "Quizy, które prowadzący tej instancji zaproponowali jako szablony. Wzięcie jednego umieszcza niezależną kopię w twoim banku — możesz ją przemianować, skrócić i prezentować. Później nic nie jest ci przesyłane.",
   "emptyTitle": "Brak szablonów",
-  "empty": "Na tej instancji nie udostępniono jeszcze żadnego szablonu. Udostępnij go z quizu oznaczonego jako „gotowy”.",
+  "empty": "Na tej instancji nie zaproponowano jeszcze żadnego szablonu. Zaproponuj go z quizu oznaczonego jako „gotowy”.",
   "withdraw": "Wycofaj",
   "questionCount_one": "{{count}} pytanie",
   "questionCount_few": "{{count}} pytania",
@@ -14,16 +14,16 @@
     "title": "Wycofać ten szablon?",
     "description": "Zniknie z katalogu, więc nikt go już nie weźmie. Kopie, które ktoś już wziął, należą do niego i pozostają nietknięte."
   },
-  "share": "Udostępnij jako szablon",
+  "share": "Zaproponuj jako szablon",
   "shareConfirm": {
-    "title": "Udostępnić ten quiz jako szablon?",
-    "description": "Kopia trafia do katalogu tej instancji. Inni prowadzący biorą własną kopię i zmieniają ją, jak chcą; twój quiz nigdy nie jest modyfikowany przez ich działania. Ponowne udostępnienie zastępuje wpis, a jego wycofanie nigdy nie usuwa już wziętych kopii."
+    "title": "Zaproponować ten quiz jako szablon?",
+    "description": "Kopia trafia do katalogu tej instancji. Inni prowadzący biorą własną kopię i zmieniają ją dowolnie; twój quiz nigdy nie zmienia się przez to, co robią. Ponowne zaproponowanie zastępuje wpis, a jego wycofanie nigdy nie usuwa już wziętych kopii."
   },
-  "shared": "Udostępniono jako szablon (wersja {{n}}).",
-  "shareFailed": "Nie udało się udostępnić tego quizu.",
+  "shared": "Zaproponowano jako szablon (wersja {{n}}).",
+  "shareFailed": "Nie udało się zaproponować tego quizu jako szablonu.",
   "search": "Szukaj szablonu",
   "sortBy": "Sortuj według",
-  "sortRecent": "Ostatnio udostępnione",
+  "sortRecent": "Ostatnio zaproponowane",
   "sortTitle": "Tytuł (A–Z)",
   "sortQuestions": "Najwięcej pytań",
   "templateCount_one": "{{count}} szablon",
@@ -31,7 +31,7 @@
   "templateCount_many": "{{count}} szablonów",
   "templateCount_other": "{{count}} szablonu",
   "noMatch": "Żaden szablon nie pasuje do wyszukiwania.",
-  "sharedBy": "udostępnił(a) {{name}}, {{date}}",
+  "sharedBy": "zaproponowany przez {{name}} dnia {{date}}",
   "backToCatalogue": "Wróć do szablonów",
   "slideCount_one": "{{count}} slajd",
   "slideCount_few": "{{count}} slajdy",

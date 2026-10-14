@@ -4,16 +4,12 @@
     "sessionUnavailable": "Sala no disponible.",
     "backToQuizzes": "Volver a mis quizzes",
     "share": "Compartir",
-    "shareTooltip": "Comparte la invitación (PIN + enlace) mediante el sistema de compartir o el portapapeles",
+    "shareTooltip": "Compartir el enlace de invitación —el PIN va en él— por el menú de compartir o el portapapeles",
     "shareScreenTooltip": "Abre la pantalla de proyección para compartir el código QR",
     "qrLabel": "Código QR para unirse",
     "pinLabel": "Código PIN",
-    "shareCopied": "Invitación copiada (PIN + enlace) en el portapapeles.",
+    "shareCopied": "Enlace copiado al portapapeles.",
     "shareByHand": "Copia esta dirección y envíala: {{url}}",
-    "shareText": "Únete a la sala de {{appName}} 🎮",
-    "sharePin": "PIN: {{pin}}",
-    "shareLink": "Enlace directo: {{url}}",
-    "shareTitle": "Únete a la sala de {{appName}}",
     "screenButton": "Ventana de proyección",
     "screenButtonTooltip": "Abre la pantalla grande para proyectar (vista de espectador)",
     "screenElsewhere": "Proyectar desde otro ordenador",
@@ -24,6 +20,7 @@
     "pairFailed": "Ninguna pantalla de esta sala muestra ese código.",
     "captureLabel": "Registrar todas las respuestas",
     "captureHint": "ⓘ Se informará a los jugadores al iniciar. Conserva el detalle de las respuestas de cada jugador para el seguimiento individual.",
+    "keepsNothingHint": "ⓘ El quiz de otro anfitrión, presentado tal cual: no se guarda nada de él.",
     "trackingLabel": "Seguimiento individual",
     "trackingHint": "ⓘ Activado, los resultados se registran en la cuenta de cada participante (clasificación archivada, historial). Desactivado, no se conserva ningún resultado individual: solo los resultados globales del grupo. La sesión en directo no cambia.",
     "trackingOpenAccessHint": "ⓘ No disponible en acceso libre: los participantes no tienen cuenta, no se conserva nada individual.",
@@ -161,6 +158,7 @@
     "pickerTags": "Etiquetas",
     "pickerJustPlayed": "recién jugado",
     "pickerUpdated": "modificado el {{date}}",
+    "pickerShared": "de {{name}}, no se guarda nada",
     "renameRoom": "Renombrar la sala",
     "roomNameLabel": "Nombre de la sala",
     "readyCount_one": "Listos: {{ready}} / {{count}} participante",
@@ -237,6 +235,10 @@
     "statusQuizOver": "Quiz terminado",
     "beforeStarting": "Antes de empezar",
     "beforeStartingHint": "Se fija al empezar el quiz.",
+    "settingsTabs": {
+      "data": "Datos",
+      "screens": "Pantallas y sonido"
+    },
     "invite": "Invitar jugadores",
     "showQuestion": "Mostrar P{{n}}",
     "showSlide": "Mostrar la diapositiva",
@@ -367,6 +369,7 @@
     "captureNotice": "ⓘ Tu participación y tu puntuación se registran en tu cuenta, y se conserva cada una de tus respuestas.",
     "trackingNotice": "ⓘ Tu participación y tu puntuación se registran en tu cuenta.",
     "noTrackingNotice": "ⓘ Tus resultados individuales no se registran: solo los resultados globales del grupo.",
+    "nothingRecordedNotice": "ⓘ No se registra nada de este quiz: ni tu participación ni tus respuestas.",
     "trackingNoticeGuest": "ⓘ Tu participación y tu puntuación se registran con los resultados de cada quiz, con tu apodo.",
     "captureNoticeGuest": "ⓘ Tu participación y tu puntuación se registran con los resultados de cada quiz, con tu apodo, y se conserva cada una de tus respuestas.",
     "answerNumberPlaceholder": "Tu respuesta (número)",
@@ -527,5 +530,13 @@
     },
     "muteBus": "Silenciar {{bus}}",
     "unmuteBus": "Activar {{bus}}"
+  },
+  "selection": {
+    "title": "Selección: {{name}}",
+    "position": "{{at}} de {{count}}",
+    "next": "siguiente",
+    "played": "jugado",
+    "save": "Guardar como selección",
+    "saved": "Guardada como selección: abrirla"
   }
 }

@@ -17,10 +17,11 @@ import {
 import type { PrismaService } from '../prisma/prisma.service';
 import { RedisService } from '../redis/redis.service';
 import type { SessionArchiveService } from './session-archive.service';
+import { onTestRedis } from '../../test/test-targets';
 
 /**
  * Characterization of the game engine through its public API only: a real
- * Redis (database 1, see the Jest global setup), a fake Socket.IO server that
+ * Redis (the worker's own, see the Jest global setup), a fake Socket.IO server that
  * records what is sent to the room and to each socket. No database: the quiz
  * is never found again, so the frozen snapshot is the one played.
  *
@@ -226,7 +227,7 @@ describe('GameEngine (characterization)', () => {
     (await game.getSnapshot(gameId))!.questions[index].options[0].id;
 
   beforeAll(() => {
-    if (!process.env.REDIS_URL?.endsWith('/1')) {
+    if (!onTestRedis()) {
       throw new Error('REDIS_URL must point at the test database (see test/jest.global-setup.ts)');
     }
     redis = new RedisService();
@@ -1075,8 +1076,13 @@ describe('GameEngine (characterization)', () => {
         const { remainingMs } = roomOf<{ remainingMs: number }>('game:mode').at(-1)!;
         for (const wait of [0, 60]) {
           await new Promise((r) => setTimeout(r, wait));
+          // The end is the remainder from the moment the screen attached: bracketed by
+          // the clock before and after, so a slow run never fails it.
+          const before = Date.now();
           const shown = (await reattach()).of<Timing>('question:start')[0];
-          expect(Math.abs(shown.endsAt - Date.now() - remainingMs)).toBeLessThan(40);
+          const after = Date.now();
+          expect(shown.endsAt - remainingMs).toBeGreaterThanOrEqual(before);
+          expect(shown.endsAt - remainingMs).toBeLessThanOrEqual(after);
         }
       });
 
@@ -1235,9 +1241,17 @@ describe('GameEngine (characterization)', () => {
       const t0 = await startedAt(snapshotOf([question()]), players);
       const counts = () => roomOf<{ answered: number; total: number }>('answer:count');
       const before = counts().length;
-      await engine.submit(pin, 'p1', 0, 'x', t0 + 1);
-      await engine.submit(pin, 'p2', 0, 'x', t0 + 1);
-      await engine.submit(pin, 'p3', 0, 'x', t0 + 1);
+      // The three within one window whatever the machine's speed: the clock held still
+      // while they come in (a busy run took over the window between two of them).
+      const now = Date.now();
+      const clock = jest.spyOn(Date, 'now').mockReturnValue(now);
+      try {
+        await engine.submit(pin, 'p1', 0, 'x', t0 + 1);
+        await engine.submit(pin, 'p2', 0, 'x', t0 + 1);
+        await engine.submit(pin, 'p3', 0, 'x', t0 + 1);
+      } finally {
+        clock.mockRestore();
+      }
       // The first at once; the two that follow within the window, together at its end.
       expect(counts().slice(before)).toEqual([{ answered: 1, total: 4 }]);
       await eventually(async () => counts().length === before + 2);

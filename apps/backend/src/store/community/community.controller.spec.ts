@@ -34,7 +34,8 @@ describe('community host access', () => {
       upsertFromPrincipal: async (p: { roles: string[] }) => ({ id: 'user', roles: p.roles }),
     };
     app.useGlobalGuards(new AuthGuard(provider, users as unknown as UsersService, new Reflector()));
-    await app.init();
+    // Listening on 127.0.0.1, which supertest reuses (why: test/game-harness.ts).
+    await app.listen(0, '127.0.0.1');
   });
   afterAll(async () => {
     await app.close();

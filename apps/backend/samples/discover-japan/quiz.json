@@ -1,0 +1,470 @@
+{
+  "format": "quizdock/quiz",
+  "version": 6,
+  "quiz": {
+    "title": "Discover Japan",
+    "description": "Sample quiz — geography, history and culture of Japan.",
+    "language": "en",
+    "license": "CC-BY-4.0",
+    "revision": 2,
+    "feedbackEnabled": true,
+    "cover": null
+  },
+  "items": [
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "intro-title",
+          "text": "Discover Japan",
+          "level": 1,
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "intro-text",
+          "md": "Quick questions about *Nippon* — from Hokkaido’s snow to Okinawa’s beaches.",
+          "align": "center",
+          "size": "large"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundImage": "media/mount-fuji.webp"
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "What is the capital of Japan?",
+      "answerExplanation": "Tokyo, formerly called Edo, became the capital in 1868.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Osaka",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Kyoto",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Tokyo",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "text": "Nagoya",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/tokyo.webp"
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "Japan is made up of more than 6,000 islands.",
+      "answerExplanation": "Honshu, Hokkaido, Kyushu and Shikoku are the four largest of them.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "False",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "numeric",
+      "prompt": "How high is Mount Fuji, in metres? Closest answer wins.",
+      "answerExplanation": "Mount Fuji, an active volcano, rises to 3,776 m; it last erupted in 1707.",
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "closest",
+      "numericValue": 3776,
+      "numericTolerance": 50,
+      "options": [],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "timeLimitS": 20,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "type": "image_choice",
+      "prompt": "Which of these temples is Kyoto’s Golden Pavilion?",
+      "answerExplanation": "The upper floors of Kinkaku-ji are covered in gold leaf.",
+      "options": [
+        {
+          "media": "media/wat-arun.webp",
+          "alt": "A tall pointed temple tower on the bank of a wide river",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "media": "media/kinkakuji.webp",
+          "alt": "A gold-covered pavilion with dark roofs, reflected in a pond",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "media": "media/borobudur.webp",
+          "alt": "Bell-shaped stone stupas on a temple terrace at sunrise",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "media": "media/taj-mahal.webp",
+          "alt": "A white marble mausoleum with a great dome and four minarets, beside a river",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "kind": "question",
+      "type": "multiple_choice",
+      "prompt": "Which of these are Japanese dishes?",
+      "answerExplanation": "Kimchi, spicy fermented cabbage, comes from Korea.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Sushi",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Tempura",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Kimchi",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Okonomiyaki",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/sushi.webp"
+    },
+    {
+      "kind": "question",
+      "type": "text_input",
+      "prompt": "What is Japan’s high-speed “bullet train” called?",
+      "answerExplanation": "The first line, between Tokyo and Osaka, opened in 1964.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "lenient",
+      "options": [],
+      "acceptedAnswers": [
+        "Shinkansen"
+      ],
+      "media": "media/shinkansen.webp"
+    },
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "sakura-title",
+          "text": "Cherry blossom time",
+          "level": 2,
+          "align": "center"
+        },
+        {
+          "type": "image",
+          "id": "sakura-picture",
+          "media": "media/cherry-blossoms.webp",
+          "size": "medium",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "sakura-text",
+          "md": "Every spring, friends gather under the *sakura* for *hanami* — flower-viewing picnics.",
+          "align": "center"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundGradient": {
+        "angle": 135,
+        "colors": [
+          "#9d174d",
+          "#3b0764"
+        ]
+      }
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "What is the longest river in Japan?",
+      "answerExplanation": "The Shinano runs 367 km through Nagano and Niigata prefectures.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Tone",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Ishikari",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Kiso",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Shinano",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "ordering",
+      "prompt": "Order these periods of Japanese history, oldest first.",
+      "answerExplanation": null,
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Edo",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false,
+          "correctOrderIndex": 3
+        },
+        {
+          "text": "Heian",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false,
+          "correctOrderIndex": 1
+        },
+        {
+          "text": "Kamakura",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false,
+          "correctOrderIndex": 2
+        },
+        {
+          "text": "Nara",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false,
+          "correctOrderIndex": 0
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Which city was Japan’s imperial capital for more than a thousand years?",
+      "answerExplanation": "Then called Heian-kyō, Kyoto was the emperors’ seat from 794 to 1868.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "double",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Kyoto",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Nara",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Kamakura",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Osaka",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/kyoto.webp"
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "Japanese is written with a single script.",
+      "answerExplanation": "Japanese mixes kanji with two syllabaries, hiragana and katakana.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "False",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "poll",
+      "prompt": "Which Japanese experience would you pick?",
+      "answerExplanation": null,
+      "timeLimitS": 15,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Soaking in an onsen",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Climbing Mount Fuji",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Cherry-blossom picnic",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Temples of Kyoto",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    }
+  ],
+  "media": {
+    "media/mount-fuji.webp": {
+      "name": "mount-fuji.webp",
+      "alt": "Snow-capped Mount Fuji above Lake Kawaguchi",
+      "credit": "Marion & Christoph Aistleitner · CC0 · Wikimedia Commons"
+    },
+    "media/tokyo.webp": {
+      "name": "tokyo.webp",
+      "alt": "Tokyo’s towers at sunset, with the red Tokyo Tower in the middle",
+      "credit": "David Kernan · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/wat-arun.webp": {
+      "name": "wat-arun.webp",
+      "alt": "A tall pointed temple tower on the bank of a wide river",
+      "credit": "Supanut Arunoprayote · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/kinkakuji.webp": {
+      "name": "kinkakuji.webp",
+      "alt": "A gold-covered pavilion with dark roofs, reflected in a pond",
+      "credit": "Jakub Hałun · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/borobudur.webp": {
+      "name": "borobudur.webp",
+      "alt": "Bell-shaped stone stupas on a temple terrace at sunrise",
+      "credit": "Philip Nalangan · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/taj-mahal.webp": {
+      "name": "taj-mahal.webp",
+      "alt": "A white marble mausoleum with a great dome and four minarets, beside a river",
+      "credit": "David Castor · Public domain · Wikimedia Commons"
+    },
+    "media/sushi.webp": {
+      "name": "sushi.webp",
+      "alt": "A wooden board of assorted sushi with tuna, salmon and egg",
+      "credit": "Nesnad · CC BY 2.5 · Wikimedia Commons"
+    },
+    "media/shinkansen.webp": {
+      "name": "shinkansen.webp",
+      "alt": "A long white high-speed train on a viaduct",
+      "credit": "Marek Ślusarczyk (Tupungato) · CC BY 3.0 · Wikimedia Commons"
+    },
+    "media/cherry-blossoms.webp": {
+      "name": "cherry-blossoms.webp",
+      "alt": "A cherry tree in full bloom beside a moat and a white bridge",
+      "credit": "Spiegel · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/kyoto.webp": {
+      "name": "kyoto.webp",
+      "alt": "The red gate of Kiyomizu-dera temple in Kyoto",
+      "credit": "RomanKetchup · CC BY 2.0 · Wikimedia Commons"
+    }
+  }
+}

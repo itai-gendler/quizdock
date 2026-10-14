@@ -183,7 +183,7 @@
     "DATABASE_URL": "Database",
     "REDIS_URL": "Redis",
     "MEDIA_DIR": "Cartella dei media",
-    "STORE_DIR": "Cartella dei modelli condivisi",
+    "STORE_DIR": "Cartella dei modelli",
     "SAMPLES_DIR": "Cartella dei quiz di esempio",
     "CLIENT_DIR": "Cartella dell’applicazione web",
     "MEDIA_MAX_BYTES": "Immagine più grande",

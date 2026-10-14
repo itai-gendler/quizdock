@@ -152,9 +152,9 @@
     "already_host": "你已經是主持人：無需佔用席位。"
   },
   "store": {
-    "demo_disabled": "示範執行個體已關閉分享功能。",
-    "not_ready": "只有標記為「就緒」的測驗才能分享。",
-    "license_required": "分享前請選擇授權條款：範本是供他人再次使用的，條款會隨之流傳。",
+    "demo_disabled": "示範執行個體上無法提供範本。",
+    "not_ready": "只有標記為「就緒」的測驗才能作為範本提供。",
+    "license_required": "作為範本提供前請設定授權：範本就是為了被重複使用，條款會隨之一起傳遞。",
     "entry_not_found": "該範本已不在目錄中。",
     "not_yours": "只有作者或管理員才能撤下範本。",
     "invalid_id": "範本識別碼無效。",
@@ -236,5 +236,13 @@
   "background": {
     "image_and_gradient": "背景是圖片或漸層，不能兩者兼有。",
     "mode_required": "請選擇圖片的排列方式。"
+  },
+  "selection": {
+    "not_found": "找不到選集。",
+    "nothing_playable": "該選集中沒有可示範的測驗。",
+    "too_many_quizzes": "一個選集最多包含 50 個測驗。",
+    "duplicate_quiz": "一個測驗在選集中只能出現一次。",
+    "quiz_not_found": "無法新增該測驗：它既不是你的，也未與你分享。",
+    "nothing_to_save": "這個房間沒有示範過可儲存到選集的測驗。"
   }
 }

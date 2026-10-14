@@ -76,16 +76,16 @@ Other setups, OIDC and the full option with a bundled Keycloak:
 
 <table>
   <tr>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/editor.png" alt="Quiz builder" /><br /><sub><b>Quiz builder</b>: eight question types, slides, video and sound</sub></td>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/console-lobby.png" alt="Host console, lobby" /><br /><sub><b>Host console</b>: PIN, QR code, who is in, the room's sound</sub></td>
+    <td width="50%"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/editor.dark.png" /><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/editor.png" alt="Quiz builder" /></picture><br /><sub><b>Quiz builder</b>: eight question types, slides, video and sound</sub></td>
+    <td width="50%"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/console-lobby.dark.png" /><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/console-lobby.png" alt="Host console, lobby" /></picture><br /><sub><b>Host console</b>: PIN, QR code, who is in, the room's sound</sub></td>
   </tr>
   <tr>
     <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/player-play.png" alt="A player's phone" /><br /><sub><b>Player</b>: colour and shape on every answer, then their own result</sub></td>
     <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/projection-reveal.png" alt="Big screen, reveal" /><br /><sub><b>Big screen</b>: distribution, explanation, leaderboard</sub></td>
   </tr>
   <tr>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/admin-settings.png" alt="Administration, settings" /><br /><sub><b>Administration</b>: every setting, where it comes from, changed from the page</sub></td>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/media-library.png" alt="Media library" /><br /><sub><b>Media library</b>: your media and the instance's, with their credits</sub></td>
+    <td width="50%"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/admin-settings.dark.png" /><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/admin-settings.png" alt="Administration, settings" /></picture><br /><sub><b>Administration</b>: every setting, where it comes from, changed from the page</sub></td>
+    <td width="50%"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/media-library.dark.png" /><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/media-library.png" alt="Media library" /></picture><br /><sub><b>Media library</b>: your media and the instance's, with their credits</sub></td>
   </tr>
 </table>
 
@@ -131,8 +131,8 @@ administration. [Administration](https://quizdock.github.io/docs/admin/overview/
   text, numeric, reorder, poll, and image choice — pictures as the answers), images with
   alternative text, Markdown everywhere, content
   slides between questions, backgrounds, answer explanations at the reveal. A new quiz
-  starts from a draft: an intro slide and a first question to complete. Three sample
-  quizzes wait in the templates (France, Taiwan, Türkiye), every question
+  starts from a draft: an intro slide and a first question to complete. Twelve sample
+  quizzes wait in the templates, one per country, every question
   type in them, with pictures and sounds from Wikimedia Commons.
 - **Video & sound** — videos and sounds in questions and slides,
   loudness-matched, drawn as a waveform with a playhead; played on the projection and on
@@ -168,7 +168,8 @@ administration. [Administration](https://quizdock.github.io/docs/admin/overview/
 - **Content slides** — headings, text, images, 2–3 columns between questions; image or gradient backgrounds for slides and questions, with a faithful 16:9 preview. A slide can play a video behind its content (looped or once, with its sound or muted) and a sound, set like a question's; in automatic mode it waits for them to play. Its text can name the quiz and the room — `{title}`, `{pin}`, `{players}`, `{question}` and more, filled wherever the slide shows.
 - **Answer explanations** — shown at the reveal, with a per-question reveal delay in automatic mode.
 - **Preview** — rehearse your quiz exactly as it will look on the big screen, answers shown.
-- **Share with the other hosts** — one switch in a quiz's settings: the other hosts of the instance find it in their quizzes, marked with a lock, read it step by step (as it will show, and how each question is scored) and create their own copy from it. Off by default: a quiz stays yours alone.
+- **Selections** — line quizzes up in a named, saved list and launch them into a room in one go: after each quiz, the lobby picks the next one not played yet, each with its pace, and you can still change it on the spot. Save a room you improvised as a selection, from its console or from the history; compare a selection's launches; share it with the other hosts, who present it or create their own from it.
+- **Share with the other hosts** — one switch in a quiz's settings: the other hosts of the instance find it in their quizzes, marked with a lock, read it step by step (as it will show, and how each question is scored), present it as it is — nothing of that game is kept, its ratings reach you without names — or create their own copy from it. Off by default: a quiz stays yours alone.
 - **Credits** — author, licence and source on every media, carried with a quiz when it is exported or shared; listed on the preview page and in small print under the podium, as a CC-BY licence asks.
 - **Instance media** _(administrators)_ — disk used by kind and by owner, the clean-up (unused media, stray files, run it now), every file as a list or a grid, the chosen one beside it with its size in pixels, owners and usages (a sound on its waveform); global media uploaded or added from any file; a file deleted even when used (moderation), once its usages are listed.
 - **Community quizzes** _(opt-in)_ — with `QUIZ_STORE_URL` set, the templates link to a community catalogue: filter by language and tags, preview, check the source and licence, take an independent draft. Off by default: no outgoing request. [Templates and community](https://quizdock.github.io/docs/host/templates-and-community/).

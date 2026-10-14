@@ -10,6 +10,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import {
+  type GameMode,
   GameState,
   type ParticipantAccess,
   NICKNAME_MAX,
@@ -31,6 +32,13 @@ import { GAME_TTL_S, type GameId, gameKeys } from './game.keys';
 import { type PlayerStats, type SeriesStats, answerStats, sumGames } from './player-stats';
 import { type RankedPlayer, rankPlayers } from './results';
 import { DEFAULT_ROOM_SOUNDS, type RoomSounds } from './game.types';
+import { isForeignKeyViolation } from './prisma-errors';
+import {
+  type SelectionLine,
+  linesOf,
+  nextOf,
+  visibleSelection,
+} from '../selections/selection-access';
 import type {
   AnswerRecord,
   GameFields,
@@ -180,7 +188,9 @@ export class GameService {
   async createSession(
     hostUserId: string,
     dto: {
-      quizId: string;
+      quizId?: string;
+      /** A selection: the room opens on its first playable quiz (SPECIFICATIONS-SELECTION). */
+      selectionId?: string;
       fullCapture?: boolean;
       personalTracking?: boolean;
       pickOwnName?: boolean;
@@ -192,7 +202,10 @@ export class GameService {
     if (open && !allowsAnonymousParticipants()) {
       throw new ForbiddenException('session.open_access_forbidden');
     }
-    const snapshot = await this.playableSnapshot(hostUserId, dto.quizId);
+    const first = dto.selectionId ? await this.firstOfSelection(hostUserId, dto.selectionId) : null;
+    const quizId = first?.quizId ?? dto.quizId;
+    if (!quizId) throw new BadRequestException('validation');
+    const snapshot = await this.playableSnapshot(hostUserId, quizId);
     const roomId = randomBytes(16).toString('hex');
     const pin = await this.allocatePin(roomId);
     const gameId = newGameId();
@@ -216,6 +229,7 @@ export class GameService {
       sounds: DEFAULT_ROOM_SOUNDS,
       motion: liveMotionDefault(),
       audienceLanguage: '',
+      selectionId: first ? dto.selectionId : '',
       hostName:
         (
           await this.prisma.user.findUnique({
@@ -228,7 +242,7 @@ export class GameService {
     const pipe = this.redis.multi();
     pipe.hset(gameKeys.room(pin), roomHash(room));
     pipe.expire(gameKeys.room(pin), GAME_TTL_S);
-    this.writeGame(pipe, gameId, snapshot);
+    this.writeGame(pipe, gameId, snapshot, { mode: first?.mode ?? 'manual', audioTarget: '' });
     // Index des parties en cours de l'hôte (reprise depuis le dashboard §6.2).
     pipe.sadd(gameKeys.hostGames(hostUserId), pin);
     pipe.expire(gameKeys.hostGames(hostUserId), GAME_TTL_S);
@@ -260,13 +274,18 @@ export class GameService {
    * The room's next game, its players at 0: on `snapshot`, or with no quiz yet when
    * null — the lobby a room goes back to after a quiz, where the host picks the next.
    */
-  async openGameWith(pin: string, snapshot: QuizSnapshot | null): Promise<GameId> {
+  async openGameWith(
+    pin: string,
+    snapshot: QuizSnapshot | null,
+    /** The pace a selection gives this quiz; otherwise the previous game's. */
+    mode?: GameMode,
+  ): Promise<GameId> {
     const previous = await this.getMeta(pin);
     if (!previous) throw new NotFoundException('session.not_found');
     const gameId = newGameId();
     const pipe = this.redis.multi();
     this.writeGame(pipe, gameId, snapshot, {
-      mode: previous.mode,
+      mode: mode ?? previous.mode,
       audioTarget: previous.audioTarget ?? '',
     });
     await pipe.exec();
@@ -310,6 +329,7 @@ export class GameService {
       gameKeys.tokens(pin),
       gameKeys.played(pin),
       gameKeys.playedQuizzes(pin),
+      gameKeys.playedOrder(pin),
       gameKeys.hostGames(room.hostUserId),
       gameKeys.game(room.gameId),
       gameKeys.snapshot(room.gameId),
@@ -321,10 +341,29 @@ export class GameService {
     await pipe.exec();
   }
 
-  /** The snapshot of a quiz the host may play: theirs, `ready`, with at least one question. */
+  /**
+   * The first playable quiz of a selection the host may see (SPECIFICATIONS-SELECTION):
+   * a selection they cannot see is not found; one with nothing to play is refused.
+   */
+  private async firstOfSelection(hostUserId: string, selectionId: string): Promise<SelectionLine> {
+    const selection = await this.prisma.selection.findFirst({
+      where: { id: selectionId, ...visibleSelection(hostUserId) },
+      select: { id: true },
+    });
+    if (!selection) throw new NotFoundException('selection.not_found');
+    const first = nextOf(await linesOf(this.prisma, selection.id, hostUserId), new Set());
+    if (!first) throw new BadRequestException('selection.nothing_playable');
+    return first;
+  }
+
+  /**
+   * The snapshot of a quiz the host may play: `ready`, with at least one question,
+   * theirs or shared by another host — then `borrowed`, and the game keeps nothing
+   * (SPECIFICATIONS-SHARED-PLAY).
+   */
   private async playableSnapshot(hostUserId: string, quizId: string): Promise<QuizSnapshot> {
     const quiz = await this.prisma.quiz.findFirst({
-      where: { id: quizId, ownerId: hostUserId },
+      where: { id: quizId, OR: [{ ownerId: hostUserId }, { shared: true }] },
       include: QUIZ_SNAPSHOT_INCLUDE,
     });
     if (!quiz) {
@@ -337,6 +376,7 @@ export class GameService {
       throw new BadRequestException('quiz.empty');
     }
     const snapshot = buildSnapshot(quiz);
+    if (quiz.ownerId !== hostUserId) snapshot.borrowed = true;
     // Frozen with the rest: a licence's attribution is owed for what was played.
     const credits = (await this.mediaLibrary?.creditsOf(quiz.id)) ?? [];
     if (credits.length > 0) snapshot.credits = credits;
@@ -378,6 +418,7 @@ export class GameService {
       slideIndex: -1,
       slideMediaStartAt: 0,
       slidePausedAt: 0,
+      keepResults: snapshot?.borrowed !== true,
     };
     pipe.hset(gameKeys.game(gameId), gameHash(game));
     pipe.expire(gameKeys.game(gameId), GAME_TTL_S);
@@ -557,6 +598,7 @@ export class GameService {
       participantAccess: room.participantAccess,
       joinLocked: room.joinLocked,
       joinBaseUrl: room.joinBaseUrl,
+      ...(room.selectionId ? { selectionId: room.selectionId } : {}),
     };
   }
 
@@ -628,13 +670,62 @@ export class GameService {
       const { score } = JSON.parse(json) as PlayerScore;
       played[playerId] = { score, ...answerStats(snapshot, answersByIndex, playerId) };
     }
-    await this.redis
+    const first = !(await this.isFolded(pin, gameId));
+    const pipe = this.redis
       .multi()
       .hset(gameKeys.played(pin), gameId, JSON.stringify(played))
       .expire(gameKeys.played(pin), GAME_TTL_S)
       .sadd(gameKeys.playedQuizzes(pin), snapshot.quizId)
-      .expire(gameKeys.playedQuizzes(pin), GAME_TTL_S)
-      .exec();
+      .expire(gameKeys.playedQuizzes(pin), GAME_TTL_S);
+    if (first) {
+      // In the order played, with its pace: what saving the room as a selection keeps.
+      const mode =
+        (await this.redis.hget(gameKeys.game(gameId), 'mode')) === 'auto' ? 'auto' : 'manual';
+      pipe
+        .rpush(gameKeys.playedOrder(pin), JSON.stringify({ quizId: snapshot.quizId, mode }))
+        .expire(gameKeys.playedOrder(pin), GAME_TTL_S);
+    }
+    await pipe.exec();
+  }
+
+  /** The games the room played to their end, in order, each quiz once (its first time). */
+  async playedOrder(pin: string): Promise<{ quizId: string; mode: GameMode }[]> {
+    const seen = new Set<string>();
+    const out: { quizId: string; mode: GameMode }[] = [];
+    for (const raw of await this.redis.lrange(gameKeys.playedOrder(pin), 0, -1)) {
+      const entry = JSON.parse(raw) as { quizId: string; mode: GameMode };
+      if (seen.has(entry.quizId)) continue;
+      seen.add(entry.quizId);
+      out.push(entry);
+    }
+    return out;
+  }
+
+  /**
+   * The room's selection as its host sees it (SPECIFICATIONS-SELECTION): its lines they
+   * may read, those played, and the next one to pick. Null for a room of no selection,
+   * or one whose selection is gone.
+   */
+  async selectionQueue(pin: string): Promise<{
+    id: string;
+    name: string;
+    lines: SelectionLine[];
+    played: Set<string>;
+    next: SelectionLine | null;
+  } | null> {
+    const room = await this.getRoom(pin);
+    if (!room?.selectionId) return null;
+    const selection = await this.prisma.selection.findUnique({
+      where: { id: room.selectionId },
+      select: { id: true, name: true },
+    });
+    if (!selection) return null;
+    const [lines, played] = await Promise.all([
+      linesOf(this.prisma, selection.id, room.hostUserId),
+      this.redis.smembers(gameKeys.playedQuizzes(pin)),
+    ]);
+    const playedSet = new Set(played);
+    return { ...selection, lines, played: playedSet, next: nextOf(lines, playedSet) };
   }
 
   /** Whether a game is recorded in its room's standings already (from its podium on). */
@@ -849,18 +940,25 @@ export class GameService {
     // Lines kept; other control characters (NUL included, which the database refuses) dropped.
     const text = typeof comment === 'string' ? comment.replace(/(?!\n)\p{Cc}/gu, '').trim() : '';
     const cleanComment = text ? text.slice(0, 2000) : null;
-    await this.prisma.quizFeedback.upsert({
-      where: { pin_playerId_quizId: { pin, playerId, quizId: rated.quizId } },
-      create: {
-        quizId: rated.quizId,
-        pin,
-        playerId,
-        nickname: player.nickname,
-        rating,
-        comment: cleanComment,
-      },
-      update: { rating, comment: cleanComment },
-    });
+    try {
+      await this.prisma.quizFeedback.upsert({
+        where: { pin_playerId_quizId: { pin, playerId, quizId: rated.quizId } },
+        create: {
+          quizId: rated.quizId,
+          pin,
+          playerId,
+          // Another host's audience stays unnamed to the quiz's owner.
+          nickname: snapshot?.borrowed ? null : player.nickname,
+          rating,
+          comment: cleanComment,
+        },
+        update: { rating, comment: cleanComment },
+      });
+    } catch (err) {
+      // The quiz was deleted meanwhile (a shared one, by its owner): nothing to rate.
+      if (isForeignKeyViolation(err)) return { ok: false };
+      throw err;
+    }
     return { ok: true };
   }
 

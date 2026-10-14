@@ -4,16 +4,12 @@
     "sessionUnavailable": "房間無法使用。",
     "backToQuizzes": "返回我的測驗",
     "share": "分享",
-    "shareTooltip": "通過分享功能或剪貼簿分享邀請（PIN + 連結）",
+    "shareTooltip": "透過分享選單或剪貼簿分享邀請連結（PIN 已包含在連結中）",
     "shareScreenTooltip": "打開投影畫面以分享 QRCode",
     "qrLabel": "使用 QRCode 加入",
     "pinLabel": "PIN 碼",
-    "shareCopied": "邀請資訊（PIN + 連結）已複製到剪貼簿。",
+    "shareCopied": "連結已複製到剪貼簿。",
     "shareByHand": "複製此地址並傳送：{{url}}",
-    "shareText": "加入 {{appName}} 房間 🎮",
-    "sharePin": "PIN：{{pin}}",
-    "shareLink": "直接連結：{{url}}",
-    "shareTitle": "加入 {{appName}} 房間",
     "screenButton": "投影視窗",
     "screenButtonTooltip": "打開用於投影的大螢幕（觀眾視角）",
     "screenElsewhere": "從另一台電腦投影",
@@ -24,6 +20,7 @@
     "pairFailed": "此房間沒有螢幕顯示該代碼。",
     "captureLabel": "記錄所有回答",
     "captureHint": "ⓘ 開始時將通知玩家。保留每位玩家的回答詳細資訊以便個人追蹤。",
+    "keepsNothingHint": "ⓘ 其他主持人的測驗，按原樣示範：不保留任何內容。",
     "trackingLabel": "個人追蹤",
     "trackingHint": "ⓘ 開啟時，成績會記錄在每位參與者的帳號下（封存排行榜、歷史）。關閉時，不保存任何個人成績，只保留團體的整體結果。進行中的會話不受影響。",
     "trackingOpenAccessHint": "ⓘ 開放存取時無法使用：參與者沒有帳號，不保存任何個人資料。",
@@ -158,6 +155,7 @@
     "pickerTags": "標籤",
     "pickerJustPlayed": "剛剛進行過",
     "pickerUpdated": "修改於 {{date}}",
+    "pickerShared": "來自 {{name}}，不保留任何內容",
     "renameRoom": "重新命名房間",
     "roomNameLabel": "房間名稱",
     "readyCount_one": "已就緒：{{ready}} / {{count}} 名參與者",
@@ -232,6 +230,10 @@
     "statusQuizOver": "測驗結束",
     "beforeStarting": "開始之前",
     "beforeStartingHint": "測驗開始後即固定。",
+    "settingsTabs": {
+      "data": "資料",
+      "screens": "螢幕與聲音"
+    },
     "invite": "邀請玩家",
     "showQuestion": "顯示第 {{n}} 題",
     "showSlide": "顯示投影片",
@@ -359,6 +361,7 @@
     "captureNotice": "ⓘ 你的參與和得分會記錄在你的帳號下，並且你的每一次作答都會被保存。",
     "trackingNotice": "ⓘ 你的參與和得分會記錄在你的帳號下。",
     "noTrackingNotice": "ⓘ 不會記錄你的個人成績，只保留團體的整體結果。",
+    "nothingRecordedNotice": "ⓘ 本測驗不記錄任何內容：既不記錄你的參與，也不記錄你的回答。",
     "trackingNoticeGuest": "ⓘ 你的參與和得分會以你的匿稱記錄在每個測驗的結果中。",
     "captureNoticeGuest": "ⓘ 你的參與和得分會以你的匿稱記錄在每個測驗的結果中，並且你的每一次作答都會被保存。",
     "answerNumberPlaceholder": "你的回答（數字）",
@@ -515,5 +518,13 @@
     },
     "muteBus": "靜音：{{bus}}",
     "unmuteBus": "取消靜音：{{bus}}"
+  },
+  "selection": {
+    "title": "選集：{{name}}",
+    "position": "第 {{at}} 個，共 {{count}} 個",
+    "next": "下一個",
+    "played": "已示範",
+    "save": "儲存為選集",
+    "saved": "已儲存為選集：開啟"
   }
 }

@@ -25,6 +25,7 @@
   "questionCount_many": "{{count}} вопросов",
   "questionCount_other": "{{count}} вопроса",
   "present": "Показать",
+  "presentWithoutResults": "Показать\nбез сохранения результатов",
   "running_one": "{{count}} комната открыта",
   "running_few": "{{count}} комнаты открыты",
   "running_many": "{{count}} комнат открыто",
@@ -235,7 +236,7 @@
     "answer1": "Ответ 1",
     "answer2": "Ответ 2"
   },
-  "createFrom": "Создать квиз на его основе",
+  "createFrom": "Создать квиз\nна его основе",
   "readOnly": "Только чтение: опубликовано другим ведущим",
   "filterOwner": "Владелец",
   "ownerAll": "Все",

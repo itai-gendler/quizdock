@@ -1,3 +1,4 @@
+import { SaveAsSelectionButton } from '../game/room-components';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { ArrowLeft, Check, Download, History, Layers, Play, Radio, Send, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -494,12 +495,12 @@ export function RoomCard({
           <Layers className="size-5" />
           {room.name || t('detail.room.defaultName', { host: room.hostName })}
         </CardTitle>
+        <SaveAsSelectionButton roomId={room.roomId} className="ml-auto" />
         {standings ? (
           <Button
             type="button"
             variant="outline"
             size="sm"
-            className="ml-auto"
             disabled={standings.length === 0}
             onClick={exportStandings}
           >

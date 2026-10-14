@@ -161,7 +161,8 @@ async function app(
   nest.useGlobalGuards(new AuthGuard(provider, users as unknown as UsersService, new Reflector()));
   nest.useGlobalPipes(new ZodValidationPipe());
   nest.useGlobalFilters(new HttpExceptionFilter());
-  await nest.init();
+  // Listening on 127.0.0.1, which supertest reuses (why: test/game-harness.ts).
+  await nest.listen(0, '127.0.0.1');
   return { app: nest, audit };
 }
 

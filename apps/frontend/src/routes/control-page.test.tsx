@@ -43,6 +43,7 @@ const view = (partial: Partial<GameView>): GameView => ({
   pickOwnName: true,
   participantAccess: 'account',
   joinLocked: false,
+  keepResults: true,
   kicked: null,
   connectionLost: false,
   mode: 'manual',
@@ -73,6 +74,7 @@ const view = (partial: Partial<GameView>): GameView => ({
   roomName: null,
   hostName: null,
   standings: null,
+  selection: null,
   scores: null,
   lobbyStartAt: null,
   language: null,
@@ -106,6 +108,7 @@ const quiz = (id: string, title: string, over: Record<string, unknown> = {}) => 
 describe('ControlPage: who is ready in the lobby (#104)', () => {
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
     vi.clearAllMocks();
   });
 
@@ -143,6 +146,7 @@ describe('ControlPage: who is ready in the lobby (#104)', () => {
 describe('ControlPage: the Projection tab (audit F9)', () => {
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
     vi.clearAllMocks();
   });
 
@@ -174,6 +178,7 @@ describe('ControlPage: the Projection tab (audit F9)', () => {
 describe('ControlPage: the room’s name (#89)', () => {
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
     vi.clearAllMocks();
   });
 
@@ -198,6 +203,7 @@ describe('ControlPage: the room’s name (#89)', () => {
 describe('ControlPage: the room’s next quiz (#89)', () => {
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
     vi.clearAllMocks();
     vi.unstubAllGlobals();
   });
@@ -235,6 +241,83 @@ describe('ControlPage: the room’s next quiz (#89)', () => {
     );
   });
 
+  it('a room opened from a selection shows it: played ticked, the next one picked', async () => {
+    localStorage.setItem('live.localUser', 'Animateur');
+    hookState.value = view({
+      state: GameState.Lobby,
+      quizId: 'q2',
+      selection: {
+        id: 's1',
+        name: 'Vendredi soir',
+        items: [
+          { quizId: 'q1', title: 'Géographie', played: true },
+          { quizId: 'q2', title: 'Histoire', played: false },
+          { quizId: 'q3', title: 'Musique', played: false },
+        ],
+        nextQuizId: 'q2',
+      },
+    });
+    renderApp('/session/482913/console');
+    expect(await screen.findByText(/Sélection : Vendredi soir/)).toHaveTextContent('2 sur 3');
+    expect(screen.getByText('Histoire').closest('li')).toHaveTextContent('suivant');
+    // A selection already: nothing to save.
+    expect(screen.queryByRole('button', { name: /Enregistrer comme sélection/ })).toBeNull();
+  });
+
+  it('a room that played quizzes, from no selection, can be saved as one', async () => {
+    localStorage.setItem('live.localUser', 'Animateur');
+    const fetchMock = mockApi([
+      {
+        method: 'POST',
+        path: '/selections/from-room',
+        status: 201,
+        body: { id: 'saved', name: 'Salon', items: [] },
+      },
+    ]);
+    hookState.value = view({
+      state: GameState.Lobby,
+      quizId: '',
+      totalQuestions: 0,
+      standings: { quizzesPlayed: 2, playedQuizIds: ['q1', 'q2'], top: [] },
+    });
+    renderApp('/session/482913/console');
+    fireEvent.click(await screen.findByRole('button', { name: /Enregistrer comme sélection/ }));
+    expect(await screen.findByRole('link', { name: /Enregistré comme sélection/ })).toHaveAttribute(
+      'href',
+      '/selections/saved',
+    );
+    const post = fetchMock.mock.calls.find(([, o]) => o?.method === 'POST');
+    expect(JSON.parse(String(post?.[1]?.body))).toEqual({ pin: '482913' });
+  });
+
+  it('a game that keeps nothing offers no archiving, and says why in the lobby', async () => {
+    localStorage.setItem('live.localUser', 'Animateur');
+    hookState.value = view({
+      state: GameState.Podium,
+      quizId: 'q1',
+      keepResults: false,
+      podium: { podium: [{ nickname: 'Ada', score: 900, rank: 1 }] },
+    });
+    const { unmount } = renderApp('/session/482913/console');
+    fireEvent.click(await screen.findByRole('button', { name: /Retour à la salle d’attente/ }));
+    const dialog = await screen.findByRole('dialog');
+    expect(within(dialog).queryByRole('checkbox')).toBeNull();
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Retour à la salle d’attente' }));
+    expect(fakeSocket.emit).toHaveBeenCalledWith(
+      'host:back-to-lobby',
+      { pin: '482913', archive: false },
+      expect.any(Function),
+    );
+    unmount();
+
+    hookState.value = view({ state: GameState.Lobby, quizId: 'q1', keepResults: false });
+    renderApp('/session/482913/console');
+    expect(
+      (await screen.findAllByText(/Le quiz d’un autre animateur, présenté tel quel/)).length,
+    ).toBe(2);
+    expect(screen.getByRole('switch', { name: /Enregistrer toutes les réponses/ })).toBeDisabled();
+  });
+
   it('in a lobby with no quiz, picks the host’s next playable quiz', async () => {
     localStorage.setItem('live.localUser', 'Animateur');
     mockApi([
@@ -258,6 +341,12 @@ describe('ControlPage: the room’s next quiz (#89)', () => {
           quiz('q3', 'A draft', { status: 'draft' }),
           quiz('q4', 'Someone else’s', { ownerId: 'other' }),
           quiz('q5', 'Empty', { questionCount: 0 }),
+          quiz('q7', 'Shared by Bea', {
+            ownerId: 'other',
+            shared: true,
+            editable: false,
+            ownerName: 'Bea',
+          }),
         ],
       },
     ]);
@@ -286,6 +375,10 @@ describe('ControlPage: the room’s next quiz (#89)', () => {
     expect(screen.queryByRole('option', { name: /A draft/ })).toBeNull();
     expect(screen.queryByRole('option', { name: /Someone else’s/ })).toBeNull();
     expect(screen.queryByRole('option', { name: /Empty/ })).toBeNull();
+    // Another host's shared quiz too, said to keep nothing.
+    expect(screen.getByRole('option', { name: /Shared by Bea/ })).toHaveTextContent(
+      'de Bea, rien n’est gardé',
+    );
     // A tag narrows the list; the search looks into the description too.
     fireEvent.click(screen.getByRole('button', { name: 'history' }));
     expect(screen.queryByRole('option', { name: /Round two/ })).toBeNull();
@@ -313,6 +406,7 @@ describe('ControlPage: the room’s next quiz (#89)', () => {
 describe('ControlPage (console hôte)', () => {
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
     vi.clearAllMocks();
   });
 
@@ -360,6 +454,8 @@ describe('ControlPage (console hôte)', () => {
     localStorage.setItem('live.localUser', 'Animateur');
     hookState.value = view({ players: [{ playerId: 'p1', nickname: 'Alice' }] });
     renderApp('/session/482913/console');
+    // In the lobby's second tab of settings.
+    fireEvent.click(await screen.findByRole('tab', { name: 'Écrans et son' }));
     fireEvent.change(await screen.findByLabelText('Langue des écrans'), {
       target: { value: 'tr' },
     });
@@ -397,6 +493,7 @@ describe('ControlPage (console hôte)', () => {
       },
     });
     renderApp('/session/482913/console');
+    fireEvent.click(await screen.findByRole('tab', { name: 'Écrans et son' }));
 
     const select = await screen.findByLabelText('Qui entend le son dans ce quiz');
     expect(select).toHaveValue('projection_remote');
@@ -576,9 +673,42 @@ describe('ControlPage (console hôte)', () => {
 
     await waitFor(() => expect(share).toHaveBeenCalledTimes(1));
     expect(share.mock.calls[0][0].url).toContain('/join/482913');
-    // The link, never an image of the QR code; the PIN rides in the text.
-    expect(share.mock.calls[0][0]).not.toHaveProperty('files');
-    expect(share.mock.calls[0][0].text).toContain('482913');
+    // The link alone, its PIN in it: no text a target would glue to it, no QR picture.
+    expect(share.mock.calls[0][0]).toEqual({ url: expect.stringMatching(/\/join\/482913$/) });
+    vi.unstubAllGlobals();
+  });
+
+  it('previews the projection in the room’s language, the console staying in its own', async () => {
+    localStorage.setItem('live.localUser', 'Animateur');
+    hookState.value = view({ state: GameState.Lobby, language: 'en' });
+    renderApp('/session/482913/console');
+    fireEvent.click(await screen.findByRole('tab', { name: /Projection/ }));
+    expect(await screen.findByText('Join at')).toBeInTheDocument(); // the room's English
+    expect(screen.getByRole('tab', { name: /Console/ })).toBeInTheDocument(); // the host's French
+    expect(screen.queryByText('Rejoignez sur')).toBeNull();
+  });
+
+  it('the projection on another computer is shared as its link alone', async () => {
+    localStorage.setItem('live.localUser', 'Animateur');
+    hookState.value = view({});
+    const share = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal('navigator', { ...navigator, share });
+    renderApp('/session/482913/console');
+    fireEvent.click(
+      await screen.findByRole('button', { name: /Projeter depuis un autre ordinateur/ }),
+    );
+    const popover = screen
+      .getByText(/Projeter depuis un autre ordinateur/, { selector: 'span' })
+      .closest('form')!;
+    await act(async () => {
+      within(popover)
+        .getByRole('button', { name: /Partager/ })
+        .click();
+    });
+    await waitFor(() => expect(share).toHaveBeenCalledTimes(1));
+    expect(share.mock.calls[0][0]).toEqual({
+      url: expect.stringMatching(/\/session\/482913\/projection$/),
+    });
     vi.unstubAllGlobals();
   });
 

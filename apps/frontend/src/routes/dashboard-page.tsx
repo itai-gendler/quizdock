@@ -27,7 +27,7 @@ import { isString, isStrings, useSessionState } from '@/lib/use-session-state';
 import { useTranslation } from 'react-i18next';
 import { QuizStatusBadge } from '@/components/quiz-status-badge';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import { Button, twoLineButton } from '@/components/ui/button';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { MenuItem, MenuSeparator } from '@/components/ui/menu-item';
 import { Popover } from '@/components/ui/popover';
@@ -461,18 +461,38 @@ export function DashboardPage() {
           ) : null;
           // One action in view (UI system §3): present a ready quiz, publish a draft to present
           // it, copy someone else's; the rest in the card's ⋮. The card itself opens the quiz.
+          // Another host's shared quiz: copied, or presented as it is, keeping nothing — the main
+          // action last, where a card always has it.
+          const presentShared =
+            readOnly && quiz.shared && quiz.status === 'ready' && quiz.questionCount > 0;
           const main = managerOnly ? null : readOnly ? (
             quiz.shared ? (
-              <Button
-                type="button"
-                size="sm"
-                variant="outline"
-                disabled={copying}
-                onClick={() => copy(quiz.id)}
-              >
-                <CopyPlus className="size-4" />
-                {t('createFrom')}
-              </Button>
+              <>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  className={twoLineButton}
+                  disabled={copying}
+                  onClick={() => copy(quiz.id)}
+                >
+                  <CopyPlus className="size-4 shrink-0" />
+                  {t('createFrom')}
+                </Button>
+                {presentShared ? (
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="main-action"
+                    className={twoLineButton}
+                    disabled={isLaunching}
+                    onClick={() => void launch(quiz.id)}
+                  >
+                    <Play className="size-4 shrink-0" />
+                    {t('presentWithoutResults')}
+                  </Button>
+                ) : null}
+              </>
             ) : null
           ) : quiz.status === 'ready' ? (
             <Button
@@ -542,7 +562,7 @@ export function DashboardPage() {
           return view === 'grid' ? (
             <li
               key={quiz.id}
-              className="hover:bg-accent relative flex flex-col overflow-hidden rounded-lg border transition-colors"
+              className="hover:bg-accent/60 relative flex flex-col overflow-hidden rounded-lg border transition-colors"
             >
               <QuizFirstStep
                 quizId={quiz.id}
@@ -569,7 +589,7 @@ export function DashboardPage() {
           ) : (
             <li
               key={quiz.id}
-              className="hover:bg-accent relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4"
+              className="hover:bg-accent/60 relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4"
             >
               {/* Its first step, as the grid shows it, small. */}
               <QuizFirstStep

@@ -1,0 +1,92 @@
+{
+  "media": [
+    {
+      "file": "taj-mahal.webp",
+      "commons": "File:Agra, Taj Mahal (6310488314).jpg",
+      "alt": "The Taj Mahal reflected in its long garden pool",
+      "license": "CC BY 2.0",
+      "author": "Arian Zwegers",
+      "page": "https://commons.wikimedia.org/wiki/File:Agra,_Taj_Mahal_(6310488314).jpg"
+    },
+    {
+      "file": "india-gate.webp",
+      "commons": "File:Delhi, India, India Gate.jpg",
+      "alt": "India Gate, a tall stone arch at the end of a wide avenue in New Delhi",
+      "license": "CC BY 4.0",
+      "author": "Vyacheslav Argenberg",
+      "page": "https://commons.wikimedia.org/wiki/File:Delhi,_India,_India_Gate.jpg"
+    },
+    {
+      "file": "qutb-minar.webp",
+      "commons": "File:The Qutb Minar in morning.jpg",
+      "alt": "The Qutb Minar, a fluted red-sandstone tower, under a blue sky",
+      "license": "CC0",
+      "author": "Raghith",
+      "page": "https://commons.wikimedia.org/wiki/File:The_Qutb_Minar_in_morning.jpg"
+    },
+    {
+      "file": "taj-mahal-choice.webp",
+      "commons": "File:Taj Mahal-10.jpg",
+      "alt": "A white marble mausoleum with a great dome and four minarets, beside a river",
+      "width": 640,
+      "square": true,
+      "license": "Public domain",
+      "author": "David Castor",
+      "page": "https://commons.wikimedia.org/wiki/File:Taj_Mahal-10.jpg"
+    },
+    {
+      "file": "sacre-coeur.webp",
+      "commons": "File:Sacre-Coeur, Paris 01.jpg",
+      "alt": "A white basilica with domes on top of a hill, behind trees",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 4.0",
+      "author": "HJ Mitchell",
+      "page": "https://commons.wikimedia.org/wiki/File:Sacre-Coeur,_Paris_01.jpg"
+    },
+    {
+      "file": "us-capitol.webp",
+      "commons": "File:2023 United States Capitol 118th Congress, sunrise.jpg",
+      "alt": "A white columned building with a large dome, in the morning light",
+      "width": 640,
+      "square": true,
+      "license": "Public domain",
+      "author": "U.S. House of Representatives",
+      "page": "https://commons.wikimedia.org/wiki/File:2023_United_States_Capitol_118th_Congress,_sunrise.jpg"
+    },
+    {
+      "file": "st-pauls.webp",
+      "commons": "File:St Paul's Cathedral Dome 2020 Exterior Ground.jpg",
+      "alt": "A grey stone dome with a golden cross on top, above a ring of columns",
+      "width": 640,
+      "square": true,
+      "license": "CC BY 4.0",
+      "author": "Julian Herzog",
+      "page": "https://commons.wikimedia.org/wiki/File:St_Paul%27s_Cathedral_Dome_2020_Exterior_Ground.jpg"
+    },
+    {
+      "file": "thali.webp",
+      "commons": "File:Darjeeling, India, Indian Thali meal.jpg",
+      "alt": "A round steel tray with rice, curries in small bowls and papadum",
+      "license": "CC BY 4.0",
+      "author": "Vyacheslav Argenberg",
+      "page": "https://commons.wikimedia.org/wiki/File:Darjeeling,_India,_Indian_Thali_meal.jpg"
+    },
+    {
+      "file": "varanasi.webp",
+      "commons": "File:Varanasi, India, Varanasi eternal.jpg",
+      "alt": "Stone steps and moored boats along the river at Varanasi",
+      "license": "CC BY 4.0",
+      "author": "Vyacheslav Argenberg",
+      "page": "https://commons.wikimedia.org/wiki/File:Varanasi,_India,_Varanasi_eternal.jpg"
+    },
+    {
+      "file": "darjeeling-tea.webp",
+      "commons": "File:Darjeeling Tea Garden by Tirthankar Gupta.jpg",
+      "alt": "Rows of tea bushes on a hillside in the Darjeeling hills",
+      "license": "CC BY 2.0",
+      "author": "Tirthankar Gupta",
+      "page": "https://commons.wikimedia.org/wiki/File:Darjeeling_Tea_Garden_by_Tirthankar_Gupta.jpg"
+    }
+  ]
+}

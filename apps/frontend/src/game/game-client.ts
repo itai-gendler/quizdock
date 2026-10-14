@@ -175,13 +175,17 @@ export interface SessionOptions {
   participantAccess?: ParticipantAccess;
 }
 
-/** Hôte : ouvre une partie pour `quizId`, renvoie le PIN. */
+/** What a room opens on: a quiz (its id), or a selection (SPECIFICATIONS-SELECTION). */
+export type LaunchTarget = string | { selectionId: string };
+
+/** Hôte : ouvre une partie pour un quiz ou une sélection, renvoie le PIN. */
 export async function createSession(
-  quizId: string,
+  target: LaunchTarget,
   options: SessionOptions = {},
 ): Promise<{ pin: string }> {
   const s = await connectHost();
-  return emitWithAckOrError<{ pin: string }>(s, 'host:create', { quizId, ...options });
+  const opened = typeof target === 'string' ? { quizId: target } : target;
+  return emitWithAckOrError<{ pin: string }>(s, 'host:create', { ...opened, ...options });
 }
 
 /**

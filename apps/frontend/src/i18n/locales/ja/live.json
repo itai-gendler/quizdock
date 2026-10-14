@@ -4,16 +4,12 @@
     "sessionUnavailable": "ルームを利用できません。",
     "backToQuizzes": "マイクイズに戻る",
     "share": "共有",
-    "shareTooltip": "招待（PIN とリンク）を共有シートまたはクリップボードで共有",
+    "shareTooltip": "招待リンクを共有（PIN はリンクに含まれます）：共有メニューまたはクリップボードで",
     "shareScreenTooltip": "QR コードを共有するために投影画面を開く",
     "qrLabel": "参加用 QR コード",
     "pinLabel": "PIN コード",
-    "shareCopied": "招待（PIN とリンク）をクリップボードにコピーしました。",
+    "shareCopied": "リンクをクリップボードにコピーしました。",
     "shareByHand": "このアドレスをコピーして送ってください：{{url}}",
-    "shareText": "{{appName}} のルームに参加しよう 🎮",
-    "sharePin": "PIN：{{pin}}",
-    "shareLink": "直接リンク：{{url}}",
-    "shareTitle": "{{appName}} のルームに参加",
     "screenButton": "投影ウィンドウ",
     "screenButtonTooltip": "投影用の大画面を開きます（観覧用表示）",
     "screenElsewhere": "別のコンピューターから投影",
@@ -24,6 +20,7 @@
     "pairFailed": "このルームにそのコードを表示している画面はありません。",
     "captureLabel": "すべての回答を記録",
     "captureHint": "ⓘ 開始時に参加者に通知されます。個人ごとの追跡のため、各参加者の回答の詳細を保存します。",
+    "keepsNothingHint": "ⓘ 他のホストのクイズをそのまま出題しています。何も保存されません。",
     "trackingLabel": "個人ごとの追跡",
     "trackingHint": "ⓘ オンにすると、結果は各参加者のアカウントに記録されます（アーカイブされたランキング、履歴）。オフにすると個人の結果は保存されず、グループ全体の結果のみが残ります。ライブの進行には影響しません。",
     "trackingOpenAccessHint": "ⓘ オープンアクセスでは利用できません。参加者はアカウントを持たないため、個人の情報は何も保存されません。",
@@ -158,6 +155,7 @@
     "pickerTags": "タグ",
     "pickerJustPlayed": "実施したばかり",
     "pickerUpdated": "{{date}} に更新",
+    "pickerShared": "{{name}} のクイズ、何も保存されません",
     "renameRoom": "ルーム名を変更",
     "roomNameLabel": "ルーム名",
     "readyCount_one": "準備完了：{{ready}} / {{count}}人",
@@ -232,6 +230,10 @@
     "statusQuizOver": "クイズ終了",
     "beforeStarting": "開始前の設定",
     "beforeStartingHint": "クイズの開始後は変更できません。",
+    "settingsTabs": {
+      "data": "データ",
+      "screens": "画面と音"
+    },
     "invite": "参加者を招待",
     "showQuestion": "第{{n}}問を表示",
     "showSlide": "スライドを表示",
@@ -359,6 +361,7 @@
     "captureNotice": "ⓘ 参加状況とスコアはあなたのアカウントに記録され、すべての回答も保存されます。",
     "trackingNotice": "ⓘ 参加状況とスコアはあなたのアカウントに記録されます。",
     "noTrackingNotice": "ⓘ 個人の結果は記録されません。記録されるのはグループ全体の結果のみです。",
+    "nothingRecordedNotice": "ⓘ このクイズについては何も記録されません。参加も回答も記録されません。",
     "trackingNoticeGuest": "ⓘ 参加状況とスコアは、ニックネームとともに各クイズの結果に記録されます。",
     "captureNoticeGuest": "ⓘ 参加状況とスコアは、ニックネームとともに各クイズの結果に記録され、すべての回答も保存されます。",
     "answerNumberPlaceholder": "あなたの答え（数値）",
@@ -515,5 +518,13 @@
     },
     "muteBus": "{{bus}}をミュート",
     "unmuteBus": "{{bus}}のミュートを解除"
+  },
+  "selection": {
+    "title": "セレクション：{{name}}",
+    "position": "{{count}} 件中 {{at}} 件目",
+    "next": "次",
+    "played": "出題済み",
+    "save": "セレクションとして保存",
+    "saved": "セレクションとして保存しました：開く"
   }
 }

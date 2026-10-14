@@ -17,14 +17,17 @@ import {
 import { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Button, twoLineButton } from '@/components/ui/button';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { Input } from '@/components/ui/input';
 import { MenuItem } from '@/components/ui/menu-item';
 import { SectionTitle } from '@/components/ui/page-title';
 import { QuizzesHeader } from '@/components/quizzes-header';
 import { Popover } from '@/components/ui/popover';
+import { FilterField } from '@/components/ui/filter-field';
+import { Select } from '@/components/ui/select';
 import { fold } from '@/lib/text';
+import { isString, useSessionState } from '@/lib/use-session-state';
 import { builtinValues, isAccessible, themeValuesOf } from '@/lib/themes';
 import { cn } from '@/lib/utils';
 import { useRole } from '../auth/use-role';
@@ -44,6 +47,9 @@ import { Segmented } from '@/components/ui/segmented';
 import { useStoredView } from '@/lib/use-stored-view';
 import { useNewTheme } from './use-new-theme';
 
+type Sort = 'recent' | 'title';
+const isSort = (v: unknown): v is Sort => v === 'recent' || v === 'title';
+
 /**
  * The library of quiz themes (docs/themes.md): the shipped ones, then the hosts'. Every
  * host uses every theme; its owner and the administrators change it.
@@ -55,7 +61,9 @@ export function ThemesPage() {
   const { isManager } = useRole();
   const { data } = useThemesControllerList();
   const list = data?.data;
-  const [q, setQ] = useState('');
+  const [q, setQ] = useSessionState('quizdock.themes.filter.search', '', isString);
+  const [owner, setOwner] = useSessionState('quizdock.themes.filter.owner', '', isString);
+  const [sort, setSort] = useSessionState('quizdock.themes.filter.sort', 'recent', isSort);
   const [accessibleOnly, setAccessibleOnly] = useState(false);
   const [view, setView] = useStoredView('quizdock.themes.view', 'grid');
   const [toDelete, setToDelete] = useState<ThemeDto | null>(null);
@@ -83,7 +91,15 @@ export function ThemesPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [q, accessibleOnly, t],
   );
-  const mine = (list?.themes ?? []).filter((th) => matches(th.name, isAccessible(th)));
+  // Every host uses every theme: everyone's by default, narrowed to one host's on demand.
+  const owners = [
+    ...new Map((list?.themes ?? []).map((th) => [th.owner.id, th.owner])).values(),
+  ].sort((a, b) => a.name.localeCompare(b.name));
+  const mine = (list?.themes ?? [])
+    .filter((th) => matches(th.name, isAccessible(th)) && (!owner || th.owner.id === owner))
+    .sort((a, b) =>
+      sort === 'title' ? a.name.localeCompare(b.name) : b.updatedAt.localeCompare(a.updatedAt),
+    );
 
   const listClass =
     view === 'grid'
@@ -186,38 +202,61 @@ export function ThemesPage() {
         </p>
       ) : null}
 
-      <div className="flex flex-wrap items-center gap-3">
-        <label className="relative w-full max-w-xs">
-          <Search className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
-          <Input
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder={t('search')}
-            aria-label={t('search')}
-            className="pl-8"
+      <div className="flex flex-col gap-3">
+        {/* As My quizzes' bar: the search takes the room, the filters follow, the display last. */}
+        <div className="flex flex-wrap items-end gap-3">
+          <label className="relative min-w-[12rem] flex-1 basis-full sm:basis-auto">
+            <span className="sr-only">{t('search')}</span>
+            <Search className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
+            <Input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder={t('search')}
+              className="pl-8"
+            />
+          </label>
+          {owners.length > 1 ? (
+            <FilterField label={t('dashboard:filterOwner')}>
+              <Select value={owner} onChange={(e) => setOwner(e.target.value)}>
+                <option value="">{t('dashboard:ownerAll')}</option>
+                {owners.map((o) => (
+                  <option key={o.id} value={o.id}>
+                    {o.name}
+                  </option>
+                ))}
+              </Select>
+            </FilterField>
+          ) : null}
+          <FilterField label={t('dashboard:sortBy')}>
+            <Select value={sort} onChange={(e) => setSort(e.target.value as Sort)}>
+              <option value="recent">{t('dashboard:sortRecent')}</option>
+              <option value="title">{t('dashboard:sortTitle')}</option>
+            </Select>
+          </FilterField>
+          <Segmented
+            label={t('dashboard:display')}
+            value={view}
+            onChange={setView}
+            options={[
+              { value: 'list', label: t('dashboard:viewList'), icon: ListIcon },
+              { value: 'grid', label: t('dashboard:viewGrid'), icon: LayoutGrid },
+            ]}
           />
-        </label>
-        <button
-          type="button"
-          aria-pressed={accessibleOnly}
-          onClick={() => setAccessibleOnly((v) => !v)}
-          className={cn(
-            'rounded-full border px-3 py-1 text-xs',
-            accessibleOnly && 'bg-primary text-primary-foreground border-transparent',
-          )}
-        >
-          {t('accessibleOnly')}
-        </button>
-        <Segmented
-          className="ml-auto"
-          label={t('dashboard:display')}
-          value={view}
-          onChange={setView}
-          options={[
-            { value: 'list', label: t('dashboard:viewList'), icon: ListIcon },
-            { value: 'grid', label: t('dashboard:viewGrid'), icon: LayoutGrid },
-          ]}
-        />
+        </div>
+        {/* As My quizzes' tags: the chips on their own line, under the bar. */}
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            aria-pressed={accessibleOnly}
+            onClick={() => setAccessibleOnly((v) => !v)}
+            className={cn(
+              'rounded-full border px-3 py-1 text-xs',
+              accessibleOnly && 'bg-primary text-primary-foreground border-transparent',
+            )}
+          >
+            {t('accessibleOnly')}
+          </button>
+        </div>
       </div>
 
       <SectionTitle ref={shippedRef} className="scroll-mt-4">
@@ -358,91 +397,118 @@ function ThemeCard({
 }) {
   const { t } = useTranslation('themes');
   const grid = view === 'grid';
-  return (
-    <li
-      className={cn(
-        'flex overflow-hidden rounded-lg border',
-        grid ? 'flex-col' : 'flex-col sm:flex-row sm:items-center',
-      )}
+  // The name's link covers the whole card, as a quiz's in My quizzes: one target, the
+  // actions above it their own buttons.
+  const nameLink = (
+    <Link
+      to="/themes/$themeId"
+      params={{ themeId: to }}
+      className="min-w-0 truncate font-semibold after:absolute after:inset-0 after:content-['']"
     >
-      {/* The card opens the theme, as a template's does. */}
-      <Link
-        to="/themes/$themeId"
-        params={{ themeId: to }}
-        className={cn(
-          'hover:bg-accent flex flex-1 transition-colors',
-          grid ? 'flex-col' : 'min-w-0 items-center gap-3',
-        )}
-      >
-        {grid ? (
-          <ThemeThumbnail theme={values} />
-        ) : (
-          <span className="hidden w-32 shrink-0 overflow-hidden sm:block">
-            <ThemeThumbnail theme={values} />
+      {name}
+    </Link>
+  );
+  const facts = (
+    <>
+      <span className="text-muted-foreground text-xs">{meta}</span>
+      <span className="text-muted-foreground flex flex-wrap gap-x-3 text-xs">
+        {isDefault ? (
+          <span className="text-foreground inline-flex items-center gap-1 font-medium">
+            <Star className="size-3.5" />
+            {t('isDefault')}
           </span>
-        )}
-        <span className={cn('flex min-w-0 flex-1 flex-col', grid ? 'gap-2 p-4' : 'gap-1 p-3')}>
-          <span className="flex items-start justify-between gap-2">
-            <span className="font-semibold">{name}</span>
-            {accessible ? <AccessibleBadge /> : null}
-          </span>
-          <span className="text-muted-foreground text-xs">{meta}</span>
-          <span className="text-muted-foreground flex flex-wrap gap-x-3 text-xs">
-            {isDefault ? (
-              <span className="text-foreground inline-flex items-center gap-1 font-medium">
-                <Star className="size-3.5" />
-                {t('isDefault')}
-              </span>
-            ) : null}
-            {usedIn !== undefined ? (
-              <span>{usedIn ? t('usedIn', { count: usedIn }) : t('unused')}</span>
-            ) : null}
-          </span>
+        ) : null}
+        {usedIn !== undefined ? (
+          <span>{usedIn ? t('usedIn', { count: usedIn }) : t('unused')}</span>
+        ) : null}
+      </span>
+    </>
+  );
+  // The main action at the right, its ⋮ last (UI system §3).
+  const actions = (
+    <span className="relative z-10 flex items-center gap-2">
+      {primary ? (
+        <Button
+          size="sm"
+          variant="outline"
+          className={twoLineButton}
+          onClick={primary.onClick}
+          disabled={primary.busy}
+        >
+          <CopyPlus className="size-4 shrink-0" />
+          {primary.label}
+        </Button>
+      ) : null}
+      {menu.length ? (
+        <Popover
+          align="end"
+          trigger={({ open, toggle }) => (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-8"
+              aria-expanded={open}
+              onClick={toggle}
+              aria-label={t('more', { name })}
+            >
+              <EllipsisVertical className="size-4" />
+            </Button>
+          )}
+        >
+          {(close) =>
+            menu.map((m) => (
+              <div key={m.label}>
+                <MenuItem
+                  disabled={!!m.disabledReason}
+                  destructive={m.destructive}
+                  onClick={() => {
+                    close();
+                    m.onClick();
+                  }}
+                >
+                  {m.label}
+                </MenuItem>
+                {m.disabledReason ? (
+                  <p className="text-muted-foreground max-w-56 px-2 pb-2 text-xs">
+                    {m.disabledReason}
+                  </p>
+                ) : null}
+              </div>
+            ))
+          }
+        </Popover>
+      ) : (
+        // No ⋮: its place kept, so the main actions line up.
+        <span className="size-8 shrink-0" aria-hidden />
+      )}
+    </span>
+  );
+  return grid ? (
+    <li className="hover:bg-accent/60 relative flex flex-col overflow-hidden rounded-lg border transition-colors">
+      <ThemeThumbnail theme={values} />
+      <span className="flex flex-1 flex-col gap-2 p-4">
+        <span className="flex items-start justify-between gap-2">
+          {nameLink}
+          {accessible ? <AccessibleBadge /> : null}
         </span>
-      </Link>
-      {/* The main action at the right, its ⋮ last. */}
-      <div
-        className={cn('flex items-center justify-end gap-2 border-t p-3', !grid && 'sm:border-t-0')}
-      >
-        {primary ? (
-          <Button size="sm" onClick={primary.onClick} disabled={primary.busy}>
-            <CopyPlus className="size-4" />
-            {primary.label}
-          </Button>
-        ) : null}
-        {menu.length ? (
-          <Popover
-            align="end"
-            trigger={({ toggle }) => (
-              <Button variant="ghost" size="sm" onClick={toggle} aria-label={t('more', { name })}>
-                <EllipsisVertical className="size-4" />
-              </Button>
-            )}
-          >
-            {(close) =>
-              menu.map((m) => (
-                <div key={m.label}>
-                  <MenuItem
-                    disabled={!!m.disabledReason}
-                    destructive={m.destructive}
-                    onClick={() => {
-                      close();
-                      m.onClick();
-                    }}
-                  >
-                    {m.label}
-                  </MenuItem>
-                  {m.disabledReason ? (
-                    <p className="text-muted-foreground max-w-56 px-2 pb-2 text-xs">
-                      {m.disabledReason}
-                    </p>
-                  ) : null}
-                </div>
-              ))
-            }
-          </Popover>
-        ) : null}
-      </div>
+        <span className="mt-auto flex flex-col gap-1 pt-1">{facts}</span>
+      </span>
+      <span className="flex justify-end border-t p-3">{actions}</span>
+    </li>
+  ) : (
+    <li className="hover:bg-accent/60 relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4">
+      {/* Its look, as the grid shows it, small. */}
+      <span className="hidden w-32 shrink-0 overflow-hidden rounded-md border sm:block">
+        <ThemeThumbnail theme={values} />
+      </span>
+      <span className="flex min-w-0 flex-1 flex-col gap-1">
+        <span className="flex min-w-0 items-center gap-2">
+          {nameLink}
+          {accessible ? <AccessibleBadge /> : null}
+        </span>
+        {facts}
+      </span>
+      {actions}
     </li>
   );
 }

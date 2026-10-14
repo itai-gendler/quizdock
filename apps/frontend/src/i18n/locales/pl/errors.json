@@ -155,9 +155,9 @@
     "already_host": "Już jesteś prowadzącym: nie ma miejsca do zajęcia."
   },
   "store": {
-    "demo_disabled": "Udostępnianie jest wyłączone na instancji demo.",
-    "not_ready": "Udostępnić można tylko quiz oznaczony jako „gotowy”.",
-    "license_required": "Ustaw licencję przed udostępnieniem: szablon ma być ponownie wykorzystywany, więc warunki idą razem z nim.",
+    "demo_disabled": "Na instancji demonstracyjnej nie można proponować szablonów.",
+    "not_ready": "Tylko quiz oznaczony jako „gotowy” może zostać zaproponowany jako szablon.",
+    "license_required": "Ustaw licencję przed zaproponowaniem go jako szablonu: szablon służy do ponownego użycia, więc warunki idą razem z nim.",
     "entry_not_found": "Tego szablonu nie ma już w katalogu.",
     "not_yours": "Szablon może wycofać tylko jego autor lub administrator.",
     "invalid_id": "Nieprawidłowy identyfikator szablonu.",
@@ -239,5 +239,13 @@
   "background": {
     "image_and_gradient": "Tło to obraz albo gradient, nie oba naraz.",
     "mode_required": "Wybierz, jak ułożyć obraz."
+  },
+  "selection": {
+    "not_found": "Nie znaleziono zestawu.",
+    "nothing_playable": "Żadnego quizu z tego zestawu nie można rozegrać.",
+    "too_many_quizzes": "Zestaw zawiera co najwyżej 50 quizów.",
+    "duplicate_quiz": "Quiz występuje w zestawie tylko raz.",
+    "quiz_not_found": "Nie można dodać tego quizu: nie jest twój ani nie jest ci udostępniony.",
+    "nothing_to_save": "Ten pokój nie rozegrał żadnego quizu, który możesz zachować w zestawie."
   }
 }

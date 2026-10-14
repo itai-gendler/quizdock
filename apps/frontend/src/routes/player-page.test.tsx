@@ -89,6 +89,7 @@ const view = (partial: Partial<GameView>): GameView => ({
   pickOwnName: true,
   participantAccess: 'account',
   joinLocked: false,
+  keepResults: true,
   kicked: null,
   connectionLost: false,
   mode: 'manual',
@@ -119,6 +120,7 @@ const view = (partial: Partial<GameView>): GameView => ({
   roomName: null,
   hostName: null,
   standings: null,
+  selection: null,
   scores: null,
   lobbyStartAt: null,
   language: null,
@@ -356,6 +358,18 @@ describe('PlayerPage (client participant)', () => {
 
     expect(await screen.findByText(/^dans /)).toBeInTheDocument();
     expect(screen.getAllByText('Bob').length).toBeGreaterThan(0);
+  });
+
+  it('LOBBY: a game that keeps nothing says so', async () => {
+    loadPlayerSession.mockReturnValue({
+      pin: '771122',
+      nickname: 'Bob',
+      sessionToken: 't',
+      playerId: 'p1',
+    });
+    hookState.value = view({ state: GameState.Lobby, keepResults: false, personalTracking: false });
+    renderApp('/join/771122');
+    expect(await screen.findByText(/Rien de ce quiz n’est enregistré/)).toBeInTheDocument();
   });
 
   it('leaving closes this device’s connection for good, so it can join another game (audit F1)', async () => {

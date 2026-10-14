@@ -152,9 +152,9 @@
     "already_host": "你已经是主持人：无需占用席位。"
   },
   "store": {
-    "demo_disabled": "演示实例已关闭共享功能。",
-    "not_ready": "只有标记为“就绪”的测验才能共享。",
-    "license_required": "共享前请选择许可协议：模板是供他人再次使用的，条款会随之流传。",
+    "demo_disabled": "演示实例上无法提供模板。",
+    "not_ready": "只有标记为“就绪”的测验才能作为模板提供。",
+    "license_required": "作为模板提供前请设置许可：模板就是为了被重复使用，条款会随之一起传递。",
     "entry_not_found": "该模板已不在目录中。",
     "not_yours": "只有作者或管理员才能撤下模板。",
     "invalid_id": "模板标识无效。",
@@ -236,5 +236,13 @@
   "background": {
     "image_and_gradient": "背景是图片或渐变，不能两者兼有。",
     "mode_required": "请选择图片的排布方式。"
+  },
+  "selection": {
+    "not_found": "未找到选集。",
+    "nothing_playable": "该选集中没有可演示的测验。",
+    "too_many_quizzes": "一个选集最多包含 50 个测验。",
+    "duplicate_quiz": "一个测验在选集中只能出现一次。",
+    "quiz_not_found": "无法添加该测验：它既不是你的，也未与你共享。",
+    "nothing_to_save": "这个房间没有演示过可保存到选集的测验。"
   }
 }

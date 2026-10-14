@@ -153,9 +153,9 @@
     "already_host": "You are a host already: no seat to take."
   },
   "store": {
-    "demo_disabled": "Sharing is off on a demo instance.",
-    "not_ready": "Only a quiz marked “ready” can be shared.",
-    "license_required": "Set a licence before sharing: a template is meant to be reused, so the terms travel with it.",
+    "demo_disabled": "Templates cannot be offered on a demo instance.",
+    "not_ready": "Only a quiz marked “ready” can be offered as a template.",
+    "license_required": "Set a licence before offering it as a template: a template is meant to be reused, so the terms travel with it.",
     "entry_not_found": "This template is no longer in the catalogue.",
     "not_yours": "Only its author, or an administrator, can withdraw a template.",
     "invalid_id": "Invalid template identifier.",
@@ -237,5 +237,13 @@
   "background": {
     "image_and_gradient": "A background is a picture or a gradient, not both.",
     "mode_required": "Choose how the picture is laid out."
+  },
+  "selection": {
+    "not_found": "Selection not found.",
+    "nothing_playable": "None of this selection’s quizzes can be played.",
+    "too_many_quizzes": "A selection holds at most 50 quizzes.",
+    "duplicate_quiz": "A quiz appears only once in a selection.",
+    "quiz_not_found": "This quiz cannot be added: it is neither yours nor shared with you.",
+    "nothing_to_save": "This room played no quiz you can keep in a selection."
   }
 }

@@ -151,7 +151,14 @@ export function FeedbackPage() {
                 <li key={f.id} className="flex flex-col gap-1 py-3">
                   <div className="flex flex-wrap items-center gap-3">
                     <StarRow value={f.rating} size="size-3.5" />
-                    <span className="font-medium">{f.nickname}</span>
+                    {/* No nickname: a rating from another host's game of this shared quiz. */}
+                    {f.nickname === null ? (
+                      <span className="text-muted-foreground italic">
+                        {t('feedback.anonymous')}
+                      </span>
+                    ) : (
+                      <span className="font-medium">{f.nickname}</span>
+                    )}
                     <time className="text-muted-foreground ml-auto text-xs" dateTime={f.createdAt}>
                       {formatDate(f.createdAt)}
                     </time>

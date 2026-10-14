@@ -30,9 +30,12 @@ projection, which reveals every question, has none.
 ## Shipped themes and user themes
 
 The shipped themes (`BUILTIN_THEMES`, values in `theme-builtin.ts`) are read-only:
-*Classic* (the default: the settled colours, animal glyphs), *Sober*, *Kids*, *Festive*,
-*Night* (Classic's colours on their own background, font and motion), *High contrast*
-and *High contrast light* (the accessible ones), and the seasonal *Halloween*,
+*Classic* (the default: the settled colours, geometric shapes of the bank); *Sober*
+(Classic's hues less saturated, letters); *Kids* (the shipped animal glyphs), *Festive*
+(party icons) and *Night* (night-sky icons), in Classic's colours on their own
+background, font and motion; *High
+contrast* and *High contrast light* (the accessible ones, with Classic's shapes); and the
+seasonal *Halloween*,
 *Christmas*, *New year*, *Easter*, *Summer* (a picture of their own in
 `public/themes`, their season's icons, their own palette).
 
@@ -54,7 +57,8 @@ neither: the instance's default, else Classic.
 - **Fonts**: a whole woff2 (`POST /themes/assets/font`), kind `font`.
 - **Pictures and sounds**: ordinary media (image, audio).
 - **The icon bank**: `public/icons/bank/<group>/<name>.svg` (Phosphor Icons, MIT,
-  `public/licenses/phosphor-icons.txt`), listed in `ICON_BANK`, with sets of eight in
+  `public/licenses/phosphor-icons.txt`, but for the shapes drawn for QuizDock in
+  `symbols`), listed in `ICON_BANK`, with sets of eight in
   `ICON_SETS`. Shipped pictures are named `shipped:<file>`.
 
 A theme's media are held through `theme_media`: never swept, refused to a deletion while

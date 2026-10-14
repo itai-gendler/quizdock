@@ -1,0 +1,471 @@
+{
+  "format": "quizdock/quiz",
+  "version": 6,
+  "quiz": {
+    "title": "Discover the United Kingdom",
+    "description": "Sample quiz — geography, history and culture of the United Kingdom.",
+    "language": "en",
+    "license": "CC-BY-4.0",
+    "revision": 2,
+    "feedbackEnabled": true,
+    "cover": null
+  },
+  "items": [
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "intro-title",
+          "text": "Discover the United Kingdom",
+          "level": 1,
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "intro-text",
+          "md": "Quick questions about *Britain* — from Big Ben to the Scottish Highlands.",
+          "align": "center",
+          "size": "large"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundImage": "media/westminster-dusk.webp"
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "What is the capital of Scotland?",
+      "answerExplanation": "Edinburgh, crowned by its castle, is the capital of Scotland and seat of the Scottish Parliament.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Glasgow",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Edinburgh",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Aberdeen",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Inverness",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/edinburgh-castle.webp"
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "The Giant’s Causeway is in Scotland.",
+      "answerExplanation": "Its basalt columns line the coast of County Antrim, in Northern Ireland.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "False",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/giants-causeway.webp"
+    },
+    {
+      "kind": "question",
+      "type": "numeric",
+      "prompt": "How tall is Ben Nevis, the highest mountain in the UK, in metres? Closest answer wins.",
+      "answerExplanation": "Ben Nevis, in the Scottish Highlands, rises to 1,345 m.",
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "closest",
+      "numericValue": 1345,
+      "numericTolerance": 20,
+      "options": [],
+      "acceptedAnswers": [],
+      "media": "media/ben-nevis.webp"
+    },
+    {
+      "kind": "question",
+      "timeLimitS": 20,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "type": "image_choice",
+      "prompt": "Which of these is Stonehenge?",
+      "answerExplanation": "Stonehenge, on Salisbury Plain in England, was begun around 3000 BC.",
+      "options": [
+        {
+          "media": "media/carnac.webp",
+          "alt": "Rows of rough standing stones in a heath",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "media": "media/moai.webp",
+          "alt": "A row of giant stone heads on a platform",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "media": "media/poulnabrone.webp",
+          "alt": "A stone table tomb with a flat capstone on rocky ground",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "media": "media/stonehenge.webp",
+          "alt": "A circle of huge standing stones topped by lintels on a grassy plain",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "kind": "question",
+      "type": "multiple_choice",
+      "prompt": "Which of these are traditional British dishes?",
+      "answerExplanation": "Paella comes from Valencia, in Spain.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Fish and chips",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Shepherd’s pie",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Paella",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Full English breakfast",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/fish-and-chips.webp"
+    },
+    {
+      "kind": "question",
+      "type": "text_input",
+      "prompt": "Which famous playwright was born in Stratford-upon-Avon?",
+      "answerExplanation": "William Shakespeare was born there in 1564.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "lenient",
+      "options": [],
+      "acceptedAnswers": [
+        "Shakespeare",
+        "William Shakespeare"
+      ]
+    },
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "tea-title",
+          "text": "Time for tea",
+          "level": 2,
+          "align": "center"
+        },
+        {
+          "type": "image",
+          "id": "tea-picture",
+          "media": "media/cream-tea.webp",
+          "size": "medium",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "tea-text",
+          "md": "A *cream tea* — scones with clotted cream and jam — is a classic of Devon and Cornwall.",
+          "align": "center"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundGradient": {
+        "angle": 135,
+        "colors": [
+          "#1e3a8a",
+          "#172554"
+        ]
+      }
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "What is the longest river in the United Kingdom?",
+      "answerExplanation": "The Severn, about 350 km long, rises in Wales and flows into the Bristol Channel.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Thames",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Trent",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Severn",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "text": "Tay",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "ordering",
+      "prompt": "Order these monarchs by the start of their reign, earliest first.",
+      "answerExplanation": null,
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Queen Victoria",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false,
+          "correctOrderIndex": 3
+        },
+        {
+          "text": "William the Conqueror",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false,
+          "correctOrderIndex": 0
+        },
+        {
+          "text": "Elizabeth I",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false,
+          "correctOrderIndex": 2
+        },
+        {
+          "text": "Henry VIII",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false,
+          "correctOrderIndex": 1
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Which of these cities is the capital of Wales?",
+      "answerExplanation": "Cardiff has been the capital of Wales since 1955.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "double",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Cardiff",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Swansea",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Bristol",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Belfast",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "The Channel Tunnel, linking England and France, opened in 1994.",
+      "answerExplanation": "It runs under the sea from Folkestone, in Kent, to Coquelles, near Calais.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "False",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "poll",
+      "prompt": "Which British experience would you pick?",
+      "answerExplanation": null,
+      "timeLimitS": 15,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Afternoon tea",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "A West End show",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Hiking in the Highlands",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Visiting Stonehenge",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    }
+  ],
+  "media": {
+    "media/westminster-dusk.webp": {
+      "name": "westminster-dusk.webp",
+      "alt": "The Palace of Westminster and Big Ben lit up beside the Thames at dusk",
+      "credit": "Grizzlyil · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/edinburgh-castle.webp": {
+      "name": "edinburgh-castle.webp",
+      "alt": "Edinburgh Castle on its volcanic rock under a blue sky",
+      "credit": "Jdforrester · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/giants-causeway.webp": {
+      "name": "giants-causeway.webp",
+      "alt": "Hexagonal basalt columns on a rocky shore by the sea",
+      "credit": "Yujin · CC0 · Wikimedia Commons"
+    },
+    "media/ben-nevis.webp": {
+      "name": "ben-nevis.webp",
+      "alt": "A broad grey mountain rising above green hills",
+      "credit": "Thincat · Public domain · Wikimedia Commons"
+    },
+    "media/carnac.webp": {
+      "name": "carnac.webp",
+      "alt": "Rows of rough standing stones in a heath",
+      "credit": "Andy Hay · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/moai.webp": {
+      "name": "moai.webp",
+      "alt": "A row of giant stone heads on a platform",
+      "credit": "Arian Zwegers · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/stonehenge.webp": {
+      "name": "stonehenge.webp",
+      "alt": "A circle of huge standing stones topped by lintels on a grassy plain",
+      "credit": "garethwiscombe · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/poulnabrone.webp": {
+      "name": "poulnabrone.webp",
+      "alt": "A stone table tomb with a flat capstone on rocky ground",
+      "credit": "P. Hughes · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/fish-and-chips.webp": {
+      "name": "fish-and-chips.webp",
+      "alt": "A piece of battered fried fish on a tray of chips",
+      "credit": "Gvjekoslav · CC0 · Wikimedia Commons"
+    },
+    "media/cream-tea.webp": {
+      "name": "cream-tea.webp",
+      "alt": "Scones with a pot of clotted cream and a pot of jam next to a cup of tea",
+      "credit": "Andy Li · CC0 · Wikimedia Commons"
+    }
+  }
+}

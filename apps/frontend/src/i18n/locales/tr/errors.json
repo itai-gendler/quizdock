@@ -153,9 +153,9 @@
     "already_host": "Zaten sunucusunuz: alınacak yetki yok."
   },
   "store": {
-    "demo_disabled": "Demo örneğinde paylaşım kapalı.",
-    "not_ready": "Yalnızca \"hazır\" olarak işaretlenen bir quiz paylaşılabilir.",
-    "license_required": "Paylaşmadan önce lisans seçin. Böylece şablonu alanlar yeniden kullanım koşullarını bilir.",
+    "demo_disabled": "Demo örneğinde şablon sunulamaz.",
+    "not_ready": "Yalnızca “hazır” olarak işaretli bir quiz şablon olarak sunulabilir.",
+    "license_required": "Şablon olarak sunmadan önce bir lisans seçin: şablon yeniden kullanılmak içindir, koşulları da onunla birlikte gider.",
     "entry_not_found": "Bu şablon artık katalogda yer almıyor.",
     "not_yours": "Bir şablonu yalnızca yazarı veya yöneticisi geri çekebilir.",
     "invalid_id": "Geçersiz şablon tanımlayıcı.",
@@ -237,5 +237,13 @@
   "background": {
     "image_and_gradient": "Arka plan bir resim ya da bir gradyandır, ikisi birden değil.",
     "mode_required": "Resmin nasıl yerleşeceğini seçin."
+  },
+  "selection": {
+    "not_found": "Seçki bulunamadı.",
+    "nothing_playable": "Bu seçkinin hiçbir quizi oynanamaz.",
+    "too_many_quizzes": "Bir seçki en fazla 50 quiz içerir.",
+    "duplicate_quiz": "Bir quiz seçkide yalnızca bir kez yer alır.",
+    "quiz_not_found": "Bu quiz eklenemez: sizin değil ve sizinle paylaşılmamış.",
+    "nothing_to_save": "Bu oda, bir seçkide saklayabileceğiniz hiçbir quiz oynamadı."
   }
 }

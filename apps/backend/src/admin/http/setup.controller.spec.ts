@@ -86,7 +86,8 @@ describe('the setup wizard API (§3.8)', () => {
     nest.useGlobalGuards(new AuthGuard(auth, users as unknown as UsersService, new Reflector()));
     nest.useGlobalPipes(new ZodValidationPipe());
     nest.useGlobalFilters(new HttpExceptionFilter());
-    await nest.init();
+    // Listening on 127.0.0.1, which supertest reuses (why: test/game-harness.ts).
+    await nest.listen(0, '127.0.0.1');
   });
   afterAll(() => nest.close());
 

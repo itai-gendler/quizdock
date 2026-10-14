@@ -1,0 +1,508 @@
+{
+  "format": "quizdock/quiz",
+  "version": 6,
+  "quiz": {
+    "title": "Discover Italy",
+    "description": "Sample quiz — geography, history and culture of Italy.",
+    "language": "en",
+    "license": "CC-BY-4.0",
+    "revision": 2,
+    "feedbackEnabled": true,
+    "cover": null
+  },
+  "items": [
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "intro-title",
+          "text": "Discover Italy",
+          "level": 1,
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "intro-text",
+          "md": "Quick questions about *il Bel Paese* — from the Alps to Sicily.",
+          "align": "center",
+          "size": "large"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundImage": "media/colosseum.webp"
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "What is the capital of Italy?",
+      "answerExplanation": "Rome, on the Tiber, has been Italy’s capital since 1871.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Milan",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Rome",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Naples",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Turin",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/rome.webp"
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "Italy completely surrounds two independent countries.",
+      "answerExplanation": "San Marino and Vatican City are both enclaves within Italy.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "False",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "numeric",
+      "prompt": "In which year AD did Vesuvius bury Pompeii? Closest answer wins.",
+      "answerExplanation": "The eruption of AD 79 buried Pompeii under metres of ash.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "closest",
+      "numericValue": 79,
+      "numericTolerance": 0,
+      "options": [],
+      "acceptedAnswers": [],
+      "media": "media/vesuvius.webp"
+    },
+    {
+      "kind": "question",
+      "timeLimitS": 20,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "type": "image_choice",
+      "prompt": "Which of these is the Leaning Tower of Pisa?",
+      "answerExplanation": "The tower began to lean during its construction in the 12th century, on soft ground.",
+      "options": [
+        {
+          "media": "media/big-ben.webp",
+          "alt": "A tall clock tower beside a Gothic palace",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "media": "media/giralda.webp",
+          "alt": "A brick bell tower with a lattice pattern above a cathedral",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "media": "media/belem-tower.webp",
+          "alt": "A small stone fortress tower by a river",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "media": "media/pisa-tower.webp",
+          "alt": "A round white marble bell tower with tiers of arches",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "kind": "question",
+      "type": "multiple_choice",
+      "prompt": "Which of these islands belong to Italy?",
+      "answerExplanation": "Corsica, just north of Sardinia, belongs to France.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Sicily",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Corsica",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Sardinia",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "text": "Elba",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "text_input",
+      "prompt": "Which Italian city is built on more than 100 small islands in a lagoon?",
+      "answerExplanation": "Venice’s islands are linked by around 400 bridges.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "lenient",
+      "options": [],
+      "acceptedAnswers": [
+        "Venice",
+        "Venezia"
+      ],
+      "media": "media/venice.webp"
+    },
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "pizza-title",
+          "text": "Born in Naples",
+          "level": 2,
+          "align": "center"
+        },
+        {
+          "type": "image",
+          "id": "pizza-picture",
+          "media": "media/pizza.webp",
+          "size": "medium",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "pizza-text",
+          "md": "Pizza Margherita wears the colours of the Italian flag: tomato, mozzarella and basil.",
+          "align": "center"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundGradient": {
+        "angle": 135,
+        "colors": [
+          "#166534",
+          "#7f1d1d"
+        ]
+      }
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Who painted the ceiling of the Sistine Chapel?",
+      "answerExplanation": "Michelangelo painted it between 1508 and 1512.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Raphael",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Leonardo da Vinci",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Michelangelo",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "text": "Botticelli",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/sistine-ceiling.webp"
+    },
+    {
+      "kind": "question",
+      "type": "ordering",
+      "prompt": "Order these Italian cities from north to south.",
+      "answerExplanation": null,
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Rome",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false,
+          "correctOrderIndex": 2
+        },
+        {
+          "text": "Milan",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false,
+          "correctOrderIndex": 0
+        },
+        {
+          "text": "Palermo",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false,
+          "correctOrderIndex": 3
+        },
+        {
+          "text": "Florence",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false,
+          "correctOrderIndex": 1
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Which is the longest river in Italy?",
+      "answerExplanation": "The Po flows about 650 km from the Alps to the Adriatic Sea.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "double",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Tiber",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Arno",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Adige",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Po",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "In which city is the famous opera house La Scala?",
+      "answerExplanation": "La Scala opened in Milan in 1778.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Milan",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Venice",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Rome",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Naples",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "The Tiber is the river that flows through Milan.",
+      "answerExplanation": "The Tiber flows through Rome; Milan lies in the plain of the Po.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "False",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "poll",
+      "prompt": "Which Italian treat would you pick?",
+      "answerExplanation": null,
+      "timeLimitS": 15,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Pizza",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Pasta",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Risotto",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Gelato",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    }
+  ],
+  "media": {
+    "media/colosseum.webp": {
+      "name": "colosseum.webp",
+      "alt": "The Colosseum in Rome, its arches lit at dusk",
+      "credit": "Wilfredor · CC0 · Wikimedia Commons"
+    },
+    "media/rome.webp": {
+      "name": "rome.webp",
+      "alt": "The Tiber in Rome, with an arched bridge and a great dome behind",
+      "credit": "Jean-Pol GRANDMONT · CC BY 3.0 · Wikimedia Commons"
+    },
+    "media/vesuvius.webp": {
+      "name": "vesuvius.webp",
+      "alt": "Mount Vesuvius rising beyond the ruined walls of Pompeii",
+      "credit": "Jebulon · CC0 · Wikimedia Commons"
+    },
+    "media/big-ben.webp": {
+      "name": "big-ben.webp",
+      "alt": "A tall clock tower beside a Gothic palace",
+      "credit": "CAPTAIN RAJU · CC0 · Wikimedia Commons"
+    },
+    "media/giralda.webp": {
+      "name": "giralda.webp",
+      "alt": "A brick bell tower with a lattice pattern above a cathedral",
+      "credit": "Daderot · CC0 · Wikimedia Commons"
+    },
+    "media/belem-tower.webp": {
+      "name": "belem-tower.webp",
+      "alt": "A small stone fortress tower by a river",
+      "credit": "Neil · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/pisa-tower.webp": {
+      "name": "pisa-tower.webp",
+      "alt": "A round white marble bell tower with tiers of arches",
+      "credit": "Julian Lupyan · CC0 · Wikimedia Commons"
+    },
+    "media/venice.webp": {
+      "name": "venice.webp",
+      "alt": "A gondola on the Grand Canal in Venice, a domed church behind",
+      "credit": "Vyacheslav Argenberg · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/pizza.webp": {
+      "name": "pizza.webp",
+      "alt": "A pizza topped with tomatoes, mozzarella and basil leaves",
+      "credit": "jeffreyw · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/sistine-ceiling.webp": {
+      "name": "sistine-ceiling.webp",
+      "alt": "The painted ceiling of the Sistine Chapel, full of figures",
+      "credit": "Aaron Logan · CC BY 2.5 · Wikimedia Commons"
+    }
+  }
+}

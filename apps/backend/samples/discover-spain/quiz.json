@@ -1,0 +1,471 @@
+{
+  "format": "quizdock/quiz",
+  "version": 6,
+  "quiz": {
+    "title": "Discover Spain",
+    "description": "Sample quiz — geography, history and culture of Spain.",
+    "language": "en",
+    "license": "CC-BY-4.0",
+    "revision": 2,
+    "feedbackEnabled": true,
+    "cover": null
+  },
+  "items": [
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "intro-title",
+          "text": "Discover Spain",
+          "level": 1,
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "intro-text",
+          "md": "Quick questions about *España* — from the Pyrenees to the Canary Islands.",
+          "align": "center",
+          "size": "large"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundImage": "media/seville.webp"
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "What is the capital of Spain?",
+      "answerExplanation": "Madrid, in the centre of the Iberian Peninsula, is the largest city in Spain.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Barcelona",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Madrid",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Seville",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Valencia",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/madrid.webp"
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "The Canary Islands lie in the Mediterranean Sea.",
+      "answerExplanation": "The Canary Islands lie in the Atlantic Ocean, off the northwest coast of Africa.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "False",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "numeric",
+      "prompt": "How tall is Mount Teide, the highest mountain in Spain, in metres? Closest answer wins.",
+      "answerExplanation": "Teide, a volcano on Tenerife, rises to 3,715 m.",
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "closest",
+      "numericValue": 3715,
+      "numericTolerance": 20,
+      "options": [],
+      "acceptedAnswers": [],
+      "media": "media/teide.webp"
+    },
+    {
+      "kind": "question",
+      "timeLimitS": 20,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "type": "image_choice",
+      "prompt": "Which of these is the Sagrada Família?",
+      "answerExplanation": "Gaudí’s basilica in Barcelona has been under construction since 1882.",
+      "options": [
+        {
+          "media": "media/milan-cathedral.webp",
+          "alt": "A white marble Gothic façade with many spires",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "media": "media/sagrada-familia.webp",
+          "alt": "A basilica with tall spires rising above a city by the sea",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "media": "media/st-basils.webp",
+          "alt": "A church with colourful onion domes",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "media": "media/cologne-cathedral.webp",
+          "alt": "A dark Gothic cathedral tower seen from below",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "kind": "question",
+      "type": "multiple_choice",
+      "prompt": "Which of these are traditional Spanish dishes?",
+      "answerExplanation": "Goulash is a stew from Hungary.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Paella",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Gazpacho",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Goulash",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Tortilla de patatas",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/paella.webp"
+    },
+    {
+      "kind": "question",
+      "type": "text_input",
+      "prompt": "Which Spanish painter, born in Málaga, co-founded Cubism?",
+      "answerExplanation": "Pablo Picasso was born in Málaga in 1881 and co-founded Cubism with Georges Braque.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "lenient",
+      "options": [],
+      "acceptedAnswers": [
+        "Picasso",
+        "Pablo Picasso"
+      ]
+    },
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "flamenco-title",
+          "text": "Flamenco",
+          "level": 2,
+          "align": "center"
+        },
+        {
+          "type": "image",
+          "id": "flamenco-picture",
+          "media": "media/flamenco.webp",
+          "size": "medium",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "flamenco-text",
+          "md": "Born in Andalusia, flamenco joined UNESCO’s list of intangible heritage in 2010.",
+          "align": "center"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundGradient": {
+        "angle": 135,
+        "colors": [
+          "#9a3412",
+          "#431407"
+        ]
+      }
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Which palace and fortress overlooks the city of Granada?",
+      "answerExplanation": "The Alhambra was built mainly by the Nasrid dynasty in the 13th and 14th centuries.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "El Escorial",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Royal Palace of Madrid",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Alhambra",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "text": "Alcázar of Segovia",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/alhambra.webp"
+    },
+    {
+      "kind": "question",
+      "type": "ordering",
+      "prompt": "Order these Spanish cities from north to south.",
+      "answerExplanation": null,
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Seville",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false,
+          "correctOrderIndex": 3
+        },
+        {
+          "text": "Bilbao",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false,
+          "correctOrderIndex": 0
+        },
+        {
+          "text": "Valencia",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false,
+          "correctOrderIndex": 2
+        },
+        {
+          "text": "Madrid",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false,
+          "correctOrderIndex": 1
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Which Spanish city hosted the 1992 Summer Olympics?",
+      "answerExplanation": "Barcelona hosted the Games in 1992, the same year Seville held a World’s Fair.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "double",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Seville",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Madrid",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Valencia",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Barcelona",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "Don Quixote was written by Miguel de Cervantes.",
+      "answerExplanation": "The first part of the novel was published in 1605.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "False",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "poll",
+      "prompt": "Which Spanish experience would you pick?",
+      "answerExplanation": null,
+      "timeLimitS": 15,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "A tapas tour",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "A flamenco show",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "A beach on the Costa Brava",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Visiting the Alhambra",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    }
+  ],
+  "media": {
+    "media/seville.webp": {
+      "name": "seville.webp",
+      "alt": "The arcades and towers of the Plaza de España in Seville, by a canal",
+      "credit": "Wzwz at German Wikipedia · Public domain · Wikimedia Commons"
+    },
+    "media/madrid.webp": {
+      "name": "madrid.webp",
+      "alt": "The Gran Vía avenue in Madrid lined with grand buildings",
+      "credit": "Felipe Gabaldón · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/teide.webp": {
+      "name": "teide.webp",
+      "alt": "A snow-capped volcano above a landscape of dark lava",
+      "credit": "oatsy40 · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/milan-cathedral.webp": {
+      "name": "milan-cathedral.webp",
+      "alt": "A white marble Gothic façade with many spires",
+      "credit": "2alessio8 · CC BY 3.0 · Wikimedia Commons"
+    },
+    "media/sagrada-familia.webp": {
+      "name": "sagrada-familia.webp",
+      "alt": "A basilica with tall spires rising above a city by the sea",
+      "credit": "Julian Lupyan · CC0 · Wikimedia Commons"
+    },
+    "media/st-basils.webp": {
+      "name": "st-basils.webp",
+      "alt": "A church with colourful onion domes",
+      "credit": "Vyacheslav Argenberg · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/cologne-cathedral.webp": {
+      "name": "cologne-cathedral.webp",
+      "alt": "A dark Gothic cathedral tower seen from below",
+      "credit": "Acediscovery · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/paella.webp": {
+      "name": "paella.webp",
+      "alt": "A pan of yellow rice with mussels, peppers and peas",
+      "credit": "Wilfredor · CC0 · Wikimedia Commons"
+    },
+    "media/flamenco.webp": {
+      "name": "flamenco.webp",
+      "alt": "A painting of two flamenco dancers in ruffled dresses on a café stage",
+      "credit": "Joaquín Sorolla · Public domain · Wikimedia Commons"
+    },
+    "media/alhambra.webp": {
+      "name": "alhambra.webp",
+      "alt": "The Alhambra’s walls and towers on a wooded hill above Granada",
+      "credit": "Jebulon · CC0 · Wikimedia Commons"
+    }
+  }
+}

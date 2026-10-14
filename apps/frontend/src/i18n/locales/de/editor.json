@@ -51,7 +51,7 @@
     "languageLabel": "Sprache",
     "languageHelp": "Die Sprache, in der das Quiz geschrieben ist. Teilnehmende sehen sie bei den Vorlagen, und ein Katalog filtert danach.",
     "licenseLabel": "Lizenz",
-    "licenseHelp": "Die Bedingungen, unter denen andere das Quiz wiederverwenden dürfen. Erforderlich, um es als Vorlage zu teilen. Sie müssen die Rechte an seinen Inhalten und Medien besitzen.",
+    "licenseHelp": "Die Bedingungen, unter denen andere das Quiz wiederverwenden dürfen. Erforderlich, um es als Vorlage anzubieten. Sie müssen die Rechte an seinen Inhalten und Medien besitzen.",
     "license": {
       "cc0": "CC0 — keine Bedingungen",
       "ccBy": "CC BY 4.0 — Urheber nennen",
@@ -63,7 +63,7 @@
     "removeTag": "Schlagwort {{tag}} entfernen",
     "saveError": "Die Änderung konnte nicht gespeichert werden.",
     "sharedLabel": "Mit den anderen Quizleitungen der Instanz teilen",
-    "sharedHelp": "Sie sehen es schreibgeschützt in ihren Quizzen und können daraus eine eigene Kopie erstellen. Nicht angekreuzt, bleibt es allein Ihres.",
+    "sharedHelp": "Sie sehen es schreibgeschützt in ihren Quizzen: Sie können es präsentieren, ohne Ergebnisse zu behalten, oder daraus eine eigene Kopie erstellen. Nicht angekreuzt, bleibt es allein Ihres.",
     "sharedOn": "Geteilt",
     "sharedOff": "Privat",
     "saving": "Wird gespeichert…",
@@ -84,6 +84,7 @@
     "enableHelp": "Am Ende des Quiz wird bei jedem Spielen ein Bewertungsfeld angeboten.",
     "title": "Bewertungen der Teilnehmenden",
     "empty": "Noch keine Bewertungen.",
+    "anonymous": "Anonym",
     "starsAriaLabel": "{{value}} von 5",
     "seeAll_one": "Bewertung ansehen",
     "seeAll_other": "Alle {{count}} Bewertungen ansehen",
@@ -561,7 +562,8 @@
   },
   "readOnly": {
     "notice": "Quiz von {{owner}}: Sie können es lesen, aber nicht ändern.",
-    "createFrom": "Quiz daraus erstellen",
+    "presentWithoutResults": "Präsentieren,\nohne Ergebnisse zu behalten",
+    "createFrom": "Quiz\ndaraus erstellen",
     "props": {
       "orderShown": "In der richtigen Reihenfolge aufgeführt.",
       "seconds_one": "{{count}} Sekunde",

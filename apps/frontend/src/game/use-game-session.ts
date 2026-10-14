@@ -24,6 +24,7 @@ import type {
   QuestionStartPayload,
   QuestionTimePayload,
   RoomSoundsPayload,
+  RoomSelectionPayload,
   RoomStandingsPayload,
   HostScoreRow,
   ServerToClientEvents,
@@ -96,6 +97,8 @@ export interface GameView {
   participantAccess: ParticipantAccess;
   /** Closed to new participants by the host. */
   joinLocked: boolean;
+  /** False for another host's shared quiz presented as it is: nothing of the game is kept. */
+  keepResults: boolean;
   /** Renseigné si l'hôte a banni ce joueur (durée en minutes) — son client l'affiche. */
   kicked: { minutes: number } | null;
   /** The live connection is down (reconnecting): what shows may be out of date. */
@@ -157,6 +160,8 @@ export interface GameView {
   hostName: string | null;
   /** The room's standings over its quizzes so far (#89); null before the first is over. */
   standings: RoomStandingsPayload | null;
+  /** The selection the room was opened from, host console only; null for a single quiz. */
+  selection: RoomSelectionPayload | null;
   /** Every player's quiz and room scores (#198), host console only; null until told. */
   scores: HostScoreRow[] | null;
   /** When the next quiz's lobby starts on its own (ms epoch, #198); null = no countdown. */
@@ -198,6 +203,7 @@ export const INITIAL_VIEW: GameView = {
   pickOwnName: true,
   participantAccess: 'account',
   joinLocked: false,
+  keepResults: true,
   kicked: null,
   connectionLost: false,
   mode: 'manual',
@@ -229,6 +235,7 @@ export const INITIAL_VIEW: GameView = {
   roomName: null,
   hostName: null,
   standings: null,
+  selection: null,
   scores: null,
   lobbyStartAt: null,
   language: null,
@@ -463,6 +470,7 @@ export function useGameSession(pin: string, role: LiveRole, opts: { follow?: boo
         ...(p.title !== undefined ? { quizTitle: p.title } : {}),
       });
     const onStandings = (p: RoomStandingsPayload) => patch({ standings: p });
+    const onSelection = (p: RoomSelectionPayload | null) => patch({ selection: p });
     const onScores = (p: { rows: HostScoreRow[] }) => patch({ scores: p.rows });
     const onCountdown = (p: { startAt: number | null }) => patch({ lobbyStartAt: p.startAt });
     const onLobbyYou = (p: { ready: boolean }) => patch({ youReady: p.ready });
@@ -513,6 +521,7 @@ export function useGameSession(pin: string, role: LiveRole, opts: { follow?: boo
         pickOwnName: p.pickOwnName,
         participantAccess: p.participantAccess,
         joinLocked: p.joinLocked,
+        keepResults: p.keepResults !== false,
       });
     // Banni par l'hôte : on purge la session locale (pas d'auto-reconnexion) et on
     // bascule la vue en écran d'exclusion.
@@ -553,6 +562,7 @@ export function useGameSession(pin: string, role: LiveRole, opts: { follow?: boo
       'game:media': onGameMedia,
       'game:podium': onPodium,
       'room:standings': onStandings,
+      'room:selection': onSelection,
       'game:scores': onScores,
       'lobby:countdown': onCountdown,
       'room:info': onRoomInfo,

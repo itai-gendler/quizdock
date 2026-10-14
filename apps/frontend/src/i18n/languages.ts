@@ -13,6 +13,7 @@ export const namespaces = [
   'sessions',
   'store',
   'themes',
+  'selections',
   'auth',
   'errors',
   'validation',

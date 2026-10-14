@@ -5,6 +5,8 @@ import { ImageChoiceGrid, optionLabel } from '../game/image-choice';
 import {
   LobbyCountdown,
   BackToLobbyButton,
+  RoomSelectionPanel,
+  SaveAsSelectionButton,
   QuizPickButton,
   RoomStandingsPanel,
   roomLabel,
@@ -51,6 +53,7 @@ import {
   ChartColumn,
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
+import { useSessionState } from '@/lib/use-session-state';
 import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Markdown } from '@/components/markdown';
@@ -72,7 +75,6 @@ import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { Tooltip } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 import { getAuthMode } from '../auth/auth-context';
-import { APP_NAME } from '../config';
 import { Avatar } from '../game/avatar';
 import {
   ConnectionLost,
@@ -88,6 +90,7 @@ import { type QuestionClock, useQuestionClock } from '../game/use-countdown';
 import { ChromiumNotice } from '@/components/chromium-notice';
 import { QuestionMediaStage } from '../game/media/question-media-stage';
 import { ParticipantPreview } from '../game/participant-preview';
+import { InAudienceLanguage } from '../i18n/audience-language';
 import { ScaledStage } from '../game/slide-stage';
 import { joinBase, joinHostLabel, joinUrlFor } from '../game/join-url';
 import { JoinAddressPicker } from '../game/join-address-picker';
@@ -115,8 +118,9 @@ const CHRONO_STEPS = [-5, -1, 1, 5] as const;
 // column (each scrolling on its own), the action bar; nothing slides under the bar.
 // The header (3.75rem) and the page's top margin (1.5rem) above it; below, the action
 // bar sits on the window's edge (the page's bottom margin taken back).
+// No top padding of its own: the page's already sits under the top bar, as on every page.
 const CONSOLE_SECTION =
-  'flex min-h-[calc(100dvh-7rem)] flex-col py-6 lg:-mb-6 lg:h-[calc(100dvh-5.25rem)] lg:min-h-0 lg:pb-0';
+  'flex min-h-[calc(100dvh-7rem)] flex-col pb-6 lg:-mb-6 lg:h-[calc(100dvh-5.25rem)] lg:min-h-0 lg:pb-0';
 
 export function ControlPage() {
   const { pin } = useParams({ from: '/session/$pin/console' });
@@ -145,6 +149,13 @@ function HostConsole({
   const [confirmCapture, setConfirmCapture] = useState(false);
   const { view, socket } = session;
   const [shareNote, setShareNote] = useState<string | null>(null);
+  const [screenShareNote, setScreenShareNote] = useState<string | null>(null);
+  // The lobby's settings, in two tabs; the one open stays for the tab's visit.
+  const [settingsTab, setSettingsTab] = useSessionState(
+    'quizdock.console.settingsTab',
+    'data',
+    isSettingsTab,
+  );
   // Pairing a projection window on another computer: the code it shows, and the outcome.
   const [pairCode, setPairCode] = useState('');
   const [pairResult, setPairResult] = useState<'paired' | 'failed' | null>(null);
@@ -242,6 +253,7 @@ function HostConsole({
             size="sm"
             onClick={() => {
               setPairResult(null);
+              setScreenShareNote(null);
               toggle();
             }}
             aria-expanded={open}
@@ -258,6 +270,20 @@ function HostConsole({
             <QRCodeSVG value={screenUrl} size={120} aria-label={t('control.screenElsewhere')} />
           </div>
           <span className="font-mono text-xs break-all select-all">{screenUrl}</span>
+          {/* Sent to the other computer as the invitation is: the link alone. */}
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="self-start"
+            onClick={() => void shareLink(screenUrl, setScreenShareNote)}
+          >
+            <Share2 className="size-4" />
+            {t('control.share')}
+          </Button>
+          {screenShareNote ? (
+            <p className="text-muted-foreground text-xs">{screenShareNote}</p>
+          ) : null}
           <Label htmlFor="pair-code">{t('control.pairCodeLabel')}</Label>
           <div className="flex gap-2">
             <Input
@@ -287,33 +313,25 @@ function HostConsole({
     </div>
   );
 
-  // The link itself, not a picture of the QR code: it opens in one tap wherever it lands.
-  const onShare = async () => {
-    const invitation = [
-      t('control.shareText', { appName: APP_NAME }),
-      t('control.sharePin', { pin }),
-    ];
-    const text = [...invitation, t('control.shareLink', { url: joinUrl })].join('\n');
+  // The link alone — no text beside it, which some targets glued to it — and never a
+  // picture of the QR code: it opens in one tap wherever it lands, its PIN in it.
+  const shareLink = async (url: string, note: (text: string | null) => void) => {
     try {
       if (navigator.share) {
-        // The share sheet appends the URL itself: the text does not repeat it.
-        await navigator.share({
-          title: t('control.shareTitle', { appName: APP_NAME }),
-          text: invitation.join('\n'),
-          url: joinUrl,
-        });
+        await navigator.share({ url });
       } else if (navigator.clipboard) {
-        await navigator.clipboard.writeText(text);
-        setShareNote(t('control.shareCopied'));
+        await navigator.clipboard.writeText(url);
+        note(t('control.shareCopied'));
       } else {
         // Plain http on a local network: neither the share sheet nor the clipboard
         // exists there. The address is shown to be copied by hand.
-        setShareNote(t('control.shareByHand', { url: joinUrl }));
+        note(t('control.shareByHand', { url }));
       }
     } catch {
       /* partage annulé / non supporté */
     }
   };
+  const onShare = () => shareLink(joinUrl, setShareNote);
 
   if (view.status === 'connecting') {
     return <PageLoading label={t('control.connecting')} />;
@@ -327,7 +345,16 @@ function HostConsole({
     );
   }
   if (view.state === 'ENDED') {
-    return <SessionOver message={t('control.sessionEnded')} quizId={view.quizId} />;
+    // A game that kept nothing has no results to see.
+    return (
+      <SessionOver
+        message={t('control.sessionEnded')}
+        quizId={view.keepResults ? view.quizId : null}
+        saveAsSelection={
+          !view.selection && (view.standings?.quizzesPlayed ?? 0) > 0 ? pin : undefined
+        }
+      />
+    );
   }
 
   // ── The frame (UI system §2.1): the same in every phase ─────────────────────
@@ -514,11 +541,16 @@ function HostConsole({
             />
           )
         ) : phase === 'podium' ? null : (
-          <BackToLobbyButton pin={pin} socket={socket} mode="stop" />
+          <BackToLobbyButton
+            pin={pin}
+            socket={socket}
+            mode="stop"
+            offerArchive={view.keepResults}
+          />
         )}
         <EndGameButton
           label={inLobby ? t('control.stopSession') : t('control.endSession')}
-          offerArchive={!inLobby}
+          offerArchive={!inLobby && view.keepResults}
           onConfirm={endGame}
         />
       </div>
@@ -625,6 +657,12 @@ function HostConsole({
   let centre: React.ReactNode;
   let status: React.ReactNode;
   let primary: React.ReactNode;
+  // The room's selection, or, once it played something, the way to keep it as one.
+  const selectionBlock = view.selection ? (
+    <RoomSelectionPanel selection={view.selection} />
+  ) : (view.standings?.quizzesPlayed ?? 0) > 0 ? (
+    <SaveAsSelectionButton pin={pin} />
+  ) : null;
 
   if (phase === 'lobby' && noQuiz) {
     // Back from a quiz: the room waits in its lobby for the host to pick the next.
@@ -632,6 +670,7 @@ function HostConsole({
       <>
         {invite}
         {view.standings ? <RoomStandingsPanel standings={view.standings} max={5} /> : null}
+        {selectionBlock}
         <p className="text-muted-foreground text-sm">{t('control.noQuizYetHint')}</p>
       </>
     );
@@ -649,6 +688,7 @@ function HostConsole({
       <>
         {invite}
         {view.standings ? <RoomStandingsPanel standings={view.standings} max={5} /> : null}
+        {selectionBlock}
         <section className="flex flex-col gap-3">
           <div>
             <SectionTitle>{t('control.beforeStarting')}</SectionTitle>
@@ -665,84 +705,124 @@ function HostConsole({
               setCapture(true);
             }}
           />
-          <div className="grid gap-3 md:grid-cols-2">
-            <SettingSwitch
-              checked={view.fullCapture}
-              onChange={(checked) => (checked ? setConfirmCapture(true) : setCapture(false))}
-              label={t('control.captureLabel')}
-              hint={t('control.captureHint')}
-            />
-            <SettingSwitch
-              checked={view.personalTracking}
-              disabled={openAccess}
-              onChange={(personalTracking) => setOptions({ personalTracking })}
-              label={t('control.trackingLabel')}
-              hint={openAccess ? t('control.trackingOpenAccessHint') : t('control.trackingHint')}
-            />
-            {/* Nom affiché (RG-15) : n'a de sens que si les participants ont un compte. */}
-            {authMode === 'oidc' && !openAccess ? (
-              <SettingSwitch
-                checked={view.pickOwnName}
-                onChange={(pickOwnName) => setOptions({ pickOwnName })}
-                label={t('control.ownNameLabel')}
-                hint={t('control.ownNameHint')}
-              />
-            ) : null}
-            {/* Who hears the sound, for this game — only when the quiz has something to hear. */}
-            {view.quizHasSound && view.gameAudioTarget ? (
-              <label className="flex flex-col gap-2 rounded-lg border p-3 text-[1em]">
-                <span className="font-medium">{t('control.audioTargetLabel')}</span>
-                <Select
-                  className="h-8 w-auto"
-                  value={view.gameAudioTarget}
-                  aria-label={t('control.audioTargetLabel')}
-                  onChange={(e) => setOptions({ audioTarget: e.target.value as AudioTarget })}
-                >
-                  {AUDIO_TARGETS.map((target) => (
-                    <option key={target} value={target}>
-                      {t(`control.audioTarget.${target}`)}
-                    </option>
-                  ))}
-                </Select>
-                <span className="text-muted-foreground">{t('control.audioTargetHint')}</span>
-              </label>
-            ) : null}
-            {/* The audience's screens (#209): the quiz's language, or one for the whole room. */}
-            <label className="flex flex-col gap-2 rounded-lg border p-3 text-[1em]">
-              <span className="font-medium">{t('control.audienceLanguageLabel')}</span>
-              <Select
-                className="h-8 w-auto"
-                value={view.roomLanguage}
-                aria-label={t('control.audienceLanguageLabel')}
-                onChange={(e) => setOptions({ audienceLanguage: e.target.value })}
+          {/* Two tabs rather than one long list (no scroll before starting): what the
+              session keeps of the participants and how they get in; what the room's
+              screens show and play. */}
+          {/* As the Quizzes space's tabs: a line under them, the open one underlined. */}
+          <div role="tablist" className="flex flex-wrap border-b">
+            {(['data', 'screens'] as const).map((id) => (
+              <button
+                key={id}
+                type="button"
+                role="tab"
+                aria-selected={settingsTab === id}
+                onClick={() => setSettingsTab(id)}
+                className={cn(
+                  '-mb-px border-b-2 px-3 py-2 text-sm',
+                  settingsTab === id
+                    ? 'border-primary text-foreground font-medium'
+                    : 'text-muted-foreground hover:text-foreground border-transparent',
+                )}
               >
-                <option value="">{t('control.audienceLanguageQuiz')}</option>
-                {supportedLngs.map((lang) => (
-                  <option key={lang} value={lang}>
-                    {languageName(lang, i18n.language)}
-                  </option>
-                ))}
-              </Select>
-              <span className="text-muted-foreground">{t('control.audienceLanguageHint')}</span>
-            </label>
+                {t(`control.settingsTabs.${id}`)}
+              </button>
+            ))}
           </div>
-          {/* How participants get in (#57), and the media sent ahead (media brief §5.3). */}
-          {authMode === 'oidc' ? (
-            <p className="text-muted-foreground flex items-start gap-2 text-sm">
-              {openAccess ? (
-                <LockOpen className="mt-0.5 size-4 shrink-0" />
-              ) : (
-                <UserCheck className="mt-0.5 size-4 shrink-0" />
-              )}
-              {openAccess ? t('control.accessOpen') : t('control.accessAccount')}
-            </p>
-          ) : null}
-          {view.quizHasMedia ? (
-            <p className="text-muted-foreground flex items-start gap-2 text-sm">
-              <Info className="mt-0.5 size-4 shrink-0" />
-              {t('control.preloadNotice')}
-            </p>
-          ) : null}
+          {settingsTab === 'data' ? (
+            <div role="tabpanel" className="flex flex-col gap-3">
+              <div className="grid gap-3 md:grid-cols-2">
+                {/* Another host's shared quiz: nothing of it is kept, whatever the room chose. */}
+                <SettingSwitch
+                  checked={view.fullCapture}
+                  disabled={!view.keepResults}
+                  onChange={(checked) => (checked ? setConfirmCapture(true) : setCapture(false))}
+                  label={t('control.captureLabel')}
+                  hint={view.keepResults ? t('control.captureHint') : t('control.keepsNothingHint')}
+                />
+                <SettingSwitch
+                  checked={view.personalTracking}
+                  disabled={openAccess || !view.keepResults}
+                  onChange={(personalTracking) => setOptions({ personalTracking })}
+                  label={t('control.trackingLabel')}
+                  hint={
+                    !view.keepResults
+                      ? t('control.keepsNothingHint')
+                      : openAccess
+                        ? t('control.trackingOpenAccessHint')
+                        : t('control.trackingHint')
+                  }
+                />
+                {/* Nom affiché (RG-15) : n'a de sens que si les participants ont un compte. */}
+                {authMode === 'oidc' && !openAccess ? (
+                  <SettingSwitch
+                    checked={view.pickOwnName}
+                    onChange={(pickOwnName) => setOptions({ pickOwnName })}
+                    label={t('control.ownNameLabel')}
+                    hint={t('control.ownNameHint')}
+                  />
+                ) : null}
+              </div>
+              {/* How participants get in (#57), and the media sent ahead (media brief §5.3). */}
+              {authMode === 'oidc' ? (
+                <p className="text-muted-foreground flex items-start gap-2 text-sm">
+                  {openAccess ? (
+                    <LockOpen className="mt-0.5 size-4 shrink-0" />
+                  ) : (
+                    <UserCheck className="mt-0.5 size-4 shrink-0" />
+                  )}
+                  {openAccess ? t('control.accessOpen') : t('control.accessAccount')}
+                </p>
+              ) : null}
+            </div>
+          ) : (
+            <div role="tabpanel" className="flex flex-col gap-3">
+              <div className="grid gap-3 md:grid-cols-2">
+                {/* Who hears the sound, for this game — only when the quiz has something to hear. */}
+                {view.quizHasSound && view.gameAudioTarget ? (
+                  <label className="flex flex-col gap-2 rounded-lg border p-3 text-[1em]">
+                    <span className="font-medium">{t('control.audioTargetLabel')}</span>
+                    <Select
+                      className="h-8 w-auto"
+                      value={view.gameAudioTarget}
+                      aria-label={t('control.audioTargetLabel')}
+                      onChange={(e) => setOptions({ audioTarget: e.target.value as AudioTarget })}
+                    >
+                      {AUDIO_TARGETS.map((target) => (
+                        <option key={target} value={target}>
+                          {t(`control.audioTarget.${target}`)}
+                        </option>
+                      ))}
+                    </Select>
+                    <span className="text-muted-foreground">{t('control.audioTargetHint')}</span>
+                  </label>
+                ) : null}
+                {/* The audience's screens (#209): the quiz's language, or one for the whole room. */}
+                <label className="flex flex-col gap-2 rounded-lg border p-3 text-[1em]">
+                  <span className="font-medium">{t('control.audienceLanguageLabel')}</span>
+                  <Select
+                    className="h-8 w-auto"
+                    value={view.roomLanguage}
+                    aria-label={t('control.audienceLanguageLabel')}
+                    onChange={(e) => setOptions({ audienceLanguage: e.target.value })}
+                  >
+                    <option value="">{t('control.audienceLanguageQuiz')}</option>
+                    {supportedLngs.map((lang) => (
+                      <option key={lang} value={lang}>
+                        {languageName(lang, i18n.language)}
+                      </option>
+                    ))}
+                  </Select>
+                  <span className="text-muted-foreground">{t('control.audienceLanguageHint')}</span>
+                </label>
+              </div>
+              {view.quizHasMedia ? (
+                <p className="text-muted-foreground flex items-start gap-2 text-sm">
+                  <Info className="mt-0.5 size-4 shrink-0" />
+                  {t('control.preloadNotice')}
+                </p>
+              ) : null}
+            </div>
+          )}
         </section>
       </>
     );
@@ -861,7 +941,9 @@ function HostConsole({
       </div>
     );
     status = t('control.statusQuizOver');
-    primary = <BackToLobbyButton pin={pin} socket={socket} mode="podium" />;
+    primary = (
+      <BackToLobbyButton pin={pin} socket={socket} mode="podium" offerArchive={view.keepResults} />
+    );
   } else if (state === 'LEADERBOARD' && !reviewing) {
     // The quiz's standings after a reveal (#198): what the projection shows.
     centre = (
@@ -1068,11 +1150,16 @@ function HostConsole({
           {tab === 'screen' ? (
             // The projection's 16:9, scaled to the column. The console's own session: a
             // second one would re-join the room on the host's socket.
-            <ScaledStage className="rounded-xl border">
-              <ScreenSurface pin={pin} view={view} socket={socket} role="preview" fit="box" />
-            </ScaledStage>
+            // In the room's language, as the projection speaks it (#209).
+            <InAudienceLanguage tag={view.language}>
+              <ScaledStage className="rounded-xl border">
+                <ScreenSurface pin={pin} view={view} socket={socket} role="preview" fit="box" />
+              </ScaledStage>
+            </InAudienceLanguage>
           ) : tab === 'player' ? (
-            <ParticipantPreview view={view} pin={pin} />
+            <InAudienceLanguage tag={view.language}>
+              <ParticipantPreview view={view} pin={pin} />
+            </InAudienceLanguage>
           ) : (
             <div className="flex min-w-0 flex-col gap-5">{centre}</div>
           )}
@@ -1330,11 +1417,14 @@ function SessionOver({
   message,
   muted = false,
   quizId,
+  saveAsSelection,
 }: {
   message: string;
   muted?: boolean;
   /** The quiz just played: its results come first once the room is closed. */
   quizId?: string | null;
+  /** The room just closed, when it played quizzes: offered to keep as a selection. */
+  saveAsSelection?: string;
 }) {
   const { t } = useTranslation('live');
   return (
@@ -1350,6 +1440,7 @@ function SessionOver({
           {t('control.seeResults')}
         </Link>
       ) : null}
+      {saveAsSelection ? <SaveAsSelectionButton pin={saveAsSelection} /> : null}
       <Link to="/quizzes" className="underline">
         {t('control.backToQuizzes')}
       </Link>
@@ -1903,6 +1994,9 @@ function ChronoControls({
 const NEXT_DEBOUNCE_MS = 800;
 
 type HostTab = 'control' | 'screen' | 'player';
+
+type SettingsTab = 'data' | 'screens';
+const isSettingsTab = (v: unknown): v is SettingsTab => v === 'data' || v === 'screens';
 
 /** Where a key belongs to the element that has the focus, not to the console's shortcuts. */
 const INTERACTIVE =

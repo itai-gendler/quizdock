@@ -46,6 +46,9 @@ export class SessionArchiveService {
     meta: GameMeta,
     opts: { interrupted?: boolean; bestEffort?: boolean } = {},
   ): Promise<void> {
+    // The one guard for every path (end, next quiz, the host gone): a game playing
+    // another host's shared quiz keeps nothing, and says nothing about it.
+    if (meta.keepResults === false) return;
     try {
       const snapshot = await this.game.getSnapshot(meta.id);
       if (!snapshot) return;
@@ -72,6 +75,7 @@ export class SessionArchiveService {
         answersByIndex,
         now,
       );
+      session.selectionId = await this.ownSelection(meta);
       // A quiz stopped mid-way: only the questions shown so far, not the ones never reached.
       const lastShown = opts.interrupted
         ? Math.max(meta.currentIndex, 0)
@@ -130,6 +134,19 @@ export class SessionArchiveService {
       // que l'appelant ne détruise pas la partie sur un archivage perdu.
       if (!opts.bestEffort) throw err;
     }
+  }
+
+  /**
+   * The selection a session counts for (SPECIFICATIONS-SELECTION): the room's, when its
+   * host owns it — another host's launch of a shared selection never reaches its owner.
+   */
+  private async ownSelection(meta: GameMeta): Promise<string | null> {
+    if (!meta.selectionId) return null;
+    const selection = await this.prisma.selection.findUnique({
+      where: { id: meta.selectionId },
+      select: { ownerId: true },
+    });
+    return selection?.ownerId === meta.hostUserId ? meta.selectionId : null;
   }
 
   /** Résumé de session : statut, taux de réussite global, snapshot figé, rétention. */

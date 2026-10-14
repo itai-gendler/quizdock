@@ -6,7 +6,7 @@
     "description": "Sample quiz — geography, history and culture of France.",
     "language": "en",
     "license": "CC-BY-4.0",
-    "revision": 2,
+    "revision": 3,
     "feedbackEnabled": true,
     "cover": null
   },
@@ -45,26 +45,26 @@
       "options": [
         {
           "text": "Lyon",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "Paris",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "text": "Marseille",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "text": "Bordeaux",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -83,14 +83,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         }
       ],
@@ -108,26 +108,26 @@
       "options": [
         {
           "text": "Loire",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "Danube",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         },
         {
           "text": "Seine",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": true
         },
         {
           "text": "Rhône",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": true
         }
       ],
@@ -160,29 +160,29 @@
         {
           "media": "media/chambord.webp",
           "alt": "The Château de Chambord, a Renaissance castle with many towers",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "media": "media/mont-saint-michel.webp",
           "alt": "A rocky island crowned by an abbey, surrounded by salt meadows",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "media": "media/pont-du-gard.webp",
           "alt": "A three-tiered Roman aqueduct bridge over a river",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "media": "media/palais-des-papes.webp",
           "alt": "The Gothic towers of the Palais des Papes in Avignon",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ]
@@ -213,26 +213,26 @@
       "options": [
         {
           "text": "1776",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "1789",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "text": "1804",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "text": "1815",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -284,29 +284,29 @@
       "options": [
         {
           "text": "Marseille",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false,
           "correctOrderIndex": 3
         },
         {
           "text": "Lille",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false,
           "correctOrderIndex": 0
         },
         {
           "text": "Lyon",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false,
           "correctOrderIndex": 2
         },
         {
           "text": "Paris",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false,
           "correctOrderIndex": 1
         }
@@ -325,26 +325,26 @@
       "options": [
         {
           "text": "Camembert",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Roquefort",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Roquefort",
+          "text": "Comté",
           "color": "blue",
           "shape": "diamond",
-          "isCorrect": false
-        },
-        {
-          "text": "Comté",
-          "color": "yellow",
-          "shape": "circle",
           "isCorrect": true
         },
         {
           "text": "Brie",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -363,26 +363,26 @@
       "options": [
         {
           "text": "La Marseillaise",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "Le Chant des partisans",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Ode to Joy",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Ode to Joy",
+          "text": "The Internationale",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "The Internationale",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ]
@@ -399,14 +399,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         }
       ],
@@ -424,26 +424,26 @@
       "options": [
         {
           "text": "Brittany",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Provence",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Provence",
+          "text": "Alsace",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Alsace",
+          "text": "The Alps",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "The Alps",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],

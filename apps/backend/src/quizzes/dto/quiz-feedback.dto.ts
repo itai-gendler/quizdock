@@ -6,7 +6,8 @@ export const quizFeedbackItemSchema = z.object({
   id: z.string(),
   rating: z.number().int(),
   comment: z.string().nullable(),
-  nickname: z.string(),
+  /** Null for a rating from another host's game of a shared quiz. */
+  nickname: z.string().nullable(),
   createdAt: z.string(),
 });
 

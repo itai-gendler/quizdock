@@ -1,0 +1,471 @@
+{
+  "format": "quizdock/quiz",
+  "version": 6,
+  "quiz": {
+    "title": "Discover India",
+    "description": "Sample quiz — geography, history and culture of India.",
+    "language": "en",
+    "license": "CC-BY-4.0",
+    "revision": 2,
+    "feedbackEnabled": true,
+    "cover": null
+  },
+  "items": [
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "intro-title",
+          "text": "Discover India",
+          "level": 1,
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "intro-text",
+          "md": "Quick questions about *Bhārat* — from the Himalayas to the backwaters of Kerala.",
+          "align": "center",
+          "size": "large"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundImage": "media/taj-mahal.webp"
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "What is the capital of India?",
+      "answerExplanation": "New Delhi, part of the vast Delhi metropolis, is the seat of India’s government.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Mumbai",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "New Delhi",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        },
+        {
+          "text": "Kolkata",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Bengaluru",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/india-gate.webp"
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "The Bengal tiger is India’s national animal.",
+      "answerExplanation": "India is home to most of the world’s wild tigers.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "False",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "numeric",
+      "prompt": "How tall is the Qutb Minar, in metres? Closest answer wins.",
+      "answerExplanation": "Begun around 1200 in Delhi, the red-sandstone tower rises about 73 m.",
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "closest",
+      "numericValue": 73,
+      "numericTolerance": 2,
+      "options": [],
+      "acceptedAnswers": [],
+      "media": "media/qutb-minar.webp"
+    },
+    {
+      "kind": "question",
+      "timeLimitS": 20,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "type": "image_choice",
+      "prompt": "Which of these monuments is the Taj Mahal?",
+      "answerExplanation": "Emperor Shah Jahan built it in Agra in the 17th century, in memory of his wife Mumtaz Mahal.",
+      "options": [
+        {
+          "media": "media/sacre-coeur.webp",
+          "alt": "A white basilica with domes on top of a hill, behind trees",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "media": "media/us-capitol.webp",
+          "alt": "A white columned building with a large dome, in the morning light",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "media": "media/st-pauls.webp",
+          "alt": "A grey stone dome with a golden cross on top, above a ring of columns",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "media": "media/taj-mahal-choice.webp",
+          "alt": "A white marble mausoleum with a great dome and four minarets, beside a river",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "kind": "question",
+      "type": "multiple_choice",
+      "prompt": "Which of these are Indian dishes?",
+      "answerExplanation": "Paella is a rice dish from Valencia, in Spain.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Biryani",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Paella",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Masala dosa",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "text": "Butter chicken",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": [],
+      "media": "media/thali.webp"
+    },
+    {
+      "kind": "question",
+      "type": "text_input",
+      "prompt": "Which sacred river flows past the ghats of Varanasi?",
+      "answerExplanation": "Pilgrims bathe in the Ganges — the Ganga — from Varanasi’s riverside steps.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "lenient",
+      "options": [],
+      "acceptedAnswers": [
+        "Ganges",
+        "Ganga"
+      ],
+      "media": "media/varanasi.webp"
+    },
+    {
+      "kind": "slide",
+      "blocks": [
+        {
+          "type": "heading",
+          "id": "tea-title",
+          "text": "Tea country",
+          "level": 2,
+          "align": "center"
+        },
+        {
+          "type": "image",
+          "id": "tea-picture",
+          "media": "media/darjeeling-tea.webp",
+          "size": "medium",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "id": "tea-text",
+          "md": "In the Himalayan foothills, *Darjeeling* gives its name to one of the world’s most famous teas.",
+          "align": "center"
+        }
+      ],
+      "textTone": "light",
+      "textOutline": true,
+      "backgroundGradient": {
+        "angle": 135,
+        "colors": [
+          "#166534",
+          "#052e16"
+        ]
+      }
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Which desert lies in north-western India?",
+      "answerExplanation": "The Thar, or Great Indian Desert, covers a large part of Rajasthan.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Gobi",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Kalahari",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Thar",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": true
+        },
+        {
+          "text": "Atacama",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "ordering",
+      "prompt": "Order these Indian cities from north to south.",
+      "answerExplanation": null,
+      "timeLimitS": 30,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "partial",
+      "options": [
+        {
+          "text": "Kochi",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false,
+          "correctOrderIndex": 3
+        },
+        {
+          "text": "Delhi",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false,
+          "correctOrderIndex": 0
+        },
+        {
+          "text": "Bengaluru",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false,
+          "correctOrderIndex": 2
+        },
+        {
+          "text": "Kolkata",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false,
+          "correctOrderIndex": 1
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "single_choice",
+      "prompt": "Which Indian city is the home of Bollywood?",
+      "answerExplanation": "The name blends Bombay, Mumbai’s former name, with Hollywood.",
+      "timeLimitS": 20,
+      "revealDelayS": null,
+      "pointsMode": "double",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Chennai",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Kolkata",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Hyderabad",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Mumbai",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "true_false",
+      "prompt": "The Ganges flows into the Arabian Sea.",
+      "answerExplanation": "The Ganges ends in the Bay of Bengal, through a vast delta.",
+      "timeLimitS": 10,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "True",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "False",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": true
+        }
+      ],
+      "acceptedAnswers": []
+    },
+    {
+      "kind": "question",
+      "type": "poll",
+      "prompt": "Which Indian experience would you pick?",
+      "answerExplanation": null,
+      "timeLimitS": 15,
+      "revealDelayS": null,
+      "pointsMode": "standard",
+      "scoring": "standard",
+      "options": [
+        {
+          "text": "Sunrise at the Taj Mahal",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Houseboat in Kerala",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Camel ride in the Thar",
+          "color": "blue",
+          "shape": "diamond",
+          "isCorrect": false
+        },
+        {
+          "text": "Tea in Darjeeling",
+          "color": "yellow",
+          "shape": "circle",
+          "isCorrect": false
+        }
+      ],
+      "acceptedAnswers": []
+    }
+  ],
+  "media": {
+    "media/taj-mahal.webp": {
+      "name": "taj-mahal.webp",
+      "alt": "The Taj Mahal reflected in its long garden pool",
+      "credit": "Arian Zwegers · CC BY 2.0 · Wikimedia Commons"
+    },
+    "media/india-gate.webp": {
+      "name": "india-gate.webp",
+      "alt": "India Gate, a tall stone arch at the end of a wide avenue in New Delhi",
+      "credit": "Vyacheslav Argenberg · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/qutb-minar.webp": {
+      "name": "qutb-minar.webp",
+      "alt": "The Qutb Minar, a fluted red-sandstone tower, under a blue sky",
+      "credit": "Raghith · CC0 · Wikimedia Commons"
+    },
+    "media/taj-mahal-choice.webp": {
+      "name": "taj-mahal-choice.webp",
+      "alt": "A white marble mausoleum with a great dome and four minarets, beside a river",
+      "credit": "David Castor · Public domain · Wikimedia Commons"
+    },
+    "media/sacre-coeur.webp": {
+      "name": "sacre-coeur.webp",
+      "alt": "A white basilica with domes on top of a hill, behind trees",
+      "credit": "HJ Mitchell · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/us-capitol.webp": {
+      "name": "us-capitol.webp",
+      "alt": "A white columned building with a large dome, in the morning light",
+      "credit": "U.S. House of Representatives · Public domain · Wikimedia Commons"
+    },
+    "media/st-pauls.webp": {
+      "name": "st-pauls.webp",
+      "alt": "A grey stone dome with a golden cross on top, above a ring of columns",
+      "credit": "Julian Herzog · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/thali.webp": {
+      "name": "thali.webp",
+      "alt": "A round steel tray with rice, curries in small bowls and papadum",
+      "credit": "Vyacheslav Argenberg · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/varanasi.webp": {
+      "name": "varanasi.webp",
+      "alt": "Stone steps and moored boats along the river at Varanasi",
+      "credit": "Vyacheslav Argenberg · CC BY 4.0 · Wikimedia Commons"
+    },
+    "media/darjeeling-tea.webp": {
+      "name": "darjeeling-tea.webp",
+      "alt": "Rows of tea bushes on a hillside in the Darjeeling hills",
+      "credit": "Tirthankar Gupta · CC BY 2.0 · Wikimedia Commons"
+    }
+  }
+}

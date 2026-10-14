@@ -38,3 +38,6 @@ export interface ButtonProps
 export function Button({ className, variant, size, ...props }: ButtonProps) {
   return <button className={cn(buttonVariants({ variant, size }), className)} {...props} />;
 }
+
+/** A label on the two lines its translation breaks it into (`\n`), set tight (line-height 1). */
+export const twoLineButton = 'h-auto min-h-8 py-1 text-left leading-none whitespace-pre-line';

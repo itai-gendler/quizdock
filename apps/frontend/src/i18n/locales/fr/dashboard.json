@@ -22,6 +22,7 @@
   "questionCount_many": "{{count}} questions",
   "questionCount_other": "{{count}} questions",
   "present": "Présenter",
+  "presentWithoutResults": "Présenter\nsans garder les résultats",
   "running_one": "{{count}} salon ouvert",
   "running_many": "{{count}} salons ouverts",
   "running_other": "{{count}} salons ouverts",
@@ -218,7 +219,7 @@
     "answer1": "Réponse 1",
     "answer2": "Réponse 2"
   },
-  "createFrom": "Créer un quiz à partir de ceci",
+  "createFrom": "Créer un quiz\nà partir de ceci",
   "readOnly": "Lecture seule : partagé par un autre animateur",
   "filterOwner": "Propriétaire",
   "ownerAll": "Tous",

@@ -6,7 +6,7 @@
     "description": "Sample quiz — geography, history and culture of Türkiye.",
     "language": "en",
     "license": "CC-BY-4.0",
-    "revision": 2,
+    "revision": 3,
     "feedbackEnabled": true,
     "cover": null
   },
@@ -45,26 +45,26 @@
       "options": [
         {
           "text": "Istanbul",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "Ankara",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "text": "Izmir",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "text": "Bursa",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ]
@@ -80,14 +80,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         }
       ]
@@ -103,26 +103,26 @@
       "options": [
         {
           "text": "Greece",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "Italy",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         },
         {
           "text": "Georgia",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": true
         },
         {
           "text": "Iran",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": true
         }
       ]
@@ -151,29 +151,29 @@
         {
           "media": "media/taj-mahal.webp",
           "alt": "A white marble mausoleum with four minarets and a long pool in front",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "media": "media/ayasofya.webp",
           "alt": "A great dome ringed by half-domes, trees in the garden",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "media": "media/aziz-vasil.webp",
           "alt": "A cathedral with colourful onion domes and a statue in front",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "media": "media/sagrada-familia.webp",
           "alt": "A basilica front covered in stone carvings, with spired towers",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ]
@@ -235,29 +235,29 @@
       "options": [
         {
           "text": "Ankara",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false,
           "correctOrderIndex": 2
         },
         {
           "text": "Izmir",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false,
           "correctOrderIndex": 0
         },
         {
           "text": "Erzurum",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false,
           "correctOrderIndex": 3
         },
         {
           "text": "Istanbul",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false,
           "correctOrderIndex": 1
         }
@@ -275,14 +275,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         }
       ]
@@ -299,26 +299,26 @@
       "options": [
         {
           "text": "Independence March",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "Tenth Anniversary March",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Izmir March",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Izmir March",
+          "text": "Youth March",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Youth March",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ]
@@ -334,26 +334,26 @@
       "options": [
         {
           "text": "Euro",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "Turkish lira",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "text": "Dinar",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "text": "Drachma",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ]
@@ -368,26 +368,26 @@
       "options": [
         {
           "text": "Istanbul",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Cappadocia",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Cappadocia",
+          "text": "Pamukkale",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Pamukkale",
+          "text": "Black Sea",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Black Sea",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ]

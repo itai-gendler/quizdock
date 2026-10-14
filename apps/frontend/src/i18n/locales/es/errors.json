@@ -154,9 +154,9 @@
     "already_host": "Ya eres anfitrión: no hay puesto que ocupar."
   },
   "store": {
-    "demo_disabled": "El uso compartido está desactivado en una instancia de demostración.",
-    "not_ready": "Solo se puede compartir un quiz «listo».",
-    "license_required": "Elige una licencia antes de compartir: una plantilla está hecha para reutilizarse y sus condiciones viajan con ella.",
+    "demo_disabled": "No se pueden ofrecer plantillas en una instancia de demostración.",
+    "not_ready": "Solo un quiz «listo» puede ofrecerse como plantilla.",
+    "license_required": "Elige una licencia antes de ofrecerlo como plantilla: una plantilla está pensada para reutilizarse, y sus condiciones viajan con ella.",
     "entry_not_found": "Esta plantilla ya no está en el catálogo.",
     "not_yours": "Solo su autor, o un administrador, puede retirar una plantilla.",
     "invalid_id": "Identificador de plantilla no válido.",
@@ -238,5 +238,13 @@
   "background": {
     "image_and_gradient": "Un fondo es una imagen o un degradado, no ambos.",
     "mode_required": "Elige cómo se dispone la imagen."
+  },
+  "selection": {
+    "not_found": "Selección no encontrada.",
+    "nothing_playable": "Ningún quiz de esta selección se puede jugar.",
+    "too_many_quizzes": "Una selección contiene como máximo 50 quizzes.",
+    "duplicate_quiz": "Un quiz aparece una sola vez en una selección.",
+    "quiz_not_found": "Este quiz no se puede añadir: no es tuyo ni está compartido contigo.",
+    "nothing_to_save": "Esta sala no jugó ningún quiz que puedas guardar en una selección."
   }
 }

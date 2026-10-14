@@ -1,7 +1,9 @@
 /**
  * The icon bank (docs/themes.md): icons shipped with QuizDock for the answers, by group,
  * and sets of eight to give the eight answers at once. Phosphor Icons, fill style
- * (MIT, `public/licenses/phosphor-icons.txt`); each is `/icons/bank/<group>/<name>.svg`,
+ * (MIT, `public/licenses/phosphor-icons.txt`), but for shapes drawn for QuizDock in
+ * `symbols` (bowtie, crescent, hourglass-shape, octagon, pentagon, ring, semicircle,
+ * star-five, x-bold); each is `/icons/bank/<group>/<name>.svg`,
  * square, its fill the answer's text colour. A slot names one as `bank:<group>/<name>`.
  */
 
@@ -108,22 +110,31 @@ export const ICON_BANK = {
     'umbrella',
   ],
   symbols: [
+    'bowtie',
     'check',
     'circle',
     'club',
+    'crescent',
     'cross',
     'diamond',
     'exclamation-mark',
     'heart',
     'hexagon',
+    'hourglass-shape',
+    'octagon',
+    'pentagon',
     'question',
+    'ring',
+    'semicircle',
     'shield',
     'smiley',
     'spade',
     'square',
+    'star-five',
     'star-four',
     'triangle',
     'x',
+    'x-bold',
   ],
   halloween: ['broom', 'cat', 'eye', 'flask', 'ghost', 'moon-stars', 'skull', 'spiral'],
   christmas: ['bell', 'coffee', 'cookie', 'gift', 'snowflake', 'sparkle', 'star', 'tree-evergreen'],
@@ -149,11 +160,12 @@ export const ICON_BANK = {
     'waves',
   ],
 } as const;
+
 export type IconGroup = keyof typeof ICON_BANK;
 
 /** Sets of eight, in the default order of the answers (green, red, blue, yellow…). */
 export const ICON_SETS: Record<IconGroup, readonly string[]> = {
-  animals: ['rabbit', 'cat', 'fish', 'bird', 'dog', 'butterfly', 'horse', 'cow'],
+  animals: ['rabbit', 'cat', 'paw-print', 'bird', 'dog', 'butterfly', 'horse', 'cow'],
   nature: ['sun', 'star', 'moon', 'snowflake', 'drop', 'leaf', 'fire', 'cloud'],
   food: ['apple-logo', 'pizza', 'carrot', 'cookie', 'egg', 'ice-cream', 'cake', 'coffee'],
   sports: [

@@ -342,12 +342,27 @@ describe('StoreService', () => {
   describe('the samples a release ships', () => {
     const titles = async (service: StoreService) =>
       (await service.list()).map((e) => e.title).sort();
+    const SAMPLES = [
+      'Discover China',
+      'Discover France',
+      'Discover Germany',
+      'Discover India',
+      'Discover Italy',
+      'Discover Japan',
+      'Discover Poland',
+      'Discover Russia',
+      'Discover Spain',
+      'Discover Taiwan',
+      'Discover Türkiye',
+      'Discover the United Kingdom',
+    ];
+    const but = (title: string) => SAMPLES.filter((t) => t !== title);
 
     it('a new catalogue gets every sample, its media with it', async () => {
       const { service } = makeService();
       await service.onModuleInit();
       const seeded = await service.list();
-      expect(seeded.map((e) => e.language)).toEqual(['en', 'en', 'en']);
+      expect(seeded.map((e) => e.language)).toEqual(SAMPLES.map(() => 'en'));
       for (const entry of seeded) {
         expect(existsSync(join(dir, entry.id, 'media'))).toBe(true);
         const istanbul = await service.readMedia(entry.id, 'istanbul.webp').catch(() => null);
@@ -355,7 +370,7 @@ describe('StoreService', () => {
       }
     });
 
-    it('a catalogue of an earlier release: the samples updated in place, the new one added, a withdrawn one left out', async () => {
+    it('a catalogue of an earlier release: the samples updated in place, the new ones added, a withdrawn one left out', async () => {
       const old = {
         id: '01M37GF1YBSEJAYWM6YWN0EX1K',
         title: 'Discover France',
@@ -376,10 +391,11 @@ describe('StoreService', () => {
       await service.onModuleInit();
       const entries = await service.list();
       const france = entries.find((e) => e.title === 'Discover France');
-      expect(france).toMatchObject({ id: old.id, revision: 2, sharedAt: old.sharedAt });
+      expect(france).toMatchObject({ id: old.id, sharedAt: old.sharedAt });
+      expect(france!.revision).toBeGreaterThan(old.revision);
       expect(france?.questionCount).toBeGreaterThan(10);
       expect(existsSync(join(dir, old.id, 'media', 'mont-saint-michel.webp'))).toBe(true);
-      expect(await titles(service)).toEqual(['Discover France', 'Discover Türkiye']);
+      expect(await titles(service)).toEqual(but('Discover Taiwan'));
     });
 
     it('a sample withdrawn by the operator does not come back at the next start', async () => {
@@ -388,7 +404,7 @@ describe('StoreService', () => {
       const turkiye = (await service.list()).find((e) => e.title === 'Discover Türkiye');
       await service.withdraw({ ...alice, roles: [UserRole.admin] }, turkiye!.id);
       await makeService().service.onModuleInit();
-      expect(await titles(makeService().service)).toEqual(['Discover France', 'Discover Taiwan']);
+      expect(await titles(makeService().service)).toEqual(but('Discover Türkiye'));
     });
   });
 

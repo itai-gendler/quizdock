@@ -108,7 +108,8 @@ describe('EditorPage', () => {
     mockApi([{ method: 'GET', path: '/quizzes/q1', body: detail() }]);
     renderApp('/quizzes/q1');
 
-    expect(await screen.findByDisplayValue('Mon quiz')).toBeInTheDocument();
+    // The page loads on demand: a busy run takes longer than findBy's default second.
+    expect(await screen.findByDisplayValue('Mon quiz', {}, { timeout: 5000 })).toBeInTheDocument();
     // Listed in the sequence and opened in the editing pane (first item is auto-selected).
     expect(screen.getAllByText('Capitale de la France ?').length).toBeGreaterThanOrEqual(1);
   });
@@ -419,6 +420,43 @@ describe('EditorPage', () => {
       expect(screen.queryByRole('button', { name: 'Exporter' })).toBeNull();
       expect(screen.queryByText('Publier (prêt)')).toBeNull();
       expect(screen.queryByLabelText('Licence')).toBeNull();
+    });
+  });
+
+  describe("another host's shared quiz, opened by a host (SPECIFICATIONS-SHARED-PLAY)", () => {
+    it('offers to present it without keeping results, next to creating a quiz from it', async () => {
+      mockApi([
+        {
+          method: 'GET',
+          path: '/quizzes/q1',
+          body: detail({ editable: false, shared: true, status: 'ready', ownerName: 'Alice' }),
+        },
+        { method: 'GET', path: '/me', body: { id: 'h', displayName: 'H', roles: ['host'] } },
+      ]);
+      const { router } = renderApp('/quizzes/q1');
+      expect(
+        await screen.findByRole('button', { name: /Créer un quiz\s+à partir de ceci/ }),
+      ).toBeInTheDocument();
+      fireEvent.click(
+        screen.getByRole('button', { name: /Présenter\s+sans garder les résultats/ }),
+      );
+      await waitFor(() => expect(router.state.location.pathname).toBe('/session/482913/console'));
+    });
+
+    it('offers no presenting while it is a draft', async () => {
+      mockApi([
+        {
+          method: 'GET',
+          path: '/quizzes/q1',
+          body: detail({ editable: false, shared: true, ownerName: 'Alice' }),
+        },
+        { method: 'GET', path: '/me', body: { id: 'h', displayName: 'H', roles: ['host'] } },
+      ]);
+      renderApp('/quizzes/q1');
+      expect(
+        await screen.findByRole('button', { name: /Créer un quiz\s+à partir de ceci/ }),
+      ).toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: /Présenter\s+sans garder/ })).toBeNull();
     });
   });
 

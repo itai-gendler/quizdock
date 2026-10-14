@@ -19,6 +19,7 @@
   "questionCount_one": "{{count}} 道題",
   "questionCount_other": "{{count}} 道題",
   "present": "示範",
+  "presentWithoutResults": "不保留結果地\n示範",
   "running_one": "{{count}} 個房間開放中",
   "running_other": "{{count}} 個房間開放中",
   "seatTaken": "主持人席位已被他人佔用：你只能以參與者身分加入房間。",
@@ -201,7 +202,7 @@
     "answer1": "答案 1",
     "answer2": "答案 2"
   },
-  "createFrom": "以此建立測驗",
+  "createFrom": "以此\n建立測驗",
   "readOnly": "唯讀：由其他主持人共享",
   "filterOwner": "擁有者",
   "ownerAll": "全部",

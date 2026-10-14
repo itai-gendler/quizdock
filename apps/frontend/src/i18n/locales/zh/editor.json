@@ -51,7 +51,7 @@
     "languageLabel": "语言",
     "languageHelp": "测验所用的语言。模板中会显示，目录也按语言筛选。",
     "licenseLabel": "许可协议",
-    "licenseHelp": "他人可以在何种条件下再次使用该测验。作为模板共享前必须选择。你必须拥有其内容和媒体的权利。",
+    "licenseHelp": "他人重复使用该测验的条款。作为模板提供时必填。你必须拥有其内容和媒体的权利。",
     "license": {
       "cc0": "CC0 — 无条件",
       "ccBy": "CC BY 4.0 — 署名",
@@ -63,7 +63,7 @@
     "removeTag": "移除标签 {{tag}}",
     "saveError": "无法保存更改。",
     "sharedLabel": "与本实例的其他主持人共享",
-    "sharedHelp": "他们会在自己的测验中看到它（只读），并可创建自己的副本。不勾选则只有你能看到。",
+    "sharedHelp": "他们会在自己的测验中看到它（只读）：可以不保留结果地演示它，或创建自己的副本。不勾选则只有你能看到。",
     "sharedOn": "已共享",
     "sharedOff": "私有",
     "saving": "正在保存…",
@@ -84,6 +84,7 @@
     "enableHelp": "每次测验结束时向参与者提供评分面板。",
     "title": "玩家评价",
     "empty": "暂无评价。",
+    "anonymous": "匿名",
     "starsAriaLabel": "5 星中的 {{value}} 星",
     "seeAll_one": "查看评价",
     "seeAll_other": "查看全部 {{count}} 条评价",
@@ -561,7 +562,8 @@
   },
   "readOnly": {
     "notice": "{{owner}} 的测验：你可以查看，但不能修改。",
-    "createFrom": "以此创建测验",
+    "presentWithoutResults": "不保留结果地\n演示",
+    "createFrom": "以此\n创建测验",
     "props": {
       "orderShown": "按正确顺序列出。",
       "seconds_one": "{{count}} 秒",

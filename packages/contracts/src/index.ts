@@ -514,6 +514,18 @@ export interface RoomSoundsSettings {
   muted?: boolean;
 }
 
+/**
+ * The selection a room was opened from, as its console shows it (SPECIFICATIONS-SELECTION):
+ * only the quizzes its host may play, each ticked once the room played it; `nextQuizId`,
+ * the first not played yet, is the one the lobby picks. Sent to the console only.
+ */
+export interface RoomSelectionPayload {
+  id: string;
+  name: string;
+  items: { quizId: string; title: string; played: boolean }[];
+  nextQuizId: string | null;
+}
+
 export interface RoomStandingsPayload {
   quizzesPlayed: number;
   /** The quizzes the room played to their end — to the host console only. */
@@ -565,7 +577,13 @@ export interface PodiumPayload {
 export interface ClientToServerEvents {
   'host:create': (
     p: {
-      quizId: string;
+      /** The quiz to open the room on; ignored when `selectionId` is given. */
+      quizId?: string;
+      /**
+       * A selection (SPECIFICATIONS-SELECTION): the room opens on its first playable
+       * quiz, and its lobby picks the next one after each quiz.
+       */
+      selectionId?: string;
       fullCapture?: boolean;
       /** Suivi individuel (RG-16) ; défaut `true`. `false` = agrégats seuls. */
       personalTracking?: boolean;
@@ -730,6 +748,11 @@ export interface SessionNotice {
   participantAccess: ParticipantAccess;
   /** Closed to new participants by the host. */
   joinLocked: boolean;
+  /**
+   * False for another host's shared quiz presented as it is: nothing of the game is
+   * recorded (capture and tracking then false too). Absent from older servers: true.
+   */
+  keepResults?: boolean;
 }
 
 /** The room waits for media before a step (a question, or the slide `slideIndex`), until `until`. */
@@ -830,6 +853,8 @@ export interface ServerToClientEvents {
   'lobby:count': (p: { ready: number; total: number }) => void;
   /** The room's standings: at a podium, in the lobby of the next quiz, and when the room closes. */
   'room:standings': (p: RoomStandingsPayload) => void;
+  /** The selection the room was opened from; `null` for a room opened from a single quiz. */
+  'room:selection': (p: RoomSelectionPayload | null) => void;
   /** Every player's quiz and room scores (#198), to the host's console only. */
   'game:scores': (p: HostScoresPayload) => void;
   /** The next quiz's lobby starts on its own at `startAt` (ms epoch, #198); null = no countdown. */

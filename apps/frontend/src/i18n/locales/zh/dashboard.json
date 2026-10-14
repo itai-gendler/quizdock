@@ -19,6 +19,7 @@
   "questionCount_one": "{{count}} 道题",
   "questionCount_other": "{{count}} 道题",
   "present": "演示",
+  "presentWithoutResults": "不保留结果地\n演示",
   "running_one": "{{count}} 个房间开放中",
   "running_other": "{{count}} 个房间开放中",
   "seatTaken": "主持人席位已被他人占用：你只能以参与者身份加入房间。",
@@ -201,7 +202,7 @@
     "answer1": "答案 1",
     "answer2": "答案 2"
   },
-  "createFrom": "以此创建测验",
+  "createFrom": "以此\n创建测验",
   "readOnly": "只读：由其他主持人共享",
   "filterOwner": "所有者",
   "ownerAll": "全部",
