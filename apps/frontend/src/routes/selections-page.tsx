@@ -3,6 +3,8 @@ import { Link, useNavigate } from '@tanstack/react-router';
 import {
   CopyPlus,
   EllipsisVertical,
+  LayoutGrid,
+  List as ListIcon,
   ListOrdered,
   Lock,
   Play,
@@ -20,7 +22,13 @@ import { ListSkeleton } from '@/components/ui/loading';
 import { MenuItem } from '@/components/ui/menu-item';
 import { Popover } from '@/components/ui/popover';
 import { QuizzesHeader } from '@/components/quizzes-header';
+import { FilterField } from '@/components/ui/filter-field';
+import { Segmented } from '@/components/ui/segmented';
+import { Select } from '@/components/ui/select';
 import { fold } from '@/lib/text';
+import { isString, useSessionState } from '@/lib/use-session-state';
+import { useStoredView } from '@/lib/use-stored-view';
+import { cn } from '@/lib/utils';
 import { apiErrorText } from '../api/http';
 import type { SelectionDto } from '../api/generated/model';
 import {
@@ -32,16 +40,27 @@ import {
 } from '../api/generated/selections/selections';
 import { useLaunchSession } from '../game/use-launch-session';
 
+/** Where the list's filters are kept for the tab's visit. */
+const FILTERS = 'quizdock.selections.filter';
+/** The owner filter's value for the caller's own selections (never a name). */
+const ME = '\u0000me';
+type Sort = 'recent' | 'title';
+const isSort = (v: unknown): v is Sort => v === 'recent' || v === 'title';
+
 /**
  * The host's selections, and those other hosts share with them (SPECIFICATIONS-SELECTION):
  * named lists of quizzes, launched into a room in one go.
  */
 export function SelectionsPage() {
-  const { t } = useTranslation('selections');
+  const { t } = useTranslation(['selections', 'dashboard']);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { data, isLoading } = useSelectionsControllerList();
-  const [q, setQ] = useState('');
+  // As My quizzes: one's own first, filters kept for the tab's visit, list or grid.
+  const [q, setQ] = useSessionState(`${FILTERS}.search`, '', isString);
+  const [owner, setOwner] = useSessionState(`${FILTERS}.owner`, ME, isString);
+  const [sort, setSort] = useSessionState(`${FILTERS}.sort`, 'recent', isSort);
+  const [view, setView] = useStoredView('quizdock.selections.view');
   const [toDelete, setToDelete] = useState<SelectionDto | null>(null);
   const [error, setError] = useState<string | null>(null);
   const create = useSelectionsControllerCreate();
@@ -65,7 +84,19 @@ export function SelectionsPage() {
       { onSuccess: (res) => (void refresh(), open(res.data.id)), onError: fail },
     );
 
-  const list = (data?.data ?? []).filter((s) => fold(s.name).includes(fold(q)));
+  const all = data?.data ?? [];
+  const others = [
+    ...new Set(all.flatMap((s) => (!s.editable && s.ownerName ? [s.ownerName] : []))),
+  ].sort((a, b) => a.localeCompare(b));
+  const list = all
+    .filter(
+      (s) =>
+        fold(s.name).includes(fold(q)) &&
+        (!owner || (s.editable ? ME : (s.ownerName ?? '')) === owner),
+    )
+    .sort((a, b) =>
+      sort === 'title' ? a.name.localeCompare(b.name) : b.updatedAt.localeCompare(a.updatedAt),
+    );
   const newButton = (
     <Button type="button" onClick={onNew} disabled={create.isPending}>
       <Plus className="size-4" />
@@ -90,31 +121,69 @@ export function SelectionsPage() {
         </EmptyState>
       ) : (
         <>
-          <div className="relative max-w-sm">
-            <Search
-              className="text-muted-foreground absolute top-2.5 left-2.5 size-4"
-              aria-hidden
-            />
-            <Input
-              className="pl-8"
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder={t('search')}
-              aria-label={t('search')}
+          <div className="flex flex-wrap items-end gap-3">
+            <label className="relative min-w-[12rem] flex-1 basis-full sm:basis-auto">
+              <span className="sr-only">{t('search')}</span>
+              <Search className="text-muted-foreground absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
+              <Input
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder={t('search')}
+                className="pl-8"
+              />
+            </label>
+            {others.length > 0 ? (
+              <FilterField label={t('dashboard:filterOwner')}>
+                <Select value={owner} onChange={(e) => setOwner(e.target.value)}>
+                  <option value={ME}>{t('dashboard:ownerMe')}</option>
+                  {others.map((name) => (
+                    <option key={name} value={name}>
+                      {name}
+                    </option>
+                  ))}
+                  <option value="">{t('dashboard:ownerAll')}</option>
+                </Select>
+              </FilterField>
+            ) : null}
+            <FilterField label={t('dashboard:sortBy')}>
+              <Select value={sort} onChange={(e) => setSort(e.target.value as Sort)}>
+                <option value="recent">{t('dashboard:sortRecent')}</option>
+                <option value="title">{t('dashboard:sortTitle')}</option>
+              </Select>
+            </FilterField>
+            <Segmented
+              label={t('dashboard:display')}
+              value={view}
+              onChange={setView}
+              options={[
+                { value: 'list', label: t('dashboard:viewList'), icon: ListIcon },
+                { value: 'grid', label: t('dashboard:viewGrid'), icon: LayoutGrid },
+              ]}
             />
           </div>
-          <ul className="flex flex-col gap-2">
-            {list.map((s) => (
-              <SelectionRow
-                key={s.id}
-                selection={s}
-                launching={isLaunching}
-                onPresent={() => void launch({ selectionId: s.id })}
-                onCopy={() => onCopy(s)}
-                onDelete={() => setToDelete(s)}
-              />
-            ))}
-          </ul>
+          {list.length === 0 ? (
+            <p className="text-muted-foreground text-sm">{t('noMatch')}</p>
+          ) : (
+            <ul
+              className={
+                view === 'grid'
+                  ? 'grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+                  : 'flex flex-col gap-2'
+              }
+            >
+              {list.map((s) => (
+                <SelectionRow
+                  key={s.id}
+                  selection={s}
+                  grid={view === 'grid'}
+                  launching={isLaunching}
+                  onPresent={() => void launch({ selectionId: s.id })}
+                  onCopy={() => onCopy(s)}
+                  onDelete={() => setToDelete(s)}
+                />
+              ))}
+            </ul>
+          )}
         </>
       )}
       {launchDialog}
@@ -138,12 +207,15 @@ export function SelectionsPage() {
 
 function SelectionRow({
   selection: s,
+  grid,
   launching,
   onPresent,
   onCopy,
   onDelete,
 }: {
   selection: SelectionDto;
+  /** A card of the grid, its actions at its foot; otherwise a line, its actions at its right. */
+  grid: boolean;
   launching: boolean;
   onPresent: () => void;
   onCopy: () => void;
@@ -154,8 +226,13 @@ function SelectionRow({
   return (
     // As a quiz's line in My quizzes: the whole card hovers, its title's link covers it,
     // the actions above it stay their own buttons.
-    <li className="hover:bg-accent relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4">
-      <span className="flex min-w-0 flex-1 flex-col gap-1">
+    <li
+      className={cn(
+        'hover:bg-accent relative flex flex-col rounded-lg border transition-colors',
+        grid ? '' : 'gap-3 p-3 sm:flex-row sm:items-center sm:gap-4',
+      )}
+    >
+      <span className={cn('flex min-w-0 flex-1 flex-col gap-1', grid && 'p-4')}>
         <span className="flex min-w-0 items-center gap-2">
           {others ? (
             <Lock className="text-muted-foreground size-3.5 shrink-0" aria-label={t('readOnly')} />
@@ -183,7 +260,9 @@ function SelectionRow({
         </span>
       </span>
       {/* The main action at the right, its ⋮ last. */}
-      <span className="relative z-10 flex items-center justify-end gap-2">
+      <span
+        className={cn('relative z-10 flex items-center justify-end gap-2', grid && 'border-t p-3')}
+      >
         {others ? (
           <Button
             type="button"

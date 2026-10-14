@@ -5,6 +5,7 @@
   "emptyTitle": "Noch keine Auswahl",
   "empty": "Erstellen Sie eine, um die Quizze einer Sitzung aneinanderzureihen, oder speichern Sie einen Raum über seine Konsole als Auswahl.",
   "search": "Auswahlen durchsuchen",
+  "noMatch": "Keine Auswahl passt.",
   "deleteConfirm": {
     "title": "Diese Auswahl löschen?",
     "description": "„{{name}}“ wird gelöscht; ihre Quizze und die Ergebnisse ihrer Starts bleiben."

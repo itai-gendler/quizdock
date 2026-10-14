@@ -36,6 +36,7 @@ const item = (quizId: string, title: string, over: Record<string, unknown> = {})
 describe('SelectionsPage', () => {
   afterEach(() => {
     localStorage.clear();
+    sessionStorage.clear();
     vi.clearAllMocks();
   });
 
@@ -59,6 +60,8 @@ describe('SelectionsPage', () => {
         ],
       },
     ]);
+    // As My quizzes: one's own first; everyone's here.
+    sessionStorage.setItem('quizdock.selections.filter.owner', JSON.stringify(''));
     const { router } = renderApp('/selections');
     expect(await screen.findByText('Vendredi soir')).toBeInTheDocument();
     const theirs = screen.getByText('D’Alice').closest('li')!;

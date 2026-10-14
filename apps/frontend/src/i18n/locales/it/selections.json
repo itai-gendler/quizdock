@@ -5,6 +5,7 @@
   "emptyTitle": "Ancora nessuna selezione",
   "empty": "Creane una per mettere in fila i quiz di una sessione, o salva una sala come selezione dalla sua console.",
   "search": "Cerca tra le selezioni",
+  "noMatch": "Nessuna selezione corrisponde.",
   "deleteConfirm": {
     "title": "Eliminare questa selezione?",
     "description": "«{{name}}» viene eliminata; i suoi quiz e i risultati dei suoi lanci restano."

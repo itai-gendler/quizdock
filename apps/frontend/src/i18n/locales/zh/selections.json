@@ -5,6 +5,7 @@
   "emptyTitle": "还没有选集",
   "empty": "创建一个选集来排好一场活动的测验，或在房间的控制台把房间保存为选集。",
   "search": "搜索选集",
+  "noMatch": "没有匹配的选集。",
   "deleteConfirm": {
     "title": "删除这个选集？",
     "description": "“{{name}}”将被删除；其中的测验和各次启动的结果会保留。"

@@ -5,6 +5,7 @@
   "emptyTitle": "Nie ma jeszcze zestawów",
   "empty": "Utwórz zestaw, by ustawić w kolejce quizy jednej sesji, albo zapisz pokój jako zestaw z jego konsoli.",
   "search": "Szukaj w zestawach",
+  "noMatch": "Żaden zestaw nie pasuje.",
   "deleteConfirm": {
     "title": "Usunąć ten zestaw?",
     "description": "„{{name}}” zostanie usunięty; jego quizy i wyniki jego uruchomień pozostaną."

@@ -5,6 +5,7 @@
   "emptyTitle": "還沒有選集",
   "empty": "建立一個選集來排好一場活動的測驗，或在房間的控制台把房間儲存為選集。",
   "search": "搜尋選集",
+  "noMatch": "沒有符合的選集。",
   "deleteConfirm": {
     "title": "刪除這個選集？",
     "description": "「{{name}}」將被刪除；其中的測驗和各次啟動的結果會保留。"

@@ -5,6 +5,7 @@
   "emptyTitle": "Henüz seçki yok",
   "empty": "Bir oturumun quizlerini sıraya koymak için bir seçki oluşturun veya bir odayı konsolundan seçki olarak kaydedin.",
   "search": "Seçkilerde ara",
+  "noMatch": "Eşleşen seçki yok.",
   "deleteConfirm": {
     "title": "Bu seçki silinsin mi?",
     "description": "“{{name}}” silinir; quizleri ve başlatmalarının sonuçları kalır."

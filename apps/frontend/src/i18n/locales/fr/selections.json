@@ -5,6 +5,7 @@
   "emptyTitle": "Aucune sélection pour l’instant",
   "empty": "Créez-en une pour aligner les quiz d’une séance, ou enregistrez un salon comme sélection depuis sa console.",
   "search": "Chercher dans les sélections",
+  "noMatch": "Aucune sélection ne correspond.",
   "deleteConfirm": {
     "title": "Supprimer cette sélection ?",
     "description": "« {{name}} » est supprimée ; ses quiz et les résultats de ses lancements restent."
