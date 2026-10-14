@@ -301,86 +301,87 @@ function ItemRow({
   const { t } = useTranslation('selections');
   const pace = item.mode === 'auto' ? t('paceAuto') : t('paceManual');
   return (
+    // Four columns — handle, number, text, actions — so its settings sit under its title.
     <div
       className={cn(
-        'group flex flex-col rounded-xl border border-transparent transition-colors',
+        'group grid grid-cols-[auto_auto_minmax(0,1fr)_auto] items-center gap-x-2 rounded-xl border border-transparent transition-colors',
         active ? 'bg-primary/5 border-primary/30' : 'hover:bg-accent/60',
       )}
     >
-      <div className="flex items-stretch gap-1">
-        {/* Its handle shows on hover, and stays on the selected line (kept in place: nothing moves). */}
-        <div
-          className={cn(
-            'flex items-center pl-1 transition-opacity',
-            active ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 focus-within:opacity-100',
-          )}
-        >
-          {handle}
-        </div>
-        <button
-          type="button"
-          aria-current={active ? 'true' : undefined}
-          onClick={onSelect}
-          className="flex min-w-0 flex-1 items-start gap-3 py-3 pr-2 pl-2 text-left"
-        >
-          <span
-            className={cn(
-              'mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-md text-xs font-semibold tabular-nums',
-              active ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground',
-            )}
-          >
-            {index + 1}
+      {/* Its handle shows on hover, and stays on the selected line (kept in place: nothing moves). */}
+      <div
+        className={cn(
+          'flex items-center pl-1 transition-opacity',
+          active ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 focus-within:opacity-100',
+        )}
+      >
+        {handle}
+      </div>
+      <span
+        aria-hidden
+        onClick={onSelect}
+        className={cn(
+          'flex size-6 cursor-pointer items-center justify-center rounded-md text-xs font-semibold tabular-nums',
+          active ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground',
+        )}
+      >
+        {index + 1}
+      </span>
+      <button
+        type="button"
+        aria-current={active ? 'true' : undefined}
+        onClick={onSelect}
+        className="min-w-0 py-3 text-left"
+      >
+        {/* One the owner may read but not play: greyed, with why. */}
+        <span className={cn('block', item.unplayable && 'opacity-60')}>
+          <span className="line-clamp-2 block text-sm font-medium">{item.title}</span>
+          <span className="text-muted-foreground mt-0.5 flex flex-wrap gap-x-1 text-xs">
+            <span>{t('questionCount', { count: item.questionCount })}</span>
+            {item.ownerName ? <span>· {t('ownedBy', { name: item.ownerName })}</span> : null}
+            <span>· {pace}</span>
+            {item.autoStart ? <span>· {t('autoStart')}</span> : null}
+            {item.unplayable ? <span>· {t(`unplayable.${item.unplayable}`)}</span> : null}
           </span>
-          {/* One the owner may read but not play: greyed, with why. */}
-          <span className={cn('min-w-0 flex-1', item.unplayable && 'opacity-60')}>
-            <span className="line-clamp-2 block text-sm font-medium">{item.title}</span>
-            <span className="text-muted-foreground mt-0.5 flex flex-wrap gap-x-1 text-xs">
-              <span>{t('questionCount', { count: item.questionCount })}</span>
-              {item.ownerName ? <span>· {t('ownedBy', { name: item.ownerName })}</span> : null}
-              <span>· {pace}</span>
-              {item.autoStart ? <span>· {t('autoStart')}</span> : null}
-              {item.unplayable ? <span>· {t(`unplayable.${item.unplayable}`)}</span> : null}
-            </span>
-          </span>
-        </button>
-        <div className="flex items-center gap-0.5 pr-1">
-          {active ? (
-            <>
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon"
-                className="size-7"
-                disabled={index === 0}
-                aria-label={t('moveUp', { title: item.title })}
-                onClick={() => onMove(index - 1)}
-              >
-                <ArrowUp className="size-3.5" />
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon"
-                className="size-7"
-                disabled={last}
-                aria-label={t('moveDown', { title: item.title })}
-                onClick={() => onMove(index + 1)}
-              >
-                <ArrowDown className="size-3.5" />
-              </Button>
-            </>
-          ) : null}
-          <ItemMenu
-            item={item}
-            canMoveUp={index > 0}
-            canMoveDown={!last}
-            onMove={(d) => onMove(index + d)}
-            onRemove={onRemove}
-          />
-        </div>
+        </span>
+      </button>
+      <div className="flex items-center gap-0.5 pr-1">
+        {active ? (
+          <>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="size-7"
+              disabled={index === 0}
+              aria-label={t('moveUp', { title: item.title })}
+              onClick={() => onMove(index - 1)}
+            >
+              <ArrowUp className="size-3.5" />
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="size-7"
+              disabled={last}
+              aria-label={t('moveDown', { title: item.title })}
+              onClick={() => onMove(index + 1)}
+            >
+              <ArrowDown className="size-3.5" />
+            </Button>
+          </>
+        ) : null}
+        <ItemMenu
+          item={item}
+          canMoveUp={index > 0}
+          canMoveDown={!last}
+          onMove={(d) => onMove(index + d)}
+          onRemove={onRemove}
+        />
       </div>
       {active ? (
-        <div className="flex flex-wrap items-center gap-3 px-3 pb-3">
+        <div className="col-start-3 col-end-5 flex flex-wrap items-center gap-3 pr-1 pb-3">
           <Select
             className="h-8 w-auto"
             value={item.mode}
