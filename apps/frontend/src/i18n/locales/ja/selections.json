@@ -10,6 +10,7 @@
     "description": "「{{name}}」を削除します。クイズと開催の結果は残ります。"
   },
   "delete": "削除",
+  "deleteSelection": "セレクションを削除",
   "readOnly": "読み取り専用：他のホストが共有",
   "quizCount_one": "{{count}} 件のクイズ",
   "quizCount_other": "{{count}} 件のクイズ",
@@ -26,6 +27,7 @@
   "description": "説明",
   "descriptionPlaceholder": "目的、対象（任意）",
   "sharedLabel": "インスタンスの他のホストと共有",
+  "sharingLegend": "共有",
   "sharedHelp": "他のホストのセレクション一覧に読み取り専用で表示されます。出題（共有されたクイズのみ、何も保存されません）するか、そこから自分用を作成できます。クイズ自体は一緒に共有されません。",
   "unsharedWarning_one": "{{count}} 件のクイズが共有されていないため、表示されません。",
   "unsharedWarning_other": "{{count}} 件のクイズが共有されていないため、表示されません。",

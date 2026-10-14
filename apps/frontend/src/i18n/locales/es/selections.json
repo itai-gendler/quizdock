@@ -10,6 +10,7 @@
     "description": "Se elimina «{{name}}»; sus quizzes y los resultados de sus lanzamientos se quedan."
   },
   "delete": "Eliminar",
+  "deleteSelection": "Eliminar la selección",
   "readOnly": "Solo lectura: compartida por otro anfitrión",
   "quizCount_one": "{{count}} quiz",
   "quizCount_many": "{{count}} quizzes",
@@ -28,6 +29,7 @@
   "description": "Descripción",
   "descriptionPlaceholder": "Para qué sirve, para quién (opcional)",
   "sharedLabel": "Compartir con los demás anfitriones de la instancia",
+  "sharingLegend": "Compartir",
   "sharedHelp": "La ven entre sus selecciones, en solo lectura: pueden presentarla — los quizzes compartidos con ellos, sin guardar nada — o crear la suya. Sus quizzes no se comparten con ella.",
   "unsharedWarning_one": "{{count}} de sus quizzes no está compartido: no lo verán.",
   "unsharedWarning_many": "{{count}} de sus quizzes no están compartidos: no los verán.",

@@ -10,6 +10,7 @@
     "description": "“{{name}}” is deleted; its quizzes and the results of its launches stay."
   },
   "delete": "Delete",
+  "deleteSelection": "Delete the selection",
   "readOnly": "Read-only: shared by another host",
   "quizCount_one": "{{count}} quiz",
   "quizCount_other": "{{count}} quizzes",
@@ -26,6 +27,7 @@
   "description": "Description",
   "descriptionPlaceholder": "What it is for, who it is for (optional)",
   "sharedLabel": "Share with the instance’s other hosts",
+  "sharingLegend": "Sharing",
   "sharedHelp": "They see it among their selections, read-only: they can present it — the quizzes shared with them, keeping nothing — or create their own from it. Its quizzes are not shared with it.",
   "unsharedWarning_one": "{{count}} of its quizzes is not shared: they will not see it.",
   "unsharedWarning_other": "{{count}} of its quizzes are not shared: they will not see them.",

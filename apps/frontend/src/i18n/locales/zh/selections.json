@@ -10,6 +10,7 @@
     "description": "“{{name}}”将被删除；其中的测验和各次启动的结果会保留。"
   },
   "delete": "删除",
+  "deleteSelection": "删除选集",
   "readOnly": "只读：由其他主持人共享",
   "quizCount_one": "{{count}} 个测验",
   "quizCount_other": "{{count}} 个测验",
@@ -26,6 +27,7 @@
   "description": "说明",
   "descriptionPlaceholder": "用途、对象（可选）",
   "sharedLabel": "与本实例的其他主持人共享",
+  "sharingLegend": "共享",
   "sharedHelp": "他们会在自己的选集中看到它（只读）：可以演示它——与他们共享的测验，不保留任何内容——或以它为基础创建自己的。其中的测验不会随之共享。",
   "unsharedWarning_one": "其中 {{count}} 个测验未共享：他们看不到它。",
   "unsharedWarning_other": "其中 {{count}} 个测验未共享：他们看不到它们。",

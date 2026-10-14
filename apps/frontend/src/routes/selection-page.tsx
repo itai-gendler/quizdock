@@ -19,6 +19,7 @@ import {
   ArrowDown,
   ArrowLeft,
   ArrowUp,
+  Check,
   CopyPlus,
   EllipsisVertical,
   ExternalLink,
@@ -32,6 +33,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, twoLineButton } from '@/components/ui/button';
 import { CheckboxField } from '@/components/ui/checkbox-field';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
+import { Disclosure } from '@/components/ui/disclosure';
 import { EmptyState } from '@/components/ui/empty-state';
 import { Input } from '@/components/ui/input';
 import { LoadFailed, PageLoading } from '@/components/ui/loading';
@@ -51,6 +53,7 @@ import {
   useSelectionsControllerDuplicate,
   useSelectionsControllerGet,
   useSelectionsControllerLaunches,
+  useSelectionsControllerRemove,
   useSelectionsControllerUpdate,
 } from '../api/generated/selections/selections';
 import { QuizPicker } from '../game/room-components';
@@ -93,13 +96,63 @@ function BackLink() {
   );
 }
 
-function PresentButton({ selection }: { selection: SelectionDetailDto }) {
+/** Saving, then saved: as the quiz editor says it beside its title. */
+function SaveState({ pending, saved }: { pending: boolean; saved: boolean }) {
+  const { t } = useTranslation('editor');
+  if (!pending && !saved) return null;
+  return (
+    <span className="text-muted-foreground flex shrink-0 items-center gap-1 text-xs" role="status">
+      {pending ? (
+        t('settings.saving')
+      ) : (
+        <>
+          <Check className="text-success-text size-3.5" aria-hidden />
+          {t('settings.saved')}
+        </>
+      )}
+    </span>
+  );
+}
+
+/** The rest of what can be done with the selection, as the quiz editor's ⋮ More. */
+function MoreMenu({ onDelete }: { onDelete: () => void }) {
+  const { t } = useTranslation(['selections', 'editor']);
+  return (
+    <Popover
+      align="end"
+      trigger={({ open, toggle }) => (
+        <Button type="button" variant="ghost" size="sm" aria-expanded={open} onClick={toggle}>
+          <EllipsisVertical className="size-4" />
+          {t('editor:header.more')}
+        </Button>
+      )}
+    >
+      {(close) => (
+        <div className="flex min-w-56 flex-col">
+          <MenuItem
+            destructive
+            onClick={() => {
+              close();
+              onDelete();
+            }}
+          >
+            <Trash2 className="size-4" />
+            {t('deleteSelection')}
+          </MenuItem>
+        </div>
+      )}
+    </Popover>
+  );
+}
+
+function PresentButton({ selection, size }: { selection: SelectionDetailDto; size?: 'sm' }) {
   const { t } = useTranslation('selections');
   const { launch, isLaunching, error, dialog } = useLaunchSession();
   return (
     <>
       <Button
         type="button"
+        size={size}
         variant="main-action"
         disabled={isLaunching || selection.playableCount === 0}
         onClick={() => void launch({ selectionId: selection.id })}
@@ -118,7 +171,7 @@ function PresentButton({ selection }: { selection: SelectionDetailDto }) {
 }
 
 function SelectionEditor({ selection }: { selection: SelectionDetailDto }) {
-  const { t } = useTranslation('selections');
+  const { t } = useTranslation(['selections', 'editor']);
   const queryClient = useQueryClient();
   const update = useSelectionsControllerUpdate();
   const [name, setName] = useState(selection.name);
@@ -126,6 +179,10 @@ function SelectionEditor({ selection }: { selection: SelectionDetailDto }) {
   const [items, setItems] = useState<Item[]>(selection.items);
   const [adding, setAdding] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
+  const [editingDescription, setEditingDescription] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const remove = useSelectionsControllerRemove();
+  const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
   useEffect(() => setItems(selection.items), [selection.items]);
 
@@ -167,52 +224,116 @@ function SelectionEditor({ selection }: { selection: SelectionDetailDto }) {
   return (
     <section className="flex flex-col gap-6">
       <BackLink />
-      {/* Its name and description at the left; presenting it and sharing it at the right. */}
-      <header className="grid items-start gap-4 md:grid-cols-2">
-        <div className="flex min-w-0 flex-col gap-3">
-          <Input
-            className="h-auto max-w-xl border-none px-0 text-2xl font-semibold shadow-none"
-            value={name}
-            maxLength={60}
-            aria-label={t('name')}
-            onChange={(e) => setName(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
-            onBlur={() => {
-              const trimmed = name.trim();
-              if (!trimmed) return setName(selection.name); // a name emptied comes back
-              if (trimmed !== selection.name) save({ name: trimmed });
-            }}
-          />
-          <Textarea
-            className="w-full"
-            value={description}
-            maxLength={2000}
-            rows={2}
-            placeholder={t('descriptionPlaceholder')}
-            aria-label={t('description')}
-            onChange={(e) => setDescription(e.target.value)}
-            onBlur={() => {
-              if (description.trim() !== (selection.description ?? '')) {
-                save({ description: description.trim() || null });
-              }
-            }}
-          />
+      {/* As the quiz editor: the selection is the page title, its ⋮ More beside; its
+          description at the left and its settings in a card at the right; its state and
+          the main action in a bar under them. */}
+      <header className="flex w-full min-w-0 flex-col gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex min-w-64 flex-1 items-center gap-3">
+            <Input
+              aria-label={t('name')}
+              className="hover:bg-accent/60 focus-visible:bg-accent/60 -mx-2 h-auto min-w-0 flex-1 rounded-md border-0 bg-transparent px-2 text-3xl font-bold tracking-tight shadow-none focus-visible:ring-0"
+              value={name}
+              maxLength={60}
+              onChange={(e) => setName(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+              onBlur={() => {
+                const trimmed = name.trim();
+                if (!trimmed) return setName(selection.name); // a name emptied comes back
+                if (trimmed !== selection.name) save({ name: trimmed });
+              }}
+            />
+            <SaveState pending={update.isPending} saved={update.isSuccess} />
+          </div>
+          <MoreMenu onDelete={() => setDeleting(true)} />
         </div>
-        <div className="flex flex-col items-end gap-3">
-          <PresentButton selection={selection} />
-          <CheckboxField
-            className="w-full rounded-md border p-3"
-            checked={selection.shared}
-            onChange={(shared) => save({ shared })}
-            label={t('sharedLabel')}
-            hint={
-              selection.unsharedCount
-                ? `${t('sharedHelp')} ${t('unsharedWarning', { count: selection.unsharedCount })}`
-                : t('sharedHelp')
-            }
-          />
+        <div className="grid items-start gap-x-8 gap-y-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+          <div className="flex flex-col gap-1">
+            <span className="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
+              {t('description')}
+            </span>
+            {editingDescription ? (
+              <Textarea
+                aria-label={t('description')}
+                rows={3}
+                autoFocus
+                className="max-w-(--container-content-sm)"
+                placeholder={t('descriptionPlaceholder')}
+                value={description}
+                maxLength={2000}
+                onChange={(e) => setDescription(e.target.value)}
+                onBlur={() => {
+                  setEditingDescription(false);
+                  if (description.trim() !== (selection.description ?? '')) {
+                    save({ description: description.trim() || null });
+                  }
+                }}
+              />
+            ) : (
+              <button
+                type="button"
+                className="text-muted-foreground hover:bg-accent/60 -mx-2 min-h-20 max-w-(--container-content-sm) rounded-md px-2 py-1 text-left text-sm whitespace-pre-line"
+                onClick={() => setEditingDescription(true)}
+              >
+                {description || <span className="italic">{t('descriptionPlaceholder')}</span>}
+              </button>
+            )}
+          </div>
+          <div className="bg-muted/30 min-w-0 rounded-lg border px-3 py-2">
+            <Disclosure
+              flush
+              title={t('sharingLegend')}
+              value={
+                selection.shared ? t('editor:settings.sharedOn') : t('editor:settings.sharedOff')
+              }
+            >
+              <CheckboxField
+                className="mb-2"
+                checked={selection.shared}
+                disabled={update.isPending}
+                onChange={(shared) => save({ shared })}
+                label={t('sharedLabel')}
+                hint={
+                  selection.unsharedCount
+                    ? `${t('sharedHelp')} ${t('unsharedWarning', { count: selection.unsharedCount })}`
+                    : t('sharedHelp')
+                }
+              />
+            </Disclosure>
+          </div>
+        </div>
+        <div className="bg-muted/40 flex flex-wrap items-center gap-x-6 gap-y-3 rounded-xl px-5 py-3">
+          <p className="text-muted-foreground min-w-0 flex-1 text-sm">
+            {selection.playableCount < selection.quizCount
+              ? `${t('quizCount', { count: selection.quizCount })} · ${t('playableCount', { count: selection.playableCount })}`
+              : t('quizCount', { count: selection.quizCount })}
+          </p>
+          <PresentButton selection={selection} size="sm" />
         </div>
       </header>
+      <ConfirmDialog
+        open={deleting}
+        destructive
+        title={t('deleteConfirm.title')}
+        description={t('deleteConfirm.description', { name: selection.name })}
+        confirmLabel={t('delete')}
+        onCancel={() => setDeleting(false)}
+        onConfirm={() => {
+          setDeleting(false);
+          remove.mutate(
+            { id: selection.id },
+            {
+              onSuccess: () => {
+                void queryClient.invalidateQueries({
+                  queryKey: getSelectionsControllerListQueryKey(),
+                });
+                void navigate({ to: '/selections' });
+              },
+              onError: (err) => setError(apiErrorText(err)),
+            },
+          );
+        }}
+      />
       {error ? (
         <p className="text-destructive text-sm" role="alert">
           {error}

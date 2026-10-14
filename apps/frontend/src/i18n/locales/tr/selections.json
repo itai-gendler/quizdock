@@ -10,6 +10,7 @@
     "description": "“{{name}}” silinir; quizleri ve başlatmalarının sonuçları kalır."
   },
   "delete": "Sil",
+  "deleteSelection": "Seçkiyi sil",
   "readOnly": "Salt okunur: başka bir sunucu tarafından paylaşıldı",
   "quizCount_one": "{{count}} quiz",
   "quizCount_other": "{{count}} quiz",
@@ -26,6 +27,7 @@
   "description": "Açıklama",
   "descriptionPlaceholder": "Ne için, kimin için (isteğe bağlı)",
   "sharedLabel": "Örneğin diğer sunucularıyla paylaş",
+  "sharingLegend": "Paylaşım",
   "sharedHelp": "Seçkileri arasında salt okunur olarak görürler: sunabilirler — onlarla paylaşılan quizler, hiçbir şey saklanmadan — veya ondan kendi seçkilerini oluşturabilirler. Quizleri onunla birlikte paylaşılmaz.",
   "unsharedWarning_one": "Quizlerinden {{count}} tanesi paylaşılmamış: onu görmeyecekler.",
   "unsharedWarning_other": "Quizlerinden {{count}} tanesi paylaşılmamış: onları görmeyecekler.",

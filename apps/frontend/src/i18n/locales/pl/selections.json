@@ -10,6 +10,7 @@
     "description": "„{{name}}” zostanie usunięty; jego quizy i wyniki jego uruchomień pozostaną."
   },
   "delete": "Usuń",
+  "deleteSelection": "Usuń zestaw",
   "readOnly": "Tylko do odczytu: udostępniony przez innego prowadzącego",
   "quizCount_one": "{{count}} quiz",
   "quizCount_few": "{{count}} quizy",
@@ -30,6 +31,7 @@
   "description": "Opis",
   "descriptionPlaceholder": "Do czego służy, dla kogo (opcjonalnie)",
   "sharedLabel": "Udostępnij innym prowadzącym tej instancji",
+  "sharingLegend": "Udostępnianie",
   "sharedHelp": "Widzą go wśród swoich zestawów, tylko do odczytu: mogą go prezentować — quizy udostępnione im, bez zachowywania czegokolwiek — albo utworzyć na jego podstawie własny. Jego quizy nie są udostępniane razem z nim.",
   "unsharedWarning_one": "{{count}} z jego quizów nie jest udostępniony: nie zobaczą go.",
   "unsharedWarning_few": "{{count}} z jego quizów nie są udostępnione: nie zobaczą ich.",

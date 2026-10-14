@@ -10,6 +10,7 @@
     "description": "« {{name}} » est supprimée ; ses quiz et les résultats de ses lancements restent."
   },
   "delete": "Supprimer",
+  "deleteSelection": "Supprimer la sélection",
   "readOnly": "Lecture seule : partagée par un autre animateur",
   "quizCount_one": "{{count}} quiz",
   "quizCount_many": "{{count}} quiz",
@@ -28,6 +29,7 @@
   "description": "Description",
   "descriptionPlaceholder": "À quoi elle sert, pour qui (facultatif)",
   "sharedLabel": "Partager avec les autres animateurs de l’instance",
+  "sharingLegend": "Partage",
   "sharedHelp": "Ils la voient parmi leurs sélections, en lecture seule : ils peuvent la présenter — les quiz qui leur sont partagés, sans rien garder — ou en créer la leur. Ses quiz ne sont pas partagés avec elle.",
   "unsharedWarning_one": "{{count}} de ses quiz n’est pas partagé : ils ne le verront pas.",
   "unsharedWarning_many": "{{count}} de ses quiz ne sont pas partagés : ils ne les verront pas.",

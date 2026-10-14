@@ -10,6 +10,7 @@
     "description": "„{{name}}“ wird gelöscht; ihre Quizze und die Ergebnisse ihrer Starts bleiben."
   },
   "delete": "Löschen",
+  "deleteSelection": "Auswahl löschen",
   "readOnly": "Schreibgeschützt: von einer anderen Quizleitung geteilt",
   "quizCount_one": "{{count}} Quiz",
   "quizCount_other": "{{count}} Quizze",
@@ -26,6 +27,7 @@
   "description": "Beschreibung",
   "descriptionPlaceholder": "Wofür, für wen (optional)",
   "sharedLabel": "Mit den anderen Quizleitungen der Instanz teilen",
+  "sharingLegend": "Teilen",
   "sharedHelp": "Sie sehen sie schreibgeschützt unter ihren Auswahlen: Sie können sie präsentieren — die mit ihnen geteilten Quizze, ohne etwas zu behalten — oder daraus eine eigene erstellen. Ihre Quizze werden nicht mitgeteilt.",
   "unsharedWarning_one": "{{count}} ihrer Quizze ist nicht geteilt: Sie sehen es nicht.",
   "unsharedWarning_other": "{{count}} ihrer Quizze sind nicht geteilt: Sie sehen sie nicht.",
