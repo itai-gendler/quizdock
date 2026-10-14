@@ -56,11 +56,18 @@ async function settle(page, ms = 600) {
   await page
     .evaluate(async () => {
       await document.fonts?.ready;
-      await Promise.all(
+      // A picture that fails loads no more: its error ends the wait too, and nothing waits past 10 s.
+      const pictures = Promise.all(
         [...document.images].map((img) =>
-          img.complete ? null : new Promise((r) => img.addEventListener('load', r, { once: true })),
+          img.complete
+            ? null
+            : new Promise((r) => {
+                img.addEventListener('load', r, { once: true });
+                img.addEventListener('error', r, { once: true });
+              }),
         ),
       );
+      await Promise.race([pictures, new Promise((r) => setTimeout(r, 10_000))]);
     })
     .catch(() => undefined);
   await sleep(ms);
@@ -76,12 +83,25 @@ async function attempt(name, fn) {
     log('FAILED', name, String(err).split('\n')[0]);
   }
 }
+/** A live screen (the projection, a participant's page) is never dark: one shot is enough. */
+const isLiveScreen = (url) =>
+  /\/session\/[^/]+\/projection|\/join(\/|$|\?)/.test(new globalThis.URL(url).pathname);
+
 async function shot(page, name, { locator, clip, settleMs, piece = false } = {}) {
   try {
     await settle(page, settleMs);
     const path = `${piece ? WORK : OUT}/${name}.png`;
-    if (locator) await locator.screenshot({ path });
-    else await page.screenshot({ path, clip });
+    const take = (to) =>
+      locator ? locator.screenshot({ path: to }) : page.screenshot({ path: to, clip });
+    await take(path);
+    // The interface again in dark (`<name>.dark.png`): the app follows the system live.
+    if (!piece && !isLiveScreen(page.url())) {
+      await page.emulateMedia({ colorScheme: 'dark' });
+      await sleep(400);
+      await take(`${OUT}/${name}.dark.png`);
+      await page.emulateMedia({ colorScheme: 'light' });
+      await sleep(200);
+    }
     log('shot', name);
     return path;
   } catch (err) {

@@ -76,16 +76,16 @@ Other setups, OIDC and the full option with a bundled Keycloak:
 
 <table>
   <tr>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/editor.png" alt="Quiz builder" /><br /><sub><b>Quiz builder</b>: eight question types, slides, video and sound</sub></td>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/console-lobby.png" alt="Host console, lobby" /><br /><sub><b>Host console</b>: PIN, QR code, who is in, the room's sound</sub></td>
+    <td width="50%"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/editor.dark.png" /><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/editor.png" alt="Quiz builder" /></picture><br /><sub><b>Quiz builder</b>: eight question types, slides, video and sound</sub></td>
+    <td width="50%"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/console-lobby.dark.png" /><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/console-lobby.png" alt="Host console, lobby" /></picture><br /><sub><b>Host console</b>: PIN, QR code, who is in, the room's sound</sub></td>
   </tr>
   <tr>
     <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/player-play.png" alt="A player's phone" /><br /><sub><b>Player</b>: colour and shape on every answer, then their own result</sub></td>
     <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/projection-reveal.png" alt="Big screen, reveal" /><br /><sub><b>Big screen</b>: distribution, explanation, leaderboard</sub></td>
   </tr>
   <tr>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/admin-settings.png" alt="Administration, settings" /><br /><sub><b>Administration</b>: every setting, where it comes from, changed from the page</sub></td>
-    <td width="50%"><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/media-library.png" alt="Media library" /><br /><sub><b>Media library</b>: your media and the instance's, with their credits</sub></td>
+    <td width="50%"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/admin-settings.dark.png" /><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/admin-settings.png" alt="Administration, settings" /></picture><br /><sub><b>Administration</b>: every setting, where it comes from, changed from the page</sub></td>
+    <td width="50%"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/media-library.dark.png" /><img src="https://raw.githubusercontent.com/quizdock/quizdock/main/docs/screenshots/media-library.png" alt="Media library" /></picture><br /><sub><b>Media library</b>: your media and the instance's, with their credits</sub></td>
   </tr>
 </table>
 
