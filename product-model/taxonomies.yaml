@@ -1,0 +1,13 @@
+scenarioKinds:
+  - id: primary
+    name: Primary
+    description: An established successful route or material outcome.
+  - id: alternative
+    name: Alternative
+    description: Another established successful route to the same ability.
+  - id: validation
+    name: Validation
+    description: An observed refusal of input or of who may act.
+  - id: edge
+    name: Edge
+    description: An established conflict, dependency failure or boundary outcome.
