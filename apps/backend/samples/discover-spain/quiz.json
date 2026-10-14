@@ -6,7 +6,7 @@
     "description": "Sample quiz — geography, history and culture of Spain.",
     "language": "en",
     "license": "CC-BY-4.0",
-    "revision": 1,
+    "revision": 2,
     "feedbackEnabled": true,
     "cover": null
   },
@@ -45,26 +45,26 @@
       "options": [
         {
           "text": "Barcelona",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "Madrid",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "text": "Seville",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "text": "Valencia",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -83,14 +83,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         }
       ],
@@ -123,29 +123,29 @@
         {
           "media": "media/milan-cathedral.webp",
           "alt": "A white marble Gothic façade with many spires",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "media": "media/sagrada-familia.webp",
           "alt": "A basilica with tall spires rising above a city by the sea",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "media": "media/st-basils.webp",
           "alt": "A church with colourful onion domes",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "media": "media/cologne-cathedral.webp",
           "alt": "A dark Gothic cathedral tower seen from below",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ]
@@ -162,26 +162,26 @@
       "options": [
         {
           "text": "Paella",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Gazpacho",
           "color": "red",
           "shape": "triangle",
           "isCorrect": true
         },
         {
-          "text": "Gazpacho",
+          "text": "Goulash",
           "color": "blue",
           "shape": "diamond",
-          "isCorrect": true
-        },
-        {
-          "text": "Goulash",
-          "color": "yellow",
-          "shape": "circle",
           "isCorrect": false
         },
         {
           "text": "Tortilla de patatas",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": true
         }
       ],
@@ -249,26 +249,26 @@
       "options": [
         {
           "text": "El Escorial",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Royal Palace of Madrid",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Royal Palace of Madrid",
+          "text": "Alhambra",
           "color": "blue",
           "shape": "diamond",
-          "isCorrect": false
-        },
-        {
-          "text": "Alhambra",
-          "color": "yellow",
-          "shape": "circle",
           "isCorrect": true
         },
         {
           "text": "Alcázar of Segovia",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -287,29 +287,29 @@
       "options": [
         {
           "text": "Seville",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false,
           "correctOrderIndex": 3
         },
         {
           "text": "Bilbao",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false,
           "correctOrderIndex": 0
         },
         {
           "text": "Valencia",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false,
           "correctOrderIndex": 2
         },
         {
           "text": "Madrid",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false,
           "correctOrderIndex": 1
         }
@@ -328,26 +328,26 @@
       "options": [
         {
           "text": "Seville",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Madrid",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Madrid",
+          "text": "Valencia",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Valencia",
+          "text": "Barcelona",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Barcelona",
-          "color": "green",
-          "shape": "square",
           "isCorrect": true
         }
       ],
@@ -365,14 +365,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         }
       ],
@@ -390,26 +390,26 @@
       "options": [
         {
           "text": "A tapas tour",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "A flamenco show",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "A flamenco show",
+          "text": "A beach on the Costa Brava",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "A beach on the Costa Brava",
+          "text": "Visiting the Alhambra",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Visiting the Alhambra",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],

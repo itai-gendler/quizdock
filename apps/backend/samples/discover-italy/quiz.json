@@ -6,7 +6,7 @@
     "description": "Sample quiz — geography, history and culture of Italy.",
     "language": "en",
     "license": "CC-BY-4.0",
-    "revision": 1,
+    "revision": 2,
     "feedbackEnabled": true,
     "cover": null
   },
@@ -45,26 +45,26 @@
       "options": [
         {
           "text": "Milan",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "Rome",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "text": "Naples",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "text": "Turin",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -83,14 +83,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         }
       ],
@@ -123,29 +123,29 @@
         {
           "media": "media/big-ben.webp",
           "alt": "A tall clock tower beside a Gothic palace",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "media": "media/giralda.webp",
           "alt": "A brick bell tower with a lattice pattern above a cathedral",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         },
         {
           "media": "media/belem-tower.webp",
           "alt": "A small stone fortress tower by a river",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "media": "media/pisa-tower.webp",
           "alt": "A round white marble bell tower with tiers of arches",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": true
         }
       ]
@@ -162,26 +162,26 @@
       "options": [
         {
           "text": "Sicily",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "Corsica",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         },
         {
           "text": "Sardinia",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": true
         },
         {
           "text": "Elba",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": true
         }
       ],
@@ -249,26 +249,26 @@
       "options": [
         {
           "text": "Raphael",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Leonardo da Vinci",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Leonardo da Vinci",
+          "text": "Michelangelo",
           "color": "blue",
           "shape": "diamond",
-          "isCorrect": false
-        },
-        {
-          "text": "Michelangelo",
-          "color": "yellow",
-          "shape": "circle",
           "isCorrect": true
         },
         {
           "text": "Botticelli",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -287,29 +287,29 @@
       "options": [
         {
           "text": "Rome",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false,
           "correctOrderIndex": 2
         },
         {
           "text": "Milan",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false,
           "correctOrderIndex": 0
         },
         {
           "text": "Palermo",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false,
           "correctOrderIndex": 3
         },
         {
           "text": "Florence",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false,
           "correctOrderIndex": 1
         }
@@ -328,26 +328,26 @@
       "options": [
         {
           "text": "Tiber",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Arno",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Arno",
+          "text": "Adige",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Adige",
+          "text": "Po",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Po",
-          "color": "green",
-          "shape": "square",
           "isCorrect": true
         }
       ],
@@ -365,26 +365,26 @@
       "options": [
         {
           "text": "Milan",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "Venice",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Rome",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Rome",
+          "text": "Naples",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Naples",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],
@@ -402,14 +402,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         }
       ],
@@ -427,26 +427,26 @@
       "options": [
         {
           "text": "Pizza",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Pasta",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Pasta",
+          "text": "Risotto",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Risotto",
+          "text": "Gelato",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Gelato",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],

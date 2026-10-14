@@ -6,7 +6,7 @@
     "description": "Sample quiz — geography, history and culture of the United Kingdom.",
     "language": "en",
     "license": "CC-BY-4.0",
-    "revision": 1,
+    "revision": 2,
     "feedbackEnabled": true,
     "cover": null
   },
@@ -45,26 +45,26 @@
       "options": [
         {
           "text": "Glasgow",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "Edinburgh",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "text": "Aberdeen",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "text": "Inverness",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -83,14 +83,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         }
       ],
@@ -124,29 +124,29 @@
         {
           "media": "media/carnac.webp",
           "alt": "Rows of rough standing stones in a heath",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "media": "media/moai.webp",
           "alt": "A row of giant stone heads on a platform",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         },
         {
           "media": "media/poulnabrone.webp",
           "alt": "A stone table tomb with a flat capstone on rocky ground",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "media": "media/stonehenge.webp",
           "alt": "A circle of huge standing stones topped by lintels on a grassy plain",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": true
         }
       ]
@@ -163,26 +163,26 @@
       "options": [
         {
           "text": "Fish and chips",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Shepherd’s pie",
           "color": "red",
           "shape": "triangle",
           "isCorrect": true
         },
         {
-          "text": "Shepherd’s pie",
+          "text": "Paella",
           "color": "blue",
           "shape": "diamond",
-          "isCorrect": true
-        },
-        {
-          "text": "Paella",
-          "color": "yellow",
-          "shape": "circle",
           "isCorrect": false
         },
         {
           "text": "Full English breakfast",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": true
         }
       ],
@@ -250,26 +250,26 @@
       "options": [
         {
           "text": "Thames",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Trent",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Trent",
+          "text": "Severn",
           "color": "blue",
           "shape": "diamond",
-          "isCorrect": false
-        },
-        {
-          "text": "Severn",
-          "color": "yellow",
-          "shape": "circle",
           "isCorrect": true
         },
         {
           "text": "Tay",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -287,29 +287,29 @@
       "options": [
         {
           "text": "Queen Victoria",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false,
           "correctOrderIndex": 3
         },
         {
           "text": "William the Conqueror",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false,
           "correctOrderIndex": 0
         },
         {
           "text": "Elizabeth I",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false,
           "correctOrderIndex": 2
         },
         {
           "text": "Henry VIII",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false,
           "correctOrderIndex": 1
         }
@@ -328,26 +328,26 @@
       "options": [
         {
           "text": "Cardiff",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "Swansea",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Bristol",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Bristol",
+          "text": "Belfast",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Belfast",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],
@@ -365,14 +365,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         }
       ],
@@ -390,26 +390,26 @@
       "options": [
         {
           "text": "Afternoon tea",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "A West End show",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "A West End show",
+          "text": "Hiking in the Highlands",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Hiking in the Highlands",
+          "text": "Visiting Stonehenge",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Visiting Stonehenge",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],

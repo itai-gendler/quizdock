@@ -6,7 +6,7 @@
     "description": "Sample quiz — geography, history and culture of Japan.",
     "language": "en",
     "license": "CC-BY-4.0",
-    "revision": 1,
+    "revision": 2,
     "feedbackEnabled": true,
     "cover": null
   },
@@ -45,26 +45,26 @@
       "options": [
         {
           "text": "Osaka",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Kyoto",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Kyoto",
+          "text": "Tokyo",
           "color": "blue",
           "shape": "diamond",
-          "isCorrect": false
-        },
-        {
-          "text": "Tokyo",
-          "color": "yellow",
-          "shape": "circle",
           "isCorrect": true
         },
         {
           "text": "Nagoya",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -83,14 +83,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         }
       ],
@@ -122,29 +122,29 @@
         {
           "media": "media/wat-arun.webp",
           "alt": "A tall pointed temple tower on the bank of a wide river",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "media": "media/kinkakuji.webp",
           "alt": "A gold-covered pavilion with dark roofs, reflected in a pond",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "media": "media/borobudur.webp",
           "alt": "Bell-shaped stone stupas on a temple terrace at sunrise",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "media": "media/taj-mahal.webp",
           "alt": "A white marble mausoleum with a great dome and four minarets, beside a river",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ]
@@ -161,26 +161,26 @@
       "options": [
         {
           "text": "Sushi",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Tempura",
           "color": "red",
           "shape": "triangle",
           "isCorrect": true
         },
         {
-          "text": "Tempura",
+          "text": "Kimchi",
           "color": "blue",
           "shape": "diamond",
-          "isCorrect": true
-        },
-        {
-          "text": "Kimchi",
-          "color": "yellow",
-          "shape": "circle",
           "isCorrect": false
         },
         {
           "text": "Okonomiyaki",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": true
         }
       ],
@@ -248,26 +248,26 @@
       "options": [
         {
           "text": "Tone",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Ishikari",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Ishikari",
+          "text": "Kiso",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Kiso",
+          "text": "Shinano",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Shinano",
-          "color": "green",
-          "shape": "square",
           "isCorrect": true
         }
       ],
@@ -285,29 +285,29 @@
       "options": [
         {
           "text": "Edo",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false,
           "correctOrderIndex": 3
         },
         {
           "text": "Heian",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false,
           "correctOrderIndex": 1
         },
         {
           "text": "Kamakura",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false,
           "correctOrderIndex": 2
         },
         {
           "text": "Nara",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false,
           "correctOrderIndex": 0
         }
@@ -326,26 +326,26 @@
       "options": [
         {
           "text": "Kyoto",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "Nara",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Kamakura",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Kamakura",
+          "text": "Osaka",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Osaka",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],
@@ -364,14 +364,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         }
       ],
@@ -389,26 +389,26 @@
       "options": [
         {
           "text": "Soaking in an onsen",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Climbing Mount Fuji",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Climbing Mount Fuji",
+          "text": "Cherry-blossom picnic",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Cherry-blossom picnic",
+          "text": "Temples of Kyoto",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Temples of Kyoto",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],

@@ -6,7 +6,7 @@
     "description": "Sample quiz — geography, history and culture of India.",
     "language": "en",
     "license": "CC-BY-4.0",
-    "revision": 1,
+    "revision": 2,
     "feedbackEnabled": true,
     "cover": null
   },
@@ -45,26 +45,26 @@
       "options": [
         {
           "text": "Mumbai",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "New Delhi",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "text": "Kolkata",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "text": "Bengaluru",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -83,14 +83,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         }
       ],
@@ -123,29 +123,29 @@
         {
           "media": "media/sacre-coeur.webp",
           "alt": "A white basilica with domes on top of a hill, behind trees",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "media": "media/us-capitol.webp",
           "alt": "A white columned building with a large dome, in the morning light",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         },
         {
           "media": "media/st-pauls.webp",
           "alt": "A grey stone dome with a golden cross on top, above a ring of columns",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "media": "media/taj-mahal-choice.webp",
           "alt": "A white marble mausoleum with a great dome and four minarets, beside a river",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": true
         }
       ]
@@ -162,26 +162,26 @@
       "options": [
         {
           "text": "Biryani",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "Paella",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         },
         {
           "text": "Masala dosa",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": true
         },
         {
           "text": "Butter chicken",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": true
         }
       ],
@@ -250,26 +250,26 @@
       "options": [
         {
           "text": "Gobi",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Kalahari",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Kalahari",
+          "text": "Thar",
           "color": "blue",
           "shape": "diamond",
-          "isCorrect": false
-        },
-        {
-          "text": "Thar",
-          "color": "yellow",
-          "shape": "circle",
           "isCorrect": true
         },
         {
           "text": "Atacama",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -287,29 +287,29 @@
       "options": [
         {
           "text": "Kochi",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false,
           "correctOrderIndex": 3
         },
         {
           "text": "Delhi",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false,
           "correctOrderIndex": 0
         },
         {
           "text": "Bengaluru",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false,
           "correctOrderIndex": 2
         },
         {
           "text": "Kolkata",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false,
           "correctOrderIndex": 1
         }
@@ -328,26 +328,26 @@
       "options": [
         {
           "text": "Chennai",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Kolkata",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Kolkata",
+          "text": "Hyderabad",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Hyderabad",
+          "text": "Mumbai",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Mumbai",
-          "color": "green",
-          "shape": "square",
           "isCorrect": true
         }
       ],
@@ -365,14 +365,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         }
       ],
@@ -390,26 +390,26 @@
       "options": [
         {
           "text": "Sunrise at the Taj Mahal",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Houseboat in Kerala",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Houseboat in Kerala",
+          "text": "Camel ride in the Thar",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Camel ride in the Thar",
+          "text": "Tea in Darjeeling",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Tea in Darjeeling",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],

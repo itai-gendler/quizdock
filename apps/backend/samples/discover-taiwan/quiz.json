@@ -6,7 +6,7 @@
     "description": "Sample quiz — geography, history and culture of Taiwan.",
     "language": "en",
     "license": "CC-BY-4.0",
-    "revision": 2,
+    "revision": 3,
     "feedbackEnabled": true,
     "cover": null
   },
@@ -45,26 +45,26 @@
       "options": [
         {
           "text": "Kaohsiung",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Taichung",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Taichung",
+          "text": "Taipei",
           "color": "blue",
           "shape": "diamond",
-          "isCorrect": false
-        },
-        {
-          "text": "Taipei",
-          "color": "yellow",
-          "shape": "circle",
           "isCorrect": true
         },
         {
           "text": "Tainan",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -83,14 +83,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         }
       ],
@@ -123,29 +123,29 @@
         {
           "media": "media/petronas.webp",
           "alt": "Two identical steel towers linked by a sky bridge, lit at night",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "media": "media/shanghai-tower.webp",
           "alt": "A glass tower twisting as it rises",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         },
         {
           "media": "media/taipei-101-choice.webp",
           "alt": "A tower of stacked segments like a bamboo stalk, above a city at dusk",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": true
         },
         {
           "media": "media/burj-khalifa.webp",
           "alt": "A very slender tower rising above a desert city",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ]
@@ -162,26 +162,26 @@
       "options": [
         {
           "text": "Stinky tofu",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Bubble tea",
           "color": "red",
           "shape": "triangle",
           "isCorrect": true
         },
         {
-          "text": "Bubble tea",
+          "text": "Oyster omelette",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": true
         },
         {
-          "text": "Oyster omelette",
+          "text": "Croissant",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": true
-        },
-        {
-          "text": "Croissant",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],
@@ -250,26 +250,26 @@
       "options": [
         {
           "text": "Yushan (Jade Mountain)",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "Alishan",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Xueshan",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Xueshan",
+          "text": "Hehuanshan",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Hehuanshan",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],
@@ -287,29 +287,29 @@
       "options": [
         {
           "text": "Kaohsiung",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false,
           "correctOrderIndex": 3
         },
         {
           "text": "Taipei",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false,
           "correctOrderIndex": 0
         },
         {
           "text": "Tainan",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false,
           "correctOrderIndex": 2
         },
         {
           "text": "Taichung",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false,
           "correctOrderIndex": 1
         }
@@ -328,26 +328,26 @@
       "options": [
         {
           "text": "Japanese",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "Mandarin Chinese",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "text": "Cantonese",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "text": "Hokkien",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -365,14 +365,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         }
       ],
@@ -390,26 +390,26 @@
       "options": [
         {
           "text": "Night market",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Hot springs",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Hot springs",
+          "text": "Hiking Yushan",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Hiking Yushan",
+          "text": "Sun Moon Lake",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Sun Moon Lake",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],

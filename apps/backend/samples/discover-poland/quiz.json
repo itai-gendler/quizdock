@@ -6,7 +6,7 @@
     "description": "Sample quiz — geography, history and culture of Poland.",
     "language": "en",
     "license": "CC-BY-4.0",
-    "revision": 1,
+    "revision": 2,
     "feedbackEnabled": true,
     "cover": null
   },
@@ -45,26 +45,26 @@
       "options": [
         {
           "text": "Kraków",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Gdańsk",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Gdańsk",
+          "text": "Warsaw",
           "color": "blue",
           "shape": "diamond",
-          "isCorrect": false
-        },
-        {
-          "text": "Warsaw",
-          "color": "yellow",
-          "shape": "circle",
           "isCorrect": true
         },
         {
           "text": "Wrocław",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -83,14 +83,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false
         }
       ],
@@ -122,29 +122,29 @@
         {
           "media": "media/moose.webp",
           "alt": "A large deer with wide flat antlers, lying in the grass",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "media": "media/bison.webp",
           "alt": "Dark brown, heavy-shouldered wild cattle at the edge of a forest",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "media": "media/highland-cattle.webp",
           "alt": "Shaggy ginger cattle with long horns on a moor",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "media": "media/yak.webp",
           "alt": "A long-haired black and white ox on a grassy plain",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ]
@@ -161,26 +161,26 @@
       "options": [
         {
           "text": "Frédéric Chopin",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": true
+        },
+        {
+          "text": "Marie Curie",
           "color": "red",
           "shape": "triangle",
           "isCorrect": true
         },
         {
-          "text": "Marie Curie",
+          "text": "Wolfgang Amadeus Mozart",
           "color": "blue",
           "shape": "diamond",
-          "isCorrect": true
-        },
-        {
-          "text": "Wolfgang Amadeus Mozart",
-          "color": "yellow",
-          "shape": "circle",
           "isCorrect": false
         },
         {
           "text": "Nicolaus Copernicus",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": true
         }
       ],
@@ -249,26 +249,26 @@
       "options": [
         {
           "text": "Oder",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "Vistula",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         },
         {
           "text": "Warta",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false
         },
         {
           "text": "Bug",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false
         }
       ],
@@ -286,29 +286,29 @@
       "options": [
         {
           "text": "Wrocław",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false,
           "correctOrderIndex": 2
         },
         {
           "text": "Gdańsk",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": false,
           "correctOrderIndex": 0
         },
         {
           "text": "Kraków",
-          "color": "yellow",
-          "shape": "circle",
+          "color": "blue",
+          "shape": "diamond",
           "isCorrect": false,
           "correctOrderIndex": 3
         },
         {
           "text": "Warsaw",
-          "color": "green",
-          "shape": "square",
+          "color": "yellow",
+          "shape": "circle",
           "isCorrect": false,
           "correctOrderIndex": 1
         }
@@ -327,26 +327,26 @@
       "options": [
         {
           "text": "Physics and Chemistry",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": true
         },
         {
           "text": "Chemistry and Medicine",
+          "color": "red",
+          "shape": "triangle",
+          "isCorrect": false
+        },
+        {
+          "text": "Physics and Peace",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Physics and Peace",
+          "text": "Medicine and Literature",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Medicine and Literature",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],
@@ -365,14 +365,14 @@
       "options": [
         {
           "text": "True",
-          "color": "red",
-          "shape": "triangle",
+          "color": "green",
+          "shape": "square",
           "isCorrect": false
         },
         {
           "text": "False",
-          "color": "blue",
-          "shape": "diamond",
+          "color": "red",
+          "shape": "triangle",
           "isCorrect": true
         }
       ],
@@ -390,26 +390,26 @@
       "options": [
         {
           "text": "Kraków’s Old Town",
+          "color": "green",
+          "shape": "square",
+          "isCorrect": false
+        },
+        {
+          "text": "Hiking in the Tatras",
           "color": "red",
           "shape": "triangle",
           "isCorrect": false
         },
         {
-          "text": "Hiking in the Tatras",
+          "text": "Baltic beaches",
           "color": "blue",
           "shape": "diamond",
           "isCorrect": false
         },
         {
-          "text": "Baltic beaches",
+          "text": "Białowieża Forest",
           "color": "yellow",
           "shape": "circle",
-          "isCorrect": false
-        },
-        {
-          "text": "Białowieża Forest",
-          "color": "green",
-          "shape": "square",
           "isCorrect": false
         }
       ],

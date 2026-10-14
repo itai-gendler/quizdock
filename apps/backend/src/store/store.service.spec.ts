@@ -391,7 +391,8 @@ describe('StoreService', () => {
       await service.onModuleInit();
       const entries = await service.list();
       const france = entries.find((e) => e.title === 'Discover France');
-      expect(france).toMatchObject({ id: old.id, revision: 2, sharedAt: old.sharedAt });
+      expect(france).toMatchObject({ id: old.id, sharedAt: old.sharedAt });
+      expect(france!.revision).toBeGreaterThan(old.revision);
       expect(france?.questionCount).toBeGreaterThan(10);
       expect(existsSync(join(dir, old.id, 'media', 'mont-saint-michel.webp'))).toBe(true);
       expect(await titles(service)).toEqual(but('Discover Taiwan'));
