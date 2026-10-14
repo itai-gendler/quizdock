@@ -228,7 +228,7 @@ function SelectionRow({
     // the actions above it stay their own buttons.
     <li
       className={cn(
-        'hover:bg-accent relative flex flex-col rounded-lg border transition-colors',
+        'hover:bg-accent/60 relative flex flex-col rounded-lg border transition-colors',
         grid ? '' : 'gap-3 p-3 sm:flex-row sm:items-center sm:gap-4',
       )}
     >

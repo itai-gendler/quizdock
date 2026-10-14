@@ -562,7 +562,7 @@ export function DashboardPage() {
           return view === 'grid' ? (
             <li
               key={quiz.id}
-              className="hover:bg-accent relative flex flex-col overflow-hidden rounded-lg border transition-colors"
+              className="hover:bg-accent/60 relative flex flex-col overflow-hidden rounded-lg border transition-colors"
             >
               <QuizFirstStep
                 quizId={quiz.id}
@@ -589,7 +589,7 @@ export function DashboardPage() {
           ) : (
             <li
               key={quiz.id}
-              className="hover:bg-accent relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4"
+              className="hover:bg-accent/60 relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4"
             >
               {/* Its first step, as the grid shows it, small. */}
               <QuizFirstStep

@@ -484,7 +484,7 @@ function ThemeCard({
     </span>
   );
   return grid ? (
-    <li className="hover:bg-accent relative flex flex-col overflow-hidden rounded-lg border transition-colors">
+    <li className="hover:bg-accent/60 relative flex flex-col overflow-hidden rounded-lg border transition-colors">
       <ThemeThumbnail theme={values} />
       <span className="flex flex-1 flex-col gap-2 p-4">
         <span className="flex items-start justify-between gap-2">
@@ -496,7 +496,7 @@ function ThemeCard({
       <span className="flex justify-end border-t p-3">{actions}</span>
     </li>
   ) : (
-    <li className="hover:bg-accent relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4">
+    <li className="hover:bg-accent/60 relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4">
       {/* Its look, as the grid shows it, small. */}
       <span className="hidden w-32 shrink-0 overflow-hidden rounded-md border sm:block">
         <ThemeThumbnail theme={values} />
