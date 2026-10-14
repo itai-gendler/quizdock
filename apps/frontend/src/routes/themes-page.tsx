@@ -17,7 +17,7 @@ import {
 import { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Button, twoLineButton } from '@/components/ui/button';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { Input } from '@/components/ui/input';
 import { MenuItem } from '@/components/ui/menu-item';
@@ -397,91 +397,118 @@ function ThemeCard({
 }) {
   const { t } = useTranslation('themes');
   const grid = view === 'grid';
-  return (
-    <li
-      className={cn(
-        'flex overflow-hidden rounded-lg border',
-        grid ? 'flex-col' : 'flex-col sm:flex-row sm:items-center',
-      )}
+  // The name's link covers the whole card, as a quiz's in My quizzes: one target, the
+  // actions above it their own buttons.
+  const nameLink = (
+    <Link
+      to="/themes/$themeId"
+      params={{ themeId: to }}
+      className="min-w-0 truncate font-semibold after:absolute after:inset-0 after:content-['']"
     >
-      {/* The card opens the theme, as a template's does. */}
-      <Link
-        to="/themes/$themeId"
-        params={{ themeId: to }}
-        className={cn(
-          'hover:bg-accent flex flex-1 transition-colors',
-          grid ? 'flex-col' : 'min-w-0 items-center gap-3',
-        )}
-      >
-        {grid ? (
-          <ThemeThumbnail theme={values} />
-        ) : (
-          <span className="hidden w-32 shrink-0 overflow-hidden sm:block">
-            <ThemeThumbnail theme={values} />
+      {name}
+    </Link>
+  );
+  const facts = (
+    <>
+      <span className="text-muted-foreground text-xs">{meta}</span>
+      <span className="text-muted-foreground flex flex-wrap gap-x-3 text-xs">
+        {isDefault ? (
+          <span className="text-foreground inline-flex items-center gap-1 font-medium">
+            <Star className="size-3.5" />
+            {t('isDefault')}
           </span>
-        )}
-        <span className={cn('flex min-w-0 flex-1 flex-col', grid ? 'gap-2 p-4' : 'gap-1 p-3')}>
-          <span className="flex items-start justify-between gap-2">
-            <span className="font-semibold">{name}</span>
-            {accessible ? <AccessibleBadge /> : null}
-          </span>
-          <span className="text-muted-foreground text-xs">{meta}</span>
-          <span className="text-muted-foreground flex flex-wrap gap-x-3 text-xs">
-            {isDefault ? (
-              <span className="text-foreground inline-flex items-center gap-1 font-medium">
-                <Star className="size-3.5" />
-                {t('isDefault')}
-              </span>
-            ) : null}
-            {usedIn !== undefined ? (
-              <span>{usedIn ? t('usedIn', { count: usedIn }) : t('unused')}</span>
-            ) : null}
-          </span>
+        ) : null}
+        {usedIn !== undefined ? (
+          <span>{usedIn ? t('usedIn', { count: usedIn }) : t('unused')}</span>
+        ) : null}
+      </span>
+    </>
+  );
+  // The main action at the right, its ⋮ last (UI system §3).
+  const actions = (
+    <span className="relative z-10 flex items-center gap-2">
+      {primary ? (
+        <Button
+          size="sm"
+          variant="outline"
+          className={twoLineButton}
+          onClick={primary.onClick}
+          disabled={primary.busy}
+        >
+          <CopyPlus className="size-4 shrink-0" />
+          {primary.label}
+        </Button>
+      ) : null}
+      {menu.length ? (
+        <Popover
+          align="end"
+          trigger={({ open, toggle }) => (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-8"
+              aria-expanded={open}
+              onClick={toggle}
+              aria-label={t('more', { name })}
+            >
+              <EllipsisVertical className="size-4" />
+            </Button>
+          )}
+        >
+          {(close) =>
+            menu.map((m) => (
+              <div key={m.label}>
+                <MenuItem
+                  disabled={!!m.disabledReason}
+                  destructive={m.destructive}
+                  onClick={() => {
+                    close();
+                    m.onClick();
+                  }}
+                >
+                  {m.label}
+                </MenuItem>
+                {m.disabledReason ? (
+                  <p className="text-muted-foreground max-w-56 px-2 pb-2 text-xs">
+                    {m.disabledReason}
+                  </p>
+                ) : null}
+              </div>
+            ))
+          }
+        </Popover>
+      ) : (
+        // No ⋮: its place kept, so the main actions line up.
+        <span className="size-8 shrink-0" aria-hidden />
+      )}
+    </span>
+  );
+  return grid ? (
+    <li className="hover:bg-accent relative flex flex-col overflow-hidden rounded-lg border transition-colors">
+      <ThemeThumbnail theme={values} />
+      <span className="flex flex-1 flex-col gap-2 p-4">
+        <span className="flex items-start justify-between gap-2">
+          {nameLink}
+          {accessible ? <AccessibleBadge /> : null}
         </span>
-      </Link>
-      {/* The main action at the right, its ⋮ last. */}
-      <div
-        className={cn('flex items-center justify-end gap-2 border-t p-3', !grid && 'sm:border-t-0')}
-      >
-        {primary ? (
-          <Button size="sm" onClick={primary.onClick} disabled={primary.busy}>
-            <CopyPlus className="size-4" />
-            {primary.label}
-          </Button>
-        ) : null}
-        {menu.length ? (
-          <Popover
-            align="end"
-            trigger={({ toggle }) => (
-              <Button variant="ghost" size="sm" onClick={toggle} aria-label={t('more', { name })}>
-                <EllipsisVertical className="size-4" />
-              </Button>
-            )}
-          >
-            {(close) =>
-              menu.map((m) => (
-                <div key={m.label}>
-                  <MenuItem
-                    disabled={!!m.disabledReason}
-                    destructive={m.destructive}
-                    onClick={() => {
-                      close();
-                      m.onClick();
-                    }}
-                  >
-                    {m.label}
-                  </MenuItem>
-                  {m.disabledReason ? (
-                    <p className="text-muted-foreground max-w-56 px-2 pb-2 text-xs">
-                      {m.disabledReason}
-                    </p>
-                  ) : null}
-                </div>
-              ))
-            }
-          </Popover>
-        ) : null}
-      </div>
+        <span className="mt-auto flex flex-col gap-1 pt-1">{facts}</span>
+      </span>
+      <span className="flex justify-end border-t p-3">{actions}</span>
+    </li>
+  ) : (
+    <li className="hover:bg-accent relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4">
+      {/* Its look, as the grid shows it, small. */}
+      <span className="hidden w-32 shrink-0 overflow-hidden rounded-md border sm:block">
+        <ThemeThumbnail theme={values} />
+      </span>
+      <span className="flex min-w-0 flex-1 flex-col gap-1">
+        <span className="flex min-w-0 items-center gap-2">
+          {nameLink}
+          {accessible ? <AccessibleBadge /> : null}
+        </span>
+        {facts}
+      </span>
+      {actions}
     </li>
   );
 }
