@@ -178,10 +178,17 @@ describe('game sounds (#93)', () => {
   });
 
   it('the countdown: tic… tac… over the last five seconds, no last tac, the gong on zero', () => {
+    // The clock held still while the countdown is laid out: a busy run must not lose a beat.
+    const start = vi.spyOn(Date, 'now').mockReturnValue(Date.now());
     const endsAt = Date.now() + 5000;
-    const { rerender } = renderHook(({ g }) => useGameSounds(SOUNDS, g, true), {
-      initialProps: { g: game({ endsAt }) },
-    });
+    let rerender: (props: { g: ReturnType<typeof game> }) => void;
+    try {
+      ({ rerender } = renderHook(({ g }) => useGameSounds(SOUNDS, g, true), {
+        initialProps: { g: game({ endsAt }) },
+      }));
+    } finally {
+      start.mockRestore();
+    }
     // Nine clicks (ten half-beats, the last tac left out) and the gong scheduled on zero.
     expect(clicks).toHaveLength(9);
     const gong = oscillators.length;
