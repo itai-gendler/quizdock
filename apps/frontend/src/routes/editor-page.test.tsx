@@ -108,7 +108,8 @@ describe('EditorPage', () => {
     mockApi([{ method: 'GET', path: '/quizzes/q1', body: detail() }]);
     renderApp('/quizzes/q1');
 
-    expect(await screen.findByDisplayValue('Mon quiz')).toBeInTheDocument();
+    // The page loads on demand: a busy run takes longer than findBy's default second.
+    expect(await screen.findByDisplayValue('Mon quiz', {}, { timeout: 5000 })).toBeInTheDocument();
     // Listed in the sequence and opened in the editing pane (first item is auto-selected).
     expect(screen.getAllByText('Capitale de la France ?').length).toBeGreaterThanOrEqual(1);
   });
