@@ -615,9 +615,32 @@ describe('ControlPage (console hôte)', () => {
 
     await waitFor(() => expect(share).toHaveBeenCalledTimes(1));
     expect(share.mock.calls[0][0].url).toContain('/join/482913');
-    // The link, never an image of the QR code; the PIN rides in the text.
-    expect(share.mock.calls[0][0]).not.toHaveProperty('files');
-    expect(share.mock.calls[0][0].text).toContain('482913');
+    // The link alone, its PIN in it: no text a target would glue to it, no QR picture.
+    expect(share.mock.calls[0][0]).toEqual({ url: expect.stringMatching(/\/join\/482913$/) });
+    vi.unstubAllGlobals();
+  });
+
+  it('the projection on another computer is shared as its link alone', async () => {
+    localStorage.setItem('live.localUser', 'Animateur');
+    hookState.value = view({});
+    const share = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal('navigator', { ...navigator, share });
+    renderApp('/session/482913/console');
+    fireEvent.click(
+      await screen.findByRole('button', { name: /Projeter depuis un autre ordinateur/ }),
+    );
+    const popover = screen
+      .getByText(/Projeter depuis un autre ordinateur/, { selector: 'span' })
+      .closest('form')!;
+    await act(async () => {
+      within(popover)
+        .getByRole('button', { name: /Partager/ })
+        .click();
+    });
+    await waitFor(() => expect(share).toHaveBeenCalledTimes(1));
+    expect(share.mock.calls[0][0]).toEqual({
+      url: expect.stringMatching(/\/session\/482913\/projection$/),
+    });
     vi.unstubAllGlobals();
   });
 

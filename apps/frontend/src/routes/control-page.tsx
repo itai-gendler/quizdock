@@ -72,7 +72,6 @@ import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { Tooltip } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 import { getAuthMode } from '../auth/auth-context';
-import { APP_NAME } from '../config';
 import { Avatar } from '../game/avatar';
 import {
   ConnectionLost,
@@ -145,6 +144,7 @@ function HostConsole({
   const [confirmCapture, setConfirmCapture] = useState(false);
   const { view, socket } = session;
   const [shareNote, setShareNote] = useState<string | null>(null);
+  const [screenShareNote, setScreenShareNote] = useState<string | null>(null);
   // Pairing a projection window on another computer: the code it shows, and the outcome.
   const [pairCode, setPairCode] = useState('');
   const [pairResult, setPairResult] = useState<'paired' | 'failed' | null>(null);
@@ -242,6 +242,7 @@ function HostConsole({
             size="sm"
             onClick={() => {
               setPairResult(null);
+              setScreenShareNote(null);
               toggle();
             }}
             aria-expanded={open}
@@ -258,6 +259,20 @@ function HostConsole({
             <QRCodeSVG value={screenUrl} size={120} aria-label={t('control.screenElsewhere')} />
           </div>
           <span className="font-mono text-xs break-all select-all">{screenUrl}</span>
+          {/* Sent to the other computer as the invitation is: the link alone. */}
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="self-start"
+            onClick={() => void shareLink(screenUrl, setScreenShareNote)}
+          >
+            <Share2 className="size-4" />
+            {t('control.share')}
+          </Button>
+          {screenShareNote ? (
+            <p className="text-muted-foreground text-xs">{screenShareNote}</p>
+          ) : null}
           <Label htmlFor="pair-code">{t('control.pairCodeLabel')}</Label>
           <div className="flex gap-2">
             <Input
@@ -287,33 +302,25 @@ function HostConsole({
     </div>
   );
 
-  // The link itself, not a picture of the QR code: it opens in one tap wherever it lands.
-  const onShare = async () => {
-    const invitation = [
-      t('control.shareText', { appName: APP_NAME }),
-      t('control.sharePin', { pin }),
-    ];
-    const text = [...invitation, t('control.shareLink', { url: joinUrl })].join('\n');
+  // The link alone — no text beside it, which some targets glued to it — and never a
+  // picture of the QR code: it opens in one tap wherever it lands, its PIN in it.
+  const shareLink = async (url: string, note: (text: string | null) => void) => {
     try {
       if (navigator.share) {
-        // The share sheet appends the URL itself: the text does not repeat it.
-        await navigator.share({
-          title: t('control.shareTitle', { appName: APP_NAME }),
-          text: invitation.join('\n'),
-          url: joinUrl,
-        });
+        await navigator.share({ url });
       } else if (navigator.clipboard) {
-        await navigator.clipboard.writeText(text);
-        setShareNote(t('control.shareCopied'));
+        await navigator.clipboard.writeText(url);
+        note(t('control.shareCopied'));
       } else {
         // Plain http on a local network: neither the share sheet nor the clipboard
         // exists there. The address is shown to be copied by hand.
-        setShareNote(t('control.shareByHand', { url: joinUrl }));
+        note(t('control.shareByHand', { url }));
       }
     } catch {
       /* partage annulé / non supporté */
     }
   };
+  const onShare = () => shareLink(joinUrl, setShareNote);
 
   if (view.status === 'connecting') {
     return <PageLoading label={t('control.connecting')} />;
