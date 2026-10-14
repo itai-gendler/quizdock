@@ -950,7 +950,8 @@ export function LeaderboardList({
             data-rank={r.rank}
             data-you={me || undefined}
             className={cn(
-              'qd-leaderboard-row relative flex items-center gap-[0.5em] overflow-hidden rounded-[0.3em] px-[0.75em] py-[0.4em]',
+              // Its own band under the score's bar: a row stays a row at 0 points, in either mode.
+              'qd-leaderboard-row bg-muted/50 relative flex items-center gap-[0.5em] overflow-hidden rounded-[0.3em] px-[0.75em] py-[0.4em]',
               me ? 'ring-primary font-semibold ring-2' : '',
             )}
           >
