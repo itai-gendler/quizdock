@@ -167,47 +167,52 @@ function SelectionEditor({ selection }: { selection: SelectionDetailDto }) {
   return (
     <section className="flex flex-col gap-6">
       <BackLink />
-      <header className="flex flex-wrap items-start justify-between gap-3">
-        <Input
-          className="h-auto max-w-xl border-none px-0 text-2xl font-semibold shadow-none"
-          value={name}
-          maxLength={60}
-          aria-label={t('name')}
-          onChange={(e) => setName(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
-          onBlur={() => {
-            const trimmed = name.trim();
-            if (!trimmed) return setName(selection.name); // a name emptied comes back
-            if (trimmed !== selection.name) save({ name: trimmed });
-          }}
-        />
-        <PresentButton selection={selection} />
+      {/* Its name and description at the left; presenting it and sharing it at the right. */}
+      <header className="grid items-start gap-4 md:grid-cols-2">
+        <div className="flex min-w-0 flex-col gap-3">
+          <Input
+            className="h-auto max-w-xl border-none px-0 text-2xl font-semibold shadow-none"
+            value={name}
+            maxLength={60}
+            aria-label={t('name')}
+            onChange={(e) => setName(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+            onBlur={() => {
+              const trimmed = name.trim();
+              if (!trimmed) return setName(selection.name); // a name emptied comes back
+              if (trimmed !== selection.name) save({ name: trimmed });
+            }}
+          />
+          <Textarea
+            className="w-full"
+            value={description}
+            maxLength={2000}
+            rows={2}
+            placeholder={t('descriptionPlaceholder')}
+            aria-label={t('description')}
+            onChange={(e) => setDescription(e.target.value)}
+            onBlur={() => {
+              if (description.trim() !== (selection.description ?? '')) {
+                save({ description: description.trim() || null });
+              }
+            }}
+          />
+        </div>
+        <div className="flex flex-col items-end gap-3">
+          <PresentButton selection={selection} />
+          <CheckboxField
+            className="w-full rounded-md border p-3"
+            checked={selection.shared}
+            onChange={(shared) => save({ shared })}
+            label={t('sharedLabel')}
+            hint={
+              selection.unsharedCount
+                ? `${t('sharedHelp')} ${t('unsharedWarning', { count: selection.unsharedCount })}`
+                : t('sharedHelp')
+            }
+          />
+        </div>
       </header>
-      <Textarea
-        className="max-w-(--container-content-sm)"
-        value={description}
-        maxLength={2000}
-        rows={2}
-        placeholder={t('descriptionPlaceholder')}
-        aria-label={t('description')}
-        onChange={(e) => setDescription(e.target.value)}
-        onBlur={() => {
-          if (description.trim() !== (selection.description ?? '')) {
-            save({ description: description.trim() || null });
-          }
-        }}
-      />
-      <CheckboxField
-        className="max-w-(--container-content-sm) rounded-md border p-3"
-        checked={selection.shared}
-        onChange={(shared) => save({ shared })}
-        label={t('sharedLabel')}
-        hint={
-          selection.unsharedCount
-            ? `${t('sharedHelp')} ${t('unsharedWarning', { count: selection.unsharedCount })}`
-            : t('sharedHelp')
-        }
-      />
       {error ? (
         <p className="text-destructive text-sm" role="alert">
           {error}
