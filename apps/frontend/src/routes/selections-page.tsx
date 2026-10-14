@@ -152,17 +152,21 @@ function SelectionRow({
   const { t } = useTranslation('selections');
   const others = !s.editable;
   return (
-    <li className="flex flex-col overflow-hidden rounded-lg border sm:flex-row sm:items-center">
-      <Link
-        to="/selections/$selectionId"
-        params={{ selectionId: s.id }}
-        className="hover:bg-accent flex min-w-0 flex-1 flex-col gap-1 p-3 transition-colors"
-      >
-        <span className="flex items-center gap-2 font-semibold">
+    // As a quiz's line in My quizzes: the whole card hovers, its title's link covers it,
+    // the actions above it stay their own buttons.
+    <li className="hover:bg-accent relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4">
+      <span className="flex min-w-0 flex-1 flex-col gap-1">
+        <span className="flex min-w-0 items-center gap-2">
           {others ? (
             <Lock className="text-muted-foreground size-3.5 shrink-0" aria-label={t('readOnly')} />
           ) : null}
-          <span className="truncate">{s.name}</span>
+          <Link
+            to="/selections/$selectionId"
+            params={{ selectionId: s.id }}
+            className="min-w-0 truncate font-semibold after:absolute after:inset-0 after:content-['']"
+          >
+            {s.name}
+          </Link>
         </span>
         <span className="text-muted-foreground flex flex-wrap gap-x-2 text-xs">
           <span>{t('quizCount', { count: s.quizCount })}</span>
@@ -177,9 +181,9 @@ function SelectionRow({
             </span>
           ) : null}
         </span>
-      </Link>
+      </span>
       {/* The main action at the right, its ⋮ last. */}
-      <div className="flex items-center justify-end gap-2 border-t p-3 sm:border-t-0">
+      <span className="relative z-10 flex items-center justify-end gap-2">
         {others ? (
           <Button
             type="button"
@@ -202,7 +206,10 @@ function SelectionRow({
           <Play className="size-4" />
           {t('present')}
         </Button>
-        {others ? null : (
+        {others ? (
+          // No ⋮ on another host's: its place kept, so the main actions line up.
+          <span className="size-8 shrink-0" aria-hidden />
+        ) : (
           <Popover
             align="end"
             trigger={({ toggle }) => (
@@ -230,7 +237,7 @@ function SelectionRow({
             )}
           </Popover>
         )}
-      </div>
+      </span>
     </li>
   );
 }
