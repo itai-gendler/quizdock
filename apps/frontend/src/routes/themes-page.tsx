@@ -47,6 +47,9 @@ import { Segmented } from '@/components/ui/segmented';
 import { useStoredView } from '@/lib/use-stored-view';
 import { useNewTheme } from './use-new-theme';
 
+type Sort = 'recent' | 'title';
+const isSort = (v: unknown): v is Sort => v === 'recent' || v === 'title';
+
 /**
  * The library of quiz themes (docs/themes.md): the shipped ones, then the hosts'. Every
  * host uses every theme; its owner and the administrators change it.
@@ -60,6 +63,7 @@ export function ThemesPage() {
   const list = data?.data;
   const [q, setQ] = useSessionState('quizdock.themes.filter.search', '', isString);
   const [owner, setOwner] = useSessionState('quizdock.themes.filter.owner', '', isString);
+  const [sort, setSort] = useSessionState('quizdock.themes.filter.sort', 'recent', isSort);
   const [accessibleOnly, setAccessibleOnly] = useState(false);
   const [view, setView] = useStoredView('quizdock.themes.view', 'grid');
   const [toDelete, setToDelete] = useState<ThemeDto | null>(null);
@@ -91,9 +95,11 @@ export function ThemesPage() {
   const owners = [
     ...new Map((list?.themes ?? []).map((th) => [th.owner.id, th.owner])).values(),
   ].sort((a, b) => a.name.localeCompare(b.name));
-  const mine = (list?.themes ?? []).filter(
-    (th) => matches(th.name, isAccessible(th)) && (!owner || th.owner.id === owner),
-  );
+  const mine = (list?.themes ?? [])
+    .filter((th) => matches(th.name, isAccessible(th)) && (!owner || th.owner.id === owner))
+    .sort((a, b) =>
+      sort === 'title' ? a.name.localeCompare(b.name) : b.updatedAt.localeCompare(a.updatedAt),
+    );
 
   const listClass =
     view === 'grid'
@@ -221,6 +227,12 @@ export function ThemesPage() {
               </Select>
             </FilterField>
           ) : null}
+          <FilterField label={t('dashboard:sortBy')}>
+            <Select value={sort} onChange={(e) => setSort(e.target.value as Sort)}>
+              <option value="recent">{t('dashboard:sortRecent')}</option>
+              <option value="title">{t('dashboard:sortTitle')}</option>
+            </Select>
+          </FilterField>
           <Segmented
             label={t('dashboard:display')}
             value={view}
