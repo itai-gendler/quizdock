@@ -97,8 +97,8 @@ function NavLinks({ stacked = false, onNavigate }: { stacked?: boolean; onNaviga
   const current = stacked
     ? 'text-link font-medium'
     : 'text-link font-medium underline decoration-2 underline-offset-[6px]';
-  // Quizzes holds the quizzes, the templates and the themes (its tabs).
-  const inQuizzes = /^\/(quizzes|templates|themes)(\/|$)/.test(pathname);
+  // Quizzes holds the quizzes, the selections, the templates and the themes (its tabs).
+  const inQuizzes = /^\/(quizzes|selections|templates|themes)(\/|$)/.test(pathname);
   return (
     <>
       <Link

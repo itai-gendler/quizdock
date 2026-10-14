@@ -12,8 +12,7 @@ import {
 } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Badge } from '@/components/ui/badge';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button, buttonVariants, twoLineButton } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Pagination } from '@/components/ui/pagination';
 import { Segmented } from '@/components/ui/segmented';
@@ -198,70 +197,77 @@ export function TemplatesPage() {
           view === 'grid' ? 'grid gap-4 sm:grid-cols-2 lg:grid-cols-3' : 'flex flex-col gap-2'
         }
       >
-        {visible.map((entry) => (
-          <li
-            key={entry.id}
-            className={cn(
-              'flex overflow-hidden rounded-lg border',
-              view === 'grid' ? 'flex-col' : 'flex-col sm:flex-row sm:items-center',
-            )}
-          >
+        {visible.map((entry) => {
+          // As a quiz's card in My quizzes: the whole card hovers, its title's link covers
+          // it, the action above it its own button.
+          const titleLink = (
             <Link
               to="/templates/$templateId"
               params={{ templateId: entry.id }}
-              className={cn(
-                'hover:bg-accent group flex flex-1 transition-colors',
-                view === 'grid' ? 'flex-col' : 'min-w-0 items-center gap-3',
-              )}
+              className="min-w-0 truncate font-semibold after:absolute after:inset-0 after:content-['']"
             >
-              {view === 'grid' ? (
-                <TemplateThumb entry={entry} />
-              ) : (
-                <span className="hidden w-28 shrink-0 overflow-hidden sm:block">
-                  <TemplateThumb entry={entry} />
-                </span>
-              )}
-              <span
-                className={cn(
-                  'flex min-w-0 flex-1 flex-col',
-                  view === 'grid' ? 'gap-2 p-4' : 'gap-1 p-3',
-                )}
+              {entry.title}
+            </Link>
+          );
+          const facts = (
+            <span className="text-muted-foreground flex flex-wrap items-center gap-x-1 text-xs">
+              <span>{t('questionCount', { count: entry.questionCount })}</span>
+              <span>· {entry.language.toUpperCase()}</span>
+              <span>
+                · {t('sharedBy', { name: entry.author.name, date: date(entry.sharedAt) })}
+              </span>
+            </span>
+          );
+          // The action is on the card: a template is used without being opened.
+          const action = isHost ? (
+            <span className="relative z-10 flex items-center justify-end gap-2">
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className={twoLineButton}
+                disabled={take.isPending}
+                onClick={() => void onCreate(entry.id)}
               >
-                <span className="font-semibold">{entry.title}</span>
+                <CopyPlus className="size-4 shrink-0" />
+                {t('createFrom')}
+              </Button>
+            </span>
+          ) : null;
+          return view === 'grid' ? (
+            <li
+              key={entry.id}
+              className="hover:bg-accent/60 relative flex flex-col overflow-hidden rounded-lg border transition-colors"
+            >
+              <TemplateThumb entry={entry} />
+              <span className="flex flex-1 flex-col gap-2 p-4">
+                {titleLink}
                 {entry.description ? (
                   <span className="text-muted-foreground line-clamp-2 text-sm">
                     {entry.description}
                   </span>
                 ) : null}
-                <span className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 pt-1">
-                  <Badge variant="muted">{entry.language}</Badge>
-                  <span className="text-muted-foreground text-sm">
-                    {t('questionCount', { count: entry.questionCount })}
-                  </span>
-                </span>
-                <span className="text-muted-foreground text-xs">
-                  {t('sharedBy', { name: entry.author.name, date: date(entry.sharedAt) })}
-                </span>
+                <span className="mt-auto pt-1">{facts}</span>
               </span>
-            </Link>
-            {/* L'action est sur la carte : on ne devrait pas avoir à ouvrir un
-                modèle pour pouvoir s'en servir. */}
-            {isHost ? (
-              <span className={view === 'grid' ? 'border-t p-3' : 'border-t p-3 sm:border-t-0'}>
-                <Button
-                  type="button"
-                  size="sm"
-                  className={view === 'grid' ? 'w-full' : 'w-full sm:w-auto'}
-                  disabled={take.isPending}
-                  onClick={() => void onCreate(entry.id)}
-                >
-                  <CopyPlus className="size-4" />
-                  {t('createFrom')}
-                </Button>
+              {action ? <span className="flex justify-end border-t p-3">{action}</span> : null}
+            </li>
+          ) : (
+            <li
+              key={entry.id}
+              className="hover:bg-accent/60 relative flex flex-col gap-3 rounded-lg border p-3 transition-colors sm:flex-row sm:items-center sm:gap-4"
+            >
+              {/* Its first step, as the grid shows it, small. */}
+              <span className="hidden w-32 shrink-0 overflow-hidden rounded-md border sm:block">
+                <TemplateThumb entry={entry} />
               </span>
-            ) : null}
-          </li>
-        ))}
+              <span className="flex min-w-0 flex-1 flex-col gap-1">
+                {titleLink}
+                {facts}
+              </span>
+              {action}
+            </li>
+          );
+        })}
       </ul>
 
       <Pagination page={current} pages={pageCount} onChange={setPage} />

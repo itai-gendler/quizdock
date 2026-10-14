@@ -30,6 +30,7 @@ import type {
   MediaReadinessPayload,
   PlayerPresence,
   QuestionRevealPayload,
+  RoomSelectionPayload,
   RoomSoundsPayload,
   RoomSoundsSettings,
   ServerToClientEvents,
@@ -1354,6 +1355,8 @@ export class GameEngine {
     if (meta.state === GameState.Lobby || meta.state === GameState.Podium) {
       await this.emitStandings(pin, socket);
     }
+    // The selection the room was opened from, to its console only.
+    if (socket.data.isHostControl) socket.emit('room:selection', await this.selectionPayload(pin));
     // In the lobby, every device fetches what the first question needs while people wait;
     // arriving during a wait for media, what the coming question needs, and how long.
     if (meta.state === GameState.Lobby && snapshot) {
@@ -1711,12 +1714,14 @@ export class GameEngine {
       );
     }
     const snapshot = await this.game.snapshotFor(pin, quizId);
+    // A quiz of the room's selection keeps the pace the selection gives it.
+    const line = (await this.game.selectionQueue(pin))?.lines.find((l) => l.quizId === quizId);
     const lock = gameKeys.advanceLock(meta.id, 'next-quiz');
     if (!(await this.firstThrough(lock))) return; // double click
     try {
       this.timers.cancelAll(pin);
       this.answerCounts.delete(pin);
-      await this.game.openGameWith(pin, snapshot);
+      await this.game.openGameWith(pin, snapshot, line?.mode);
       // A lobby with no quiz is one a quiz went back to; so is one already counting.
       const follows = !meta.quizId || Boolean(meta.lobbyStartAt);
       const opened = await this.game.getMeta(pin);
@@ -1759,12 +1764,43 @@ export class GameEngine {
       }
       this.timers.cancelAll(pin);
       this.answerCounts.delete(pin);
-      await this.game.openGameWith(pin, null);
+      await this.openNextOfSelection(pin);
     } catch (err) {
       await this.redis.del(lock);
       throw err;
     }
     await this.sendLobby(pin);
+  }
+
+  /**
+   * The lobby a quiz goes back to: on the next quiz of the room's selection, picked on
+   * its own with its pace, its countdown armed when it starts on its own
+   * (SPECIFICATIONS-SELECTION); with no quiz otherwise, or when that quiz cannot be
+   * opened any more — the host picks then.
+   */
+  private async openNextOfSelection(pin: string): Promise<void> {
+    const next = (await this.game.selectionQueue(pin))?.next;
+    const snapshot = next ? await this.game.snapshotFor(pin, next.quizId).catch(() => null) : null;
+    await this.game.openGameWith(pin, snapshot, snapshot ? next?.mode : undefined);
+    if (!snapshot || !next?.autoStart) return;
+    const opened = await this.game.getMeta(pin);
+    if (opened) {
+      await this.armLobbyCountdown(refOf(pin, opened), Date.now() + NEXT_QUIZ_COUNTDOWN_MS);
+    }
+  }
+
+  /** What the console shows of the room's selection: the quizzes its host may play. */
+  private async selectionPayload(pin: string): Promise<RoomSelectionPayload | null> {
+    const queue = await this.game.selectionQueue(pin);
+    if (!queue) return null;
+    return {
+      id: queue.id,
+      name: queue.name,
+      items: queue.lines
+        .filter((l) => l.unplayable === null)
+        .map((l) => ({ quizId: l.quizId, title: l.title, played: queue.played.has(l.quizId) })),
+      nextQuizId: queue.next?.quizId ?? null,
+    };
   }
 
   /** The room's new lobby, to every screen. */

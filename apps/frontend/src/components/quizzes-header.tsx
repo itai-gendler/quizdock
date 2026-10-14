@@ -6,13 +6,15 @@ import { useRole } from '../auth/use-role';
 
 /**
  * The head of the Quizzes space: its title, the page's actions, and its tabs — what
- * goes into a quiz, in one place: the quizzes, the templates to start from, the themes.
+ * goes into a quiz, in one place: the quizzes, the selections that line them up, the
+ * templates to start from, the themes.
  */
 export function QuizzesHeader({ actions }: { actions?: ReactNode }) {
   const { t } = useTranslation(['auth', 'dashboard']);
   const { isManager } = useRole();
   const tabs = [
     { to: '/quizzes', label: isManager ? t('dashboard:allQuizzes') : t('auth:nav.myQuizzes') },
+    { to: '/selections', label: t('auth:nav.selections') },
     { to: '/templates', label: t('auth:nav.templates') },
     { to: '/themes', label: t('auth:nav.themes') },
   ] as const;

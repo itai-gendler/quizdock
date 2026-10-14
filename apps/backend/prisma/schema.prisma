@@ -178,6 +178,7 @@ model User {
   quizzes        Quiz[]
   mediaAssets    MediaAsset[]
   themes         Theme[]
+  selections     Selection[]
   hostedSessions GameSessionLog[]
   playerResults  PlayerResultLog[]
   hostSeat       HostSeat?
@@ -244,13 +245,14 @@ model Quiz {
   updatedAt          DateTime    @updatedAt @map("updated_at") @db.Timestamptz(6)
   archivedAt         DateTime?   @map("archived_at") @db.Timestamptz(6)
 
-  owner       User             @relation(fields: [ownerId], references: [id])
-  coverMedia  MediaAsset?      @relation("QuizCover", fields: [coverMediaId], references: [id])
-  theme       Theme?           @relation(fields: [themeId], references: [id], onDelete: Restrict)
-  questions   Question[]
-  slides      Slide[]
-  sessionLogs GameSessionLog[]
-  feedback    QuizFeedback[]
+  owner          User             @relation(fields: [ownerId], references: [id])
+  coverMedia     MediaAsset?      @relation("QuizCover", fields: [coverMediaId], references: [id])
+  theme          Theme?           @relation(fields: [themeId], references: [id], onDelete: Restrict)
+  questions      Question[]
+  slides         Slide[]
+  sessionLogs    GameSessionLog[]
+  feedback       QuizFeedback[]
+  selectionItems SelectionItem[]
 
   @@index([ownerId, status])
   @@map("quiz")
@@ -484,6 +486,9 @@ model GameSessionLog {
   roomId           String?       @map("room_id") @db.Char(32)
   /// The room's own name when the session was archived (a copy: no room table). Null = the default.
   roomName         String?       @map("room_name") @db.VarChar(60)
+  /// The selection the room was opened from, when its host owns it (SPECIFICATIONS-SELECTION):
+  /// its launches are compared. Emptied when the selection is deleted; the session stays.
+  selectionId      String?       @map("selection_id") @db.Char(26)
   status           SessionStatus @default(ended)
   language         String
   playerCount      Int           @default(0) @map("player_count")
@@ -501,6 +506,7 @@ model GameSessionLog {
   /// A quiz takes its archived sessions with it.
   quiz          Quiz                 @relation(fields: [quizId], references: [id], onDelete: Cascade)
   host          User                 @relation(fields: [hostId], references: [id])
+  selection     Selection?           @relation(fields: [selectionId], references: [id], onDelete: SetNull)
   playerResults PlayerResultLog[]
   questionStats QuestionResultStat[]
   answerLogs    AnswerLog[]
@@ -509,6 +515,7 @@ model GameSessionLog {
   @@index([hostId, startedAt])
   @@index([retainUntil])
   @@index([roomId])
+  @@index([selectionId])
   @@index([startedAt])
   @@index([endedAt])
   @@map("game_session_log")
@@ -678,4 +685,45 @@ model ThemeMedia {
   @@id([themeId, mediaId])
   @@index([mediaId])
   @@map("theme_media")
+}
+
+/// A named, saved, replayable list of quizzes, launched into a room in one go
+/// (SPECIFICATIONS-SELECTION). It refers to its quizzes, never copies them.
+model Selection {
+  id          String   @id @default(ulid()) @db.Char(26)
+  ownerId     String   @map("owner_id") @db.Char(26)
+  name        String   @db.VarChar(60)
+  description String?  @db.VarChar(2000)
+  /// Shared with the instance's other hosts: read, launched, or copied — never its quizzes with it.
+  shared      Boolean  @default(false)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  owner    User             @relation(fields: [ownerId], references: [id])
+  items    SelectionItem[]
+  sessions GameSessionLog[]
+
+  @@index([ownerId])
+  @@map("selection")
+}
+
+/// One quiz of a selection, in its order, with what depends on the quiz: its pace and
+/// whether the lobby's countdown starts it. Goes with the quiz when it is deleted.
+model SelectionItem {
+  id          String  @id @default(ulid()) @db.Char(26)
+  selectionId String  @map("selection_id") @db.Char(26)
+  quizId      String  @map("quiz_id") @db.Char(26)
+  orderIndex  Int     @map("order_index")
+  /// `manual` or `auto` (LIVE §8).
+  mode        String  @default("manual") @db.VarChar(10)
+  /// The lobby's countdown starts it on its own (LIVE §11.4).
+  autoStart   Boolean @default(true) @map("auto_start")
+
+  selection Selection @relation(fields: [selectionId], references: [id], onDelete: Cascade)
+  quiz      Quiz      @relation(fields: [quizId], references: [id], onDelete: Cascade)
+
+  /// Each quiz once in a selection.
+  @@unique([selectionId, quizId])
+  @@index([quizId])
+  @@map("selection_item")
 }

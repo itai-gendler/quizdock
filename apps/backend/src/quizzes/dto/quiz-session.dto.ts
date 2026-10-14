@@ -87,6 +87,8 @@ export const roomStandingSchema = z.object({
  * of those sessions tracked its participants (RG-16).
  */
 export const sessionRoomSchema = z.object({
+  /** The room's id: its page in *History*, and *Save as a selection*. */
+  roomId: z.string(),
   /** The room's own name, as its last archived session kept it; null = the default ("<host>'s room"). */
   name: z.string().nullable(),
   /** The host's name, for that default. */

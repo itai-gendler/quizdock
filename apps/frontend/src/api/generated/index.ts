@@ -8,6 +8,7 @@ export * from './me/me';
 export * from './media/media';
 export * from './questions/questions';
 export * from './quizzes/quizzes';
+export * from './selections/selections';
 export * from './setup/setup';
 export * from './slides/slides';
 export * from './store/store';

@@ -238,5 +238,13 @@
   "background": {
     "image_and_gradient": "Un fondo es una imagen o un degradado, no ambos.",
     "mode_required": "Elige cómo se dispone la imagen."
+  },
+  "selection": {
+    "not_found": "Selección no encontrada.",
+    "nothing_playable": "Ningún quiz de esta selección se puede jugar.",
+    "too_many_quizzes": "Una selección contiene como máximo 50 quizzes.",
+    "duplicate_quiz": "Un quiz aparece una sola vez en una selección.",
+    "quiz_not_found": "Este quiz no se puede añadir: no es tuyo ni está compartido contigo.",
+    "nothing_to_save": "Esta sala no jugó ningún quiz que puedas guardar en una selección."
   }
 }

@@ -518,5 +518,13 @@
     },
     "muteBus": "静音：{{bus}}",
     "unmuteBus": "取消静音：{{bus}}"
+  },
+  "selection": {
+    "title": "选集：{{name}}",
+    "position": "第 {{at}} 个，共 {{count}} 个",
+    "next": "下一个",
+    "played": "已演示",
+    "save": "保存为选集",
+    "saved": "已保存为选集：打开"
   }
 }

@@ -23,6 +23,20 @@ still reach the quiz, with `quiz_feedback.nickname` null. The owner may edit,
 unshare or delete the quiz meanwhile: the game plays its snapshot to the end, and
 a rating after a deletion is refused.
 
+## A room opened from a selection
+
+A host may open a room from a selection (`host:create { selectionId }`,
+SPECIFICATIONS-SELECTION) they own or that is shared with them. The room keeps it
+(`room.selectionId`) and opens on its first quiz they may play. Going back to the
+lobby (`host:back-to-lobby`) opens the next one — the first of the list the room has
+not played (`room:{pin}:played-quizzes`) — with the pace the selection gives it, its
+countdown armed when it starts on its own; nothing when none is left or it cannot be
+opened. *Change quiz* still picks any quiz. The console is sent `room:selection`: the
+quizzes its host may play, those played, the next one. Every game folded into the
+room's standings is also listed in order with its pace (`room:{pin}:played-order`),
+which *Save as a selection* reads. A session archived from a room its host opened from
+their own selection carries `selection_id`; another host's launch never does.
+
 ## States
 
 `LOBBY → (SLIDE_SHOW | [MEDIA_LOADING →] ANSWERING → REVEAL)* → PODIUM → ENDED`,

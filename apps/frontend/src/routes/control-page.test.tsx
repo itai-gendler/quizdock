@@ -74,6 +74,7 @@ const view = (partial: Partial<GameView>): GameView => ({
   roomName: null,
   hostName: null,
   standings: null,
+  selection: null,
   scores: null,
   lobbyStartAt: null,
   language: null,
@@ -234,6 +235,55 @@ describe('ControlPage: the room’s next quiz (#89)', () => {
       { pin: '482913', archive: false },
       expect.any(Function),
     );
+  });
+
+  it('a room opened from a selection shows it: played ticked, the next one picked', async () => {
+    localStorage.setItem('live.localUser', 'Animateur');
+    hookState.value = view({
+      state: GameState.Lobby,
+      quizId: 'q2',
+      selection: {
+        id: 's1',
+        name: 'Vendredi soir',
+        items: [
+          { quizId: 'q1', title: 'Géographie', played: true },
+          { quizId: 'q2', title: 'Histoire', played: false },
+          { quizId: 'q3', title: 'Musique', played: false },
+        ],
+        nextQuizId: 'q2',
+      },
+    });
+    renderApp('/session/482913/console');
+    expect(await screen.findByText(/Sélection : Vendredi soir/)).toHaveTextContent('2 sur 3');
+    expect(screen.getByText('Histoire').closest('li')).toHaveTextContent('suivant');
+    // A selection already: nothing to save.
+    expect(screen.queryByRole('button', { name: /Enregistrer comme sélection/ })).toBeNull();
+  });
+
+  it('a room that played quizzes, from no selection, can be saved as one', async () => {
+    localStorage.setItem('live.localUser', 'Animateur');
+    const fetchMock = mockApi([
+      {
+        method: 'POST',
+        path: '/selections/from-room',
+        status: 201,
+        body: { id: 'saved', name: 'Salon', items: [] },
+      },
+    ]);
+    hookState.value = view({
+      state: GameState.Lobby,
+      quizId: '',
+      totalQuestions: 0,
+      standings: { quizzesPlayed: 2, playedQuizIds: ['q1', 'q2'], top: [] },
+    });
+    renderApp('/session/482913/console');
+    fireEvent.click(await screen.findByRole('button', { name: /Enregistrer comme sélection/ }));
+    expect(await screen.findByRole('link', { name: /Enregistré comme sélection/ })).toHaveAttribute(
+      'href',
+      '/selections/saved',
+    );
+    const post = fetchMock.mock.calls.find(([, o]) => o?.method === 'POST');
+    expect(JSON.parse(String(post?.[1]?.body))).toEqual({ pin: '482913' });
   });
 
   it('a game that keeps nothing offers no archiving, and says why in the lobby', async () => {

@@ -30,6 +30,7 @@ reference, the others follow its sense, not its words.
 | reviews     | Reviews                 | Avis                 | Opiniones            | 评价          | 回饋          | `/quizzes/:id/reviews`                                                         |
 | history     | History                 | Historique           | Historial            | 历史          | 歷史          | `/quizzes/:id/history`                                                         |
 | templates   | Templates               | Modèles              | Plantillas           | 模板          | 範本          | `/templates`: copies offered to the instance's hosts (RG-17)                   |
+| selection   | Selection               | Sélection            | Selección            | 选集          | 選集          | `/selections`: a named list of quizzes launched into a room                    |
 
 ## Content
 
@@ -50,6 +51,10 @@ reference, the others follow its sense, not its words.
 | share (with the hosts)          | Share                           | Partager                              | Compartir                            | 共享                 | 分享                 |
 | offer as a template             | Offer as a template             | Proposer comme modèle                 | Ofrecer como plantilla               | 作为模板提供         | 作為範本提供         |
 | present without keeping results | Present without keeping results | Présenter sans garder les résultats   | Presentar sin guardar los resultados | 不保留结果地演示     | 不保留結果地示範     |
+
+A *selection* (de *Auswahl*, it *Selezione*, pl *Zestaw*, ru *Подборка*, tr *Seçki*,
+hi *चयन*, ja *セレクション*) lines quizzes up for a room; never *playlist*, *programme*
+or *series* (the streak).
 
 *Share* is only the instance sharing: the original, which the other hosts read, present
 without keeping results, or create a quiz from. Putting a copy in the catalogue is

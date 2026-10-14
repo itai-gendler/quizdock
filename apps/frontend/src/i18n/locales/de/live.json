@@ -518,5 +518,13 @@
     },
     "muteBus": "{{bus}} stummschalten",
     "unmuteBus": "{{bus}} wieder einschalten"
+  },
+  "selection": {
+    "title": "Auswahl: {{name}}",
+    "position": "{{at}} von {{count}}",
+    "next": "als Nächstes",
+    "played": "gespielt",
+    "save": "Als Auswahl speichern",
+    "saved": "Als Auswahl gespeichert: öffnen"
   }
 }

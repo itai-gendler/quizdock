@@ -62,7 +62,8 @@ Status: **settled** (2026-10-14), nothing delivered.
   - **In the console**, only what can be played: the quizzes the room played ticked, the next one picked in the
     lobby, the host free to change it at once; *3 of 5* counts the playable ones. A room opened from a single quiz is
     as today: the host picks the next one.
-  - A selection none of whose quizzes one may read does not show at all.
+  - Another host's selection none of whose quizzes one may read does not show at all; one's own always shows, an
+    empty one included (it is being filled).
 - **Saving a room as a selection, from two places** (2026-10-14), the same *Save as a selection*, the new selection
   named after the room and leaving out what its owner may not read:
   - **the console**, in the lobby or when the room closes: every quiz the room played, in order, each with the pace
@@ -77,8 +78,9 @@ Status: **settled** (2026-10-14), nothing delivered.
   only when none of the list can be played (`selection.nothing_playable`).
 - **The follow-up compares launches** (2026-10-14), read from their archived sessions like the room's card in
   *History*, settings never locked: each launch with its date, the quizzes played, its participants and each quiz's
-  success rate, on the selection's page (*Launches*). Every session of a room opened from a selection carries it
-  (`game_session_log.selection_id`, emptied if the selection is deleted: the archives stay). Following each
+  success rate, on the selection's page (*Launches*). Every session of a room its host opened from their own
+  selection carries it (`game_session_log.selection_id`, emptied if the selection is deleted: the archives stay);
+  another host's launch of a shared selection never reaches its owner. Following each
   participant from one launch to the next — a stable identity, accounts only, RG-16 — is outside this brief.
 
 ## 3. Data (sketch)

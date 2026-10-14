@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { meControllerGetPreferences, meControllerUpdatePreferences } from '../api/generated/me/me';
 import { getAuthMode } from '../auth/auth-context';
 import { allowsAnonymousParticipants } from '../config';
-import { type SessionOptions, createSession } from './game-client';
+import { type LaunchTarget, type SessionOptions, createSession } from './game-client';
 import { LaunchAccessDialog } from './launch-access-dialog';
 
 /**
- * Lance une partie pour un quiz `ready` puis route vers la console hôte. La création
+ * Lance une partie pour un quiz `ready` (ou une sélection) puis route vers la console hôte. La création
  * se fait dans le **handler de clic** (pas un effet de montage) pour éviter le
  * double-déclenchement (StrictMode) → deux PIN orphelins.
  *
@@ -24,14 +24,16 @@ export function useLaunchSession() {
   const navigate = useNavigate();
   const [isLaunching, setIsLaunching] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [pending, setPending] = useState<{ quizId: string; options: SessionOptions } | null>(null);
+  const [pending, setPending] = useState<{ target: LaunchTarget; options: SessionOptions } | null>(
+    null,
+  );
 
   const start = useCallback(
-    async (quizId: string, options: SessionOptions) => {
+    async (target: LaunchTarget, options: SessionOptions) => {
       setError(null);
       setIsLaunching(true);
       try {
-        const { pin } = await createSession(quizId, options);
+        const { pin } = await createSession(target, options);
         await navigate({ to: '/session/$pin/console', params: { pin } });
       } catch (e) {
         setError(e instanceof Error ? e.message : t('errors.launchFailed'));
@@ -43,9 +45,9 @@ export function useLaunchSession() {
   );
 
   const launch = useCallback(
-    async (quizId: string, options: SessionOptions = {}) => {
+    async (target: LaunchTarget, options: SessionOptions = {}) => {
       if (getAuthMode() !== 'oidc' || !allowsAnonymousParticipants()) {
-        await start(quizId, options);
+        await start(target, options);
         return;
       }
       setError(null);
@@ -54,10 +56,10 @@ export function useLaunchSession() {
         .then((res) => res.data.participantAccess)
         .catch(() => undefined);
       if (remembered) {
-        await start(quizId, { ...options, participantAccess: remembered });
+        await start(target, { ...options, participantAccess: remembered });
         return;
       }
-      setPending({ quizId, options });
+      setPending({ target, options });
     },
     [start],
   );
@@ -70,7 +72,7 @@ export function useLaunchSession() {
       // only means being asked again next time.
       void meControllerUpdatePreferences({ participantAccess: access }).catch(() => undefined);
     }
-    void start(pending.quizId, { ...pending.options, participantAccess: access });
+    void start(pending.target, { ...pending.options, participantAccess: access });
   };
 
   const dialog = (

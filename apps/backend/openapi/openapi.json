@@ -1943,6 +1943,282 @@
         ]
       }
     },
+    "/api/v1/selections": {
+      "get": {
+        "operationId": "SelectionsController_list",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectionDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "selections"
+        ]
+      },
+      "post": {
+        "operationId": "SelectionsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSelectionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectionDetailDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "selections"
+        ]
+      }
+    },
+    "/api/v1/selections/from-room": {
+      "post": {
+        "operationId": "SelectionsController_fromRoom",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectionFromRoomDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectionDetailDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "selections"
+        ]
+      }
+    },
+    "/api/v1/selections/{id}": {
+      "get": {
+        "operationId": "SelectionsController_get",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectionDetailDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "selections"
+        ]
+      },
+      "put": {
+        "operationId": "SelectionsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSelectionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectionDetailDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "selections"
+        ]
+      },
+      "delete": {
+        "operationId": "SelectionsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "selections"
+        ]
+      }
+    },
+    "/api/v1/selections/{id}/duplicate": {
+      "post": {
+        "operationId": "SelectionsController_duplicate",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectionDetailDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "selections"
+        ]
+      }
+    },
+    "/api/v1/selections/{id}/launches": {
+      "get": {
+        "operationId": "SelectionsController_launches",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectionLaunchDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "tags": [
+          "selections"
+        ]
+      }
+    },
     "/api/v1/store": {
       "get": {
         "operationId": "StoreController_list",
@@ -5554,6 +5830,9 @@
           "room": {
             "type": "object",
             "properties": {
+              "roomId": {
+                "type": "string"
+              },
               "name": {
                 "type": "string",
                 "nullable": true
@@ -5649,6 +5928,7 @@
               }
             },
             "required": [
+              "roomId",
               "name",
               "hostName",
               "sessions",
@@ -5983,6 +6263,9 @@
       "HistoryRoomDto": {
         "type": "object",
         "properties": {
+          "roomId": {
+            "type": "string"
+          },
           "name": {
             "type": "string",
             "nullable": true
@@ -6078,6 +6361,7 @@
           }
         },
         "required": [
+          "roomId",
           "name",
           "hostName",
           "sessions",
@@ -8133,6 +8417,364 @@
         },
         "required": [
           "name"
+        ]
+      },
+      "SelectionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "ownerId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "shared": {
+            "type": "boolean"
+          },
+          "editable": {
+            "type": "boolean"
+          },
+          "ownerName": {
+            "type": "string"
+          },
+          "quizCount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "playableCount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "preview": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "quizId": {
+                  "type": "string"
+                },
+                "coverMediaId": {
+                  "type": "string",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "quizId",
+                "coverMediaId"
+              ]
+            }
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "ownerId",
+          "name",
+          "description",
+          "shared",
+          "editable",
+          "quizCount",
+          "playableCount",
+          "preview",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CreateSelectionDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "SelectionDetailDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "ownerId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "shared": {
+            "type": "boolean"
+          },
+          "editable": {
+            "type": "boolean"
+          },
+          "ownerName": {
+            "type": "string"
+          },
+          "quizCount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "playableCount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "preview": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "quizId": {
+                  "type": "string"
+                },
+                "coverMediaId": {
+                  "type": "string",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "quizId",
+                "coverMediaId"
+              ]
+            }
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "quizId": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "ownerName": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "draft",
+                    "ready",
+                    "archived"
+                  ]
+                },
+                "questionCount": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "mode": {
+                  "type": "string",
+                  "enum": [
+                    "manual",
+                    "auto"
+                  ]
+                },
+                "autoStart": {
+                  "type": "boolean"
+                },
+                "unplayable": {
+                  "type": "string",
+                  "enum": [
+                    "draft",
+                    "archived",
+                    "empty",
+                    null
+                  ],
+                  "nullable": true
+                }
+              },
+              "required": [
+                "quizId",
+                "title",
+                "status",
+                "questionCount",
+                "mode",
+                "autoStart",
+                "unplayable"
+              ]
+            }
+          },
+          "unsharedCount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "id",
+          "ownerId",
+          "name",
+          "description",
+          "shared",
+          "editable",
+          "quizCount",
+          "playableCount",
+          "preview",
+          "createdAt",
+          "updatedAt",
+          "items"
+        ]
+      },
+      "SelectionFromRoomDto": {
+        "type": "object",
+        "properties": {
+          "pin": {
+            "type": "string",
+            "pattern": "^\\d{6}$"
+          },
+          "roomId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          }
+        }
+      },
+      "UpdateSelectionDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 2000,
+            "nullable": true
+          },
+          "shared": {
+            "type": "boolean"
+          },
+          "items": {
+            "maxItems": 50,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "quizId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "mode": {
+                  "default": "manual",
+                  "type": "string",
+                  "enum": [
+                    "manual",
+                    "auto"
+                  ]
+                },
+                "autoStart": {
+                  "default": true,
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "quizId"
+              ]
+            }
+          }
+        }
+      },
+      "SelectionLaunchDto": {
+        "type": "object",
+        "properties": {
+          "roomId": {
+            "type": "string"
+          },
+          "roomName": {
+            "type": "string",
+            "nullable": true
+          },
+          "startedAt": {
+            "type": "string"
+          },
+          "participants": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "sessions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "quizId": {
+                  "type": "string"
+                },
+                "quizTitle": {
+                  "type": "string"
+                },
+                "playerCount": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "successRate": {
+                  "type": "number",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "id",
+                "quizId",
+                "quizTitle",
+                "playerCount",
+                "successRate"
+              ]
+            }
+          }
+        },
+        "required": [
+          "roomId",
+          "roomName",
+          "startedAt",
+          "participants",
+          "sessions"
         ]
       },
       "StoreEntryDto": {

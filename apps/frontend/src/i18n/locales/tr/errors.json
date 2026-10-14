@@ -237,5 +237,13 @@
   "background": {
     "image_and_gradient": "Arka plan bir resim ya da bir gradyandır, ikisi birden değil.",
     "mode_required": "Resmin nasıl yerleşeceğini seçin."
+  },
+  "selection": {
+    "not_found": "Seçki bulunamadı.",
+    "nothing_playable": "Bu seçkinin hiçbir quizi oynanamaz.",
+    "too_many_quizzes": "Bir seçki en fazla 50 quiz içerir.",
+    "duplicate_quiz": "Bir quiz seçkide yalnızca bir kez yer alır.",
+    "quiz_not_found": "Bu quiz eklenemez: sizin değil ve sizinle paylaşılmamış.",
+    "nothing_to_save": "Bu oda, bir seçkide saklayabileceğiniz hiçbir quiz oynamadı."
   }
 }

@@ -110,6 +110,22 @@ export const templatesRoute = createRoute({
   component: lazyRouteComponent(() => import('./routes/templates-page'), 'TemplatesPage'),
 });
 
+/** The host's selections, and those shared with them (SPECIFICATIONS-SELECTION). */
+export const selectionsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/selections',
+  beforeLoad: requireAuth,
+  component: lazyRouteComponent(() => import('./routes/selections-page'), 'SelectionsPage'),
+});
+
+/** A selection: edited by its owner, read by the others it is shared with. */
+export const selectionRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/selections/$selectionId',
+  beforeLoad: requireAuth,
+  component: lazyRouteComponent(() => import('./routes/selection-page'), 'SelectionPage'),
+});
+
 /** The library of quiz themes (docs/themes.md). */
 export const themesRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -412,6 +428,8 @@ export const routeTree = rootRoute.addChildren([
   callbackRoute,
   dashboardRoute,
   templatesRoute,
+  selectionsRoute,
+  selectionRoute,
   themesRoute,
   themeRoute,
   communityRoute,

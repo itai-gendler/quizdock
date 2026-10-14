@@ -91,6 +91,7 @@ describe('GameService: the hashes of a new session (integration)', () => {
       name: '',
       hostName: 'Ada',
       sounds: expect.stringMatching(/^\{.*\}$/),
+      selectionId: '', // opened from a single quiz
     });
     expect(await redis.hgetall(gameKeys.game(room.gameId as never))).toEqual({
       quizId,

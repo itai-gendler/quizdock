@@ -236,5 +236,13 @@
   "background": {
     "image_and_gradient": "背景是图片或渐变，不能两者兼有。",
     "mode_required": "请选择图片的排布方式。"
+  },
+  "selection": {
+    "not_found": "未找到选集。",
+    "nothing_playable": "该选集中没有可演示的测验。",
+    "too_many_quizzes": "一个选集最多包含 50 个测验。",
+    "duplicate_quiz": "一个测验在选集中只能出现一次。",
+    "quiz_not_found": "无法添加该测验：它既不是你的，也未与你共享。",
+    "nothing_to_save": "这个房间没有演示过可保存到选集的测验。"
   }
 }

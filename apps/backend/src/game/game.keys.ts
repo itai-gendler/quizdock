@@ -66,6 +66,8 @@ export const gameKeys = {
   played: (pin: string) => `room:${pin}:played`,
   /** Set of the quiz ids the room played to their end: the console marks them when picking the next. */
   playedQuizzes: (pin: string) => `room:${pin}:played-quizzes`,
+  /** List of `{ quizId, mode }` (JSON) of the games over, in the order played: saving the room as a selection. */
+  playedOrder: (pin: string) => `room:${pin}:played-order`,
   /** Hash playerId → their session token, so the room keeps them alive while it lives. */
   tokens: (pin: string) => `room:${pin}:tokens`,
   /** Set of a host's open rooms, by PIN (resumed from the dashboard §6.2). */

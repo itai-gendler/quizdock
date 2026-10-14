@@ -9,6 +9,7 @@ import type { HistoryRoomDtoSessionsItem } from './historyRoomDtoSessionsItem';
 import type { HistoryRoomDtoStandingsItem } from './historyRoomDtoStandingsItem';
 
 export interface HistoryRoomDto {
+  roomId: string;
   /** @nullable */
   name: string | null;
   hostName: string;

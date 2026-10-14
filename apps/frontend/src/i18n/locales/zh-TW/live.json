@@ -518,5 +518,13 @@
     },
     "muteBus": "靜音：{{bus}}",
     "unmuteBus": "取消靜音：{{bus}}"
+  },
+  "selection": {
+    "title": "選集：{{name}}",
+    "position": "第 {{at}} 個，共 {{count}} 個",
+    "next": "下一個",
+    "played": "已示範",
+    "save": "儲存為選集",
+    "saved": "已儲存為選集：開啟"
   }
 }
