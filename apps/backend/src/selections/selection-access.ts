@@ -13,6 +13,7 @@ export type UnplayableReason = 'draft' | 'archived' | 'empty';
 export interface SelectionLine {
   quizId: string;
   title: string;
+  coverMediaId: string | null;
   ownerId: string;
   ownerName: string;
   status: QuizStatus;
@@ -55,6 +56,7 @@ export async function linesOf(
       quiz: {
         select: {
           title: true,
+          coverMediaId: true,
           ownerId: true,
           status: true,
           questionCount: true,
@@ -66,6 +68,7 @@ export async function linesOf(
   return items.map(({ quiz, ...item }) => ({
     quizId: item.quizId,
     title: quiz.title,
+    coverMediaId: quiz.coverMediaId,
     ownerId: quiz.ownerId,
     ownerName: quiz.owner.displayName,
     status: quiz.status,

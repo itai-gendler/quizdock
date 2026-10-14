@@ -17,6 +17,7 @@ const selection = (over: Record<string, unknown> = {}) => ({
   editable: true,
   quizCount: 3,
   playableCount: 3,
+  preview: [],
   createdAt: '2026-10-01T00:00:00.000Z',
   updatedAt: '2026-10-01T00:00:00.000Z',
   ...over,

@@ -5,6 +5,7 @@
  * API REST du builder de quiz et des restitutions
  * OpenAPI spec version: 0.1.0
  */
+import type { SelectionDtoPreviewItem } from './selectionDtoPreviewItem';
 
 export interface SelectionDto {
   id: string;
@@ -25,6 +26,7 @@ export interface SelectionDto {
      * @maximum 9007199254740991
      */
   playableCount: number;
+  preview: SelectionDtoPreviewItem[];
   createdAt: string;
   updatedAt: string;
 }

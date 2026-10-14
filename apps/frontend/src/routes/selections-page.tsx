@@ -39,6 +39,7 @@ import {
   useSelectionsControllerRemove,
 } from '../api/generated/selections/selections';
 import { useLaunchSession } from '../game/use-launch-session';
+import { SelectionFan } from './selection-fan';
 
 /** Where the list's filters are kept for the tab's visit. */
 const FILTERS = 'quizdock.selections.filter';
@@ -228,10 +229,19 @@ function SelectionRow({
     // the actions above it stay their own buttons.
     <li
       className={cn(
-        'hover:bg-accent/60 relative flex flex-col rounded-lg border transition-colors',
+        'hover:bg-accent/60 relative flex flex-col overflow-hidden rounded-lg border transition-colors',
         grid ? '' : 'gap-3 p-3 sm:flex-row sm:items-center sm:gap-4',
       )}
     >
+      {/* Its first quizzes fanned out, as a quiz's card shows its first step. */}
+      {grid ? (
+        <SelectionFan preview={s.preview} />
+      ) : (
+        <SelectionFan
+          preview={s.preview}
+          className="hidden w-32 shrink-0 rounded-md border sm:block"
+        />
+      )}
       <span className={cn('flex min-w-0 flex-1 flex-col gap-1', grid && 'p-4')}>
         <span className="flex min-w-0 items-center gap-2">
           {others ? (

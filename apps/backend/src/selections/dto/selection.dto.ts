@@ -20,6 +20,8 @@ export const selectionSchema = z.object({
   /** The quizzes the caller may read, and those of them they may play. */
   quizCount: z.number().int(),
   playableCount: z.number().int(),
+  /** Its first quizzes the caller may read (three at most), to picture it as a fan. */
+  preview: z.array(z.object({ quizId: z.string(), coverMediaId: z.string().nullable() })),
   createdAt: z.string(),
   updatedAt: z.string(),
 });

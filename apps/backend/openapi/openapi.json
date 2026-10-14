@@ -8454,6 +8454,25 @@
             "minimum": -9007199254740991,
             "maximum": 9007199254740991
           },
+          "preview": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "quizId": {
+                  "type": "string"
+                },
+                "coverMediaId": {
+                  "type": "string",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "quizId",
+                "coverMediaId"
+              ]
+            }
+          },
           "createdAt": {
             "type": "string"
           },
@@ -8470,6 +8489,7 @@
           "editable",
           "quizCount",
           "playableCount",
+          "preview",
           "createdAt",
           "updatedAt"
         ]
@@ -8525,6 +8545,25 @@
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991
+          },
+          "preview": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "quizId": {
+                  "type": "string"
+                },
+                "coverMediaId": {
+                  "type": "string",
+                  "nullable": true
+                }
+              },
+              "required": [
+                "quizId",
+                "coverMediaId"
+              ]
+            }
           },
           "createdAt": {
             "type": "string"
@@ -8606,6 +8645,7 @@
           "editable",
           "quizCount",
           "playableCount",
+          "preview",
           "createdAt",
           "updatedAt",
           "items"

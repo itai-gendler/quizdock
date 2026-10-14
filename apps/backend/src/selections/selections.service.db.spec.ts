@@ -66,6 +66,8 @@ describe('SelectionsService (integration)', () => {
       playableCount: 1,
     });
     expect(forBob.unsharedCount).toBeUndefined();
+    // Its picture fans out what Bob may read, never the private one.
+    expect(forBob.preview.map((p) => p.quizId)).toEqual([shared.id, draft.id]);
     const listed = (await service.list(bob)).map((x) => x.id);
     expect(listed).toContain(s.id);
     expect(listed).not.toContain(hidden.id);

@@ -20,6 +20,9 @@ import {
 
 type ItemInput = { quizId: string; mode: GameMode; autoStart: boolean };
 
+/** The quizzes a selection's picture fans out. */
+const PREVIEW_MAX = 3;
+
 /**
  * Selections (SPECIFICATIONS-SELECTION): named lists of quizzes, launched into a room.
  * Everyone sees of one what they may read; the owner alone changes it.
@@ -330,6 +333,9 @@ export class SelectionsService {
       ...(editable ? {} : { ownerName }),
       quizCount: lines.length,
       playableCount: lines.filter((l) => l.unplayable === null).length,
+      preview: lines
+        .slice(0, PREVIEW_MAX)
+        .map((l) => ({ quizId: l.quizId, coverMediaId: l.coverMediaId })),
       createdAt: row.createdAt.toISOString(),
       updatedAt: row.updatedAt.toISOString(),
     };

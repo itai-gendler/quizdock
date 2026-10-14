@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.1.0
  */
 import type { SelectionDetailDtoItemsItem } from './selectionDetailDtoItemsItem';
+import type { SelectionDetailDtoPreviewItem } from './selectionDetailDtoPreviewItem';
 
 export interface SelectionDetailDto {
   id: string;
@@ -26,6 +27,7 @@ export interface SelectionDetailDto {
      * @maximum 9007199254740991
      */
   playableCount: number;
+  preview: SelectionDetailDtoPreviewItem[];
   createdAt: string;
   updatedAt: string;
   items: SelectionDetailDtoItemsItem[];
