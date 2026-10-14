@@ -4,11 +4,15 @@ import { cn } from '@/lib/utils';
 import type { SelectionDtoPreviewItem } from '../api/generated/model';
 import { QuizFirstStep } from './quiz-first-step';
 
-/** Where each of the three fans out, the first in front (UI: a selection's picture). */
+/**
+ * Where each of the three sits, as a hand of cards: all from the same place, turning
+ * on a pivot under them, the first in front. The card's hover spreads them a little
+ * further and lifts the first (only where motion is welcome).
+ */
 const PLACES = [
-  'left-[20%] top-[24%] z-20',
-  'left-[5%] top-[18%] z-10 -rotate-6',
-  'right-[5%] top-[18%] z-0 rotate-6',
+  'z-20 group-hover:-translate-y-[6%]',
+  'z-10 -rotate-[10deg] group-hover:-rotate-[16deg]',
+  'z-0 rotate-[10deg] group-hover:rotate-[16deg]',
 ] as const;
 
 /**
@@ -37,9 +41,10 @@ export function SelectionFan({
             hasCover={!!q.coverMediaId}
             fallback={<Cover coverMediaId={q.coverMediaId} />}
             className={cn(
-              'absolute w-[60%] overflow-hidden rounded-sm border shadow-sm',
+              'absolute top-[22%] left-[22%] w-[56%] origin-[50%_250%] overflow-hidden rounded-sm border shadow-sm',
+              'motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out',
               // Alone, it stands in the middle; with others, they fan out behind it.
-              preview.length === 1 ? 'top-[20%] left-[20%]' : PLACES[i],
+              preview.length === 1 ? PLACES[0] : PLACES[i],
             )}
           />
         ))
