@@ -159,8 +159,7 @@ What a host does to design a quiz: [Product Model, My quizzes](../product-model/
 ## 8. Business rules
 
 ### 8.1 Quizzes & the bank
-Who owns and reads a quiz, what makes it ready, and copying one: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
-- Bounds: `time limit` 5–240 s; **2 to 6 options** depending on the type; **≥ 1 right answer** (except polls).
+Who owns and reads a quiz, a question's bounds, what makes a quiz ready, and copying one: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
 
 ### 8.1 bis Sharing a quiz — two verbs, never one
 
@@ -332,7 +331,6 @@ number (`rg-02-…`).
 
 | # | Rule |
 |---|-------|
-| RG-03 | Time limit per question ∈ [5, 240] s; 2–6 options; ≥ 1 right answer (polls aside). |
 | RG-04 | A unique 6-digit PIN, used once, expiring (30 min in the lobby). |
 | RG-05 | 10–200 participants per session; individual mode. |
 | RG-06 | One nickname per session, filtered; one answer per question; no changing their mind. |
