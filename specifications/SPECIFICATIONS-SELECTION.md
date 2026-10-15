@@ -2,7 +2,8 @@
 
 > A **selection**: a named, saved, replayable list of quizzes, launched into a room in one go. The room
 > ([SPECIFICATIONS-ROOM.md](./SPECIFICATIONS-ROOM.md)) improvises a series of quizzes live; a selection prepares one.
-> The model, the decisions taken, the data, and the tests.
+> The decisions taken, the data, and the tests. What selections are and do is stated once, in the
+> [Product Model](../product-model/README.md); this brief links to it and keeps why it is so.
 
 Status: **delivered on `dev`** (2026-10-14), not released yet.
 
@@ -10,14 +11,21 @@ Status: **delivered on `dev`** (2026-10-14), not released yet.
 
 ## 1. The model
 
-- **A selection** is content, like a quiz: it belongs to its host and sits next to *My quizzes*. It holds:
-  - its **name** (and an optional description), which carries the context: *History, year 8*, *Company night*;
-  - its **quizzes, in order**;
-  - for each quiz, what depends on the quiz itself: its **pace** (`manual` / `auto`, LIVE §8) and whether the
-    **next quiz starts on its own** after the lobby countdown (LIVE §11.4).
-- **Launching** a selection opens a room on its first playable quiz. From there, the room is an ordinary room (ROOM §1): same
-  screens, same archives, same standings.
-- **Saving a room as a selection** turns the quizzes a room played, in their order, into a new selection.
+Moved to the Product Model, the Selections domain ([open the report](../product-model/README.md)):
+
+- **What a selection is and holds**: [Selection](../product-model/entities/selection.md).
+- **What a host does with one**: [Create](../product-model/capabilities/create-selection/capability.md), [Edit](../product-model/capabilities/edit-selection/capability.md),
+  [Add a quiz](../product-model/capabilities/add-quiz-to-selection/capability.md), [Remove a quiz](../product-model/capabilities/remove-quiz-from-selection/capability.md),
+  [Delete](../product-model/capabilities/delete-selection/capability.md), [Browse](../product-model/capabilities/browse-selections/capability.md),
+  [Present a selection](../product-model/capabilities/launch-selection/capability.md), [Save a room as a selection](../product-model/capabilities/save-room-as-selection/capability.md),
+  [Share](../product-model/capabilities/share-selection/capability.md), [Stop sharing](../product-model/capabilities/stop-sharing-selection/capability.md),
+  [Create a selection from a shared one](../product-model/capabilities/copy-selection/capability.md), [Compare its launches](../product-model/capabilities/compare-selection-launches/capability.md).
+- **Its rules**: [the queue](../product-model/business-rules/selection-queue.md), [the limits](../product-model/business-rules/selection-limits.md),
+  [who reads what](../product-model/business-rules/selection-reading.md), [sharing shares no quiz](../product-model/business-rules/selection-sharing-shares-no-quiz.md),
+  [only its owner changes it](../product-model/business-rules/selection-changes-by-owner.md), [or deletes it](../product-model/business-rules/selection-deletion-by-owner.md),
+  [what a room can play](../product-model/business-rules/playable-quiz.md).
+
+Those a decision below explains link back to it, so the report shows the decision beside them.
 
 ## 2. Decisions taken
 
@@ -28,60 +36,41 @@ Status: **delivered on `dev`** (2026-10-14), not released yet.
   - *Playlist*, and the game vocabulary (*round*, *tournament*, *season*): outside quizzes, or too narrow;
   - *Series* (fr *Série*): already the answer streak; *Session*: already one archived quiz; *Bundle*, *pack*: already
     the import/export format.
-- **Only what depends on the quizzes** (2026-10-13). The settings that depend on the audience and the place stay the
+- **Only what depends on the quizzes** (2026-10-13): a [selection](../product-model/entities/selection.md) holds
+  only what depends on the quizzes. The settings that depend on the audience and the place stay the
   room's, picked at each launch as today:
   - capture, personal tracking (RG-16), picking one's own name, participant access;
   - the invitation address, the join lock, the sounds and levels, motion, the audience language, the room's name.
 
   A selection never imposes a capture the host did not choose, and stays playable in any context.
-- **A reference to each quiz, not a copy** (2026-10-13). A quiz edited between two launches is played in its new
-  version; each archived session keeps its own frozen copy (`quiz_snapshot`), which is what any follow-up reads.
-- **Shared like a quiz** (2026-10-13): a selection can be shared with the instance's other hosts, off by default.
-  They see it read-only in their bank and can **create a selection from it**, theirs to edit, with nothing linking
-  the two afterwards (as `quiz.shared` and *Create from this* do for a quiz). Settled 2026-10-14:
-  - another host **launches** a shared selection as it is: each quiz shared with them is played keeping nothing
-    ([SPECIFICATIONS-SHARED-PLAY.md](./SPECIFICATIONS-SHARED-PLAY.md)); the others they cannot read, and do not see;
-  - sharing a selection **does not share its quizzes**: the owner decides for each. Sharing it says how many of them
-    the other hosts will not see;
-  - a selection **created from** a shared one refers to the same quizzes, copying none; whoever wants results keeps
-    their own copy of the quiz they need;
-  - **beyond the instance** (a bundle, the template catalogue, the store), where everything travels as a copy, is
-    outside this brief.
-- **The list is a queue the host may leave** (2026-10-14). The room's lobby picks the selection's next quiz on its own:
-  the first quiz of the list the room has not played yet (the room already knows them, `playedQuizIds`), so no cursor
-  is stored. *Change quiz* stays: a quiz picked outside the list is played, and the queue goes on where it was; a
-  quiz skipped stays next until it is played. The order changes in the selection, never live. The lobby says what
-  comes: *Next in the selection: X (3 of 5)*. Moving on stays the host's call (ROOM §2).
-- **One rule for what shows** (2026-10-14): everyone, the owner included, sees of a selection what they may read;
-  what they may read but not play is greyed.
-  - A **deleted** quiz leaves the list (its line goes with it). Another host's quiz no longer shared leaves the view
-    of whoever cannot read it any more, and comes back if shared again. To keep another host's quiz, the only way is
-    one's own copy (*Create a quiz from this*).
-  - **In its editor**, the list is edited, and a quiz one may read but not play (back to `draft`, without a question)
-    is greyed with why.
-  - **In the console**, only what can be played: the quizzes the room played ticked, the next one picked in the
-    lobby, the host free to change it at once; *3 of 5* counts the playable ones. A room opened from a single quiz is
-    as today: the host picks the next one.
-  - Another host's selection none of whose quizzes one may read does not show at all; one's own always shows, an
-    empty one included (it is being filled).
-- **Saving a room as a selection, from two places** (2026-10-14), the same *Save as a selection*, the new selection
-  named after the room and leaving out what its owner may not read:
-  - **the console**, in the lobby or when the room closes: every quiz the room played, in order, each with the pace
-    it had;
-  - ***History*'s room card**, afterwards: the room's archived quizzes in order, at the manual pace (an archived
-    session does not keep its pace) — the way back for a host who forgot to save it live.
-- **Limits** (2026-10-14), against abuse only: at most **50 quizzes** in a selection (`selection.too_many_quizzes`),
-  **each quiz once** (the queue plays the first one not played yet, so a second line would never come; a quiz is
-  played again with *Change quiz*), a name of 60 characters as a room's, a description of 2000 as a quiz's. The room
-  itself keeps no limit.
-- **A quiz that cannot be played is skipped** (2026-10-14): the lobby picks the next playable one. Launching is refused
-  only when none of the list can be played (`selection.nothing_playable`).
+- **A reference to each quiz, not a copy** (2026-10-13): [adding a quiz copies nothing](../product-model/capabilities/add-quiz-to-selection/scenarios/add-a-quiz.md).
+  A quiz edited between two launches is played in its new version; each archived session keeps its own frozen copy (`quiz_snapshot`), which is what any follow-up reads.
+- **Shared like a quiz** (2026-10-13, settled 2026-10-14), as `quiz.shared` and *Create from this* do for a quiz:
+  [sharing](../product-model/capabilities/share-selection/capability.md), [presenting another host's selection](../product-model/capabilities/launch-selection/scenarios/launch-shared-selection.md)
+  and [creating one's own from it](../product-model/capabilities/copy-selection/capability.md). Sharing a selection
+  [does not share its quizzes](../product-model/business-rules/selection-sharing-shares-no-quiz.md): the owner decides for each. **Beyond the
+  instance** (a bundle, the template catalogue, the store), where everything travels as a copy, is outside this brief.
+- **The list is a queue the host may leave** (2026-10-14): [the room's lobby picks the next quiz](../product-model/business-rules/selection-queue.md).
+  It reads what the room already knows (`playedQuizIds`), so no cursor is stored. Moving on stays the host's call
+  (ROOM §2).
+- **One rule for what shows** (2026-10-14): everyone, the owner included, sees of a selection
+  [what they may read](../product-model/business-rules/selection-reading.md); what they may read but not play is greyed
+  ([in its editor](../product-model/capabilities/edit-selection/capability.md)), and only what can be played shows
+  [in the console](../product-model/capabilities/launch-selection/capability.md). To keep another host's quiz, the only way is one's own copy.
+- **Saving a room as a selection, from two places** (2026-10-14): [the console and *History*'s room card](../product-model/capabilities/save-room-as-selection/capability.md).
+  *History* is the way back for a host who forgot to save it live; an archived session does not keep its pace, so
+  its quizzes come back at the manual pace.
+- **Limits** (2026-10-14), against abuse only: [50 quizzes, each once](../product-model/business-rules/selection-limits.md)
+  (`selection.too_many_quizzes`). Each once because the queue plays the first one not played yet, so a second line
+  would never come; a quiz is played again with *Change quiz*. The name and the description take a room's and a
+  quiz's lengths. The room itself keeps no limit.
+- **A quiz that cannot be played is skipped** (2026-10-14), and [launching is refused](../product-model/capabilities/launch-selection/scenarios/nothing-playable.md)
+  only when none can be (`selection.nothing_playable`).
 - **The follow-up compares launches** (2026-10-14), read from their archived sessions like the room's card in
-  *History*, settings never locked: each launch with its date, the quizzes played, its participants and each quiz's
-  success rate, on the selection's page (*Launches*). Every session of a room its host opened from their own
-  selection carries it (`game_session_log.selection_id`, emptied if the selection is deleted: the archives stay);
-  another host's launch of a shared selection never reaches its owner. Following each
-  participant from one launch to the next — a stable identity, accounts only, RG-16 — is outside this brief.
+  *History*, settings never locked: [Launches](../product-model/capabilities/compare-selection-launches/capability.md), on the selection's page. Every
+  session of a room its host opened from their own selection carries it (`game_session_log.selection_id`, emptied if
+  the selection is deleted: the archives stay). Following each participant from one launch to the next — a stable
+  identity, accounts only, RG-16 — is outside this brief.
 
 ## 3. Data (sketch)
 

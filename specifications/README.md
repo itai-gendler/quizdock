@@ -28,10 +28,12 @@ Read them in this order to discover the project:
 | 12 | **[SPECIFICATIONS-IMAGE-CHOICE.md](./SPECIFICATIONS-IMAGE-CHOICE.md)** | Image choice (`image_choice`): answers that are pictures, the decisions taken (alt per option, single or multiple, tiles, bundle v6), the phases | Backend, frontend, product |
 | 13 | **[SPECIFICATIONS-UI-SYSTEM.md](./SPECIFICATIONS-UI-SYSTEM.md)** | UI system: the cross-cutting rules (actions, vocabulary, frames, contrast, permissive validation in four levels) and the three-lot rework (live, authoring, entry/account/back office), decisions taken, open points | Design, frontend, product |
 | 14 | **[SPECIFICATIONS-THEMING.md](./SPECIFICATIONS-THEMING.md)** | Theming: quiz themes (library, child themes of shipped themes, slots, icons, fonts, sounds, motion), bundle v8 and the theme bundle, instance branding and interface theme, dark mode, themes in the store | Design, frontend, backend, product |
-| 15 | **[SPECIFICATIONS-SELECTION.md](./SPECIFICATIONS-SELECTION.md)** | Selections (delivered on `dev`): a named, saved, shareable list of quizzes launched into a room; the word chosen, what it holds (only what depends on the quizzes), references not copies, the queue, what each one sees, saving a room, launches compared | Product, backend, frontend |
+| 15 | **[SPECIFICATIONS-SELECTION.md](./SPECIFICATIONS-SELECTION.md)** | Selections (delivered on `dev`): the decisions behind them (the word chosen, only what depends on the quizzes, references not copies, the queue, what each one sees, saving a room, launches compared), the data and the tests; what selections are and do is in the [Product Model](../product-model/README.md) | Product, backend, frontend |
 | 16 | **[SPECIFICATIONS-SHARED-PLAY.md](./SPECIFICATIONS-SHARED-PLAY.md)** | Presenting a shared quiz (delivered on `dev`): other hosts present it as it is, keeping nothing; ratings without nicknames; *share* vs *offer as a template* | Product, backend, frontend |
 
 > The documents refer to one another (for instance `technique §5`, `RG-13`, `données §2.10`). Any change of behaviour must update **the document it concerns, in the same commit** (see the "test & document" policy, technique §18).
+
+> **The Product Model.** What QuizDock does (its actors, the things it keeps and their states, what each person can do, its rules) is moving, one domain at a time, to the Product Model in [../product-model/](../product-model/README.md). A brief whose domain has moved keeps its decisions and their reasons, its data and its tests, and links to the model for the product facts; the model links back to the decisions. Moved so far: **Selections** (brief 15).
 
 ---
 
