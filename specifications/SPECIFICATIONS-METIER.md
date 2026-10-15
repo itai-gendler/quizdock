@@ -48,7 +48,7 @@ QuizDock is a tool for **real-time interactive quizzes**: a host runs a live ses
 
 ## 3. Domain glossary
 
-Quiz, question and the quizzes a host holds: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
+Quiz, question, the quizzes a host holds, and sharing a quiz with the instance's hosts: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
 
 | Term | Definition |
 |-------|------------|
@@ -59,7 +59,6 @@ Quiz, question and the quizzes a host holds: [Product Model, My quizzes](../prod
 | **Report** | The end-of-session report (attendance, scores, answers per question). |
 | **Template** | A quiz shared as a copy, for other hosts to take and make their own *(RG-17)*. |
 | **Catalogue** | The templates shared on this instance. Local, readable with no network. |
-| **Sharing** | Putting a copy of one's quiz in this instance's catalogue. Reversible; it never reaches outside. |
 | **Publishing** | Sending a copy to an **external** public store. Another act, another context: it needs a network and cannot be undone. |
 
 ---
