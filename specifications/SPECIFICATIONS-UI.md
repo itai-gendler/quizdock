@@ -55,7 +55,7 @@
 └───────────────────────────────────────────────────────────┘
 ```
 The `⋯` menu: Edit · Duplicate · Archive · Delete · See past sessions.
-> "Start" is disabled on a DRAFT (RG-02).
+> What each state allows: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
 
 ### 2.2 Quiz editor (the builder)
 ```
@@ -84,7 +84,7 @@ The `⋯` menu: Edit · Duplicate · Archive · Delete · See past sessions.
 - **What is always in view** is what gets edited for every question: type, prompt, timing, answers. **The rest folds** (`▸`): every fold starts closed and its line says what it is set to, so a setting that differs from the norm never hides.
 - **Question media** folds as one: the *visual* (image or video, with its alternative text) and the *sound* read as two groups; the sound's group ends with *listen first* and a folded *playback* (who hears it, waveform size).
 - The quiz's own settings sit beside its description: player feedback in view, the **sound** (pause after a media, levelling, who hears it) folded on the row below. The status bar, full width, carries the one action that follows the quiz's state.
-- Inline validation: a prompt is required, ≥ 1 right answer (RG-03), the time bounds. A field that refuses the save opens its fold, so the reason shows.
+- What is checked, and when: [Product Model, My quizzes](../product-model/domains/my-quizzes.md); how it shows: [UI system §1.5](./SPECIFICATIONS-UI-SYSTEM.md). A field that refuses the save opens its fold, so the reason shows.
 
 ### 2.3 Previewing a question
 ```

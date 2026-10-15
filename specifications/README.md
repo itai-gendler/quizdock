@@ -33,11 +33,13 @@ Read them in this order to discover the project:
 
 > The documents refer to one another (for instance `technique §5`, `RG-13`, `données §2.10`). Any change of behaviour must update **the document it concerns, in the same commit** (see the "test & document" policy, technique §18).
 
+> **The Product Model.** What QuizDock does is moving, one domain at a time, to the [Product Model](../product-model/README.md): the things it keeps and their states, what each person can do, and its rules with their reasons. The documents keep what the model does not hold: the options ruled out and when each decision was taken, the architecture, the data, the contracts, the tests and the plans. Moved so far: **My quizzes**.
+
 ---
 
 ## 🎯 In short
 
-- **Context**: a company, a session. **v1 mode**: classic, individual. **Quizzes**: private (the host's own bank).
+- **Context**: a company, a session. **v1 mode**: classic, individual.
 - **Scoring**: correctness **and** speed (an instant answer scores the maximum; at the time limit, half) plus a streak bonus. Timing is **authoritative on the server**.
 - **Taking part**: as a guest (PIN + nickname) **or** signed in (SSO) — mixed authentication.
 - **Anti-cheat**: the right answer is **never** sent to the client before the reveal.

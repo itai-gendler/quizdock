@@ -7,16 +7,10 @@
 
 ## 1. The type
 
-- **2 or 4 pictures**, never 3: one row of two, or two rows of two.
-- **One right picture**, or several when the question sets `multiSelect`
-  (one type with a setting, not a second type).
-- Each answer is a picture from the media library (the same content checks and
-  size limits as any media) with its **alternative text**, required. No text,
-  no mix of text and picture in one question.
-- The **prompt** is a question's usual prompt (Markdown, same limits).
-- **No visual of the question's own** (neither image nor video): the answers
-  are the pictures. A **sound is allowed** ("which picture goes with this
-  sound?"), and so is a background.
+What an image choice holds and allows: [Product Model, My quizzes](../product-model/domains/my-quizzes.md) (the
+question, its bounds, and what a ready quiz requires of it).
+
+Each picture comes from the media library, with the same content checks and size limits as any media.
 
 Every rule is carried by the API content schema and checked again by the
 server, never by the editor alone. The server also checks that each picture
