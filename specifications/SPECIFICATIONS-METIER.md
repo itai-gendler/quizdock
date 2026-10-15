@@ -104,11 +104,7 @@ SCHEDULED/IMMEDIATE → LOBBY → RUNNING → FINISHED → ARCHIVED
 ## 6. User journeys
 
 ### 6.1 Host — creating a quiz
-1. Signs in (or uses local mode).
-2. "New quiz" → title, description, language, artwork.
-3. Adds questions (type, prompt, media, options, **time limit**, **points**).
-4. Reorders them, previews.
-5. The quiz becomes **READY** once it is valid. It is saved in their private bank.
+Creating a quiz, from a blank one, an import or a copy, up to publishing it: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
 
 ### 6.2 Host — running a session
 1. Picks a **READY** quiz → "Start a session".
