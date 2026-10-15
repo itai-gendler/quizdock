@@ -3,6 +3,9 @@
 > The **domain / functional** view of the application. It complements `SPECIFICATIONS.md` (technical).
 > Context chosen: **a company, a session**. v1 mode: **classic, individual**. Quizzes are **private**.
 > Version 1.0 — 2026-06-09.
+>
+> What QuizDock does is moving to the [Product Model](../product-model/README.md), one domain at a time. A section
+> whose content has moved says where, in one line. Moved so far: **My quizzes**.
 
 ---
 
@@ -88,13 +91,7 @@ QuizDock is a tool for **real-time interactive quizzes**: a host runs a live ses
 ## 5. Lifecycle of the domain objects
 
 ### 5.1 Quiz
-```
-DRAFT ──(complete & valid)──▶ READY ──(played in a session)──▶ READY (reusable)
-   │                             │
-   └────────── ARCHIVED ◀────────┘   (the host archives it; it is not deleted, just out of the active lists)
-```
-- A **DRAFT** quiz cannot be launched (validation: ≥ 1 valid question).
-- **Archiving** keeps the history of the sessions already played.
+Its states (draft, ready, archived) and what each allows: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
 - **Deletion** is permanent and refused when reports must be kept (see §10, retention).
 
 ### 5.2 Session
@@ -168,10 +165,9 @@ SCHEDULED/IMMEDIATE → LOBBY → RUNNING → FINISHED → ARCHIVED
 ## 8. Business rules
 
 ### 8.1 Quizzes & the bank
+What makes a quiz ready, and copying one: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
 - A quiz belongs to **one host**, who alone sees and edits it. It is never shared by reference: what circulates is a copy (§8.1 bis).
-- A quiz must hold **≥ 1 valid question** to be **READY** and launchable.
 - Bounds: `time limit` 5–240 s; **2 to 6 options** depending on the type; **≥ 1 right answer** (except polls).
-- Duplicating creates an independent copy as a **DRAFT**.
 
 ### 8.1 bis Sharing a quiz — two verbs, never one
 
@@ -338,10 +334,12 @@ Available to the host, **frozen**:
 
 ## 12. Business rules — summary (quick reference)
 
+A rule whose domain has moved lives in the [Product Model](../product-model/README.md), its id starting with its
+number (`rg-02-…`).
+
 | # | Rule |
 |---|-------|
 | RG-01 | A quiz is private and belongs to a single host (v1). |
-| RG-02 | A launchable quiz has ≥ 1 valid question (state READY). |
 | RG-03 | Time limit per question ∈ [5, 240] s; 2–6 options; ≥ 1 right answer (polls aside). |
 | RG-04 | A unique 6-digit PIN, used once, expiring (30 min in the lobby). |
 | RG-05 | 10–200 participants per session; individual mode. |

@@ -33,6 +33,8 @@ Read them in this order to discover the project:
 
 > The documents refer to one another (for instance `technique §5`, `RG-13`, `données §2.10`). Any change of behaviour must update **the document it concerns, in the same commit** (see the "test & document" policy, technique §18).
 
+> **The Product Model.** What QuizDock does is moving, one domain at a time, to the [Product Model](../product-model/README.md): the things it keeps and their states, what each person can do, and its rules with their reasons. The documents keep what the model does not hold: the options ruled out and when each decision was taken, the architecture, the data, the contracts, the tests and the plans. Moved so far: **My quizzes**.
+
 ---
 
 ## 🎯 In short
