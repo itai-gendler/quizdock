@@ -32,11 +32,9 @@
     "ru"
   ],
   "limitations": [
-    "Quizzes are played live only, with the host presenting: there is no self-paced or homework mode.",
-    "Participants play individually: there are no teams, and a room plays one quiz at a time.",
-    "People sign in either with a typed name and one host seat (local mode) or through the operator's OpenID Connect provider; QuizDock keeps no passwords.",
-    "A quiz another host shares is presented as it is and keeps no results; a host who wants results presents a copy of their own.",
-    "Results reach History only when the host keeps them, or when a room closes because its host never came back; a quiz closed without keeping them leaves no trace."
+    "A quiz another host shares is presented as it is and keeps nothing: no results reach History. A host who wants results presents a copy of their own.",
+    "Results reach History only when the host keeps them, or when a room closes because its host never came back; a quiz closed without keeping them leaves no trace.",
+    "QuizDock stores no passwords: people sign in through the instance's OpenID Connect provider, or, in local mode, with a typed name and a single host seat."
   ],
   "references": [
     {
