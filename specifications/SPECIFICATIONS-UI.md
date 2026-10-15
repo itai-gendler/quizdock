@@ -55,7 +55,7 @@
 └───────────────────────────────────────────────────────────┘
 ```
 The `⋯` menu: Edit · Duplicate · Archive · Delete · See past sessions.
-> "Start" is disabled on a DRAFT (RG-02).
+> What each state allows: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
 
 ### 2.2 Quiz editor (the builder)
 ```

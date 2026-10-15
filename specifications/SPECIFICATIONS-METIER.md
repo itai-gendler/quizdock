@@ -48,10 +48,10 @@ QuizDock is a tool for **real-time interactive quizzes**: a host runs a live ses
 
 ## 3. Domain glossary
 
+Quiz and question: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
+
 | Term | Definition |
 |-------|------------|
-| **Quiz** | An ordered set of questions, owned by a host. |
-| **Question** | A timed prompt with one or more answer types (see technique §4). |
 | **Session (game)** | One live run of a quiz, identified by a PIN, run by a host. |
 | **Participant / player** | Someone taking part in a session. |
 | **Score** | A participant's points over a session (correctness + speed). |
@@ -132,13 +132,8 @@ SCHEDULED/IMMEDIATE → LOBBY → RUNNING → FINISHED → ARCHIVED
 ## 7. User stories (epics)
 
 ### Epic A — Designing a quiz
-- As a **host**, I want to **create a quiz** with several questions so I can prepare my session.
-- … **choose the question type** (multiple choice, true/false, text, numeric, ordering, poll) so the assessment fits.
-- … **set the time limit and the points** per question so I can calibrate the difficulty.
-- … **add an image or a sound** so a question is illustrated.
-- … **reorder and preview** so I can check how it runs.
-- … **duplicate a quiz** so a variant takes less time.
-- … **archive** an obsolete quiz so my bank stays tidy.
+What a host does to design a quiz: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
+- As a **host**, I want to **duplicate a quiz** so a variant takes less time.
 
 ### Epic B — Running a session
 - As a **host**, I want to **start a session and get a PIN** so the participants can join.
