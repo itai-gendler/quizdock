@@ -17,7 +17,8 @@
       "role": "implementation",
       "target": "apps/backend/src/slides/slides.service.ts"
     }
-  ]
+  ],
+  "domain": "my-quizzes"
 }
 ---
 

@@ -167,7 +167,7 @@
   ],
   "limitations": [
     {
-      "description": "The quizzes, rooms, games and sessions appear only as far as selections act on them: the states other domains reach (a game question by question, a quiz archived, a room closed) are listed but not yet reached by any Step, which is why lint warns about them, and two Rules govern only selection launches here, though they govern rooms too.",
+      "description": "The quizzes, rooms, games and sessions appear only as far as selections act on them, in the domains they belong to (My quizzes, Open rooms, Sessions), which hold no Capability yet. So lint warns that those domains are empty, that some states (a game question by question, a quiz archived, a room closed) are not yet reached by any Step, and that two Rules govern only selection launches here, though they govern rooms too. The host, participant and administrator act across every domain and belong to none.",
       "paths": [
         "apps/backend/src/game/",
         "apps/backend/src/quizzes/"

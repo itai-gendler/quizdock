@@ -34,7 +34,8 @@
       "role": "implementation",
       "target": "apps/backend/src/quizzes/quizzes.service.ts"
     }
-  ]
+  ],
+  "domain": "my-quizzes"
 }
 ---
 

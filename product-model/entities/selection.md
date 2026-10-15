@@ -25,7 +25,8 @@
       "target": "apps/backend/prisma/schema.prisma",
       "title": "Selection"
     }
-  ]
+  ],
+  "domain": "selections"
 }
 ---
 

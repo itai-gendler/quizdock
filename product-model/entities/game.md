@@ -17,7 +17,8 @@
       "role": "intent",
       "target": "docs/live-session.md"
     }
-  ]
+  ],
+  "domain": "rooms"
 }
 ---
 

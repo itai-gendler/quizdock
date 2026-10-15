@@ -13,7 +13,8 @@
       "target": "apps/backend/src/quizzes/quizzes.service.ts",
       "title": "sessionPlayerDetail"
     }
-  ]
+  ],
+  "domain": "sessions"
 }
 ---
 

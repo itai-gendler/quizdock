@@ -33,7 +33,8 @@
       "role": "implementation",
       "target": "apps/backend/src/game/game.types.ts"
     }
-  ]
+  ],
+  "domain": "rooms"
 }
 ---
 

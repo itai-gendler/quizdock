@@ -19,7 +19,8 @@
       "target": "apps/backend/prisma/schema.prisma",
       "title": "GameSessionLog"
     }
-  ]
+  ],
+  "domain": "sessions"
 }
 ---
 
