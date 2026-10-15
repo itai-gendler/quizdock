@@ -369,10 +369,7 @@ GET    /me/history                            the history (a signed-in player)
 ```
 
 ### Validation when a question is created
-- `time_limit_s` ∈ [5, 240].
-- 2 to 6 options depending on the type; ≥ 1 right (except polls).
-- Text input: ≥ 1 accepted answer.
-- Numeric: a `value` plus `tolerance ≥ 0`.
+What a question may hold, and what it needs before its quiz is ready: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
 
 ---
 

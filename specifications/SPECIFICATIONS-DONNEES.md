@@ -83,7 +83,7 @@ The key cardinalities:
 | `archived_at` | timestamptz | nullable | Archived (soft) |
 
 Index: `(owner_id, status)` for the dashboard.
-Rule: moving to `status=ready` is refused when `question_count = 0` or a question is invalid *(RG-02)*.
+What makes a quiz ready: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
 Rule: only a `ready` quiz may be shared *(RG-17)*.
 
 #### The catalogue of shared templates (on disk, not in the database)
@@ -128,12 +128,7 @@ source, never a required one.
 | `created_at` | timestamptz | NN, DEF now() | |
 | `updated_at` | timestamptz | NN | |
 
-CHECKs, in SQL or in the application, depending on the type:
-- `single_choice`/`multiple_choice`/`true_false`/`ordering` → ≥ 2 `answer_option` (≤ 6) *(RG-03)*.
-- `text_input` → ≥ 1 `accepted_answer`.
-- `numeric` → `numeric_value` NN + `numeric_tolerance` NN.
-- `poll` → `points_mode=none`, no right answer.
-- `image_choice` → exactly 2 or 4 `answer_option`, each with a `media_id` (an image the author owns) and an `alt`, no `text`; one right answer, or at least one with `multi_select`; no visual of the question's own (a sound is allowed).
+What each type holds, and what it needs before its quiz is ready: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
 
 ### 2.4 `answer_option` — options (choice, true/false, ordering)
 

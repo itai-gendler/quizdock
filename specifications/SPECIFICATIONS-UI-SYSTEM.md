@@ -37,7 +37,7 @@ The limits, and what a ready quiz requires: [Product Model, My quizzes](../produ
 |---|---|---|
 | 1 · Impossible by construction | The limits on lengths and counts, one sound, one background; ordering positions chosen by swap, decimals accepted | A counter that stops at the limit; an *Add* button that says "8 max". Never an error. |
 | 2 · Corrected automatically | A number brought back within its bounds, empty rows/answers/blocks dropped, ticks reset on a type change, whitespace trimmed | A note under the field, not an error. |
-| 3 · Completeness, checked at publication | A right answer ticked, at least 2 options, at least one accepted answer, a prompt or a media, pictures and their alt text (existing product decision), target and tolerance, a slide that shows something | *Save* always works; the step carries ⚠ in the list; *Publish* opens a checklist that leads to each step. Saving an incomplete step in a *ready* quiz offers to move it back to draft. |
+| 3 · Completeness, checked at publication | What a ready quiz requires of each question and slide | *Save* always works; the step carries ⚠ in the list; *Publish* opens a checklist that leads to each step. Saving an incomplete step in a *ready* quiz offers to move it back to draft. |
 | 4 · Blocking at save | Technical integrity only: unknown media, media of the wrong kind, concurrent save, item deleted meanwhile | Error on the field concerned, summary next to *Save*. |
 
 - One way to show errors everywhere: **under the field**, a **summary next to *Save*** with links, **focus on the first** one. No native browser bubbles (`noValidate`).
