@@ -1,7 +1,7 @@
 # QuizDock — Business specification (functional)
 
 > The **domain / functional** view of the application. It complements `SPECIFICATIONS.md` (technical).
-> Context chosen: **a company, a session**. v1 mode: **classic, individual**. Quizzes are **private**.
+> Context chosen: **a company, a session**. v1 mode: **classic, individual**.
 > Version 1.0 — 2026-06-09.
 >
 > What QuizDock does is moving to the [Product Model](../product-model/README.md), one domain at a time. A section
@@ -48,7 +48,7 @@ QuizDock is a tool for **real-time interactive quizzes**: a host runs a live ses
 
 ## 3. Domain glossary
 
-Quiz and question: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
+Quiz, question and the quizzes a host holds: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
 
 | Term | Definition |
 |-------|------------|
@@ -57,7 +57,6 @@ Quiz and question: [Product Model, My quizzes](../product-model/domains/my-quizz
 | **Score** | A participant's points over a session (correctness + speed). |
 | **Leaderboard** | The participants ordered by score, updated between questions. |
 | **Report** | The end-of-session report (attendance, scores, answers per question). |
-| **Quiz bank** | All of a host's private quizzes. |
 | **Template** | A quiz shared as a copy, for other hosts to take and make their own *(RG-17)*. |
 | **Catalogue** | The templates shared on this instance. Local, readable with no network. |
 | **Sharing** | Putting a copy of one's quiz in this instance's catalogue. Reversible; it never reaches outside. |
@@ -160,8 +159,7 @@ What a host does to design a quiz: [Product Model, My quizzes](../product-model/
 ## 8. Business rules
 
 ### 8.1 Quizzes & the bank
-What makes a quiz ready, and copying one: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
-- A quiz belongs to **one host**, who alone sees and edits it. It is never shared by reference: what circulates is a copy (§8.1 bis).
+Who owns and reads a quiz, what makes it ready, and copying one: [Product Model, My quizzes](../product-model/domains/my-quizzes.md).
 - Bounds: `time limit` 5–240 s; **2 to 6 options** depending on the type; **≥ 1 right answer** (except polls).
 
 ### 8.1 bis Sharing a quiz — two verbs, never one
@@ -309,7 +307,7 @@ Available to the host, **frozen**:
 - **Data protection**: guests' nicknames are not identifying; signed-in participants are personal data → they must be informed, with the right to access and to erasure (reports are anonymised when an account is deleted, see technique §13).
 - **Retention**: session reports are kept for a configurable duration (24 months by default in a session context); deleting a quiz is refused when a retention rule requires it.
 - **Full capture**: individual answers are only collected when the host turns it on; a **notice to the participants at the start of the session is mandatory** before anything is collected; the same retention as the report. Reserved for audit and certification needs (proportionality).
-- **Content moderation**: nicknames are filtered and the host can throw someone out; the quiz content is the host's responsibility (it is private).
+- **Content moderation**: nicknames are filtered and the host can throw someone out; the quiz content is the host's responsibility.
 - **Accessibility**: colour **and** shape for the answers, contrast, keyboard (see technique §13) — it matters in an inclusive professional setting.
 - **Language**: FR/EN from v1; the language is set on the quiz.
 
@@ -334,7 +332,6 @@ number (`rg-02-…`).
 
 | # | Rule |
 |---|-------|
-| RG-01 | A quiz is private and belongs to a single host (v1). |
 | RG-03 | Time limit per question ∈ [5, 240] s; 2–6 options; ≥ 1 right answer (polls aside). |
 | RG-04 | A unique 6-digit PIN, used once, expiring (30 min in the lobby). |
 | RG-05 | 10–200 participants per session; individual mode. |

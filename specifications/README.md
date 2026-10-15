@@ -39,7 +39,7 @@ Read them in this order to discover the project:
 
 ## 🎯 In short
 
-- **Context**: a company, a session. **v1 mode**: classic, individual. **Quizzes**: private (the host's own bank).
+- **Context**: a company, a session. **v1 mode**: classic, individual.
 - **Scoring**: correctness **and** speed (an instant answer scores the maximum; at the time limit, half) plus a streak bonus. Timing is **authoritative on the server**.
 - **Taking part**: as a guest (PIN + nickname) **or** signed in (SSO) — mixed authentication.
 - **Anti-cheat**: the right answer is **never** sent to the client before the reveal.
